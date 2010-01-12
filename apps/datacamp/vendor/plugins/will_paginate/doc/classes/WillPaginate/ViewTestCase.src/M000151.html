@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>setup (WillPaginate::ViewTestCase)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/lib/view_test_process.rb, line 28</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+    <span class="ruby-keyword kw">super</span>
+    <span class="ruby-ivar">@controller</span>  = <span class="ruby-constant">DummyController</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@request</span>     = <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">request</span>
+    <span class="ruby-ivar">@html_result</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-ivar">@template</span>    = <span class="ruby-value str">'&lt;%= will_paginate collection, options %&gt;'</span>
+    
+    <span class="ruby-ivar">@view</span> = <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@view</span>.<span class="ruby-identifier">assigns</span>[<span class="ruby-value str">'controller'</span>] = <span class="ruby-ivar">@controller</span>
+    <span class="ruby-ivar">@view</span>.<span class="ruby-identifier">assigns</span>[<span class="ruby-value str">'_request'</span>]   = <span class="ruby-ivar">@request</span>
+    <span class="ruby-ivar">@view</span>.<span class="ruby-identifier">assigns</span>[<span class="ruby-value str">'_params'</span>]    = <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">params</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+en:
+    access_rights:
+        edit_record: Edit record
+        create_record: Create record
+        edit_record_metadata: Edit record metadata
+        edit_locked_record: Edit locked record
+        import_from_file: Import from file
+        edit_dataset_description: Edit dataset description
+        create_dataset: Create dataset
+        destroy_dataset: Destroy dataset
+        manage_users: Manage users
+        block_users: Block users
+        grant_rights: Grant rights
+        view_hidden_fields: View hidden fields
+        view_hidden_records: View hidden records
+        search_in_hidden_fields: Search in hidden fields
+        search_in_hidden_records: Search in hidden records
+        use_in_development: Use features under development
+    access_right_categories:
+        records: Records
+        information: Information
+        datastore: Data store
+        users: Users
+        system: System
+    access_roles:
+        datastore_manager: Data store manager
+        user_manager: User manager
+        data_editor: Data editor
+        power_user: Power user

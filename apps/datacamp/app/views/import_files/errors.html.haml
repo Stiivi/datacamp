@@ -1,0 +1,8 @@
+.clearfix
+  %h1.fl== #{@asset.title} (#{@asset.dataset_description.title})
+  .fr= link_to "<span>Go to dataset description</span>", @import_file.dataset_description, :class => "button"
+  
+%h2 Import failed.
+
+- @importer.errors.each do |error|
+  %p.error= error

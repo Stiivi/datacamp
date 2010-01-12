@@ -1,0 +1,31 @@
+.node
+  .information
+    .clearfix.buttons
+      .fl
+        = button_link_to(image_tag("back.png") + t("global.back"), dataset_path(@dataset_description, :page => params[:page]))
+      .fl
+        %h1.main= @dataset_description.title
+      .fr.actions
+        - if logged_in? && current_user.has_privilege?(:data_editing)
+          = link_to t("global.edit"), edit_dataset_record_path(@dataset_description, @record)
+          |
+          = link_to t("global.delete"), dataset_record_path(@dataset_description, @record), :method => "delete", :confirm => "Are you sure you want to delete this item?"
+
+    %table
+      - @field_descriptions.each do |field_description|
+        - if not @record[field_description.identifier].nil?
+          %tr
+            %td.label
+              - if @quality_status.find { |qs| qs.column_name == field_description.identifier }
+                = image_tag "icons/exclamation.png", :class => "quality_status"
+              = field_description.title
+            %td= @record.get_html_value(field_description)
+
+  = render :partial => 'node_menu'
+    
+#comments
+  = render :partial => "datasets/comments"
+  
+#metadata
+  = render :partial => "metadata"
+  

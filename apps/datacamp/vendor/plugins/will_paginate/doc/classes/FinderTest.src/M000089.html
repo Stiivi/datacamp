@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_paginated_each (FinderTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/finder_test.rb, line 418</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_paginated_each</span>
+      <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">stub</span>(<span class="ruby-value str">'collection'</span>, <span class="ruby-identifier">:size</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>, <span class="ruby-identifier">:empty?</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>)
+      <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">expects</span>(<span class="ruby-identifier">:each</span>).<span class="ruby-identifier">times</span>(<span class="ruby-value">2</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-identifier">collection</span>)
+      <span class="ruby-identifier">last_collection</span> = <span class="ruby-identifier">stub</span>(<span class="ruby-value str">'collection'</span>, <span class="ruby-identifier">:size</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>, <span class="ruby-identifier">:empty?</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">5</span>)
+      <span class="ruby-identifier">last_collection</span>.<span class="ruby-identifier">expects</span>(<span class="ruby-identifier">:each</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-identifier">last_collection</span>)
+      
+      <span class="ruby-identifier">params</span> = { <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'id'</span>, <span class="ruby-identifier">:total_entries</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> }
+      
+      <span class="ruby-constant">Developer</span>.<span class="ruby-identifier">expects</span>(<span class="ruby-identifier">:paginate</span>).<span class="ruby-identifier">with</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)).<span class="ruby-identifier">returns</span>(<span class="ruby-identifier">collection</span>)
+      <span class="ruby-constant">Developer</span>.<span class="ruby-identifier">expects</span>(<span class="ruby-identifier">:paginate</span>).<span class="ruby-identifier">with</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>)).<span class="ruby-identifier">returns</span>(<span class="ruby-identifier">collection</span>)
+      <span class="ruby-constant">Developer</span>.<span class="ruby-identifier">expects</span>(<span class="ruby-identifier">:paginate</span>).<span class="ruby-identifier">with</span>(<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>)).<span class="ruby-identifier">returns</span>(<span class="ruby-identifier">last_collection</span>)
+      
+      <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">14</span>, <span class="ruby-constant">Developer</span>.<span class="ruby-identifier">paginated_each</span>(<span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'2'</span>) { }
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

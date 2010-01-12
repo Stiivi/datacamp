@@ -1,0 +1,22 @@
+﻿V databázovom systéme nájdete napríklad informácie o tom, kto získava
+verejné objednávky, kam prúdia štátne zdroje, kto spravuje veci verejné
+na rôznych úrovniach, kto radí verejným činiteľom... Databáza vám
+prináša pohodlné vyhľadávanie, pomocou ktorého si potrebné údaje nájdete
+naraz z rôznych zdrojov. Podrobnú štruktúru databáz, vrátane ponúkaných
+možností a užívateľského manuálu si môžete pozrieť v časti návod.
+
+Všetky informácie prístupné na tejto stránke boli získané z verejne
+dostupných zdrojov a vo veľkej časti priamo od inštitúcií, ktoré
+zverejnené dáta spravujú. Cieľom systému je uľahčiť vám prístup k
+informáciám, na ktoré má verejnosť nárok a poskytnúť základnú orientáciu
+v tokoch verejných financií a personálnom manažmente krajiny. Informácie
+slúžia iba na orientáciu, preto si ich pred použitím treba overiť zo
+zdroja, odkiaľ pochádzajú. Pri prenose dát do systému mohlo dôjsť k
+nezrovnalostiam. Prosíme Vás preto, aby ste nám podobné prípady
+nahlásili na mailovej adrese. V databáze sa nachádza obrovské množstvo
+údajov. Je možné, že niektoré z údajov už nie sú aktuálne. Venujte preto
+pozornosť dátumom, ku ktorým bola informácia označená za aktuálnu.
+
+Poskytnutie dotácií a iné údaje sa v databáze neprejavuje okamžite.
+Poskytovaní údaje sú aktualizované v rôznych intervaloch - informáciu o
+aktualizácii uvádzame v jednotlivých tabuľkách.

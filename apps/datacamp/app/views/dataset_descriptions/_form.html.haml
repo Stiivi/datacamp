@@ -1,0 +1,37 @@
+- form_for(@dataset_description, :builder => ListFormBuilder) do |f|
+  = f.error_messages
+  
+  %ul
+    %li.clearfix.locale_switcher
+      %label Language
+      = f.locale_switcher I18N_LOCALES         
+
+    - f.locale_tabs I18N_LOCALES do |trans|
+      = trans.text_field :title
+      = trans.text_field :description
+      
+    %li.clearfix
+      .fl.clearfix
+        = f.label :category_id
+      .fl.clearfix
+        = f.collection_select :category_id, DatasetCategory.all, :id, :title, :inline => true
+      .fl.clearfix.padded
+        or create new:
+      .fl.clearfix
+        = f.text_field :category, :inline => true, :value => ''
+    = f.text_field :identifier
+    = f.text_field :data_provider
+    = f.text_field :update_frequency
+    = f.text_field :keywords
+    = f.text_field :unit_of_analysis
+    = f.text_field :granularity
+    = f.text_field :collection_mode
+    = f.text_field :data_source_type
+    = f.text_field :default_import_format
+    = f.check_box :is_active
+        
+  %p
+    = f.submit t("global.save")
+    = f.submit t("global.save_and_create")
+    &nbsp;or
+    = link_to(t("global.cancel"), dataset_descriptions_path, :class => 'cancel')

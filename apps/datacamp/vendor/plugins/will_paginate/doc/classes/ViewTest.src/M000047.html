@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_collection_name_can_be_guessed (ViewTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/view_test.rb, line 345</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_collection_name_can_be_guessed</span>
+      <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">mock</span>
+      <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">expects</span>(<span class="ruby-identifier">:total_pages</span>).<span class="ruby-identifier">returns</span>(<span class="ruby-value">1</span>)
+      
+      <span class="ruby-ivar">@template</span> = <span class="ruby-value str">'&lt;%= will_paginate options %&gt;'</span>
+      <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">controller_name</span> = <span class="ruby-value str">'developers'</span>
+      <span class="ruby-ivar">@view</span>.<span class="ruby-identifier">assigns</span>[<span class="ruby-value str">'developers'</span>] = <span class="ruby-identifier">collection</span>
+      
+      <span class="ruby-identifier">paginate</span>(<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

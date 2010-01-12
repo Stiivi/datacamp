@@ -1,0 +1,2 @@
+$("#edit_field_description_<%= @field_description.id %>").prev().show().end().remove();
+$.getScript('<%= dataset_description_path(@dataset_description) %>');

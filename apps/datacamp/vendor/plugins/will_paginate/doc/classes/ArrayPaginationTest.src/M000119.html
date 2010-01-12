@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_guessing_total_count (ArrayPaginationTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/collection_test.rb, line 81</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_guessing_total_count</span>
+    <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">create</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pager</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># collection is shorter than limit</span>
+      <span class="ruby-identifier">pager</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">array</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">8</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">total_entries</span>
+    
+    <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">create</span>(<span class="ruby-value">2</span>, <span class="ruby-value">5</span>, <span class="ruby-value">10</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pager</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># collection is shorter than limit, but we have an explicit count</span>
+      <span class="ruby-identifier">pager</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">array</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">10</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">total_entries</span>
+    
+    <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">create</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pager</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># collection is the same as limit; we can't guess</span>
+      <span class="ruby-identifier">pager</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">array</span>(<span class="ruby-value">5</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">total_entries</span>
+    
+    <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">create</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pager</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># collection is empty; we can't guess</span>
+      <span class="ruby-identifier">pager</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">array</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">total_entries</span>
+    
+    <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">create</span>(<span class="ruby-value">1</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pager</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># collection is empty and we're on page 1,</span>
+      <span class="ruby-comment cmt"># so the whole thing must be empty, too</span>
+      <span class="ruby-identifier">pager</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">array</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">total_entries</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

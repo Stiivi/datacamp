@@ -1,0 +1,2 @@
+module DataTypesHelper
+end

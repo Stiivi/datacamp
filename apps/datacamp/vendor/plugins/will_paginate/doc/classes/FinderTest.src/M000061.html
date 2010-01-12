@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_paginate_with_joins (FinderTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/finder_test.rb, line 164</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_paginate_with_joins</span>
+    <span class="ruby-identifier">entries</span> = <span class="ruby-keyword kw">nil</span>
+    
+    <span class="ruby-identifier">assert_queries</span>(<span class="ruby-value">1</span>) <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">entries</span> = <span class="ruby-constant">Developer</span>.<span class="ruby-identifier">paginate</span> <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                          <span class="ruby-identifier">:joins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'LEFT JOIN developers_projects ON users.id = developers_projects.developer_id'</span>,
+                          <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'project_id = 1'</span>        
+      <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">developer_names</span> = <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">map</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">:name</span>
+      <span class="ruby-identifier">assert</span> <span class="ruby-identifier">developer_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'David'</span>)
+      <span class="ruby-identifier">assert</span> <span class="ruby-identifier">developer_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'Jamis'</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">assert_queries</span>(<span class="ruby-value">1</span>) <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">expected</span> = <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">to_a</span>
+      <span class="ruby-identifier">entries</span> = <span class="ruby-constant">Developer</span>.<span class="ruby-identifier">paginate</span> <span class="ruby-identifier">:page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+                          <span class="ruby-identifier">:joins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'LEFT JOIN developers_projects ON users.id = developers_projects.developer_id'</span>,
+                          <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'project_id = 1'</span>, <span class="ruby-identifier">:count</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-identifier">:select</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;users.id&quot;</span> }
+      <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">expected</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">to_a</span>
+      <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">total_entries</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

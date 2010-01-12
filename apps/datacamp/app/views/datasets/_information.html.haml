@@ -1,0 +1,29 @@
+#information_inside.clearfix
+  / .span-11
+  /   %table
+  /     %tr
+  /       %td.label= t("metadata.data_provider")
+  /       %td= @dataset_description.data_provider
+  /     %tr
+  /       %td.label= t("metadata.update_frequency")
+  /       %td= @dataset_description.update_frequency
+  /     %tr
+  /       %td.label= t("metadata.keywords")
+  /       %td= @dataset_description.keywords
+  /     %tr
+  /       %td.label= t("metadata.unit_of_analysis")
+  /       %td= @dataset_description.unit_of_analysis
+  /     %tr
+  /       %td.label= t("metadata.granularity")
+  /       %td= @dataset_description.granularity
+  /     %tr
+  /       %td.label= t("metadata.collection_mode")
+  /       %td= @dataset_description.collection_mode
+  /     %tr
+  /       %td.label= t("metadata.data_source_type")
+  /       %td= @dataset_description.data_source_type
+  /     %tr
+  /       %td.label= t("global.record_count")
+  /       %td= @dataset_description.record_count
+  .span-10.description
+    = @dataset_description.description

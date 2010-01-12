@@ -1,0 +1,4 @@
+$("#import_file_col_separator").val("<%= @import_file.col_separator %>");
+$("#import_file_header_lines").val("<%= @import_file.header_lines %>");
+$("a.button.template").removeClass("active");
+$("a#template_<%= @template_id %>").addClass("active");

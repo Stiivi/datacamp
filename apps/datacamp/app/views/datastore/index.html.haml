@@ -1,0 +1,12 @@
+.clearfix
+  %h1.fl
+    = t("global.system_datastore_management")
+
+.content.clearfix
+  .span-16
+    %ul.bordered
+      - @actions.each do |action|
+        %li.clearfix
+          %strong.fl= action[:name]
+          %a.fr.button{:href => url_for(:controller => "datastore", :action => action[:action])} <span>Run</span>
+        

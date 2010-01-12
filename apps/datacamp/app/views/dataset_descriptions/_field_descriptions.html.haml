@@ -1,0 +1,20 @@
+%h2= t("dataset.field_descriptions")
+
+%table.backend
+  %tr.title
+    %th.title= t("global.title")
+    %th.description= t("global.description")
+    %th.type= t("dataset.type")
+    %th.actions
+  - @field_descriptions.group_by(&:category).each do |group, field_descriptions|
+    %tr.title
+      %td.title= group.to_s.empty? ? t("dataset.no_category") : group
+      %td
+      %td
+      %td
+    = render :partial => 'field_description', :collection => field_descriptions, :as => :field_description, :locals => { :dataset_description => @dataset_description }        
+
+%br
+
+.clearfix
+  =link_to "<span>#{t("dataset.add_field_description")}</span>", new_dataset_description_field_description_path(@dataset_description), :class => 'button'

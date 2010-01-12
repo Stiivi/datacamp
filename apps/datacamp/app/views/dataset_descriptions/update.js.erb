@@ -1,0 +1,4 @@
+<% if(@dataset_description.valid?) %>
+$('form.edit_dataset_description').prev().show().end().remove();
+$.getScript("<%= dataset_description_path @dataset_description %>");
+<% end %>

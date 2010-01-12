@@ -1,0 +1,10 @@
+%ul.tabs.clearfix.frontend
+  %li{:class => params[:action]=="show" ? "active" : nil}
+    %a{:href => url_for(dataset_description_path(@dataset_description))}= t("dataset.field_descriptions")
+  %li{:class => params[:action]=="edit" ? "active" : nil}
+    %a{:href => edit_dataset_description_path(@dataset_description)}= t("global.information")
+  %li{:class => params[:action]=="visibility" ? "active" : nil}= link_to t("dataset.visibility_settings"), visibility_dataset_description_path(@dataset_description)
+  %li{:class => params[:action]=="import_settings" ? "active" : nil}
+    %a{:href => import_settings_dataset_description_path(@dataset_description)}= t("dataset.columns_for_import")
+  %li{:class => params[:action]=="datastore_status" ? "active" : nil}
+    %a{:href => datastore_status_dataset_description_path(@dataset_description)}= t("dataset.datastore_status")

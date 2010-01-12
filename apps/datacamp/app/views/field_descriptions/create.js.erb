@@ -1,0 +1,6 @@
+$('.dataset_description ul li form').parent().remove();
+$.getScript('<%= dataset_description_path(@dataset_description) %>', function(){
+  <% if params[:commit] == "Save and create" %>
+    $.getScript('<%= new_dataset_description_field_description_path %>');
+  <% end %>
+});

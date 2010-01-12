@@ -1,0 +1,21 @@
+#information_inside.clearfix
+  .span-11
+    %table
+      %tr
+        %td.label= t("metadata.created_on")
+        %td= @record.created_at
+      %tr
+        %td.label= t("metadata.valid_from")
+        %td= @record.validity_date
+      %tr
+        %td.label= t("metadata.last_update")
+        %td= @record.updated_at
+      %tr
+        %td.label= t("metadata.status")
+        %td= @record.record_status
+      %tr
+        %td.label= t("metadata.quality_status")
+        %td= @record.quality_status
+      %tr
+        %td.label= t("metadata.is_hidden")
+        %td= @record.is_hidden

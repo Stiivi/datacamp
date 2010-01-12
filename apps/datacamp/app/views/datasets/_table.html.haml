@@ -1,0 +1,18 @@
+%table{:class => "small #{@dataset_description.identifier}"}
+  %tr.header
+    - @field_descriptions.each do |field_description|
+      %th{:class => field_description.identifier}
+        = sort_link(field_description)
+    %th{:class => "actions"} &nbsp;
+  
+  - @records.each do |record|
+    %tr{:class => cycle("odd", "even")}
+      - @field_descriptions.each do |field_description|
+        %td
+          - value = record.get_truncated_html_value(field_description)
+          - unless field_description.reference.blank?
+            = link_to(value, new_search_path(:query_string => record.search_string_for_field_description(field_description)))
+          - else
+            = value
+      %td.actions
+        = button_link_to(t("global.show"), dataset_record_path(@dataset, record, :page => params[:page]))

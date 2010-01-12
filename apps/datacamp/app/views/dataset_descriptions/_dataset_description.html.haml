@@ -1,0 +1,11 @@
+%div[@dataset_description]
+
+  = render :partial => "header"
+
+  - unless @dataset.table_exists?
+    = render :partial => "create_table_guide"
+      
+  .content
+  
+    .tab#field_descriptions
+      = render :partial => "field_descriptions"

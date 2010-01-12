@@ -1,0 +1,24 @@
+.hidden {
+  display: none; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right !important; }
+
+.fn {
+  float: none; }
+
+.tr {
+  text-align: right; }
+
+.relative {
+  position: relative; }
+
+.inline {
+  display: inline !important;
+  float: none !important; }
+
+input.inline, select.inline {
+  width: 40px !important; }

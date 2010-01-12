@@ -1,0 +1,10 @@
+- form_for(@data_type, :builder => ListFormBuilder) do |f|
+  %ul.clearfix
+    = f.text_field :title
+    = f.text_field :database_type
+    = f.text_field :validation_expression
+  %div.clearfix
+    = f.submit
+    &nbsp;
+    = link_to 'Back', data_types_path
+    

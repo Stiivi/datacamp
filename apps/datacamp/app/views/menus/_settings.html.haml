@@ -1,0 +1,12 @@
+%ul.menu.submenu.clearfix
+  - if current_user.has_privilege? :manage_users
+    %li
+      = link_to t("global.settings"), settings_path
+    
+  - if current_user.has_privilege? :manage_users
+    %li
+      = link_to t("global.users"), users_path  
+    
+  - if current_user.has_privilege? :social_moderating
+    %li
+      = link_to t("global.moderation"), comments_path

@@ -1,0 +1,68 @@
+body {
+  background: url(../images/frontend_backround.png); }
+
+#main {
+  width: 960px;
+  margin: auto; }
+  #main #header {
+    background: url(../images/frontend_header_background.png) no-repeat;
+    width: 960px;
+    height: 57px;
+    margin: 0px;
+    padding: 0px;
+    border: none; }
+    #main #header #nav {
+      text-align: right;
+      padding-right: 30px;
+      padding-top: 30px;
+      color: #eaeff5;
+      font-size: 11px;
+      font-weight: bold; }
+      #main #header #nav a {
+        color: #eaeff5;
+        font-size: 11px;
+        font-weight: normal; }
+        #main #header #nav a:hover {
+          color: #f5f8fb; }
+  #main #container {
+    width: 960px;
+    background: url(../images/frontend_container_middle.png) repeat-y; }
+    #main #container #container_content {
+      background: url(../images/frontend_container_head.png) top left no-repeat;
+      padding: 26px;
+      padding-bottom: 0px; }
+    #main #container #container_foot {
+      height: 30px;
+      background: url(../images/frontend_container_foot.png); }
+  #main .content {
+    padding: 10px 15px;
+    border: none; }
+    #main .content h1, #main .content h2, #main .content h3 {
+      padding: 5px 0px;
+      margin-right: 0px;
+      padding-left: 5px; }
+    #main .content h1 {
+      font-size: 18px;
+      color: #61676e;
+      padding: 10px 22px; }
+      #main .content h1.main {
+        background: url(../images/frontend_main_header.png) no-repeat;
+        margin-top: -24px;
+        height: 37px;
+        padding-top: 25px;
+        padding-bottom: 0px;
+        margin-left: -15px;
+        margin-right: -46px; }
+        #main .content h1.main .actions {
+          font-size: 11px;
+          padding-right: 20px; }
+    #main .content h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #50575e;
+      border-bottom: 6px solid #f6f6f6; }
+
+a {
+  color: #415467; }
+  a:hover {
+    color: #496077; }

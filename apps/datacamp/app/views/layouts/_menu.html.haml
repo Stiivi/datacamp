@@ -1,0 +1,16 @@
+.clearfix.relative
+  = render :partial => "layouts/quick_search"
+
+  %ul.menu.clearfix.main.span-18
+    %li= link_to t("global.home"), root_path
+    %li= link_to t("global.data_catalogue"), datasets_path
+    - if current_user
+      - if current_user.has_privilege? :data_dictionary
+        %li{:class => @submenu_partial == "data_dictionary" ? "active" : ""}
+          = link_to t("global.data_dictionary"), dataset_descriptions_path
+      - if current_user.has_privilege? :manage_users
+        %li
+          = link_to t("global.settings"), settings_path
+
+  - if @submenu_partial
+    = render :partial => "menus/#{@submenu_partial}"

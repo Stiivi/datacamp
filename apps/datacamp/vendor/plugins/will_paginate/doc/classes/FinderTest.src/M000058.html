@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_paginate_associations_with_include (FinderTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/finder_test.rb, line 107</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_paginate_associations_with_include</span>
+    <span class="ruby-identifier">entries</span>, <span class="ruby-identifier">project</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">projects</span>(<span class="ruby-identifier">:active_record</span>)
+
+    <span class="ruby-identifier">assert_nothing_raised</span> <span class="ruby-value str">&quot;THIS IS A BUG in Rails 1.2.3 that was fixed in [7326]. &quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-value str">&quot;Please upgrade to a newer version of Rails.&quot;</span> <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">project</span>.<span class="ruby-identifier">topics</span>.<span class="ruby-identifier">paginate</span> \
+        <span class="ruby-identifier">:page</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>, 
+        <span class="ruby-identifier">:include</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:replies</span>,  
+        <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;replies.content LIKE 'Nice%' &quot;</span>, 
+        <span class="ruby-identifier">:per_page</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">expected</span> = <span class="ruby-constant">Topic</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">:all</span>, 
+      <span class="ruby-identifier">:include</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'replies'</span>, 
+      <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;project_id = #{project.id} AND replies.content LIKE 'Nice%' &quot;</span>, 
+      <span class="ruby-identifier">:limit</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>
+
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">expected</span>, <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">to_a</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

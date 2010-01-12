@@ -1,0 +1,22 @@
+.clearfix
+  %h1.fl
+    = t "global.comments"
+
+%table
+  %tr
+    %th= t "global.dataset"
+    %th= t "global.user"
+    %th= t "global.comment"
+    %th= t "global.created_at"
+    %th &nbsp;
+    
+  - @comments.each do |comment|
+    %tr
+      - if comment.dataset_description
+        %td= link_to comment.dataset_description.title, dataset_path(comment.dataset_description)
+      %td= comment.user.name
+      %td
+        %a{:href => edit_comment_path(comment)}
+          = comment.is_suspended ? "<del>" + comment.text + "</del>" : comment.text
+      %td= comment.created_at
+      %td

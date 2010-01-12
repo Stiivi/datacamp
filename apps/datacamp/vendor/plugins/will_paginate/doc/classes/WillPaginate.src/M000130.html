@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>enable_activerecord (WillPaginate)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/will_paginate.rb, line 32</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">enable_activerecord</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:paginate</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'will_paginate/finder'</span>
+      <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-constant">Finder</span>
+
+      <span class="ruby-comment cmt"># support pagination on associations</span>
+      <span class="ruby-identifier">a</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Associations</span>
+      <span class="ruby-identifier">returning</span>([ <span class="ruby-identifier">a</span><span class="ruby-operator">::</span><span class="ruby-constant">AssociationCollection</span> ]) { <span class="ruby-operator">|</span><span class="ruby-identifier">classes</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment cmt"># detect http://dev.rubyonrails.org/changeset/9230</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">a</span><span class="ruby-operator">::</span><span class="ruby-constant">HasManyThroughAssociation</span>.<span class="ruby-identifier">superclass</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">a</span><span class="ruby-operator">::</span><span class="ruby-constant">HasManyAssociation</span>
+          <span class="ruby-identifier">classes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">a</span><span class="ruby-operator">::</span><span class="ruby-constant">HasManyThroughAssociation</span>
+        <span class="ruby-keyword kw">end</span>
+      }.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-constant">Finder</span><span class="ruby-operator">::</span><span class="ruby-constant">ClassMethods</span>
+        <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">class_eval</span> { <span class="ruby-identifier">alias_method_chain</span> <span class="ruby-identifier">:method_missing</span>, <span class="ruby-identifier">:paginate</span> }
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-comment cmt"># monkeypatch Rails ticket #2189: &quot;count breaks has_many :through&quot;</span>
+      <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">protected</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">construct_count_options_from_args</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+          <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">super</span>
+          <span class="ruby-identifier">result</span>[<span class="ruby-value">0</span>] = <span class="ruby-value str">'*'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">result</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\.\*$/</span>
+          <span class="ruby-identifier">result</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

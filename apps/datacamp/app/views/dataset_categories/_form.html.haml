@@ -1,0 +1,15 @@
+- form_for @category, :builder => ListFormBuilder, :url => categories_path do |f|
+  = f.error_messages
+
+  %ul
+    %li.clearfix.locale_switcher
+      %label= t "global.language"
+      = f.locale_switcher :en, :sk            
+
+    - f.locale_tabs :en, :sk do |trans|
+      = trans.text_field :title
+      = trans.text_area :description
+    
+    %li
+      %label
+      = f.submit

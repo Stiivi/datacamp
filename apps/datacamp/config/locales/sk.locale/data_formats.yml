@@ -1,0 +1,25 @@
+sk:
+    data_types:
+        integer: Celé číslo
+        string: String
+        date: Dátum
+        decimal: Reálne číslo
+        text: Text
+    data_formats:
+        number: Číslo
+        currency: Finančná hodnota
+        text: Text
+        url: URL
+        email: "e-mail"
+        default: Štandardný
+        percentage: Percento
+        bytes: Veľkosť v bajtoch
+        date: Dátum
+        flag: Príznak
+    data_format_arguments:
+        number_1: Desatinné miesta
+        currency_1: Desatinné miesta
+        currency_2: Mena
+        percentage_1: Desatinné miesta
+        date_1: Formát dátumu
+        flag_1: Hodnoty

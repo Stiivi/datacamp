@@ -1,0 +1,49 @@
+sk:
+  date: 
+    abbr_day_names: 
+      - po
+      - ut
+      - st
+      - st
+      - pia
+      - so
+      - ne
+    abbr_month_names: 
+      - jan
+      - feb
+      - mar
+      - apr
+      - maj
+      - jun
+      - jul
+      - aug
+      - sep
+      - okt
+      - nov
+      - dec
+    day_names: 
+      - po
+      - ut
+      - st
+      - st
+      - pia
+      - so
+      - ne
+    month_names: 
+      - jan
+      - feb
+      - mar
+      - apr
+      - maj
+      - jun
+      - jul
+      - aug
+      - sep
+      - okt
+      - nov
+      - dec
+  time: 
+    am: am
+    formats: 
+      default: "%d.%m.%Y"
+    pm: pm

@@ -1,0 +1,54 @@
+- form_for @user, :builder => ListFormBuilder do |f|
+  
+  .errors= f.error_messages
+  
+  %ul.tabs.clearfix.frontend
+    %li
+      %a{:href => "#basic"}= t("users.information")
+    %li
+      %a{:href => "#access"}= t("users.access_rights")
+  
+  
+  #basic
+    %ul
+  
+      = f.text_field :login
+      = f.text_field :name
+      = f.text_field :email
+      = f.password_field :password
+      = f.password_field :password_confirmation
+      - if current_user.is_super_user
+        = f.check_box :is_super_user, :label => t("users.super_user")
+    
+      %li.clearfix
+        %label
+        = f.submit
+        
+  #access
+    %h2= t "users.roles"
+    = hidden_field_tag "user[access_role_ids][]", ""
+    %table
+      - AccessRole.find(:all).each do |p|
+        %tr
+          %td{:width => 25}
+            = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p)
+          %td
+            = label_tag "user[access_role_ids][]", t("access_roles.#{p.identifier}")
+          %td
+            %small
+              = p.access_rights.collect{|r|t("access_rights.#{r.identifier}")}.join(", ")
+            
+    %h2 Rights
+    = hidden_field_tag "user[access_right_ids][]", ""
+    %table
+      - AccessRight.find(:all).each do |p|
+        %tr
+          %td{:width => 25}
+            = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p)
+          %td{:width => 150}
+            = t "access_right_categories.#{p.category}"
+          %td
+            = label_tag "user[access_right_ids][]", t("access_rights.#{p.identifier}")
+    
+    .clearfix
+      = f.submit

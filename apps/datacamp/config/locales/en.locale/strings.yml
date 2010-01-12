@@ -1,0 +1,289 @@
+en: 
+    session: 
+        submit: Submit
+        lost_password_label: Have you forgotten your password?
+        user_name: Username
+        password: Password
+        login: Login
+        lost_password: Have you forgotten your password?
+        set_new_password: "Set new {{site_name}} password"
+        reset_password_message: "Click on the following link to reset password on your account: {{link}}"
+        reset_password: Reset password
+    settings:
+        name: Name
+        description: Description
+        value: Value
+    profile: 
+        edit_my_profile: Edit my profile
+        create_new_password: Create new password
+    comments: 
+        "no": "No"
+        "yes": "Yes"
+        neutral: Neutral
+        new: New comment
+        poor: Poor
+        post: Post
+        rating: "{{useful}} out of {{total}} find this comment useful."
+        record: "Record #{{id}}"
+        reply: Reply
+        replying_to: "Replying to comment #{{parent}}"
+        report_label: Report a comment
+        report: Report
+        spam_report: Spam
+        staff: Master
+        suspend: Suspend
+        suspended: Comment suspended
+        useful: Useful
+        violation_report: Violation of rules
+        was_useful: Was this comment useful?
+    watchers: 
+        sign_up: Sign-up for updates
+        watcher_list: List of watchers
+        signup: Sign up
+        success: You have signed up for news. We will inform you as soon as possible.
+        organization: Organization
+        email: Email
+    rights: 
+        data_management: Data Management
+        data_dictionary: Data Dictionary
+        user_management: User Management
+        data_editing: Data Editing
+    password_reset: 
+        title: Restore your account
+        body: "Click on the following link to reset password on your account: {{link}}"
+        subject: Restore your account
+        restore_account: Restore account
+    metadata: 
+        collection_mode: Collection mode
+        created_on: Created on
+        data_provider: Data Provider
+        data_source_type: Data source type
+        granularity: Granularity
+        is_hidden: Is hidden
+        keywords: Keywords
+        last_update_date: Last update date
+        quality_status: Quality status
+        status: Status
+        unit_of_analysis: Unit of analysis
+        update_frequency: Update Frequency
+        valid_from: Valid from
+    dataset: 
+        create: New dataset
+        create_category: New category
+        add_field_description: Add field description
+        batch_edit: "Batch edit selected {{count}} records:"
+        batch_updated: "{{count}} records were successfuly updated."
+        cant_setup_dataset: "Can't setup dataset {{dataset}} to {{identifier}}. Please check your database."
+        click_to_select_all: Click to select/deselect all.
+        columns_for_import: Columns for import
+        confirm_add_pk: Add primary key?
+        create_record: Create record
+        create_table: Create table {{table}}
+        created_message: Dataset created 
+        data_types: Data types
+        dataset_choose: Choose dataset
+        description_updated: DatasetDescription was successfully updated
+        dataset_import_help: "<p>These datasets exists in database, but are not used by application.</p><p>After clicking a table name the setup sequence will be triggered: Table will be transformed to work with application and a schema in data dictionary will be generated based on table structure. Also, table name will be prefixed with <strong>ds</strong> shortcut.</p>"
+        datastore_status: Datastore Status
+        descriptions: Dataset descriptions
+        internal_dataset_error: "Couldn't load dataset {{title}}. We are aware of this error and working to fix it."
+        edit_description: Edit description
+        field_descriptions: Field descriptions
+        field_description: Field
+        fields: Fields
+        filter: "Show only:"
+        import_button: Initialize existing table
+        import_settings: Import settings
+        in_database: Table exists
+        information: Dataset information
+        initialize_from_table: Initialize from table
+        initialize_table_info: You're about to turn this description into actual dataset
+        initialize_table: Initilize table {{identifier}}
+        initialize: Initialize
+        initialized_datasets_info: These datasets were already initialized and contain system columns.
+        initialized_datasets: Initialized datasets
+        is_to_many: Is to many
+        is_visible_in_detail: Visible in detail
+        is_visible_in_export: Visible in export (API)
+        is_visible_in_listing: Visible in dataset view
+        is_visible_in_search: Visible in search
+        looking_for_table: Looking for table
+        new_description: Create dataset description
+        no_category: No group
+        in_favorites: Your favorite
+        move: Move dataset
+        no_pk: Missing primary key
+        no_table_for_new_dataset: "This dataset has no table yet (we're looking for {{identifier}}). Customize the strucutre, and when you're done, <a href='{{target}}'>click here</a> to create the table."
+        no_table_in_databaes: As there no such table in your databases, you might want to create it.
+        not_enough_records_selected: Select at least 1 record for batch edit.
+        not_in_database: Not in database
+        other_columns: Other columns
+        relationship_descriptions: Relationship descriptions
+        revert: Revert
+        run_tests: Run tests
+        save_and_create: Save and create
+        set_quality: Set quality
+        set_status: Set status
+        short_summary: "{{count}} records provided by {{provider}}"
+        table_name: Table Name
+        title: Title
+        type: Type
+        uninitialized_datasets: Uninitialized datasets
+        visibility_settings: Visibility settings
+        record_preview: Record preview
+    favorites: 
+        confirm_deletion: Are you sure you want to remove this favorite?
+        remove: (remove)
+    import:
+        file_information: File information
+        file_settings: File settings
+        file_not_loaded: "File at <small>{{path}}</small> couldn't be loaded"
+        file_ready: "File {{title}} is ready to be uploaded."
+        go_to_description: "Go to {{dataset}}"
+        header_lines: Number of header lines (which will be skipped on final import)
+        identifier_line: Line with identifiers (will be used to guess field descriptions)
+        parsing_first: "Parsing first {{count}} lines"
+        column_mapping: Column mapping
+        first_ok: "First {{count}} rows have same count of columns"
+        load_success: "File <small>{{path}}</small> loaded successfuly"
+        first_not_ok: "First {{count}} rows have different count of columns"
+        file_already_imported: This file was already imported into the database.
+        column_count_ok: Number of columns ({{count}}) matches database
+        column_count_not_ok: "File has {{actual_count}} columns, while database expects {{expected_count}} columns"
+        import_data: Import data
+        import_title: Import data
+        column_separator: Column separator
+        has_header: Contains header
+        file_imported: File was successfully imported into the database.
+        lines_imported: "{{count}} lines were stored in database."
+        status: Status
+        source: Source
+        empty: Empty
+        start_import: Import
+        select_file: Select file
+        preview: Preview
+        process: Process
+        preset: File template
+        default_settings: Default template
+        column: Column
+        field_description: Field description
+        header: Header
+        preview: Preview
+        guess_from_header: Guess mapping
+        use_default_mapping: Use default mapping
+        go_to_dataset: Go to dataset
+        edit_settings: Edit settings
+        guessing_mapping: "Guessing mapping: Based on header lines(s) in your file, we just tried to map columns in your file to our field descriptions."
+    global: 
+        new_category: New Category
+        active: active
+        add_to_favorites_hint: Is this page interesting?
+        add_to_favorites: Add to favorites
+        advanced_search: Advanced search
+        all: "- All -"
+        back: Back
+        browse_dataset: Browse Dataset
+        cancel: Cancel
+        collapse: Collapse
+        collection_mode: Colletion mode
+        comment: Comment
+        comments: Comments
+        continue: Continue
+        create: Create new
+        created_at: Created at
+        data_catalogue: Data Catalogue
+        data_dictionary: Data Dictionary
+        data: Data
+        dataset_descriptions: Dataset descriptions
+        datasets: Datasets
+        dataset: Dataset
+        delete_confirmation: Are you sure you want to delete this item?
+        delete: Delete
+        description: Description
+        details: Details
+        discussion: Discussion
+        edit_description: Edit information
+        edit: Edit
+        email_sent: Email was sent.
+        empty: empty
+        favorites: Favorites
+        field: Field
+        home: Home
+        import: Import
+        inactive: inactive
+        information: Information
+        is_favorite: Your favorite.
+        login: Login
+        logout: Logout
+        language: Language
+        metadata: Metadata
+        moderation: Moderation
+        move: move
+        name: Name
+        nevermind: nevermind
+        next: Next
+        note: Note
+        other: Other
+        previous: Previous
+        profile: Profile
+        ratings: Ratings
+        record_count: "Record count:"
+        record_id: ID of record
+        record: Record
+        records_per_page: "Records per page:"
+        record_preview: Record preview
+        remove_from_favorites: Remove from favorites
+        remove_question: Remove?
+        revert: Revert
+        save_and_create: Save and create another
+        save_changes: Save changes
+        save: Save
+        search_current_button: Search through this dataset
+        search_current: Search
+        search: Search Databases
+        settings: Settings
+        show_all: Show All
+        show: View
+        source: Source
+        status: Status
+        submit: Submit
+        system_datastore_management: System Datastore Management
+        testing_get_informed: If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>.
+        testing_notice: The application is currently in private beta testing.
+        title: Title
+        total_entries: Total entries
+        user_not_found: User not found
+        users: Users
+        user: User
+        value: Value
+        load_error: "Couldn't load {{what}}"
+    users: 
+        user_not_found: User not found.
+        my_account: My Account
+        information: Information
+        access_rights: Roles and rights
+        restore_mail_subject: Restore your account
+        super_user: Administrator
+        password: Password
+        name: Name
+        email: E-Mail
+        api_access: API Access
+        no_api_key: "You don't have any API key yet."
+        create_api_key: "Create new API key"
+        current_api_key: "Your current API key:"
+    search:
+        through: "Search through {{dataset}}" 
+        create_search: "Create your search for {{dataset}}"
+        searching_wait_notice: Please be patient while we search through our databases.
+        search_action: Search!
+        query_field: "Search:"
+        search_term: Term
+        results_count: "{{count}} results for '{{query_string}}'"
+        categories: Categories
+        dataset_name: Dataset
+        processing: Processing your search
+    validations:
+        blank: can't be blank
+    messages:
+        application_testing_notice: The application is currently in private beta testing.
+        testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>."

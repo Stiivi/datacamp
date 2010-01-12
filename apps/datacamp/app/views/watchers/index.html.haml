@@ -1,0 +1,16 @@
+.clearfix
+  %h1.fl
+    = t("watchers.watcher_list")
+
+  .buttons.clearfix.fr
+    =link_to "<span>Users</span>", users_path, :class => "button"
+
+%table
+  %tr
+    %th= t "watchers.email"
+    %th= t "watchers.organization"
+    
+  - @watchers.each do |watcher|
+    %tr
+      %td= watcher.email
+      %td= watcher.organization

@@ -1,0 +1,25 @@
+.comment[comment]{:class => [comment.added_by_staff? ? "staff" : "", comment.parent_comment ? "response" : "thread"]}
+  .clearfix.title
+    .fl
+      %strong= comment.user.name
+      %span.date= comment.created_at
+    .fr
+      = render :partial => "comments/comment_rating", :locals => {:comment => comment}
+  .text
+    %p= comment.text
+  .actions.clearfix
+    .fl
+      - unless comment.parent_comment
+        = "%s |" % link_to(t("comments.reply"), new_comment_path(:parent_comment_id => comment.id))
+      - else
+        = "%s |" % link_to(t("comments.reply"), new_comment_path(:parent_comment_id => comment.parent_comment.id))
+      - unless comment.added_by_staff?
+        = "%s |" % link_to(t("comments.report"), report_comment_path(comment))
+      - if logged_in? and current_user.has_privilege? :social_moderating
+        = link_to(t("comments.suspend"), destroy_comment_path(comment), :class => "ajax")
+    .fr
+      - if logged_in? && comment.user != current_user && !comment.rated_by_user?(current_user)
+        .rating_actions.clearfix.fl
+          = t("comments.was_useful")
+          %a.positive.ajax{:href => rate_comment_path(comment, :rating => "positive")}= t "comments.useful"
+          %a.negative.ajax{:href => rate_comment_path(comment, :rating => "negative")}= t "comments.poor"

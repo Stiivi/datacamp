@@ -1,0 +1,15 @@
+%h1== #{h @account.name} (#{h @account.login})
+
+- form_for @account, :builder => ListFormBuilder, :url => account_path do |f|
+  = f.error_messages
+  
+  %ul
+
+    = f.text_field :name
+    = f.text_area :about
+    = f.select :loc, I18N_LOCALES.collect{|l|[I18N_LOCALE_NAMES[l], l.to_s]}
+    = f.text_field :email
+  
+    %li.clearfix
+      %label
+      = f.submit t "global.save"

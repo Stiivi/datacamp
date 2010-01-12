@@ -1,0 +1,24 @@
+- form_for @import_file, :builder => ListFormBuilder, :html => {:multipart => true} do |f|
+  %h2= t "import.file_information"
+  %ul
+    = f.grouped_collection_select :dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :prompt => true
+    = f.file_field :path
+    = f.text_field :title
+    = f.text_field :source
+    
+  %h2= t "import.file_settings"
+  %ul#file_settings
+    %li.clearfix
+      %label= t "import.preset"
+      .fl.nopadding
+        = select_tag(:import_file_template, options_for_select(CSV_TEMPLATES.map{|i|[i[:title],i[:id]]}, @import_file.default_import_format || SystemVariable.get('default_import_format')))
+    :javascript
+      var import_templates = #{CSV_TEMPLATES.to_json}
+    
+    = f.text_field :col_separator
+    = f.text_field :number_of_header_lines
+  
+  %p
+    = f.submit t("global.continue")
+    = t('global.or')
+    = link_to t("global.cancel"), @import_file, :class => 'cancel'

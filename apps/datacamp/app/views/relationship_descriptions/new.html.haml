@@ -1,0 +1,6 @@
+%h1
+  == New relationship description for dataset description #{@dataset_description.title}
+  
+= render :partial => 'form'
+
+= link_to 'Back', dataset_description_path(@dataset_description)

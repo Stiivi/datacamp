@@ -1,0 +1,11 @@
+- form_tag searches_path, :class => "new_search validate search" do
+  %ul
+    %li.clearfix
+      = label_tag t("search.query_field")
+      = text_field_tag "query_string", params[:query_string], :class => "required"
+    %li.clearfix
+      %label
+      = submit_tag t("global.search")
+      
+  .loading
+    = t("search.searching_wait_notice")

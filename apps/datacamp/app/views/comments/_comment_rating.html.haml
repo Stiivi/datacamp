@@ -1,0 +1,8 @@
+.rating.clearfix{:class => comment.score_html_class}
+  .rating_status.fl
+    - if comment.added_by_staff?
+      = t "comments.staff"
+    - elsif comment.score == 0
+      = t "comments.neutral"
+    - else
+      = t "comments.rating", :useful => comment.count_positive_ratings, :total => comment.total_ratings

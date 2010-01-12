@@ -1,0 +1,3 @@
+// Hide list item of attribute
+var li = $('.dataset_description ul li#field_description_<%= @field_description.id %>').hide().after($("<li />").addClass("with_form").html("<%= escape_javascript(render :partial => 'form') %>")).next();
+li.find("form").addClass("ajax");

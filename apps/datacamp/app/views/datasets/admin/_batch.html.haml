@@ -1,0 +1,11 @@
+#batch_edit.node.hidden.notice
+  .information.clearfix
+    .fl
+      = t("dataset.batch_edit", :count => '<strong class="count">0</strong>')
+      
+      = select_tag :status, "<option value=''>%s:</option>:" % t("dataset.set_status") + options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"))
+      
+      = select_tag :quality, "<option value=''>%s: </option>" % t("dataset.set_quality") + options_from_collection_for_select(QualityStatus.all, :name, :title)
+      
+    .fr
+      = f.submit t("global.submit")

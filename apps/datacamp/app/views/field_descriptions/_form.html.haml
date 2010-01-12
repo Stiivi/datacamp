@@ -1,0 +1,29 @@
+- form_for(@field_description, :url => @field_description.new_record? ? dataset_description_field_descriptions_path(@dataset_description) : dataset_description_field_description_path(@dataset_description, @field_description), :builder => ListFormBuilder) do |f|
+  = f.error_messages
+    
+  %ul
+    %li.clearfix.locale_switcher
+      %label Language
+      = f.locale_switcher I18N_LOCALES
+  
+    - f.locale_tabs I18N_LOCALES do |trans|
+      = trans.text_field :category
+      = trans.text_field :title
+      = trans.text_area :description
+
+    = f.text_field :identifier
+    /- FIXME Destructive transitions
+    = f.select :data_type_id, DatastoreManager.available_data_types.collect{|type|[t("data_types.#{type}"), type]}
+    = f.check_box :is_derived
+    = f.text_field :derived_value
+    
+    = f.select :data_format_id, DataFormat.all.collect{|format|[t("data_formats.#{format.name}"), format.id]}
+    = f.text_field :data_format_argument
+    
+    = f.text_field :reference
+        
+    %li.actions
+      = f.submit t("global.save")
+      = f.submit t("global.save_and_create")
+      or
+      = link_to 'Cancel', dataset_description_path(@dataset_description), :class => 'cancel'

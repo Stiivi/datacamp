@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>will_paginate (WillPaginate::ViewHelpers)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/will_paginate/view_helpers.rb, line 89</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">will_paginate</span>(<span class="ruby-identifier">collection</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">options</span>, <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">collection</span>, <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">collection</span> <span class="ruby-keyword kw">or</span> <span class="ruby-operator">!</span><span class="ruby-identifier">controller</span>
+        <span class="ruby-identifier">collection_name</span> = <span class="ruby-node">&quot;@#{controller.controller_name}&quot;</span>
+        <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">collection_name</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;The #{collection_name} variable appears to be empty. Did you &quot;</span> <span class="ruby-operator">+</span>
+          <span class="ruby-value str">&quot;forget to pass the collection object for will_paginate?&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">collection</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># early exit if there is nothing to render</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">WillPaginate</span><span class="ruby-operator">::</span><span class="ruby-constant">ViewHelpers</span>.<span class="ruby-identifier">total_pages_for_collection</span>(<span class="ruby-identifier">collection</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      
+      <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">symbolize_keys</span>.<span class="ruby-identifier">reverse_merge</span> <span class="ruby-constant">WillPaginate</span><span class="ruby-operator">::</span><span class="ruby-constant">ViewHelpers</span>.<span class="ruby-identifier">pagination_options</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:prev_label</span>]
+        <span class="ruby-constant">WillPaginate</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span><span class="ruby-operator">::</span><span class="ruby-identifier">warn</span>(<span class="ruby-value str">&quot;:prev_label view parameter is now :previous_label; the old name has been deprecated&quot;</span>, <span class="ruby-identifier">caller</span>)
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:previous_label</span>] = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:prev_label</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-comment cmt"># get the renderer instance</span>
+      <span class="ruby-identifier">renderer</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:renderer</span>]
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:renderer</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Class</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:renderer</span>].<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:renderer</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># render HTML for pagination</span>
+      <span class="ruby-identifier">renderer</span>.<span class="ruby-identifier">prepare</span> <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span>, <span class="ruby-keyword kw">self</span>
+      <span class="ruby-identifier">renderer</span>.<span class="ruby-identifier">to_html</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

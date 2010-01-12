@@ -1,0 +1,2 @@
+var nw = $("<%= escape_javascript(render(:partial => 'form')) %>");
+$("<li />").addClass('with_form').append(nw).appendTo('.dataset_description .field_descriptions > ul').find('form').addClass('inline').addClass('ajax').find('a.cancel').click(function(){$('.dataset_description .field_descriptions ul li form#new_field_description').parent().remove(); return false;});

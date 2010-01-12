@@ -1,0 +1,27 @@
+%tr.title
+  %td
+    - if group
+      %span[group]
+        = group.title
+      %span.actions
+        = link_to t("global.edit"), edit_category_path(group), :class => "ajax"
+        = link_to t("global.delete"), category_path(group), :method => "delete"
+    - else
+      =t("dataset.no_category")
+  %td
+  %td
+  
+- descriptions = group ? group.dataset_descriptions : @other_descriptions
+- descriptions.each do |dataset_description|
+  %tr{:class => dataset_description.is_active ? "active" : "inactive"}[dataset_description]
+    %td
+      %a{:href => dataset_description_url(dataset_description)}= dataset_description.title.blank? ? dataset_description.identifier : dataset_description.title
+      - unless dataset_description.is_active
+        = "(%s)" % t("global.inactive")
+      %span.actions.hidden
+        = link_to t("global.move"), edit_dataset_description_path(dataset_description), :class => "ajax move"
+    %td
+      %em= truncate(dataset_description.description, 110)
+    %td.actions
+      .actions
+        =link_to('<span>%s</span>' % t("global.delete"), destroy_dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete")

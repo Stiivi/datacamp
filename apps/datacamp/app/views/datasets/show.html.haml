@@ -1,0 +1,40 @@
+.node
+  .information
+    .clearfix
+      .fl
+        %h1.main= @dataset_description.title
+      .fr.actions
+        - if logged_in? && current_user.has_privilege?(:data_management)
+          = link_to t("dataset.create_record"), new_dataset_record_path(@dataset_description)
+        - if logged_in? && current_user.has_privilege?(:data_dictionary)
+          = link_to t("dataset.edit_description"), dataset_description_path(@dataset_description)
+        - if logged_in? && current_user.has_privilege?(:data_management)
+          = link_to t("global.import"), new_import_file_path(:dataset_description_id => @dataset_description.id)
+
+    / %p= t("dataset.short_summary", :count => @dataset_description.record_count, :provider => @dataset_description.data_provider)
+
+  = render :partial => 'node_menu'
+
+
+#data
+  
+  .pagination.ajax.clearfix
+    = render :partial => "pagination"
+    
+  #results
+    - if has_privilege?(:data_management)
+      = render :partial => "datasets/admin/table"
+    - else
+      = render :partial => "datasets/table"
+          
+  .pagination.ajax
+    = render :partial => "pagination"
+    
+#information
+  = render :partial => "information"
+          
+#comments
+  = render :partial => "comments"
+  
+#search
+  = render :partial => "search"

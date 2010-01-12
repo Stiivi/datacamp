@@ -1,0 +1,15 @@
+%h1= t("dataset.move")
+
+- form_for @dataset_description, :builder => ListFormBuilder, :html => {:class => "small"} do |f|
+
+  %ul
+    = f.collection_select :category_id, DatasetCategory.all, :id, :title
+    = hidden_field_tag :skip_validations, 1
+    = hidden_field_tag :return_to, dataset_descriptions_path
+    
+    %li
+      %label
+      = f.submit t("global.submit")
+      &nbsp;
+      or
+      %a{:href => "#", :class => "cancel"}= t("global.nevermind")

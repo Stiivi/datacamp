@@ -1,0 +1,11 @@
+%tr[field_description]
+  %td.title
+    - unless field_description.exists_in_database?
+      = link_to(image_tag("icons/error.png"), datastore_status_dataset_description_path(@dataset_description))
+    = link_to field_description.title, edit_dataset_description_field_description_path(dataset_description, field_description)
+  %td.description
+    = field_description.description.to_s.empty? ? 'n/a' : field_description.description
+  %td.type
+    = field_description.data_type
+  %td.actions
+    =link_to(image_tag('icons/trash.gif'), dataset_description_field_description_path(dataset_description, field_description), :method => 'delete', :confirm => t("global.delete_confirmation"))

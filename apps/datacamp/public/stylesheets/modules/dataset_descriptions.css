@@ -1,0 +1,85 @@
+table.dataset_descriptions tr.inactive td {
+  background: #efefef;
+  color: #8b8b8b; }
+  table.dataset_descriptions tr.inactive td a {
+    color: #6d6d6d; }
+
+.dataset_description ul.tabs {
+  margin-bottom: 0px; }
+.dataset_description .content {
+  border-top: none;
+  margin-left: -1px; }
+
+div.field_descriptions, div.relationship_descriptions {
+  background: #fefefe;
+  border: 1px solid #dedede;
+  float: left;
+  width: 452px;
+  margin-right: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  float: none;
+  width: 890px; }
+  div.field_descriptions > ul,   div.relationship_descriptions > ul {
+    list-style-type: none;
+    margin: 0px; }
+    div.field_descriptions > ul > li,     div.relationship_descriptions > ul > li {
+      border-bottom: 1px solid #ddd;
+      font-size: 12px;
+      color: #444;
+      padding: 10px;
+      background: #f7f7f7;
+      margin-bottom: 0px; }
+      div.field_descriptions > ul > li:last-child,       div.relationship_descriptions > ul > li:last-child {
+        border-bottom: none; }
+      div.field_descriptions > ul > li.title,       div.relationship_descriptions > ul > li.title {
+        float: none;
+        font-size: 12px;
+        font-weight: bold;
+        color: #333;
+        border-bottom: 1px solid #dedede;
+        margin-bottom: 0px;
+        background: url(../images/table_header.png) left top;
+        padding: 10px;
+        padding-top: 9px;
+        padding-bottom: 8px; }
+      div.field_descriptions > ul > li.section,       div.relationship_descriptions > ul > li.section {
+        background: url(../images/table_row.png) left top;
+        font-weight: bold;
+        font-size: 13px; }
+      div.field_descriptions > ul > li.with_form,       div.relationship_descriptions > ul > li.with_form {
+        background: #fff; }
+      div.field_descriptions > ul > li > div,       div.relationship_descriptions > ul > li > div {
+        float: left;
+        width: 200px; }
+      div.field_descriptions > ul > li div.description,       div.relationship_descriptions > ul > li div.description {
+        width: 515px; }
+      div.field_descriptions > ul > li div.type, div.field_descriptions > ul > li div.is_to_many,       div.relationship_descriptions > ul > li div.type, div.relationship_descriptions > ul > li div.is_to_many {
+        width: 130px; }
+      div.field_descriptions > ul > li div.actions,       div.relationship_descriptions > ul > li div.actions {
+        width: 20px; }
+    div.field_descriptions > ul form,     div.relationship_descriptions > ul form {
+      border: none; }
+
+#importable_field_descriptions, #all_field_descriptions {
+  float: left;
+  margin-right: 60px; }
+  #importable_field_descriptions ul,   #all_field_descriptions ul {
+    margin: 0px;
+    padding-bottom: 20px; }
+    #importable_field_descriptions ul li,     #all_field_descriptions ul li {
+      background-color: #fefefe;
+      border: 1px solid #dedede;
+      padding: 10px;
+      margin-bottom: 5px;
+      width: 200px;
+      cursor: move; }
+      #importable_field_descriptions ul li small,       #all_field_descriptions ul li small {
+        color: #0C6BFA;
+        font-weight: bold; }
+      #importable_field_descriptions ul li strong,       #all_field_descriptions ul li strong {
+        font-size: 13px;
+        color: #C20909; }
+
+#all_field_descriptions ul li strong {
+  display: none; }

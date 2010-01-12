@@ -1,0 +1,5 @@
+$("#results").removeClass("loading");
+table = "<%= escape_javascript(render :partial => 'datasets/admin/table') %>";
+$("#results").html(table);
+pagination = "<%= escape_javascript(render :partial => 'pagination') %>";
+$(".pagination.clearfix").html(pagination);

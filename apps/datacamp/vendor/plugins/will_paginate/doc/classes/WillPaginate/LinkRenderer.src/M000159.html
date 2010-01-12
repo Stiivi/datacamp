@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>prepare (WillPaginate::LinkRenderer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/will_paginate/view_helpers.rb, line 218</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepare</span>(<span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">template</span>)
+      <span class="ruby-ivar">@collection</span> = <span class="ruby-identifier">collection</span>
+      <span class="ruby-ivar">@options</span>    = <span class="ruby-identifier">options</span>
+      <span class="ruby-ivar">@template</span>   = <span class="ruby-identifier">template</span>
+
+      <span class="ruby-comment cmt"># reset values in case we're re-using this instance</span>
+      <span class="ruby-ivar">@total_pages</span> = <span class="ruby-ivar">@param_name</span> = <span class="ruby-ivar">@url_string</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

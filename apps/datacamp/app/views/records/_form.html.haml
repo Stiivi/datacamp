@@ -1,0 +1,20 @@
+- form_for @record, :url => (@form_url) do |f|
+  #information.box
+    #information_inside.clearfix
+      .span-21
+        %table.edit
+          - @dataset_description.all_field_descriptions.each do |field_description|
+            %tr
+              %td.label= field_description.title
+              %td.edit
+                .field
+                  = f.text_field field_description.identifier
+                  - if qs = @quality_status.find { |qs| qs.column_name == field_description.identifier }
+                    .suggestion.clearfix
+                      .fl.value= qs.suggested_value
+                      .fr
+                        = image_tag "icons/cancel.png", :class => "cancel"
+                    %a{:href => fix_dataset_record_path(@dataset_description, @record, :field => field_description.identifier), :class => "quality_status"}= image_tag "icons/exclamation.png", :class => "quality_status"
+          %tr
+            %td
+            %td= f.submit

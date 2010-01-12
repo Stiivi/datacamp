@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>page_link (AdditionalLinkAttributesRenderer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/view_test.rb, line 10</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">page_link</span>(<span class="ruby-identifier">page</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">attributes</span> = {})
+    <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">link_to</span> <span class="ruby-identifier">text</span>, <span class="ruby-identifier">url_for</span>(<span class="ruby-identifier">page</span>), <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@additional_link_attributes</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

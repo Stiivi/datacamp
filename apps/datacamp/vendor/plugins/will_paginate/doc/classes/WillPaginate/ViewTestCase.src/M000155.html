@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>validate_page_numbers (WillPaginate::ViewTestCase)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/lib/view_test_process.rb, line 80</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_page_numbers</span> <span class="ruby-identifier">expected</span>, <span class="ruby-identifier">links</span>, <span class="ruby-identifier">param_name</span> = <span class="ruby-identifier">:page</span>
+      <span class="ruby-identifier">param_pattern</span> = <span class="ruby-node">/\W#{CGI.escape(param_name.to_s)}=([^&amp;]*)/</span>
+      
+      <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">expected</span>, <span class="ruby-identifier">links</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">e</span>[<span class="ruby-value str">'href'</span>] <span class="ruby-operator">=~</span> <span class="ruby-identifier">param_pattern</span>
+        <span class="ruby-identifier">$1</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">$1</span>
+      })
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,26 @@
+Search is based on Google-like syntax.
+
+h2. Simple search
+
+* use space-separated words to match any field within any dataset:
+** john doe
+* use quotation marks to match whole phrase:
+** "ministry of agriculture"
+
+To *exclude records* containing certain words use the minus sign before search word or before search phrase
+** john -doe
+
+Simple pattern matching is done using asterisk symbol *:
+
+| jo* | matches John and Jonathan, but not Mojo |
+| *ova | matches Fialova and Novakova, but not movable |
+| ==*vers*== | matches universe or versatile |
+
+h2. Advanced search
+
+Advanced search is in the form of keyword:value (no space around ':')
+
+|=. Keyword |=. Description |=. Example |
+| dataset: | looks in specified dataset| dataset:agrodonations |
+| field: | searches only in given fields | field:city |
+| category: | search in all datasets from specified category | category:donations |

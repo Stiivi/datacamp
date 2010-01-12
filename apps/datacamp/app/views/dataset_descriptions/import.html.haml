@@ -1,0 +1,21 @@
+%h1= t("global.title")
+  
+
+.content.clearfix
+  .span-16
+    - if @dataset && @dataset.errors
+      - @dataset.errors.each do |error|
+        %p.error= error
+  
+    %h2= t "dataset.uninitialized_datasets"
+
+    %ul.bordered
+      - @unbound_datasets.each do |dataset|
+        %li.clearfix
+          %strong.fl= dataset
+          %a.fr.button{:href => url_for(do_import_dataset_descriptions_path(:dataset => dataset))}== <span>#{t("dataset.initialize")}</span>
+    
+  .span-6.help
+    %h2= t("dataset.dataset_choose")
+    = t("dataset.dataset_import_help")
+ 

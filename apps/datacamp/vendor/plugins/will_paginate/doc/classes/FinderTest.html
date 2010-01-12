@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: FinderTest</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">FinderTest</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/test/finder_test_rb.html">
+                test/finder_test.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="ActiveRecordTestCase.html">
+                ActiveRecordTestCase
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000085">test_ability_to_use_with_custom_finders</a>&nbsp;&nbsp;
+      <a href="#M000086">test_array_argument_doesnt_eliminate_count</a>&nbsp;&nbsp;
+      <a href="#M000070">test_count_and_total_entries_options_are_mutually_exclusive</a>&nbsp;&nbsp;
+      <a href="#M000079">test_count_select_when_distinct</a>&nbsp;&nbsp;
+      <a href="#M000078">test_count_skips_select</a>&nbsp;&nbsp;
+      <a href="#M000080">test_count_with_scoped_select_when_distinct</a>&nbsp;&nbsp;
+      <a href="#M000092">test_doesnt_remove_referenced_includes_in_count</a>&nbsp;&nbsp;
+      <a href="#M000077">test_extra_parameters_stay_untouched</a>&nbsp;&nbsp;
+      <a href="#M000076">test_guessing_that_there_are_no_records</a>&nbsp;&nbsp;
+      <a href="#M000075">test_guessing_the_total_count</a>&nbsp;&nbsp;
+      <a href="#M000094">test_hmt_with_include</a>&nbsp;&nbsp;
+      <a href="#M000074">test_implicit_all_with_dynamic_finders</a>&nbsp;&nbsp;
+      <a href="#M000069">test_named_scope_with_include</a>&nbsp;&nbsp;
+      <a href="#M000050">test_new_methods_presence</a>&nbsp;&nbsp;
+      <a href="#M000073">test_paginate_array_of_ids</a>&nbsp;&nbsp;
+      <a href="#M000060">test_paginate_association_extension</a>&nbsp;&nbsp;
+      <a href="#M000059">test_paginate_associations</a>&nbsp;&nbsp;
+      <a href="#M000058">test_paginate_associations_with_include</a>&nbsp;&nbsp;
+      <a href="#M000082">test_paginate_by_sql</a>&nbsp;&nbsp;
+      <a href="#M000088">test_paginate_by_sql_doesnt_change_original_query</a>&nbsp;&nbsp;
+      <a href="#M000083">test_paginate_by_sql_respects_total_entries_setting</a>&nbsp;&nbsp;
+      <a href="#M000084">test_paginate_by_sql_strips_order_by_when_counting</a>&nbsp;&nbsp;
+      <a href="#M000093">test_paginate_from</a>&nbsp;&nbsp;
+      <a href="#M000065">test_paginate_in_named_scope</a>&nbsp;&nbsp;
+      <a href="#M000066">test_paginate_in_named_scope_on_habtm_association</a>&nbsp;&nbsp;
+      <a href="#M000068">test_paginate_in_named_scope_on_has_many_association</a>&nbsp;&nbsp;
+      <a href="#M000067">test_paginate_in_named_scope_on_hmt_association</a>&nbsp;&nbsp;
+      <a href="#M000055">test_paginate_with_conditions</a>&nbsp;&nbsp;
+      <a href="#M000063">test_paginate_with_dynamic_finder</a>&nbsp;&nbsp;
+      <a href="#M000062">test_paginate_with_group</a>&nbsp;&nbsp;
+      <a href="#M000056">test_paginate_with_include_and_conditions</a>&nbsp;&nbsp;
+      <a href="#M000057">test_paginate_with_include_and_order</a>&nbsp;&nbsp;
+      <a href="#M000061">test_paginate_with_joins</a>&nbsp;&nbsp;
+      <a href="#M000054">test_paginate_with_order</a>&nbsp;&nbsp;
+      <a href="#M000053">test_paginate_with_per_page</a>&nbsp;&nbsp;
+      <a href="#M000089">test_paginated_each</a>&nbsp;&nbsp;
+      <a href="#M000090">test_paginated_each_with_named_scope</a>&nbsp;&nbsp;
+      <a href="#M000087">test_paginating_finder_doesnt_mangle_options</a>&nbsp;&nbsp;
+      <a href="#M000052">test_parameter_api</a>&nbsp;&nbsp;
+      <a href="#M000071">test_readonly</a>&nbsp;&nbsp;
+      <a href="#M000091">test_removes_irrelevant_includes_in_count</a>&nbsp;&nbsp;
+      <a href="#M000064">test_scoped_paginate</a>&nbsp;&nbsp;
+      <a href="#M000081">test_should_use_scoped_finders_if_present</a>&nbsp;&nbsp;
+      <a href="#M000051">test_simple_paginate</a>&nbsp;&nbsp;
+      <a href="#M000072">xtest_pagination_defines_method</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000085.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000085.html');return false;">
+          <span class="method-name">test_ability_to_use_with_custom_finders</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+TODO: counts are still wrong
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000086.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000086.html');return false;">
+          <span class="method-name">test_array_argument_doesnt_eliminate_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000070.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000070.html');return false;">
+          <span class="method-name">test_count_and_total_entries_options_are_mutually_exclusive</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+misc ##
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000079.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000079.html');return false;">
+          <span class="method-name">test_count_select_when_distinct</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000078.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000078.html');return false;">
+          <span class="method-name">test_count_skips_select</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000080" class="method-detail">
+        <a name="M000080"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000080.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000080.html');return false;">
+          <span class="method-name">test_count_with_scoped_select_when_distinct</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000092.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000092.html');return false;">
+          <span class="method-name">test_doesnt_remove_referenced_includes_in_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000077.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000077.html');return false;">
+          <span class="method-name">test_extra_parameters_stay_untouched</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000076.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000076.html');return false;">
+          <span class="method-name">test_guessing_that_there_are_no_records</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000075.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000075.html');return false;">
+          <span class="method-name">test_guessing_the_total_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000094" class="method-detail">
+        <a name="M000094"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000094.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000094.html');return false;">
+          <span class="method-name">test_hmt_with_include</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000074.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000074.html');return false;">
+          <span class="method-name">test_implicit_all_with_dynamic_finders</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000069.html');return false;">
+          <span class="method-name">test_named_scope_with_include</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000050.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000050.html');return false;">
+          <span class="method-name">test_new_methods_presence</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000073.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000073.html');return false;">
+          <span class="method-name">test_paginate_array_of_ids</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000060.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000060.html');return false;">
+          <span class="method-name">test_paginate_association_extension</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000059.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000059.html');return false;">
+          <span class="method-name">test_paginate_associations</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000058.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000058.html');return false;">
+          <span class="method-name">test_paginate_associations_with_include</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000082" class="method-detail">
+        <a name="M000082"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000082.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000082.html');return false;">
+          <span class="method-name">test_paginate_by_sql</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000088" class="method-detail">
+        <a name="M000088"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000088.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000088.html');return false;">
+          <span class="method-name">test_paginate_by_sql_doesnt_change_original_query</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000083" class="method-detail">
+        <a name="M000083"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000083.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000083.html');return false;">
+          <span class="method-name">test_paginate_by_sql_respects_total_entries_setting</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000084" class="method-detail">
+        <a name="M000084"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000084.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000084.html');return false;">
+          <span class="method-name">test_paginate_by_sql_strips_order_by_when_counting</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000093" class="method-detail">
+        <a name="M000093"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000093.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000093.html');return false;">
+          <span class="method-name">test_paginate_from</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000065.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000065.html');return false;">
+          <span class="method-name">test_paginate_in_named_scope</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+named_scope ##
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000066.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000066.html');return false;">
+          <span class="method-name">test_paginate_in_named_scope_on_habtm_association</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000068.html');return false;">
+          <span class="method-name">test_paginate_in_named_scope_on_has_many_association</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000067.html');return false;">
+          <span class="method-name">test_paginate_in_named_scope_on_hmt_association</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000055.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000055.html');return false;">
+          <span class="method-name">test_paginate_with_conditions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000063.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000063.html');return false;">
+          <span class="method-name">test_paginate_with_dynamic_finder</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000062.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000062.html');return false;">
+          <span class="method-name">test_paginate_with_group</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000056.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000056.html');return false;">
+          <span class="method-name">test_paginate_with_include_and_conditions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000057.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000057.html');return false;">
+          <span class="method-name">test_paginate_with_include_and_order</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000061.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000061.html');return false;">
+          <span class="method-name">test_paginate_with_joins</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000054.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000054.html');return false;">
+          <span class="method-name">test_paginate_with_order</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000053.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000053.html');return false;">
+          <span class="method-name">test_paginate_with_per_page</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000089" class="method-detail">
+        <a name="M000089"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000089.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000089.html');return false;">
+          <span class="method-name">test_paginated_each</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000090" class="method-detail">
+        <a name="M000090"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000090.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000090.html');return false;">
+          <span class="method-name">test_paginated_each_with_named_scope</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000087" class="method-detail">
+        <a name="M000087"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000087.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000087.html');return false;">
+          <span class="method-name">test_paginating_finder_doesnt_mangle_options</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000052.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000052.html');return false;">
+          <span class="method-name">test_parameter_api</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000071.html');return false;">
+          <span class="method-name">test_readonly</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000091" class="method-detail">
+        <a name="M000091"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000091.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000091.html');return false;">
+          <span class="method-name">test_removes_irrelevant_includes_in_count</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000064.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000064.html');return false;">
+          <span class="method-name">test_scoped_paginate</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000081" class="method-detail">
+        <a name="M000081"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000081.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000081.html');return false;">
+          <span class="method-name">test_should_use_scoped_finders_if_present</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000051.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000051.html');return false;">
+          <span class="method-name">test_simple_paginate</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="FinderTest.src/M000072.html" target="Code" class="method-signature"
+            onclick="popupCode('FinderTest.src/M000072.html');return false;">
+          <span class="method-name">xtest_pagination_defines_method</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+this functionality is temporarily removed
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

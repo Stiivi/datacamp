@@ -1,0 +1,6 @@
+var form = $("p.description").hide().after("<%= escape_javascript(render :partial => 'form') %>").next().addClass('ajax');
+form.find("a.cancel").click(function(){
+  form.prev().show();
+  form.remove();
+  return false;
+});

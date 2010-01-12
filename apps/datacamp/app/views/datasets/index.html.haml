@@ -1,0 +1,17 @@
+%h1.main=t "global.datasets"
+
+- @dataset_descriptions.each do |group, descriptions|
+  %h2.bordered
+    %a{:name => group ? group.title : t("global.other")}= group ? group.title : t("global.other")
+  
+  %table.frontend
+    - descriptions.each do |description|
+      %tr
+        %td{:width => 200}
+          %strong= link_to(description.title, dataset_path(description))
+        %td
+          %em= truncate(description.description.to_s, 80)
+        %td.actions{:align => 'right'}
+          = link_to("<span>#{t("global.browse_dataset")}</span>", dataset_path(description), :class => "button")
+          
+  %br

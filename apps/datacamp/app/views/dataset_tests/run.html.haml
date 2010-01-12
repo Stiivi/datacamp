@@ -1,0 +1,17 @@
+.clearfix
+  %h1.fl Running test
+  .fr.clearfix.buttons
+    =link_to "<span>Back</span>", dataset_descriptions_path, :class => 'dark button'
+    
+    
+.content.clearfix
+  .span-16
+    %h2== #{@test.title} results
+
+    %p{:class => @test.log.passed? ? "success" : "error"}== #{@test.log.passed_count}/#{@test.log.messages_count} Tests have passed
+
+    %ul.bordered.log
+      - @test.log.messages.each do |message|
+        %li
+          %strong{:class => message.type}= message.type
+          = message.message

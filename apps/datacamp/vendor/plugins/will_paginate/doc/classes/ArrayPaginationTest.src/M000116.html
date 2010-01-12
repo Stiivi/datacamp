@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>test_paginated_collection (ArrayPaginationTest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File test/collection_test.rb, line 44</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">test_paginated_collection</span>
+    <span class="ruby-identifier">entries</span> = <span class="ruby-node">%w(a b c)</span>
+    <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">create</span>(<span class="ruby-value">2</span>, <span class="ruby-value">3</span>, <span class="ruby-value">10</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pager</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">entries</span>, <span class="ruby-identifier">pager</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">entries</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-identifier">entries</span>, <span class="ruby-identifier">collection</span>
+    <span class="ruby-identifier">assert_respond_to_all</span> <span class="ruby-identifier">collection</span>, <span class="ruby-node">%w(total_pages each offset size current_page per_page total_entries)</span>
+    <span class="ruby-identifier">assert_kind_of</span> <span class="ruby-constant">Array</span>, <span class="ruby-identifier">collection</span>
+    <span class="ruby-identifier">assert_instance_of</span> <span class="ruby-constant">Array</span>, <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">entries</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">3</span>, <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">offset</span>
+    <span class="ruby-identifier">assert_equal</span> <span class="ruby-value">4</span>, <span class="ruby-identifier">collection</span>.<span class="ruby-identifier">total_pages</span>
+    <span class="ruby-identifier">assert</span> <span class="ruby-operator">!</span><span class="ruby-identifier">collection</span>.<span class="ruby-identifier">out_of_bounds?</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

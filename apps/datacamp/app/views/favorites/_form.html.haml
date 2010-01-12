@@ -1,0 +1,15 @@
+- form_for @favorite, :builder => ListFormBuilder, :html => {:class => "small ajax"} do |f|
+
+  = hidden_field_tag :dataset_description_id, params[:dataset_description_id]
+  = hidden_field_tag :record_id, params[:record_id]
+  %ul
+    %li.clearfix
+      %label= t("global.note")
+      = text_area_tag "note"
+    
+    %li
+      %label
+      = f.submit t("global.submit")
+      &nbsp;
+      or
+      %a{:href => "#", :class => "cancel"}= t("global.nevermind")

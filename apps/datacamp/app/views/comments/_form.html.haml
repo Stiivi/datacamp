@@ -1,0 +1,9 @@
+- form_for comment, :html => {:class => @parent_comment ? nil : "ajax"} do |f|
+  - if @parent_comment
+    %h2= t "comments.replying_to", :parent => @parent_comment.id
+    %p.excerpt=h '"' + truncate(@parent_comment.text, :length => 50) + '"'
+  = f.hidden_field :dataset_description_id
+  = f.hidden_field :record_id
+  = f.hidden_field :parent_comment_id
+  %div.clearfix= f.text_area :text
+  %div.clearfix= f.submit t("comments.post")

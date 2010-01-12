@@ -1,0 +1,5 @@
+###########################################################
+# Paths
+
+# Path where ETL creates raw dumps of dataset tables
+dataset_dump_path: /var/lib/datacamp/dumps

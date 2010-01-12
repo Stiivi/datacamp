@@ -1,0 +1,5 @@
+.comment_list
+  = render @comments
+      
+.new_comment
+  = render :partial => "comments/form", :locals => {:comment => @new_comment}

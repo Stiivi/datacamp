@@ -1,0 +1,14 @@
+sk:
+    record_statuses:
+        loaded: Načítaný
+        new: Nový
+        published: Publikovaný
+        deleted: Vymazaný
+        suspended: Skrytý
+    quality_statuses:
+        ok: V poriadku
+        duplicate: Duplicitný
+        incomplete: Nekomplentý
+        doubtful: Neistý
+        unclear: Nejasný
+        absent: Chýbajúci
