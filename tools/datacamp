@@ -1,0 +1,97 @@
+#!/bin/bash
+#
+# Datacamp API Tool
+#
+# Type: datacamp -h for more information
+
+DATACAMP_BASE_URL=${DATACAMP_BASE_URL:-http://localhost:3000}
+DATACAMP_GET_METHOD=${DATACAMP_GET_METHOD:-curl}
+
+function datacamp_request_url() {
+    METHOD=$1
+    shift
+
+    if [ "${DATACAMP_FORMAT}x" != "x" ]; then
+        METHOD="${METHOD}.${DATACAMP_FORMAT}"
+    fi
+
+    ARGS="api_key=${DATACAMP_API_KEY}"
+
+    if [ $# -gt 0 ]; then
+        while [ $# -gt 0 ]; do
+            ARG="$1"
+            shift
+            ARGS="${ARGS}&${ARG}"
+        done
+    fi
+
+    CALL_URL="${DATACAMP_BASE_URL}/api/${METHOD}"
+    if [ "$ARGS" != "" ]; then
+        URL="${CALL_URL}?${ARGS}"
+    else
+        URL="${CALL_URL}"
+    fi
+    echo $URL
+}
+
+function datacamp_request() {
+    URL="$(datacamp_request_url $*)"
+    
+    # FIXME: implement wget
+    
+    case $DATACAMP_GET_METHOD in
+    curl)
+        COMMAND="curl";;
+    wget)
+        COMMAND="wget -q -O - ";;
+    *)
+        echo "ERROR: Unknown get method ${DATACAMP_GET_METHOD}" >&2
+        exit 1;;
+    esac
+
+    echo REQUEST: $URL >&2
+    $COMMAND $URL
+       
+}
+function print_help() {
+    cat  >&2 << EOF
+Usage: $0 [-h] [OPTIONS] REQUEST [ARGUMENTS]
+Send REQUEST to a Datacamp application and return server reply.
+Options:
+  -b url          specify base URL for Datacamp. Default: http://localhost:3000
+  -k api_key      specify API key for accessing Datacamp data
+  -f format       request different format, if available. Options are: xml
+  -g get_method   method of accessing the datacamp: curl (default), wget
+
+Environment variables:
+  DATACAMP_BASE_URL
+  DATACAMP_API_KEY
+  DATACAMP_FORMAT
+  DATACAMP_GET_METHOD
+    
+Example:
+  $0 version
+  $0 datasets
+EOF
+}
+
+while getopts k:m:f:h o
+do case "$o" in
+    b)  DATACAMP_BASE_URL="$OPTARG";;
+    k)  DATACAMP_API_KEY="$OPTARG";;
+    f)  DATACAMP_FORMAT="$OPTARG";;
+    m)  DATACAMP_GET_METHOD="$OPTARG";;
+    h | *)  print_help
+        exit 1;;
+    v)  verbose="yes";;
+esac
+done
+shift $(($OPTIND - 1))
+
+if [ $# -eq 0 ]; then
+    echo "No API method spicified. Use $0 -h for more information." >&2
+    exit 1
+fi
+
+datacamp_request $@
+
