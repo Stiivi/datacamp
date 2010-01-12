@@ -1,0 +1,3 @@
+apps/datacamp/files/*
+apps/datacamp/log/*
+apps/datacamp/config/database.yml

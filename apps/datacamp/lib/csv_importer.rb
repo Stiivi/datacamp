@@ -31,7 +31,7 @@ class CsvImporter
     # Go through each line
     @file.each(true) do |row|
       record = @dataset_class.new
-      record.record_status = "loaded"
+      record.record_status = "new"
       columns.each do |i, field_description_id|
         next unless field_description_id
         field_description = @field_descriptions.find_all{|description|description.id.to_i == field_description_id.to_i}[0]
