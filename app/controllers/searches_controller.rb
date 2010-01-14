@@ -51,7 +51,7 @@ class SearchesController < ApplicationController
     if search
       search.session = @current_session
       search.save
-	    @engine.perform_search(search)
+	    @engine.perform_search(search, :dataset_limit => 5)
 	    
       redirect_to search_path(search)
     else

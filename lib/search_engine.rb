@@ -72,7 +72,7 @@ end
 ########################################################################
 # Heart of searching - method to find all results
 
-def perform_search(search)
+def perform_search(search, options = nil)
 	# Note: currenlty we have only search query stored in the query object of
 	#       search object
 	
@@ -83,7 +83,7 @@ def perform_search(search)
 	# if @search.result_count > 0
 	#  return 
 	# end
-		
+
 	query = search.query
 	scope = query.scope.to_sym
 	
@@ -95,12 +95,12 @@ def perform_search(search)
 		# FIXME: this sanity check should be somewhere else
 		datasets = datasets.select { |dd|dd.dataset.table_exists? }
 		datasets.each do |dataset|
-			perform_dataset_search(dataset, query)
+			perform_dataset_search(dataset, query, options)
 		end
 	elsif scope == :dataset
 		# Rails.logger.info "DEBUG dataset search: #{query.object}"
 		dataset = DatasetDescription.find_by_identifier(query.object)
-		perform_dataset_search(dataset, query)
+		perform_dataset_search(dataset, query, options)
 	else
 		raise "Unknown search query scope #{scope}"
 	end
@@ -251,7 +251,12 @@ end
 # Select into method
 #
 
-def perform_dataset_search(dataset, query)
+def perform_dataset_search(dataset, query, options)
+
+    if options
+        dataset_limit = options[:dataset_limit]
+    end
+
 	search_expression = sql_condition_for_dataset_query(dataset, query)
 	# Rails.logger.info "DEBUG search in #{dataset}: #{search_expression}"
 	if not search_expression
@@ -261,13 +266,24 @@ def perform_dataset_search(dataset, query)
 	# FIXME: use DatastoreManager
 	dataset_schema = @connection.current_database
 	target_table = "#{dataset_schema}.search_results"
+
+    # FIXME: make this database independent (this is MySQL)
+    if dataset_limit
+        limit_condition = "LIMIT #{dataset_limit}"
+    end
+
+  	# FIXME: use datastore 
+    sql_query = "INSERT INTO #{target_table} (search_query_id, table_name, record_id)
+                 SELECT '#{query.id}', '#{dataset.identifier}', _record_id
+                 FROM #{dataset.dataset.table_name}
+                 WHERE #{search_expression} #{limit_condition}"
 	
 	begin
 		# Now fill results with stuff from table ...
-		select_into(:from => dataset.dataset.table_name, 
-				  :into => "#{target_table} (search_query_id, table_name, record_id)", 
-				  :fields => "'#{query.id}', '#{dataset.identifier}', _record_id",
-				  :conditions => search_expression)
+        
+        # FIXME: use datastore connection
+    	DatasetRecord.connection.execute(sql_query)
+
 	rescue Exception => e
 		# FIXME: create list of errors, pass an message
 		Rails.logger.error e.message
@@ -277,12 +293,5 @@ def perform_dataset_search(dataset, query)
 end
 
 # FIXME: This should go into the dataset management object
-
-def select_into opt
-	# FIXME: use datastore manager
-	# FIXME: move search results to datastore table
-	sql_query = "INSERT INTO #{opt[:into]} SELECT #{opt[:fields]} FROM #{opt[:from]} WHERE #{opt[:conditions]} LIMIT 3"
-	DatasetRecord.connection.execute(sql_query)
-end
 
 end
