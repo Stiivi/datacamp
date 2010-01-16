@@ -41,7 +41,7 @@ end
 def create_search_with_string(query_string, scope, object_name)
 	search = Search.new
 	begin
-		query = SearchQuery.query_with_string(query_string, :scope=>scope, :object=>object_name)
+		query = SearchQuery.query_with_string(query_string, :scope=>scope.to_s, :object=>object_name)
 		search.query = query
 		search.query_string = query_string
 		search.search_type = "text"
@@ -74,7 +74,7 @@ end
 ########################################################################
 # Heart of searching - method to find all results
 
-def perform_search(search, options = nil)
+def perform_search(search, options = {})
 	# Note: currenlty we have only search query stored in the query object of
 	#       search object
 	
@@ -85,9 +85,14 @@ def perform_search(search, options = nil)
 	# if @search.result_count > 0
 	#  return 
 	# end
-
+	
 	query = search.query
 	scope = query.scope.to_sym
+	
+	# Option to temporarily change scope.
+	if options[:dataset]
+	 scope = :dataset
+	end
 	
 	if not scope or scope == :global
 		# Rails.logger.info "DEBUG global search"
@@ -101,7 +106,8 @@ def perform_search(search, options = nil)
 		end
 	elsif scope == :dataset
 		# Rails.logger.info "DEBUG dataset search: #{query.object}"
-		dataset = DatasetDescription.find_by_identifier(query.object)
+		dataset_identifier = options[:dataset] || query.object
+		dataset = DatasetDescription.find_by_identifier(dataset_identifier)
 		perform_dataset_search(dataset, query, options)
 	else
 		raise "Unknown search query scope #{scope}"

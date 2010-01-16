@@ -75,8 +75,9 @@ class SearchesController < ApplicationController
   
   ########################################################################
   # This method is used to get more results for a search and dataset.
-  # Basically, it will take predicates from previous search and create a new
-  # search on a dataset.
+  # Basically, it will take an exiting search and run perform_search again
+  # but this time with no limit.
+  #
   # It's useful because global search includes only 5 results and if user wants
   # to see more from a dataset, they have to broade
     
@@ -86,14 +87,18 @@ class SearchesController < ApplicationController
     
     @search = Search.find_by_id!(params[:id])
     @dataset = DatasetDescription.find_by_id!(params[:dataset_description_id])
-    predicates = @search.query.predicates
     
-    search = @engine.create_dataset_search_with_predicates(predicates, @dataset.identifier)
-    search.session = @current_session
-    search.save
+    @search.session = @current_session
+    @search.save
     
-    @engine.perform_search(search)
-    redirect_to dataset_path(@dataset, :search_id => search.id)
+    # 1. Remove those 5 results for this dataset from previous search.
+    # We're gonna search this dataset again and reload all results for this
+    # dataset and if we left those one here it, there would be duplicates.
+    temporary_results = @search.query.results.find(:all, :conditions => {:table_name => @dataset.identifier})
+    temporary_results.each{|record|record.destroy}
+    
+    @engine.perform_search(@search, {:dataset => @dataset.identifier})
+    redirect_to dataset_path(@dataset, :search_id => @search.id)
   end
   
   def show
@@ -140,5 +145,9 @@ class SearchesController < ApplicationController
     hash.collect do |predicate|
       SearchPredicate.create({:scope => "record", :field => predicate[:field], :operator => predicate[:operator], :argument => predicate[:value]})
     end
+  end
+  
+  def clone_predicates(predicates)
+    predicates.collect{|predicate|predicate.clone}
   end
 end

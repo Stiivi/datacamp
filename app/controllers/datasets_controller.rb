@@ -128,6 +128,7 @@ class DatasetsController < ApplicationController
       select_options[:joins] = "LEFT JOIN #{@dataset_class.table_name} ON search_results.record_id = #{@dataset_class.table_name}._record_id"
       select_options[:select] = "#{@dataset_class.table_name}.*"
       select_options[:conditions][:"search_results.search_query_id"] = search_query_id
+      select_options[:conditions][:"search_results.table_name"] = @dataset_description.identifier
       select_options[:total_entries] = nil
     else
       select_options[:from] = @dataset_class.table_name
