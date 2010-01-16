@@ -336,6 +336,31 @@ var inscription_modal_remove = function(){
 }
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// Global loading notice
+
+$.loading = function(text){
+  $("."+class_prefix+"Loading").remove();
+  loading = $("<div />").addClass(class_prefix+"Loading");
+  loading.css({opacity: 0, marginTop: -100});
+  
+  span = $("<div />").addClass("text");
+  span.text(text);
+  span.appendTo(loading);
+  
+  loading.appendTo($("body"));
+  loading.animate({opacity: 0.8, marginTop: 0});
+};
+
+$(document).ready(function(){
+  // We need to preload background
+  loading = $("<div />").addClass(class_prefix+"Loading");
+  loading.css({position:"absolute", top: -1000, left: -1000});
+  span = $("<div />").addClass("text");
+  span.appendTo(loading);
+  loading.appendTo($("body"));
+});
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
 // Form validation
 
 var inscription_validate_form = function(form){

@@ -25,7 +25,7 @@
       
       %h2.clearfix.in_container
         .fl== #{dataset.title}
-        .fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset.id))
+        .fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset.id), :class => "search_preloader")
       %table.frontend.small
         / Header
         %tr

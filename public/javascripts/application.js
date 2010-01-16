@@ -4,7 +4,7 @@ $(document).ready(function(){
   $("form.search").submit(function(event){
     if(inscription_validate_form(this))
     {
-      $.modal({html: $("#search_processing").html(), type: 'window', shadow: true});
+      $.loading($("#search_processing").text());
       // return false;
     }
     else
@@ -12,4 +12,7 @@ $(document).ready(function(){
       return false;
     }
   });
+  $("a.search_preloader").click(function(){
+    $.loading($("#search_processing").text());
+  })
 });

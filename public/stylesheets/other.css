@@ -125,6 +125,16 @@ p.error, div.error { border: none; background: #910000; color: #fff; }
 
 /* @end */
 
+/* @group Global Loading */
+
+div._inscription_Loading { position: fixed; top: 0px; left: 0px; width: 100%; background-color: #000; color: #fff; font-size: 20px; padding: 15px; }
+
+div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: url(../images/ajax_preloader_dark.gif) no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
+
+
+
+/* @end */
+
 /* @group Modal */
 
 /* Shadow Overlay */

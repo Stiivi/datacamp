@@ -1,4 +1,4 @@
-- form_tag searches_path, :class => "new_search" do
+- form_tag searches_path, :class => "new_search search" do
   %h2= t "search.create_search", :dataset => @dataset_description.title
   
   = hidden_field_tag "search[dataset]", @dataset_description.identifier
