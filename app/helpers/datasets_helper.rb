@@ -5,7 +5,7 @@ module DatasetsHelper
     lab = field.title
     lab += image_tag "sort_#{params["dir"]}.png" if params[:sort] == field.identifier
     
-    href = {:page => params[:page]}
+    href = {:page => params[:page], :search_id => params[:search_id]}
     href[:sort] = field.identifier
     
     if field.identifier == params[:sort]

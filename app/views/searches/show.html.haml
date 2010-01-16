@@ -1,5 +1,5 @@
 %h1.main.clearfix
-  .fl=h(t("search.results_count", :query_string => @search.query_string, :count => @results.total_entries))
+  .fl=h(t("search.results_count", :query_string => @search.query_string, :count => @results.count))
   .fr.actions
     =link_to t("global.back"), datasets_path
 
@@ -10,25 +10,30 @@
 - else
   = render :partial => "form"
 
-%table{:class => "small search"}
-  %tr.header
-    %th=t "global.dataset"
-    %th=t "global.record_preview"
-    %th.actions
-  - @results.each do |result|
-    - if result.record
-      %tr
-        %td= "<em>#{result.description.title}</em><br />#{result.description.category}"
-        %td= "#{result.excerpt}<br />(ID:#{result.record_id})"
-        %td= button_link_to(t("global.details"), dataset_record_path(result.description, result.record_id))
-    - else
-      %tr
-        %td{:colspan => 3}
-          .error=t "global.load_error", :what => "#{result.table_name}/#{result.record_id}"
+.clearfix
+  .span-4.sidebar
+    %h4= t("global.categories")
+    %ul.categories_list
+      - @categories_with_results.each do |category|
+        %li{:class => params[:category_id].to_i==category.id ? "active": nil}
+          = link_to(category.title, "?category_id=#{category.id}")
+    
+    
+  .span-19
+
+    - @datasets.each do |dataset, results|
       
-      
-.fl
-  = will_paginate @results, :previous_label => t("global.previous"), :next_label => t("global.next")
-.fr
-  = t("global.total_entries")
-  %strong= @results.total_entries
+      %h2.clearfix.in_container
+        .fl== #{dataset.title}
+        .fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset.id))
+      %table.frontend.small
+        / Header
+        %tr
+          - dataset.visible_field_descriptions(:search, 5).each do |field|
+            %th= field.title
+        - results.each do |result|
+          %tr
+            - dataset.visible_field_descriptions(:search, 5).each do |field|
+              %td= result.record.get_html_value(field) if result.record
+              
+      %br

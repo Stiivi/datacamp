@@ -17,6 +17,8 @@ h2 {
 
 h2.homepage { font-size: 20px; font-weight: bold; color: #a1a1a1; }
 
+h2.in_container { margin-left: 10px; }
+
 h2.homepage span { position: relative; top: -30px; left: -10px; }
 
 p {

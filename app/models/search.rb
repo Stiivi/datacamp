@@ -13,4 +13,8 @@ class Search < ActiveRecord::Base
   def result_count
 	query.results.count
   end
+  
+  def scope
+    query.scope
+  end
 end

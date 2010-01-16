@@ -18,10 +18,10 @@ class DatasetDescription < ActiveRecord::Base
   
   ###########################################################################
   # Data fetchers
-  def visible_field_descriptions(where = nil)
+  def visible_field_descriptions(where = nil, limit = nil)
     where ||= :listing
     where = "is_visible_in_#{where.to_s}".to_sym
-    field_descriptions.find :all, :conditions => {where => true}, :include => :globalize_translations
+    field_descriptions.find :all, :conditions => {where => true}, :include => :globalize_translations, :limit => limit
   end
   
   def all_field_descriptions

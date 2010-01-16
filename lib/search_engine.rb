@@ -59,6 +59,8 @@ def create_search_with_string(query_string, scope, object_name)
 end  
 
 def create_dataset_search_with_predicates(predicates, dataset)
+  raise "Predicates shouldn't be nil" if predicates.nil?
+  
 	search = Search.new
 	query = SearchQuery.query_with_predicates(predicates, :scope=>"dataset",
 														  :object=>dataset)
@@ -291,7 +293,5 @@ def perform_dataset_search(dataset, query, options)
 		@delegate.search_failed :warning, "results from dataset '#{dataset.identifier}' were excluded"
 	end
 end
-
-# FIXME: This should go into the dataset management object
 
 end

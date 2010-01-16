@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'create'
   map.signup '/signup', :controller => 'users', :action => 'new'
   
-  map.resources :searches
+  map.resources :searches, :member => {:broaden => :get}
   
   map.resources :user_roles
   

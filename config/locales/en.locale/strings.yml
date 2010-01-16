@@ -131,6 +131,8 @@ en:
         uninitialized_datasets: Uninitialized datasets
         visibility_settings: Visibility settings
         record_preview: Record preview
+        active_search: "Results are currently filtered by an active search with {{predicates}} conditions."
+        edit_search: Edit search
     favorites: 
         confirm_deletion: Are you sure you want to remove this favorite?
         remove: (remove)
@@ -257,6 +259,7 @@ en:
         user: User
         value: Value
         load_error: "Couldn't load {{what}}"
+        categories: Categories
     users: 
         user_not_found: User not found.
         my_account: My Account
@@ -282,9 +285,14 @@ en:
         results_count: "{{count}} results for '{{query_string}}'"
         categories: Categories
         dataset_name: Dataset
-        processing: Processing your search
+        processing: "Processing your search"
+        results: "{{results}} results"
+        more_results: More results
+        any_field: Any field
     validations:
         blank: can't be blank
     messages:
         application_testing_notice: The application is currently in private beta testing.
         testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>."
+        
+        

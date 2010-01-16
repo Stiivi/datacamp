@@ -249,6 +249,7 @@ sk:
     search_term: Výraz
     searching_wait_notice: "Prosíme o chvíľku strpenia, vyhľadáva sa v databáze."
     through: "Vyhľadávať v {{dataset}}"
+    any_field: "‹ Akákoľvek položka ›"
   session: 
     login: Prihlásenie
     lost_password: "Zabudli ste heslo?"

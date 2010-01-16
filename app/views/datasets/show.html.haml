@@ -22,6 +22,7 @@
     = render :partial => "pagination"
     
   #results
+    = render :partial => "search_status"
     - if has_privilege?(:data_management)
       = render :partial => "datasets/admin/table"
     - else

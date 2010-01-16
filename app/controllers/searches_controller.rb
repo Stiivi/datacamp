@@ -27,6 +27,16 @@ class SearchesController < ApplicationController
   def new
 
   end
+  
+  ########################################################################
+  # Search/Create -> Creates new search spicified by one of the following
+  # parameters:
+  # 1. query_string -> global search for one string. This way only 5 results
+  #                    from each dataset are loaded. After search user is redi-
+  #                    rected to search/show with results.
+  # 2. predicates   -> dataset-wide search specified by predicates array. This
+  #                    search will include all results from a dataset. User
+  # =>                 will be redirected back to dataset/view.
 
   def create
     @engine = SearchEngine.new
@@ -48,23 +58,62 @@ class SearchesController < ApplicationController
       return redirect_to new_search_path
     end
     
-    if search
-      search.session = @current_session
-      search.save
-	    @engine.perform_search(search, :dataset_limit => 5)
-	    
-      redirect_to search_path(search)
+    return redirect_to new_search_path unless search
+    
+    search.session = @current_session
+    search.save
+    
+    if search.query.scope == "dataset"
+      @engine.perform_search(search)
+      dataset = DatasetDescription.find_by_identifier(search.query.object)
+      redirect_to dataset_path(dataset, :search_id => search.id)
     else
-      redirect_to new_search_path
+      @engine.perform_search(search, :dataset_limit => 5)
+      redirect_to search_path(search)
     end
+  end
+  
+  ########################################################################
+  # This method is used to get more results for a search and dataset.
+  # Basically, it will take predicates from previous search and create a new
+  # search on a dataset.
+  # It's useful because global search includes only 5 results and if user wants
+  # to see more from a dataset, they have to broade
+    
+  def broaden
+    @engine = SearchEngine.new
+    @engine.delegate = self
+    
+    @search = Search.find_by_id!(params[:id])
+    @dataset = DatasetDescription.find_by_id!(params[:dataset_description_id])
+    predicates = @search.query.predicates
+    
+    search = @engine.create_dataset_search_with_predicates(predicates, @dataset.identifier)
+    search.session = @current_session
+    search.save
+    
+    @engine.perform_search(search)
+    redirect_to dataset_path(@dataset, :search_id => search.id)
   end
   
   def show
     @search = Search.find_by_id! params[:id]
-    if @search.query.scope == "dataset"
-      @dataset_description = DatasetDescription.find_by_identifier @search.query.object
+    
+    datasets_with_results= @search.results.find(:all, :group => "table_name").collect &:table_name
+    @categories_with_results = DatasetDescription.find(:all, :group => "category_id", :include => :category, :conditions => {:identifier => datasets_with_results}).collect(&:category)
+    
+    conditions = {}
+    
+    unless params[:category_id]
+      params[:category_id] = @categories_with_results.first.id if @categories_with_results.first
     end
-    @results = @search.results.paginate(:page => params[:page], :per_page => 10)
+    
+    selected_datasets = DatasetDescription.find(:all, :conditions => {:category_id => params[:category_id]}).collect(&:identifier)
+    conditions[:table_name] = selected_datasets
+    
+    @results = @search.results.find(:all, :include => "dataset_description", :conditions => conditions)
+    @datasets = @results.group_by {|result| result.dataset_description }
+    
     params[:query_string] = @search.query_string # We wan't to display this in the form
     
     # Cache records

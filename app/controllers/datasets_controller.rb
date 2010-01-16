@@ -116,11 +116,13 @@ class DatasetsController < ApplicationController
     select_options[:conditions] = {}
     
     ### Options for order
-    select_options[:order] = "IF(#{params[:sort]} IS NULL, 1, 0) #{params[:dir] || "asc"}, #{params[:sort]} #{params[:dir] || "asc"}" if params[:sort]
+    sort_direction = params[:dir] || "asc"
+    select_options[:order] = "#{params[:sort]} IS NULL #{sort_direction}, #{params[:sort]} #{sort_direction}" if params[:sort]
     
     ### Options for search
     if params[:search_id]
       search_object = Search.find_by_id!(params[:search_id])
+      @search_predicates = search_object.query.predicates
       search_query_id = search_object.query.id
       select_options[:from] = "#{SearchResult.connection.current_database}.search_results"
       select_options[:joins] = "LEFT JOIN #{@dataset_class.table_name} ON search_results.record_id = #{@dataset_class.table_name}._record_id"
