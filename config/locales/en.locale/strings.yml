@@ -278,7 +278,7 @@ en:
     search:
         through: "Search through {{dataset}}" 
         create_search: "Create your search for {{dataset}}"
-        searching_wait_notice: Please be patient while we search through our databases.
+        searching_wait_notice: Searching ...
         search_action: Search!
         query_field: "Search:"
         search_term: Term
