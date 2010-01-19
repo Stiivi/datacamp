@@ -61,7 +61,7 @@ en:
         granularity: Granularity
         is_hidden: Is hidden
         keywords: Keywords
-        last_update_date: Last update date
+        last_update: Last update date
         quality_status: Quality status
         status: Status
         unit_of_analysis: Unit of analysis

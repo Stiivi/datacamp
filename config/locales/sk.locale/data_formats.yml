@@ -23,3 +23,6 @@ sk:
         percentage_1: Desatinné miesta
         date_1: Formát dátumu
         flag_1: Hodnoty
+    data_format_values:
+        format_flag_false: "nie"
+        format_flag_true: "áno"        

@@ -118,6 +118,24 @@ class DatasetRecord < ActiveRecord::Base
 	     value = number_to_percentage(value*100)
 	   when "bytes"
 	   	 value = number_to_human_size(value)
+	   when "flag"
+         if format_arg and format_arg != ""
+             flag_values = format_arg.split(",")
+             flag_values = flag_values.collect { |str| str.strip }
+         end
+
+         if not flag_values
+            flag_values = [I18n.t("data_format_values.format_flag_true"), 
+                           I18n.t("data_format_values.format_flag_false")]
+         elsif flag_values.count == 1
+            flag_values << I18n.t("data_format_values.format_flag_false")
+         end
+         
+	     if value
+            value = flag_values[0]
+         else
+            value = flag_values[1]
+         end
 	   end
 	   
 	   return value

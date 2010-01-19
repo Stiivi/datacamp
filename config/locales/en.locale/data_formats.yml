@@ -23,3 +23,6 @@ en:
         percentage_1: Decimal places
         date_1: Date format
         flag_1: Values
+    data_format_values:
+        format_flag_false: "no"
+        format_flag_true: "yes"

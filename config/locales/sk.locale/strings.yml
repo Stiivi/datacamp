@@ -23,6 +23,7 @@ sk:
     ? "yes"
     : Ano
   dataset: 
+    active_search: "Záznamy sú filtrované {{predicates}} podmienkami"
     add_field_description: "Pridať popis položky"
     batch_edit: "Hromadná úprava {{count}} záznamov:"
     batch_updated: "{{count}} záznamov bolo upravených."
@@ -42,6 +43,7 @@ sk:
     description_updated: "popis súbora údajov bol aktualizovaný"
     descriptions: "Popisy súborov údajov"
     edit_description: "Upraviť popis"
+    edit_search: "Upraviť filter"
     field_description: Položieka
     field_descriptions: "Popisy položiek"
     fields: Položky
@@ -98,6 +100,7 @@ sk:
     back: Naspäť
     browse_dataset: "Prezerať súbor údajov"
     cancel: Odvolať
+    categories: "Kategórie"
     collapse: Zbaliť
     collection_mode: "Spôsob zberu"
     comment: Komentáre
@@ -173,12 +176,13 @@ sk:
     users: Používatelia
     value: Hodnota
   import: 
-    column: "Stĺpec"
+    column: Stĺpec
     column_count_not_ok: "Súbor má {{actual_count}} stĺpcov, databáza očakáva {{expected_count}} stĺpcov"
     column_count_ok: "Počet stĺpcov ({{count}}) sa zhoduje s databázou"
     column_mapping: "Mapovanie stĺpcov"
     column_separator: "Oddelovač stĺpca"
     default_settings: "Prednastavená šablóna"
+    edit_settings: "Upraviť nastavenia"
     empty: Prázdne
     field_description: "Popis položky"
     file_already_imported: "Tento súbor už bol raz importovaný do databázy."
@@ -192,8 +196,9 @@ sk:
     go_to_dataset: "Zobraziť dataset"
     go_to_description: "Zobraz {{dataset}}"
     guess_from_header: "Uhádnuť mapovanie"
+    guessing_mapping: "Pokus o zistenie mapovania stĺpcov: Na základe prvých riadkov v súbore prebehol pokus o uhádnutie názvov položiek."
     has_header: "Obsahuje hlavičku"
-    header: "Hlavička"
+    header: Hlavička
     header_lines: "Počet riadkov záhlavia"
     identifier_line: "Riadok s identifikátormi"
     import_data: "Import údajov"
@@ -201,9 +206,9 @@ sk:
     lines_imported: "{{count}} riadkov bolo uložených do databázy"
     load_success: "Súbor <small>{{path}}</small> úspešne načítaný"
     parsing_first: "Čítam prvých {{count}} riadkov"
-    preset: "Šablóna"
-    preview: "Náhľad"
-    process: "Spracovať"
+    preset: Šablóna
+    preview: Náhľad
+    process: Spracovať
     select_file: "Vyberte súbor"
     source: Zdroj
     start_import: Importovať
@@ -220,7 +225,7 @@ sk:
     granularity: Granularita
     is_hidden: Skryté
     keywords: "Kľúčové slová"
-    last_update_date: "Naposledy upravené"
+    last_update: "Naposledy upravené"
     quality_status: "Stav kvality"
     status: Stav
     unit_of_analysis: "Jednotka analýzy"
@@ -240,16 +245,19 @@ sk:
     data_management: "Správa údajov"
     user_management: "Správa používateľov"
   search: 
+    any_field: "‹ Akákoľvek položka ›"
     categories: Kategórie
     create_search: "Vytvorte vyhľadávanie pre {{dataset}}"
     dataset_name: "Súbor údajov"
+    more_results: "Viac výsledkov"
+    processing: "Prebieha vyhľadávanie"
     query_field: "Hľadať:"
+    results: "{{results}} výsledkov"
     results_count: "{{count}} výsledkov pre '{{query_string}}'"
     search_action: Hľadať!
     search_term: Výraz
     searching_wait_notice: "Prosíme o chvíľku strpenia, vyhľadáva sa v databáze."
     through: "Vyhľadávať v {{dataset}}"
-    any_field: "‹ Akákoľvek položka ›"
   session: 
     login: Prihlásenie
     lost_password: "Zabudli ste heslo?"
@@ -271,6 +279,7 @@ sk:
     current_api_key: "Váš API kľúč:"
     email: E-Mail
     information: Informácie
+    logged_in: "Boli ste úspešne prihlásení"
     my_account: "Moje konto"
     name: Meno
     no_api_key: "Nemáte API kľúč."
