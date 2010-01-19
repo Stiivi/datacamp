@@ -1,0 +1,18 @@
+sk:
+  activerecord:
+    models:
+    attributes:
+      dataset_description:
+        title: Názov
+        description: Popis
+        category: Kategória
+        identifier: Názov stĺpca
+        data_provider: Poskytovateľ dát
+        update_frequency: Frekvencia aktualizácie
+        keywords: Kľúčové slová
+        unit_of_analysis: Jednotka analýzy
+        granularity: Zrnitosť
+        collection_mode: Spôsob zbierania
+        data_source_type: Typ dátového zdroja
+        default_import_format: Predvolený formát pre import
+        active: Aktívne?

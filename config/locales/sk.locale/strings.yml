@@ -256,7 +256,7 @@ sk:
     results_count: "{{count}} výsledkov pre '{{query_string}}'"
     search_action: Hľadať!
     search_term: Výraz
-    searching_wait_notice: "Prosíme o chvíľku strpenia, vyhľadáva sa v databáze."
+    searching_wait_notice: "Vyhľadávam ..."
     through: "Vyhľadávať v {{dataset}}"
   session: 
     login: Prihlásenie

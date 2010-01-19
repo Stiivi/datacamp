@@ -9,7 +9,7 @@ class ListFormBuilder < ActionView::Helpers::FormBuilder
       else
         field_for_label = field.to_s
         field_for_label = field_for_label.split('_').last if field_for_label =~ /^[a-z]{2}_/
-        label_text = field_for_label.humanize # TODO Translations
+        label_text = object.class.human_attribute_name(field_for_label)
         if field_required? field
           label_text += ' <span class="required">*</span>'
         end
