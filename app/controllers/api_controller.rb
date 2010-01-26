@@ -166,7 +166,7 @@ def dataset_dump
     end
 end
 
-def records_in_dataset
+def dataset_records
     # error :unknown_request,
     #      :message => "records_in_dataset is not yet implemented"
     # return

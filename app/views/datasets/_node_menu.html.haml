@@ -9,6 +9,16 @@
     %li
       %a{:href => '#search'}= t("global.search_current")
   %ul.tabs.small.clearfix.fr
+    %li
+      %a{:href => url_for(:controller => :api, :action => :dataset_records,  |
+                          :api_key => @current_user.api_key.key, |
+                          :dataset_id => @dataset_description.id) }=  |
+                          t("dataset.csv_export") |
+    %li
+      %a{:href => url_for(:controller => :api, :action => :dataset_description,  |
+                          :api_key => @current_user.api_key.key, |
+                          :dataset_id => @dataset_description.id) }=  |
+                          t("dataset.description_xml") |
     = render :partial => "favorites/favorite_menu"
     - if SharingService.all.count > 0
       %li.dropdown_trigger
