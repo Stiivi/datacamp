@@ -274,6 +274,8 @@ en:
         no_api_key: "You don't have any API key yet."
         create_api_key: "Create new API key"
         current_api_key: "Your current API key:"
+        current_api_key_for: "Current API key for {{user}}:"
+        no_api_key_for: "{{user}} doesn't have any API key yet."
         logged_in: "You was logged in successfuly"
     search:
         through: "Search through {{dataset}}" 

@@ -20,17 +20,14 @@
 
 class ApiKeysController < ApplicationController
   def new
-    # First deactivate all current API keys
-    current_user.api_keys.each do |api_key|
-      api_key.is_valid = false
-      api_key.save
+    if(has_privilege?(:manage_users) && params[:user_id])
+      user = User.find_by_id(params[:user_id])
+    else
+      user = current_user
     end
     
-    # Create a new one
-    api_key = current_user.api_keys.build({:is_valid => true})
-    api_key.init_random_key
-    api_key.save
+    api_key = user.generate_api_key
     
-    redirect_to account_path + "#api"
+    redirect_to (params[:user_id] ? edit_user_path(user) : account_path) + "#api"
   end
 end

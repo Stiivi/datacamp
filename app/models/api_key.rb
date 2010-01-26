@@ -4,6 +4,10 @@ class ApiKey < ActiveRecord::Base
   
   belongs_to :user
   
+  def to_s
+    key
+  end
+  
   def init_random_key
     
     string_to_be_encoded = user.login + \

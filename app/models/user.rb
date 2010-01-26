@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, :loc, :about, :records_per_page, :is_super_user
+  
+  # Callbacks
+  after_create :generate_api_key
 
 
 
@@ -147,5 +150,20 @@ class User < ActiveRecord::Base
   
   def api_key
     api_keys.find(:first, :conditions => {:is_valid => true})
+  end
+  
+  def generate_api_key
+    # Deactivate existing keys
+    self.api_keys.each do |api_key|
+      api_key.is_valid = false
+      api_key.save
+    end
+    
+    # Create a new one
+    api_key = self.api_keys.build({:is_valid => true})
+    api_key.init_random_key
+    api_key.save
+    
+    api_key
   end
 end
