@@ -102,6 +102,13 @@ $(document).ready(function(){
     show_batch_box(true);
     return false;
   });
+  
+  $("a.batch_cancel").click(function(){
+    $("input.record[type=checkbox]").attr('checked', false);
+    show_batch_box(true);
+    
+    return false;
+  });
 });
 
 var show_batch_box = function(hiding){
@@ -112,12 +119,12 @@ var show_batch_box = function(hiding){
   {
     if(edit.is(":hidden"))
     {
-      edit.slideDown(200);
+      edit.show();
     };
     edit.find("strong.count").text(count);
   }
   else if(edit.is(":visible"))
   {
-    edit.slideUp(200);
+    edit.hide();
   }
 };

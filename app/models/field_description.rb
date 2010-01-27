@@ -23,6 +23,11 @@ class FieldDescription < ActiveRecord::Base
     category.blank? ? title : "#{title} (#{category})"
   end
   
+  def title
+    title = globalize.fetch self.class.locale, :title
+    title.blank? ? "n/a" : title
+  end
+  
   def data_type
     unless @data_types
       begin

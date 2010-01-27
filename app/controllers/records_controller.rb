@@ -35,7 +35,7 @@ class RecordsController < ApplicationController
     
     load_comments
     
-    @favorite = current_user.favorite_for!(@dataset_description, @record)
+    @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
     
     respond_to do |wants|
       wants.html

@@ -63,6 +63,10 @@ class DatasetRecord < ActiveRecord::Base
     super.blank? ? "published" : super
   end
   
+  def quality_status
+    super.blank? ? "ok" : super
+  end
+  
   
   ########################################################################################
   # Method providing API for only those column we have marked as visible in export

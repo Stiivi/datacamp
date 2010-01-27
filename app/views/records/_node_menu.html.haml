@@ -6,16 +6,6 @@
       %a{:href => '#metadata'}= t("global.metadata")
       
   %ul.tabs.small.clearfix.fr
-    - if current_user.has_privilege?(:edit_record)
-      %li.dropdown_trigger
-        %a{:href => "#status"}
-          = t("record_statuses.#{@record.record_status}")
-        %ul.dropdown_content
-          - DatastoreManager.record_statuses.each do |status|
-            %li
-              %a{:href => update_status_dataset_record_path(@dataset_description, @record, :status => status.to_s)}
-                = t("record_statuses.#{status}")
-                = image_tag "icons/record_status/#{status}.png"
     = render :partial => "favorites/favorite_menu"
     - if SharingService.all.count > 0
       %li.dropdown_trigger

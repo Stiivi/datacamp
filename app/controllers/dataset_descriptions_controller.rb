@@ -22,6 +22,8 @@ class DatasetDescriptionsController < ApplicationController
   before_filter :get_dataset_description, :only => [:show, :edit, :update, :destroy, :import_settings, :setup_dataset, :set_visibility, :add_primary_key]
   before_filter :load_datasets, :only => [:import, :do_import]
   
+  privilege_required :edit_dataset_description
+  
   protect_from_forgery :except => :set_visibility
   
   # GET /dataset_descriptions

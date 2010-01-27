@@ -7,7 +7,7 @@ belongs_to :search_query
 @@datatype_operators = {
   :integer => [:greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, :is_set, :is_not_set],
   :date => [:within_last_days, :within_last_weeks, :within_last_months, :greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, :is_set, :is_not_set],
-  :string => [:begins_with, :ends_with, :contains, :does_not_contain, :matches, :is_set, :is_not_set]
+  :string => [:contains, :begins_with, :ends_with, :does_not_contain, :matches, :is_set, :is_not_set]
 }
 
 @@operator_codes = {

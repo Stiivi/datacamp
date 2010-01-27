@@ -71,7 +71,10 @@ en:
         create: New dataset
         create_category: New category
         add_field_description: Add field description
-        batch_edit: "Batch edit selected {{count}} records:"
+        selected_records: "{{count}} records are selected."
+        batch_edit: "Batch edit"
+        edit_selected: Selected records
+        edit_all: "All {{count}} records"
         batch_updated: "{{count}} records were successfuly updated."
         cant_setup_dataset: "Can't setup dataset {{dataset}} to {{identifier}}. Please check your database."
         click_to_select_all: Click to select/deselect all.
@@ -133,6 +136,8 @@ en:
         record_preview: Record preview
         active_search: "Results are currently filtered by an active search with {{predicates}} conditions."
         edit_search: Edit search
+        data: Data
+        meta_information: Meta information
     favorites: 
         confirm_deletion: Are you sure you want to remove this favorite?
         remove: (remove)

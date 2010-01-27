@@ -10,6 +10,8 @@
 
 .node .information .buttons h1 { padding-top: 6px; padding-left: 5px; }
 
+.node .information .metadata { font-size: 11px; color: #a3a3a3; }
+
 .node .information .actions { margin-top: -7px; }
 
 .node .information .actions a { color: #7a7a7a; font-size: 11px; }
@@ -247,5 +249,17 @@ ul.search li input.search_value { width: 370px !important; padding: 3px; margin-
 ul.search li .fl { margin-left: 10px; padding: 3px 0 0; }
 
 ul.search li .buttons { padding-top: 10px; padding-right: 10px; }
+
+/* @end */
+
+/* @group Batch Edit */
+
+#batch_edit { background-image: url(../../images/dataset_batch_edit.png); padding: 5px 10px; color: #3c3c3c; font-size: 12px; font-weight: bold; }
+
+#batch_edit .information > .fl { padding-top: 4px; }
+
+a.batch_cancel { position: relative; top:  3px; margin-right: 5px; }
+
+
 
 /* @end */

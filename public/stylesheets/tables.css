@@ -14,6 +14,10 @@ table tr th a:hover { color: #2f2f2f; text-decoration: none; }
 
 table tr td { padding: 10px; padding-left: 0px; background: #eeeeee; }
 
+table tr td.nopadding { padding: 0px !important; }
+
+table.plain tr td { background: none !important; }
+
 table tr td:first-child { padding-left: 10px; }
 
 /* Actions as a cell */

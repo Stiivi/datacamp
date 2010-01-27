@@ -1,11 +1,25 @@
-#batch_edit.node.hidden.notice
+#batch_edit.hidden
   .information.clearfix
     .fl
-      = t("dataset.batch_edit", :count => '<strong class="count">0</strong>')
+      %a.batch_cancel{:href => "#"}
+        = image_tag "icons/cancel_alt.png"
       
-      = select_tag :status, "<option value=''>%s:</option>:" % t("dataset.set_status") + options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"))
+      = t("dataset.selected_records", :count => '<strong class="count">0</strong>')
+      = t("dataset.batch_edit")
       
-      = select_tag :quality, "<option value=''>%s: </option>" % t("dataset.set_quality") + options_from_collection_for_select(QualityStatus.all, :name, :title)
+      = hidden_field_tag :search_id, params[:search_id]
       
-    .fr
-      = f.submit t("global.submit")
+      %select.no_submit{:name => "selection"}
+        %option{:value => "selected"}
+          = t("dataset.edit_selected")
+        %option{:value => "all"}
+          = t("dataset.edit_all", :count => @records.total_entries)
+      
+    .fr.clearfix
+      .fl
+        = select_tag :status, "<option value=''>%s</option>" % t("dataset.set_status") + options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"))
+      
+        = select_tag :quality, "<option value=''>%s </option>" % t("dataset.set_quality") + options_from_collection_for_select(QualityStatus.all, :name, :title)
+      
+      .fl
+        = button_link_to "Batch edit", batch_edit_dataset_path(@dataset_description, :search_id => params[:search_id]), :class => "small"

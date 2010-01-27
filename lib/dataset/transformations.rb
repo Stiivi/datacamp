@@ -44,7 +44,7 @@ module Dataset::Transformations
       end
     end
     # FIXME: get constant from datastore manager!
-    @connection.add_column table_name, :_record_id, :primary_key
+    @connection.add_column table_name, :_record_id, :primary_key unless self.has_column?("_record_id")
     
     # 2. Create _record_id, which is PK with auto_increment
     # @connection.add_column table_name, :_record_id, :primary_key
@@ -150,7 +150,7 @@ module Dataset::Transformations
     
     @description.save(false)
     
-    @connection.create_table(@description.identifier, :options => 'DEFAULT CHARSET=utf8') {}
+    @connection.create_table(@description.identifier, :options => 'DEFAULT CHARSET=utf8', :primary_key => "_record_id") {}
     
     transform!
     

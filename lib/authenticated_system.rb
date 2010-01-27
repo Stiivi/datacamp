@@ -13,9 +13,9 @@ module AuthenticatedSystem
   ## Actual privilege_required methods
   def privilege_required(priv)
     unless logged_in?
-      redirect_to root_path
+      return redirect_to login_path
     end
-    
+        
     redirect_to root_path unless current_user.has_privilege?(priv)
   end
   
@@ -37,6 +37,11 @@ module AuthenticatedSystem
       session[:user_id] = new_user ? new_user.id : nil
       @current_user = new_user || false
     end
+    
+    def has_privilege?(priv)
+      logged_in? && current_user.has_privilege?(priv)
+    end
+    
 
     # Check if the user is authorized
     #
@@ -70,7 +75,9 @@ module AuthenticatedSystem
     #   skip_before_filter :login_required
     #
     def login_required
-      authorized? || access_denied
+      if SystemVariable.get("login_required", 1).to_i == 1
+        authorized? || access_denied
+      end
     end
 
     # Redirect as appropriate when an access request fails.

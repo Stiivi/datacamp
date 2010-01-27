@@ -99,8 +99,8 @@ sk:
     all: "- Všetko -"
     back: Naspäť
     browse_dataset: "Prezerať súbor údajov"
-    cancel: Odvolať
     categories: "Kategórie"
+    cancel: Zrušiť
     collapse: Zbaliť
     collection_mode: "Spôsob zberu"
     comment: Komentáre

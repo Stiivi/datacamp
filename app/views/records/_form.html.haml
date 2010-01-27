@@ -1,20 +1,35 @@
 - form_for @record, :url => (@form_url) do |f|
-  #information.box
-    #information_inside.clearfix
-      .span-21
-        %table.edit
-          - @dataset_description.all_field_descriptions.each do |field_description|
-            %tr
-              %td.label= field_description.title
-              %td.edit
-                .field
-                  = f.text_field field_description.identifier
-                  - if qs = @quality_status.find { |qs| qs.column_name == field_description.identifier }
-                    .suggestion.clearfix
-                      .fl.value= qs.suggested_value
-                      .fr
-                        = image_tag "icons/cancel.png", :class => "cancel"
-                    %a{:href => fix_dataset_record_path(@dataset_description, @record, :field => field_description.identifier), :class => "quality_status"}= image_tag "icons/exclamation.png", :class => "quality_status"
-          %tr
-            %td
-            %td= f.submit
+
+  %h2= t("dataset.data")
+
+  %table.plain
+    - @dataset_description.all_field_descriptions.each do |field_description|
+      %tr
+        %td.label= field_description.title
+        %td.edit
+          .field
+            = f.text_field field_description.identifier
+            - if qs = @quality_status.find { |qs| qs.column_name == field_description.identifier }
+              .suggestion.clearfix
+                .fl.value= qs.suggested_value
+                .fr
+                  = image_tag "icons/cancel.png", :class => "cancel"
+              %a{:href => fix_dataset_record_path(@dataset_description, @record, :field => field_description.identifier), :class => "quality_status"}= image_tag "icons/exclamation.png", :class => "quality_status"
+      
+  %h2= t("dataset.meta_information")
+  
+  %table.plain
+    %tr
+      %td.label= t("metadata.status")
+      %td
+        = f.select :record_status, options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"), @record.record_status)
+      
+    %tr
+      %td.label= t("metadata.quality_status")
+      %td
+        = f.select :quality_status, options_from_collection_for_select(QualityStatus.all, :name, :title, @record.quality_status)
+  
+  %table.plain
+    %tr
+      %td
+      %td= f.submit

@@ -15,4 +15,4 @@
           - else
             = value
       %td.actions
-        = button_link_to(t("global.show"), dataset_record_path(@dataset, record, :page => params[:page]))
+        = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(@dataset, record, :page => params[:page]))

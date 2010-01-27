@@ -155,7 +155,10 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("form.submit_on_change").find("select").live("change", function(){
-    $(this).parents("form:first").submit();
+    if(!$(this).hasClass("no_submit"))
+    {
+      $(this).parents("form:first").submit();
+    }
   });
 });
 

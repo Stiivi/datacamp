@@ -57,9 +57,14 @@ class DatasetsController < ApplicationController
     load_comments
     
     # Favorite if there's one
-    @favorite = current_user.favorite_for!(@dataset_description, @record)
+    @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
     
+    # Build options for db query
     select_options = create_options_for_select
+    
+    # Add pagination stuff to those options
+    select_options[:page] = params[:page]
+    select_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
     
     @records             = @dataset_class.paginate(select_options)
     
@@ -80,25 +85,43 @@ class DatasetsController < ApplicationController
   # Batch update
   def update
     @dataset_description = DatasetDescription.find_by_id(params[:id])
-    @record_class        = @dataset_description.dataset.dataset_record_class
+    @dataset_class        = @dataset_description.dataset.dataset_record_class
     unless params[:record]
       flash[:error] = I18n.t("dataset.not_enough_records_selected")
       return redirect_to(dataset_path(@dataset_description)) 
     end
-    params[:record].each do |record|
-      record = @record_class.find_by_record_id(record)
-      if record
-        unless params[:status].blank?
-          record.record_status = params[:status]
-        end
-        unless params[:quality].blank?
-          record.quality_status = params[:quality]
-        end
-        record.save(false)
-      end
+      
+    # Conditions for update
+    update_conditions = {}
+        
+    if(params[:selection] == "selected")
+      # The easier case. User used checkboxes to choose what
+      # records they want to edit.
+       update_conditions[:_record_id] = params[:record].collect{|id|id.to_i}
+    elsif(params[:selection] == "all" && params[:search_id])
+      # Case when all search matching records should be edited.
+      # We wanna get all the ids of matching records and
+      # pass them to update statement.
+      
+      select_options = create_options_for_select
+      select_options[:select] = "#{@dataset_class.table_name}._record_id"
+      ids = @dataset_class.find(:all, select_options).collect{|r|r._record_id}
+      update_conditions[:_record_id] = ids
+    elsif(params[:selection] == "all" && params[:search_id].blank?)
+      # User has chosen to edit all records and to search is
+      # specified. We just won't pass any options to update statement
+      # and just update whole dataset.
     end
+    
+    updates = {}
+    updates[:record_status] = params[:status] unless params[:status].blank?
+    updates[:quality_status] = params[:quality] unless params[:quality].blank?
+  
+    @dataset_class.update_all(updates, update_conditions)
+
     flash[:notice] = I18n.t("dataset.batch_updated", :count => params[:record].size)
-    return redirect_to(dataset_path(@dataset_description))
+    params.delete(:search_id) if params[:search_id].blank? #FIXME: ewww ugly!
+    return redirect_to(dataset_path(@dataset_description, :search_id => params[:search_id]))
   end
   
   def sitemap
@@ -108,11 +131,7 @@ class DatasetsController < ApplicationController
   protected
   
   def create_options_for_select
-    ### Loading & Pagination & stuff
-    per_page = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
-    
-    ### Options for pagination
-    select_options = { :page => params[:page], :per_page => per_page }
+    select_options = {}
     select_options[:conditions] = {}
     
     ### Options for order
@@ -120,7 +139,7 @@ class DatasetsController < ApplicationController
     select_options[:order] = "#{params[:sort]} IS NULL #{sort_direction}, #{params[:sort]} #{sort_direction}" if params[:sort]
     
     ### Options for search
-    if params[:search_id]
+    unless params[:search_id].blank?
       search_object = Search.find_by_id!(params[:search_id])
       @search_predicates = search_object.query.predicates
       search_query_id = search_object.query.id
@@ -129,7 +148,6 @@ class DatasetsController < ApplicationController
       select_options[:select] = "#{@dataset_class.table_name}.*"
       select_options[:conditions][:"search_results.search_query_id"] = search_query_id
       select_options[:conditions][:"search_results.table_name"] = @dataset_description.identifier
-      select_options[:total_entries] = nil
     else
       select_options[:from] = @dataset_class.table_name
     end
@@ -144,7 +162,7 @@ class DatasetsController < ApplicationController
     end
     
     ### Filtering for those with insufficient privileges
-    unless current_user.has_privilege?(:view_hidden_records)
+    unless has_privilege?(:view_hidden_records)
       select_options[:finder] = 'active'
     end
     

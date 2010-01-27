@@ -6,7 +6,7 @@ sk:
         title: Názov
         description: Popis
         category: Kategória
-        identifier: Názov stĺpca
+        identifier: Názov tabuľky
         data_provider: Poskytovateľ dát
         update_frequency: Frekvencia aktualizácie
         keywords: Kľúčové slová

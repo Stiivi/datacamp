@@ -14,6 +14,11 @@ system_variables = [
     :name => "default_import_format",
     :description => "Default import format",
     :value => "csv"
+  },
+  {
+    :name => "login_required",
+    :description => "Login required to use application",
+    :value => 1
   }
 ]
 

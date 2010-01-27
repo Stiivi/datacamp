@@ -5,8 +5,15 @@
         = button_link_to(image_tag("back.png") + t("global.back"), dataset_path(@dataset_description, :page => params[:page]))
       .fl
         %h1.main= @dataset_description.title
-      .fr.actions
-        - if logged_in? && current_user.has_privilege?(:data_editing)
+      .fr.actions.metadata
+        - if has_privilege?(:edit_record)
+          = t("metadata.status") + ":"
+          = I18n.t("record_statuses.#{@record.record_status}")
+          |
+        = t("metadata.quality_status") + ":"
+        = I18n.t("quality_statuses.#{@record.quality_status}")
+        |
+        - if has_privilege?(:edit_record)
           = link_to t("global.edit"), edit_dataset_record_path(@dataset_description, @record)
           |
           = link_to t("global.delete"), dataset_record_path(@dataset_description, @record), :method => "delete", :confirm => "Are you sure you want to delete this item?"

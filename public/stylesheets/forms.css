@@ -1,6 +1,6 @@
 /* @group Generic Form */
 
-form { background-color: #fefefe; margin-bottom: 15px; padding: 10px; position: relative; margin-right: 0; }
+form { margin-bottom: 15px; padding: 10px; position: relative; margin-right: 0; }
 
 form.inline { margin: 0px; padding: 0px; position: static; }
 
