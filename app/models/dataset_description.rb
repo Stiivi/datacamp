@@ -16,6 +16,11 @@ class DatasetDescription < ActiveRecord::Base
   ###########################################################################
   # Attribute getters
   
+  def title
+    title = globalize.fetch self.class.locale, :title
+    title.blank? ? "n/a" : title
+  end
+  
   ###########################################################################
   # Data fetchers
   def visible_field_descriptions(where = nil, limit = nil)
