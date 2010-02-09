@@ -19,6 +19,11 @@ system_variables = [
     :name => "login_required",
     :description => "Login required to use application",
     :value => 1
+  },
+  {
+    :name => "copyright_notice",
+    :description => "Copyright notice displayed in the footer.",
+    :value => "&copy; Your Comapny"
   }
 ]
 

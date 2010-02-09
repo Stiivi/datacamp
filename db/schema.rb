@@ -314,6 +314,15 @@ ActiveRecord::Schema.define(:version => 20100112081235) do
     t.datetime "updated_at"
   end
 
+  create_table "tmp_names", :id => false, :force => true do |t|
+    t.text "NAME"
+    t.text "sex"
+  end
+
+  create_table "tmp_surnames", :id => false, :force => true do |t|
+    t.text "surname"
+  end
+
   create_table "user_access_rights", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "access_right_id"

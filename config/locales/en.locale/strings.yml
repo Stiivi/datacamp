@@ -138,6 +138,8 @@ en:
         edit_search: Edit search
         data: Data
         meta_information: Meta information
+        csv_export: CSV
+        description_xml: XML
     favorites: 
         confirm_deletion: Are you sure you want to remove this favorite?
         remove: (remove)
