@@ -25,7 +25,7 @@ sk:
   dataset: 
     active_search: "Záznamy sú filtrované {{predicates}} podmienkami"
     add_field_description: "Pridať popis položky"
-    batch_edit: "Hromadná úprava {{count}} záznamov:"
+    batch_edit: "Hromadná úprava"
     batch_updated: "{{count}} záznamov bolo upravených."
     cant_setup_dataset: "Nie je možné nastaviť súbor {{dataset}} na tabuľku {{identifier}}. Skontrolujte prosím databázu."
     click_to_select_all: "Kliknite pre označenie/odznačenie všetkých."
