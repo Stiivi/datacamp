@@ -15,8 +15,9 @@
     %h4= t("global.categories")
     %ul.categories_list
       - @categories_with_results.each do |category|
-        %li{:class => params[:category_id].to_i==category.id ? "active": nil}
-          = link_to(category.title, "?category_id=#{category.id}")
+        %li{:class => category&&params[:category_id].to_i==category.id ? "active": nil}
+          - if category
+            = link_to(category.title, "?category_id=#{category.id}")
     
     
   .span-19
