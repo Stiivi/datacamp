@@ -94,3 +94,38 @@ $(document).ready(function(){
     return false;
   });
 });
+
+
+// // // // // // // // // // // // // // // // // // // // // // // // 
+// Field ordering
+
+$(document).ready(function(){
+  $("a.order").click(function(){
+    var obj = $(this).parents("tr");
+    
+    if($(this).hasClass('up'))
+    {
+      var prev = obj.prev('.field_description');
+      if(prev.length != 0)
+      {
+        obj.insertBefore(prev);
+      }
+    }
+    else
+    {
+      var next = obj.next('.field_description');
+      if(next.length != 0)
+      {
+        obj.insertAfter(next);
+      }
+    }
+    
+    var order = $.map($(this).parents("tr").parent().find("tr.field_description"), function(row){
+      return $(row).attr('id').replace(/[^\d]+/, '');
+    }).join(',');
+    
+    $.post($(this).attr('href'), {order: order});
+    
+    return false;
+  });
+});

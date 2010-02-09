@@ -5,10 +5,12 @@
     %th.title= t("global.title")
     %th.description= t("global.description")
     %th.type= t("dataset.type")
+    %th.order
     %th.actions
   - @field_descriptions.group_by(&:category).each do |group, field_descriptions|
     %tr.title
       %td.title= group.to_s.empty? ? t("dataset.no_category") : group
+      %td
       %td
       %td
       %td

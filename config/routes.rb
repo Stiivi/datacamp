@@ -42,8 +42,7 @@ ActionController::Routing::Routes.draw do |map|
               :add_primary_key => :get,
               :destroy => :get }
   map.resources :dataset_descriptions, :member => dataset_description_tabs, :collection => { :import => :get, :do_import => :get } do |m|
-    m.resources :field_descriptions, :collection => { :order => :post, :create_for_column => :get }, :member => {:create_column => :get}
-    m.resources :relationship_descriptions, :collection => { :order => :post }
+    m.resources :field_descriptions, :collection => { :order => :post, :create_for_column => :get }, :member => {:create_column => :get }
   end
   map.resources :categories, :controller => "dataset_categories"
   

@@ -7,5 +7,8 @@
     = field_description.description.to_s.empty? ? 'n/a' : field_description.description
   %td.type
     = field_description.data_type
+  %td.order
+    =link_to(image_tag('icons/arrow_up.png'), order_dataset_description_field_descriptions_path(@dataset_description), :class => "order up")
+    =link_to(image_tag('icons/arrow_down.png'), order_dataset_description_field_descriptions_path(@dataset_description), :class => "order down")
   %td.actions
     =link_to(image_tag('icons/trash.gif'), dataset_description_field_description_path(dataset_description, field_description), :method => 'delete', :confirm => t("global.delete_confirmation"))
