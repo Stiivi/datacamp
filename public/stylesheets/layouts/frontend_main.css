@@ -33,7 +33,6 @@ h2 {
   _height: 800px; }
   #main #header {
     height: 60px;
-    background: url(../../images/logo.png) no-repeat 0px;
     position: relative; }
     #main #header a.home {
       text-decoration: none;
