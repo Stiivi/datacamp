@@ -380,3 +380,13 @@ var inscription_validate_form = function(form){
 $("form.validate").bind('submit', function(){
   return inscription_validate_form(this);
 });
+
+// // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
+// Form preloading
+
+$(document).ready(function(){
+  $("form.preloader").submit(function(){
+    var message = $(this).attr("data-preloader-message");
+    $.loading(message);
+  });
+});

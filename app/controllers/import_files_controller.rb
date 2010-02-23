@@ -111,6 +111,7 @@ class ImportFilesController < ApplicationController
     @import_file = ImportFile.find_by_id!(params[:id])
     
     @importer = CsvImporter.new(@import_file.encoding)
+    @importer.batch_id = @import_file.id
     if @importer.load_file(@import_file.file_path, @import_file.col_separator || ",", @import_file.number_of_header_lines)
       @file = @importer.file
     else

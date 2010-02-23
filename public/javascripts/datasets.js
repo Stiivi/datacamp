@@ -109,6 +109,14 @@ $(document).ready(function(){
     
     return false;
   });
+  
+  $("a.batch_edit").click(function(){
+    var form = $(this).parents("form");
+    // form.attr('method', 'get');
+    form.attr('action', $(this).attr('href'));
+    form.submit();
+    return false;
+  });
 });
 
 var show_batch_box = function(hiding){

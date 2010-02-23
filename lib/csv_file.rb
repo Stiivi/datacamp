@@ -75,6 +75,10 @@ class CsvFile
     count_of_columns
   end
   
+  def method_missing name, *args
+    @file.send(name, *args)
+  end
+  
   protected
   
   def check_collection

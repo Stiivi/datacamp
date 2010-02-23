@@ -14,5 +14,5 @@ $(document).ready(function(){
   });
   $("a.search_preloader").click(function(){
     $.loading($("#search_processing").text());
-  })
+  });
 });

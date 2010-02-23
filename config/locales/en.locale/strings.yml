@@ -183,6 +183,7 @@ en:
         go_to_dataset: Go to dataset
         edit_settings: Edit settings
         guessing_mapping: "Guessing mapping: Based on header lines(s) in your file, we just tried to map columns in your file to our field descriptions."
+        importing: "Importing files"
     global: 
         new_category: New Category
         active: active

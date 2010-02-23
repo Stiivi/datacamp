@@ -62,7 +62,7 @@
 - if params[:guess_mapping]
   %p.notice= t("import.guessing_mapping")
 
-- form_tag import_import_file_path(@import_file), {:class => "inline"} do
+- form_tag import_import_file_path(@import_file), {:class => "inline preloader", :"data-preloader-message" => t("import.importing")} do
   %table
     %tr
       %th{:width => 30}= t "import.column"

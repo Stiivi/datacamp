@@ -1,6 +1,6 @@
 class CsvImporter
   attr_reader :file, :errors
-  attr_accessor :encoding
+  attr_accessor :encoding, :batch_id
   
   def initialize(encoding)
     self.encoding = encoding
@@ -30,20 +30,23 @@ class CsvImporter
     columns = column_mapping
     
     count = 0
-    Go through each line
-    puts Time.now
-        @file.each(true) do |row|
-          record = {}
-          columns.each do |i, field_description_id|
-            next unless field_description_id
-            field_description = @field_descriptions.find_all{|description|description.id.to_i == field_description_id.to_i}[0]
-            next unless field_description
-            value = row[i.to_i].to_s
-            record[field_description.identifier] = value
-          end
-          count += 1
-        end
-        puts Time.now
-    count
+    # Go through each line
+    @file.rewind
+    while not @file.eof? do
+      row = @file.readline
+      record = @dataset_class.new
+      record.record_status = "new"
+      record.batch_id = @batch_id
+      columns.each do |i, field_description_id|
+        next unless field_description_id
+        field_description = @field_descriptions.find_all{|description|description.id.to_i == field_description_id.to_i}[0]
+        next unless field_description
+        value = row[i.to_i].to_s
+        record[field_description.identifier] = value
+      end
+      record.save
+      puts "created #{record.id}"
+      count += 1
+    end
   end
 end
