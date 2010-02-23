@@ -17,3 +17,9 @@ CSV_TEMPLATES = [
     :number_of_header_lines => 2
   }
 ]
+
+IMPORT_ENCODINGS = [
+  ['UTF-8', ''],
+  ['Eastern European, MS Windows', 'CP1250'],
+  ['Western European, MS Windows', 'CP1251']
+]

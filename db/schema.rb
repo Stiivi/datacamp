@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100112081235) do
+ActiveRecord::Schema.define(:version => 20100217125529) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20100112081235) do
     t.string   "col_separator",          :default => ","
     t.integer  "number_of_header_lines"
     t.integer  "identifier_line"
+    t.string   "encoding"
   end
 
   create_table "known_datacamps", :force => true do |t|

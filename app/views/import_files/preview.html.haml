@@ -32,6 +32,12 @@
             = f.label :col_separator
           %td
             = f.text_field :col_separator
+        
+        %tr
+          %td
+            = f.label :encoding
+          %td
+            = f.select :encoding, IMPORT_ENCODINGS
             
         %tr
           %td

@@ -1,5 +1,6 @@
 class CsvFile
   attr_reader :path, :collection, :errors
+  attr_accessor :encoding
   
   def initialize path, colsep = ';', header_lines = 0
     @errors = []
@@ -10,13 +11,13 @@ class CsvFile
   end
   
   def open
-    @file = File.readable?(@path) ? FasterCSV.open(@path, "r", :col_sep => @colsep) : false
+    @file = File.readable?(@path) ? File.open(@path, "r") : false
     @file.rewind
   end
   
   def skip_header_lines
     if @header_lines
-      @header_lines.times { @file.shift }
+      @header_lines.times { readline }
     end
   end
   
@@ -27,7 +28,7 @@ class CsvFile
     end
     @lines = []
     count.times do
-      row = @file.shift
+      row = readline
       @lines << row if row && !row.empty?
     end
     @lines
@@ -38,9 +39,22 @@ class CsvFile
     if skip_header
       skip_header_lines
     end
-    while row = @file.shift
+    while row = readline
       yield row
     end
+  end
+  
+  def readline
+    line = @file.readline
+    if @encoding
+      begin
+        line = Iconv.conv('utf-8', @encoding, line)
+      rescue
+      end
+    end
+    
+    line = FasterCSV.parse_line(line, :col_sep => @colsep)
+    return line
   end
   
   def loaded?

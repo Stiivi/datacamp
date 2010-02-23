@@ -110,7 +110,7 @@ class ImportFilesController < ApplicationController
   def prepare_file
     @import_file = ImportFile.find_by_id!(params[:id])
     
-    @importer = CsvImporter.new
+    @importer = CsvImporter.new(@import_file.encoding)
     if @importer.load_file(@import_file.file_path, @import_file.col_separator || ",", @import_file.number_of_header_lines)
       @file = @importer.file
     else

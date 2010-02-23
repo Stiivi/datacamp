@@ -17,8 +17,7 @@
     
     = f.text_field :col_separator
     = f.text_field :number_of_header_lines
+    = f.select :encoding, IMPORT_ENCODINGS
   
   %p
     = f.submit t("global.continue")
-    = t('global.or')
-    = link_to t("global.cancel"), @import_file, :class => 'cancel'

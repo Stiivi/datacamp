@@ -1,12 +1,14 @@
 class CsvImporter
   attr_reader :file, :errors
+  attr_accessor :encoding
   
-  def initialize
-    
+  def initialize(encoding)
+    self.encoding = encoding
   end
   
   def load_file path, separator = ",", header_lines = 0
     @file = CsvFile.new(path, separator, header_lines)
+    @file.encoding = self.encoding
     if @file.open
       return true
     else
@@ -28,21 +30,20 @@ class CsvImporter
     columns = column_mapping
     
     count = 0
-    # Go through each line
-    @file.each(true) do |row|
-      record = @dataset_class.new
-      record.record_status = "new"
-      columns.each do |i, field_description_id|
-        next unless field_description_id
-        field_description = @field_descriptions.find_all{|description|description.id.to_i == field_description_id.to_i}[0]
-        next unless field_description
-        value = row[i.to_i].to_s
-        record[field_description.identifier] = value
-      end
-      record.save
-      count += 1
-    end
-    
+    Go through each line
+    puts Time.now
+        @file.each(true) do |row|
+          record = {}
+          columns.each do |i, field_description_id|
+            next unless field_description_id
+            field_description = @field_descriptions.find_all{|description|description.id.to_i == field_description_id.to_i}[0]
+            next unless field_description
+            value = row[i.to_i].to_s
+            record[field_description.identifier] = value
+          end
+          count += 1
+        end
+        puts Time.now
     count
   end
 end
