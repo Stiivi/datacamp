@@ -19,6 +19,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetCategoriesController < ApplicationController
+  def index
+    @categories = DatasetCategory.all
+    respond_to do |wants|
+      wants.xml { render :xml => @categories.to_xml(:methods => [:title, :description], :root => "category") }
+    end
+  end
+  
   def new
     flash[:return_url] = request.referer
     @category = DatasetCategory.new

@@ -98,6 +98,7 @@ class DatasetsController < ApplicationController
       # The easier case. User used checkboxes to choose what
       # records they want to edit.
        update_conditions[:_record_id] = params[:record].collect{|id|id.to_i}
+       @count_updated = params[:record].count
     elsif(params[:selection] == "all" && params[:search_id])
       # Case when all search matching records should be edited.
       # We wanna get all the ids of matching records and
@@ -107,21 +108,36 @@ class DatasetsController < ApplicationController
       select_options[:select] = "#{@dataset_class.table_name}._record_id"
       ids = @dataset_class.find(:all, select_options).collect{|r|r._record_id}
       update_conditions[:_record_id] = ids
+      @count_updated = ids.count
     elsif(params[:selection] == "all" && params[:search_id].blank?)
       # User has chosen to edit all records and to search is
       # specified. We just won't pass any options to update statement
       # and just update whole dataset.
+      @count_updated = @dataset_class.count_all
     end
     
     updates = {}
     updates[:record_status] = params[:status] unless params[:status].blank?
     updates[:quality_status] = params[:quality] unless params[:quality].blank?
+    
+    # Update attributes (only if using batch edit form)
+    if params[:update_attribute] && params[:attribute_value]
+      params[:update_attribute].each do |attr_name|
+        updates[attr_name] = params[:attribute_value][attr_name]
+      end
+    end
   
     @dataset_class.update_all(updates, update_conditions)
 
-    flash[:notice] = I18n.t("dataset.batch_updated", :count => params[:record].size)
+    flash[:notice] = I18n.t("dataset.batch_updated", :count => @count_updated)
     params.delete(:search_id) if params[:search_id].blank? #FIXME: ewww ugly!
     return redirect_to(dataset_path(@dataset_description, :search_id => params[:search_id]))
+  end
+  
+  def batch_edit
+    @dataset_description = DatasetDescription.find_by_id(params[:id])
+    @dataset_class        = @dataset_description.dataset.dataset_record_class
+    @field_descriptions  = @dataset_description.visible_field_descriptions
   end
   
   def sitemap

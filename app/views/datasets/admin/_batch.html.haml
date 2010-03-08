@@ -22,4 +22,4 @@
         = select_tag :quality, "<option value=''>%s </option>" % t("dataset.set_quality") + options_from_collection_for_select(QualityStatus.all, :name, :title)
       
       .fl
-        = button_link_to "Batch edit", batch_edit_dataset_path(@dataset_description, :search_id => params[:search_id]), :class => "small"
+        = button_link_to "Batch edit", batch_edit_dataset_path(@dataset_description, :search_id => params[:search_id]), :class => "small batch_edit"

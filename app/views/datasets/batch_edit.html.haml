@@ -1,0 +1,33 @@
+- form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "batch_edit"} do |f|
+
+  = hidden_field_tag :search_id, params[:search_id]
+  = hidden_field_tag :selection, params[:selection]
+  - params[:record].each do |r|
+    = hidden_field_tag "record[]", r
+    
+  %p.notice
+    - if params[:selection] == "selected"
+      == Editing #{params[:record].count} selected records.
+    - else params[:selection] == "all"
+      - unless params[:search_id].blank?
+        Editing all records that match your search.
+      - else
+        Editing all records in table.
+      
+    
+  %table
+    %tr
+      %th{:width => 60} Update
+      %th Attribute name
+      %th Attribute value
+    - @field_descriptions.each do |fd|
+      %tr
+        %td= check_box_tag "update_attribute[]", fd.identifier
+        %td
+          %b= fd.title
+        %td= text_field_tag "attribute_value[#{fd.identifier}]"
+    %tr
+      %td
+      %td
+      %td
+        = submit_tag "Batch update"

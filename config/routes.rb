@@ -23,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :comments, :member => {:rate => :get, :destroy => :get, :report => [:get, :post]}
   map.resources :favorites, :collection => {:create => :get}, :member => {:destroy => :get}
   
-  map.resources :datasets, :member => {:sitemap => :get, :batch_edit => [:get, :post]}, :collection => {:search => :get} do |m|
+  map.resources :datasets, :member => {:sitemap => :get, :batch_edit => :put}, :collection => {:search => :get} do |m|
     m.resources :records, :member => {:fix => :get, :update_status => :get}
   end
   

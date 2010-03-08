@@ -1,5 +1,5 @@
 body {
-  background: url(../images/frontend_backround.png); }
+  background: url(../images/background.png) !important; }
 
 #main {
   width: 960px;

@@ -171,7 +171,7 @@ $(document).ready(function(){
   $("img.tooltip").css({cursor: "pointer"});
   $("img.tooltip, a.tooltip").hover(function(){
     clearTimeout(tooltip_timeout);
-    tooltip = $("<div />").addClass("tooltip").css({position: "absolute", opacity: 0, webkitTransform:'scale(0.8)', webkitTransitionProperty: "-webkit-transform", webkitTransitionDuration: '0.2s'});
+    tooltip = $("<div />").addClass("tooltip").css({position: "absolute", opacity: 0});
     tooltip.css({background: "black", color: "#fff", padding: "10px"})
     var text = $(this).attr("alt") ? $(this).attr("alt") : $(this).attr("name");
     tooltip.text(text);
@@ -183,20 +183,11 @@ $(document).ready(function(){
     tooltip.css({top: offset.top, left: offset.left});
     
     // Animation
-    if($.browser.safari)
-    {
-      tooltip.css({webkitTransform:'scale(1)'})
-    }
-    tooltip.animate({opacity: 1}, 200);
+    tooltip.css({opacity: 1});
     
   }, function(){
-    tooltip.animate({opacity: 0}, 200, function(){
-      $(this).remove();
-    });
-    if($.browser.safari)
-    {
-      tooltip.css({webkitTransform:'scale(0.8)'});
-    }
+    $(tooltip).remove();
+
     
     // tooltip_timeout = setTimeout(function(){
     //       tooltip.remove();Ω
@@ -232,11 +223,6 @@ $.fn.editable = function(name, url){
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
 // Modal
-
-$(document).ready(function(){
-  // Cache assets
-  $.modal({html: '<a class="button dark"><span></span></a>', position: "hidden"});
-});
 
 $.modal = function(options){
   inscription_modal_remove();

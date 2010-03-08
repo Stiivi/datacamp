@@ -117,6 +117,18 @@ $(document).ready(function(){
     form.submit();
     return false;
   });
+  
+  $("form.batch_edit input[type=text]").keyup(function(){
+    if($(this).val() != "")
+    {
+      // Check box indicating the field should be updated.
+      $(this).parents("tr:first").find("input[type=checkbox]").attr('checked', 'checked');
+    }
+    else
+    {
+      $(this).parents("tr:first").find("input[type=checkbox]").removeAttr('checked');
+    }
+  });
 });
 
 var show_batch_box = function(hiding){
