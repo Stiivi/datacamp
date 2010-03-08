@@ -304,5 +304,10 @@ en:
     messages:
         application_testing_notice: The application is currently in private beta testing.
         testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>."
-        
-        
+    batch_editing:
+        editing_selected: "Editing {{count}} selected records."
+        editing_all_search: "Editing all records that match your search."
+        editing_all_table: "Editing all records in table."
+        attribute_name: Attribute name
+        attribute_value: Attribute name
+        update_all: Update all

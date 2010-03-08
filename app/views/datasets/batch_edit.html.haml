@@ -7,19 +7,19 @@
     
   %p.notice
     - if params[:selection] == "selected"
-      == Editing #{params[:record].count} selected records.
+      = t("batch_editing.editing_selected", :count => params[:record].count)
     - else params[:selection] == "all"
       - unless params[:search_id].blank?
-        Editing all records that match your search.
+        = t("batch_editing.editing_all_search")
       - else
-        Editing all records in table.
+        = t("batch_editing.editing_all_table")
       
     
   %table
     %tr
       %th{:width => 60} Update
-      %th Attribute name
-      %th Attribute value
+      %th= t("batch_editing.attribute_name")
+      %th= t("batch_editing.attribute_value")
     - @field_descriptions.each do |fd|
       %tr
         %td= check_box_tag "update_attribute[]", fd.identifier
@@ -30,4 +30,4 @@
       %td
       %td
       %td
-        = submit_tag "Batch update"
+        = submit_tag t("batch_editing.update_all")
