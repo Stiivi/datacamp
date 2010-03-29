@@ -13,7 +13,7 @@
 
     = f.text_field :identifier
     /- FIXME Destructive transitions
-    = f.select :data_type_id, DatastoreManager.available_data_types.collect{|type|[t("data_types.#{type}"), type]}
+    = f.select :data_type, DatastoreManager.available_data_types.collect{|type|[t("data_types.#{type}"), type]}
     = f.check_box :is_derived
     = f.text_field :derived_value
     

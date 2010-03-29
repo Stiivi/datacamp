@@ -119,7 +119,7 @@ class DatasetRecord < ActiveRecord::Base
 	     # FIXME: Put format into argument 2
 	     value = number_to_currency(value, :unit => format_arg, :format => "%n %u")
 	   when "percentage"
-	     value = number_to_percentage(value*100)
+	     value = number_to_percentage(value)
 	   when "bytes"
 	   	 value = number_to_human_size(value)
 	   when "flag"

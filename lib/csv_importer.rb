@@ -48,5 +48,7 @@ class CsvImporter
       puts "created #{record.id}"
       count += 1
     end
+    
+    return count
   end
 end

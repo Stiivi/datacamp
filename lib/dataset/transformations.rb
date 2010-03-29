@@ -166,6 +166,7 @@ module Dataset::Transformations
     # FIXME: derived should be checked before this method!
     default_data_type = "varchar(255)"
     data_type = fd.data_type ? fd.data_type.database_type : default_data_type
+    raise fd.data_type.to_yaml
     data_type = default_data_type if data_type.to_s.empty?
     
     @connection.add_column(self.table_name, fd.identifier, data_type) unless fd.is_derived

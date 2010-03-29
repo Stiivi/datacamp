@@ -29,16 +29,15 @@ class FieldDescription < ActiveRecord::Base
   end
   
   def data_type
-    unless @data_types
-      begin
-        manager = DatastoreManager.manager_with_default_connection
-        @data_types = manager.dataset_field_types(dataset_description.identifier)
-      rescue
-        @data_types = []
-      end
-    end
-    data_types_hash = Hash[*@data_types.flatten]
-    data_types_hash[identifier.to_sym]
+    manager = DatastoreManager.manager_with_default_connection
+    @data_type ||= manager.dataset_field_type(dataset_description.identifier, self.identifier)
+    @data_type
+    
+  end
+  
+  def data_type=(new_type)
+    manager = DatastoreManager.manager_with_default_connection
+    manager.set_dataset_field_type(dataset_description.identifier, self.identifier, new_type)
   end
   
   ###########################################################################

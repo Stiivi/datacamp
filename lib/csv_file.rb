@@ -1,6 +1,6 @@
 class CsvFile
   attr_reader :path, :collection, :errors
-  attr_accessor :encoding
+  attr_accessor :encoding, :header_lines
   
   def initialize path, colsep = ';', header_lines = 0
     @errors = []
@@ -12,7 +12,12 @@ class CsvFile
   
   def open
     @file = File.readable?(@path) ? File.open(@path, "r") : false
+    self.rewind
+  end
+  
+  def rewind(skip_header = true)
     @file.rewind
+    skip_header_lines if skip_header
   end
   
   def skip_header_lines
@@ -22,12 +27,10 @@ class CsvFile
   end
   
   def load_lines count = 1, skip_header = false
-    @file.rewind
-    if skip_header
-      skip_header_lines
-    end
+    self.rewind(skip_header)
     @lines = []
     count.times do
+      break if @file.eof?
       row = readline
       @lines << row if row && !row.empty?
     end
@@ -35,10 +38,7 @@ class CsvFile
   end
   
   def each skip_header = false
-    @file.rewind
-    if skip_header
-      skip_header_lines
-    end
+    self.rewind(skip_header)
     while row = readline
       yield row
     end
