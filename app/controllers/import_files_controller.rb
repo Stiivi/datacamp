@@ -94,19 +94,30 @@ class ImportFilesController < ApplicationController
   def import
     prepare_file
     
-    if @import_file.imported
+    if @import_file.status == 'success'
       flash[:notice] = t("import.file_already_imported")
       redirect_to preview_import_file_path(@import_file)
     end
     
-    @count = @importer.import_into_dataset(@import_file.dataset_description.dataset,
-                                  params[:column])
-      
-    # Set import_file as imported
-    @import_file.imported = true
-    @import_file.save
+    fork do
+      ActiveRecord::Base.establish_connection(RAILS_ENV + "_app")
+      DatasetRecord.establish_connection RAILS_ENV + "_data"
+      logger.info "spawnin'"
+      @importer.import_into_dataset(@import_file,
+                                    params[:column])
+    end
+    
+    redirect_to status_import_file_path(@import_file)
   end
   
+  def status
+    @import_file = ImportFile.find_by_id!(params[:id])
+    respond_to do |wants|
+      wants.html
+      wants.js
+    end
+  end
+
   def prepare_file
     @import_file = ImportFile.find_by_id!(params[:id])
     

@@ -17,13 +17,18 @@ class CsvImporter
     end
   end
   
-  def import_into_dataset(dataset, column_mapping)
-    # Die if no file's open
+  def import_into_dataset(import_file, column_mapping)
     raise RuntimeException, "Can't import, no file open" unless @file
     
+    @import_file = import_file
+    @import_file.count_of_imported_lines = 0
+    @import_file.status = "in_progress"
+    @import_file.save
+    
     # Get dataset description
-    @dataset_description = dataset.dataset_description
-    @dataset_class = dataset.dataset_record_class
+    @dataset_description = @import_file.dataset_description
+    @dataset = @dataset_description.dataset
+    @dataset_class = @dataset.dataset_record_class
     @field_descriptions = @dataset_description.field_descriptions
     
     # Determine which column is which field
@@ -34,6 +39,8 @@ class CsvImporter
     @file.rewind
     while not @file.eof? do
       row = @file.readline
+      # FIXME: This should be done entirely without ActiveRecord
+      # current speed - about 5000 records / minute
       record = @dataset_class.new
       record.record_status = "new"
       record.batch_id = @batch_id
@@ -45,10 +52,28 @@ class CsvImporter
         record[field_description.identifier] = value
       end
       record.save
-      puts "created #{record.id}"
       count += 1
+      
+      self.line_imported(count)
     end
     
+    self.file_imported(count)
+    
     return count
+  end
+  
+  def line_imported(number)
+    @last_line_imported ||= number
+    if number - @last_line_imported > 100 # Step for updating @import_file
+      @import_file.count_of_imported_lines = number
+      @import_file.status = 'in_progress'
+      @import_file.save
+    end
+  end
+  
+  def file_imported(number)
+    @import_file.count_of_imported_lines = number
+    @import_file.status = 'success'
+    @import_file.save
   end
 end

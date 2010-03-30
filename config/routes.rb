@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :data_types
 
-  map.resources :import_files, :member => {:preview => :get, :import => :post}
+  map.resources :import_files, :member => {:preview => :get, :import => :post, :status => :get}
 
   map.resources :dataset_tests, :member => { :run => :get }
 

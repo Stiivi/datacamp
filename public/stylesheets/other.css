@@ -252,3 +252,11 @@ div.excerpt em { color: #b5b5b5; font-weight: bold; }
 
 
 /* @end */
+
+/* @group Progress bar */
+
+.progress_bar { background-image: url(../images/progress.gif); width: 300px; height: 17px; border: 1px solid #588ddb; -webkit-border-radius: 3px; margin-bottom: 15px; }
+
+
+
+/* @end */

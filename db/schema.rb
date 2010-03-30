@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100217125529) do
+ActiveRecord::Schema.define(:version => 20100330133002) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -197,7 +197,6 @@ ActiveRecord::Schema.define(:version => 20100217125529) do
   create_table "import_files", :force => true do |t|
     t.string   "title"
     t.string   "source"
-    t.boolean  "imported"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "dataset_description_id"
@@ -205,10 +204,12 @@ ActiveRecord::Schema.define(:version => 20100217125529) do
     t.string   "path_content_type"
     t.integer  "path_file_size"
     t.datetime "path_updated_at"
-    t.string   "col_separator",          :default => ","
+    t.string   "col_separator",           :default => ","
     t.integer  "number_of_header_lines"
     t.integer  "identifier_line"
     t.string   "encoding"
+    t.integer  "count_of_imported_lines"
+    t.string   "status",                  :default => "ready"
   end
 
   create_table "known_datacamps", :force => true do |t|

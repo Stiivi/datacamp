@@ -155,6 +155,9 @@ en:
         column_mapping: Column mapping
         first_ok: "First {{count}} rows have same count of columns"
         load_success: "File <small>{{path}}</small> loaded successfuly"
+        importing_files: "Importing files ..."
+        importing_failed: "Importing failed."
+        importing_not_started_yet: "Importing wasn't triggered yet."
         first_not_ok: "First {{count}} rows have different count of columns"
         file_already_imported: This file was already imported into the database.
         column_count_ok: Number of columns ({{count}}) matches database
@@ -184,6 +187,8 @@ en:
         edit_settings: Edit settings
         guessing_mapping: "Guessing mapping: Based on header lines(s) in your file, we just tried to map columns in your file to our field descriptions."
         importing: "Importing files"
+        statuses:
+          ready: Ready
     global: 
         new_category: New Category
         active: active

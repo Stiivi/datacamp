@@ -1,8 +1,0 @@
-= render :partial => "status"
-
-%h1= t("import.load_success", :path => @import_file.file_path.split('/').last)
-
-%p= t("import.lines_imported", :count => @count)
-
-.clearfix
-  = button_link_to t("import.go_to_dataset"), dataset_path(@import_file.dataset_description)

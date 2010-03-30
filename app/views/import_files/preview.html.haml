@@ -43,7 +43,7 @@
           %td
             %strong= t("import.status")
           %td
-            %b= @import_file.imported ? 'Imported' : 'Ready'
+            %b= t("import.statuses.#{@import_file.status}")
         
         %tr
           %td

@@ -9,6 +9,13 @@ class ImportFile < ActiveRecord::Base
   validates_attachment_presence :path
   
   ###############################################################
+  ## Getters & Setters
+  
+  def status
+    self[:status] || "ready"
+  end
+  
+  ###############################################################
   ## Loads associated file as instance of CsvFile class
   def file_path
     File.join(RAILS_ROOT, 'files', "#{id}_#{path_file_name}")
