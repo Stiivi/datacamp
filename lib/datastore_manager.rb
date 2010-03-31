@@ -130,7 +130,7 @@ end
 
 def add_dataset_field(dataset, field, type)
 	table = table_for_dataset(dataset)
-	mapped_type = @@field_type_map[type]
+	mapped_type = @@field_type_map[type.to_sym]
 
 	if mapped_type
 		type = mapped_type

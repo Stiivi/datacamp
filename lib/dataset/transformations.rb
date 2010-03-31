@@ -164,11 +164,11 @@ module Dataset::Transformations
 	# FIXME: Default data type should be :string
     # FIXME: This should be stored in some settings mechanism
     # FIXME: derived should be checked before this method!
-    default_data_type = "varchar(255)"
-    data_type = fd.data_type ? fd.data_type.database_type : default_data_type
-    raise fd.data_type.to_yaml
-    data_type = default_data_type if data_type.to_s.empty?
+    default_data_type = "string"
     
-    @connection.add_column(self.table_name, fd.identifier, data_type) unless fd.is_derived
+    data_type = fd.data_type || default_data_type
+    
+    manager = DatastoreManager.manager_with_default_connection
+    manager.add_dataset_field(self.dataset_description.identifier, fd.identifier, data_type)
   end
 end

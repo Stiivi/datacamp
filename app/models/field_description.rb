@@ -11,6 +11,13 @@ class FieldDescription < ActiveRecord::Base
   validates_uniqueness_of :identifier, :scope => :dataset_description_id
   validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
   
+  after_save :update_data_type
+  after_create :setup_in_database
+  
+  # Accessors
+  
+  attr_accessor :data_type
+  
   ###########################################################################
   # Finders
   def self.find(*args)
@@ -28,28 +35,15 @@ class FieldDescription < ActiveRecord::Base
     title.blank? ? "n/a" : title
   end
   
-  def data_type
-    return nil unless self.identifier
-    manager = DatastoreManager.manager_with_default_connection
-    @data_type ||= manager.dataset_field_type(dataset_description.identifier, self.identifier)
-    @data_type
-  end
-  
-  def data_type=(new_type)
-    manager = DatastoreManager.manager_with_default_connection
-    manager.set_dataset_field_type(dataset_description.identifier, self.identifier, new_type)
-  end
-  
   ###########################################################################
   # Dataset
   def exists_in_database?
     dataset_description.dataset.has_column?(identifier)
   end
   
-  ###########################################################################
   # Callbacks
-  def after_create
-    setup_in_database
+  def after_find
+    find_data_type
   end
   
   ###########################################################################
@@ -65,5 +59,24 @@ class FieldDescription < ActiveRecord::Base
     return false if dataset.has_column?(identifier.to_s)
     
     dataset.create_column_for_description(self)
+  end
+  
+  def find_data_type
+    # If this field is not assigned to a dataset yet,
+    # we can't find actual data type in dataset -- thus we
+    # can only play with ours.
+    return unless dataset_description
+    manager = DatastoreManager.manager_with_default_connection
+    @data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
+  end
+  
+  def update_data_type
+    # Again -- no dataset assigned, no data types.
+    return unless dataset_description
+    # Not sure if it's good to raise an exception here, but
+    # for now -- lets keep it.
+    raise "Can't save field description without a data type." unless @data_type
+    manager = DatastoreManager.manager_with_default_connection
+    manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
   end
 end
