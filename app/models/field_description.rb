@@ -29,10 +29,10 @@ class FieldDescription < ActiveRecord::Base
   end
   
   def data_type
+    return nil unless self.identifier
     manager = DatastoreManager.manager_with_default_connection
     @data_type ||= manager.dataset_field_type(dataset_description.identifier, self.identifier)
     @data_type
-    
   end
   
   def data_type=(new_type)
