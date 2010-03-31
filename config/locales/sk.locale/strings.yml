@@ -203,6 +203,7 @@ sk:
     identifier_line: "Riadok s identifikátormi"
     import_data: "Import údajov"
     import_title: "Importovať data"
+    importing: "Súbor sa načitáva ..."
     lines_imported: "{{count}} riadkov bolo uložených do databázy"
     load_success: "Súbor <small>{{path}}</small> úspešne načítaný"
     parsing_first: "Čítam prvých {{count}} riadkov"
