@@ -114,7 +114,14 @@ class DatasetDescriptionsController < ApplicationController
     create_category_if_needed!
     
     @dataset_description.attributes = params[:dataset_description]
-    success = params[:skip_validations] ? @dataset_description.save(false) : @dataset_description.save
+    
+    start = Time.now.to_i
+    if params[:skip_validations]
+      success = @dataset_description.save(false)
+    else
+      @dataset_description.save
+    end
+    logger.info "Saving one item took #{Time.now.to_i-start} seconds"
     
     respond_to do |format|
       if success

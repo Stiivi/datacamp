@@ -1,12 +1,19 @@
 class DatasetDescription < ActiveRecord::Base
   has_many :field_descriptions, :include => :globalize_translations
-  accepts_nested_attributes_for :field_descriptions
+  # accepts_nested_attributes_for :field_descriptions
   has_many :relationship_descriptions
   has_many :comments
   belongs_to :category, :class_name => "DatasetCategory"
   
   translates :title, :description
   locale_accessor I18N_LOCALES
+  
+  def field_descriptions_attributes=(new_attributes)
+    new_attributes.each do |field, attributes|
+      id = attributes.delete(:id)
+      FieldDescription.update_all(attributes, {:id => id})
+    end
+  end
   
   ###########################################################################
   # Validations

@@ -73,9 +73,7 @@ class FieldDescription < ActiveRecord::Base
   def update_data_type
     # Again -- no dataset assigned, no data types.
     return unless dataset_description
-    # Not sure if it's good to raise an exception here, but
-    # for now -- lets keep it.
-    raise "Can't save field description without a data type." unless @data_type
+    return unless @data_type
     manager = DatastoreManager.manager_with_default_connection
     manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
   end
