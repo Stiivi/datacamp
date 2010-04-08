@@ -65,8 +65,23 @@ class DatasetsController < ApplicationController
     # Add pagination stuff to those options
     select_options[:page] = params[:page]
     select_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
+    select_options[:total_entries] = ((params[:page].to_i||1)+9) * select_options[:per_page]
     
     @records             = @dataset_class.paginate(select_options)
+    
+    # This conditions checks if we've reached end of our huge
+    # list.
+    if params[:page] && params[:page].to_i > 1 && @records.count == 0
+      count_options = select_options.clone
+      count_options.delete(:per_page)
+      count_options.delete(:page)
+      count_options.delete(:total_entries)
+      count = @dataset_class.count(count_options).to_i
+      select_options[:total_entries] = count
+      select_options[:page] = (count.to_f/select_options[:per_page].to_f).ceil
+      
+      @records             = @dataset_class.paginate(select_options)
+    end
     
     # Extra javascripts
     add_javascript('datasets/search.js')
