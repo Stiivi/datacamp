@@ -3,8 +3,6 @@
 - if has_privilege?(:data_management)
   .filters.fr= render :partial => "datasets/admin/filter"
 .fr
-  = t("global.record_count")
-  %strong= @records.total_entries
   - if current_user
     - form_for current_user, :url => account_path, :html => {:class => "submit_on_change inline"} do |f|
       = t ("global.records_per_page")    

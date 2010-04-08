@@ -42,6 +42,19 @@ class DatasetRecord < ActiveRecord::Base
       super(*args)
     end
   end
+  
+  # Converts Datacamp-specific options (NOT RAILS) into SQL.
+  # Datacamp-options are same as Rails options, except you can pass
+  # array of conditions (already sanitized and everything) and it will
+  # join it and send as a single condition.
+  def self.options_to_sql(options)
+    if options[:conditions] && options[:conditions].count > 0
+      options[:conditions] = "(#{options[:conditions].join(") AND (")})"
+    else
+      options.delete(:conditions)
+    end
+    construct_finder_sql(options)
+  end
 
   # Convenience shortcut
   def self.find_by_record_id! *args
