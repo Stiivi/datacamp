@@ -61,13 +61,13 @@ class DatasetsController < ApplicationController
     
     # Add pagination stuff to those options
     paginate_options = {}
-    paginate_options[:page] = params[:page]
+    paginate_options[:page] = params[:page] ? params[:page] : nil
     paginate_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
     paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]
     
     # Build options for db query
     select_options = create_options_for_select
-    select_query   = create_query_from_options(select_options, paginate_options[:per_page])
+    select_query   = create_query_from_options(select_options)
     
     @records             = @dataset_class.paginate_by_sql(select_query, paginate_options)
     
@@ -82,7 +82,7 @@ class DatasetsController < ApplicationController
       paginate_options[:total_entries] = count
       paginate_options[:page] = (count.to_f/paginate_options[:per_page].to_f).ceil
       
-      select_query = create_query_from_options(select_options, paginate_options[:per_page])
+      select_query = create_query_from_options(select_options)
       @records             = @dataset_class.paginate_by_sql(select_query, paginate_options)
     end
     
@@ -169,8 +169,12 @@ class DatasetsController < ApplicationController
     select_options[:conditions] = []
     
     ### Options for order
-    sort_direction = params[:dir] || "asc"
-    select_options[:order] = "#{params[:sort]} #{sort_direction}" if params[:sort]
+    if params[:sort]
+      sort_direction = params[:dir] || "asc"
+      select_options[:order] = "#{params[:sort]} #{sort_direction}"
+      select_options[:conditions] << "#{params[:sort]} IS NOT NULL"
+    end
+    
     
     ### Options for search
     unless params[:search_id].blank?
@@ -206,45 +210,8 @@ class DatasetsController < ApplicationController
   # Creates SQL query from set of options for query.
   # If order is specified, it will create 2 queries and connect
   # them with union, to speed up sorting.
-  def create_query_from_options(original_options, max_results_in_unions = 100)
-    # We don't want to mess up with original object, so we're gonna
-    # clone it, add some extra bullshit, if needed and leave original
-    # options untouched.
-    options = Marshal.load(Marshal.dump(original_options))
-    # select = @dataset_class.options_to_sql(options)
-    # raise options[:conditions].to_yaml
-    if options[:order]
-      order_column = options[:order].split(' ').first
-      order_direction = options[:order].split(' ').last
-      # First set of options will sort by column but exclude
-      # nulls.
-      no_nulls_options = Marshal.load(Marshal.dump(options))
-      if no_nulls_options[:select]
-        no_nulls_options[:select] += ", 1 AS source"
-      else
-        no_nulls_options[:select] = "*, 1 AS source"
-      end
-      no_nulls_options[:limit] = max_results_in_unions
-      # no_nulls_options.delete(:order)
-      no_nulls_options[:conditions] << "#{order_column} IS NOT NULL"
-      no_nulls_query = @dataset_class.options_to_sql(no_nulls_options)
-      
-      # Second set of options will select only nulls
-      nulls_options = Marshal.load(Marshal.dump(options))
-      if nulls_options[:select]
-        nulls_options[:select] += ", 2 AS source"
-      else
-        nulls_options[:select] = "*, 2 AS source"
-      end
-      nulls_options[:limit] = max_results_in_unions
-      # nulls_options.delete(:order)
-      nulls_options[:conditions] << "#{order_column} IS NULL"
-      nulls_query = @dataset_class.options_to_sql(nulls_options)
-      # And final query
-      query = "(#{no_nulls_query}) UNION (#{nulls_query}) ORDER BY source ASC, #{order_column} #{order_direction}"
-    else
-      query = @dataset_class.options_to_sql(options)
-    end
+  def create_query_from_options(options)
+    query = @dataset_class.options_to_sql(options)
     
     query
   end

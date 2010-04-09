@@ -48,8 +48,9 @@ class DatasetRecord < ActiveRecord::Base
   # array of conditions (already sanitized and everything) and it will
   # join it and send as a single condition.
   def self.options_to_sql(options)
-    if options[:conditions] && options[:conditions].count > 0
-      options[:conditions] = "(#{options[:conditions].join(") AND (")})"
+    if options[:conditions] && (options[:conditions].size > 0)
+      joined_conditions = options[:conditions].collect.join(") AND (")
+      options[:conditions] = "(#{joined_conditions})"
     else
       options.delete(:conditions)
     end
