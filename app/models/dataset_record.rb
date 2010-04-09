@@ -124,7 +124,7 @@ class DatasetRecord < ActiveRecord::Base
 		# :precision => 0 get from arg
 
 	   format_arg =  field_description.data_format_argument
-	   format_arg = nil if format_arg.blank?
+	   format_arg = '' if format_arg.blank?
 	   case data_format.name
 	   when "number"
 	     value = number_with_precision(value)
