@@ -20,9 +20,11 @@
 
 
 class ImportFilesController < ApplicationController
+  
+  privilege_required :import_from_file
+  
   ######################################################################
   # Pre-step: show load form
-  
   def new
     @import_file = ImportFile.new
     @import_file.col_separator = ","
@@ -102,7 +104,6 @@ class ImportFilesController < ApplicationController
     fork do
       ActiveRecord::Base.establish_connection(RAILS_ENV + "_app")
       DatasetRecord.establish_connection RAILS_ENV + "_data"
-      logger.info "spawnin'"
       @importer.import_into_dataset(@import_file,
                                     params[:column])
     end

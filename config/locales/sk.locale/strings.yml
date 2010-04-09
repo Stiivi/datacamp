@@ -288,6 +288,9 @@ sk:
     restore_mail_subject: "Obnoviť heslo"
     super_user: Administrátor
     user_not_found: "Používateľ nebol nájdený"
+    register: Vytvoriť konto
+    registration_complete: "Vaše konto bolo vytvorené."
+    insufficient_privileges: "Nemáte právo na vykonanie akcie {{action}}."
   validations: 
     blank: "nemôže byť prázdne"
   watchers: 

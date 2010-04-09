@@ -19,6 +19,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class SettingsController < ApplicationController
+  privilege_required :edit_system_settings
+  
   def index
     @settings = SystemVariable.find :all
   end

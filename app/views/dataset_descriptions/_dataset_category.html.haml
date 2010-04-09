@@ -24,4 +24,5 @@
       %em= truncate(dataset_description.description, 110)
     %td.actions
       .actions
-        =link_to('<span>%s</span>' % t("global.delete"), destroy_dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete")
+        - if current_user.has_privilege?(:destroy_dataset)
+          =link_to('<span>%s</span>' % t("global.delete"), destroy_dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete")

@@ -20,7 +20,7 @@
 
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:restore]
-  privilege_required :user_management, :except => [:new, :restore]
+  privilege_required :manage_users, :except => [:new, :restore]
   
   def index
     @filters = params[:filters] || {}
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     @user.access_role_ids = params[:user][:access_role_ids]
     
     if @user.save(false)
-      redirect_to users_path
+      redirect_to edit_user_path(@user)
     else
       render :action => "edit"
     end

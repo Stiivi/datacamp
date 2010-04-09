@@ -23,6 +23,8 @@ class DatasetDescriptionsController < ApplicationController
   before_filter :load_datasets, :only => [:import, :do_import]
   
   privilege_required :edit_dataset_description
+  privilege_required :create_dataset, :only => [:new, :create]
+  privilege_required :destroy_dataset, :only => [:destroy]
   
   protect_from_forgery :except => :set_visibility
   

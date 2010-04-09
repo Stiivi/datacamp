@@ -7,3 +7,6 @@
   = link_to t("global.logout"), logout_path
 - else
   = link_to(t("global.login"), new_session_path)
+  - unless SystemVariable.get :private_mode
+    |
+    = link_to(t("users.register"), new_account_path)

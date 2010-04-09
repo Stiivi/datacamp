@@ -5,8 +5,9 @@
   %ul.tabs.clearfix.frontend
     %li
       %a{:href => "#basic"}= t("users.information")
-    %li
-      %a{:href => "#access"}= t("users.access_rights")
+    - if current_user.has_right?(:grant_rights)
+      %li
+        %a{:href => "#access"}= t("users.access_rights")
     %li
       %a{:href => "#api"}= t("users.api_access")
   
@@ -25,20 +26,21 @@
       %li.clearfix
         %label
         = f.submit
-        
-  #access
-    %h2= t "users.roles"
-    = hidden_field_tag "user[access_role_ids][]", ""
-    %table
-      - AccessRole.find(:all).each do |p|
-        %tr
-          %td{:width => 25}
-            = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p)
-          %td
-            = label_tag "user[access_role_ids][]", t("access_roles.#{p.identifier}")
-          %td
-            %small
-              = p.access_rights.collect{|r|t("access_rights.#{r.identifier}")}.join(", ")
+  
+  - if current_user.has_right?(:grant_rights)
+    #access
+      %h2= t "users.roles"
+      = hidden_field_tag "user[access_role_ids][]", ""
+      %table
+        - AccessRole.find(:all).each do |p|
+          %tr
+            %td{:width => 25}
+              = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p)
+            %td
+              = label_tag "user[access_role_ids][]", t("access_roles.#{p.identifier}")
+            %td
+              %small
+                = p.access_rights.collect{|r|t("access_rights.#{r.identifier}")}.join(", ")
             
     %h2 Rights
     = hidden_field_tag "user[access_right_ids][]", ""

@@ -22,7 +22,7 @@ class DatasetsController < ApplicationController
   include CommentsLoader
   
   before_filter :prepare_filters, :only => [:show]
-  # privilege_required :data_management, :update
+  privilege_required :edit_record, :only => [:update]
   
   helper_method :has_filters?
   

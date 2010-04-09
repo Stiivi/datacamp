@@ -20,6 +20,7 @@
 
 class CommentsController < ApplicationController
   before_filter :login_required
+  privilege_required :moderate_comments, :only => [:index, :edit, :update, :destroy]
 
   include CommentsHelper
   

@@ -6,7 +6,8 @@
       %a{:href => '#metadata'}= t("global.metadata")
       
   %ul.tabs.small.clearfix.fr
-    = render :partial => "favorites/favorite_menu"
+    - if logged_in?
+      = render :partial => "favorites/favorite_menu"
     - if SharingService.all.count > 0
       %li.dropdown_trigger
         %a.share{:href => '#share'}

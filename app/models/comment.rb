@@ -27,7 +27,7 @@ class Comment < ActiveRecord::Base
   end
   
   def added_by_staff?
-    user.has_privilege?(:social_moderating)
+    user && user.has_privilege?(:social_moderating)
   end
   
   def score_html_class

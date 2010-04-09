@@ -186,7 +186,7 @@ en:
         go_to_dataset: Go to dataset
         edit_settings: Edit settings
         guessing_mapping: "Guessing mapping: Based on header lines(s) in your file, we just tried to map columns in your file to our field descriptions."
-        importing: "Uploading file ..."
+        importing: "Uploading file"
         statuses:
           ready: Ready
     global: 
@@ -290,6 +290,7 @@ en:
         current_api_key_for: "Current API key for {{user}}:"
         no_api_key_for: "{{user}} doesn't have any API key yet."
         logged_in: "You was logged in successfuly"
+        insufficient_privileges: "You have insufficient privileges to perform action {{action}}."
     search:
         through: "Search through {{dataset}}" 
         create_search: "Create your search for {{dataset}}"

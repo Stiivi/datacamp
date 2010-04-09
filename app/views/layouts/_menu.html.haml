@@ -5,10 +5,10 @@
     %li= link_to t("global.home"), root_path
     %li= link_to t("global.data_catalogue"), datasets_path
     - if current_user
-      - if current_user.has_privilege? :data_dictionary
+      - if current_user.has_privilege? :edit_dataset_description
         %li{:class => @submenu_partial == "data_dictionary" ? "active" : ""}
           = link_to t("global.data_dictionary"), dataset_descriptions_path
-      - if current_user.has_privilege? :manage_users
+      - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings)
         %li
           = link_to t("global.settings"), settings_path
 

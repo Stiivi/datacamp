@@ -23,7 +23,8 @@ class RecordsController < ApplicationController
   
   before_filter :load_record
   
-  privilege_required :data_editing, :only => [:edit, :update, :new, :create, :update_status]
+  privilege_required :edit_record, :only => [:edit, :update, :update_status]
+  privilege_required :create_record, :only => [:new, :create]
   
   def show
     # Field descriptions

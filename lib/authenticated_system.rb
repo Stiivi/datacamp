@@ -15,8 +15,11 @@ module AuthenticatedSystem
     unless logged_in?
       return redirect_to login_path
     end
-        
-    redirect_to root_path unless current_user.has_privilege?(priv)
+      
+    unless current_user.has_privilege?(priv)
+      flash[:error] = I18n.t("users.insufficient_privileges", :action => priv.to_s)
+      redirect_to root_path
+    end
   end
   
   protected  
@@ -75,7 +78,7 @@ module AuthenticatedSystem
     #   skip_before_filter :login_required
     #
     def login_required
-      if SystemVariable.get("login_required", 1).to_i == 1
+      if SystemVariable.get("login_required")
         authorized? || access_denied
       end
     end

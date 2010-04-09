@@ -24,6 +24,16 @@ system_variables = [
     :name => "copyright_notice",
     :description => "Copyright notice displayed in the footer.",
     :value => "&copy; Your Comapny"
+  },
+  {
+    :name => "private_mode",
+    :description => "Users can't register, only subscribe for beta program.",
+    :value => 1
+  },
+  {
+    :name => "registration_confirmation_required",
+    :description => "Users need their accounts confirmed by admin before being able to use them.",
+    :value => 0
   }
 ]
 

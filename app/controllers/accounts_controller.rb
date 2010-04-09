@@ -19,8 +19,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class AccountsController < ApplicationController
-  before_filter :login_required, :except => [:forgot, :restore]
-  before_filter :get_account
+  before_filter :login_required, :except => [:forgot, :restore, :new, :create]
+  before_filter :get_account, :only => [:show, :password, :update]
   
   def show
   end
@@ -57,6 +57,27 @@ class AccountsController < ApplicationController
       UserMailer.deliver_forgot_password(@account)
       flash[:notice] = I18n.t("global.email_sent")
       redirect_to forgot_account_path
+    end
+  end
+  
+  ############################################################
+  # Registration
+  
+  def new
+    @account = User.new
+  end
+  
+  def create
+    @account = User.new
+    %w{login email password password_confirmation}.each do |param|
+      @account.send "#{param}=", params[:user][param.to_sym]
+    end
+    if @account.save
+      self.current_user = @account
+      flash[:notice] = t("users.registration_complete")
+      redirect_to root_path
+    else
+      render :action => "new"
     end
   end
   
