@@ -225,7 +225,7 @@ class DatasetsController < ApplicationController
         no_nulls_options[:select] = "*, 1 AS source"
       end
       no_nulls_options[:limit] = max_results_in_unions
-      no_nulls_options.delete(:order)
+      # no_nulls_options.delete(:order)
       no_nulls_options[:conditions] << "#{order_column} IS NOT NULL"
       no_nulls_query = @dataset_class.options_to_sql(no_nulls_options)
       
@@ -237,7 +237,7 @@ class DatasetsController < ApplicationController
         nulls_options[:select] = "*, 2 AS source"
       end
       nulls_options[:limit] = max_results_in_unions
-      nulls_options.delete(:order)
+      # nulls_options.delete(:order)
       nulls_options[:conditions] << "#{order_column} IS NULL"
       nulls_query = @dataset_class.options_to_sql(nulls_options)
       # And final query
