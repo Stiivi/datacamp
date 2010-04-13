@@ -75,6 +75,9 @@ class FieldDescription < ActiveRecord::Base
     return unless dataset_description
     return unless @data_type
     manager = DatastoreManager.manager_with_default_connection
-    manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
+    current_data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
+    unless @data_type.to_s == current_data_type
+      manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
+    end
   end
 end

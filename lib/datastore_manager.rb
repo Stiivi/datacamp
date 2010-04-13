@@ -123,8 +123,8 @@ def dataset_field_types(dataset)
 end
 
 def dataset_field_type(dataset, field)
-  data_types = self.dataset_field_types(dataset)
-  data_types_hash = Hash[*data_types.flatten]
+  @data_types = self.dataset_field_types(dataset)
+  data_types_hash = Hash[*@data_types.flatten]
   data_types_hash[field.to_sym]
 end
 
