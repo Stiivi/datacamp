@@ -103,7 +103,6 @@ class DatasetDescriptionsController < ApplicationController
   # PUT /dataset_descriptions/1
   # PUT /dataset_descriptions/1.xml
   def update
-    
     redirect_path = dataset_description_path(@dataset_description)
     if params[:return_to]
       begin
@@ -117,13 +116,11 @@ class DatasetDescriptionsController < ApplicationController
     
     @dataset_description.attributes = params[:dataset_description]
     
-    start = Time.now.to_i
     if params[:skip_validations]
       success = @dataset_description.save(false)
     else
       @dataset_description.save
     end
-    logger.info "Saving one item took #{Time.now.to_i-start} seconds"
     
     respond_to do |format|
       if success

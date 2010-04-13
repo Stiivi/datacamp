@@ -51,21 +51,14 @@ class DatasetDescription < ActiveRecord::Base
   end
   
   def import_settings= settings
-    settings = settings.split '&'
-    settings.map! { |s| s.split('=') }
+    settings = settings.scan /(\d+)=(\d+)/
+
+    # Make everything non-importable first
+    FieldDescription.update_all({:importable => false, :importable_column => nil}, {:dataset_description_id => self.id})
     
-    settings = Hash[*settings.flatten]
-    
-    field_descriptions.each do |at|
-      at.importable = false
-      at.importable_column = nil
-      
-      if settings[at.id.to_s]
-        at.importable = true
-        at.importable_column = settings[at.id.to_s]
-      end
-      
-      at.save!
+    # Selected columns will be importable now
+    settings.each do |field, order|
+      FieldDescription.update_all({:importable => true, :importable_column => order.to_i}, {:dataset_description_id => self.id, :id => field.to_i})
     end
   end
   
