@@ -11,7 +11,7 @@ class Page < ActiveRecord::Base
     end
     
     def self.find_by_page_name(page_name)
-      @pages = Page.find :all, :include => :globalize_translations
+      @pages = Page.find :all, :include => :translations
       @pages.find_all{|page|page.page_name == page_name}.first
     end
 end

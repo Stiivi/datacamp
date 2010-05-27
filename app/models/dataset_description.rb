@@ -24,8 +24,9 @@ class DatasetDescription < ActiveRecord::Base
   # Attribute getters
   
   def title
-    title = globalize.fetch self.class.locale, :title
-    title.blank? ? "n/a" : title
+    title = globalize.fetch(self.class.locale || I18n.locale, :title)
+    title = translations.find(:first).title if title.blank?
+    title.blank? ? "N/A" : title
   end
   
   ###########################################################################

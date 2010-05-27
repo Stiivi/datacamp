@@ -11,8 +11,8 @@ class DatasetCategory < ActiveRecord::Base
   end
   
   def title
-    title = globalize.fetch self.class.locale, "title"
-    title = title.blank? ? globalize_translations.find(:first).title : title
+    title = attributes[:title]
+    title = title.blank? ? translations.find(:first).title : title
     title.blank? ? '(n/a)' : title
   end
   

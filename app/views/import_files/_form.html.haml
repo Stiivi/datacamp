@@ -1,7 +1,7 @@
 - form_for @import_file, :builder => ListFormBuilder, :html => {:multipart => true} do |f|
   %h2= t "import.file_information"
   %ul
-    = f.grouped_collection_select :dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :prompt => true
+    = f.grouped_collection_select :dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title
     = f.file_field :path
     = f.text_field :title
     = f.text_field :source

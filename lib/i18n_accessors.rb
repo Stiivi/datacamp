@@ -5,7 +5,7 @@ module I18nAccessors
   
   module ActMethods      
     def locale_accessor *locales
-      raise RuntimeError, "Globalize is not initialized with this model, can't summon accessors." unless globalize_options
+      raise RuntimeError, "Globalize is not initialized with this model, can't define accessors." unless translated_attribute_names
       
       locales.flatten!
       
@@ -24,7 +24,7 @@ module I18nAccessors
         end
       end
       
-      translated_attributes = globalize_options[:translated_attributes]
+      translated_attributes = translated_attribute_names
       
       translated_attributes.each do |attribute|
         locales.each do |locale|
