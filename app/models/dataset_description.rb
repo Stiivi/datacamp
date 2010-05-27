@@ -1,5 +1,5 @@
 class DatasetDescription < ActiveRecord::Base
-  has_many :field_descriptions, :include => :globalize_translations
+  has_many :field_descriptions, :include => :translations
   # accepts_nested_attributes_for :field_descriptions
   has_many :relationship_descriptions
   has_many :comments
@@ -34,11 +34,11 @@ class DatasetDescription < ActiveRecord::Base
   def visible_field_descriptions(where = nil, limit = nil)
     where ||= :listing
     where = "is_visible_in_#{where.to_s}".to_sym
-    field_descriptions.find :all, :conditions => {where => true}, :include => :globalize_translations, :limit => limit
+    field_descriptions.find :all, :conditions => {where => true}, :include => :translations, :limit => limit
   end
   
   def all_field_descriptions
-    field_descriptions.find :all, :include => :globalize_translations
+    field_descriptions.find :all, :include => :translations
     field_descriptions.find_all{|fd|fd.exists_in_database?}
     # FIXME this must be very slow. Boolean saying if field_description exists in db should
     # be cached as a column of field_descriptions table.

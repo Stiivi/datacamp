@@ -17,7 +17,7 @@ class DatasetCategory < ActiveRecord::Base
   end
   
   def self.find_or_create_by_title(title)
-    cat = find :first, :include => :globalize_translations, :conditions => {"dataset_category_translations.title" => title}
+    cat = find :first, :include => :translations, :conditions => {"dataset_category_translations.title" => title}
     if cat
       return cat
     else

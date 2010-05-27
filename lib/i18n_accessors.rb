@@ -15,7 +15,7 @@ module I18nAccessors
         
         # Get translation object        
         define_method locale do
-          globalize_translations.find :first, :conditions => {:locale => locale}
+          translations.find :first, :conditions => {:locale => locale}
         end
         
         # Set translation object
