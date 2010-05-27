@@ -11,7 +11,7 @@ class CsvFile
   end
   
   def open
-    @file = File.readable?(@path) ? File.open(@path, "r") : false
+    @file = File.readable?(@path) ? FasterCSV.open(@path, "r", :col_sep => @colsep) : false
     self.rewind
   end
   
@@ -48,12 +48,14 @@ class CsvFile
     line = @file.readline
     if @encoding
       begin
-        line = Iconv.conv('utf-8', @encoding, line)
+        line = line.collect do |column|
+          Iconv.conv('utf-8', @encoding, column)
+        end
       rescue
       end
     end
-    
-    line = FasterCSV.parse_line(line, :col_sep => @colsep)
+
+    # raise line.to_yaml
     return line
   end
   
