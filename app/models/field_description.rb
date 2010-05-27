@@ -32,6 +32,7 @@ class FieldDescription < ActiveRecord::Base
   
   def title
     title = globalize.fetch self.class.locale || I18n.locale, :title
+    title = translations.find(:first).title if title.blank?
     title.blank? ? "n/a" : title
   end
   
