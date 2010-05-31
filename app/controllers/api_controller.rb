@@ -25,7 +25,7 @@ Mime::Type.register "text/yaml", :yml
 Mime::Type.register "text/csv", :csv
 
 skip_before_filter :login_required
-# around_filter :default_exception_handler
+around_filter :default_exception_handler
 before_filter :authorize_api_key
 
 @@api_version = "100"
