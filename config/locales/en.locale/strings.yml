@@ -297,6 +297,7 @@ en:
         no_api_key_for: "{{user}} doesn't have any API key yet."
         logged_in: "You was logged in successfuly"
         insufficient_privileges: "You have insufficient privileges to perform action {{action}}."
+        register: Sign up for account
     search:
         through: "Search through {{dataset}}" 
         create_search: "Create your search for {{dataset}}"
