@@ -24,10 +24,9 @@ class MainController < ApplicationController
   before_filter :login_required, :except => [:index, :locale]
   
   def index
-    @categories = DatasetCategory.find :all
-    # @categories = descriptions.collect{|category, datasets|category ? t("global.other") : category}
-    
-    @popular = Access.find_popular_records
+    if index_page = Page.find_by_page_name("index")
+      redirect_to page_path(index_page)
+    end
   end
   
   def locale
