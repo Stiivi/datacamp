@@ -24,7 +24,7 @@ module Settings
     end
     
     def edit
-      @page = Page.find_by_page_name(params[:id])
+      @page = Page.find_by_page_name!(params[:id])
     end
     
     def update
