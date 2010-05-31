@@ -127,7 +127,7 @@ def dataset_dump
         # FIXME: set to true on apache
         options[:x_sendfile] = false
 
-        # send_file file, options
+        send_file file, options
     else
         error :object_not_found,
               :message => "There is no dump available for dataset #{name} (id=#{params[:dataset_id]})"
