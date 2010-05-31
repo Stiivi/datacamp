@@ -69,6 +69,7 @@ class AccountsController < ApplicationController
   
   def create
     @account = User.new
+    @account.api_access_level = Api::REGULAR
     %w{login email password password_confirmation}.each do |param|
       @account.send "#{param}=", params[:user][param.to_sym]
     end
