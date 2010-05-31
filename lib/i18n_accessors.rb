@@ -34,7 +34,7 @@ module I18nAccessors
           end
           # Setter
           define_method "#{locale}_#{attribute}=" do |value|
-            return globalize.stash(locale, attribute, value)
+            return globalize.write(locale, attribute, value)
           end
         end
       end
