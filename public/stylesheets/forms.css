@@ -42,7 +42,7 @@ form.plain { background: inherit; border: inherit; }
 
 form input, form textarea { font-family: Tahoma, "Lucida Grande"; font-size: 12px; padding: 5px; color: #333; display: block; float: left; }
 
-form textarea.large { width: 670px; height: 500px; font-size: 12px; }
+form textarea.large { width: 670px; height: 500px; font-size: 12px; line-height: 14px; }
 
 form input:focus,     form textarea:focus { color: #111; }
 

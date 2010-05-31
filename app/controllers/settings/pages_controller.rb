@@ -6,6 +6,19 @@ module Settings
       @pages = Page.all
     end
     
+    def new
+      @page = Page.new
+    end
+    
+    def create
+      @page = Page.new(params[:page])
+      if @page.save
+        redirect_to settings_pages_path
+      else
+        render :action => "new"
+      end
+    end
+    
     def show
       redirect_to edit_settings_page_path(params[:id])
     end

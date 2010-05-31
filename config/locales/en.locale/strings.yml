@@ -306,6 +306,7 @@ en:
         last_update: Last update
         edit_page: Edit
         show_page: Show
+        new_page: New page
     search:
         through: "Search through {{dataset}}" 
         create_search: "Create your search for {{dataset}}"
