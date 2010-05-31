@@ -38,6 +38,7 @@ system_variables = [
 ]
 
 system_variables.each do |var|
-  var_obj = SystemVariable.find_or_create_by_name(var[:name])
-  var_obj.update_attributes(var)
+  unless SystemVariable.find_by_name(var[:name])
+    SystemVariable.create(var)
+  end
 end

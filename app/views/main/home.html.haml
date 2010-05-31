@@ -1,0 +1,25 @@
+%div.clearfix.homepage
+  .span-8.tr
+    %h2.homepage
+      %span= t "global.search"
+      = image_tag "homepage_search.png"
+  .span-13.search.right
+    - form_tag searches_path, :class => "validate search" do
+      %div.clearfix
+        = text_field_tag :query_string, nil, :class => "search required"
+      %div.clearfix
+        = submit_tag(t("global.search"))
+        / = link_to t("global.advanced_search"), new_search_path
+        %span= link_to_page("search_help")
+
+        
+%div.clearfix.homepage     
+  .span-8.tr
+    %h2.homepage
+      %span= t "global.data_catalogue"
+      = image_tag "homepage_catalogue.png"
+  .span-13.right
+    %ul.clearfix
+      - @categories.each do |category, items|
+        %li
+          %a{:href => url_for(datasets_path) + "##{category.title}"}= category.title

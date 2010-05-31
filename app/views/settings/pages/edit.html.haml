@@ -1,0 +1,23 @@
+.clearfix
+  %h1.fl= t("pages.edit_page")
+  .fr.clearfix
+    = button_link_to t("global.back"), settings_pages_path
+    = button_link_to t("pages.show_page"), page_path(@page)
+
+- form_for([:settings, @page], :builder => ListFormBuilder) do |f|
+  = f.error_messages
+  
+  %ul
+    %li.clearfix.locale_switcher
+      %label Language
+      = f.locale_switcher I18N_LOCALES         
+
+    - f.locale_tabs I18N_LOCALES do |trans|
+      = trans.text_field :title
+      = trans.text_area :body, :class => "large"
+      
+    = f.text_field :page_name
+    
+    %li.clearfix
+      %label
+      = f.submit

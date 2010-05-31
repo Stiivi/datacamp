@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.namespace :settings do |ns|
+    ns.resources :pages
+  end
+  
   map.resources :settings, :collection => {:update_all => :put}
   
   map.resources :watchers

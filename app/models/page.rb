@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
     translates :body, :title
+    locale_accessor I18N_LOCALES
     
     def html_body
         doc = RedCloth.new(self.body || "")
@@ -11,7 +12,7 @@ class Page < ActiveRecord::Base
     end
     
     def self.find_by_page_name(page_name)
-      @pages = Page.find :all, :include => :translations
+      @pages ||= Page.find :all, :include => :translations
       @pages.find_all{|page|page.page_name == page_name}.first
     end
 end

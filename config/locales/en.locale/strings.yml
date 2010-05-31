@@ -244,6 +244,7 @@ en:
         next: Next
         note: Note
         other: Other
+        pages: Pages
         previous: Previous
         profile: Profile
         ratings: Ratings
@@ -298,6 +299,13 @@ en:
         logged_in: "You was logged in successfuly"
         insufficient_privileges: "You have insufficient privileges to perform action {{action}}."
         register: Sign up for account
+    pages:
+        all_pages: All pages
+        name: Name
+        title: Title
+        last_update: Last update
+        edit_page: Edit
+        show_page: Show
     search:
         through: "Search through {{dataset}}" 
         create_search: "Create your search for {{dataset}}"
