@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100330133002) do
+ActiveRecord::Schema.define(:version => 20100531113646) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20100330133002) do
     t.integer  "category_id"
     t.boolean  "is_active",             :default => true
     t.string   "default_import_format"
+    t.integer  "api_access_level",      :default => 0
   end
 
   create_table "favorites", :force => true do |t|
@@ -356,6 +357,7 @@ ActiveRecord::Schema.define(:version => 20100330133002) do
     t.string   "restoration_code"
     t.boolean  "is_super_user"
     t.integer  "records_per_page"
+    t.integer  "api_access_level",                         :default => 0
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

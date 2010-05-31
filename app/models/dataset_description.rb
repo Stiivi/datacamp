@@ -8,6 +8,8 @@ class DatasetDescription < ActiveRecord::Base
   translates :title, :description
   locale_accessor I18N_LOCALES
   
+  include Api::Accessable
+  
   def field_descriptions_attributes=(new_attributes)
     new_attributes.each do |field, attributes|
       id = attributes.delete(:id)

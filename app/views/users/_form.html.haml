@@ -14,7 +14,6 @@
   
   #basic
     %ul
-  
       = f.text_field :login
       = f.text_field :name
       = f.text_field :email
@@ -42,32 +41,39 @@
               %small
                 = p.access_rights.collect{|r|t("access_rights.#{r.identifier}")}.join(", ")
             
-    %h2 Rights
-    = hidden_field_tag "user[access_right_ids][]", ""
-    %table
-      - AccessRight.find(:all).each do |p|
-        %tr
-          %td{:width => 25}
-            = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p)
-          %td{:width => 150}
-            = t "access_right_categories.#{p.category}"
-          %td
-            = label_tag "user[access_right_ids][]", t("access_rights.#{p.identifier}")
+      %h2 Rights
+      = hidden_field_tag "user[access_right_ids][]", ""
+      %table
+        - AccessRight.find(:all).each do |p|
+          %tr
+            %td{:width => 25}
+              = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p)
+            %td{:width => 150}
+              = t "access_right_categories.#{p.category}"
+            %td
+              = label_tag "user[access_right_ids][]", t("access_rights.#{p.identifier}")
     
-    .clearfix
-      = f.submit
+      .clearfix
+        = f.submit
       
-  #api
-    %h2= t "users.api_access"
-
-    .clearfix
-      - if @user.api_key
-        %p
-          = t "users.current_api_key_for", :user => @user.login
-          %strong= @user.api_key.key
-      - else
-        %p= t "users.no_api_key_for", :user => @user.login
-
+  - if current_user.has_right?(:set_api_acess)
+    #api
+      %h2= t "users.api_access"
+      
+      %ul
+        = f.select :api_access_level, options_for_select(Api.access_levels.collect{|k,v|[I18n.t("api.levels.#{k}"), v]}, @user.api_access_level)
+        = f.submit
+        
       %br
 
-      = button_link_to t("users.create_api_key"), new_api_key_path(:user_id => @user.id)
+      .clearfix
+        - if @user.api_key
+          %p
+            = t "users.current_api_key_for", :user => @user.login
+            %strong= @user.api_key.key
+        - else
+          %p= t "users.no_api_key_for", :user => @user.login
+
+        %br
+
+        = button_link_to t("users.create_api_key"), new_api_key_path(:user_id => @user.id)

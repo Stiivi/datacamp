@@ -1,5 +1,10 @@
 --- 
 sk: 
+  api:
+    levels:
+      restricted: Zakázané
+      regular: Obyčajné
+      premium: Premium
   comments: 
     neutral: Neutral
     new: "Nový komentár"
@@ -286,6 +291,7 @@ sk:
     no_api_key: "Nemáte API kľúč."
     password: Heslo
     restore_mail_subject: "Obnoviť heslo"
+    roles: Role
     super_user: Administrátor
     user_not_found: "Používateľ nebol nájdený"
     register: Vytvoriť konto

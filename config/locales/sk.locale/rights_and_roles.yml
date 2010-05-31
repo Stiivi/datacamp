@@ -16,12 +16,19 @@ sk:
         search_in_hidden_fields: Vyhľadávať v skrytých poliach
         search_in_hidden_records: Vyhľadávať v skrytých záznamoch
         use_in_development: Používať funkcionalitu vo vývoji
+        edit_system_settings: Upravovať nastavenia
+        moderate_comments: Moderovať komentáre
+        delete_comments: Mazať komentáre
+        view_hidden_datasets: Zobrazovať skryté súbory
+        search_in_hidden_datasets: Vyhľadávať v skrytých súboroch
     access_right_categories:
         records: Záznamy
         information: Informácie
         datastore: Úložisko údajov
         users: Používatelia 
         system: Systém
+        comments: Komentáre
+        settings: Nastavenia
     access_roles:
         datastore_manager: Manažér úložiska súborov údajov
         user_manager: Manažér používateĺov

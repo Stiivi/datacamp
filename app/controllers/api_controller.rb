@@ -25,7 +25,7 @@ Mime::Type.register "text/yaml", :yml
 Mime::Type.register "text/csv", :csv
 
 skip_before_filter :login_required
-around_filter :default_exception_handler
+# around_filter :default_exception_handler
 before_filter :authorize_api_key
 
 @@api_version = "100"
@@ -108,47 +108,15 @@ def datasets
 end
 
 def dataset_description
-    dataset_id = params[:dataset_id]
-    if dataset_id.nil?
-        error :invalid_argument, :message => "dataset_id is not specified"
-        return
-    end
-    dataset = DatasetDescription.find_by_id(dataset_id)
-
-    if dataset.nil?
-        error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
-        return
-    end
-
-    if dataset.is_hidden? && \
-        ! @current_user.has_right?(:view_hidden_datasets)
-        error :access_denied, :message => "Insufficient privileges for dataset with id #{dataset_id}"
-        return
-    end
+    dataset = find_dataset(params[:dataset_id].to_i) || return
     
     render :xml => dataset.to_xml(:include => [ :field_descriptions ])
 end
 
 def dataset_dump
     # FIXME: Add API right: :dataet_dump_api
-
-    dataset_id = params[:dataset_id]
-    if dataset_id.nil?
-        error :invalid_argument, :message => "dataset_id is not specified"
-        return
-    end
-    dataset_description = DatasetDescription.find_by_id(dataset_id)
-
-    if dataset_description.nil?
-        error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
-        return
-    end
-
-    if dataset.is_hidden? && \
-        ! @current_user.has_right?(:view_hidden_datasets)
-        error :access_denied, :message => "Insufficient privileges for dataset with id #{dataset_id}"
-        return
-    end
+    dataset_description = find_dataset(params[:dataset_id].to_i)
+    return unless dataset_description
 
     name = dataset_description.identifier
     file = Pathname(dataset_dump_path) + "#{name}-dump.csv"
@@ -159,10 +127,10 @@ def dataset_dump
         # FIXME: set to true on apache
         options[:x_sendfile] = false
 
-        send_file file, options
+        # send_file file, options
     else
         error :object_not_found,
-              :message => "There is no dump available for dataset #{name} (id=#{dataset_id})"
+              :message => "There is no dump available for dataset #{name} (id=#{params[:dataset_id]})"
     end
 end
 
@@ -171,17 +139,7 @@ def dataset_records
     #      :message => "records_in_dataset is not yet implemented"
     # return
 
-    dataset_id = params[:dataset_id]
-    if dataset_id.nil?
-        error :invalid_argument, :message => "dataset_id is not specified"
-        return
-    end
-    dataset_description = DatasetDescription.find_by_id(dataset_id)
-
-    if dataset_description.nil?
-        error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
-        return
-    end
+    dataset_description = find_dataset(params[:dataset_id].to_i) || return
 
     dataset_class = dataset_description.dataset.dataset_record_class
 
@@ -216,27 +174,19 @@ def render_records_in_dataset(dataset, output)
    end
 end
 def record
-    dataset_id = params[:dataset_id]
-    if dataset_id.nil?
-        error :invalid_argument, :message => "dataset_id is not specified"
-        return
-    end
-    record_id = params[:record_id]
+    dataset_id = params[:dataset_id].to_i
+    dataset_description = find_dataset(dataset_id) || return
+    record_id = params[:record_id].to_i
+    
     if dataset_id.nil?
         error :invalid_argument, :message => "record_id is not specified"
         return
     end
-    dataset_description = DatasetDescription.find_by_id(dataset_id)
-
-    if dataset_description.nil?
-        error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
-        return
-    end
-
+    
     dataset_class = dataset_description.dataset.dataset_record_class
 
     # FIXME: use appropriate API key based filtering
-    record = dataset_class.find_by_id(record_id)
+    record = dataset_class.find_by__record_id(record_id)
 
     if record.nil?
         error :object_not_found, :message => "Record with id #{record_id} was not found"
@@ -314,5 +264,45 @@ def authorize_api_key
     end
     
     @current_user = user
+end
+
+def find_dataset(dataset_id)
+  if dataset_id.nil?
+      error :invalid_argument, :message => "dataset_id is not specified"
+      return false
+  end
+  
+  dataset = DatasetDescription.find_by_id(dataset_id)
+
+  if dataset.nil?
+      error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
+      return false
+  end
+
+  if dataset.is_hidden? && \
+      !@current_user.has_right?(:view_hidden_datasets)
+      error :access_denied, :message => "Insufficient privileges for dataset with id #{dataset_id}"
+      return false
+  end
+  
+  # TODO add checking if user can access datasets
+  unless current_user.api_level > Api::RESTRICTED
+    error :access_denied, :message => "Access denied for this account"
+    return false
+  end
+  
+  # TODO add checking if dataset can be accessed
+  unless dataset.api_level > Api::RESTRICTED
+    error :access_denied, :message => "Access denied for this dataset"
+    return false
+  end
+  
+  # TODO add checking if dataset is premium
+  if dataset.api_level > current_user.api_level
+    error :access_denied, :message => "Insufficient privileges"
+    return false
+  end
+  
+  return dataset
 end
 end

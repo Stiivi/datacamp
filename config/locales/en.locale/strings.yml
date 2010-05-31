@@ -1,4 +1,9 @@
 en: 
+    api:
+        levels:
+            restricted: Restricted
+            regular: Regular
+            premium: Premium
     session: 
         submit: Submit
         lost_password_label: Have you forgotten your password?
@@ -279,6 +284,7 @@ en:
         information: Information
         access_rights: Roles and rights
         restore_mail_subject: Restore your account
+        roles: Roles
         super_user: Administrator
         password: Password
         name: Name
