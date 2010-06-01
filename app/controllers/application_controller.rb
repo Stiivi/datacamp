@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :load_pages
   before_filter :init_menu
+  before_filter :set_mailer
   
   helper :all
   layout "frontend_main"
@@ -65,5 +66,9 @@ class ApplicationController < ActionController::Base
   
   # Abstract
   def init_menu
+  end
+  
+  def set_mailer
+    ActionMailer::Base.default_url_options[:host] = request.host_with_port
   end
 end
