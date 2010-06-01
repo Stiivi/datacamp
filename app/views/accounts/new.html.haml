@@ -7,4 +7,9 @@
     = f.password_field :password
     = f.password_field :password_confirmation
     
+    %li.clearfix
+      %label= t("global.captcha")
+      .fl
+        = recaptcha_tags :public_key => Datacamp::Config.get(:captcha_public_key)
+    
     = f.submit t("users.register")

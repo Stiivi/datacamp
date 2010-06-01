@@ -228,14 +228,9 @@ def error code, info = {}
 end
 
 def dataset_dump_path
-    path = Pathname("#{RAILS_ROOT}/config/datacamp_config.yml")
-    if(path.exist?)
-        config = YAML.load_file(path)
-        return config["dataset_dump_path"]
-    else
-        return "#{RAILS_ROOT}/tmp"
-    end
+    Datacamp::Config.get(:dataset_dump_path, "#{RAILS_ROOT}/tmp")
 end
+
 def default_exception_handler
     yield
 rescue => exception

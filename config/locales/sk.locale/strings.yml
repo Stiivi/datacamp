@@ -106,6 +106,7 @@ sk:
     browse_dataset: "Prezerať súbor údajov"
     categories: "Kategórie"
     cancel: Zrušiť
+    captcha: Kontrola
     collapse: Zbaliť
     collection_mode: "Spôsob zberu"
     comment: Komentáre

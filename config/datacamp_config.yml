@@ -2,3 +2,7 @@
 # Paths
 
 dataset_dump_path: /tmp
+
+# Keys
+captcha_private_key: 6Ld7j7oSAAAAAKA-gYz0KvkKKaWwAeJ3rxVW_VMj
+captcha_public_key: 6Ld7j7oSAAAAAN1lJXG-3We4n4Fvsvc-54-6Jo68

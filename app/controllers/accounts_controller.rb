@@ -73,7 +73,7 @@ class AccountsController < ApplicationController
     %w{login email password password_confirmation}.each do |param|
       @account.send "#{param}=", params[:user][param.to_sym]
     end
-    if @account.save
+    if @account.save && verify_recaptcha(:private_key => Datacamp::Config.get(:captcha_private_key), :model => @account)
       self.current_user = @account
       flash[:notice] = t("users.registration_complete")
       redirect_to root_path
