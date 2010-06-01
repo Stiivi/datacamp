@@ -2,3 +2,4 @@ files/*
 log/*
 config/database.yml
 config/datacamp_config.yml
+/update
