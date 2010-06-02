@@ -150,6 +150,7 @@ sk:
     next: Nasledujúce
     note: Poznámka
     other: Ostatné
+    pages: Stránky
     previous: Predošlé
     profile: Profil
     ratings: Hodnotenia
@@ -239,6 +240,14 @@ sk:
     unit_of_analysis: "Jednotka analýzy"
     update_frequency: "Frekvencia obnovovania"
     valid_from: "Platné od"
+  pages:
+    all_pages: Všetky stránky
+    name: Názov
+    title: Titulok
+    last_update: Posledná zmena
+    edit_page: Upraviť
+    show_page: Zobraziť
+    new_page: Vytvoriť stránku
   password_reset: 
     body: "Klikni na nasledovný link na vyresetovanie hesla: {{link}}"
     restore_account: "Obnoviť účet"
