@@ -15,5 +15,10 @@ module Api
     def api_level
       api_access_level || 0
     end
+    
+    def api_allowed_for?(other_accessable)
+      self.api_level > RESTRICTED &&
+      self.api_level <= other_accessable.api_level
+    end
   end
 end

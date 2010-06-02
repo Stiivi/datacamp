@@ -4,6 +4,7 @@ en:
             restricted: Restricted
             regular: Regular
             premium: Premium
+        allowed_for_dataset: API is allowed
     session: 
         submit: Submit
         lost_password_label: Have you forgotten your password?

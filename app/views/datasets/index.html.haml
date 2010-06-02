@@ -12,6 +12,9 @@
         %td
           %em= truncate(description.description.to_s, 80)
         %td.actions{:align => 'right'}
-          = link_to("<span>#{t("global.browse_dataset")}</span>", dataset_path(description), :class => "button")
+          .clearfix
+            = link_to("<span>#{t("global.browse_dataset")}</span>", dataset_path(description), :class => "button")
+            - if description.api_allowed_for?(current_user)
+              = link_to "<span>API is enabled</span>", page_path("api"), :class => "api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
           
   %br

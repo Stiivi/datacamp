@@ -5,6 +5,7 @@ sk:
       restricted: Zakázané
       regular: Obyčajné
       premium: Premium
+    allowed_for_dataset: API je povolené
   comments: 
     neutral: Neutral
     new: "Nový komentár"
