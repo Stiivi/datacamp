@@ -17,6 +17,7 @@ module Api
     end
     
     def api_allowed_for?(other_accessable)
+      return false unless other_accessable
       self.api_level > RESTRICTED &&
       self.api_level <= other_accessable.api_level
     end
