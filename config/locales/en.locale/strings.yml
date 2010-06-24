@@ -80,7 +80,7 @@ en:
         selected_records: "{{count}} records are selected."
         batch_edit: "Batch edit"
         edit_selected: Selected records
-        edit_all: "All {{count}} records"
+        edit_all: "All records"
         batch_updated: "{{count}} records were successfuly updated."
         cant_setup_dataset: "Can't setup dataset {{dataset}} to {{identifier}}. Please check your database."
         click_to_select_all: Click to select/deselect all.

@@ -28,6 +28,8 @@ def dump_dataset(dataset_description)
   fields_for_export = dataset_description.visible_field_descriptions(:export)
   visible_fields = fields_for_export.collect{ |field| field.identifier }
   
+  output.write(CSV.generate_line(visible_fields))
+  
   count = 0
   dataset_class.find_each (:batch_size => 100) do |record|
     values = record.values_for_fields(visible_fields)
