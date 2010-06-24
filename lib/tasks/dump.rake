@@ -23,15 +23,17 @@ def dump_dataset(dataset_description)
   dump_path = Datacamp::Config.get(:dataset_dump_path)
   connection = DatasetRecord.connection
   
-  output = File.open(File.join(dump_path, "#{dataset_description.identifier}-dump.csv"), "w")
+  path = File.join(dump_path, "#{dataset_description.identifier}-dump.csv")
+  puts "(#{path})"
+  output = File.open(path, "w")
   
   fields_for_export = dataset_description.visible_field_descriptions(:export)
-  visible_fields = fields_for_export.collect{ |field| field.identifier }
+  visible_fields = fields_for_export.collect { |field| field.identifier }
   
   output.write(CSV.generate_line(visible_fields))
   
   count = 0
-  dataset_class.find_each (:batch_size => 100) do |record|
+  dataset_class.find_each(:batch_size => 100) do |record|
     values = record.values_for_fields(visible_fields)
     line = CSV.generate_line(values)
     output.write("#{line}\n")

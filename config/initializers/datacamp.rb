@@ -1,0 +1,1 @@
+require File.join(Rails.root, "lib", "api", "accessable.rb")

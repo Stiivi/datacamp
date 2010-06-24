@@ -1,8 +1,9 @@
-about_organisation: About Organisation
-about_service: About Service
-contact: Contact
-copyright: Copyright
-credits: Credits
-terms_of_service: Terms of Service
-search_help: Search Help
+en:
+  about_organisation: About Organisation
+  about_service: About Service
+  contact: Contact
+  copyright: Copyright
+  credits: Credits
+  terms_of_service: Terms of Service
+  search_help: Search Help
 
