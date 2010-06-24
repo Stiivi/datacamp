@@ -11,7 +11,7 @@ class CsvFile
   end
   
   def open
-    @file = File.readable?(@path) ? FasterCSV.open(@path, "r", :col_sep => @colsep) : false
+    @file = File.readable?(@path) ? CSV.open(@path, "r", :col_sep => @colsep) : false
     self.rewind
   end
   
