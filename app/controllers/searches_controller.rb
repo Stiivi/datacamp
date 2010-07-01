@@ -101,6 +101,17 @@ class SearchesController < ApplicationController
     redirect_to dataset_path(@dataset, :search_id => @search.id)
   end
   
+  ########################################################################
+  # Quick search using Sphinx. If Sphinx search engine couldn't be used
+  # redirect to regular search.
+  def quick
+    query = params[:query_string]
+    engine = SphinxSearchEngine.new
+    search = engine.create_search_with_string(query)
+    engine.perform_search(search)
+    redirect_to search_path(search)
+  end
+  
   def show
     @search = Search.find_by_id! params[:id]
     
