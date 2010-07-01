@@ -103,6 +103,9 @@ def datasets
         ! dataset.is_hidden? || (dataset.is_hidden? && \
             @current_user.has_right?(:view_hidden_datasets))
     }
+    
+    # FIXME find only those dataset that are not restricted by API
+    # access level
 
     render :xml => datasets.to_xml
 end
