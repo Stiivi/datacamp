@@ -39,7 +39,8 @@ datasets.each do |dataset|
   dataset_config += "source = source_#{dataset.identifier}\n"
   index_path = File.join(Rails.root, "index", "data", dataset.identifier)
   dataset_config += "path = #{index_path}\n"
-  dataset_config += "charset_type = utf-8"
+  dataset_config += "charset_type = utf-8\n"
+  dataset_config += "charset_table = 0..9, A..Z->a..z, _, a..z, U+0e1->a, U+0c1->a, U+0e4->a, U+0c4->a, U+10d->c, U+10c->c, U+10f->d, U+10e->d, U+0e9->e, U+0c9->e, U+0ed->i, U+0cd->i, U+13e->l, U+13d->l, U+13a->l, U+139->l, U+148->n, U+147->n, U+0f3->o, U+0d3->o, U+0f4->o, U+0d4->o, U+155->r, U+154->r, U+161->s, U+160->s, U+165->t, U+164->t, U+0fa->u, U+0da->u, U+0fd->y, U+0dd->y, U+17e->z, U+17d->z\n"
   dataset_config += "\n}\n"
   
   all_config += dataset_config
