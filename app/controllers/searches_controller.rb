@@ -130,16 +130,16 @@ class SearchesController < ApplicationController
     @results = @search.results.find(:all, :include => "dataset_description", :conditions => conditions)
     @datasets = @results.group_by {|result| result.dataset_description }
     
-    params[:query_string] = @search.query_string # We wan't to display this in the form
+    params[:query_string] = @search.query_string # We want to display this in the form
     
     # Cache records
-    # @results.group_by(&:table_name).each do |table_name, results|
-    #       record_ids = results.collect(&:record_id)
-    #       records = Dataset::Base.new(table_name.to_sym).dataset_record_class.find(:all, :conditions => ["id IN (?)", record_ids])
-    #       records.each do |record|
-    #         results.find{|r|r.record_id == record.id}.set_record_target(record)
-    #       end
-    #     end
+    @results.group_by(&:table_name).each do |table_name, results|
+      record_ids = results.collect(&:record_id)
+      records = Dataset::Base.new(table_name.to_sym).dataset_record_class.find(:all, :conditions => ["_record_id IN (?)", record_ids])
+      records.each do |record|
+        results.find{|r|r.record_id == record.id}.set_record_target(record)
+      end
+    end
   end
   
   def search_failed(type, error_message)

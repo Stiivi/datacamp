@@ -29,12 +29,13 @@
         .fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset.id), :class => "search_preloader")
       %table.frontend.small
         / Header
+        - fds = dataset.visible_field_descriptions(:search, 5)
         %tr
-          - dataset.visible_field_descriptions(:search, 5).each do |field|
+          - fds.each do |field|
             %th= field.title
         - results.each do |result|
           %tr
-            - dataset.visible_field_descriptions(:search, 5).each do |field|
+            - fds.each do |field|
               %td= result.record.get_html_value(field) if result.record
               
       %br

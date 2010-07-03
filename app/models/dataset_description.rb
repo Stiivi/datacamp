@@ -33,10 +33,22 @@ class DatasetDescription < ActiveRecord::Base
   
   ###########################################################################
   # Data fetchers
-  def visible_field_descriptions(where = nil, limit = nil)
-    where ||= :listing
-    where = "is_visible_in_#{where.to_s}".to_sym
-    field_descriptions.find :all, :conditions => {where => true}, :include => :translations, :limit => limit
+  def visible_field_descriptions(type = nil, limit = nil)
+    type ||= :listing
+    where = "is_visible_in_#{type.to_s}".to_sym
+    @field_descriptions_cache = {} unless @field_descriptions_cache
+    if @field_descriptions_cache[type]
+      # puts "using cache for #{self.identifier} → #{type}"
+      result = @field_descriptions_cache[type]
+    else
+      # puts "using db for #{self.identifier} → #{type}"
+      @field_descriptions_cache[type] = field_descriptions.find :all, :conditions => {where => true}, :include => :translations
+      result = @field_descriptions_cache[type]
+    end
+    if limit
+      result = result[0, limit]
+    end
+    result
   end
   
   def all_field_descriptions
