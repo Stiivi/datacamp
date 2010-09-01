@@ -149,7 +149,7 @@ def dataset_records
     # FIXME: use appropriate API key based filtering
 
     field_descriptions = dataset_description.visible_field_descriptions(:export)
-    fields =  field_descriptions.collect{ |description| description.identifier }
+    fields =  ["_record_id"] + field_descriptions.collect{ |description| description.identifier }
     
     render :text => proc { |response, output|
         output.write("#{CSV.generate_line(fields)}\n")
@@ -163,7 +163,7 @@ def render_records_in_dataset(dataset, output)
     flush_counter = 0
 
     fields_for_export = dataset.visible_field_descriptions(:export)
-    visible_fields = fields_for_export.collect{ |field| field.identifier }
+    visible_fields = ["_record_id"] + fields_for_export.collect{ |field| field.identifier }
 
     dataset_class.find_each (:batch_size => 100) do |record|
         values = record.values_for_fields(visible_fields)
@@ -269,9 +269,9 @@ def find_dataset(dataset_id)
       error :invalid_argument, :message => "dataset_id is not specified"
       return false
   end
-  
-  dataset = DatasetDescription.find_by_id(dataset_id)
 
+  dataset = DatasetDescription.find_by_id(dataset_id)
+  
   if dataset.nil?
       error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
       return false

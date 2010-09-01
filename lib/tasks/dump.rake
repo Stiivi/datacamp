@@ -28,7 +28,7 @@ def dump_dataset(dataset_description)
   output = File.open(path, "w")
   
   fields_for_export = dataset_description.visible_field_descriptions(:export)
-  visible_fields = fields_for_export.collect { |field| field.identifier }
+  visible_fields = ["_record_id"] + fields_for_export.collect { |field| field.identifier }
   
   output.write(CSV.generate_line(visible_fields))
   
