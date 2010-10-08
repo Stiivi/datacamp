@@ -108,3 +108,13 @@ h2 {
 
 table {
   margin-top: 10px; }
+  
+/* home page, intro */ 
+.section#intro {
+  padding-bottom: 10px;}
+  .section#intro p {
+    color: #555; }
+  span.opening {
+    font-size: 14px; 
+    color: #222;
+    font-weight: bold; }
