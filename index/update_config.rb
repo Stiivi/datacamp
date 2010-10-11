@@ -5,7 +5,7 @@ config = YAML.load_file(File.join(Rails.root, "config", "database.yml"))[databas
 
 global_config = ""
 global_config += "type = #{config["adapter"]}\n" if config["adapter"]
-global_config += "sql_host = #{config["host"]}\n" if config["host"]
+global_config += "sql_host = #{config["host"]||"localhost"}\n"
 global_config += "sql_port = #{config["port"]}\n" if config["post"]
 global_config += "sql_user = #{config["username"]}\n" if config["username"]
 global_config += "sql_pass = #{config["password"]}\n"
