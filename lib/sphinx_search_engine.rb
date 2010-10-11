@@ -22,6 +22,7 @@ class SphinxSearchEngine
     datasets.each do |dataset|
       sphinx_client.SetLimits(0, 10)
       results = sphinx_client.Query(search.query_string, "index_#{dataset.identifier}")
+      next unless results
       results['matches'].each do |r|
         all_results << {:table_name => dataset.identifier, :record_id => r['id'], :search_query_id => search.query.id}
       end
