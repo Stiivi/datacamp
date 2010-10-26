@@ -342,3 +342,5 @@ en:
             name: Name
             email: E-mail
             download_csv: "(CSV ↓)"
+            super_user: Super User
+            api_access: API

@@ -27,3 +27,15 @@ h2.homepage span { position: relative; top: -30px; left: -10px; }
 
 p {
   margin-bottom: 5px; }
+
+/* @group Special text */
+
+small.em { text-transform: uppercase; font-size: 9px; font-weight: bold; }
+
+a.em { color: #8e0c09; font-weight: bold; }
+
+a.em:hover { color: #8e0c09; font-weight: bold; }
+
+
+
+/* @end */

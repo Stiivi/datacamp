@@ -13,6 +13,7 @@
       %th= t("settings.users.login")
       %th= t("settings.users.name")
       %th= t("settings.users.email")
+      %th= t("settings.users.api_access")
       %th &nbsp;
     
     %tr.filter
@@ -20,13 +21,21 @@
       %td= text_field_tag "filters[name]", @filters[:name]
       %td= text_field_tag "filters[email]", @filters[:email]
       %td
+      %td
         %a.fr.delete{:href => users_path}= "reset"
     
     - @users.each do |user|
       %tr
-        %td= link_to(user.login, edit_user_path(user))
+        %td
+          - if user.is_super_user
+            = link_to(user.login, edit_user_path(user), :class => "tooltip em", :name => t("settings.users.super_user"))
+          - else
+            = link_to(user.login, edit_user_path(user))
+
         %td= user.name
         %td= user.email
+        %td
+          = image_tag("accessable_level_#{accessable_level_name_for_level(user.api_access_level)}.png", :class => "tooltip", :alt => t("api.levels.#{accessable_level_name_for_level(user.api_access_level)}"))
         %td.actions
           .actions
             =link_to(image_tag('icons/trash.gif'), user_path(user), :confirm => 'Are you sure you want to delete this item?', :method => 'delete')
