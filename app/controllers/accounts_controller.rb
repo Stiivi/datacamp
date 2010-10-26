@@ -53,7 +53,7 @@ class AccountsController < ApplicationController
         return redirect_to forgot_account_path
       end
       @account.create_restoration_code
-      @account.save
+      @account.save(false)
       UserMailer.deliver_forgot_password(@account)
       flash[:notice] = I18n.t("global.email_sent")
       redirect_to forgot_account_path
