@@ -4,3 +4,5 @@ config/database.yml
 config/datacamp_config.yml
 /update
 /remote
+index/*
+.rvmrc
