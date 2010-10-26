@@ -70,10 +70,11 @@ class AccountsController < ApplicationController
   def create
     @account = User.new
     @account.api_access_level = Api::REGULAR
-    %w{login email password password_confirmation}.each do |param|
+    %w{login email password password_confirmation accepts_terms}.each do |param|
       @account.send "#{param}=", params[:user][param.to_sym]
     end
-    if @account.save && verify_recaptcha(:private_key => Datacamp::Config.get(:captcha_private_key), :model => @account)
+    if @account.valid? && verify_captcha_for(@account)
+      @account.save
       self.current_user = @account
       flash[:notice] = t("users.registration_complete")
       redirect_to root_path

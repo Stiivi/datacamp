@@ -32,7 +32,13 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, :loc, :about, :records_per_page, :is_super_user, :api_access_level
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, 
+                  :loc, :about, :records_per_page, :is_super_user, :api_access_level
+                  
+  # Acceptance of terms
+  attr_accessor :accepts_terms
+  validates_presence_of :accepts_terms
+  validates_acceptance_of :accepts_terms
   
   # Callbacks
   after_create :generate_api_key

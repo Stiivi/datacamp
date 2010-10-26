@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   attr_accessor :javascripts
   
   include AuthenticatedSystem
+  include CaptchaHelper
   include Datacamp::Logger
   
   # Session initialization
@@ -61,7 +62,7 @@ class ApplicationController < ActionController::Base
     @javascripts ||= []
     @javascripts << what
   end
-  
+
   private
   
   # Abstract

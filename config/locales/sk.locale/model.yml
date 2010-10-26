@@ -16,3 +16,9 @@ sk:
         data_source_type: Typ dátového zdroja
         default_import_format: Predvolený formát pre import
         active: Aktívne?
+      user:
+        login: Login
+        email: E-mail
+        password: Heslo
+        password_confirmation: Potvrdenie hesla
+        accepts_terms: Súhlasim s podmienkami používania
