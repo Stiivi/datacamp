@@ -280,7 +280,7 @@ sk:
     lost_password: "Zabudli ste heslo?"
     lost_password_label: "Zabudli ste heslo?"
     password: Heslo
-    reset_password: "Vztvoriť heslo nanovo"
+    reset_password: "Vytvoriť nové heslo"
     reset_password_message: "Kliknite na nasledovnú linku aby sa vám vytvorilo nové heslo: {{link}}"
     set_new_password: "Nastaviť nové heslo"
     submit: Odoslať
