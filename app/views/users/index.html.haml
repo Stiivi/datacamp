@@ -21,8 +21,11 @@
       %td= text_field_tag "filters[name]", @filters[:name]
       %td= text_field_tag "filters[email]", @filters[:email]
       %td
+        = select_tag "filters[api_access_level]", options_for_select([[t("settings.users.api_all"), ""]] + accessable_options_for_select, @filters[:api_access_level])
       %td
-        %a.fr.delete{:href => users_path}= "reset"
+        %a.fr.proceed.submit_form{:href => "#"}= "proceed"
+        - if @filters.present?
+          %a.fr.delete{:href => users_path}= "reset"
     
     - @users.each do |user|
       %tr

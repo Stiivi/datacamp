@@ -151,7 +151,7 @@ $(document).ready(function(){
 });
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 
-// Submit form on change
+// Forms
 
 $(document).ready(function(){
   $("form.submit_on_change").find("select").live("change", function(){
@@ -160,6 +160,10 @@ $(document).ready(function(){
       $(this).parents("form:first").submit();
     }
   });
+  $("a.submit_form").live("click", function(){
+      $(this).parents("form:first").submit();
+      return false;
+  })
 });
 
 // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // 

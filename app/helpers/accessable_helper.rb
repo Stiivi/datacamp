@@ -8,4 +8,13 @@ module AccessableHelper
       "premium"
     end
   end
+
+  def accessable_options_for_select
+    Api.access_levels.collect do |level_name, level|
+      [
+        I18n.t("api.levels.#{level_name.to_s}"),
+        level.to_s
+      ]
+    end
+  end
 end

@@ -26,8 +26,12 @@ class UsersController < ApplicationController
   
   def index
     @filters = params[:filters] || {}
-    conditions_sql = @filters.find_all{|f,v|!v.blank?}.collect{|f,v|"#{f} LIKE ?"}.join(" AND ")
-    conditions_values = @filters.find_all{|f,v|!v.blank?}.collect{|f,v|"%#{v}%"}
+    active_filters = @filters.find_all do |field, value|
+      %q{login name email api_access_level}.include?(field) &&
+      value.present?
+    end
+    conditions_sql = active_filters.collect{|f,v|"#{f} LIKE ?"}.join(" AND ")
+    conditions_values = active_filters.collect{|f,v|"%#{v}%"}
     @users = User.find :all, :conditions => [conditions_sql, *conditions_values]
     respond_to do |wants|
       wants.html

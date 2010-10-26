@@ -189,6 +189,12 @@ a.delete span { display: none; }
 
 a.delete:hover { background-position: 0 -16px; }
 
+a.proceed { display: block; width: 16px; height: 16px; background-image: url(../images/icons/proceed.png); text-indent: -9999px; margin-top: 2px; }
+
+a.proceed span { display: none; }
+
+a.proceed:hover { background-position: 0 -16px; }
+
 
 
 /* @end */
