@@ -6,3 +6,4 @@ config/datacamp_config.yml
 /remote
 index/*
 .rvmrc
+searchd.log
