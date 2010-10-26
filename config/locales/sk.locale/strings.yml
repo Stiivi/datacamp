@@ -266,7 +266,7 @@ sk:
     categories: Kategórie
     create_search: "Vytvorte vyhľadávanie pre {{dataset}}"
     dataset_name: "Súbor údajov"
-    more_results: "Viac výsledkov"
+    more_results: "Viac a podrobnejšie"
     processing: "Prebieha vyhľadávanie"
     query_field: "Hľadať:"
     results: "{{results}} výsledkov"
