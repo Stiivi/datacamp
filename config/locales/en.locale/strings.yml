@@ -335,3 +335,10 @@ en:
         attribute_name: Attribute name
         attribute_value: Attribute name
         update_all: Update all
+    settings:
+        users:
+            users: Users
+            login: Login
+            name: Name
+            email: E-mail
+            download_csv: "(CSV ↓)"

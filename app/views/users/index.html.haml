@@ -1,6 +1,7 @@
 .clearfix
   %h1.fl
-    Users
+    = t("settings.users.users")
+    = link_to t("settings.users.download_csv"), users_path(:format => "csv")
 
   .buttons.clearfix.fr
     =link_to "<span>Watchers</span>", watchers_path, :class => "button"
@@ -9,9 +10,9 @@
 - form_tag users_path, :method => "get" do
   %table
     %tr
-      %th= t("users.login")
-      %th= t("users.name")
-      %th= t("users.email")
+      %th= t("settings.users.login")
+      %th= t("settings.users.name")
+      %th= t("settings.users.email")
       %th &nbsp;
     
     %tr.filter

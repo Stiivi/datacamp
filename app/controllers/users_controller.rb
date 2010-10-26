@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'csv'
+
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:restore]
   privilege_required :manage_users, :except => [:new, :restore]
@@ -27,6 +29,12 @@ class UsersController < ApplicationController
     conditions_sql = @filters.find_all{|f,v|!v.blank?}.collect{|f,v|"#{f} LIKE ?"}.join(" AND ")
     conditions_values = @filters.find_all{|f,v|!v.blank?}.collect{|f,v|"%#{v}%"}
     @users = User.find :all, :conditions => [conditions_sql, *conditions_values]
+    respond_to do |wants|
+      wants.html
+      wants.csv {
+        render :text => collection_as_csv(@users, [:login, :name, :email])
+      }
+    end
   end
 
   # render new.rhtml
@@ -89,5 +97,22 @@ class UsersController < ApplicationController
   
   def init_menu
     @submenu_partial = "settings"
+  end
+  
+  protected
+  
+  # FIXME: Make this reusable
+  def collection_as_csv(collection, fields)
+    output = ""
+    output << CSV.generate_line(fields)
+    output << "\n"
+    collection.each do |item|
+      values = fields.collect do |field|
+        item.send(field)
+      end
+      output << CSV.generate_line(values)
+      output << "\n" unless item == collection.last
+    end
+    output
   end
 end

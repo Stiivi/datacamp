@@ -319,3 +319,10 @@ sk:
     signup: "Registrovať sa"
     success: "Budeme vás včas informovať."
     watcher_list: "Zoznam sledujúcich"
+  settings:
+    users:
+      users: Používatelia
+      login: Login
+      name: Meno
+      email: E-mail
+      download_csv: "(CSV ↓)"
