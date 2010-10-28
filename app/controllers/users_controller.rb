@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     
     respond_to do |wants|
       wants.html {
-        paginate_options = {:page => params[:page]||1, :per_page => RECORDS_PER_PAGE}
+        paginate_options = {:page => params[:page]||1, :per_page => 20}
         select_options = {:conditions => [conditions_sql, *conditions_values]}
         @users = User.paginate paginate_options.merge(select_options)
       }
