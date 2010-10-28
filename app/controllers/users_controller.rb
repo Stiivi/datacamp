@@ -32,10 +32,15 @@ class UsersController < ApplicationController
     end
     conditions_sql = active_filters.collect{|f,v|"#{f} LIKE ?"}.join(" AND ")
     conditions_values = active_filters.collect{|f,v|"%#{v}%"}
-    @users = User.find :all, :conditions => [conditions_sql, *conditions_values]
+    
     respond_to do |wants|
-      wants.html
+      wants.html {
+        paginate_options = {:page => params[:page]||1, :per_page => RECORDS_PER_PAGE}
+        select_options = {:conditions => [conditions_sql, *conditions_values]}
+        @users = User.paginate paginate_options.merge(select_options)
+      }
       wants.csv {
+        @users = User.find :all
         render :text => collection_as_csv(@users, [:login, :name, :email])
       }
     end
