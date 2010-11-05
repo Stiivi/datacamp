@@ -1,9 +1,12 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+
 files/*
-log/*
 config/database.yml
 config/datacamp_config.yml
 /update
 /remote
 index/*
-.rvmrc
 searchd.log

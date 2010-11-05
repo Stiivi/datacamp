@@ -10,7 +10,7 @@ class DatasetRecord < ActiveRecord::Base
   # FIXME: add this to initialize method, use datasetore manager!
   set_primary_key :_record_id
   
-  named_scope :active, :conditions => ["record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')"]
+  scope :active, :where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
   
   # def self.to_s
   #   table_name
