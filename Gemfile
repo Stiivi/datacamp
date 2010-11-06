@@ -18,7 +18,7 @@ gem 'spawn'
 gem 'sphinx'
 gem 'validation_reflection'
 gem 'will_paginate'
-gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
+#gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 
 gem 'test-unit', '1.2.3'
 
