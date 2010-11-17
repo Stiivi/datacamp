@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.namespace :settings do |ns|
     ns.resources :pages
+    ns.resources :blocks
   end
   
   map.resources :settings, :collection => {:update_all => :put}
@@ -50,7 +51,9 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :categories, :controller => "dataset_categories"
   
-  map.resources :pages
+  map.resources :pages do |ns|
+    ns.resources :blocks
+  end
 
   map.connect ':controller/:action'
   map.connect ':controller/:action/:id'

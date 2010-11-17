@@ -6,6 +6,14 @@ sk:
       regular: Obyčajné
       premium: Premium
     allowed_for_dataset: API je povolené
+  blocks:
+    all_blocks: Všetky bloky
+    name: Názov
+    title: Titulok
+    last_update: Posledná zmena
+    edit_block: Upraviť
+    show_block: Zobraziť
+    new_block: Vytvoriť blok
   comments: 
     neutral: Neutral
     new: "Nový komentár"
@@ -104,6 +112,7 @@ sk:
     advanced_search: "Pokročilé vyhľadávanie"
     all: "- Všetko -"
     back: Naspäť
+    blocks: Bloky
     browse_dataset: "Prezerať súbor údajov"
     categories: "Kategórie"
     cancel: Zrušiť

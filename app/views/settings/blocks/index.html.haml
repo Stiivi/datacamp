@@ -1,0 +1,21 @@
+.clearfix
+  %h1.fl= t("blocks.all_blocks")
+  .fr= button_link_to t("blocks.new_block"), new_settings_block_path
+
+%table
+  %tr
+    %th= t("blocks.name")
+    %th= t("blocks.title")
+    %th= t("blocks.last_update")
+    %th
+    
+  - @blocks.each do |block|
+    %tr
+      %td= block.name
+      %td= block.title
+      %td= block.updated_at
+      %td{:align => "right"}
+        .clearfix
+          .fr.clearfix
+            = button_link_to t("blocks.edit_block"), settings_block_path(block)
+//            = button_link_to t("blocks.show_block"), block_path(block)

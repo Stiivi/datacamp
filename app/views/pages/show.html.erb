@@ -1,0 +1,17 @@
+<h1><%= @page.title %></h1>
+<p>
+  <%= @page.html_body %>
+</p>
+<p>
+  <div class="container prepend-top append-bottom prepend-1">
+  <% @page.get_sorted_blocks.each do |block| %>
+    <% if block.is_enabled %>
+    <div class='span-7 prepend-top'>
+    <% if block.url!="" %><a href="<%= block.url %>"><% end %>
+    <%= image_tag block.image.url(:standard) %><h2><%= block.title %></h2>
+    <% if block.url!="" %></a><% end %>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+</p>

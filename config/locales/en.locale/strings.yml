@@ -5,6 +5,14 @@ en:
             regular: Regular
             premium: Premium
         allowed_for_dataset: API is allowed
+    blocks:
+        all_blocks: All blocks
+        name: Name
+        title: Title
+        last_update: Last update
+        edit_block: Edit
+        show_block: Show
+        new_block: New block
     session: 
         submit: Submit
         lost_password_label: Have you forgotten your password?
@@ -203,6 +211,7 @@ en:
         advanced_search: Advanced search
         all: "- All -"
         back: Back
+        blocks: Blocks
         browse_dataset: Browse Dataset
         cancel: Cancel
         captcha: Captcha
