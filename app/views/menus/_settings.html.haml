@@ -14,3 +14,7 @@
   - if current_user && current_user.has_privilege?(:edit_pages)
     %li
       = link_to t("global.pages"), settings_pages_path
+      
+  - if current_user && current_user.has_privilege?(:edit_blocks)
+    %li
+      = link_to t("global.blocks"), settings_blocks_path
