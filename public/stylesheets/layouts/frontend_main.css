@@ -31,9 +31,15 @@ h2 {
   margin: auto;
   min-height: 800px;
   _height: 800px; }
+  #main #top-nav {
+      text-align: right;
+      padding-right: 5px;
+      font-size: 11px; }
   #main #header {
     height: 60px;
     position: relative; }
+    #main #header #social-links {
+        margin-top:14px; }
     #main #header a.home {
       text-decoration: none;
       display: block;
@@ -102,6 +108,57 @@ h2 {
       background: #fff url(../../images/icons/search.png) no-repeat 5px 4px;
       -webkit-border-radius: 15px;
       outline: none; }
+      
+#top_search {
+  background: transparent; }
+  #top_search form {
+    background: transparent;
+    margin-right: 15px; 
+    margin-top: 4px; 
+    margin-bottom: 0;
+    padding: 0;}
+    #top_search form #query_string {
+      border-width: 2px 0 2px 2px;
+      border-style: solid;
+      border-color: #AAA;
+      -webkit-border-top-left-radius: 6px 6px;
+      -moz-border-radius-topleft: 6px 6px;
+      border-top-left-radius: 6px 6px;
+      -webkit-border-bottom-left-radius: 6px 6px;
+      -moz-border-radius-bottomleft: 6px 6px;
+      border-bottom-left-radius: 6px 6px;
+      margin-top: 10px;
+      width: 300px;
+      padding: 6px;
+      background-color: #FFF;
+      font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: bold;
+      }
+    #top_search form #query_submit {
+      border-width: 2px 2px 2px 0;
+      border-style: solid;
+      border-color: #AAA;
+      -webkit-border-top-right-radius: 6px 6px;
+      -moz-border-radius-topright: 6px 6px;
+      border-top-right-radius: 6px 6px;
+      -webkit-border-bottom-right-radius: 6px 6px;
+      -moz-border-radius-bottomright: 6px 6px;
+      border-bottom-right-radius: 6px 6px;
+      margin-top: 10px;
+      margin-left: -1px;
+      padding: 6px 18px;
+      background-color: #CCC;
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#BBB));
+      background-image: -moz-linear-gradient(0% 100% 90deg,#BBB, #EEE);
+      font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: bold;
+      outline-width: 0px;
+      
+      }
 
 /* ************************** */
 
