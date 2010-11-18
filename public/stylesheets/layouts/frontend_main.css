@@ -137,6 +137,7 @@ h2 {
       font-weight: bold;
       }
     #top_search form #query_submit {
+      line-height: 17px;
       border-width: 2px 2px 2px 0;
       border-style: solid;
       border-color: #AAA;
@@ -148,7 +149,7 @@ h2 {
       border-bottom-right-radius: 6px 6px;
       margin-top: 10px;
       margin-left: -1px;
-      padding: 6px 18px;
+      padding: 5px 18px;
       background-color: #CCC;
       background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#BBB));
       background-image: -moz-linear-gradient(0% 100% 90deg,#BBB, #EEE);
