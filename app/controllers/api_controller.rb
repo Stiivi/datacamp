@@ -85,7 +85,7 @@ def version
 end
 
 def known_datacamps
-    datacamps = KnownDatacamp.find(:all)
+    datacamps = KnownDatacamp.all
     urls = datacamps.collect { |dc| dc.url }
     respond_to do |format|
         format.text  { render :text => "#{urls.join("\n")}\n" }
@@ -96,7 +96,7 @@ end
 
 def datasets
     # FIXME: take localization into account
-    datasets = DatasetDescription.find(:all)
+    datasets = DatasetDescription.all
 
     # FIXME: Filter hidden fields    
     datasets = datasets.select { |dataset| 
@@ -165,7 +165,7 @@ def render_records_in_dataset(dataset, output)
     fields_for_export = dataset.visible_field_descriptions(:export)
     visible_fields = ["_record_id"] + fields_for_export.collect{ |field| field.identifier }
 
-    dataset_class.find_each (:batch_size => 100) do |record|
+    dataset_class.find_each :batch_size => 100 do |record|
         values = record.values_for_fields(visible_fields)
         line = CSV.generate_line(values)
         output.write("#{line}\n")
