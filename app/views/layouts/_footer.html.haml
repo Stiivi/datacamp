@@ -4,7 +4,7 @@
     %span= link_to_page "terms_of_service"
     %span= link_to_page "about_organisation"
   .fr
-    %span= SystemVariable.get("copyright_notice")
+    %span=raw SystemVariable.get("copyright_notice")
     %span= link_to_page "copyright"
     %span= link_to_page "contact"
     

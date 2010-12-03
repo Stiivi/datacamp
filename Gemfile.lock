@@ -120,6 +120,6 @@ DEPENDENCIES
   sequel
   spawn
   sphinx
-  test-unit (= 1.2.3)
+  test-unit
   validation_reflection
   will_paginate

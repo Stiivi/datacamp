@@ -15,7 +15,7 @@
     = render :partial => "layouts/search_processing"
     #main
       #header
-        = link_to("&nbsp;", root_path, :class => "home")
+        = link_to raw("&nbsp;"), root_path, :class => "home"
         #nav
           = render :partial => "layouts/user"
           |
