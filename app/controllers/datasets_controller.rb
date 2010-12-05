@@ -27,7 +27,7 @@ class DatasetsController < ApplicationController
   helper_method :has_filters?
   
   def index
-    @all_dataset_descriptions = DatasetDescription.find(:all, :conditions => "is_active = 1")
+    @all_dataset_descriptions = DatasetDescription.where("is_active = 1")
     @dataset_descriptions = @all_dataset_descriptions.group_by(&:category)
     respond_to do |wants|
       wants.html
@@ -124,7 +124,7 @@ class DatasetsController < ApplicationController
       
       select_options = create_options_for_select
       select_options[:select] = "#{@dataset_class.table_name}._record_id"
-      ids = @dataset_class.find(:all, select_options).collect{|r|r._record_id}
+      ids = @dataset_class.where(select_options).collect{|r|r._record_id}
       update_conditions[:_record_id] = ids
       @count_updated = ids.count
     elsif(params[:selection] == "all" && params[:search_id].blank?)

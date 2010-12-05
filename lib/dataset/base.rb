@@ -40,7 +40,7 @@ class Dataset::Base
     # Setup DatasetRecord based on description
     @dataset_record_class = Class.new DatasetRecord
     @dataset_record_class.dataset = self
-    @dataset_record_class.establish_connection RAILS_ENV + "_data"
+    @dataset_record_class.establish_connection Rails.env + "_data"
     @dataset_record_class.set_table_name @@prefix + @description.identifier
     
     # Get connection from model

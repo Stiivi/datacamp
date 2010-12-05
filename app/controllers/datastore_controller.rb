@@ -38,7 +38,7 @@ end
 
 def data_dictionary_check
 
-	dataset_descriptions = DatasetDescription.find(:all)
+	dataset_descriptions = DatasetDescription.all
 	
 	########################################################################################
 	# Find all dataset descriptions, check if they have corresponding tables

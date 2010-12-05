@@ -19,10 +19,8 @@ class FieldDescription < ActiveRecord::Base
   attr_accessor :data_type
   
   ###########################################################################
-  # Finders
-  def self.find(*args)
-    self.with_scope(:find => {:order => 'weight asc'}) { super }
-  end
+  # Default scope
+  default_scope order('weight asc')
   
   ###########################################################################
   # Methods
@@ -31,8 +29,8 @@ class FieldDescription < ActiveRecord::Base
   end
   
   def title
-    title = globalize.fetch self.class.locale || I18n.locale, :title
-    title = translations.find(:first).title if title.blank?
+    title = globalize.fetch I18n.locale, :title
+    title = translations.first.title if title.blank? && translations.first.present?
     title.blank? ? "n/a" : title
   end
   

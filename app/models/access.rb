@@ -5,7 +5,7 @@ class Access < ActiveRecord::Base
   
   def self.find_popular_records
     columns = "id, dataset_description_id, record_id, count(record_id) count"
-    results = self.find :all, :select => columns, :group => "dataset_description_id, record_id", :conditions => "record_id IS NOT NULL", :order => "count desc", :limit => 5
+    results = self.select(columns).where("record_id IS NOT NULL").order("count desc").group("dataset_description_id, record_id").limit(5)
   end
   
   def record

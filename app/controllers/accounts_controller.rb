@@ -87,7 +87,7 @@ class AccountsController < ApplicationController
   
   def get_account
     @account = current_user
-    @comments = Comment.find_include_suspended :all, :conditions => {:user_id => current_user.id}
+    @comments = Comment.find_include_suspended(:user_id => current_user.id)
     @favorites = @account.favorites || []
     # FIXME: This might get slow with many favorites. Favorites tab should be loaded
     # with Ajax after clicking it.

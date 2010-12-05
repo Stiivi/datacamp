@@ -18,7 +18,7 @@ class ImportFile < ActiveRecord::Base
   ###############################################################
   ## Loads associated file as instance of CsvFile class
   def file_path
-    File.join(RAILS_ROOT, 'files', "#{id}_#{path_file_name}")
+    File.join(Rails.root, 'files', "#{id}_#{path_file_name}")
   end
   
   def default_import_format

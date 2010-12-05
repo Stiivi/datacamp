@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   include CommentsHelper
   
   def index
-    @comments = Comment.find_include_suspended :all
+    @comments = Comment.find_include_suspended
   end
   
   def new
@@ -51,7 +51,7 @@ class CommentsController < ApplicationController
   end
   
   def edit
-    @comment = Comment.find_include_suspended :first, :conditions => {:id=>params[:id]}
+    @comment = Comment.find_include_suspended(:id=>params[:id]).first
   end
   
   def update

@@ -94,7 +94,7 @@ class SearchesController < ApplicationController
     # 1. Remove those 5 results for this dataset from previous search.
     # We're gonna search this dataset again and reload all results for this
     # dataset and if we left those one here it, there would be duplicates.
-    temporary_results = @search.query.results.find(:all, :conditions => {:table_name => @dataset.identifier})
+    temporary_results = @search.query.results.where(:table_name => @dataset.identifier)
     temporary_results.each{|record|record.destroy}
     
     @engine.perform_search(@search, {:dataset => @dataset.identifier})
@@ -115,8 +115,8 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find_by_id! params[:id]
     
-    datasets_with_results= @search.results.find(:all, :group => "table_name").collect &:table_name
-    @categories_with_results = DatasetDescription.find(:all, :group => "category_id", :include => :category, :conditions => {:identifier => datasets_with_results}).collect(&:category)
+    datasets_with_results= @search.results.group("table_name").collect &:table_name
+    @categories_with_results = DatasetDescription.where(:identifier => datasets_with_results).group("category_id").includes(:category).collect(&:category)
     
     conditions = {}
     
@@ -124,10 +124,10 @@ class SearchesController < ApplicationController
       params[:category_id] = @categories_with_results.first.id if @categories_with_results.first
     end
     
-    selected_datasets = DatasetDescription.find(:all, :conditions => {:category_id => params[:category_id]}).collect(&:identifier)
+    selected_datasets = DatasetDescription.where(:category_id => params[:category_id]).collect(&:identifier)
     conditions[:table_name] = selected_datasets
     
-    @results = @search.results.find(:all, :include => "dataset_description", :conditions => conditions)
+    @results = @search.results.where(conditions).includes("dataset_description")
     @datasets = @results.group_by {|result| result.dataset_description }
     
     params[:query_string] = @search.query_string # We want to display this in the form
@@ -135,7 +135,7 @@ class SearchesController < ApplicationController
     # Cache records
     @results.group_by(&:table_name).each do |table_name, results|
       record_ids = results.collect(&:record_id)
-      records = Dataset::Base.new(table_name.to_sym).dataset_record_class.find(:all, :conditions => ["_record_id IN (?)", record_ids])
+      records = Dataset::Base.new(table_name.to_sym).dataset_record_class.where("_record_id IN (?)", record_ids)
       records.each do |record|
         results.find{|r|r.record_id == record.id}.set_record_target(record)
       end

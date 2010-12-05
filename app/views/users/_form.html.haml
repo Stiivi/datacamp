@@ -31,7 +31,7 @@
       %h2= t "users.roles"
       = hidden_field_tag "user[access_role_ids][]", ""
       %table
-        - AccessRole.find(:all).each do |p|
+        - AccessRole.all.each do |p|
           %tr
             %td{:width => 25}
               = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p)
@@ -44,7 +44,7 @@
       %h2 Rights
       = hidden_field_tag "user[access_right_ids][]", ""
       %table
-        - AccessRight.find(:all).each do |p|
+        - AccessRight.all.each do |p|
           %tr
             %td{:width => 25}
               = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p)

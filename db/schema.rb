@@ -237,19 +237,29 @@ ActiveRecord::Schema.define(:version => 20100531113646) do
     t.datetime "updated_at"
   end
 
-  create_table "quality_status_translations", :force => true do |t|
-    t.integer  "quality_status_id"
-    t.string   "locale"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "quality_statuses", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+  end
+
+  create_table "relationship_description_translations", :force => true do |t|
+    t.integer  "relationship_description_id"
+    t.string   "locale"
+    t.string   "category"
+    t.text     "description"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relationship_descriptions", :force => true do |t|
+    t.integer "dataset_description_id"
+    t.integer "target_dataset_description_id"
+    t.boolean "is_to_many"
+    t.string  "identifier"
+    t.integer "weight"
   end
 
   create_table "search_predicates", :force => true do |t|

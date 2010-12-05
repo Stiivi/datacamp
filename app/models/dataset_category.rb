@@ -12,12 +12,12 @@ class DatasetCategory < ActiveRecord::Base
   
   def title
     title = attributes[:title]
-    title = title.blank? ? translations.find(:first).title : title
+    title = title.blank? ? translations.first.title : title
     title.blank? ? '(n/a)' : title
   end
   
   def self.find_or_create_by_title(title)
-    cat = find :first, :include => :translations, :conditions => {"dataset_category_translations.title" => title}
+    cat = where("dataset_category_translations.title" => title).includes(:translations).first
     if cat
       return cat
     else

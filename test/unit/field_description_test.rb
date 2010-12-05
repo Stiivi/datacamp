@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class FieldDescriptionTest < ActiveRecord::TestCase
   test "should create a column in database when field description is created" do

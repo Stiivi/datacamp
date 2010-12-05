@@ -1,5 +1,5 @@
 class StagingRecord < ActiveRecord::Base
   
-  establish_connection RAILS_ENV + "_staging"
+  establish_connection Rails.env + "_staging"
   
 end

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require 'test_helper'
 
 class DatasetBaseTest < ActiveSupport::TestCase
   
@@ -76,6 +76,7 @@ class DatasetBaseTest < ActiveSupport::TestCase
   
   def load_dataset
     @desc = DatasetDescription.find(:first)
+    puts @desc.inspect
     @dataset = @desc.dataset
     @record_class = @dataset.dataset_record_class
     @connection = DatasetRecord.connection

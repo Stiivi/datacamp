@@ -26,8 +26,8 @@ class DatasetDescription < ActiveRecord::Base
   # Attribute getters
   
   def title
-    title = globalize.fetch(self.class.locale || I18n.locale, :title)
-    title = translations.find(:first).title if title.blank?
+    title = globalize.fetch(I18n.locale, :title)
+    title = translations.first.title if title.blank? && translations.first
     title.blank? ? "N/A" : title
   end
   
@@ -42,7 +42,7 @@ class DatasetDescription < ActiveRecord::Base
       result = @field_descriptions_cache[type]
     else
       # puts "using db for #{self.identifier} → #{type}"
-      @field_descriptions_cache[type] = field_descriptions.find :all, :conditions => {where => true}, :include => :translations
+      @field_descriptions_cache[type] = field_descriptions.where(where => true).includes(:translations)
       result = @field_descriptions_cache[type]
     end
     if limit
@@ -52,14 +52,14 @@ class DatasetDescription < ActiveRecord::Base
   end
   
   def all_field_descriptions
-    field_descriptions.find :all, :include => :translations
+    field_descriptions.includes(:translations)
     field_descriptions.find_all{|fd|fd.exists_in_database?}
     # FIXME this must be very slow. Boolean saying if field_description exists in db should
     # be cached as a column of field_descriptions table.
   end
   
   def writable_field_descriptions
-    field_descriptions.find :all, :conditions => "is_derived = 0 OR is_derived IS NULL"
+    field_descriptions.where("is_derived = 0 OR is_derived IS NULL")
   end
   
   def import_settings
@@ -78,15 +78,15 @@ class DatasetDescription < ActiveRecord::Base
   end
   
   def importable_fields
-    field_descriptions.find :all, :conditions => {:importable => true}, :order => "importable_column asc"
+    field_descriptions.where(:importable => true).order("importable_column asc")
   end
   
   def self.categories
-    find(:all).group_by(&:category).collect{|k,v|k.to_s.empty? ? I18n.t("global.other") : k.to_s}
+    group_by(&:category).collect{|k,v|k.to_s.empty? ? I18n.t("global.other") : k.to_s}
   end
   
   def field_with_identifier(identifier)
-    field_descriptions.find :first, :conditions => {:identifier => identifier}
+    field_descriptions.where(:identifier => identifier).first
   end
   
   ###########################################################################

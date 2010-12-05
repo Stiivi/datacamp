@@ -231,7 +231,7 @@ def error code, info = {}
 end
 
 def dataset_dump_path
-    Datacamp::Config.get(:dataset_dump_path, "#{RAILS_ROOT}/tmp")
+    Datacamp::Config.get(:dataset_dump_path, "#{Rails.root}/tmp")
 end
 
 def default_exception_handler
@@ -249,7 +249,7 @@ def authorize_api_key
         error :access_denied, :message => "No API key provided"
         return
     end
-    key = ApiKey.find(:first, :conditions => [ "`key` = ? AND is_valid = 1", @api_key])
+    key = ApiKey.where("`key` = ? AND is_valid = 1", @api_key).first
     if !key
         error :access_denied, :message => "Invalid API key"
         return

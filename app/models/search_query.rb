@@ -159,7 +159,7 @@ def self.parse_string(query_string)
 end
 
 def searched_datasets
-	datasets = DatasetDescription.find(:all, :conditions => {:is_active => true})
+	datasets = DatasetDescription.where(:is_active => true)
 	
 	Rails.logger.info "search: find datasets"
 

@@ -102,8 +102,8 @@ class ImportFilesController < ApplicationController
     end
     
     fork do
-      ActiveRecord::Base.establish_connection(RAILS_ENV + "_app")
-      DatasetRecord.establish_connection RAILS_ENV + "_data"
+      ActiveRecord::Base.establish_connection(Rails.env + "_app")
+      DatasetRecord.establish_connection Rails.env + "_data"
       @importer.import_into_dataset(@import_file,
                                     params[:column])
     end
@@ -165,7 +165,7 @@ class ImportFilesController < ApplicationController
       line_mapping = []
       line.each_index do |i|
         column = line[i]
-        field_description = @dataset_description.field_descriptions.find(:first, :conditions => {:identifier => column.to_s.downcase.strip})
+        field_description = @dataset_description.field_descriptions.where(:identifier => column.to_s.downcase.strip).first
         if field_description
           guessed_lines += 1 if field_description
           line_mapping[i] = field_description.id

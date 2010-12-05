@@ -31,8 +31,8 @@ class DatasetDescriptionsController < ApplicationController
   # GET /dataset_descriptions
   # GET /dataset_descriptions.xml
   def index
-    @dataset_categories = DatasetCategory.find :all
-    @other_descriptions = DatasetDescription.find :all, :conditions => {:category_id => nil}
+    @dataset_categories = DatasetCategory.all
+    @other_descriptions = DatasetDescription.where(:category_id => nil)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -158,8 +158,8 @@ class DatasetDescriptionsController < ApplicationController
   end
   
   def import_settings
-    @all_field_descriptions = @dataset_description.field_descriptions.find(:all, :conditions => {:importable => false}, :order => 'importable_column asc').select{|field|!field.is_derived}
-    @importable_field_descriptions = @dataset_description.field_descriptions.find :all, :conditions => {:importable => true}, :order => 'importable_column asc'
+    @all_field_descriptions = @dataset_description.field_descriptions.where(:importable => false).order('importable_column asc').select{|field|!field.is_derived}
+    @importable_field_descriptions = @dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
   end
   
   def import

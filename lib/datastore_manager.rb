@@ -41,11 +41,11 @@ def self.manager_with_default_connection
 end
 
 def establish_rails_default_connection
-  establish_rails_named_connection(RAILS_ENV + "_data")
+  establish_rails_named_connection(Rails.env + "_data")
 end
 
 def establish_rails_named_connection(connection_name)
-	path = Pathname.new(RAILS_ROOT)
+	path = Pathname.new(Rails.root)
 	path = path + "config" + "database.yml"
 	yaml =  YAML.load_file(path)
 	
@@ -62,7 +62,7 @@ def establish_connection(connection_info)
     
     @connection_info = connection_info
 
-    @connection = Sequel.mysql(connection_info["database"],
+    @connection = Sequel.mysql2(connection_info["database"],
             :user => connection_info["username"] || "root",
             :password => connection_info["password"], 
             :host => connection_info["host"],
@@ -70,7 +70,7 @@ def establish_connection(connection_info)
             )
 
     Sequel::MySQL.default_charset = 'utf8'
-
+   
 	if @connection.nil?
 		raise "Unable to establish database connection"
 	end

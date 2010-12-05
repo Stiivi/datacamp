@@ -2,7 +2,7 @@ class DatasetRecord < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper
   
-  establish_connection RAILS_ENV + "_data"
+  establish_connection Rails.env + "_data"
   
   cattr_accessor :dataset
   attr_accessor :handling_user
@@ -30,15 +30,15 @@ class DatasetRecord < ActiveRecord::Base
   
   def self.find *args
     if @@dataset.has_derived_fields?
-      select = "*, " + @@dataset.derived_fields.map { |field, value| "#{value} as #{field}" }.join(",")
+      select_columns = "*, " + @@dataset.derived_fields.map { |field, value| "#{value} as #{field}" }.join(",")
     else
-      select = "*"
+      select_columns = "*"
     end
     
     conditions = {}
     # TODO should display only records with ok status
     
-    with_scope(:find => {:select => select, :conditions => conditions}) do
+    with_scope(select(select_columns).where(conditions)) do
       super(*args)
     end
   end
