@@ -4,7 +4,7 @@ module ApplicationHelper
     klass = options[:class] ? options[:class] + " button" : "button"
     options[:class] = klass
     what = "<span>%s</span>" % what
-    link_to what, where, options
+    link_to what.html_safe, where, options
   end
   
   def has_privilege?(priv)
