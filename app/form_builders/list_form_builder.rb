@@ -13,7 +13,7 @@ class ListFormBuilder < ActionView::Helpers::FormBuilder
         if field_required? field
           label_text += ' <span class="required">*</span>'
         end
-        @template.content_tag(:li, label(field, options[:label] || label_text) + super(field, *args) + options[:extra].to_s, :class => 'clearfix')
+        @template.content_tag(:li, label(field, options[:label] || label_text.html_safe) + super(field, *args) + options[:extra].to_s, :class => 'clearfix')
       end
     end
   end
