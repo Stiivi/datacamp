@@ -98,11 +98,11 @@ Datacamp::Application.routes.draw do
   
   resources :pages
 
-  #match ':controller(/:action(/:id(.:format)))'
-  
-  match 'api/:action.:format', :controller => 'api'
+  match '/api/:action.:format', :controller => 'api'
   
   root :to => 'main#index'
+  
+  match ':controller(/:action(/:id(.:format)))'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

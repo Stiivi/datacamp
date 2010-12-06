@@ -65,25 +65,15 @@ class DatasetsController < ApplicationController
     paginate_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
     paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]
     
-    # Build options for db query
-    select_options = create_options_for_select
-    select_query   = create_query_from_options(select_options)
-    
-    @records             = @dataset_class.paginate_by_sql(select_query, paginate_options)
+    @records = create_query_from_params(@dataset_class).paginate(paginate_options)
     
     # This conditions checks if we've reached end of our huge
     # list.
     if params[:page] && params[:page].to_i > 1 && @records.count == 0
-      count_options = select_options.clone
-      count_options.delete(:order)
-      count_options[:select] = "COUNT(1)"
-      count_query = create_query_from_options(count_options)
-      count = @dataset_class.count_by_sql(count_query)
+      count = @dataset_class.count_by_sql(create_query_from_params(@dataset_class).order('').select("COUNT(1)").to_sql)
       paginate_options[:total_entries] = count
       paginate_options[:page] = (count.to_f/paginate_options[:per_page].to_f).ceil
-      
-      select_query = create_query_from_options(select_options)
-      @records             = @dataset_class.paginate_by_sql(select_query, paginate_options)
+      @records = create_query_from_params(@dataset_class).paginate(paginate_options)
     end
     
     # Extra javascripts
@@ -163,6 +153,44 @@ class DatasetsController < ApplicationController
   end
   
   protected
+  
+  def create_query_from_params(dataset_class)
+    ### Options for order
+    if params[:sort]
+      sort_direction = params[:dir] || "asc"
+      dataset_class.order("#{params[:sort]} #{sort_direction}").where("#{params[:sort]} IS NOT NULL")
+    end
+    
+    ### Options for search
+    unless params[:search_id].blank?
+      search_object = Search.find_by_id!(params[:search_id])
+      @search_predicates = search_object.query.predicates
+      search_query_id = search_object.query.id
+      dataset_class.
+            from("#{SearchResult.connection.current_database}.search_results").
+            joins("LEFT JOIN #{@dataset_class.table_name} ON search_results.record_id = #{@dataset_class.table_name}._record_id").
+            select("#{@dataset_class.table_name}.*").
+            where("search_results.search_query_id = #{@dataset_class.sanitize(search_query_id)}").
+            where("search_results.table_name = #{@dataset_class.sanitize(@dataset_description.identifier)}")
+    else
+      dataset_class.from @dataset_class.table_name
+    end
+    
+    ### Options for filter
+    if @filters
+      filters = @filters.find_all{|key,value|!value.blank?}
+      filters.each do |key, value|
+        dataset_class.where("#{key} = #{@dataset_class.sanitize(value)}")
+      end
+      # raise select_options.to_yaml
+    end
+    
+    ### Filtering for those with insufficient privileges
+    unless has_privilege?(:view_hidden_records)
+      dataset_class.where(:active => true)
+    end
+    dataset_class
+  end
   
   def create_options_for_select()
     select_options = {}
