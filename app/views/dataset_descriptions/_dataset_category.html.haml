@@ -21,8 +21,8 @@
       %span.actions.hidden
         = link_to t("global.move"), edit_dataset_description_path(dataset_description), :class => "ajax move"
     %td
-      %em= truncate(dataset_description.description, 110)
+      %em= truncate(dataset_description.description, :length => 110)
     %td.actions
       .actions
         - if current_user.has_privilege?(:destroy_dataset)
-          =link_to('<span>%s</span>' % t("global.delete"), destroy_dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete")
+          =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete")

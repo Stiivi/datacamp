@@ -10,7 +10,7 @@
         %td{:width => 200}
           %strong= link_to(description.title, dataset_path(description))
         %td
-          %em= truncate(description.description.to_s, 80)
+          %em= truncate(description.description.to_s, :length => 80)
         %td.actions{:align => 'right'}
           .clearfix
             = link_to("<span>#{t("global.browse_dataset")}</span>", dataset_path(description), :class => "button")
