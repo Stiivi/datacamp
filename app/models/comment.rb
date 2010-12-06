@@ -8,8 +8,10 @@ class Comment < ActiveRecord::Base
   
   default_scope :conditions => { :is_suspended => nil }
 
-  def self.find_include_suspended conditions
-    self.with_exclusive_scope(where(conditions))
+  def self.find_include_suspended conditions=''
+    with_exclusive_scope() do
+      where(conditions)
+    end
   end
   
   def self.find_by_id! id
