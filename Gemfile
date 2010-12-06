@@ -49,4 +49,5 @@ end
 
 group :development do
 	gem "rails-erd"
+	gem 'jquery-rails'
 end

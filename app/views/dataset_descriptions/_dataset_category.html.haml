@@ -25,4 +25,4 @@
     %td.actions
       .actions
         - if current_user.has_privilege?(:destroy_dataset)
-          =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete")
+          =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete", :method => 'delete')
