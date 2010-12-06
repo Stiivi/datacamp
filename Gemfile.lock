@@ -72,6 +72,10 @@ GEM
       activesupport (= 3.0.3)
       bundler (~> 1.0)
       railties (= 3.0.3)
+    rails-erd (0.4.1)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      ruby-graphviz (~> 0.9.18)
     railties (3.0.3)
       actionpack (= 3.0.3)
       activesupport (= 3.0.3)
@@ -91,6 +95,7 @@ GEM
       rspec-expectations (~> 2.0.1)
     rspec-rails (2.0.1)
       rspec (~> 2.0.0)
+    ruby-graphviz (0.9.20)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
     sequel (3.16.0)
@@ -115,6 +120,7 @@ DEPENDENCIES
   mysql2
   paperclip
   rails (= 3.0.3)
+  rails-erd
   recaptcha
   rspec-rails (>= 2.0.1)
   sequel

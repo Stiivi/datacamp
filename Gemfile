@@ -46,3 +46,7 @@ gem 'test-unit'
 group :test do
 	gem 'rspec-rails', '>= 2.0.1'
 end
+
+group :development do
+	gem "rails-erd"
+end
