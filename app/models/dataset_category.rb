@@ -12,7 +12,7 @@ class DatasetCategory < ActiveRecord::Base
   
   def title
     title = read_attribute(:title)
-    title = title.blank? ? translations.first.title : title
+    title = translations.first.title if title.blank? && translations.first.present?
     title.blank? ? '(n/a)' : title
   end
   
