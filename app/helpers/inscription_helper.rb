@@ -13,6 +13,6 @@ module InscriptionHelper
       @options.delete(:partial)
     end
     
-    "$.modal(#{@options.to_json})";
+    "$.modal(#{@options.to_json})".html_safe;
   end
 end
