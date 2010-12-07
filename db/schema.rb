@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100531113646) do
+ActiveRecord::Schema.define(:version => 20101206222359) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -157,6 +158,30 @@ ActiveRecord::Schema.define(:version => 20100531113646) do
     t.integer  "api_access_level",      :default => 0
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["locked_by"], :name => "delayed_jobs_locked_by"
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "etl_configurations", :force => true do |t|
+    t.string   "name"
+    t.integer  "start_id"
+    t.integer  "batch_limit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "favorites", :force => true do |t|
     t.integer  "dataset_description_id"
     t.integer  "record_id"
@@ -237,29 +262,19 @@ ActiveRecord::Schema.define(:version => 20100531113646) do
     t.datetime "updated_at"
   end
 
-  create_table "quality_statuses", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "image"
-  end
-
-  create_table "relationship_description_translations", :force => true do |t|
-    t.integer  "relationship_description_id"
+  create_table "quality_status_translations", :force => true do |t|
+    t.integer  "quality_status_id"
     t.string   "locale"
-    t.string   "category"
-    t.text     "description"
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "relationship_descriptions", :force => true do |t|
-    t.integer "dataset_description_id"
-    t.integer "target_dataset_description_id"
-    t.boolean "is_to_many"
-    t.string  "identifier"
-    t.integer "weight"
+  create_table "quality_statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image"
   end
 
   create_table "search_predicates", :force => true do |t|
