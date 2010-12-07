@@ -1,19 +1,35 @@
 # encoding: UTF-8
+
+require 'fileutils'
+
 module Etl
-  class VvoExtraction < Struct.new(:start_id, :end_id, :id)
+  class VvoExtraction < Struct.new(:start_id, :batch_limit, :id)
     def perform
       puts "downloading: #{id}"
       download(id)
       puts "parsing: #{id}"
       procurement_hash = parse(id)
       unless procurement_hash == :unknown_announcement_type
-        puts "savind: #{id}"
+        puts "saving: #{id}"
         save(procurement_hash, id)
+        update_last_processed(id)
       end
     end
     
     def download(id)
       system("wget", "-qE", "-P", '/tmp/vvo_extraction', document_url(id))
+    end
+    
+    def cleanup
+      FileUtils.rm_rf '/tmp/vvo_extraction'
+    end
+    
+    def update_last_processed(id)
+      config.update_attribute(:last_processed_id, id)
+    end
+    
+    def config
+      @configuration ||= EtlConfiguration.find_by_name('vvo_extraction')
     end
     
     def document_url(id)
@@ -50,26 +66,30 @@ module Etl
     end
     
     def parse(id)
-      file_content = Iconv.conv('utf-8', 'cp1250', File.open("/tmp/vvo_extraction/#{id}.html").read).gsub("&nbsp;",' ')
-      doc = Hpricot(file_content)
+      if File.exists?("/tmp/vvo_extraction/#{id}.html")
+        file_content = Iconv.conv('utf-8', 'cp1250', File.open("/tmp/vvo_extraction/#{id}.html").read).gsub("&nbsp;",' ')
+        doc = Nokogiri::HTML(file_content)
       
-      checked_value = (doc/"//div[@id='innerMain']/div/h2")
-      if checked_value.nil?
-          return :unknown_announcement_type
-      else
-        document_type = checked_value.inner_text
-        if document_type.match(/V\w+$/)
-            return digest(doc)
+        checked_value = doc.xpath "//div[@id='innerMain']/div/h2"
+        if checked_value.nil?
+            return :unknown_announcement_type
         else
-          return :unknown_announcement_type
+          document_type = checked_value.inner_text
+          if document_type.match(/V\w+$/)
+              return digest(doc)
+          else
+            return :unknown_announcement_type
+          end
         end
+      else
+        return :unknown_announcement_type
       end
     end
     
     def digest(doc)
-      procurement_id = (doc/"//div[@id='innerMain']/div/h2").inner_text
+      procurement_id = doc.xpath("//div[@id='innerMain']/div/h2").inner_text
 
-      bulletin_and_year = (doc/"//div[@id='innerMain']/div/div").inner_text
+      bulletin_and_year = doc.xpath("//div[@id='innerMain']/div/div").inner_text
       bulletin_and_year_content = bulletin_and_year.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u)
       bulletin_id = bulletin_and_year_content[1] unless bulletin_and_year_content.nil?
       year = bulletin_and_year_content[2] unless bulletin_and_year_content.nil?
@@ -79,44 +99,47 @@ module Etl
       
       customer_ico = customer_name = procurement_subject = ''
       
-      (doc/"//span[@class='nadpis']").each do |element|
+      doc.xpath("//span[@class='nadpis']").each do |element|
         if element.inner_text.match(/ODDIEL\s+I\W/)
-          customer_information = element.following_siblings.first
-          customer_name = (customer_information/"/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span/span").inner_text.strip
-          customer_name = (customer_information/"/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span").inner_text.strip if customer_name.empty?
-          customer_ico = (customer_information/"/tbody/tr[2]/td[2]/table/tbody/tr[2]/td[@class='hodnota']//span[@class='hodnota']").inner_text.strip
+          customer_information = element.next_sibling
+          customer_name = customer_information.xpath("/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span/span").inner_text.strip
+          customer_name = customer_information.xpath("/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span").inner_text.strip if customer_name.empty?
+          customer_ico = customer_information.xpath("/tbody/tr[2]/td[2]/table/tbody/tr[2]/td[@class='hodnota']//span[@class='hodnota']").inner_text.strip
         elsif element.inner_text.match(/ODDIEL\s+II\W/)
-          contract_information = element.following_siblings.first
-          (contract_information/"//td[@class='kod']").each do |code|
+          contract_information = element.next_sibling
+          contract_information.xpath(".//td[@class='kod']").each do |code|
             if code.inner_text.match(/II\.*.*?[^\d]4[^\d]$/)
-              procurement_subject = (code.following_siblings.first/"//span[@class='hodnota']").inner_text
+              procurement_subject = code.next_sibling.xpath(".//span[@class='hodnota']").inner_text
               procurement_subject = procurement_subject.split[0..max_procurement_words].join(' ')
             end
           end
         elsif element.inner_text.match(/ODDIEL\s+V\W/)
-          supplier_information = element.following_siblings.first
+          supplier_information = element.next_sibling
           supplier = {}
-          (supplier_information/"//td[@class='kod']").each do |code|
+          supplier_information.xpath(".//td[@class='kod']").each do |code|
             if code.inner_text.match(/V\.*.*?[^\d]1[^\d]$/)
               #supplier[:date] = Date.parse((code.following_siblings.first/"//span[@class='hodnota']").inner_text)
-            elsif code.inner_text.match(/V\.*.*?[^\d]3[^\d]/)
+            elsif code.inner_text.match(/V\.*.*?[^\d]3[^\d]$/)
               supplier = {}
-              supplier_details = code.parent.following_siblings.first/"//td[@class='hodnota']//span[@class='hodnota']"
+              supplier_details = code.parent.next_sibling.xpath(".//td[@class='hodnota']//span[@class='hodnota']")
               supplier[:supplier_name] = supplier_details[0].inner_text; supplier[:supplier_ico] = supplier_details[1].inner_text.gsub(' ', ''); supplier[:supplier_ico_evidence] = "";
               supplier[:supplier_ico] = Float(supplier[:supplier_ico]) rescue supplier[:supplier_ico]
               supplier[:note] = "Zahranicne IČO: #{supplier[:supplier_ico]}" if supplier[:supplier_ico] && supplier[:supplier_ico].class != Float
-            elsif code.inner_text.match(/V\.*.*?[^\d]4[^\d]/)
-              code.parent.following_siblings.each do |price_detail|
-                break unless (price_detail/"//td[@class='kod']").inner_text.empty?
-                if (price_detail/"//span[@class='podnazov']").inner_text.match(/konečná/) || (price_detail/"//span[@class='nazov']").inner_text.match(/konečná/)
-                  price = (price_detail.following_siblings.first/"//span[@class='hodnota']")
-                  supplier[:is_price_part_of_range] = (price_detail.following_siblings.first/"//span[@class='podnazov']").inner_html.downcase.match(/najnižšia/) ? true : false
+            elsif code.inner_text.match(/^V\.*4/)
+              price_detail = code.parent.next_sibling
+              while price_detail do
+                if price_detail.xpath(".//span[@class='podnazov']").inner_text.match(/konečná/) || price_detail.xpath(".//span[@class='nazov']").inner_text.match(/konečná/)
+                  price = price_detail.next_sibling.xpath(".//span[@class='hodnota']")
+                  supplier[:is_price_part_of_range] = price_detail.next_sibling.xpath(".//span[@class='podnazov']").inner_html.downcase.match(/najnižšia/) ? true : false
                   supplier[:price] = price[0].inner_text.gsub(' ', '').gsub(',','.').to_f
                   supplier[:currency] = if price.inner_text.downcase.match(/sk|skk/) then 'SKK' else 'EUR' end
-                  supplier[:vat_included] = !(price_detail.following_siblings[0]/"//span[@class='hodnota']").inner_text.downcase.match(/bez/) && !(price_detail.following_siblings[1]/"//span[@class='hodnota']").inner_text.downcase.match(/bez/)
+                  supplier[:vat_included] = !price_detail.next_sibling.xpath(".//span[@class='hodnota']").inner_text.downcase.match(/bez/) && !price_detail.next_sibling.next_sibling.xpath(".//span[@class='hodnota']").inner_text.downcase.match(/bez/)
                   suppliers << supplier
                 end
+                price_detail = price_detail.next_sibling
               end
+              #code.parent.following_siblings.each do |price_detail|
+              #end
             end
           end
         end
@@ -126,11 +149,16 @@ module Etl
     end
     
     def after(job)
-      # if id == end_id && id < 100
-      #   (id+1..id+20).each do |i|
-      #     Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, id+20, i)
-      #   end
-      # end
+      if id == (start_id + batch_limit)
+        if config.last_processed_id > start_id
+          ((id+1)..(id+1+config.batch_limit)).each do |i|
+            Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, config.batch_limit, i)
+          end
+        else
+          config.update_attribute(:start_id, id+1)
+          cleanup
+        end
+      end
     end
   end
 end

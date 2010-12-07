@@ -30,6 +30,7 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.6)
+    awesome_print (0.3.1)
     builder (2.1.2)
     daemons (1.1.0)
     delayed_job (2.1.2)
@@ -50,7 +51,6 @@ GEM
     hoe (2.6.2)
       rake (>= 0.8.7)
       rubyforge (>= 2.0.4)
-    hpricot (0.8.3)
     i18n (0.5.0)
     jquery-rails (0.2.6)
       rails (~> 3.0)
@@ -63,6 +63,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.6)
+    nokogiri (1.4.4)
     paperclip (2.3.5)
       activerecord
       activesupport
@@ -123,12 +124,13 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  awesome_print
   delayed_job
   globalize3
   haml-rails
-  hpricot
   jquery-rails
   mysql2
+  nokogiri
   paperclip
   rails (= 3.0.3)
   rails-erd

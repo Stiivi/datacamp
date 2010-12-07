@@ -20,7 +20,8 @@ gem 'validation_reflection'
 gem 'will_paginate', '3.0.pre2'
 #gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 gem 'delayed_job'
-gem 'hpricot'
+#gem 'hpricot'
+gem 'nokogiri'
 
 gem 'test-unit'
 
@@ -52,4 +53,5 @@ end
 group :development do
 	gem "rails-erd"
 	gem 'jquery-rails'
+	gem 'awesome_print'
 end
