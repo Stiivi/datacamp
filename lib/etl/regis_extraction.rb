@@ -14,14 +14,16 @@ module Etl
         save(procurement_hash, id)
         update_last_processed(id)
       end
+      puts "cleanup: #{id}"
+      cleanup(id)
     end
     
     def download(id)
       system("wget", "-qE", "-P", '/tmp/regis_extraction', document_url(id))
     end
     
-    def cleanup
-      FileUtils.rm_rf '/tmp/regis_extraction'
+    def cleanup(id)
+      FileUtils.rm "/tmp/regis_extraction/detail?wxidorg=#{id}.html"
     end
     
     def update_last_processed(id)
@@ -118,7 +120,6 @@ module Etl
           end
         else
           config.update_attribute(:start_id, id+1)
-          cleanup
         end
       end
     end

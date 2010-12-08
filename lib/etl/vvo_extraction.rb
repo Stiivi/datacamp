@@ -10,18 +10,20 @@ module Etl
       puts "parsing: #{id}"
       procurement_hash = parse(id)
       unless procurement_hash == :unknown_announcement_type
-        puts "saving: #{id}"
+        puts 
         save(procurement_hash, id)
         update_last_processed(id)
       end
+      puts "cleanup: #{id}"
+      cleanup(id)
     end
     
     def download(id)
       system("wget", "-qE", "-P", '/tmp/vvo_extraction', document_url(id))
     end
     
-    def cleanup
-      FileUtils.rm_rf '/tmp/vvo_extraction'
+    def cleanup(id)
+      FileUtils.rm "/tmp/vvo_extraction/#{id}.html"
     end
     
     def update_last_processed(id)
