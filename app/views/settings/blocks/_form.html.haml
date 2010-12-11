@@ -1,0 +1,19 @@
+- form_for([:settings, @block], :builder => ListFormBuilder, :html => { :multipart => true }) do |f|
+  = f.error_messages
+  
+  %ul
+    = f.text_field :title
+    
+    = f.text_field :url
+      
+    = f.text_field :name
+    
+    = f.file_field :image
+    
+    = f.check_box :is_enabled
+    
+    = f.text_field :page_id
+    
+    %li.clearfix
+      %label
+      = f.submit

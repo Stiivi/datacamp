@@ -15,13 +15,19 @@
   %body.frontend
     = render :partial => "layouts/search_processing"
     #main
+      #top-nav
+        = render :partial => "layouts/user"
+        |
+        - I18N_LOCALES.each do |locale|
+          = link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
       #header
-        = link_to raw("&nbsp;"), root_path, :class => "home"
-        #nav
-          = render :partial => "layouts/user"
-          |
-          - I18N_LOCALES.each do |locale|
-            = link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
+        .container
+          .span-4
+            = link_to("&nbsp;", root_path, :class => "home")
+          .prepend-7.span-15
+            = render :partial => "layouts/top_search"
+          .span-2.last
+            = render :partial => "layouts/social_links"
       #menu
         = render :partial => "layouts/menu"
       #container

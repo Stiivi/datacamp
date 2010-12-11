@@ -1,6 +1,7 @@
 Datacamp::Application.routes.draw do
   namespace :settings do
     resources :pages
+    resources :blocks
   end
   
   resources :settings do
@@ -96,7 +97,9 @@ Datacamp::Application.routes.draw do
               
   resources :categories, :controller => "dataset_categories"
   
-  resources :pages
+  resources :pages do
+    resources :blocks
+  end
 
   match '/api/:action.:format', :controller => 'api'
   
