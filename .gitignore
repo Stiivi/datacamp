@@ -8,6 +8,8 @@ config/database.yml
 config/datacamp_config.yml
 /update
 /remote
-index/*
+index/data*
+index/*.conf
+index/*.rb
 searchd.log
 dumps/*
