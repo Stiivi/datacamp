@@ -139,24 +139,16 @@ def dataset_dump
 end
 
 def dataset_records
-    # error :unknown_request,
-    #      :message => "records_in_dataset is not yet implemented"
-    # return
-
     dataset_description = find_dataset(params[:dataset_id].to_i) || return
-
-    dataset_class = dataset_description.dataset.dataset_record_class
-
-    # FIXME: use appropriate API key based filtering
-
-    field_descriptions = dataset_description.visible_field_descriptions(:export)
-    fields =  ["_record_id"] + field_descriptions.collect{ |description| description.identifier }
+    name = dataset_description.identifier
+    file = Pathname(dataset_dump_path) + "#{name}-dump.csv"
     
-    render :text => proc { |response, output|
-        output.write("#{CSV.generate_line(fields)}\n")
-        flush_counter = 0        
-        render_records_in_dataset(dataset_description, output)
-    }
+    if file.exist?
+        
+        send_file file, :type=>"text/csv; charset=utf-8", :x_sendfile => true, :filename => file.basename
+    else
+        error :object_not_found, :message => "There is no dump available for dataset #{name} (id=#{params[:dataset_id]})"
+    end
 end
 
 def render_records_in_dataset(dataset, output)

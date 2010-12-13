@@ -10,3 +10,4 @@ config/datacamp_config.yml
 /remote
 index/*
 searchd.log
+dumps/*
