@@ -9,6 +9,9 @@ namespace :index do
   end
   
   task :server do
-    system 'sudo searchd -c index/sphinx.conf'
+    system 'searchd -c index/sphinx.conf'
+  end
+  task :server:stop do
+    system 'searchd --stop -c index/sphinx.conf'
   end
 end
