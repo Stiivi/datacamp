@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module DatasetsHelper
   
   def sort_link(field)

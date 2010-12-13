@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Watchers Controller
 #
 # Manage people interested in being notified about the application

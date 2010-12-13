@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Block < ActiveRecord::Base
   belongs_to :page
   

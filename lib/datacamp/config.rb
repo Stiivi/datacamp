@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Datacamp
   class Config
     include Singleton

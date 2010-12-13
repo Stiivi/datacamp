@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ListFormBuilder < ActionView::Helpers::FormBuilder
   
   %w{text_field select text_field_tag password_field text_area collection_select file_field check_box grouped_collection_select}.each do |type|

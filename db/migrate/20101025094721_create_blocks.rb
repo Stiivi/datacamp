@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateBlocks < ActiveRecord::Migration
   def self.up
     create_table :blocks do |t|

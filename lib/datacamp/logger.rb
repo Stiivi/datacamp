@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Datacamp::Logger
   def log
     access = Access.new

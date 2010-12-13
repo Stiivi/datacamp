@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SearchResult < ActiveRecord::Base
   set_table_name :search_results
     

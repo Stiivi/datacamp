@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SearchPredicate < ActiveRecord::Base
 cattr_reader :datatype_operators
 

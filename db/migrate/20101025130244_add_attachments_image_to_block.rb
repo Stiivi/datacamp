@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddAttachmentsImageToBlock < ActiveRecord::Migration
   def self.up
     add_column :blocks, :image_file_name, :string

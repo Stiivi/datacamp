@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Settings
   class BlocksController < ApplicationController
     before_filter :login_required

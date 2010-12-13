@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 set :stages, %w(staging production)
 require 'capistrano/ext/multistage'
 set :application, "datanest_capistrano"

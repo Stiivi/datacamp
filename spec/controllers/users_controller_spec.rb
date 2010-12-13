@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Hello kids!
 # Just wanted to say that this test is messy by intention.
 # Especially to logging in part. It's the first spec for this

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateEtlConfigurations < ActiveRecord::Migration
   def self.up
     create_table :etl_configurations do |t|

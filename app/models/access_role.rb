@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AccessRole < ActiveRecord::Base
   
   has_and_belongs_to_many :access_rights, :join_table => :access_role_rights

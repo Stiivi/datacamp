@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SystemVariable < ActiveRecord::Base
   translates :description
   locale_accessor :sk, :en

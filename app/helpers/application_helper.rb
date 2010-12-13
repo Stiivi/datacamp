@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ApplicationHelper
   def button_link_to(what, where, *options)
     options = options.extract_options!

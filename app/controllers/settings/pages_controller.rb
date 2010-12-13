@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Settings
   class PagesController < ApplicationController
     before_filter :login_required

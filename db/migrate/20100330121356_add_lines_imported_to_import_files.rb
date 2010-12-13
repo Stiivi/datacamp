@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddLinesImportedToImportFiles < ActiveRecord::Migration
   def self.up
     add_column :import_files, :count_of_imported_lines, :integer

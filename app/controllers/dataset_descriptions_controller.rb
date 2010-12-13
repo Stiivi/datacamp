@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Dataset Descriptions
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.

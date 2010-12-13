@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CommentsLoader
   def load_comments
     record_id = @record ? @record.id : nil

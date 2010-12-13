@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddLastProcessedIdToEtlConfigurations < ActiveRecord::Migration
   def self.up
     add_column :etl_configurations, :last_processed_id, :integer

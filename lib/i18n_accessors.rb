@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module I18nAccessors
   def self.included(base)
     base.extend ActMethods

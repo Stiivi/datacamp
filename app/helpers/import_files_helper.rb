@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module ImportFilesHelper
   def field_description_picker column
     selected_field = @mapping[column]

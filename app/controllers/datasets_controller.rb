@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Datasets Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.

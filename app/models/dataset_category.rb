@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DatasetCategory < ActiveRecord::Base
   has_many :dataset_descriptions, :foreign_key => "category_id", :dependent => :nullify
   

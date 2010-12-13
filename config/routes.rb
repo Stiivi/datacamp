@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 Datacamp::Application.routes.draw do
   namespace :settings do
     resources :pages

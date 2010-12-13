@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SphinxSearchEngine
   def create_search_with_string(string)
     search = Search.new

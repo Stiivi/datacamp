@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Dataset::Test
   
   @@test_path = File.join(Rails.root, "dataset_tests")

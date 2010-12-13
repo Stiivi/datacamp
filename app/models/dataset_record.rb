@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class DatasetRecord < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper

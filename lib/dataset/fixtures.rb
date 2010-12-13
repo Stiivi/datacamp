@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Dataset::Fixtures
   
   def self.included(base)

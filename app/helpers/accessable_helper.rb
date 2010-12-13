@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module AccessableHelper
   def accessable_level_name_for_level(level)
     if level == 0

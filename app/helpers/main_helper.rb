@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module MainHelper
   def link_to_page(name, label = nil)
     page = Page.find_by_page_name(name)

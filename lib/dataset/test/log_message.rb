@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Dataset::Test::LogMessage
   attr_reader :type, :message
   

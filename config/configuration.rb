@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 I18N_LOCALES = [:sk, :en]
 I18N_LOCALE_NAMES = {:sk => "Slovensky", :en => "English"}
 RECORDS_PER_PAGE = 10

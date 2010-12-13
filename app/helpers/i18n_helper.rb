@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module I18nHelper
   def locale_switcher form, *locales
     prefix = dom_id(form.object)

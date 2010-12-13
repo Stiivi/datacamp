@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #!/usr/bin/ruby
 # 
 # Find all translateable strings in Views

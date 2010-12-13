@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ImportFile < ActiveRecord::Base
   has_attached_file :path, :url => '/../files/:id_:filename'
   

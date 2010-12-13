@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ##################################################
 # Requires frontend code from inscription.js
 

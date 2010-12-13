@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 puts "=> Installing system variables and default values ..."
 
 system_variables = [

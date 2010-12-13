@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 puts "Updating config from Datacamp"
 
 database_name = Rails.env+"_data"

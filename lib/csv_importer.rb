@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CsvImporter
   attr_reader :file, :errors
   attr_accessor :encoding, :batch_id

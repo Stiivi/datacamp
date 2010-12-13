@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'csv'
 
 namespace :db do
@@ -6,6 +7,7 @@ namespace :db do
     datasets = DatasetDescription.all
     total = datasets.count
     current = 1
+    
     datasets.each do |dataset|
       puts "Dumping #{dataset.identifier.ljust(30)}(#{current}/#{total})"
       
@@ -35,7 +37,7 @@ def dump_dataset(dataset_description)
   count = 0
   dataset_class.find_each(:batch_size => 100) do |record|
     values = record.values_for_fields(visible_fields)
-    line = CSV.generate_line(values)
+    line = CSV.generate_line(values.collect{|v| v.to_s.force_encoding("utf-8") })
     output.write("#{line}\n")
     count += 1
  end

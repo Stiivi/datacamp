@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Sessions Controller
 #
 # This controller handles the login/logout function of the site.  

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Page < ActiveRecord::Base
     translates :body, :title
     locale_accessor I18N_LOCALES

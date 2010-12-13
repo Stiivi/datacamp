@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module CaptchaHelper
   def verify_captcha_for(model)
     if Rails.env.production?
