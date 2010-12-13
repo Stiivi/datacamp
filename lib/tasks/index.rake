@@ -11,7 +11,7 @@ namespace :index do
   task :server do
     system 'searchd -c index/sphinx.conf'
   end
-  task :server:stop do
+  task :server_stop do
     system 'searchd --stop -c index/sphinx.conf'
   end
 end
