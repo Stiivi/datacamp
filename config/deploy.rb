@@ -41,11 +41,11 @@ namespace :deploy do
   end
   
   task :refresh_indexes, :roles => :app do
-    run "cd #{release_path}; rake index:update_config RAILS_ENV=#{rails_env}"
     run "cd #{release_path}; rake index:index RAILS_ENV=#{rails_env}"
   end
   
   task :start_search_server, :roles => :app do
+    run "cd #{release_path}; rake index:update_config RAILS_ENV=#{rails_env}"
     run "cd #{release_path}; rake index:server RAILS_ENV=#{rails_env}"
   end
   
@@ -56,5 +56,6 @@ end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
 after 'deploy:symlink_shared', 'deploy:dump_db'
-after 'deploy:dump_db', 'deploy:refresh_indexes'
+after 'deploy:dump_db', 'deploy:start_search_server'
+after 'deploy:start_search_server', 'deploy:refresh_indexes'
 

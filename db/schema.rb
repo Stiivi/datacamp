@@ -1,4 +1,3 @@
-# -*- encoding : utf-8 -*-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207123003) do
+ActiveRecord::Schema.define(:version => 20101214115255) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -85,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20101207123003) do
   create_table "changes", :force => true do |t|
     t.string   "dataset_description_id"
     t.string   "record_id"
-    t.string   "field"
+    t.string   "changed_field"
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -296,7 +295,7 @@ ActiveRecord::Schema.define(:version => 20101207123003) do
   create_table "search_predicates", :force => true do |t|
     t.integer "search_query_id"
     t.string  "scope"
-    t.string  "field"
+    t.string  "search_field"
     t.string  "operator"
     t.string  "argument"
   end

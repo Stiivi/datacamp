@@ -15,7 +15,7 @@ global_config += "sql_query_pre = SET NAMES utf8\n"
 
 all_config = "
 searchd {
-  listen = localhost:9312
+  listen = #{Datacamp::Config.get(:sphinx_server, 'localhost')}:#{Datacamp::Config.get(:sphinx_port, 9312)}
   pid_file = #{Rails.root}/tmp/pids/search.pid
   log = #{Rails.root}/log/search.log
 }

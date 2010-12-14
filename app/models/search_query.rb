@@ -11,7 +11,6 @@ has_many :search_predicates
 has_many :predicates, :class_name => "SearchPredicate"
 
 has_many :results, :class_name => "SearchResult", :foreign_key => "search_query_id"
-after_initialize :after_initalize
 
 attr_reader :include_words, :exclude_words, :include_datasets, :exclude_datasets
 attr_reader :include_categories, :exclude_categories, :include_fields, :exclude_fields
@@ -98,7 +97,7 @@ def create_predicates_from_tokens(tokens)
 
 			predicate = SearchPredicate.new
 			predicate.scope = scope
-			predicate.field = field
+			predicate.search_field = field
 			predicate.argument = argument
 			if not exclude
 				predicate.operator = "contains"
@@ -108,7 +107,7 @@ def create_predicates_from_tokens(tokens)
 		else
 			predicate = SearchPredicate.new
 			predicate.scope = "record"
-			predicate.field = nil
+			predicate.search_field = nil
 
 			argument = nil
 			if token =~ /^\*.*[^\*]$/

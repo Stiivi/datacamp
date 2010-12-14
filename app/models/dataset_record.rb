@@ -198,7 +198,7 @@ class DatasetRecord < ActiveRecord::Base
       change = Change.new
       change.dataset_description_id = self.description.id
       change.record_id = self.id
-      change.field = attribute
+      change.changed_field = attribute
       change.value = old_value
       change.user_id = @handling_user.id if @handling_user
       change.save
