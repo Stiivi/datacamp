@@ -40,7 +40,7 @@ module Etl
     
     def save(procurement_hash, document_id)
       procurement_model = Class.new StagingRecord
-      procurement_model.set_table_name "sta_procurements2"
+      procurement_model.set_table_name "sta_procurements"
       
       procurement_hash[:suppliers].each do |supplier|
         procurement_model.create!({
