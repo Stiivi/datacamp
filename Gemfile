@@ -28,9 +28,6 @@ gem 'test-unit'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'ruby-debug'
 
@@ -54,4 +51,7 @@ group :development do
 	gem "rails-erd"
 	gem 'jquery-rails'
 	gem 'awesome_print'
+	# Deploy with Capistrano multistage
+	gem 'capistrano'
+	gem 'capistrano-ext'
 end
