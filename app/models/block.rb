@@ -1,7 +1,7 @@
 class Block < ActiveRecord::Base
   belongs_to :page
   
-  has_attached_file :image, :styles => { :standard => "270x203" }
+  has_attached_file :image, :styles => { :standard => "270x200" }
   
   #validates_attachment_presence :image
   validates_attachment_size :image, :less_than => 5.megabytes

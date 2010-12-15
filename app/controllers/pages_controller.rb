@@ -25,5 +25,6 @@ class PagesController < ApplicationController
     rescue Exception => e
       @page = Page.find_by_id!(params[:id])
     end
+    @blocks = @page.blocks.paginate :all, :conditions => {:is_enabled => true}, :page => params[:page], :order => "name", :per_page => 9
   end
 end
