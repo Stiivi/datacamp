@@ -78,6 +78,32 @@ h2 {
   #main #container {
     margin-top: 15px;
     padding: 15px; }
+    #main #container #block_pagination {
+      color: #AAA; } 
+    #main #container #block_pagination .prev_page {
+      float: left;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #AAA;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      padding: 2px 6px;
+      background-color: #CCC;
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#BBB));
+      background-image: -moz-linear-gradient(0% 100% 90deg,#BBB, #EEE);   } 
+    #main #container #block_pagination .next_page {
+      float: right;
+      font-weight: bold;
+      text-decoration: none;
+      border: 1px solid #AAA;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      padding: 2px 6px;
+      background-color: #CCC;
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#BBB));
+      background-image: -moz-linear-gradient(0% 100% 90deg,#BBB, #EEE);   }  
   #main #footer {
     padding: 15px;
     margin-left: 15px;
