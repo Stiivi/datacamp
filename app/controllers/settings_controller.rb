@@ -23,7 +23,7 @@ class SettingsController < ApplicationController
   privilege_required :edit_system_settings
   
   def index
-    @settings = SystemVariable.find :all
+    @settings = SystemVariable.all
   end
   
   def update_all
