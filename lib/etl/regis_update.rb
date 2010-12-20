@@ -6,24 +6,18 @@ module Etl
   class RegisUpdate < Struct.new(:start_id, :batch_limit, :id)
     def perform
       puts "downloading: #{id}"
-      download(id)
+      document = download(id)
       puts "parsing: #{id}"
-      procurement_hash = parse(id)
+      procurement_hash = parse(id, document)
       unless procurement_hash == :unknown_announcement_type
         puts "saving: #{id}"
         save(procurement_hash, id)
         update_last_processed(id)
       end
-      puts "cleanup: #{id}"
-      cleanup(id)
     end
     
     def download(id)
-      system("wget", "-qE", "-P", '/tmp/regis_extraction', document_url(id))
-    end
-    
-    def cleanup(id)
-      FileUtils.rm "/tmp/regis_extraction/detail?wxidorg=#{id}.html"
+      Typhoeus::Request.get(document_url(id))
     end
     
     def update_last_processed(id)
@@ -39,21 +33,17 @@ module Etl
     end
     
     def save(procurement_hash, document_id)
-      procurement_model = Class.new StagingRecord
-      procurement_model.set_table_name "sta_regis_main2"
-      modified_element = procurement_model.find_by_doc_id(document_id)
+      regis_model = Kernel.const_get 'StagingRecord'
+      regis_model.set_table_name "sta_regis_main2"
+      modified_element = regis_model.find_by_doc_id(document_id)
       modified_element.update_attributes(procurement_hash)
     end
     
-    def parse(id)
-      if File.exists?("/tmp/regis_extraction/detail?wxidorg=#{id}.html")
-        file_content = Iconv.conv('utf-8', 'cp1250', File.open("/tmp/regis_extraction/detail?wxidorg=#{id}.html").read).gsub("&nbsp;",' ')
+    def parse(id, document)
+        file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
         doc = Nokogiri::HTML(file_content)
       
         return digest(doc, id, document_url(id))
-      else
-        return :unknown_announcement_type
-      end
     end
     
     def digest(doc, doc_id, base_url, url = nil)

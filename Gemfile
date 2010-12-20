@@ -21,6 +21,8 @@ gem 'will_paginate', '3.0.pre2'
 gem 'delayed_job'
 gem 'nokogiri'
 gem 'riddle'
+gem 'typhoeus'
+gem 'job_boss'
 
 gem 'test-unit'
 

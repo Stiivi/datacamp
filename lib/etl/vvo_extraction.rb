@@ -6,24 +6,18 @@ module Etl
   class VvoExtraction < Struct.new(:start_id, :batch_limit, :id)
     def perform
       puts "downloading: #{id}"
-      download(id)
+      document = download(id)
       puts "parsing: #{id}"
-      procurement_hash = parse(id)
+      procurement_hash = parse(id, document)
       unless procurement_hash == :unknown_announcement_type
         puts 
         save(procurement_hash, id)
         update_last_processed(id)
       end
-      puts "cleanup: #{id}"
-      cleanup(id)
     end
     
     def download(id)
-      system("wget", "-qE", "-P", '/tmp/vvo_extraction', document_url(id))
-    end
-    
-    def cleanup(id)
-      FileUtils.rm "/tmp/vvo_extraction/#{id}.html"
+      Typhoeus::Request.get(document_url(id))
     end
     
     def update_last_processed(id)
@@ -39,8 +33,8 @@ module Etl
     end
     
     def save(procurement_hash, document_id)
-      procurement_model = Class.new StagingRecord
-      procurement_model.set_table_name "sta_procurements"
+      procurement_model = Kernel.const_get 'StagingRecord'
+      procurement_model.set_table_name "sta_procurements2"
       
       procurement_hash[:suppliers].each do |supplier|
         procurement_model.create!({
@@ -67,24 +61,20 @@ module Etl
       end
     end
     
-    def parse(id)
-      if File.exists?("/tmp/vvo_extraction/#{id}.html")
-        file_content = Iconv.conv('utf-8', 'cp1250', File.open("/tmp/vvo_extraction/#{id}.html").read).gsub("&nbsp;",' ')
-        doc = Nokogiri::HTML(file_content)
-      
-        checked_value = doc.xpath "//div[@id='innerMain']/div/h2"
-        if checked_value.nil?
-            return :unknown_announcement_type
-        else
-          document_type = checked_value.inner_text
-          if document_type.match(/V\w+$/)
-              return digest(doc)
-          else
-            return :unknown_announcement_type
-          end
-        end
+    def parse(id, document)
+      file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
+      doc = Nokogiri::HTML(file_content)
+    
+      checked_value = doc.xpath "//div[@id='innerMain']/div/h2"
+      if checked_value.nil?
+          return :unknown_announcement_type
       else
-        return :unknown_announcement_type
+        document_type = checked_value.inner_text
+        if document_type.match(/V\w+$/)
+            return digest(doc)
+        else
+          return :unknown_announcement_type
+        end
       end
     end
     
