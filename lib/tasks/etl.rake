@@ -16,8 +16,8 @@ namespace :etl do
   end
   
   task :vvo_loading => :environment do
-    source_table = 'sta_procurements2'
-    dataset_table = 'ds_procurements2'
+    source_table = 'sta_procurements'
+    dataset_table = 'ds_procurements'
     regis_table = 'sta_regis_main'
     staging_schema = StagingRecord.connection.current_database
     dataset_schema = DatasetRecord.connection.current_database
@@ -62,13 +62,13 @@ namespace :etl do
     StagingRecord.connection.execute(load)
     
     procurement_model = Class.new StagingRecord
-    procurement_model.set_table_name "sta_procurements2"
+    procurement_model.set_table_name "sta_procurements"
     procurement_model.update_all :etl_loaded_date => Time.now
   end
   
   task :regis_loading => :environment do
-    source_table = 'sta_regis_main2'
-		dataset_table = 'ds_organisations2'
+    source_table = 'sta_regis_main'
+		dataset_table = 'ds_organisations'
 		
     staging_schema = StagingRecord.connection.current_database
     dataset_schema = DatasetRecord.connection.current_database

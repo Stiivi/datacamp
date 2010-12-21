@@ -34,7 +34,7 @@ module Etl
     
     def save(procurement_hash, document_id)
       regis_model = Kernel.const_get 'StagingRecord'
-      regis_model.set_table_name "sta_regis_main2"
+      regis_model.set_table_name "sta_regis_main"
       
       regis_model.create!(procurement_hash)
     end
