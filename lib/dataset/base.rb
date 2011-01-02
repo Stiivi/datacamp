@@ -3,7 +3,7 @@ class Dataset::Base
   
   include Transformations
   
-  attr_reader :errors, :description, :dataset_record_class, :derived_fields
+  attr_reader :errors, :description, :derived_fields #:dataset_record_class, :derived_fields
   cattr_reader :system_columns, :prefix
     
   @errors = []
@@ -39,10 +39,10 @@ class Dataset::Base
     @errors = []
     
     # Setup DatasetRecord based on description
-    @dataset_record_class = Class.new DatasetRecord
-    @dataset_record_class.dataset = self
-    @dataset_record_class.establish_connection Rails.env + "_data"
-    @dataset_record_class.set_table_name @@prefix + @description.identifier
+    Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(DatasetRecord)) unless dataset_record_class
+    dataset_record_class.dataset = self
+    dataset_record_class.establish_connection Rails.env + "_data"
+    dataset_record_class.set_table_name @@prefix + @description.identifier
     
     # Get connection from model
     @connection = DatasetRecord.connection
@@ -56,6 +56,12 @@ class Dataset::Base
     # @dataset
   end
   
+  def dataset_record_class
+    @dataset_record_class ||= (@@prefix + @description.identifier).classify.constantize
+    rescue
+      return false
+  end
+  
   def has_derived_fields?
     !@derived_fields.empty?
   end
@@ -65,11 +71,11 @@ class Dataset::Base
   # Shortcuts
   
   def table_name
-    @dataset_record_class.table_name
+    dataset_record_class.table_name
   end
   
   def table_exists?
-    @table_exists ||= @dataset_record_class.table_exists?
+    @table_exists ||= dataset_record_class.table_exists?
     @table_exists
   end
   
