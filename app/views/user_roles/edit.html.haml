@@ -1,6 +1,6 @@
 .clearfix
   %h1.fl== Edit user role #{@user_role.title}
   .fr.buttons
-    = link_to "<span>Back</span>", user_roles_path, :class => "dark button"
+    = link_to "<span>Back</span>".html_safe, user_roles_path, :class => "dark button"
     
 = render :partial => "form"

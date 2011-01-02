@@ -1,8 +1,8 @@
 .clearfix
   %h1.fl User roles
   .fr.buttons
-    = link_to "<span>Back to users</span>", users_path, :class => "dark button"
-    = link_to "<span>Create new</span>", new_user_role_path, :class => "dark button"
+    = link_to "<span>Back to users</span>".html_safe, users_path, :class => "dark button"
+    = link_to "<span>Create new</span>".html_safe, new_user_role_path, :class => "dark button"
     
 %table
   %tr

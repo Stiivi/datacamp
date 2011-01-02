@@ -17,6 +17,6 @@
       %td= comment.user.name
       %td
         %a{:href => edit_comment_path(comment)}
-          = comment.is_suspended ? "<del>" + comment.text + "</del>" : comment.text
+          = comment.is_suspended ? "<del>#{comment.text}</del>".html_safe : comment.text
       %td= comment.created_at
       %td

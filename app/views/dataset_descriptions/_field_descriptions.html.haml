@@ -19,4 +19,4 @@
 %br
 
 .clearfix
-  =link_to "<span>#{t("dataset.add_field_description")}</span>", new_dataset_description_field_description_path(@dataset_description), :class => 'button'
+  =link_to "<span>#{t("dataset.add_field_description")}</span>".html_safe, new_dataset_description_field_description_path(@dataset_description), :class => 'button'

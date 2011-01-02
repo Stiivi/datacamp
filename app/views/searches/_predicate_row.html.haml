@@ -2,9 +2,9 @@
 %li.search_row.clearfix
   .fl
     %select{:class => "search_field", :name => "search[predicates][][field]"}
-      %option{:value => "", :class => "string", :selected => (predicate == nil || predicate.field == nil)}= t("search.any_field")
+      %option{:value => "", :class => "string", :selected => (predicate == nil || predicate.search_field == nil)}= t("search.any_field")
       - @dataset_description.field_descriptions.each do |fd|
-        %option{:value => fd.identifier, :class => fd.data_type, :selected => (predicate && predicate.field == fd.identifier ? "selected" : nil)}= fd
+        %option{:value => fd.identifier, :class => fd.data_type, :selected => (predicate && predicate.search_field == fd.identifier ? "selected" : nil)}= fd
   
   .fl
     %select{:class => "search_operator", :name => "search[predicates][][operator]"}

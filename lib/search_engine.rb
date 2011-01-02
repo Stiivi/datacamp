@@ -174,9 +174,9 @@ def sql_condition_for_dataset_query(dataset, query)
 	
 	record_predicates.each { |predicate|
 		# Rails.logger.info "DEBUG -- f:#{predicate.field} a:#{predicate.argument}"
-		if predicate.field and all_field_names.include?(predicate.field)
+		if predicate.search_field and all_field_names.include?(predicate.search_field)
 			# IF field is specified, use that field
-			field = dataset.field_with_identifier(predicate.field)
+			field = dataset.field_with_identifier(predicate.search_field)
 			
 			condition = sql_condition_for_field(predicate, dataset, field)
 			# Rails.logger.info "DEBUG condition: #{condition}"

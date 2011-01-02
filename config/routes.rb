@@ -45,7 +45,7 @@ Datacamp::Application.routes.draw do
 
   resources :comments do
     member do
-      get :rate, :destroy, :report
+      get :rate, :report
       post :report
     end
   end
