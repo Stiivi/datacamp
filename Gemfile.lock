@@ -85,7 +85,7 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
-    paperclip (2.3.5)
+    paperclip (2.3.8)
       activerecord
       activesupport
     polyglot (0.3.1)

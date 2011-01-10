@@ -19,6 +19,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+require 'CSV'
 
 class ImportFilesController < ApplicationController
   
@@ -54,12 +55,10 @@ class ImportFilesController < ApplicationController
   def create
     @import_file = ImportFile.new(params[:import_file])
 
-    respond_to do |format|
-      if @import_file.save
-        format.html { redirect_to(preview_import_file_path(@import_file)) }
-      else
-        format.html { render :action => "new" }
-      end
+    if @import_file.save
+      redirect_to preview_import_file_path(@import_file)
+    else
+      render :action => "new"
     end
   end
   
@@ -102,17 +101,12 @@ class ImportFilesController < ApplicationController
       redirect_to preview_import_file_path(@import_file)
     end
     
-    fork do
-      ActiveRecord::Base.establish_connection(Rails.env + "_app")
-      DatasetRecord.establish_connection Rails.env + "_data"
-      @importer.import_into_dataset(@import_file,
-                                    params[:column])
-    end
+    @import_file.delay.import_into_dataset(params[:column])
     
-    redirect_to status_import_file_path(@import_file)
+    redirect_to state_import_file_path(@import_file)
   end
   
-  def status
+  def state
     @import_file = ImportFile.find_by_id!(params[:id])
     respond_to do |wants|
       wants.html
@@ -122,7 +116,7 @@ class ImportFilesController < ApplicationController
 
   def prepare_file
     @import_file = ImportFile.find_by_id!(params[:id])
-    
+
     @importer = CsvImporter.new(@import_file.encoding)
     @importer.batch_id = @import_file.id
     if @importer.load_file(@import_file.file_path, @import_file.col_separator || ",", @import_file.number_of_header_lines)

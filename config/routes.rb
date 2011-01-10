@@ -9,6 +9,13 @@ Datacamp::Application.routes.draw do
     put :update_all, :on => :collection
   end
   
+  resources :import_files do
+    member do
+      get :preview, :state
+      post :import
+    end
+  end
+  
   resources :watchers
 
   match '/locale/:locale' =>  'main#locale', :as => 'set_locale'
@@ -67,13 +74,6 @@ Datacamp::Application.routes.draw do
   end
   
   resources :data_types
-
-  resources :import_files do
-    member do
-      get :preview, :status
-      post :import
-    end
-  end
 
   resources :dataset_tests do
     get :run, :on => :member
