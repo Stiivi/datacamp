@@ -3,7 +3,7 @@ module DatasetsHelper
   
   def sort_link(field)
     params[:dir] ||= "asc"
-    lab = field.title
+    lab = html_escape(field.title).html_safe
     lab += image_tag "sort_#{params["dir"]}.png" if params[:sort] == field.identifier
     
     href = {:page => params[:page], :search_id => params[:search_id]}

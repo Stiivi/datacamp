@@ -159,7 +159,7 @@ class DatasetsController < ApplicationController
     ### Options for order
     if params[:sort]
       sort_direction = params[:dir] || "asc"
-      dataset_class.order("#{params[:sort]} #{sort_direction}").where("#{params[:sort]} IS NOT NULL")
+      dataset_class = dataset_class.order("#{params[:sort]} #{sort_direction}").where("#{params[:sort]} IS NOT NULL")
     end
     
     ### Options for search
@@ -167,28 +167,28 @@ class DatasetsController < ApplicationController
       search_object = Search.find_by_id!(params[:search_id])
       @search_predicates = search_object.query.predicates
       search_query_id = search_object.query.id
-      dataset_class.
+      dataset_class = dataset_class.
             from("#{SearchResult.connection.current_database}.search_results").
             joins("LEFT JOIN #{@dataset_class.table_name} ON search_results.record_id = #{@dataset_class.table_name}._record_id").
             select("#{@dataset_class.table_name}.*").
             where("search_results.search_query_id = #{@dataset_class.sanitize(search_query_id)}").
             where("search_results.table_name = #{@dataset_class.sanitize(@dataset_description.identifier)}")
     else
-      dataset_class.from @dataset_class.table_name
+      dataset_class = dataset_class.from @dataset_class.table_name
     end
     
     ### Options for filter
     if @filters
       filters = @filters.find_all{|key,value|!value.blank?}
       filters.each do |key, value|
-        dataset_class.where("#{key} = #{@dataset_class.sanitize(value)}")
+        dataset_class = dataset_class.where("#{key} = #{@dataset_class.sanitize(value)}")
       end
       # raise select_options.to_yaml
     end
     
     ### Filtering for those with insufficient privileges
     unless has_privilege?(:view_hidden_records)
-      dataset_class.where(:active => true)
+      dataset_class = dataset_class.where(:active => true)
     end
     dataset_class
   end
