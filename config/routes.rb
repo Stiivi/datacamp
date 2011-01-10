@@ -59,7 +59,6 @@ Datacamp::Application.routes.draw do
   
   resources :favorites do
     get :create, :on => :collection
-    get :destroy, :on => :member
   end
   
   resources :datasets do

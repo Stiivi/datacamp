@@ -17,11 +17,11 @@ class Favorite < ActiveRecord::Base
     matches = []
 
     dataset_description.visible_field_descriptions(:search).each do |description|
-      if self.record[description.identifier.to_sym]
+      if record && record[description.identifier.to_sym]
         matches << [description.title, record.get_html_value(description)]
       end
     end
 
-    matches.collect { |attribute, value| "<em>#{attribute}:</em> #{value}" }.join("<br />")
+    matches.collect { |attribute, value| "<em>#{html_escape(attribute)}:</em> #{html_escape(value)}" }.join("<br />").html_safe
   end
 end
