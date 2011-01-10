@@ -21,10 +21,6 @@ class DatasetRecord < ActiveRecord::Base
     _record_id.to_s
   end
   
-  def self.model_name
-    ActiveSupport::ModelName.new(@@dataset.description.identifier)
-  end
-  
   def description
     @@dataset.description
   end

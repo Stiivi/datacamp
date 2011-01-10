@@ -50,7 +50,7 @@ class RecordsController < ApplicationController
   end
   
   def create
-    record_params = params[@dataset_description.identifier.to_sym]
+    record_params = params["kernel_ds_#{@dataset_description.identifier.singularize}".to_sym]
     @record.update_attributes(record_params)
     if @record.save
       redirect_to dataset_record_path(@dataset_description, @record)
@@ -64,8 +64,8 @@ class RecordsController < ApplicationController
   end
   
   def update
-    record_params = params[@dataset_description.identifier.to_sym]
-    
+    record_params = params["kernel_ds_#{@dataset_description.identifier.singularize}".to_sym]
+
     @record.handling_user = current_user
     @record.update_attributes(record_params)
     
