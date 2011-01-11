@@ -1,4 +1,6 @@
 # -*- encoding : utf-8 -*-
+require 'csv'
+
 class CsvFile
   attr_reader :path, :collection, :errors
   attr_accessor :encoding, :header_lines
