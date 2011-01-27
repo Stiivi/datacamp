@@ -37,5 +37,9 @@ module Settings
         render :action => "edit"
       end
     end
+    
+    def init_menu
+      @submenu_partial = "settings"
+    end
   end
 end
