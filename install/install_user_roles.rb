@@ -27,7 +27,8 @@ rights = [ [:records, :edit_record],
            [:information, :search_in_hidden_fields],
            [:information, :search_in_hidden_records],
            [:information, :search_in_hidden_datasets],
-           [:system, :use_in_development]
+           [:system, :use_in_development],
+           [:system, :delayed_job_admin]
          ]
 
 rights.each do | right_info |

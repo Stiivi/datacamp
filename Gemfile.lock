@@ -44,6 +44,9 @@ GEM
     delayed_job (2.1.2)
       activesupport (~> 3.0)
       daemons
+    delayed_job_admin (1.0.2)
+      delayed_job
+      rails
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -145,6 +148,7 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   delayed_job
+  delayed_job_admin
   globalize3
   haml-rails
   jquery-rails

@@ -22,6 +22,7 @@ gem 'delayed_job'
 gem 'nokogiri'
 gem 'riddle'
 gem 'typhoeus'
+gem 'delayed_job_admin'
 
 gem 'test-unit'
 
