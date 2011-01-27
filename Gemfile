@@ -13,7 +13,7 @@ gem "sequel"
 
 gem 'globalize3'
 gem 'paperclip'
-gem 'recaptcha'
+gem 'recaptcha', :require => "recaptcha/rails"
 gem 'spawn'
 gem 'validation_reflection'
 gem 'will_paginate', '3.0.pre2'

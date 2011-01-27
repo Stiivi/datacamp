@@ -317,7 +317,7 @@ sk:
     register: Vytvoriť konto
     registration_complete: "Vaše konto bolo vytvorené."
     insufficient_privileges: "Nemáte právo na vykonanie akcie %{action}."
-    agree_with: "Súhlasím s %s"
+    agree_with: "Súhlasím s %{s}"
     with_terms_of_use: "podmienkami používania"
   validations: 
     blank: "nemôže byť prázdne"
