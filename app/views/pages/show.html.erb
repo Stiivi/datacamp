@@ -3,7 +3,8 @@
   <%= @page.html_body.html_safe %>
 </p>
 <p>
-  <div class="container prepend-top append-bottom prepend-1">
+  <div class="blocks container prepend-top append-bottom prepend-1">
+    <h1><%=t :blocks_heading %></h1>
   <% for block in @blocks %>
     <div class='span-7 prepend-top'>
     <% if block.url!="" %><a href="<%= block.url %>"><% end %>

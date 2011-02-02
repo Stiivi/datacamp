@@ -5,6 +5,7 @@ en:
             regular: Regular
             premium: Premium
         allowed_for_dataset: API is allowed
+    blocks_heading: Applications built on Datanest API
     blocks:
         all_blocks: All blocks
         name: Name

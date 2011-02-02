@@ -79,6 +79,7 @@ h2 {
     margin-top: 15px;
     padding: 15px; }
     #main #container #block_pagination {
+      margin-bottom: 35px;
       color: #AAA; } 
     #main #container #block_pagination .prev_page {
       float: left;
@@ -202,3 +203,14 @@ table {
     font-size: 14px; 
     color: #222;
     font-weight: bold; }
+    
+/* ************************** */
+
+.blocks {
+    width: 870px;
+    background-color: #f3f3f3;
+    padding: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
