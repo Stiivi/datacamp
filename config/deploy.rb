@@ -27,9 +27,7 @@ namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    #run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "cd #{release_path}; passenger stop -p 3001"
-    run "cd #{release_path}; passenger start -e production -p 3001 -d"
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   
   desc "Symlink shared resources on each release"
@@ -57,7 +55,7 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:symlink_shared'
-after 'deploy:symlink_shared', 'deploy:dump_db'
-after 'deploy:dump_db', 'deploy:start_search_server'
-after 'deploy:start_search_server', 'deploy:refresh_indexes'
+# after 'deploy:symlink_shared', 'deploy:dump_db'
+# after 'deploy:dump_db', 'deploy:start_search_server'
+# after 'deploy:start_search_server', 'deploy:refresh_indexes'
 
