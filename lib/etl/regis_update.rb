@@ -43,6 +43,7 @@ module Etl
         file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
         doc = Nokogiri::HTML(file_content)
       
+        return :unknown_announcement_type if doc.xpath("//div[@class='telo']").empty?
         return digest(doc, id, document_url(id))
     end
     

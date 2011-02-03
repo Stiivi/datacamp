@@ -66,7 +66,7 @@ module Etl
       doc = Nokogiri::HTML(file_content)
     
       checked_value = doc.xpath "//div[@id='innerMain']/div/h2"
-      if checked_value.nil?
+      if checked_value.empty?
           return :unknown_announcement_type
       else
         document_type = checked_value.inner_text
@@ -147,8 +147,7 @@ module Etl
             Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, config.batch_limit, i)
           end
         else
-          config.update_attribute(:start_id, id+1)
-          cleanup
+          config.update_attribute(:start_id, config.last_processed_id+1)
         end
       end
     end

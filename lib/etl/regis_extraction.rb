@@ -9,6 +9,7 @@ module Etl
       document = download(id)
       puts "parsing: #{id}"
       procurement_hash = parse(id, document)
+      puts procurement_hash
       unless procurement_hash == :unknown_announcement_type
         puts "saving: #{id}"
         save(procurement_hash, id)
@@ -43,6 +44,7 @@ module Etl
       file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
       doc = Nokogiri::HTML(file_content)
     
+      return :unknown_announcement_type if doc.xpath("//div[@class='telo']").empty?
       return digest(doc, id, document_url(id))
     end
     
@@ -110,7 +112,7 @@ module Etl
             Delayed::Job.enqueue Etl::RegisExtraction.new(id+1, config.batch_limit, i)
           end
         else
-          config.update_attribute(:start_id, id+1)
+          config.update_attribute(:start_id, config.last_processed_id+1)
         end
       end
     end
