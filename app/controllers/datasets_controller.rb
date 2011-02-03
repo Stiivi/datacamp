@@ -81,12 +81,36 @@ class DatasetsController < ApplicationController
     add_javascript('datasets/search.js')
     
     respond_to do |wants|
-      wants.html { render :action => "show" }
-      wants.xml { render :xml => @records }
-      wants.json { render :json => @records }
+      wants.html { 
+        #check to see if user can view the records if the dataset is
+        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
+          flash[:notice] = 'Dataset is hidden'
+          redirect_to :action => 'index'
+        else
+          render :action => "show" 
+        end
+      }
+      wants.xml { 
+        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
+          render :xml => 'Dataset is hidden'
+        else
+          render :xml => @records 
+        end
+      }
+      wants.json { 
+        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
+          render :json => 'Dataset is hidden'
+        else
+          render :json => @records 
+        end
+      }
       wants.js do
-        return render :template => "datasets/admin/show" if current_user && current_user.has_privilege?(:data_management)
-        return render :action => "show" 
+        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
+          return render :js => 'Dataset is hidden'
+        else
+          return render :template => "datasets/admin/show" if current_user && current_user.has_privilege?(:data_management)
+          return render :action => "show"
+        end
       end
     end
   end
@@ -186,10 +210,6 @@ class DatasetsController < ApplicationController
       # raise select_options.to_yaml
     end
     
-    ### Filtering for those with insufficient privileges
-    unless has_privilege?(:view_hidden_records)
-      dataset_class = dataset_class.where(:active => true)
-    end
     dataset_class
   end
   
