@@ -5,7 +5,7 @@ sk:
   activerecord: 
     errors: 
       full_messages: 
-        format: "{{attribute}} {{message}}"
+        format: "%{attribute} %{message}"
       messages: 
         blank: "je potrebné vyplniť"
         blank_i18n: "je potrebné vyplniť pre všetky preklady"
@@ -20,9 +20,9 @@ sk:
     : Nie
     poor: Zlé
     post: Komentár
-    record: "Záznam #{{id}}"
+    record: "Záznam #%{id}"
     reply: Odpovedať
-    replying_to: "Odpoveď na komentár #{{parent}}"
+    replying_to: "Odpoveď na komentár #%{parent}"
     report: Zažalovať
     report_label: "Zažalovať komentár"
     spam: Spam
@@ -38,7 +38,7 @@ sk:
     add_field_description: "Pridať popis položky"
     columns_for_import: "Stĺpce pre import"
     create_record: "Vytvoriť záznam"
-    create_table: "Vytvoriť tabuľku {{table}}"
+    create_table: "Vytvoriť tabuľku %{table}"
     data_types: "Dátove typy"
     dataset_choose: "Výber súboru údajov"
     datastore_status: "Stav v databáze"
@@ -51,7 +51,7 @@ sk:
     information: "Informácie o súbore údajov"
     initialize: Inicializovať
     initialize_from_table: "Inicializovať z tabuľky"
-    initialize_table: "Inicializovať tabuľku {{identifier}}"
+    initialize_table: "Inicializovať tabuľku %{identifier}"
     initialized_datasets: "Inicializovať súbor údajov"
     is_to_many: "Je jeden-ku-viac"
     is_visible_in_detail: "Zobraziť v detajloch"
@@ -68,7 +68,7 @@ sk:
     revert: Obnoviť
     run_tests: "Spustiť testy"
     save_and_create: "Uložiť a vytvoriť"
-    short_summary: "{{count}} záznamov, poskytovateľ: {{provider}}"
+    short_summary: "%{count} záznamov, poskytovateľ: %{provider}"
     table_name: "Názov tabuľky"
     title: Nadpis
     type: Typ
@@ -210,7 +210,7 @@ sk:
     categories: Kategórie
     dataset_name: "Súbor údajov"
     query_field: "Hľadať:"
-    results_count: "{{count}} výsledkov pre '{{query_string}}'"
+    results_count: "%{count} výsledkov pre '%{query_string}'"
     search_action: Hľadať!
     search_term: Výraz
     searching_notice: "Prosíme o chvíľku strpenia, kým sa prehľadáva naša databáza"
