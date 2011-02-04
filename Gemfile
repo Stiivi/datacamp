@@ -55,4 +55,5 @@ group :development do
 	# Deploy with Capistrano multistage
 	gem 'capistrano'
 	gem 'capistrano-ext'
+	gem 'whenever', :require => false
 end

@@ -9,6 +9,10 @@ require 'bundler/capistrano'
 
 set :rvm_ruby_string, '1.9.2'
 
+# update crontab
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 set :stages, %w(staging production)
 require 'capistrano/ext/multistage'
 set :application, "datanest_capistrano"
@@ -19,6 +23,7 @@ set :scm, :git
 set :repository, "git://github.com/fairplaysk/datacamp.git"
 set :use_sudo, false
 set :branch, 'rails3'
+set :keep_releases, 4 
 
 set(:user) { Capistrano::CLI.ui.ask "user:" }
 server "195.210.28.155", :app, :web, :db, :primary => true

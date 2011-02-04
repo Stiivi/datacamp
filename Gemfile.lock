@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.3)
+    aaronh-chronic (0.3.9)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -137,6 +138,9 @@ GEM
     typhoeus (0.2.0)
     tzinfo (0.3.23)
     validation_reflection (1.0.0)
+    whenever (0.6.2)
+      aaronh-chronic (>= 0.3.9)
+      activesupport (>= 2.3.4)
     will_paginate (3.0.pre2)
 
 PLATFORMS
@@ -165,4 +169,5 @@ DEPENDENCIES
   test-unit
   typhoeus
   validation_reflection
+  whenever
   will_paginate (= 3.0.pre2)
