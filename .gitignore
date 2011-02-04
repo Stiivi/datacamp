@@ -13,5 +13,6 @@ index/*.conf
 index/*.rb
 searchd.log
 dumps/*
+public/system/*
 
 .DS_Store
