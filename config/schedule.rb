@@ -20,13 +20,20 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, :at => '1:30 am' do
+  rake "etl:regis_extraction"
+  rake "etl:regis_loading"
+  rake "etl:vvo_extraction"
+  rake "etl:vvo_loading"
+end
+
+every 1.day, :at => '4:30 am' do
   rake "db:dump"
 end
 
-every 1.day, :at => '2:30 am' do
+every 1.day, :at => '5:00 am' do
   rake "index:update_config"
 end
 
-every 1.day, :at => '3:30 am' do
+every 1.day, :at => '5:05 am' do
   rake "index:index"
 end
