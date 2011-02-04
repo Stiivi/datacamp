@@ -9,10 +9,6 @@ require 'bundler/capistrano'
 
 set :rvm_ruby_string, '1.9.2'
 
-# update crontab
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
-
 set :stages, %w(staging production)
 require 'capistrano/ext/multistage'
 set :application, "datanest_capistrano"
