@@ -23,6 +23,7 @@ gem 'nokogiri'
 gem 'riddle'
 gem 'typhoeus'
 gem 'delayed_job_admin'
+gem 'whenever', :require => false
 
 gem 'test-unit'
 
@@ -55,5 +56,4 @@ group :development do
 	# Deploy with Capistrano multistage
 	gem 'capistrano'
 	gem 'capistrano-ext'
-	gem 'whenever', :require => false
 end
