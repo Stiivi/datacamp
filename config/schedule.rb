@@ -20,11 +20,13 @@
 # Learn more: http://github.com/javan/whenever
 
 every 1.day, :at => '1:30 am' do
+  command "RAILS_ENV=production #{File.expand_path(File.join(File.dirname(__FILE__), '..', 'script', 'delayed_job'))} start -n 3"
   rake "etl:regis_extraction"
   rake "etl:vvo_extraction"
 end
 
 every 1.day, :at => '2:30 am' do
+  command "RAILS_ENV=production #{File.expand_path(File.join(File.dirname(__FILE__), '..', 'script', 'delayed_job'))} stop"
   rake "etl:regis_loading"
   rake "etl:vvo_loading"
 end
