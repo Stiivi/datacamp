@@ -24,6 +24,7 @@ gem 'riddle'
 gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
+gem 'bluepill'
 
 gem 'test-unit'
 
