@@ -8,17 +8,17 @@ require "whenever/capistrano"
 namespace :bluepill do
   desc "Stop processes that bluepill is monitoring and quit bluepill"
   task :quit, :roles => [:app] do
-    sudo "bluepill stop"
-    sudo "bluepill quit"
+    run "bluepill stop"
+    run "bluepill quit"
   end
  
   desc "Load bluepill configuration and start it"
   task :start, :roles => [:app] do
-    sudo "bluepill load /var/www/projects/datanest_capistrano/production/current/config/delayed_job.pill"
+    run "bluepill load /var/www/projects/datanest_capistrano/production/current/config/delayed_job.pill"
   end
  
   desc "Prints bluepills monitored processes statuses"
   task :status, :roles => [:app] do
-    sudo "bluepill status"
+    run "bluepill status"
   end
 end
