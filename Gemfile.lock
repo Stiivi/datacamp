@@ -32,12 +32,6 @@ GEM
     activesupport (3.0.3)
     arel (2.0.6)
     awesome_print (0.3.1)
-    blankslate (2.1.2.3)
-    bluepill (0.0.44)
-      activesupport (>= 2.3.4)
-      blankslate (>= 2.1.2.2)
-      daemons (>= 1.0.9)
-      state_machine (>= 0.8.0)
     builder (2.1.2)
     capistrano (2.5.19)
       highline
@@ -136,7 +130,6 @@ GEM
       json_pure (>= 1.1.7)
     sequel (3.16.0)
     spawn (0.1.4)
-    state_machine (0.9.4)
     test-unit (1.2.3)
       hoe (>= 1.5.1)
     thor (0.14.6)
@@ -156,7 +149,6 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   awesome_print
-  bluepill
   capistrano
   capistrano-ext
   delayed_job
