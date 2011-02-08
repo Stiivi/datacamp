@@ -38,7 +38,7 @@ def dump_dataset(dataset_description)
     dataset_class.find_each do |record|
       values = record.values_for_fields(visible_fields)
       line = CSV.generate_line(values.map{|v| v.to_s.force_encoding("utf-8") })
-      output.write("#{line}\n")
+      output.write("#{line}")
       count += 1
     end
   end
