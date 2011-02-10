@@ -51,5 +51,5 @@ Datacamp::Application.configure do
   config.middleware.use ::ExceptionNotifier,
     :email_prefix => "ApplicationName-Errors: ",
     :sender_address => %w{admin@datanest.sk},
-    :exception_recipients => %w{olahmichal@gmail.com}
+    :exception_recipients => %w{olahmichal@gmail.com admin@fair-play.sk}
 end
