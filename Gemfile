@@ -25,6 +25,7 @@ gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
 gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
+gem 'newrelic_rpm'
 
 gem 'test-unit'
 
