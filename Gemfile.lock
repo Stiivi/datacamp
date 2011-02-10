@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/rails/exception_notification
+  revision: 192a49a02d63d28b23ed41cebadfedd490929cf1
+  specs:
+    exception_notification (1.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -153,6 +159,7 @@ DEPENDENCIES
   capistrano-ext
   delayed_job
   delayed_job_admin
+  exception_notification!
   globalize3
   haml-rails
   jquery-rails

@@ -24,6 +24,7 @@ gem 'riddle'
 gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
+gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 
 gem 'test-unit'
 
