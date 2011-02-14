@@ -14,6 +14,7 @@ class FieldDescription < ActiveRecord::Base
   
   after_save :update_data_type
   after_create :setup_in_database
+  after_find :find_data_type
   
   # Accessors
   
@@ -40,12 +41,7 @@ class FieldDescription < ActiveRecord::Base
   def exists_in_database?
     dataset_description.dataset.has_column?(identifier)
   end
-  
-  # Callbacks
-  def after_find
-    find_data_type
-  end
-  
+    
   ###########################################################################
   # Private
   private

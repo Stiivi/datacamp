@@ -187,7 +187,8 @@ class DatasetRecord < ActiveRecord::Base
   ########################################################################################
   # Callbacks
   
-  def after_update
+  after_update :update_attributes
+  def update_attributes
     changed_attributes.each do |attribute, old_value|
       next if attribute == "updated_at"
       next if old_value == self[attribute]
