@@ -24,28 +24,25 @@ class User < ActiveRecord::Base
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
-
+  
   validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
   validates_length_of       :name,     :maximum => 100
-
+  
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 #r@a.wk
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, 
-                  :loc, :about, :records_per_page, :is_super_user, :api_access_level
-                  
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, :loc, :about, :records_per_page, :is_super_user, :api_access_level, :accepts_terms
+
+  # Callbacks
+  after_create :generate_api_key
+  
   # Acceptance of terms
   attr_accessor :accepts_terms
   validates_presence_of :accepts_terms
   validates_acceptance_of :accepts_terms
   
-  # Callbacks
-  after_create :generate_api_key
-
-
-
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  

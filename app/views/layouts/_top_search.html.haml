@@ -1,6 +1,6 @@
 #top_search
   - if params[:controller] != "main" && params[:controller] != "search"
-    - form_tag quick_searches_path, :class => "search" do
+    = form_tag quick_searches_path, :class => "search" do
       %input{:type => "text", :name => "query_string", :id => "query_string"}
       %input{:type => "submit", :value => t("search.search_action"), :id => "query_submit"}
   - else

@@ -11,7 +11,6 @@
     = javascript_include_tag 'inscription.js', 'dataset_descriptions.js', 'searches.js', 'datasets.js', 'application.js'
     - if @javascripts
       = javascript_include_tag @javascripts
-    %script== URL_ROOT = "#{ActionController::Base.relative_url_root}";
   %body.frontend
     = render :partial => "layouts/search_processing"
     #main

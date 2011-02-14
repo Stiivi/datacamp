@@ -3,8 +3,6 @@ en:
         errors:
             messages:
                 blank_i18n: "can't be blank for any of translations"
-        models:
-            user:
-                attributes:
-                    email:
-                        taken: "E-mail address is already taken"
+        attributes:
+          email:
+            taken: "E-mail address is already taken"

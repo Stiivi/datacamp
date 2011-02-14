@@ -6,15 +6,15 @@
     %br
     =t("messages.testing_feedback_notice", :url => new_watcher_path).html_safe
 
-- form_tag session_path do
+= form_tag session_path do
   = hidden_field_tag 'return', params[:return] || flash[:return]
   %ul
     %li.clearfix
-      = label_tag t "session.user_name"
+      = label_tag 'login', t("session.user_name")
       = text_field_tag 'login', @login
 
     %li.clearfix
-      = label_tag t "session.password"
+      = label_tag 'password', t("session.password")
       = password_field_tag 'password', nil
       
     %li.clearfix
