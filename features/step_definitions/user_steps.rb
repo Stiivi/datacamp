@@ -21,4 +21,7 @@ end
 
 When /^I go and change my password to "([^"]*)"$/ do |password|
   And %{I go to the account page}
+  And %{I fill in "Password" with "#{password}"}
+  And %{I fill in "Password confirmation" with "#{password}"}
+  And %{I press "Save"}
 end

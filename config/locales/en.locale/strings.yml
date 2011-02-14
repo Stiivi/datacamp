@@ -311,6 +311,7 @@ en:
         logged_in: "You was logged in successfuly"
         insufficient_privileges: "You have insufficient privileges to perform action %{action}."
         register: Sign up for account
+        update_successfull: "User data update was successfull."
     pages:
         all_pages: All pages
         name: Name

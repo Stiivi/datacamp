@@ -320,6 +320,7 @@ sk:
     insufficient_privileges: "Nemáte právo na vykonanie akcie %{action}."
     agree_with: "Súhlasím s %{s}"
     with_terms_of_use: "podmienkami používania"
+    update_successfull: "Aktualizácia údajov používateľa bola úspešná."
   validations: 
     blank: "nemôže byť prázdne"
   watchers: 

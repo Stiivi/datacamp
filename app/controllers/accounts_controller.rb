@@ -36,6 +36,7 @@ class AccountsController < ApplicationController
     @account.attributes = params[:user]
     # raise @account.to_yaml
     if @account.save
+      flash[:notice] = t('users.update_successfull')
       if params[:redirect]
         redirect_to params[:redirect]
       else
@@ -88,6 +89,7 @@ class AccountsController < ApplicationController
   
   def get_account
     @account = current_user
+    @account.accepts_terms = '1'
     @comments = Comment.find_include_suspended(:user_id => current_user.id)
     @favorites = @account.favorites || []
     # FIXME: This might get slow with many favorites. Favorites tab should be loaded

@@ -4,7 +4,7 @@
   = f.error_messages
   
   %ul
-
+    = f.hidden_field :accepts_terms
     = f.text_field :name
     = f.text_area :about
     = f.select :loc, I18N_LOCALES.collect{|l|[I18N_LOCALE_NAMES[l], l.to_s]}
