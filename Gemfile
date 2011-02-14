@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -47,10 +47,6 @@ gem 'test-unit'
 # group :development, :test do
 #   gem 'webrat'
 # end
-group :test do
-	gem 'rspec-rails', '>= 2.0.1'
-end
-
 group :development do
 	gem "rails-erd"
 	gem 'jquery-rails'
@@ -58,4 +54,15 @@ group :development do
 	# Deploy with Capistrano multistage
 	gem 'capistrano'
 	gem 'capistrano-ext'
+end
+
+group :development, :test do
+	gem 'cucumber-rails'
+	gem 'rspec-rails'
+	gem 'mocha'
+	gem 'capybara'
+	gem 'database_cleaner'
+	gem 'spork', '>= 0.9.0.rc2'
+	gem 'launchy'    # So you can do Then show me the page
+	gem 'factory_girl_rails', '>= 1.1.beta1'
 end
