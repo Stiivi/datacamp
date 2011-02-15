@@ -334,6 +334,7 @@ en:
         results: "%{results} results"
         more_results: More results
         any_field: Any field
+        showing_first_results: Showing first %{showing_count} of %{all_count}. Please click the More results link to show all.
     validations:
         blank: can't be blank
     messages:

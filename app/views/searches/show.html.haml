@@ -21,4 +21,6 @@
 						-fds.each do |field|
 							%td= result.get_html_value(field)
 							/ = result.send(field.identifier)
+			= t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => 5)
+			%br
 			%br

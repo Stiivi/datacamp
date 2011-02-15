@@ -117,13 +117,10 @@ class SearchesController < ApplicationController
     @search = Search.find_by_id! params[:id]
 
     @results = {}
-    DatasetCategory.includes(:dataset_descriptions => :field_descriptions).each do |dataset_category|
+    DatasetCategory.all.each do |dataset_category|
       dataset_category.dataset_descriptions.each do |dataset_description|
-        dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string
-        if dataset_results.present?
-          @results[dataset_category] ||= {}
-          @results[dataset_category].merge!({dataset_description=>dataset_results})
-        end
+        dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5
+        @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description=>dataset_results}) if dataset_results.present?
       end
     end
   end

@@ -285,6 +285,7 @@ sk:
     search_term: Výraz
     searching_wait_notice: "Vyhľadávam ..."
     through: "Vyhľadávať v %{dataset}"
+    showing_first_results: Zobrazuje prvých %{showing_count} záznamov z %{all_count}. Pokiaľ chcete vidieť všetky kliknite na Viac a podrobnejšie.
   session: 
     login: Prihlásenie
     lost_password: "Zabudli ste heslo?"
