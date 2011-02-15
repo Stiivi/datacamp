@@ -36,9 +36,10 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/index/update_config.rb #{release_path}/index/update_config.rb"
     run "ln -nfs #{shared_path}/config/datacamp_config.yml #{release_path}/config/datacamp_config.yml"
+    run "ln -nfs #{shared_path}/config/sphinx.yml #{release_path}/config/sphinx.yml"
     run "ln -nfs #{shared_path}/files #{release_path}/files"
     run "ln -nfs #{shared_path}/dumps #{release_path}/dumps"
-    run "ln -nfs #{shared_path}/index/data #{release_path}/index/data"
+    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
   end
   
   task :refresh_indexes, :roles => :app do

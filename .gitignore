@@ -6,6 +6,7 @@ tmp/**/*
 files/*
 config/database.yml
 config/datacamp_config.yml
+config/sphinx.yml
 /update
 /remote
 index/data*

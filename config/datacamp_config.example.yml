@@ -7,7 +7,3 @@ dataset_dump_path: /var/lib/datacamp/dumps
 # Keys
 captcha_private_key: XXX
 captcha_public_key: XXX
-
-#sphinx
-sphinx_server: localhost
-sphinx_port: 9312
