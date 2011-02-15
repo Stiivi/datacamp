@@ -115,30 +115,15 @@ class SearchesController < ApplicationController
   
   def show
     @search = Search.find_by_id! params[:id]
-    
-    datasets_with_results= @search.results.group("table_name").collect &:table_name
-    @categories_with_results = DatasetDescription.where(:identifier => datasets_with_results).group("category_id").includes(:category).collect(&:category)
-    
-    conditions = {}
-    
-    unless params[:category_id]
-      params[:category_id] = @categories_with_results.first.id if @categories_with_results.first
-    end
-    
-    selected_datasets = DatasetDescription.where(:category_id => params[:category_id]).collect(&:identifier)
-    conditions[:table_name] = selected_datasets
-    
-    @results = @search.results.where(conditions).includes("dataset_description")
-    @datasets = @results.group_by {|result| result.dataset_description }
-    
-    params[:query_string] = @search.query_string # We want to display this in the form
-    
-    # Cache records
-    @results.group_by(&:table_name).each do |table_name, results|
-      record_ids = results.collect(&:record_id)
-      records = Dataset::Base.new(table_name.to_sym).dataset_record_class.where("_record_id IN (?)", record_ids)
-      records.each do |record|
-        results.find{|r|r.record_id == record.id}.set_record_target(record)
+
+    @results = {}
+    DatasetCategory.includes(:dataset_descriptions => :field_descriptions).each do |dataset_category|
+      dataset_category.dataset_descriptions.each do |dataset_description|
+        dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string
+        if dataset_results.present?
+          @results[dataset_category] ||= {}
+          @results[dataset_category].merge!({dataset_description=>dataset_results})
+        end
       end
     end
   end

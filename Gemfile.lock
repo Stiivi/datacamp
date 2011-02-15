@@ -155,7 +155,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     recaptcha (0.2.3)
-    riddle (1.2.1)
+    riddle (1.2.2)
     rspec (2.0.1)
       rspec-core (~> 2.0.1)
       rspec-expectations (~> 2.0.1)
@@ -183,6 +183,9 @@ GEM
     term-ansicolor (1.0.5)
     test-unit (1.2.3)
       hoe (>= 1.5.1)
+    thinking-sphinx (2.0.2)
+      activerecord (>= 3.0.3)
+      riddle (>= 1.2.2)
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
@@ -229,6 +232,7 @@ DEPENDENCIES
   spawn
   spork (>= 0.9.0.rc2)
   test-unit
+  thinking-sphinx (>= 2.0.2)
   typhoeus
   validation_reflection
   whenever

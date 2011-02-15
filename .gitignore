@@ -1,6 +1,6 @@
 .bundle
 db/*.sqlite3
-log/*.log
+log/*
 tmp/**/*
 
 files/*
@@ -14,5 +14,6 @@ index/*.rb
 searchd.log
 dumps/*
 public/system/*
+db/sphinx/*
 
 .DS_Store

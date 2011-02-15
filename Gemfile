@@ -26,6 +26,7 @@ gem 'delayed_job_admin'
 gem 'whenever', :require => false
 gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 gem 'newrelic_rpm'
+gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
 
 gem 'test-unit'
 
@@ -47,6 +48,7 @@ gem 'test-unit'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
 group :development do
 	gem "rails-erd"
 	gem 'jquery-rails'

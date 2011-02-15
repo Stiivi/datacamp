@@ -121,58 +121,53 @@ class DatasetRecord < ActiveRecord::Base
 		# :separator =>, :delimiter =>
 		# :precision => 0 get from arg
 
-	   format_arg =  field_description.data_format_argument
-	   format_arg = '' if format_arg.blank?
-	   case data_format.name
-	   when "number"
-	     value = number_with_precision(value)
-	   when "currency"
-	     # FIXME: Put format into argument 2
-	     value = number_to_currency(value, :unit => format_arg, :format => "%n %u")
-	   when "percentage"
-	     value = number_to_percentage(value)
-	   when "bytes"
-	   	 value = number_to_human_size(value)
-	   when "flag"
-         if format_arg and format_arg != ""
-             flag_values = format_arg.split(",")
-             flag_values = flag_values.collect { |str| str.strip }
-         end
-
-         if not flag_values
-            flag_values = [I18n.t("data_format_values.format_flag_true"), 
-                           I18n.t("data_format_values.format_flag_false")]
-         elsif flag_values.count == 1
+      format_arg =  field_description.data_format_argument
+      format_arg = '' if format_arg.blank?
+      case data_format.name
+        when "number"
+          value = (number_with_precision(value) rescue value)
+        when "currency"
+          # FIXME: Put format into argument 2
+          value = number_to_currency(value, :unit => format_arg, :format => "%n %u")
+        when "percentage"
+          value = number_to_percentage(value)
+        when "bytes"
+          value = number_to_human_size(value)
+        when "flag"
+          if format_arg and format_arg != ""
+            flag_values = format_arg.split(",")
+            flag_values = flag_values.collect { |str| str.strip }
+          end
+        
+          if not flag_values
+            flag_values = [I18n.t("data_format_values.format_flag_true"), I18n.t("data_format_values.format_flag_false")]
+          elsif flag_values.count == 1
             flag_values << I18n.t("data_format_values.format_flag_false")
-         end
-         
-	     if value
+          end
+           
+          if value
             value = flag_values[0]
-         else
+          else
             value = flag_values[1]
-         end
-	   end
-	   
-	   return value
-    else
-      return value
+          end
+      end
     end
+    value
   end
   
   def get_html_value(field_description, length = nil)
     value = get_formatted_value(field_description)
-    if length
-      value = truncate(value.to_s, :length => length, :omission => "&hellip;")
-    end
-    data_format = field_description.data_format
-    if data_format
-	  case data_format.name
-	  when "url"
-	    value = "<a href=\"#{value}\">#{value}</a>"
-	  when "email"
-	    value = "<a href=\"mailto:#{value}\">#{value}</a>"
-	  end
-	end
+    value = truncate(value.to_s, :length => length, :omission => "&hellip;") if length
+    
+    # data_format = field_description.data_format
+    # if data_format
+    #   case data_format.name
+    #     when "url"
+    #       value = "<a href=\"#{value}\">#{value}</a>"
+    #     when "email"
+    #       value = "<a href=\"mailto:#{value}\">#{value}</a>"
+    #   end
+    # end
     return value
   end
   
