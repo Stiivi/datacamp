@@ -109,7 +109,7 @@ class SearchesController < ApplicationController
     query = params[:query_string]
     engine = SphinxSearchEngine.new
     search = engine.create_search_with_string(query)
-    engine.perform_search(search)
+    # engine.perform_search(search)
     redirect_to search_path(search)
   end
   
