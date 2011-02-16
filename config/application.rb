@@ -56,7 +56,7 @@ module Datacamp
       DatasetDescription.includes(:field_descriptions).each do |dataset_description|
         dataset_description.dataset.dataset_record_class.define_index do
           dataset_description.visible_field_descriptions(:search).each do |field|
-            indexes field.identifier.to_sym
+            indexes field.identifier.to_sym if field.identifier.present?
           end
         end
       end
