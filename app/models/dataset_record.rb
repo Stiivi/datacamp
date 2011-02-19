@@ -5,7 +5,8 @@ class DatasetRecord < ActiveRecord::Base
   
   establish_connection Rails.env + "_data"
   
-  cattr_accessor :dataset
+  class_inheritable_accessor :dataset
+  
   attr_accessor :handling_user
   
   # FIXME: add this to initialize method, use datasetore manager!
@@ -19,25 +20,6 @@ class DatasetRecord < ActiveRecord::Base
   
   def to_param
     _record_id.to_s
-  end
-  
-  def description
-    @@dataset.description
-  end
-  
-  def self.find *args
-    if @@dataset.has_derived_fields?
-      select_columns = "*, " + @@dataset.derived_fields.map { |field, value| "#{value} as #{field}" }.join(",")
-    else
-      select_columns = "*"
-    end
-    
-    conditions = {}
-    # TODO should display only records with ok status
-    
-    with_scope(select(select_columns).where(conditions)) do
-      super(*args)
-    end
   end
   
   # Converts Datacamp-specific options (NOT RAILS) into SQL.
