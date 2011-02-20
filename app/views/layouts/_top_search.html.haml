@@ -2,6 +2,9 @@
   - if params[:controller] != "main" && params[:controller] != "search"
     = form_tag quick_searches_path, :class => "search" do
       = text_field_tag :query_string, (@search.query_string if @search)
-      = submit_tag(t("search.search_action"), :id => "query_submit")
+      = submit_tag t("search.search_action"), :id => "query_submit", :style => 'float:left; margin-right: 10px;'
+      - DatasetDescription.disabled_in_quick_search.each do |dd|
+        = label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :style => 'width:auto;'
+        = check_box_tag 'disabled_descriptions[]', dd.id, !@disabled_descriptions || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s)), :style => 'margin-top:8px;'
   - else
     &nbsp;

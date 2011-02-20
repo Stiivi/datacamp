@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101214115255) do
+ActiveRecord::Schema.define(:version => 20110220181023) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -167,10 +167,13 @@ ActiveRecord::Schema.define(:version => 20101214115255) do
     t.string   "collection_mode"
     t.string   "data_source_type"
     t.integer  "category_id"
-    t.boolean  "is_active",             :default => true
+    t.boolean  "is_active",                       :default => true
     t.string   "default_import_format"
-    t.integer  "api_access_level",      :default => 0
+    t.integer  "api_access_level",                :default => 0
+    t.boolean  "can_be_disabled_in_quick_search"
   end
+
+  add_index "dataset_descriptions", ["category_id"], :name => "dataset_category_find"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -234,6 +237,8 @@ ActiveRecord::Schema.define(:version => 20101214115255) do
     t.string  "data_format_argument"
     t.string  "reference"
   end
+
+  add_index "field_descriptions", ["dataset_description_id"], :name => "dataset_description_find"
 
   create_table "import_files", :force => true do |t|
     t.string   "title"
@@ -325,6 +330,8 @@ ActiveRecord::Schema.define(:version => 20101214115255) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "search_results", ["search_query_id", "table_name"], :name => "find_for_show"
 
   create_table "searches", :force => true do |t|
     t.integer  "search_query_id"

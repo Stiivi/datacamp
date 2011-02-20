@@ -204,7 +204,8 @@ en:
         importing: "Uploading file"
         statuses:
           ready: Ready
-    global: 
+    global:
+        do_not_search: "Do not search: %{name}"
         new_category: New Category
         active: active
         add_to_favorites_hint: Is this page interesting?

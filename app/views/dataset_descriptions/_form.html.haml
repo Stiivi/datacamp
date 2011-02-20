@@ -29,6 +29,7 @@
     = f.text_field :data_source_type
     = f.text_field :default_import_format
     = f.check_box :is_active
+    = f.check_box :can_be_disabled_in_quick_search
     = f.select :api_access_level, options_for_select(Api.access_levels.collect{|k,v|[I18n.t("api.levels.#{k}"), v]}, @dataset_description.api_access_level)
         
   %p

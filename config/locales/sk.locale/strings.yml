@@ -106,7 +106,8 @@ sk:
   favorites: 
     confirm_deletion: "Naozaj chcete odstrániť túto obľúbenú položku?"
     remove: (odstrániť)
-  global: 
+  global:
+    do_not_search: "Nevyhľadávať: %{name}"
     active: aktívne
     add_to_favorites: "Pridať k obľúbeným"
     add_to_favorites_hint: "Je táto stránka zaujimavá?"

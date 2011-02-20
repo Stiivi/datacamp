@@ -118,15 +118,21 @@ class SearchesController < ApplicationController
     engine = SphinxSearchEngine.new
     search = engine.create_search_with_string(query)
     # engine.perform_search(search)
-    redirect_to search_path(search)
+    redirect_to search_path(search, :disabled_descriptions => params[:disabled_descriptions])
   end
   
   def show
     @search = Search.find_by_id! params[:id]
+    @disabled_descriptions = params[:disabled_descriptions]
 
     @results = {}
     DatasetCategory.all.each do |dataset_category|
-      dataset_category.dataset_descriptions.each do |dataset_description|
+      if params[:disabled_descriptions]
+        dds = dataset_category.dataset_descriptions.where('id NOT IN(?)', params[:disabled_descriptions]) 
+      else
+        dds = dataset_category.dataset_descriptions
+      end
+      dds.each do |dataset_description|
         dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5
         @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description=>dataset_results}) if dataset_results.present?
       end
