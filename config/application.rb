@@ -53,10 +53,17 @@ module Datacamp
     config.action_mailer.delivery_method = :sendmail
     
     config.after_initialize do
-      DatasetDescription.includes(:field_descriptions).each do |dataset_description|
+      DatasetDescription.all.each do |dataset_description|
         dataset_description.dataset.dataset_record_class.define_index do
+          indexes :_record_id
           dataset_description.visible_field_descriptions(:search).each do |field|
-            indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
+            if field.data_type == 'string'
+              indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
+            else
+              has field.identifier.to_sym if field.identifier.present?
+            end
+            has "#{field.identifier} IS NOT NULL", :type => :integer, :as => "#{field.identifier}_not_nil" if field.identifier.present?
+            has "#{field.identifier} IS NULL", :type => :integer, :as => "#{field.identifier}_nil" if field.identifier.present?
           end
         end
       end

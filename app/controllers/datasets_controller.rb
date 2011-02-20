@@ -62,20 +62,42 @@ class DatasetsController < ApplicationController
     
     # Add pagination stuff to those options
     paginate_options = {}
-    paginate_options[:page] = params[:page] ? params[:page] : nil
+    paginate_options[:page] = params[:page] if params[:page]#? params[:page] : nil
     paginate_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
-    paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]
+    # paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]
     
-    @records = create_query_from_params(@dataset_class).paginate(paginate_options)
+    # @records = create_query_from_params(@dataset_class).paginate(paginate_options)
+
+    if params[:sort]
+      paginate_options[:order] = params[:sort] 
+      paginate_options[:sort_mode] = params[:dir].to_sym || :asc
+    end
+    paginate_options[:conditions], paginate_options[:with], paginate_options[:without] = {},{},{}
+    paginate_options[:sphinx_select] = "*"
+    sphinx_search = ""
+    paginate_options[:match_mode] = :extended
+    unless params[:search_id].blank?
+      search_object = Search.find_by_id!(params[:search_id])
+      @search_predicates = search_object.query.predicates
+      search_object.query.predicates.each do |predicate|
+        field_description = FieldDescription.find_by_identifier(predicate.search_field)
+      	operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
+      	condition = predicate.sphinx_condition(operand)
+      	paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
+      	sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
+        paginate_options.merge!(condition)
+      end
+    end
+    @records = @dataset_class.search(sphinx_search, paginate_options)
     
     # This conditions checks if we've reached end of our huge
     # list.
-    if params[:page] && params[:page].to_i > 1 && @records.count == 0
-      count = @dataset_class.count_by_sql(create_query_from_params(@dataset_class).order('').select("COUNT(1)").to_sql)
-      paginate_options[:total_entries] = count
-      paginate_options[:page] = (count.to_f/paginate_options[:per_page].to_f).ceil
-      @records = create_query_from_params(@dataset_class).paginate(paginate_options)
-    end
+    # if params[:page] && params[:page].to_i > 1 && @records.count == 0
+    #   count = @dataset_class.count_by_sql(create_query_from_params(@dataset_class).order('').select("COUNT(1)").to_sql)
+    #   paginate_options[:total_entries] = count
+    #   paginate_options[:page] = (count.to_f/paginate_options[:per_page].to_f).ceil
+    #   @records = create_query_from_params(@dataset_class).paginate(paginate_options)
+    # end
     
     # Extra javascripts
     add_javascript('datasets/search.js')

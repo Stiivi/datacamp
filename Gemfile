@@ -34,7 +34,7 @@ gem 'test-unit'
 # gem 'unicorn'
 
 # To use debugger
-# gem 'ruby-debug'
+# gem 'ruby-debug19'
 
 # Bundle the extra gems:
 # gem 'bj'

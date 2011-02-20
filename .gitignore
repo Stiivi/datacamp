@@ -17,5 +17,6 @@ searchd.log
 dumps/*
 public/system/*
 db/sphinx/*
+.idea/*
 
 .DS_Store

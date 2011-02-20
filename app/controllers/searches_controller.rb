@@ -40,37 +40,45 @@ class SearchesController < ApplicationController
   # =>                 will be redirected back to dataset/view.
 
   def create
-    @engine = SearchEngine.new
-    @engine.delegate = self
-    
+    # @engine = SearchEngine.new
+    # @engine.delegate = self
+    # 
+    # search_params = params[:search] || {}
+    # 
+    # unless params[:query_string].blank?
+    #   search_params[:query_string] = params[:query_string]
+    # end
+    # 
+    #  # Check if we're searching with query or predicates
+    # if !search_params[:query_string].blank?
+    #   search = @engine.create_global_search_with_string(params[:query_string])
+    # elsif search_params[:predicates]
+    #   @predicates = create_predicates_from_hash(search_params[:predicates])
+    #   search = @engine.create_dataset_search_with_predicates(@predicates, search_params[:dataset])
+    # else
+    #   return redirect_to new_search_path
+    # end
+    # 
+    # return redirect_to new_search_path unless search
+    # 
+    # search.session = @current_session
+    # search.save
+    # 
+    # if search.query.scope == "dataset"
+    #   # @engine.perform_search(search)
+    #   dataset = DatasetDescription.find_by_identifier(search.query.object)
+    #   redirect_to dataset_path(dataset, :search_id => search.id)
+    # else
+    #   @engine.perform_search(search, :dataset_limit => 5)
+    #   redirect_to search_path(search)
+    # end
     search_params = params[:search] || {}
-    
-    unless params[:query_string].blank?
-      search_params[:query_string] = params[:query_string]
-    end
-    
-     # Check if we're searching with query or predicates
-    if !search_params[:query_string].blank?
-      search = @engine.create_global_search_with_string(params[:query_string])
-    elsif search_params[:predicates]
-      @predicates = create_predicates_from_hash(search_params[:predicates])
-      search = @engine.create_dataset_search_with_predicates(@predicates, search_params[:dataset])
+    if search_params[:predicates]
+      query = SearchQuery.query_with_predicates(create_predicates_from_hash(search_params[:predicates]), :scope=>"dataset", :object => search_params[:dataset])
+      search = Search.create(:query => query, :search_type => 'predicates', :session => @current_session)
+      redirect_to dataset_path(DatasetDescription.find_by_identifier(search.query.object), :search_id => search.id) 
     else
-      return redirect_to new_search_path
-    end
-    
-    return redirect_to new_search_path unless search
-    
-    search.session = @current_session
-    search.save
-    
-    if search.query.scope == "dataset"
-      @engine.perform_search(search)
-      dataset = DatasetDescription.find_by_identifier(search.query.object)
-      redirect_to dataset_path(dataset, :search_id => search.id)
-    else
-      @engine.perform_search(search, :dataset_limit => 5)
-      redirect_to search_path(search)
+      redirect_to datasets_path, :notice => 'Something went wrong...'
     end
   end
   

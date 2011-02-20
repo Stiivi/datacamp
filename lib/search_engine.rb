@@ -63,8 +63,7 @@ def create_dataset_search_with_predicates(predicates, dataset)
   raise "Predicates shouldn't be nil" if predicates.nil?
   
 	search = Search.new
-	query = SearchQuery.query_with_predicates(predicates, :scope=>"dataset",
-														  :object=>dataset)
+	query = SearchQuery.query_with_predicates(predicates, :scope=>"dataset", :object=>dataset)
 	search.query = query
 	search.search_type = "predicates"
 	search.save

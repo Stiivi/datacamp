@@ -6,9 +6,11 @@ belongs_to :search_query
 
 # FIXME: change to method, get from more generic hash
 @@datatype_operators = {
-  :integer => [:greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, :is_set, :is_not_set],
   :date => [:within_last_days, :within_last_weeks, :within_last_months, :greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, :is_set, :is_not_set],
-  :string => [:contains, :begins_with, :ends_with, :does_not_contain, :matches, :is_set, :is_not_set]
+  :integer => [:greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, 
+    :is_set, :is_not_set],
+  :string => [:contains, :begins_with, :ends_with, :does_not_contain, :matches, 
+    :is_set, :is_not_set]
 }
 
 @@operator_codes = {
@@ -31,6 +33,49 @@ belongs_to :search_query
 	:within_last_weeks => "lw",
 	:within_last_months => "lm"	
 }
+
+def sphinx_condition(operand)
+  options = {}
+  operand ||= "*"
+  
+  case operator
+  when "contains"
+    options[:sphinx_search] = "@#{operand} \"#{argument}\","
+  when "does_not_contain"
+    # options[:sphinx_search] = "@#{operand} !\"#{argument}\","
+  when "begins_with"
+    options[:sphinx_search] = "@#{operand} \"^#{argument}\","
+  when "ends_with"                     
+    options[:sphinx_search] = "@#{operand} \"#{argument}$\","
+  when "matches"
+    options[:sphinx_search] = "@#{operand} \"^#{argument}$\","
+  when "equal"
+    options[:sphinx_select] = ",IF(#{operand} = #{argument},1,0) AS #{operand}_select"                       
+    options[:with] = {"#{operand}_select" => '1'}
+  when "not_equal"
+    options[:sphinx_select] = ",IF(#{operand} = #{argument},1,0) AS #{operand}_select"                       
+    options[:without] = {"#{operand}_select" => '1'}
+  when "greater"
+    options[:sphinx_select] = ",IF(#{operand} > #{argument},1,0) AS #{operand}_select"                       
+    options[:with] = {"#{operand}_select" => '1'}
+  when "greater_or_equal"              
+    options[:sphinx_select] = ",IF(#{operand} >= #{argument},1,0) AS #{operand}_select"                       
+    options[:with] = {"#{operand}_select" => '1'}
+  when "less"                          
+    options[:sphinx_select] = ",IF(#{operand} < #{argument},1,0) AS #{operand}_select"                       
+    options[:with] = {"#{operand}_select" => '1'}
+  when "less_or_equal"                 
+    options[:sphinx_select] = ",IF(#{operand} <= #{argument},1,0) AS #{operand}_select"                       
+    options[:with] = {"#{operand}_select" => '1'}
+  when "is_set"
+    options[:with] = {"#{operand}_not_nil" => '1'} if operand != '*'
+	when "is_not_set"
+	  options[:with] = {"#{operand}_nil" => '1'} if operand != '*'
+	else
+		raise "Unknown search predicate operator #{operator}"
+	end
+	options
+end
 
 def sql_condition_for_operand(operand)
 	sql_argument = argument
