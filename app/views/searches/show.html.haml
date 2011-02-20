@@ -10,17 +10,30 @@
 		- result.each do |dataset_description, result_records|
 			%h2.clearfix.in_container
 				.fl= dataset_description.title
-				.fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset_description.id), :class => "search_preloader")
 			%table.frontend.small
 				- fds = dataset_description.visible_field_descriptions(:search, 5)
 				%tr
 					- fds.each do |field|
 						%th= field.title
+					%th{:class => "actions"} &nbsp;
 				- result_records.each do |result|
 					%tr
 						-fds.each do |field|
 							%td= result.get_html_value(field)
-							/ = result.send(field.identifier)
-			= t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => 5)
+						%td.actions
+							= link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(result.dataset.description, result, :page => params[:page]))
+			.fl= t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => 5)
+			.fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset_description.id), :class => "search_preloader")
 			%br
 			%br
+			
+%br
+%br
+#top_search
+	= form_tag quick_searches_path, :class => "search" do
+		= text_field_tag :query_string, (@search.query_string if @search)
+		= submit_tag t("search.search_action"), :id => "query_submit", :style => 'float:left; margin-right: 10px;'
+		- DatasetDescription.disabled_in_quick_search.each do |dd|
+			= label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :style => 'width:auto;'
+			= check_box_tag 'disabled_descriptions[]', dd.id, !@disabled_descriptions || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s)), :style => 'margin-top:8px;'
+.clearfix &nbsp;

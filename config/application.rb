@@ -56,7 +56,7 @@ module Datacamp
       DatasetDescription.all.each do |dataset_description|
         dataset_description.dataset.dataset_record_class.define_index do
           indexes :_record_id
-          dataset_description.visible_field_descriptions(:search).each do |field|
+          dataset_description.visible_field_descriptions(:detail).each do |field|
             if field.data_type != 'integer'
               indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
             else
