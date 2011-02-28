@@ -57,10 +57,11 @@ module Datacamp
         dataset_description.dataset.dataset_record_class.define_index do
           indexes :_record_id
           dataset_description.visible_field_descriptions(:detail).each do |field|
-            if field.data_type != 'integer'
+            if field.data_type != :integer && field.data_type != :date
               indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
             else
               has field.identifier.to_sym if field.identifier.present?
+              has field.identifier.to_sym, :as => "#{field.identifier}_sort" if field.identifier.present?
             end
             has "#{field.identifier} IS NOT NULL", :type => :integer, :as => "#{field.identifier}_not_nil" if field.identifier.present?
             has "#{field.identifier} IS NULL", :type => :integer, :as => "#{field.identifier}_nil" if field.identifier.present?

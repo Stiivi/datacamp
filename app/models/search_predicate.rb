@@ -6,7 +6,9 @@ belongs_to :search_query
 
 # FIXME: change to method, get from more generic hash
 @@datatype_operators = {
-  :date => [:within_last_days, :within_last_weeks, :within_last_months, :greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, :is_set, :is_not_set],
+  :date => [:within_last_days, :within_last_weeks, :within_last_months, 
+    :greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, 
+    :is_set, :is_not_set],
   :integer => [:greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, 
     :is_set, :is_not_set],
   :string => [:contains, :begins_with, :ends_with, :does_not_contain, :matches, 
@@ -71,6 +73,12 @@ def sphinx_condition(operand)
     options[:with] = {"#{operand}_not_nil" => '1'} if operand != '*'
 	when "is_not_set"
 	  options[:with] = {"#{operand}_nil" => '1'} if operand != '*'
+	when "within_last_days"
+	  options[:with] = {operand.to_sym => argument.to_i.days.ago..Time.now}
+	when "within_last_weeks"
+	  options[:with] = {operand.to_sym => argument.to_i.weeks.ago..Time.now}
+	when "within_last_months"
+	  options[:with] = {operand.to_sym => argument.to_i.months.ago..Time.now}
 	else
 		raise "Unknown search predicate operator #{operator}"
 	end
