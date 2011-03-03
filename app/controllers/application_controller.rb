@@ -22,7 +22,9 @@ class ApplicationController < ActionController::Base
   layout "frontend_main"
 
   def set_locale
-    unless session[:locale].blank?
+    if session[:locale].blank?
+      I18n.locale = :sk
+    else
       I18n.locale = session[:locale].to_sym
     end
   end
