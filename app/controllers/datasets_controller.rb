@@ -88,6 +88,14 @@ class DatasetsController < ApplicationController
         paginate_options.merge!(condition)
       end
     end
+    if @filters
+      paginate_options[:conditions] ||= {}
+      filters = @filters.find_all{|key,value|!value.blank?}
+      filters.each do |key, value|
+        paginate_options[:conditions].merge!({key.to_sym => value})
+      end
+      # raise select_options.to_yaml
+    end
     @records = @dataset_class.search(sphinx_search, paginate_options)
     
     # This conditions checks if we've reached end of our huge
