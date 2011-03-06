@@ -35,6 +35,6 @@
 		= submit_tag t("search.search_action"), :id => "query_submit", :style => 'float:left; margin-right: 10px;'
 		.clearfix
 		- DatasetDescription.disabled_in_quick_search.each do |dd|
-			= label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :style => 'width:auto;'
+			= label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :class => 'search_label'
 			= check_box_tag 'disabled_descriptions[]', dd.id, (!@disabled_descriptions && controller_name != 'searches') || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s)), :style => 'margin-top:8px;'
 .clearfix &nbsp;
