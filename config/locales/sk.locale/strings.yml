@@ -40,7 +40,10 @@ sk:
   dataset: 
     active_search: "Záznamy sú filtrované %{predicates} podmienkami"
     add_field_description: "Pridať popis položky"
+    selected_records: "%{count} záznam(y) je/sú vybraný/vybrané."
     batch_edit: "Hromadná úprava"
+    edit_selected: Vybrané záznamy
+    edit_all: Všetky záznamy
     batch_updated: "%{count} záznamov bolo upravených."
     cant_setup_dataset: "Nie je možné nastaviť súbor %{dataset} na tabuľku %{identifier}. Skontrolujte prosím databázu."
     click_to_select_all: "Kliknite pre označenie/odznačenie všetkých."
@@ -342,3 +345,10 @@ sk:
       super_user: Super User
       api_access: API
       api_all: Všetko
+  batch_editing:
+      editing_selected: "Upravuje/Upravujú sa %{count} záznamov/záznamy."
+      editing_all_search: "Upravujú sa všetky záznamy, ktoré boli výsledkom vyhľadania."
+      editing_all_table: "Updavujú sa všetky záznamy."
+      attribute_name: Názov
+      attribute_value: Hodnota
+      update_all: Aktualizovať všetky
