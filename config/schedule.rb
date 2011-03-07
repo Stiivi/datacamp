@@ -32,11 +32,3 @@ end
 every 1.day, :at => '4:30 am' do
   rake "db:dump"
 end
-
-every 1.day, :at => '5:00 am' do
-  rake "index:update_config"
-end
-
-every 1.day, :at => '5:05 am' do
-  rake "index:index"
-end
