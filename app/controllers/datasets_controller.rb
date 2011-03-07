@@ -96,7 +96,15 @@ class DatasetsController < ApplicationController
       end
       # raise select_options.to_yaml
     end
-    @records = @dataset_class.search(sphinx_search, paginate_options)
+    if params[:search_id].blank?
+      if params[:sort]
+        sort_direction = params[:dir] || "asc"
+        @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}").where("#{params[:sort]} IS NOT NULL")
+      end
+      @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
+    else
+      @records = @dataset_class.search(sphinx_search, paginate_options)
+    end
     
     # This conditions checks if we've reached end of our huge
     # list.
