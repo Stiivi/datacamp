@@ -14,7 +14,8 @@ class CsvFile
   end
   
   def open
-    @file = File.readable?(@path) ? CSV.open(@path, "r", :col_sep => @colsep) : false
+    read_mode = @encoding ? "r:#{@encoding}" : "r"
+    @file = File.readable?(@path) ? CSV.new(File.open(@path, read_mode).read.encode("utf-8"), :col_sep => @colsep) : false
     self.rewind
   end
   
@@ -52,7 +53,8 @@ class CsvFile
     if @encoding
       begin
         line = line.collect do |column|
-          Iconv.conv('utf-8', @encoding, column)
+          # Iconv.conv('utf-8', @encoding, column)
+          column
         end
       rescue
       end
