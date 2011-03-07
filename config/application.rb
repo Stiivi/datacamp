@@ -58,8 +58,11 @@ module Datacamp
           indexes :_record_id
           indexes :record_status
           indexes :quality_status
+          field_count = 0
           dataset_description.visible_field_descriptions(:detail).each do |field|
             if field.data_type != :integer && field.data_type != :date
+              next if field_count > 28
+              field_count += 1 
               indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
             else
               has field.identifier.to_sym if field.identifier.present?
