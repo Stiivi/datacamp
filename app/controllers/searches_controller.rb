@@ -132,7 +132,7 @@ class SearchesController < ApplicationController
       else
         dds = dataset_category.dataset_descriptions
       end
-      dds.each do |dataset_description|
+      dds.where(:is_active => true).each do |dataset_description|
         begin
         dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5
         @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description=>dataset_results}) if dataset_results.present?
