@@ -97,23 +97,24 @@ class DatasetsController < ApplicationController
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
-      if params[:sort]
-        sort_direction = params[:dir] || "asc"
-        @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}").where("#{params[:sort]} IS NOT NULL")
+      sort_direction = params[:dir] || "asc"
+      if params[:sort] && params[:page]
+        # This ugly thing is here because mysql is lame and doesn't use indexes when there is just an order and a limit on the select (pagination with ordering)...
+        total_pages = @dataset_class.count.to_i
+        page = params[:page].to_i
+        per_page = paginate_options[:per_page].to_i
+        @records = @dataset_class.select('*').from("(SELECT _record_id from #{@dataset_class.table_name} ORDER BY #{ActiveRecord::Base.sanitize(params[:sort])} #{sort_direction} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN #{@dataset_class.table_name} t on q._record_id = t._record_id")
+        @records.define_singleton_method(:total_pages) { (total_pages/per_page.to_f).ceil }
+        @records.define_singleton_method(:current_page) { page }
+        @records.define_singleton_method(:previous_page) { page > 1 ? (page - 1) : nil }
+        @records.define_singleton_method(:next_page) { page < total_pages ? (page + 1) : nil }
+      else
+        @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}") if params[:sort]
+        @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
       end
-      @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
     else
       @records = @dataset_class.search(sphinx_search, paginate_options)
     end
-    
-    # This conditions checks if we've reached end of our huge
-    # list.
-    # if params[:page] && params[:page].to_i > 1 && @records.count == 0
-    #   count = @dataset_class.count_by_sql(create_query_from_params(@dataset_class).order('').select("COUNT(1)").to_sql)
-    #   paginate_options[:total_entries] = count
-    #   paginate_options[:page] = (count.to_f/paginate_options[:per_page].to_f).ceil
-    #   @records = create_query_from_params(@dataset_class).paginate(paginate_options)
-    # end
     
     # Extra javascripts
     add_javascript('datasets/search.js')
