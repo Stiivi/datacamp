@@ -50,6 +50,7 @@ namespace :etl do
                 document_id,
                 m.source_url,
                 m.date_created,
+                NOW(),
                 is_price_part_of_range,
                 customer_name,
                 note,
