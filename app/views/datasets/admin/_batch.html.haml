@@ -8,6 +8,7 @@
       = t("dataset.batch_edit")
       
       = hidden_field_tag :search_id, params[:search_id]
+      = hidden_field_tag :page, params[:page]
       
       %select.no_submit{:name => "selection"}
         %option{:value => "selected"}
