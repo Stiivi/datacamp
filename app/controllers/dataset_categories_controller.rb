@@ -19,10 +19,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# FIXME: this can be accessed by anyone! Need to add user privilege check!
+
 class DatasetCategoriesController < ApplicationController
   def index
     @categories = DatasetCategory.all
     respond_to do |wants|
+      wants.html
       wants.xml { render :xml => @categories.to_xml(:methods => [:title, :description], :root => "category") }
     end
   end
@@ -70,7 +73,12 @@ class DatasetCategoriesController < ApplicationController
     @category.destroy
     
     respond_to do |wants|
-      wants.html { redirect_to dataset_descriptions_path }
+      wants.html { redirect_to params[:return_to_category_index] ? dataset_categories_path : dataset_descriptions_path }
     end
+  end
+  
+  protected
+  def init_menu
+    @submenu_partial = "data_dictionary"
   end
 end

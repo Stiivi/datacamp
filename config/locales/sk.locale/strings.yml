@@ -15,6 +15,13 @@ sk:
     edit_block: Upraviť
     show_block: Zobraziť
     new_block: Vytvoriť blok
+  categories:
+    all: Zoznam kategórií
+    new: Nová kategória
+    name: Titul
+    last_update: Posledná úprava
+    edit: Úprava kategórie
+    destroy: Zmazať
   comments: 
     neutral: Neutral
     new: "Nový komentár"

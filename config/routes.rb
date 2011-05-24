@@ -96,6 +96,7 @@ Datacamp::Application.routes.draw do
   end             
               
   resources :categories, :controller => "dataset_categories"
+  resources :dataset_categories
   
   resources :pages do
     resources :blocks

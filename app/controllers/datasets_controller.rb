@@ -203,6 +203,7 @@ class DatasetsController < ApplicationController
 
     flash[:notice] = I18n.t("dataset.batch_updated", :count => @count_updated)
     params.delete(:search_id) if params[:search_id].blank? #FIXME: ewww ugly!
+    params.delete :page if params[:page].blank?
     redirect_to(dataset_path(@dataset_description, :search_id => params[:search_id], :page => params[:page]))
   end
   
