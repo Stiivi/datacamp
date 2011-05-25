@@ -3,6 +3,8 @@ module Settings
   class BlocksController < ApplicationController
     before_filter :login_required
     privilege_required :edit_blocks
+    respond_to :html
+    
     def index
       @blocks = Block.all
     end
@@ -36,6 +38,12 @@ module Settings
       else
         render :action => "edit"
       end
+    end
+    
+    def destroy
+      block = Block.find(params[:id])
+      block.destroy
+      respond_with block, :location => settings_blocks_path
     end
     
     def init_menu

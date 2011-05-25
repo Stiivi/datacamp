@@ -18,4 +18,5 @@
         .clearfix
           .fr.clearfix
             = button_link_to t("blocks.edit_block"), settings_block_path(block.name)
+            = link_to( image_tag('icons/trash.gif'), settings_block_path(block.id), :confirm => t("global.delete_confirmation"), :method => :delete)
 //            = button_link_to t("blocks.show_block"), block_path(block)
