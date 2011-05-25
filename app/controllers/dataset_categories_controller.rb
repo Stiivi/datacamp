@@ -19,9 +19,10 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# FIXME: this can be accessed by anyone! Need to add user privilege check!
-
 class DatasetCategoriesController < ApplicationController
+  before_filter :login_required
+  privilege_required :edit_dataset_description
+  
   def index
     @categories = DatasetCategory.all
     respond_to do |wants|
