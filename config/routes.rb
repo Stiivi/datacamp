@@ -2,7 +2,11 @@
 Datacamp::Application.routes.draw do
   namespace :settings do
     resources :pages
-    resources :blocks
+    resources :blocks do
+      collection do
+        post :update_positions
+      end
+    end
   end
   
   resources :settings do

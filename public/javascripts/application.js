@@ -24,6 +24,12 @@ $(document).ready(function(){
   }
 });
 
+$.ajaxSetup({
+  beforeSend: function(xhr) {
+    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+  }
+});
+
 
 var update_import_status = function(){
   if($("#import_status a.refresh").length == 0)

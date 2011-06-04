@@ -2,11 +2,11 @@
 module Settings
   class BlocksController < ApplicationController
     before_filter :login_required
-    privilege_required :edit_blocks
-    respond_to :html
+    # privilege_required :edit_blocks
+    respond_to :html, :xml, :js
     
     def index
-      @blocks = Block.all
+      @blocks = Block.order(:position)
     end
     
     def new
@@ -46,6 +46,16 @@ module Settings
       respond_with block, :location => settings_blocks_path
     end
     
+    def update_positions
+      blocks = Block.all
+      blocks.each do |block|
+        new_index = params[:blocks].index(block.id.to_s)
+        block.update_attribute(:position, new_index+1) if new_index
+      end
+      render :nothing => true
+    end
+    
+    private
     def init_menu
       @submenu_partial = "settings"
     end

@@ -8,7 +8,7 @@
     = stylesheet_link_tag 'modules/main', 'modules/dataset_descriptions', 'modules/datasets', 'modules/searches'
     = stylesheet_link_tag "/themes/#{SystemVariable.get("theme", "default")}/stylesheets/screen.css"
     = javascript_include_tag 'jquery.min.js', 'rails.js', 'jquery.history.js'
-    = javascript_include_tag 'inscription.js', 'dataset_descriptions.js', 'searches.js', 'datasets.js', 'application.js'
+    = javascript_include_tag 'inscription.js', 'dataset_descriptions.js', 'searches.js', 'datasets.js', 'application.js', 'jquery.ui.sortable'
     - if @javascripts
       = javascript_include_tag @javascripts
   %body.frontend

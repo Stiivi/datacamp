@@ -1,4 +1,6 @@
 en: 
+    sort: Sort
+    finish_sort: Finish sorting
     api:
         levels:
             restricted: Restricted

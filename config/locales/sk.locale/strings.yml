@@ -1,5 +1,7 @@
 --- 
-sk: 
+sk:
+  sort: Usporiadať
+  finish_sort: Ukončiť usporiadavanie 
   api:
     levels:
       restricted: Zakázané
