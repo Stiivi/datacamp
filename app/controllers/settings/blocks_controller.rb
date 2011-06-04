@@ -47,11 +47,7 @@ module Settings
     end
     
     def update_positions
-      blocks = Block.all
-      blocks.each do |block|
-        new_index = params[:blocks].index(block.id.to_s)
-        block.update_attribute(:position, new_index+1) if new_index
-      end
+      update_all_positions(Block, params[:blocks])
       render :nothing => true
     end
     

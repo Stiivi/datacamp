@@ -55,4 +55,13 @@ class ApplicationController < ActionController::Base
   def delayed_job_admin_authentication
     has_privilege? :delayed_job_admin
   end
+  
+  protected
+  def update_all_positions(model, ids)
+    items = model.all
+    items.each do |item|
+      new_index = ids.index(item.id.to_s)
+      item.update_attribute(:position, new_index+1) if new_index
+    end
+  end
 end

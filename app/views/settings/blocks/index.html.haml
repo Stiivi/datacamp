@@ -1,8 +1,7 @@
 .clearfix
   %h1.fl= t("blocks.all_blocks")
   .fr= button_link_to t("blocks.new_block"), new_settings_block_path
-  .fr= link_to content_tag('span', t('sort')), '#', :class => 'button sort_link' 
-  .fr= link_to content_tag('span', t('finish_sort')), update_positions_settings_blocks_path, :class => 'button finish_sort_link hidden'
+  = sorting_links
 
 %table#sortable
   %tbody.content
@@ -23,27 +22,3 @@
               = button_link_to t("blocks.edit_block"), settings_block_path(block.name)
               .fr= link_to( image_tag('icons/trash.gif'), settings_block_path(block.id), :confirm => t("global.delete_confirmation"), :method => :delete)
 //            = button_link_to t("blocks.show_block"), block_path(block)
-
-
-:javascript
-  jQuery(function(){
-    $('#sortable tbody.content').sortable();
-    $('#sortable tbody.content').sortable('disable');
-
-    $('.sort_link').click(function(){
-      $('#sortable tbody.content').sortable('enable');
-      $('.sort_link').addClass('hidden');
-      $('.finish_sort_link').removeClass('hidden');
-      $('#top-nav, #header, #menu, #footer, h1').fadeTo(500, 0.3);
-      return false;
-    });
-    $('.finish_sort_link').click(function(){
-      $.post($('.finish_sort_link').first().attr('href'), $('#sortable tbody.content').sortable('serialize'), function(data){
-        $('#top-nav, #header, #menu, #footer, h1').fadeTo(500, 1);
-        $('#sortable tbody.content').sortable('disable');
-        $('.sort_link').removeClass('hidden');
-        $('.finish_sort_link').addClass('hidden');
-      });
-      return false;
-    });
-  });
