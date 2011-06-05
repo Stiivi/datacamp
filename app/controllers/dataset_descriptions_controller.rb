@@ -29,21 +29,17 @@ class DatasetDescriptionsController < ApplicationController
   
   protect_from_forgery :except => :set_visibility
   
-  # GET /dataset_descriptions
-  # GET /dataset_descriptions.xml
   def index
     @dataset_categories = DatasetCategory.order(:position).includes(:dataset_descriptions)
     @other_descriptions = DatasetDescription.where("category_id IS NULL OR category_id = 0").order(:position).includes(:translations)
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.js
       format.xml  { render :xml => @dataset_descriptions }
     end
   end
 
-  # GET /dataset_descriptions/1
-  # GET /dataset_descriptions/1.xml
   def show
     @dataset = @dataset_description.dataset
     @field_descriptions = @dataset_description.field_descriptions
@@ -55,18 +51,15 @@ class DatasetDescriptionsController < ApplicationController
     end
   end
 
-  # GET /dataset_descriptions/new
-  # GET /dataset_descriptions/new.xml
   def new
     @dataset_description = DatasetDescription.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @dataset_description }
     end
   end
 
-  # GET /dataset_descriptions/1/edit
   def edit
     respond_to do |wants|
       wants.html
@@ -74,8 +67,6 @@ class DatasetDescriptionsController < ApplicationController
     end
   end
 
-  # POST /dataset_descriptions
-  # POST /dataset_descriptions.xml
   def create
     @dataset_description = DatasetDescription.new
     
@@ -101,8 +92,6 @@ class DatasetDescriptionsController < ApplicationController
     end
   end
 
-  # PUT /dataset_descriptions/1
-  # PUT /dataset_descriptions/1.xml
   def update
     redirect_path = dataset_description_path(@dataset_description)
     if params[:return_to]
@@ -140,8 +129,6 @@ class DatasetDescriptionsController < ApplicationController
     end
   end
 
-  # DELETE /dataset_descriptions/1
-  # DELETE /dataset_descriptions/1.xml
   def destroy
     @dataset_description.destroy
 
