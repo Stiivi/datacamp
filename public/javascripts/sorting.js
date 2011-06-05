@@ -15,8 +15,7 @@ jQuery(function(){
 		listType: 'ul'
   });
   $('.sortable').nestedSortable('disable');
-	// alert($('.sortable').nestedSortable('serialize'));
-  // parse_sortable('.sortable');
+
   $('.sort_link').click(function(){
     $('.sortable').nestedSortable('enable');
     $('.sort_link').addClass('hidden');
