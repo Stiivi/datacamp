@@ -33,7 +33,7 @@ class DatasetDescriptionsController < ApplicationController
   # GET /dataset_descriptions.xml
   def index
     @dataset_categories = DatasetCategory.order(:position).includes(:dataset_descriptions)
-    @other_descriptions = DatasetDescription.where(:category_id => nil).order(:position).includes(:translations)
+    @other_descriptions = DatasetDescription.where("category_id IS NULL OR category_id = 0").order(:position).includes(:translations)
     
     respond_to do |format|
       format.html # index.html.erb
