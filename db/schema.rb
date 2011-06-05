@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603144418) do
+ActiveRecord::Schema.define(:version => 20110605114239) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20110603144418) do
   create_table "dataset_categories", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position",   :default => 0
   end
 
   create_table "dataset_category_translations", :force => true do |t|
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20110603144418) do
     t.string   "default_import_format"
     t.integer  "api_access_level",                :default => 0
     t.boolean  "can_be_disabled_in_quick_search"
+    t.integer  "position",                        :default => 0
   end
 
   create_table "delayed_jobs", :force => true do |t|

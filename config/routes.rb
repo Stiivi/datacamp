@@ -89,6 +89,7 @@ Datacamp::Application.routes.draw do
     end
     collection do
       get :import, :do_import
+      post :update_positions
     end
     resources :field_descriptions do
       collection do

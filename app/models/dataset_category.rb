@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class DatasetCategory < ActiveRecord::Base
-  has_many :dataset_descriptions, :foreign_key => "category_id", :dependent => :nullify
+  has_many :dataset_descriptions, :foreign_key => "category_id", :dependent => :nullify, :order => :position
+  
+  default_scope includes(:translations)
   
   translates :title, :description
   locale_accessor I18N_LOCALES

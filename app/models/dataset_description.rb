@@ -6,6 +6,8 @@ class DatasetDescription < ActiveRecord::Base
   has_many :comments
   belongs_to :category, :class_name => "DatasetCategory"
   
+  default_scope includes(:translations)
+  
   translates :title, :description
   locale_accessor I18N_LOCALES
   

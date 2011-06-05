@@ -32,8 +32,8 @@ class DatasetDescriptionsController < ApplicationController
   # GET /dataset_descriptions
   # GET /dataset_descriptions.xml
   def index
-    @dataset_categories = DatasetCategory.all
-    @other_descriptions = DatasetDescription.where(:category_id => nil)
+    @dataset_categories = DatasetCategory.order(:position).includes(:dataset_descriptions)
+    @other_descriptions = DatasetDescription.where(:category_id => nil).order(:position).includes(:translations)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -248,6 +248,21 @@ class DatasetDescriptionsController < ApplicationController
         end
     end
     @dataset_description = dd
+  end
+  
+  def update_positions
+    update_all_positions(params[:dataset_category].keys, params[:dataset_description])
+    render :nothing => true
+  end
+  
+  private
+  def update_all_positions(category_placement, description_placement)
+    super(DatasetCategory, category_placement)
+    items = DatasetDescription.all
+    items.each do |item|
+      new_index = description_placement.keys.index(item.id.to_s)
+      item.update_attributes(:position => new_index+1, :category_id => description_placement[item.id.to_s]) if new_index
+    end
   end
   
   protected

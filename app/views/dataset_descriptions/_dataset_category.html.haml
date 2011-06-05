@@ -1,5 +1,6 @@
-%tr.title
-  %td
+%li[group]
+  .title.clear
+    .fl.hidden= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
     - if group
       %span[group]
         = group.title
@@ -8,21 +9,54 @@
         = link_to t("global.delete"), category_path(group), :method => "delete"
     - else
       =t("dataset.no_category")
-  %td
-  %td
   
-- descriptions = group ? group.dataset_descriptions : @other_descriptions
-- descriptions.each do |dataset_description|
-  %tr{:class => dataset_description.is_active ? "active" : "inactive"}[dataset_description]
-    %td
-      %a{:href => dataset_description_url(dataset_description)}= dataset_description.title.blank? ? dataset_description.identifier : dataset_description.title
-      - unless dataset_description.is_active
-        = "(%s)" % t("global.inactive")
-      %span.actions.hidden
-        = link_to t("global.move"), edit_dataset_description_path(dataset_description), :class => "ajax move"
-    %td
-      %em= truncate(dataset_description.description, :length => 110)
-    %td.actions
-      .actions
-        - if current_user.has_privilege?(:destroy_dataset)
-          =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete", :method => 'delete')
+  %ul{:style=> 'margin:10px'}
+    - descriptions = group ? group.dataset_descriptions : @other_descriptions
+    - descriptions.each do |dataset_description|
+      %li{:class => (dataset_description.is_active ? "active" : "inactive") + 'item clearfix'}[dataset_description]
+        %div
+          .fl.hidden.nopadding= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
+          .span-4
+            %a{:href => dataset_description_url(dataset_description)}= dataset_description.title.blank? ? dataset_description.identifier : dataset_description.title
+            - unless dataset_description.is_active
+              = "(%s)" % t("global.inactive")
+          .span-14= truncate(dataset_description.description, :length => 110)
+          .fr
+            - if current_user.has_privilege?(:destroy_dataset)
+              =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete", :method => 'delete')
+          .clear
+      / .clear
+      / .hidden.nopadding= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
+
+  /   
+/ %table.backend.sortable[group]
+/   %tbody.content
+/     %tr.title
+/       %td
+/         - if group
+/           %span[group]
+/             = group.title
+/           %span.actions
+/             = link_to t("global.edit"), edit_category_path(group), :class => "ajax"
+/             = link_to t("global.delete"), category_path(group), :method => "delete"
+/         - else
+/           =t("dataset.no_category")
+/       %td
+/       %td
+/   
+/     - descriptions = group ? group.dataset_descriptions : @other_descriptions
+/     - descriptions.each do |dataset_description|
+/       %tr{:class => dataset_description.is_active ? "active" : "inactive"}[dataset_description]
+/         %td
+/           = image_tag('icons/arrow_down.png', :style => 'cursor:pointer;') + image_tag('icons/arrow_up.png', :style => 'cursor:pointer;')
+/           %a{:href => dataset_description_url(dataset_description)}= dataset_description.title.blank? ? dataset_description.identifier : dataset_description.title
+/           - unless dataset_description.is_active
+/             = "(%s)" % t("global.inactive")
+/           / %span.actions.hidden
+/           /   = link_to t("global.move"), edit_dataset_description_path(dataset_description), :class => "ajax move"
+/         %td
+/           %em= truncate(dataset_description.description, :length => 110)
+/         %td.actions
+/           .actions
+/             - if current_user.has_privilege?(:destroy_dataset)
+/               =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete", :method => 'delete')

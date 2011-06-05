@@ -1,8 +1,7 @@
 # -*- encoding : utf-8 -*-
 module Settings
   class BlocksController < ApplicationController
-    before_filter :login_required
-    # privilege_required :edit_blocks
+    privilege_required :edit_blocks
     respond_to :html, :xml, :js
     
     def index
@@ -47,7 +46,7 @@ module Settings
     end
     
     def update_positions
-      update_all_positions(Block, params[:blocks])
+      update_all_positions(Block, params[:block].keys)
       render :nothing => true
     end
     

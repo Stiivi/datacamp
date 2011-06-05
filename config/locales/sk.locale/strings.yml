@@ -17,6 +17,7 @@ sk:
     edit_block: Upraviť
     show_block: Zobraziť
     new_block: Vytvoriť blok
+    delete_block: Vymazať
   categories:
     all: Zoznam kategórií
     new: Nová kategória

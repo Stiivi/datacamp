@@ -16,6 +16,7 @@ en:
         edit_block: Edit
         show_block: Show
         new_block: New block
+        delete_block: Delete
     session: 
         submit: Submit
         lost_password_label: Have you forgotten your password?

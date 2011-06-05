@@ -8,16 +8,17 @@
     =link_to raw("<span>#{t("dataset.create_category")}</span>"), new_category_path, :class => 'button ajax', :id => "new_category"
     - if current_user.has_privilege?(:create_dataset)
       =link_to raw("<span>#{t("dataset.initialize")}</span>"), import_dataset_descriptions_path, :class => 'button'
+    = sorting_links(update_positions_dataset_descriptions_path)
 	  
 
-%table.backend
-  %tr
-    %th{:width => 250}
-      = t "global.title"
-    %th
-      = t "global.description"
-    %th &nbsp;
-    
+/ %table.backend
+/   %tr
+/     %th{:width => 250}
+/       = t "global.title"
+/     %th
+/       = t "global.description"
+/     %th &nbsp;
+%ul.sortable
   = render :partial => "dataset_category", :collection => @dataset_categories, :as => :group
   
   = render :partial => "dataset_category", :locals => {:group => nil} if @other_descriptions.count > 0

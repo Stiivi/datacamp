@@ -28,8 +28,8 @@ class DatasetsController < ApplicationController
   helper_method :has_filters?
   
   def index
-    @all_dataset_descriptions = DatasetDescription.where("is_active = 1")
-    @dataset_descriptions = @all_dataset_descriptions.group_by(&:category)
+    @all_dataset_descriptions = DatasetDescription.where(:is_active => true)
+    @dataset_categories = DatasetCategory.order('dataset_categories.position, dataset_descriptions.position').includes(:dataset_descriptions => :translations).where("dataset_descriptions.is_active = 1")
     respond_to do |wants|
       wants.html
       wants.xml { render :xml => @all_dataset_descriptions }
