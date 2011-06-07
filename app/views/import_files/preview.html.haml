@@ -8,7 +8,7 @@
       .fr
         = button_link_to t("import.edit_settings"), '#', :class => "toggle_settings"
 
-    - form_for @import_file, :html => {:class => "inline"} do |f|
+    = form_for @import_file, :html => {:class => "inline"} do |f|
       %table#settings
         %tr
           %td
@@ -62,7 +62,7 @@
 - if params[:guess_mapping]
   %p.notice= t("import.guessing_mapping")
 
-- form_tag import_import_file_path(@import_file), {:class => "inline preloader", :"data-preloader-message" => t("import.importing")} do
+= form_tag import_import_file_path(@import_file), {:class => "inline preloader", :"data-preloader-message" => t("import.importing")} do
   %table
     %tr
       %th{:width => 30}= t "import.column"

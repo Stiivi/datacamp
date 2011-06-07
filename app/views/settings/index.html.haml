@@ -1,6 +1,6 @@
 %h1= t "global.settings"
 
-- form_for :settings, :url => update_all_settings_path, :html => {:method => :put} do |f|
+= form_for :settings, :url => update_all_settings_path, :html => {:method => :put} do |f|
   %table
     %tr
       %th= t "settings.name"

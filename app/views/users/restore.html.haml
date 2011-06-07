@@ -1,6 +1,6 @@
 %h1= t("session.reset_password")
 
-- form_for @account, :builder => ListFormBuilder, :url => restore_user_path(@account.restoration_code) do |f|
+= form_for @account, :builder => ListFormBuilder, :url => restore_user_path(@account.restoration_code) do |f|
   %ul
     = f.password_field :password
     = f.password_field :password_confirmation

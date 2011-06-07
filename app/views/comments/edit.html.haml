@@ -1,6 +1,6 @@
 %h1=t "global.comment"
 
-- form_for @comment, :builder => ListFormBuilder do |f|
+= form_for @comment, :builder => ListFormBuilder do |f|
   = f.select :user_id, User.all
   = f.text_area :text
   = f.check_box :is_suspended

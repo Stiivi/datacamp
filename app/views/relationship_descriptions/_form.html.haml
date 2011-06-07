@@ -1,4 +1,4 @@
-- form_for(@relationship_description, :url => @relationship_description.new_record? ? dataset_description_relationship_descriptions_path(@dataset_description) : dataset_description_relationship_description_path(@dataset_description, @relationship_description), :builder => ListFormBuilder) do |f|
+= form_for(@relationship_description, :url => @relationship_description.new_record? ? dataset_description_relationship_descriptions_path(@dataset_description) : dataset_description_relationship_description_path(@dataset_description, @relationship_description), :builder => ListFormBuilder) do |f|
   = f.error_messages
     
   %ul

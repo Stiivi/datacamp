@@ -1,6 +1,6 @@
 %h1=t "comments.report"
 
-- form_for @report, :url => report_comment_path(@comment), :builder => ListFormBuilder do |f|;
+= form_for @report, :url => report_comment_path(@comment), :builder => ListFormBuilder do |f|;
 
   %li.clearfix
     %label= t("global.comment")

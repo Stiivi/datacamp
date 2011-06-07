@@ -1,6 +1,6 @@
 %h1= t("users.register")
 
-- form_for @account, :url => account_path, :builder => ListFormBuilder do |f|
+= form_for @account, :url => account_path, :builder => ListFormBuilder do |f|
   %ul
     = f.text_field :login
     = f.text_field :email
