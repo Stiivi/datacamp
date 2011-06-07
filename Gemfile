@@ -27,6 +27,7 @@ gem 'whenever', :require => false
 gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 gem 'newrelic_rpm'
 gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
+gem "rake", "0.8.7"
 
 gem 'test-unit'
 
