@@ -4,6 +4,7 @@ end
 
 Given /^I am not authenticated$/ do
   And %{I go to the logout page}
+  And %{I follow "English"}
 end
 
 Given /^I am a new, authenticated user "([^"]*)" with password "([^"]*)"$/ do |username, password|

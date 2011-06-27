@@ -62,7 +62,7 @@ module Etl
     end
     
     def parse(id, document)
-      file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
+      file_content = document.body.gsub("&nbsp;",' ')
       doc = Nokogiri::HTML(file_content)
     
       checked_value = doc.xpath "//div[@id='innerMain']/div/h2"
@@ -94,14 +94,14 @@ module Etl
       doc.xpath("//span[@class='nadpis']").each do |element|
         if element.inner_text.match(/ODDIEL\s+I\W/)
           customer_information = element.next_sibling
-          customer_name = customer_information.xpath("/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span/span").inner_text.strip
-          customer_name = customer_information.xpath("/tbody/tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span").inner_text.strip if customer_name.empty?
-          customer_ico = customer_information.xpath("/tbody/tr[2]/td[2]/table/tbody/tr[2]/td[@class='hodnota']//span[@class='hodnota']").inner_text.strip
+          customer_name = customer_information.xpath(".//tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span/span").inner_text.strip
+          customer_name = customer_information.xpath(".//tr[2]/td[2]/table/tbody/tr[1]/td[@class='hodnota']/span").inner_text.strip if customer_name.empty?
+          customer_ico = customer_information.xpath(".//tr[2]/td[2]/table/tbody/tr[2]/td[@class='hodnota']//span[@class='hodnota']").inner_text.strip
         elsif element.inner_text.match(/ODDIEL\s+II\W/)
           contract_information = element.next_sibling
           contract_information.xpath(".//td[@class='kod']").each do |code|
             if code.inner_text.match(/II\.*.*?[^\d]4[^\d]$/)
-              procurement_subject = code.next_sibling.xpath(".//span[@class='hodnota']").inner_text
+              procurement_subject = code.parent.xpath(".//span[@class='hodnota']").inner_text
               procurement_subject = procurement_subject.split[0..max_procurement_words].join(' ')
             end
           end
@@ -117,7 +117,8 @@ module Etl
               supplier[:supplier_name] = supplier_details[0].inner_text; supplier[:supplier_ico] = supplier_details[1].inner_text.gsub(' ', ''); supplier[:supplier_ico_evidence] = "";
               supplier[:supplier_ico] = Float(supplier[:supplier_ico]) rescue supplier[:supplier_ico]
               supplier[:note] = "Zahranicne IČO: #{supplier[:supplier_ico]}" if supplier[:supplier_ico] && supplier[:supplier_ico].class != Float
-            elsif code.inner_text.match(/^V\.*4/)
+            elsif code.inner_text.match(/V\.*.*?[^\d]4[^\d]$/)
+              ap code.inner_text
               price_detail = code.parent.next_sibling
               while price_detail do
                 if price_detail.xpath(".//span[@class='podnazov']").inner_text.match(/konečná/) || price_detail.xpath(".//span[@class='nazov']").inner_text.match(/konečná/)
@@ -126,10 +127,11 @@ module Etl
                   supplier[:price] = price[0].inner_text.gsub(' ', '').gsub(',','.').to_f
                   supplier[:currency] = if price.inner_text.downcase.match(/sk|skk/) then 'SKK' else 'EUR' end
                   supplier[:vat_included] = !price_detail.next_sibling.xpath(".//span[@class='hodnota']").inner_text.downcase.match(/bez/) && !price_detail.next_sibling.next_sibling.xpath(".//span[@class='hodnota']").inner_text.downcase.match(/bez/)
-                  suppliers << supplier
+                  break
                 end
                 price_detail = price_detail.next_sibling
               end
+              suppliers << supplier
               #code.parent.following_siblings.each do |price_detail|
               #end
             end
