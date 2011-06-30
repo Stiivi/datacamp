@@ -6,3 +6,5 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+EtlConfiguration.find_or_create_by_name('vvo_extraction', :start_id => 2642, :batch_limit => 1000)
