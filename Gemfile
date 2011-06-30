@@ -68,4 +68,15 @@ group :development, :test do
 	gem 'spork', '>= 0.9.0.rc2'
 	gem 'launchy'    # So you can do Then show me the page
 	gem 'factory_girl_rails', '>= 1.1.beta1'
+	gem 'vcr'
+
+	if RUBY_PLATFORM =~ /darwin/i
+	  gem 'rb-fsevent', :require => false 
+	  gem 'growl'
+	end
+	
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-cucumber'
+  gem 'guard-spork'
 end

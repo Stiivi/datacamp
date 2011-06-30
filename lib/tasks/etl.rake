@@ -7,11 +7,6 @@ namespace :etl do
     end
   end
   
-  task :vvo_test => :environment do
-    vvo = Etl::VvoExtraction.new(1, 1,2675)
-    vvo.perform
-  end
-  
   task :regis_extraction => :environment do
     config = EtlConfiguration.find_by_name('regis_extraction')
     end_id = config.start_id + config.batch_limit

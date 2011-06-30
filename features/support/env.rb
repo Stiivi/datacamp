@@ -48,3 +48,6 @@ end
 #     DatabaseCleaner.strategy = :transaction
 #   end
 #
+
+# This silences the annoying 'rack-1.2.3/lib/rack/utils.rb:16: warning: regexp match /.../n against to UTF-8 string'. If they fix it then the next line can be removed.
+$VERBOSE = nil
