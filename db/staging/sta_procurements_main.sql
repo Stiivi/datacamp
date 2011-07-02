@@ -24,4 +24,4 @@ CREATE TABLE `sta_procurements` (
   `customer_name` text,
   `is_price_part_of_range` tinyint(1) DEFAULT NULL,
   `note` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+) ENGINE=MyISAM DEFAULT CHARSET=utf8$$

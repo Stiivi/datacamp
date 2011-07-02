@@ -3,52 +3,20 @@
 require 'fileutils'
 
 module Etl
-  class RegisExtraction < Struct.new(:start_id, :batch_limit, :id)
-    def perform
-      puts "downloading: #{id}"
-      document = download(id)
-      puts "parsing: #{id}"
-      procurement_hash = parse(id, document)
-      puts procurement_hash
-      unless procurement_hash == :unknown_announcement_type
-        puts "saving: #{id}"
-        save(procurement_hash, id)
-        update_last_processed(id)
-      end
+  class RegisExtraction < Etl::Extraction
+    def document_url(id)
+      "http://www.statistics.sk/pls/wregis/detail?wxidorg=#{id}"
     end
     
-    def download(id)
-      Typhoeus::Request.get(document_url(id))
-    end
-    
-    def update_last_processed(id)
-      config.update_attribute(:last_processed_id, id)
+    def is_acceptable?(document)
+      document.xpath("//div[@class='telo']").present?
     end
     
     def config
       @configuration ||= EtlConfiguration.find_by_name('regis_extraction')
     end
     
-    def document_url(id)
-      "http://www.statistics.sk/pls/wregis/detail?wxidorg=#{id}"
-    end
-    
-    def save(procurement_hash, document_id)
-      regis_model = Kernel.const_get 'StagingRecord'
-      regis_model.set_table_name "sta_regis_main"
-      
-      regis_model.create!(procurement_hash)
-    end
-    
-    def parse(id, document)
-      file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
-      doc = Nokogiri::HTML(file_content)
-    
-      return :unknown_announcement_type if doc.xpath("//div[@class='telo']").empty?
-      return digest(doc, id, document_url(id))
-    end
-    
-    def digest(doc, doc_id, base_url, url = nil)
+    def digest(doc)
       ico = name = legal_form = date_start = date_end = address = region = ''
       doc.xpath("//div[@class='telo']//table[@class='tabid']/tbody/tr").each do |row|
         if row.xpath(".//td[1]").inner_text.match(/i(Č|č|c)o/i)
@@ -86,9 +54,9 @@ module Etl
       date_start = Date.parse(date_start) rescue nil
       date_end = Date.parse(date_end) rescue nil
 
-      url ||= base_url.to_s
+      url = document_url(id).to_s
 
-      { :doc_id => doc_id,
+      { :doc_id => id,
         :ico => ico,
         :name => name,
         :legal_form => legal_form,
@@ -105,16 +73,13 @@ module Etl
         :source_url => url }
     end
     
-    def after(job)
-      if id == (start_id + batch_limit)
-        if config.last_processed_id > start_id
-          ((id+1)..(id+1+config.batch_limit)).each do |i|
-            Delayed::Job.enqueue Etl::RegisExtraction.new(id+1, config.batch_limit, i)
-          end
-        else
-          config.update_attribute(:start_id, config.last_processed_id+1)
-        end
-      end
+    def save(procurement_hash)
+      Staging::StaRegisMain.create(procurement_hash)
     end
+    
+    def enque_job(document_id)
+      Delayed::Job.enqueue Etl::RegisExtraction.new(id+1, config.batch_limit, document_id)
+    end
+
   end
 end

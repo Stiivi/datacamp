@@ -1,0 +1,32 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://www.statistics.sk:80/pls/wregis/detail?wxidorg=0
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 404
+      message: Not Found
+    headers: 
+      date: 
+      - Sat, 02 Jul 2011 18:04:14 GMT
+      server: 
+      - Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/html; charset=iso-8859-1
+    body: |
+      <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+      <HTML><HEAD>
+      <TITLE>404 Not Found</TITLE>
+      </HEAD><BODY>
+      <H1>Not Found</H1>
+      The requested URL /pls/wregis/detail was not found on this server.<P>
+      <HR>
+      <ADDRESS>Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server Server at www.statistics.sk Port 80</ADDRESS>
+      </BODY></HTML>
+
+    http_version: "1.1"

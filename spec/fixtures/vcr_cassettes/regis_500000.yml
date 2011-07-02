@@ -1,0 +1,146 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://www.statistics.sk:80/pls/wregis/detail?wxidorg=500000
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Sat, 02 Jul 2011 17:16:17 GMT
+      server: 
+      - Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server
+      x-db-content-length: 
+      - "3977"
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/html; charset=WINDOWS-1250
+    body: "<TABLE   borderColor=#000000 cellSpacing=1 cellPadding=4 width=\"100%\" border=1>\n\
+      <TBODY>\n\
+      <TR>\n\
+      <TD ALIGN=\"middle\"  vAlign=center bgColor=#7382A5><P ALIGN=\"center\"><FONT face=\"Times New Roman\" color=\"#ffffff\" size=\"4\"><I><B>\x8Atatistick\xFD register organiz\xE1ci\xED </B></I></FONT></TD>\n\
+      </TR>\n\
+      </TBODY>\n\
+      </TABLE>\n\
+      <HTML>\n\
+      <BODY  bgcolor=\"#FFEFDF\" text=\"#800000\">\n\
+      <HEAD>\n\
+      <TITLE>REGIS - Informacie o subjektu</TITLE>\n\
+      </HEAD>\n\
+      <BODY>\n\
+      <SCRIPT LANGUAGE=\"JavaScript1.1\"> \r\n  function presmeruj(adresa) \r\n  {\r\n    location.href= adresa\r\n  };\r\n\
+      </SCRIPT>\n\
+      <FORM ACTION=\"/pls/wregis/dotaz\" METHOD=\"GET\">\n\
+      <DIV class=\"hlavicka\">\n\
+      <TABLE   class=\"topmenu\">\n\
+      </TABLE>\n\
+      </DIV>\n\
+      <DIV class=\"telo\">\n\
+      <DIV class=\"poznamka\">\n\
+      <I>Tento v\xFDpis m\xE1 informat\xEDvny charakter. </I>\n\
+      </DIV>\n\
+      <H4 ALIGN=\"center\">Identifika\xE8n\xE9 \xFAdaje</H4>\n\
+      <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
+      <TBODY>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>I\xC8O:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B>34797564</B></TD>\n\
+      </TR>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>Obchodn\xE9 meno:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B>J\xE1n Strme\xF2</B></TD>\n\
+      </TR>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>Pr\xE1vna forma:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B>101 - Podnikate\xBE-fyzick\xE1 osoba-nezap\xEDsan\xFD v obchodnom registri</B></TD>\n\
+      </TR>\n\
+      <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
+      <TBODY>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>D\xE1tum vzniku:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B>14.12.2000</B></TD>\n\
+      </TR>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>D\xE1tum z\xE1niku:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B>25.11.2008</B></TD>\n\
+      </TR>\n\
+      </TBODY>\n\
+      </TABLE>\n\
+      <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
+      <TBODY>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>Adresa s\xEDdla:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B>Utek\xE1\xE8 827/25, &nbsp;985 06 Utek\xE1\xE8</B></TD>\n\
+      </TR>\n\
+      <TR>\n\
+      <TD ALIGN=\"right\"  width=\"260\"><B>Okres:</B></TD>\n\
+      <TD  width=\"20\"> </TD>\n\
+      <TD ALIGN=\"left\"  width=\"400\"><B> Polt\xE1r</B></TD>\n\
+      </TR>\n\
+      </TBODY>\n\
+      </TABLE>\n\
+      <H4 ALIGN=\"center\">\x8Atatistick\xE9 charakteristiky</H4>\n\
+      <TABLE  ALIGN=\"center\"  class=\"tablist\" border=\"0\">\n\
+      <TBODY bgcolor=\"burlywood\" >\n\
+      <TR>\n\
+      <TH>N\xE1zov \xE8\xEDseln\xEDka</TH>\n\
+      <TH>K\xF3d</TH>\n\
+      <TH>Text</TH>\n\
+      </TR>\n\
+      <TR  class=\"licha\">\n\
+      <TD ALIGN=\"left\"  width=\"260\"><A HREF=\"/pls/wregis/ciselniky?kc=0056\">Pr\xE1vna forma</A></TD>\n\
+      <TD  class=\"cislo\">101</TD>\n\
+      <TD>Podnikate\xBE-fyzick\xE1 osoba-nezap\xEDsan\xFD v obchodnom registri</TD>\n\
+      </TR>\n\
+      <TR  class=\"suda\">\n\
+      <TD><A HREF=\"/pls/wregis/ciselniky?kc=5205\">Predmet preva\x9Euj\xFAcej \xE8innosti (SK NACE)</A></TD>\n\
+      <TD  class=\"cislo\">55200</TD>\n\
+      <TD>Turistick\xE9 a\xA0in\xE9 kr\xE1tkodob\xE9 ubytovanie</TD>\n\
+      </TR>\n\
+      <TR  class=\"licha\">\n\
+      <TD><A HREF=\"/pls/wregis/ciselniky?kc=5502\">Predmet preva\x9Euj\xFAcej \xE8innosti (OKE\xC8)</A></TD>\n\
+      <TD  class=\"cislo\">55210</TD>\n\
+      <TD>Ml\xE1de\x9En\xEDcke ubytovne, turistick\xE9 noc\xBEah\xE1rne a horsk\xE9 chaty</TD>\n\
+      </TR>\n\
+      <TR  class=\"suda\">\n\
+      <TD><A HREF=\"/pls/wregis/ciselniky?kc=0076\">Sektor pre n\xE1rodn\xE9 \xFA\xE8ty</A></TD>\n\
+      <TD  class=\"cislo\">14100</TD>\n\
+      <TD>Fyzick\xE9 osoby podnikaj\xFAce na z\xE1klade \x9Eivnostensk\xE9ho z\xE1kona a in\xFDch pr\xE1vnych predpisov nezap\xEDsan\xE9 v obchodnom registri</TD>\n\
+      </TR>\n\
+      <TR  class=\"licha\">\n\
+      <TD><A HREF=\"/pls/wregis/ciselniky?kc=0036\">Druh vlastn\xEDctva</A></TD>\n\
+      <TD  class=\"cislo\">2</TD>\n\
+      <TD>S\xFAkromn\xE9 tuzemsk\xE9</TD>\n\
+      </TR>\n\
+      <TR  class=\"suda\">\n\
+      <TD><A HREF=\"/pls/wregis/ciselniky?kc=0073\">Kateg\xF3ria velkosti organiz\xE1cie</A></TD>\n\
+      <TD  class=\"cislo\">00</TD>\n\
+      <TD>nezisten\xFD po\xE8et zamestnacov</TD>\n\
+      </TR>\n\
+      </TBODY>\n\
+      </TABLE>\n\
+      <BR>\n\
+      <INPUT class=\"button\" type=\"button\" name=\"back\" value=\"N\xE1vrat\" onclick=\"history.back()\">\n\
+      <INPUT TYPE=\"submit\" VALUE=\"Nov\xE9 zadanie\"  class=\"button\">\n\
+      <INPUT TYPE=BUTTON VALUE=\"V\xFDpis\" onClick=\"presmeruj( '/pls/wregis/vypisregis?vypis_xidorg=500000');\">\n\
+      </FORM>\n\
+      <DIV class=\"paticka\">\n\
+      <BR>\n\
+      Vytvorenie str\xE1nky: 02.07.2011  19:15, platnos\x9D \xFAdajov k 01.07.2011\n\
+      <BR>\n\
+      &#169 A\x8AIS-REGIS 2.0  \x8Atatistick\xFD \xFArad Slovenskej republiky, 2005     \n\
+      </DIV>\n\
+      </BODY>\n\
+      </HTML>\n"
+    http_version: "1.1"

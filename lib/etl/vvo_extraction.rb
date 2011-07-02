@@ -3,15 +3,11 @@
 require 'fileutils'
 
 module Etl
-  class VvoExtraction < Struct.new(:start_id, :batch_limit, :id)
+  class VvoExtraction < Etl::Extraction
     @@procurement_subject_word_length = 12
 
     def document_url(id)
       "http://www.e-vestnik.sk/EVestnik/Detail/#{id}"
-    end
-    
-    def download(id)
-      Nokogiri::HTML(Typhoeus::Request.get(document_url(id)).body.encode('utf-8', 'cp1250'))
     end
     
     def is_acceptable?(document)
@@ -20,10 +16,6 @@ module Etl
     
     def config
       @configuration ||= EtlConfiguration.find_by_name('vvo_extraction')
-    end
-    
-    def update_last_processed
-      config.update_attribute(:last_processed_id, id) if config.last_processed_id.nil? || id > config.last_processed_id
     end
     
     def basic_information(document)
@@ -108,6 +100,10 @@ module Etl
       {:suppliers => suppliers}
     end
     
+    def digest(document)
+      basic_information(document).merge(contract_information(document)).merge(customer_information(document)).merge(suppliers_information(document))
+    end
+    
     def save(procurement_hash)
       procurement_hash[:suppliers].each do |supplier|
         Staging::StaProcurement.create({
@@ -134,27 +130,8 @@ module Etl
       end
     end
     
-    def perform
-      document = download(id)
-      if is_acceptable?(document)
-        procurement_hash = basic_information(document).merge(contract_information(document)).merge(customer_information(document)).merge(suppliers_information(document))
-        save(procurement_hash)
-        update_last_processed
-      else
-        puts "document #{id} is not acceptable and will not be further processed."
-      end
-    end
-    
-    def after(job)
-      if id == (start_id + batch_limit)
-        if config.last_processed_id > start_id
-          ((id+1)..(id+1+config.batch_limit)).each do |i|
-            Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, config.batch_limit, i)
-          end
-        else
-          config.update_attribute(:start_id, config.last_processed_id+1)
-        end
-      end
+    def enque_job(document_id)
+      Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, config.batch_limit, document_id)
     end
   end
 end

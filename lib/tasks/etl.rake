@@ -19,7 +19,7 @@ namespace :etl do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'
     regis_table = 'sta_regis_main'
-    staging_schema = StagingRecord.connection.current_database
+    staging_schema = Staging::StagingRecord.connection.current_database
     dataset_schema = DatasetRecord.connection.current_database
 
     load = "INSERT INTO #{dataset_schema}.#{dataset_table} 
@@ -60,23 +60,17 @@ namespace :etl do
             LEFT JOIN #{staging_schema}.#{regis_table} rsupp ON rsupp.ico = supplier_ico
             WHERE m.etl_loaded_date IS NULL"
   
-    StagingRecord.connection.execute(load)
-    
-    procurement_model = Class.new StagingRecord
-    procurement_model.set_table_name "sta_procurements"
-    procurement_model.update_all :etl_loaded_date => Time.now
+    Staging::StagingRecord.connection.execute(load)
+    Staging::StaProcurement.update_all :etl_loaded_date => Time.now
   end
   
   task :regis_loading => :environment do
     source_table = 'sta_regis_main'
 		dataset_table = 'ds_organisations'
 		
-    staging_schema = StagingRecord.connection.current_database
+    staging_schema = Staging::StagingRecord.connection.current_database
     dataset_schema = DatasetRecord.connection.current_database
     
-    regis_model = Class.new StagingRecord
-    regis_model.set_table_name source_table
-
     DatasetRecord.skip_callback :update, :after, :after_update
     regis_ds_model = Class.new DatasetRecord
     regis_ds_model.set_table_name dataset_table
@@ -102,10 +96,10 @@ namespace :etl do
                          LEFT JOIN #{staging_schema}.sta_regis_size s ON s.id = m.size
                          WHERE m.etl_loaded_date IS NULL"
 
-    StagingRecord.connection.execute(append_new_records)
-    regis_model.update_all ['etl_loaded_date = ?', Time.now], ['etl_loaded_date IS NULL']
+    Staging::StagingRecord.connection.execute(append_new_records)
+    Staging::StaRegisMain.update_all ['etl_loaded_date = ?', Time.now], ['etl_loaded_date IS NULL']
 
-    modified_records = regis_model.select("doc_id, ico, name, lf.text legal_form, legal_form legal_form_code, 
+    modified_records = Staging::StaRegisMain.select("doc_id, ico, name, lf.text legal_form, legal_form legal_form_code, 
                                           m.date_start, m.date_end, address, region, a1.text activity1, activity1 activity1_code, 
                                           a2.text activity2, activity2 activity2_code, acc.text account_sector, 
                                           account_sector account_sector_code, os.text ownership, ownership ownership_code, 
@@ -122,7 +116,7 @@ namespace :etl do
     modified_records.each do |r|
       puts r.doc_id
       record_to_update = regis_ds_model.find_by_doc_id(r.doc_id)
-      regis_model.find_by_doc_id(r.doc_id).update_attribute(:etl_loaded_date, Time.now) if record_to_update.update_attributes(
+      Staging::StaRegisMain.find_by_doc_id(r.doc_id).update_attribute(:etl_loaded_date, Time.now) if record_to_update.update_attributes(
                                                              :ico => r.ico, :name => r.name, :legal_form => r.legal_form, :legal_form_code => r.legal_form_code, 
                                                              :date_start => r.date_start, :date_end => r.date_end, :address => r.address, :region => r.region, :activity1 => r.activity1, 
                                                              :activity1_code => r.activity1_code, :activity2 => r.activity2, :activity2_code => r.activity2_code, 

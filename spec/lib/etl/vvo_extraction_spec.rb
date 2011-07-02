@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Etl::VvoExtraction do
   
-  before :all do
+  before :each do
     @extractor = Etl::VvoExtraction.new(1, 2,2675)
     
     #for some reason this does is not included in the transaction and has to be cleaned manually
@@ -32,23 +32,21 @@ describe Etl::VvoExtraction do
   end
   
   it 'should update last processed id' do
-    extractor = Etl::VvoExtraction.new(1, 2,2675)
     config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 1)
-    extractor.update_last_processed
+    @extractor.update_last_processed
     config.reload.last_processed_id.should == 2675
   end
   
   it 'should not update last processed id if its not larger than current value' do
-    extractor = Etl::VvoExtraction.new(1, 2,2675)
     config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 2676)
-    extractor.update_last_processed
+    @extractor.update_last_processed
     config.reload.last_processed_id.should == 2676
   end
   
   it 'should save extracted information to the database' do
     VCR.use_cassette('vvo_2675') do
       document = @extractor.download(2675)
-      procurement_hash = @extractor.basic_information(document).merge(@extractor.customer_information(document)).merge(@extractor.suppliers_information(document))
+      procurement_hash = @extractor.digest(document)
       @extractor.save(procurement_hash)
       Staging::StaProcurement.count.should == 45
     end
@@ -74,7 +72,7 @@ describe Etl::VvoExtraction do
   it 'should not save the same thing twice into the database' do
     VCR.use_cassette('vvo_2675') do
       document = @extractor.download(2675)
-      procurement_hash = @extractor.basic_information(document).merge(@extractor.customer_information(document)).merge(@extractor.suppliers_information(document))
+      procurement_hash = @extractor.digest(document)
       @extractor.save(procurement_hash) and @extractor.save(procurement_hash)
       Staging::StaProcurement.count.should == 45
     end
@@ -83,8 +81,7 @@ describe Etl::VvoExtraction do
   it 'should have a perform method that downloads, parses and saves to the db' do
     VCR.use_cassette('vvo_2675') do
       config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 2669, :batch_limit => 5)
-      extractor = Etl::VvoExtraction.new(1, 2,2675)
-      extractor.perform
+      @extractor.perform
       Staging::StaProcurement.count.should == 45
       config.reload.last_processed_id.should == 2675
     end
