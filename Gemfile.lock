@@ -132,7 +132,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mocha (0.9.12)
-    mysql2 (0.3.6)
+    mysql2 (0.2.6)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -244,7 +244,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   mocha
-  mysql2
+  mysql2 (< 0.3)
   newrelic_rpm
   nokogiri
   paperclip
