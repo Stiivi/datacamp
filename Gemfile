@@ -69,10 +69,9 @@ group :development, :test do
 	gem "factory_girl_rails", "1.1.rc1"
 	gem 'vcr'
 
-	if RUBY_PLATFORM =~ /darwin/i
-	  gem 'rb-fsevent', :require => false 
-	  gem 'growl'
-	end
+  # comment the next two lines if you are not on macosx
+  gem 'rb-fsevent', :require => false 
+  gem 'growl'
 	
   gem 'guard-rspec'
   gem 'guard-livereload'
