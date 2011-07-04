@@ -83,10 +83,10 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
-    factory_girl (2.0.0.beta1)
-    factory_girl_rails (1.1.beta1)
-      factory_girl (~> 2.0.0.beta)
-      rails (>= 3.0.0)
+    factory_girl (2.0.0.rc1)
+    factory_girl_rails (1.1.rc1)
+      factory_girl (~> 2.0.0.rc)
+      railties (>= 3.0.0)
     ffi (1.0.9)
     gherkin (2.4.1)
       json (>= 1.4.6)
@@ -237,7 +237,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_admin
   exception_notification!
-  factory_girl_rails (>= 1.1.beta1)
+  factory_girl_rails (= 1.1.rc1)
   globalize3
   growl
   guard-cucumber

@@ -110,7 +110,7 @@ sk:
     save_and_create: "Uložiť a vytvoriť"
     set_quality: "Nastaviť kvalitu"
     set_status: "Nastaviť status"
-    short_summary: "%{count} záznamov, poskytovateľ: %{provider}"
+    short_summary: "publikovaných záznamov: %{count}, poskytovateľ: %{provider}"
     table_name: "Názov tabuľky"
     title: Nadpis
     type: Typ

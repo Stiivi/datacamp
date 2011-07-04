@@ -53,11 +53,11 @@ class DatasetRecord < ActiveRecord::Base
   end
   
   def record_status
-    super.blank? ? "published" : super
+    super.blank? ? "absent" : super
   end
   
   def quality_status
-    super.blank? ? "ok" : super
+    super.blank? ? "absent" : super
   end
   
   

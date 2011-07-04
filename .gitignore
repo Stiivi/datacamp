@@ -20,3 +20,4 @@ db/sphinx/*
 .idea/*
 
 .DS_Store
+rerun.txt

@@ -5,6 +5,7 @@ en:
         published: Published
         deleted: Deleted
         suspended: Suspended
+        absent: Absent
     quality_statuses:
         ok: OK
         duplicate: Duplicate

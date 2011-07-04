@@ -145,7 +145,7 @@ en:
         save_and_create: Save and create
         set_quality: Set quality
         set_status: Set status
-        short_summary: "%{count} records provided by %{provider}"
+        short_summary: "published records: %{count} provided by %{provider}"
         table_name: Table Name
         title: Title
         type: Type

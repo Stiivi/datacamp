@@ -5,6 +5,7 @@ sk:
         published: Publikovaný
         deleted: Vymazaný
         suspended: Skrytý
+        absent: Chýbajúci
     quality_statuses:
         ok: V poriadku
         duplicate: Duplicitný

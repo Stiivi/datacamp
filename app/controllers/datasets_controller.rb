@@ -70,7 +70,7 @@ class DatasetsController < ApplicationController
 
     if params[:sort]
       paginate_options[:order] = params[:sort] 
-      paginate_options[:sort_mode] = params[:dir].to_sym || :asc
+      paginate_options[:sort_mode] = params[:dir] || :asc
     end
     paginate_options[:conditions], paginate_options[:with], paginate_options[:without] = {},{},{}
     paginate_options[:sphinx_select] = "*"
@@ -94,6 +94,7 @@ class DatasetsController < ApplicationController
       filters.each do |key, value|
         paginate_options[:conditions].merge!({key.to_sym => value})
       end
+      paginate_options[:conditions].merge!({:record_status => DatastoreManager.record_statuses[2]}) unless current_user && current_user.has_privilege?(:data_management)
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
@@ -104,12 +105,24 @@ class DatasetsController < ApplicationController
         page = params[:page].to_i
         per_page = paginate_options[:per_page].to_i
         @records = @dataset_class.select('*').from("(SELECT _record_id from #{@dataset_class.table_name} ORDER BY #{ActiveRecord::Base.sanitize(params[:sort])} #{sort_direction} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN #{@dataset_class.table_name} t on q._record_id = t._record_id")
+        if !current_user || !current_user.has_privilege?(:data_management)
+          @records = @records.where('t.record_status = ?', DatastoreManager.record_statuses[2])
+        elsif @filters
+          @dataset_class = @dataset_class.where('t.record_status = ?', @filters['record_status']) if @filters['record_status'].present?
+          @dataset_class = @dataset_class.where('t.quality_status = ?', @filters['quality_status']) if @filters['quality_status'].present?
+        end
         @records.define_singleton_method(:total_pages) { (total_pages/per_page.to_f).ceil }
         @records.define_singleton_method(:current_page) { page }
         @records.define_singleton_method(:previous_page) { page > 1 ? (page - 1) : nil }
         @records.define_singleton_method(:next_page) { page < total_pages ? (page + 1) : nil }
       else
         @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}") if params[:sort]
+        if !current_user || !current_user.has_privilege?(:data_management)
+          @dataset_class = @dataset_class.where(:record_status => DatastoreManager.record_statuses[2])
+        elsif @filters
+          @dataset_class = @dataset_class.where(:record_status => @filters['record_status']) if @filters['record_status'].present?
+          @dataset_class = @dataset_class.where(:quality_status => @filters['quality_status']) if @filters['quality_status'].present?
+        end
         @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
       end
     else

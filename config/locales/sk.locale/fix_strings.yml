@@ -68,7 +68,7 @@ sk:
     revert: Obnoviť
     run_tests: "Spustiť testy"
     save_and_create: "Uložiť a vytvoriť"
-    short_summary: "%{count} záznamov, poskytovateľ: %{provider}"
+    short_summary: "publikovaných záznamov: %{count}, poskytovateľ: %{provider}"
     table_name: "Názov tabuľky"
     title: Nadpis
     type: Typ

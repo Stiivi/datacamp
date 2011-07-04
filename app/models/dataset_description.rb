@@ -116,7 +116,7 @@ class DatasetDescription < ActiveRecord::Base
   
   def record_count
     # FIXME: keep this information cached and retrieve it from cache
-    @record_count ||= dataset.dataset_record_class.count_by_sql "select count(_record_id) from #{dataset.table_name}"
+    @record_count ||= dataset.dataset_record_class.count_by_sql "select count(_record_id) from #{dataset.table_name} where record_status = 'published'"
     @record_count
   end
   
