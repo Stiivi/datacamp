@@ -49,10 +49,17 @@ gem 'test-unit'
 #   gem 'webrat'
 # end
 
+# bundle with '--without macosx' if you are not not a good system :)
+group :macosx do
+  gem 'rb-fsevent', :require => false 
+  gem 'growl'
+end
+
 group :development do
 	gem "rails-erd"
 	gem 'jquery-rails'
 	gem 'awesome_print'
+	gem 'rails_best_practices'
 	# Deploy with Capistrano multistage
 	gem 'capistrano'
 	gem 'capistrano-ext'
@@ -69,10 +76,6 @@ group :development, :test do
 	gem "factory_girl_rails", "1.1.rc1"
 	gem 'vcr'
 
-  # comment the next two lines if you are not on macosx
-  gem 'rb-fsevent', :require => false 
-  gem 'growl'
-	
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-cucumber'
