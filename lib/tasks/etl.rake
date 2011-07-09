@@ -134,4 +134,15 @@ namespace :etl do
       Delayed::Job.enqueue Etl::RegisUpdate.new(config.start_id, config.batch_limit,id)
     end
   end
+  
+  desc 'This is needed to show records that have neglected to have a proper record_status after 6658fa9.'
+  task :publish_records => :environment do
+    DatasetDescription.all.each do |dataset_description|
+      dataset_model = dataset_description.dataset.dataset_record_class
+      neglected_records_condition = "record_status IS NULL OR record_status = 'loaded' OR record_status = 'new'"
+      neglected_records_count = dataset_model.where(neglected_records_condition).count
+      dataset_model.where(neglected_records_condition).update_all(:record_status => 'published')
+      puts "Updated #{neglected_records_count} records in #{dataset_model.table_name}."
+    end
+  end
 end
