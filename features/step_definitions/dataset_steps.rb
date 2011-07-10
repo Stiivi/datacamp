@@ -1,11 +1,10 @@
 Given /^a published dataset "([^"]*)"$/ do |dataset_description_identifier|
-  dataset_description = Factory.create(:dataset_description, :identifier => dataset_description_identifier)
+  dataset_description = Factory(:dataset_description, :identifier => dataset_description_identifier, :en_title => dataset_description_identifier)
   And %{an empty dataset "#{dataset_description_identifier}"}
 end
 
 Given /^an empty dataset "([^"]*)"$/ do |dataset_description_identifier|
-  dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
-  dataset_class = dataset_description.dataset.dataset_record_class
+  dataset_class = load_dataset_model(dataset_description_identifier)
   dataset_class.delete_all
 end
 

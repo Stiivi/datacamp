@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110605114239) do
+ActiveRecord::Schema.define(:version => 20110709160848) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -127,6 +127,24 @@ ActiveRecord::Schema.define(:version => 20110605114239) do
   create_table "data_formats", :force => true do |t|
     t.string   "name"
     t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "data_repairs", :force => true do |t|
+    t.string   "repair_type"
+    t.string   "status"
+    t.string   "record_ids"
+    t.string   "regis_table_name"
+    t.string   "regis_ico_column"
+    t.string   "regis_name_column"
+    t.string   "regis_address_column"
+    t.string   "target_table_name"
+    t.string   "target_ico_column"
+    t.string   "target_company_name_column"
+    t.string   "target_company_address_column"
+    t.integer  "repaired_records"
+    t.integer  "records_to_repair"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

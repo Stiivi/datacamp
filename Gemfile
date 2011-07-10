@@ -50,7 +50,7 @@ gem 'test-unit'
 # end
 
 # bundle with '--without macosx' if you are not not a good system :)
-group :macosx do
+group :developemnt, :macosx do
   gem 'rb-fsevent', :require => false 
   gem 'growl'
 end

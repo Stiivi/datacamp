@@ -1,0 +1,23 @@
+%h1 Listing data_repairs
+
+%table
+  %tr
+    %th Type
+    %th Regis table name
+    %th Target table name
+    %th Repaired records
+    %th Status
+    %th
+
+  - @data_repairs.each do |data_repair|
+    %tr
+      %td= data_repair.repair_type
+      %td= data_repair.regis_table_name
+      %td= data_repair.target_table_name
+      %td= data_repair.repaired_records
+      %td= data_repair.status
+      %td= link_to 'Show', data_repair
+
+%br
+
+= link_to 'New Data repair', new_data_repair_path

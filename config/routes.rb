@@ -1,5 +1,12 @@
 # -*- encoding : utf-8 -*-
 Datacamp::Application.routes.draw do
+  resources :data_repairs do
+    collection do
+      get :update_columns
+      post :start_repair
+    end
+  end
+
   namespace :settings do
     resources :pages
     resources :blocks do

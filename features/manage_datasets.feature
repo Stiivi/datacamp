@@ -3,14 +3,13 @@
 Feature: Dataset management and display
 
   Background:
-    And a published dataset "testing"
+    Given a published dataset "testing"
 
   Scenario: A dataset record that is published should be shown to all users
     And a published record exists for dataset "testing"
     When I display records for dataset "testing"
     Then I should see "some content"
-    
-  
+   
   Scenario: A dataset record that is not published should not be shown to all users
     And an unpublished record exists for dataset "testing"
     When I display records for dataset "testing"
