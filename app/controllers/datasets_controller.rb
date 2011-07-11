@@ -104,7 +104,7 @@ class DatasetsController < ApplicationController
         total_pages = @dataset_class.count.to_i
         page = params[:page].to_i
         per_page = paginate_options[:per_page].to_i
-        @records = @dataset_class.select('*').from("(SELECT _record_id from #{@dataset_class.table_name} ORDER BY #{ActiveRecord::Base.sanitize(params[:sort])} #{sort_direction} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN #{@dataset_class.table_name} t on q._record_id = t._record_id")
+        @records = @dataset_class.select('*').from("(SELECT _record_id from #{@dataset_class.table_name} ORDER BY #{@dataset_class.table_name}.#{ActiveRecord::Base.sanitize(params[:sort]).gsub("'",'')} #{ActiveRecord::Base.sanitize(sort_direction).gsub("'",'')} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN #{@dataset_class.table_name} t on q._record_id = t._record_id")
         if !current_user || !current_user.has_privilege?(:data_management)
           @records = @records.where('t.record_status = ?', DatastoreManager.record_statuses[2])
         elsif @filters
