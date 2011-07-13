@@ -35,7 +35,7 @@ def dump_dataset(dataset_description)
      
     output.write(CSV.generate_line(visible_fields))
   
-    dataset_class.find_each do |record|
+    dataset_class.find_each(:conditions => {:record_status => 'published'}) do |record|
       values = record.values_for_fields(visible_fields)
       line = CSV.generate_line(values.map{|v| v.to_s.force_encoding("utf-8") })
       output.write("#{line}")
