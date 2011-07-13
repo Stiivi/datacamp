@@ -54,7 +54,7 @@ namespace :etl do
                 is_price_part_of_range,
                 customer_name,
                 note,
-                'loaded' record_status
+                'published' record_status
             FROM #{staging_schema}.#{source_table} m
             LEFT JOIN #{staging_schema}.#{regis_table} rcust ON rcust.ico = customer_ico
             LEFT JOIN #{staging_schema}.#{regis_table} rsupp ON rsupp.ico = supplier_ico
@@ -86,7 +86,7 @@ namespace :etl do
                                  acc.text account_sector, account_sector account_sector_code,
                                  os.text ownership, ownership ownership_code,
                                  s.text size, size size_code,
-                                 source_url, m.date_created, m.updated_at, 'system_loading' created_by, 'loaded' record_status
+                                 source_url, m.date_created, m.updated_at, 'system_loading' created_by, 'published' record_status
                          FROM #{staging_schema}.#{source_table} m
                          LEFT JOIN #{staging_schema}.sta_regis_legal_form lf ON lf.id = m.legal_form
                          LEFT JOIN #{staging_schema}.sta_regis_activity1 a1 ON a1.id = m.activity1
