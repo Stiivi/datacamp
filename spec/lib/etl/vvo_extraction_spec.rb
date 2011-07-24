@@ -131,6 +131,13 @@ describe Etl::VvoExtraction do
         @extractor.contract_information(document).should == {:procurement_subject => "Lieky a liečivá pre potreby Nemocničnej lekárne Fakultnej nemocnice Trnava."}
       end
     end
+    
+    it 'should get price even if it was not finalized' do
+      VCR.use_cassette('vvo_4606') do
+        document = @extractor.download(4606)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"GASTROPLUS, s. r. o.", :supplier_ico=>36308935.0, :is_price_part_of_range=>false, :price=>37828.9, :currency=>"EUR", :vat_included=>false}]}
+      end
+    end
 
     it 'should get suppliers information from a document' do
       VCR.use_cassette('vvo_2675') do

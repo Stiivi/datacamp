@@ -81,13 +81,13 @@ module Etl
             elsif code.inner_text.match(/V\.*.*?[^\d]4[^\d]$/)
               price_detail = code.parent.next_sibling
               while price_detail do
-                if price_detail.xpath(".//span[@class='podnazov']").inner_text.match(/konečná/) || price_detail.xpath(".//span[@class='nazov']").inner_text.match(/konečná/)
+                if price_detail.xpath(".//span[@class='podnazov']").inner_text.match(/Začiatočná predpokladaná celková hodnota zákazky|konečná/) || price_detail.xpath(".//span[@class='nazov']").inner_text.match(/Začiatočná predpokladaná celková hodnota zákazky|konečná/)
                   price = price_detail.next_sibling.xpath(".//span[@class='hodnota']")
                   supplier[:is_price_part_of_range] = price_detail.next_sibling.xpath(".//span[@class='podnazov']").inner_html.downcase.match(/najnižšia/) ? true : false
                   supplier[:price] = price[0].inner_text.gsub(' ', '').gsub(',','.').to_f
                   supplier[:currency] = if price.inner_text.downcase.match(/sk|skk/) then 'SKK' else 'EUR' end
                   supplier[:vat_included] = !price_detail.next_sibling.xpath(".//span[@class='hodnota']").inner_text.downcase.match(/bez/) && !price_detail.next_sibling.next_sibling.xpath(".//span[@class='hodnota']").inner_text.downcase.match(/bez/)
-                  break
+                  break if price_detail.xpath(".//span[@class='podnazov']").inner_text.match(/konečná/) || price_detail.xpath(".//span[@class='nazov']").inner_text.match(/konečná/)
                 end
                 price_detail = price_detail.next_sibling
               end
