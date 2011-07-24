@@ -69,8 +69,8 @@ class DatasetsController < ApplicationController
     # @records = create_query_from_params(@dataset_class).paginate(paginate_options)
 
     if params[:sort]
-      paginate_options[:order] = params[:sort] 
-      paginate_options[:sort_mode] = params[:dir] || :asc
+      paginate_options[:order] = params[:sort].to_sym
+      paginate_options[:sort_mode] = params[:dir] ? params[:dir].to_sym : :asc
     end
     paginate_options[:conditions], paginate_options[:with], paginate_options[:without] = {},{},{}
     paginate_options[:sphinx_select] = "*"
