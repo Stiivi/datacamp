@@ -164,13 +164,13 @@ class DatasetRecord < ActiveRecord::Base
   ########################################################################################
   # Callbacks
   
-  after_update :update_attributes
-  def update_attributes
+  after_update :record_changes
+  def record_changes
     changed_attributes.each do |attribute, old_value|
       next if attribute == "updated_at"
       next if old_value == self[attribute]
       change = Change.new
-      change.dataset_description_id = self.description.id
+      change.dataset_description_id = self.dataset.description.id
       change.record_id = self.id
       change.changed_field = attribute
       change.value = old_value

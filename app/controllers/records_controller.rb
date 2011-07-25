@@ -95,8 +95,7 @@ class RecordsController < ApplicationController
     @quality_status.find { |qs| qs.column_name == params[:field] }.destroy
   end
   
-  private
-  
+  protected
   def load_record
     @dataset_description = DatasetDescription.find_by_id!(params[:dataset_id])
     @dataset             = @dataset_description.dataset
