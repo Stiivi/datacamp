@@ -1,1 +1,1 @@
-rvm --create 1.9.2@datanest
+rvm --create ruby-1.9.2-p290@datanest

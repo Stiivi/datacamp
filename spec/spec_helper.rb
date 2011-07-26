@@ -8,9 +8,14 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+# This is here because the vcr library saves its cassettes in yaml format and psych throws segfaults if the string being saved has an invalid utf-8 character in it.
+# Can be removed when the issue is resolved https://github.com/myronmarston/vcr/issues/74
+VCR::YAML = ::YAML
+
 VCR.config do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.cassette_library_dir = "#{Rails.root}/spec/fixtures/vcr_cassettes"
   c.stub_with :typhoeus
+  c.default_cassette_options = { :record => :once }
 end
 
 RSpec.configure do |config|

@@ -11,7 +11,7 @@
       message: OK
     headers: 
       date: 
-      - Sun, 24 Jul 2011 21:40:04 GMT
+      - Tue, 26 Jul 2011 12:07:45 GMT
       server: 
       - Microsoft-IIS/6.0
       x-powered-by: 
@@ -308,7 +308,7 @@
       <TD><SPAN class=nazov>D\xE1tum odoslania tohto ozn\xE1menia</SPAN><SPAN class=nazov><BR></SPAN><SPAN class=hodnota>7. 4. 2009</SPAN></TD></TR></TBODY></TABLE></TD></TR>\r\n\
       <TR>\r\n\
       <TD class=chyby></TD></TR></TBODY></TABLE></BODY>\r\n    </div>\r\n\
-      \r\n                </div>\r\n            </div>\r\n            <div class=\"blueSeparator\">&nbsp;</div>\r\n            <div id=\"footer\">\r\n                <div id=\"ostatnaAktualizacia\">Ostatn\xE1 aktualiz\xE1cia: 23.7.2011</div>\r\n                <div>\r\n                <img src=\"/img/homepage.png\" style=\"margin:4px 0 -4px 0;\" alt=\"homepage\" />\r\n                <a href=\"#\" onclick=\"setAsHomepage(this,'http://www.uvo.sk');\">&nbsp;Nastavi\x9D ako domovsk\xFA str\xE1nk\xFA</a>\r\n                <img src=\"/img/favourites.png\" style=\"margin:4px 0 -4px 0;\" alt=\"favourites\" />\r\n                <a href=\"#\" onclick=\"addToFavourites('UVO','http://www.uvo.sk');\">&nbsp;Prida\x9D medzi ob\xBE\xFAben\xE9</a>\r\n                </div>\r\n                <div style=\"margin-top:5px;font-size:85%;\">v 1.14</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\
+      \r\n                </div>\r\n            </div>\r\n            <div class=\"blueSeparator\">&nbsp;</div>\r\n            <div id=\"footer\">\r\n                <div id=\"ostatnaAktualizacia\">Ostatn\xE1 aktualiz\xE1cia: 26.7.2011</div>\r\n                <div>\r\n                <img src=\"/img/homepage.png\" style=\"margin:4px 0 -4px 0;\" alt=\"homepage\" />\r\n                <a href=\"#\" onclick=\"setAsHomepage(this,'http://www.uvo.sk');\">&nbsp;Nastavi\x9D ako domovsk\xFA str\xE1nk\xFA</a>\r\n                <img src=\"/img/favourites.png\" style=\"margin:4px 0 -4px 0;\" alt=\"favourites\" />\r\n                <a href=\"#\" onclick=\"addToFavourites('UVO','http://www.uvo.sk');\">&nbsp;Prida\x9D medzi ob\xBE\xFAben\xE9</a>\r\n                </div>\r\n                <div style=\"margin-top:5px;font-size:85%;\">v 1.14</div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\
       </body>\r\n\
       </html>\r\n"
     http_version: "1.1"

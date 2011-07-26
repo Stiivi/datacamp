@@ -95,7 +95,7 @@ describe Etl::RegisExtraction do
       config.reload.last_processed_id.should == 499998
     end
   end
-
+  
   describe 'parsing' do
     it 'should test and accept documents that have a something in a div with a class "telo"' do
       VCR.use_cassette('regis_500000') do

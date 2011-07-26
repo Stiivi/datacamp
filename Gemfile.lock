@@ -179,7 +179,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (~> 0.14.4)
-    rake (0.8.7)
+    rake (0.9.2)
     rb-fsevent (0.4.0)
     rdoc (3.8)
     recaptcha (0.3.1)
@@ -224,7 +224,7 @@ GEM
       mime-types
     tzinfo (0.3.29)
     validation_reflection (1.0.0)
-    vcr (1.10.0)
+    vcr (1.10.3)
     whenever (0.6.8)
       aaronh-chronic (>= 0.3.9)
       activesupport (>= 2.3.4)
