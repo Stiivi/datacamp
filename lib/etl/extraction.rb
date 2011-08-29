@@ -2,9 +2,7 @@ module Etl
   class Extraction < Struct.new(:start_id, :batch_limit, :id)
     
     def download(id)
-      # puts Typhoeus::Request.get('www.google.com').body.encoding
       Nokogiri::HTML(Typhoeus::Request.get(document_url(id)).body.encode('utf-8', 'cp1250'))
-      # Nokogiri::HTML(Typhoeus::Request.get('www.google.com').body)
     end
     
     def update_last_processed
