@@ -15,6 +15,18 @@ namespace :etl do
     end
   end
   
+  task :notari_extraction => :environment do
+    config = EtlConfiguration.find_by_name('notari_extraction')
+    end_id = config.start_id + config.batch_limit
+    (config.start_id..end_id).each do |id|
+      Delayed::Job.enqueue Etl::NotariExtraction.new(config.start_id, config.batch_limit,id)
+    end
+  end
+  
+  task :executor_extraction => :environment do
+    Delayed::Job.enqueue Etl::ExekutorExtraction.new
+  end
+  
   task :vvo_loading => :environment do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'

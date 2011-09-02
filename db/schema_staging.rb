@@ -10,14 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110828125450) do
+ActiveRecord::Schema.define(:version => 20110901083720) do
+
+  create_table "sta_executors", :force => true do |t|
+    t.string "name"
+    t.string "address"
+    t.string "telephone"
+    t.string "fax"
+    t.string "email"
+  end
 
   create_table "sta_notaries", :force => true do |t|
     t.string  "name"
     t.string  "form"
     t.string  "street"
     t.string  "city"
-    t.integer "zip"
+    t.string  "zip"
     t.string  "worker_name"
     t.date    "date_start"
     t.date    "date_end"

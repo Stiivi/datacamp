@@ -5,7 +5,7 @@ class CreateStaNotaries < ActiveRecord::Migration
        t.string    :form
        t.string    :street
        t.string    :city
-       t.integer   :zip
+       t.string    :zip
        t.string    :worker_name
        t.date      :date_start
        t.date      :date_end
