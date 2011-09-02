@@ -56,6 +56,7 @@ group :developemnt, :macosx do
 end
 
 group :development do
+  gem 'pry'
 	gem "rails-erd"
 	gem 'jquery-rails'
 	gem 'awesome_print'
