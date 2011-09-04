@@ -27,6 +27,19 @@ namespace :etl do
     Delayed::Job.enqueue Etl::ExekutorExtraction.new
   end
   
+  task :advokat_extraction => :environment do
+    [
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/bpp/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/bpp/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event']
+    ].each do |links|
+      Etl::AdvokatExtraction.new(links[0], links[1]).get_downloads.each(&:perform)
+    end
+  end
+  
   task :vvo_loading => :environment do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'
