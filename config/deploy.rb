@@ -41,6 +41,7 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/files #{release_path}/files"
     run "ln -nfs #{shared_path}/dumps #{release_path}/dumps"
     run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
+    run "ln -nfs #{shared_path}/backup #{release_path}/backup"
   end
   
   task :refresh_indexes, :roles => :app do

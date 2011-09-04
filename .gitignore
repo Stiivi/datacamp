@@ -10,6 +10,7 @@ config/sphinx.yml
 config/*sphinx.conf
 /update
 /remote
+/backup
 index/data*
 index/*.conf
 index/*.rb

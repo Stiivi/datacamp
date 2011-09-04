@@ -36,3 +36,7 @@ end
 every 1.day, :at => '5:05 am' do
   rake "ts:rebuild"
 end
+
+every 1.week do
+  rake "users:cleanup_sessions"
+end

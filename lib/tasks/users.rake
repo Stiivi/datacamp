@@ -18,4 +18,10 @@ namespace :users do
     end
   end
   
+  task :cleanup_sessions => :environment do
+    db_config = ActiveRecord::Base.configurations[Rails.env]
+    sh "mysqldump -u #{db_config['username'].to_s} #{'-p' if db_config['password']}#{db_config['password'].to_s} #{db_config['database']} sessions | gzip -c > #{File.join(Rails.root, '/backup/sessions_backup/', Time.now.strftime("%d-%m-%Y_%H-%M-%S")) + '.gz'}"
+    Session.where('sessions.user_id IS NULL AND sessions.updated_at < ?', 1.week.ago).delete_all
+  end
+  
 end
