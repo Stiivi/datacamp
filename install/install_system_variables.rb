@@ -36,6 +36,11 @@ system_variables = [
     :description => "Users need their accounts confirmed by admin before being able to use them.",
     :value => 0
   }
+  {
+    :name => "meta_information",
+    :description => "Meta information that is inserted in the head portion of the webpage",
+    :value => nil
+  }
 ]
 
 system_variables.each do |var|
