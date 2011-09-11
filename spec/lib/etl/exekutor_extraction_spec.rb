@@ -30,8 +30,8 @@ describe Etl::ExekutorExtraction do
         document = extractor.download
         executors = extractor.digest(document)
         executors.length.should == 299
-        executors.first.should == {:name=>"JUDr. Ádám Atila", :address=>"Čajakova 5, 040 01 Košice", :telephone=>"+421 55/6424552", :fax=>"+421 55/6424552", :email=>"atila.adam@ske.sk"}
-        executors.last.should == {:name=>"JUDr. Žužová Lucia", :address=>"ul.Okružná 5, 071 01 Michalovce", :telephone=>"056 6882891,-2", :fax=>"056 6882893", :email=>"lucia.zuzova@ske.sk"}
+        executors.first.should == {:name=>"JUDr. Ádám Atila", :street => 'Čajakova 5', :zip => '040 01', :city => 'Košice', :telephone=>"+421 55/6424552", :fax=>"+421 55/6424552", :email=>"atila.adam@ske.sk"}
+        executors.last.should == {:name=>"JUDr. Žužová Lucia", :street => 'ul.Okružná 5', :zip => '071 01', :city => 'Michalovce', :telephone=>"056 6882891,-2", :fax=>"056 6882893", :email=>"lucia.zuzova@ske.sk"}
       end
     end
     

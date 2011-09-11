@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110903084035) do
+ActiveRecord::Schema.define(:version => 20110908094408) do
 
   create_table "sta_advokats", :force => true do |t|
     t.string "name"
@@ -29,10 +29,12 @@ ActiveRecord::Schema.define(:version => 20110903084035) do
 
   create_table "sta_executors", :force => true do |t|
     t.string "name"
-    t.string "address"
     t.string "telephone"
     t.string "fax"
     t.string "email"
+    t.string "street"
+    t.string "zip"
+    t.string "city"
   end
 
   create_table "sta_notaries", :force => true do |t|
