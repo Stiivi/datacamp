@@ -77,6 +77,26 @@ ActiveRecord::Schema.define(:version => 20110908094408) do
     t.text     "note"
   end
 
+  create_table "sta_procurements0508", :force => true do |t|
+    t.integer "year"
+    t.integer "bulletin_id"
+    t.string  "procurement_id"
+    t.integer "customer_ico"
+    t.integer "supplier_ico"
+    t.string  "procurement_subject"
+    t.decimal "price",                              :precision => 16, :scale => 2
+    t.string  "currency"
+    t.boolean "is_VAT_included"
+    t.text    "customer_ico_evidence"
+    t.text    "supplier_ico_evidence"
+    t.text    "subject_evidence"
+    t.text    "price_evidence"
+    t.integer "document_id",           :limit => 8
+    t.integer "extract_id"
+    t.string  "supplier_name"
+    t.string  "customer_name"
+  end
+
   create_table "sta_procurements_0508", :force => true do |t|
     t.integer "year"
     t.integer "bulletin_id"

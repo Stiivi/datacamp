@@ -23,7 +23,7 @@ class CreateStaProcurements < ActiveRecord::Migration
       t.text     "customer_name"
       t.boolean  "is_price_part_of_range"
       t.text     "note"
-    end
+    end unless table_exists? :sta_procurements
   end
 
   def self.down

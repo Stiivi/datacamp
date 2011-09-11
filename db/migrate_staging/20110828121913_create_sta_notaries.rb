@@ -13,7 +13,7 @@ class CreateStaNotaries < ActiveRecord::Migration
        t.text      :open_hours
        t.integer   :doc_id
        t.text      :url
-     end
+     end unless table_exists? :sta_notaries
   end
 
   def self.down

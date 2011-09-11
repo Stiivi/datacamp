@@ -13,7 +13,7 @@ class CreateStaAdvokats < ActiveRecord::Migration
       t.string    :email
       t.string    :website
       t.string    :url
-    end
+    end unless table_exists? :sta_advokats
   end
 
   def self.down

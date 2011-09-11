@@ -6,7 +6,7 @@ class CreateStaExecutors < ActiveRecord::Migration
       t.string    :telephone
       t.string    :fax
       t.string    :email
-    end
+    end unless table_exists? :sta_executors
   end
 
   def self.down

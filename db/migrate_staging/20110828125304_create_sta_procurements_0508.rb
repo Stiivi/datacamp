@@ -18,7 +18,7 @@ class CreateStaProcurements0508 < ActiveRecord::Migration
       t.integer "extract_id"
       t.string  "supplier_name"
       t.string  "customer_name"
-    end
+    end unless table_exists? :sta_procurements0508
   end
 
   def self.down
