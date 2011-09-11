@@ -87,6 +87,14 @@ namespace :etl do
   
     Staging::StagingRecord.connection.execute(load)
     Staging::StaProcurement.update_all :etl_loaded_date => Time.now
+    
+    
+    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
+    
+    records_with_error = dataset_model.where("#{dataset_table}.customer_company_name IS NULL OR #{dataset_table}.supplier_company_name IS NULL AND #{dataset_table}.note IS NULL").select(:_record_id)
+    records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL").select(:_record_id)
+    
+    EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present
   end
   
   task :regis_loading => :environment do
