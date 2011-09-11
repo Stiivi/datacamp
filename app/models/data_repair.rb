@@ -2,6 +2,10 @@ class DataRepair < ActiveRecord::Base
   
   serialize :record_ids
   
+  def self.sphinx_reindex
+    system("bundle exec rake ts:rebuild RAILS_ENV=#{Rails.env}")
+  end
+  
   def run_data_repair
     regis_model = DatasetDescription.find_by_identifier(regis_table_name).dataset.dataset_record_class
     target_model = DatasetDescription.find_by_identifier(target_table_name).dataset.dataset_record_class

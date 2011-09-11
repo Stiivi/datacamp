@@ -52,6 +52,11 @@ class DataRepairsController < ApplicationController
     redirect_to @data_repair
   end
   
+  def sphinx_reindex
+    DataRepair.delay.sphinx_reindex
+    redirect_to data_repairs_url, :notice => 'Sphinx reindex has started. Please wait a few minuts to let it finish.'
+  end
+  
   private
   def init_menu
     @submenu_partial = "data_dictionary"

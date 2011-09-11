@@ -3,7 +3,7 @@ Datacamp::Application.routes.draw do
   resources :data_repairs do
     collection do
       get :update_columns
-      post :start_repair
+      post :start_repair, :sphinx_reindex
     end
   end
 

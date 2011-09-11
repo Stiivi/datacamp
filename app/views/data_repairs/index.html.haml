@@ -1,4 +1,6 @@
-%h1 Listing data_repairs
+.clearfix
+  %h1.fl= "Listing data_repairs"
+  .fr= button_link_to 'Sphinx reindex', sphinx_reindex_data_repairs_path, :method => :post
 
 %table
   %tr
