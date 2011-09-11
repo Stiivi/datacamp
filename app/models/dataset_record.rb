@@ -138,7 +138,7 @@ class DatasetRecord < ActiveRecord::Base
   end
   
   def get_html_value(field_description, length = nil)
-    value = get_formatted_value(field_description)
+    value = get_formatted_value(field_description) rescue nil
     value = truncate(value.to_s, :length => length, :omission => "&hellip;") if length
     
     # data_format = field_description.data_format
