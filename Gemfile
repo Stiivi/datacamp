@@ -74,7 +74,7 @@ group :development, :test do
 	gem 'database_cleaner'
 	gem 'spork', '>= 0.9.0.rc2'
 	gem 'launchy'    # So you can do Then show me the page
-	gem "factory_girl_rails", "1.1.rc1"
+	gem "factory_girl_rails", "~> 1.2.0"
 	gem 'vcr'
 
   gem 'guard-rspec'
