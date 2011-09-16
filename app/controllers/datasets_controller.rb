@@ -169,9 +169,10 @@ class DatasetsController < ApplicationController
   
   # Batch update
   def update
-    @dataset_description = DatasetDescription.find_by_id(params[:id])
+    @dataset_description  = DatasetDescription.find_by_id(params[:id])
     @dataset_class        = @dataset_description.dataset.dataset_record_class
-    unless params[:record]
+    
+    if params[:record].blank?
       flash[:error] = I18n.t("dataset.not_enough_records_selected")
       return redirect_to(dataset_path(@dataset_description)) 
     end
@@ -179,34 +180,52 @@ class DatasetsController < ApplicationController
     # Conditions for update
     update_conditions = {}
         
-    if(params[:selection] == "selected")
+    if params[:selection] == "selected"
       # The easier case. User used checkboxes to choose what
       # records they want to edit.
-       update_conditions[:_record_id] = params[:record].collect{|id|id.to_i}
+       update_conditions[:_record_id] = params[:record].map{|r| r.to_i}
        @count_updated = params[:record].count
-    elsif(params[:selection] == "all" && params[:search_id])
-      # Case when all search matching records should be edited.
-      # We wanna get all the ids of matching records and
-      # pass them to update statement.
-      
-      select_options = create_options_for_select
-      select_options[:select] = "#{@dataset_class.table_name}._record_id"
-      ids = @dataset_class.where(select_options).collect{|r|r._record_id}
-      update_conditions[:_record_id] = ids
-      @count_updated = ids.count
-    elsif(params[:selection] == "all" && params[:search_id].blank?)
-      # User has chosen to edit all records and to search is
-      # specified. We just won't pass any options to update statement
-      # and just update whole dataset.
-      @count_updated = @dataset_class.count_all
+    elsif params[:selection] == "all"
+      if params[:search_id].present?
+        # Case when all search matching records should be edited.
+        # We wanna get all the ids of matching records and
+        # pass them to update statement.
+
+        # FIXME: duplicated what is in the show action. DRY it out a little!
+        paginate_options = {}
+        paginate_options[:conditions], paginate_options[:with], paginate_options[:without] = {},{},{}
+        paginate_options[:sphinx_select] = "*"
+        paginate_options[:per_page] = 10000
+        sphinx_search = ""
+        paginate_options[:match_mode] = :extended
+        unless params[:search_id].blank?
+          search_object = Search.find_by_id!(params[:search_id])
+          @search_predicates = search_object.query.predicates
+          search_object.query.predicates.each do |predicate|
+            field_description = FieldDescription.find_by_identifier(predicate.search_field)
+          	operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
+          	condition = predicate.sphinx_condition(operand)
+          	paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
+          	sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
+            paginate_options.merge!(condition)
+          end
+        end
+        
+        update_conditions[:_record_id] = @dataset_class.search(sphinx_search, paginate_options).map(&:_record_id)
+      else
+        # User has chosen to edit all records and to search is
+        # specified. We just won't pass any options to update statement
+        # and just update whole dataset.
+        @count_updated = @dataset_class.count
+      end
     end
     
     updates = {}
-    updates[:record_status] = params[:status] unless params[:status].blank?
-    updates[:quality_status] = params[:quality] unless params[:quality].blank?
+    updates[:record_status] = params[:status] if params[:status].present?
+    updates[:quality_status] = params[:quality] if params[:quality].present?
     
     # Update attributes (only if using batch edit form)
-    if params[:update_attribute] && params[:attribute_value]
+    if params[:update_attribute].present? && params[:attribute_value].present?
       params[:update_attribute].each do |attr_name|
         updates[attr_name] = params[:attribute_value][attr_name]
       end

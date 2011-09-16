@@ -25,3 +25,18 @@ Feature: Dataset management and display
     And an unpublished record exists for dataset "testing"
     When I display records for dataset "testing"
     Then I should see "some content"
+    
+  @selenium
+  Scenario: Batch editing of selected dataset records
+    When I batch edit selected records for a dataset to suspended
+    Then I should see "Suspended"
+    
+  @selenium
+  Scenario: Batch editing all records for a dataset
+    When I batch edit all records for a dataset to suspended
+    Then I should see "Suspended"
+    
+  @selenium
+  Scenario: Batch edit search results for a dataset
+    When I batch edit search results for a dataset to suspended
+    Then I should see "Suspended"
