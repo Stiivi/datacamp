@@ -8,6 +8,8 @@ config/database.yml
 config/datacamp_config.yml
 config/sphinx.yml
 config/*sphinx.conf
+config/initializers/secret_token.rb
+config/initializers/site_keys.rb
 /update
 /remote
 /backup
