@@ -19,7 +19,7 @@ namespace :etl do
     config = EtlConfiguration.find_by_name('notari_extraction')
     end_id = config.start_id + config.batch_limit
     (config.start_id..end_id).each do |id|
-      Delayed::Job.enqueue Etl::NotariExtraction.new(config.start_id, config.batch_limit,id)
+      Delayed::Job.enqueue Etl::NotarExtraction.new(config.start_id, config.batch_limit,id)
     end
   end
   
