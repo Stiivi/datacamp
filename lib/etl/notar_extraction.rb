@@ -25,13 +25,20 @@ module Etl
       document.xpath("//table[@class='NuDetailTable']").present?
     end
     
+    def strip_name(name)
+      name.downcase.gsub(/judr.|mgr.|notársky|úrad/, '').strip
+    end
     
     def digest(doc)
       employees = []
-      doc.xpath("//div[@id='dnn_ctr730_ModuleContent']/div[@class='TableFontItem']/table[@class='NuDetailTable']/tr[6]/td[2]/div/table/tr").each do |employee|
+      doc.xpath("//div[@id='dnn_ctr730_ModuleContent']/div[@class='TableFontItem']/table[@class='NuDetailTable']//div[@class='TableFontItem']/table[@class='NuDetailTable']/tr").each do |employee|
         next if employee.xpath('.//td[1]').inner_text =~ /Meno/
+        employee_name = employee.xpath('.//td[1]').inner_text
+        
         employees << {
-          :worker_name => employee.xpath('.//td[1]').inner_text.strip,
+          :first_name => strip_name(employee_name).split.first.titleize,
+          :last_name => strip_name(employee_name).split.last.titleize,
+          :title => (employee_name.downcase.match(/judr.|mgr./)[1] rescue nil),
           :date_start => employee.xpath('.//td[2]').inner_text.strip,
           :date_end => employee.xpath('.//td[3]').inner_text.strip,
           :languages => employee.xpath('.//td[4]').inner_text.strip
@@ -39,28 +46,48 @@ module Etl
       end
       name, form, street, city, zip = nil, nil, nil, nil, nil
       detail_table = doc.xpath("//div[@id='dnn_ctr730_ModuleContent']/div[@class='TableFontItem']/table[@class='NuDetailTable']/tr")
+      
       detail_table.each do |table_row|
-        name = table_row.xpath(".//td[@class='DrazbyControlItem460']").inner_text.strip if table_row.xpath(".//td[@class='DrazbyLabelItem180']").inner_text.match(/Názov NÚ:/)
+        name = table_row.xpath(".//td[@class='DrazbyControlItem460']").inner_text.strip.gsub(/\s+/, ' ') if table_row.xpath(".//td[@class='DrazbyLabelItem180']").inner_text.match(/Názov NÚ:/)
         form = table_row.xpath(".//td[@class='DrazbyControlItem460']").inner_text.strip if table_row.xpath(".//td[@class='DrazbyLabelItem180']").inner_text.match(/Forma:/)
         street = table_row.xpath(".//td[@class='DrazbyControlItem460']").inner_text.strip if table_row.xpath(".//td[@class='DrazbyLabelItem180']").inner_text.match(/Ulica:/)
         city = table_row.xpath(".//td[@class='DrazbyControlItem460']").inner_text.strip if table_row.xpath(".//td[@class='DrazbyLabelItem180']").inner_text.match(/Mesto:/)
         zip = table_row.xpath(".//td[@class='DrazbyControlItem460']").inner_text.strip if table_row.xpath(".//td[@class='DrazbyLabelItem180']").inner_text.match(/PSČ:/)
       end
+      
+      if zip.present?
+        zip = zip.gsub(/\s+/, '') 
+        zip = "#{zip[0..2]} #{zip[3..4]}"
+      end
+      
+      return nil if name.downcase.match(/skuska|test|testovanie/)
+      
+      match = name.match(/(?<drop_name>NU\d+)|((Notársk(y|ý|&|a)(\s|,)?((ú|Ú)rad|kancelária)(\s([^\s,]+\s)?-)?)|((V|v)ysunuté(\s|,)?pracovisko)|(N(Ú|U)))?[,]?[\s]?(JUDr\.|Mgr\.|notára|notárky)?-?[\s,]?(?<name>[^\s,]+([\s,]+[^\s,]+)?)((\s|,)(JUDr\.|Mgr\.))?/)
+      
+      return nil if match[:drop_name].present?
+      
+      matched_name = (match[:name] rescue nil)
+
+      if matched_name.blank?
+        # TODO: add a flag that sais this is probably a bull* record
+        matched_name = name
+      end
       {
-        :name => name,
+        :name => matched_name.gsub(/,/, ''),
         :form => form,
         :street => street,
         :city => city,
         :zip => zip,
         :doc_id => id,
         :url => document_url(id),
+        :sta_employees_attributes => employees,
         :active => false
       }
     end
 
     def save(notari_hash)
-      notar_name = notari_hash[:name].downcase.gsub(/mgr.|judr./, '').strip
-      current_record = Staging::StaNotar.where('name like ?', "%#{notar_name}%").first
+      current_record = Staging::StaNotar.where(name: notari_hash[:name]).where('(zip IS NULL OR zip = ?) AND (city IS NULL OR city = ?)', notari_hash[:zip], notari_hash[:city]).first
+      
       if current_record.present?
         current_record.update_attributes(notari_hash)
       else

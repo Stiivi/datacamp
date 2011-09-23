@@ -107,7 +107,7 @@ describe Etl::NotarExtraction do
         document = @extractor.download(2675)
         hash = @extractor.digest(document)
         hash[:doc_id].should == 2675
-        hash[:name].should == 'Belková Zora Mgr.'
+        hash[:name].should == 'Belková Zora'
         hash[:form].should == 'Notársky úrad'
         hash[:street].should == 'Skuteckého 16'
         hash[:city].should == 'Banská Bystrica'
@@ -115,30 +115,180 @@ describe Etl::NotarExtraction do
         hash[:url].should == "http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady/Not%C3%A1rske%C3%BAradydetail.aspx?id=2675"
       end
     end
-    
-    it 'should get information from an incomplete document' do
-      VCR.use_cassette('notari_2') do
-        extractor = Etl::NotarExtraction.new(1, 2, 2)
-        document = extractor.download(2)
+  
+    it "should parse 'Ľubica Rexová' out of a document with the name 'NÚ JUDr. Ľubica Rexová'" do
+      VCR.use_cassette('notari_16544') do
+        extractor = Etl::NotarExtraction.new(16544, 1,16544)
+        document = extractor.download(16544)
         hash = extractor.digest(document)
-        hash[:doc_id].should == 2
-        hash[:name].should == 'NU2'
-        hash[:form].should be_nil
-        hash[:street].should be_nil
-        hash[:city].should be_nil
-        hash[:zip].should be_nil
-        hash[:url].should == "http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady/Not%C3%A1rske%C3%BAradydetail.aspx?id=2"
+        hash[:name].should == 'Ľubica Rexová'
       end
     end
     
+    it "should parse 'Ľubica Rexová' out of a document with the name 'NÚ JUDr. Ľubica Rexová'" do
+      VCR.use_cassette('notari_16544') do
+        extractor = Etl::NotarExtraction.new(16544, 1,16544)
+        document = extractor.download(16544)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Ľubica Rexová'
+      end
+    end
+    
+    it "should parse 'Nagyová Mária' out of a document with the name 'Nagyová Mária'" do
+      VCR.use_cassette('notari_15417') do
+        extractor = Etl::NotarExtraction.new(15417, 1,15417)
+        document = extractor.download(15417)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Nagyová Mária'
+      end
+    end
+    
+    it "should parse 'Kokindová Eleonóra' out of a document with the name 'Kokindová Eleonóra, JUDr.'" do
+      VCR.use_cassette('notari_15065') do
+        extractor = Etl::NotarExtraction.new(15065, 1,15065)
+        document = extractor.download(15065)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Kokindová Eleonóra'
+      end
+    end
+    
+    it "should parse 'Marta Vaľková' out of a document with the name 'Notársky úrad Bardejov - Marta Vaľková JUDr.'" do
+      VCR.use_cassette('notari_15000') do
+        extractor = Etl::NotarExtraction.new(15000, 1,15000)
+        document = extractor.download(15000)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Marta Vaľková'
+      end
+    end
+    
+    it "should parse 'Floriánová Ľubica' out of a document with the name 'Floriánová Ľubica JUDr.'" do
+      VCR.use_cassette('notari_14963') do
+        extractor = Etl::NotarExtraction.new(14963, 1,14963)
+        document = extractor.download(14963)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Floriánová Ľubica'
+      end
+    end
+
+    it "should parse 'Korenková' out of a document with the name 'NU Mgr. Korenková'" do
+      VCR.use_cassette('notari_13963') do
+        extractor = Etl::NotarExtraction.new(13963, 1,13963)
+        document = extractor.download(13963)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Korenková'
+      end
+    end
+    
+    it 'should dump testing data' do
+      VCR.use_cassette('notari_13537') do
+        extractor = Etl::NotarExtraction.new(13537, 1,13537)
+        document = extractor.download(13537)
+        hash = extractor.digest(document)
+        hash.should be_nil
+      end
+    end
+    
+    it "should parse 'Štefan Štefanko' out of a document with the name 'JUDr. Štefan Štefanko'" do
+      VCR.use_cassette('notari_6140') do
+        extractor = Etl::NotarExtraction.new(6140, 1,6140)
+        document = extractor.download(6140)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Štefan Štefanko'
+      end
+    end
+    
+    it "should parse 'Miloš Kaan' out of a document with the name 'Notársky úrad - JUDr.Miloš Kaan '" do
+      VCR.use_cassette('notari_4829') do
+        extractor = Etl::NotarExtraction.new(4829, 1,4829)
+        document = extractor.download(4829)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Miloš Kaan'
+      end
+    end
+    
+    it "should parse 'Zuzana Lutašová' out of a document with the name 'JUDr. Zuzana Lutašová'" do
+      VCR.use_cassette('notari_4094') do
+        extractor = Etl::NotarExtraction.new(4094, 1,4094)
+        document = extractor.download(4094)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Zuzana Lutašová'
+      end
+    end
+    
+    it "should parse 'Horváthová' out of a document with the name 'Notársky úrad JUDr. Horváthová'" do
+      VCR.use_cassette('notari_3834') do
+        extractor = Etl::NotarExtraction.new(3834, 1,3834)
+        document = extractor.download(3834)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Horváthová'
+      end
+    end
+    
+    it "should parse 'Soňa Šuvadová' out of a document with the name 'JUDr.- Soňa Šuvadová'" do
+      VCR.use_cassette('notari_3534') do
+        extractor = Etl::NotarExtraction.new(3534, 1,3534)
+        document = extractor.download(3534)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Soňa Šuvadová'
+      end
+    end
+    
+    it "should parse 'Tatiany Bradáčovej' out of a document with the name 'Notársky úrad JUDr. Tatiany Bradáčovej'" do
+      VCR.use_cassette('notari_3070') do
+        extractor = Etl::NotarExtraction.new(3070, 1,3070)
+        document = extractor.download(3070)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Tatiany Bradáčovej'
+      end
+    end
+    
+    it "should parse 'Ivona Žilíková' out of a document with the name 'Notársky úrad, Mgr. Ivona Žilíková'" do
+      VCR.use_cassette('notari_1578') do
+        extractor = Etl::NotarExtraction.new(1578, 1,1578)
+        document = extractor.download(1578)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Ivona Žilíková'
+      end
+    end
+    
+    it "should parse 'Telepčák Vladimír' out of a document with the name 'Telepčák, Vladimír, JUDr.'" do
+      VCR.use_cassette('notari_1380') do
+        extractor = Etl::NotarExtraction.new(1380, 1,1380)
+        document = extractor.download(1380)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Telepčák Vladimír'
+      end
+    end
+    
+    it "should parse 'Márie Kvasnovskej' out of a document with the name 'notárky Márie Kvasnovskej'" do
+      VCR.use_cassette('notari_1241') do
+        extractor = Etl::NotarExtraction.new(1241, 1,1241)
+        document = extractor.download(1241)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Márie Kvasnovskej'
+      end
+    end
+    
+    it "should parse 'Rybánska Vlasta' out of a document with the name 'Rybánska Vlasta JUDr.'" do
+      VCR.use_cassette('notari_1255') do
+        extractor = Etl::NotarExtraction.new(1255, 1,1255)
+        document = extractor.download(1255)
+        hash = extractor.digest(document)
+        hash[:name].should == 'Rybánska Vlasta'
+      end
+    end
+        
     it 'should update a record if its already present' do
-      Staging::StaNotar.create(doc_id: 2675, name: 'Belková Zora Mgr.', form: 'Notársky úrad', street: 'Skuteckého 16', city: 'Banská Bystrica', zip: '974 01', url: "http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady/Not%C3%A1rske%C3%BAradydetail.aspx?id=2675")
+      Staging::StaNotar.create(doc_id: 2675, name: 'Belková Zora', form: 'Notársky úrad', street: 'Skuteckého 16', city: 'Banská Bystrica', zip: '974 01', url: "http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady/Not%C3%A1rske%C3%BAradydetail.aspx?id=2675")
       VCR.use_cassette('notari_20048') do
         extractor = Etl::NotarExtraction.new(20048, 1,20048)
         document = extractor.download(20048)
         hash = extractor.digest(document)
         extractor.save(hash)
-        Staging::StaNotar.first.doc_id.should == 20048
+
+        notar = Staging::StaNotar.first
+        notar.doc_id.should == 20048
+        notar.sta_employees.should be_present
       end
     end
   end
