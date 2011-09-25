@@ -40,6 +40,26 @@ namespace :etl do
     end
   end
   
+  task :advokat_loading => :environment do
+    dataset_schema = DatasetRecord.connection.current_database
+    staging_schema = Staging::StaAdvokat.connection.current_database
+    
+    DatasetRecord.transaction do
+      sql = "INSERT INTO #{dataset_schema}.ds_advokats 
+             (name, advokat_type, street, city, zip, phone, id)
+             SELECT name, avokat_type, street, city, zip, phone, id FROM #{staging_schema}.#{Staging::StaAdvokat.table_name} WHERE etl_loaded IS NULL"
+      Staging::StagingRecord.connection.execute(sql)
+      Staging::StaAdvokat.update_all({:etl_loaded => Time.now}, {:etl_loaded => nil})
+    end
+    DatasetRecord.transaction do
+      sql = "INSERT INTO #{dataset_schema}.ds_trainees 
+             (first_name, last_name, title, advokat_id)
+             SELECT first_name, last_name, title, advokat_id FROM #{staging_schema}.#{Staging::StaTrainee.table_name} WHERE etl_loaded IS NULL"
+      Staging::StagingRecord.connection.execute(sql)
+      Staging::StaTrainee.update_all({:etl_loaded => Time.now}, {:etl_loaded => nil})
+    end
+  end
+  
   task :vvo_loading => :environment do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'

@@ -20,7 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetDescriptionsController < ApplicationController
-  before_filter :get_dataset_description, :only => [:show, :edit, :update, :destroy, :import_settings, :setup_dataset, :set_visibility, :add_primary_key]
+  before_filter :get_dataset_description, :only => [:show, :edit, :update, :destroy, :import_settings, :setup_dataset, :set_visibility, :add_primary_key, :relations, :update_relations]
   before_filter :load_datasets, :only => [:import, :do_import]
   
   privilege_required :edit_dataset_description
@@ -42,7 +42,7 @@ class DatasetDescriptionsController < ApplicationController
 
   def show
     @dataset = @dataset_description.dataset
-    @field_descriptions = @dataset_description.field_descriptions
+    @field_descriptions = @dataset_description.field_descriptions if @dataset.dataset_record_class.table_exists?
     
     respond_to do |format|
       format.html # show.html.erb
@@ -240,6 +240,24 @@ class DatasetDescriptionsController < ApplicationController
   def update_positions
     update_all_positions(params[:dataset_category].keys, params[:dataset_description])
     render :nothing => true
+  end
+  
+  
+  def relations
+    @dataset_description.relations.build if @dataset_description.relations.blank?
+    @dataset_description.relations.each { |relation| relation.available_keys = relation.relationship_dataset_description.field_descriptions.map{|fd| [fd.title, fd.id]} }
+  end
+  
+  def update_relations
+    saved = @dataset_description.update_attributes(params[:dataset_description])
+    if params[:refresh_foreign_keys] || !saved
+      @dataset_description.relations.each { |relation| relation.available_keys = relation.relationship_dataset_description.field_descriptions.map{|fd| [fd.title, fd.id]} }
+      render 'relations'
+    elsif saved
+      redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
+    else
+      render 'relations'
+    end
   end
   
   private

@@ -27,6 +27,19 @@
                 = image_tag "icons/exclamation.png", :class => "quality_status"
               = field_description.title
             %td= @record.get_html_value(field_description)
+    - @related_records_and_fields.each do |records, fields|
+      %br
+      - if records.present?
+        %h1{:style => 'margin-bottom: 0;'}= records.first.dataset.description.title
+        %table
+          %tr
+            - fields.each do |field|
+              %th= field.title          
+          - records.each do |record|
+            %tr
+              - fields.each do |field|
+                %td= record[field.identifier]
+              
 
   = render :partial => 'node_menu'
     

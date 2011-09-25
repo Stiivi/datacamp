@@ -91,8 +91,9 @@ Datacamp::Application.routes.draw do
 
   resources :dataset_descriptions do
     member do
-      get :import_settings, :setup_dataset, :visibility, :datastore_status, :add_primary_key#, :destroy
+      get :import_settings, :setup_dataset, :visibility, :datastore_status, :add_primary_key, :relations
       post :setup_dataset, :set_visibility
+      put :update_relations
     end
     collection do
       get :import, :do_import

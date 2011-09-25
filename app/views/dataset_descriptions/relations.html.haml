@@ -1,0 +1,22 @@
+%div[@dataset_description]
+
+  = render :partial => "header"
+
+  %h2= t("dataset.relations")
+  
+  = form_for([:update_relations, @dataset_description], :builder => ListFormBuilder) do |f|
+    = f.error_messages
+    
+    = f.fields_for :relations do |relation_fields|
+      .field= relation_fields.select :relation_type, options_for_select([['has_many', 'has_many'], ['belongs_to', 'belongs_to']], ''), label: t('dataset.relationship_type')
+      
+      .field
+        = relation_fields.label :relationship_dataset_description_id, t('dataset.relationship_dataset_description')
+        = relation_fields.grouped_collection_select :relationship_dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
+      %br
+      .field
+        = relation_fields.label :foreign_key_field_description_id, t('dataset.foreign_key_field_description_id')
+        = relation_fields.select :foreign_key_field_description_id, relation_fields.object.available_keys || [], :inline => true
+        = submit_tag t('dataset.refresh_foreign_keys'), name: 'refresh_foreign_keys'
+    %br    
+    = f.submit 'Save relations'

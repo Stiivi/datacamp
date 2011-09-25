@@ -6,6 +6,9 @@ class DatasetDescription < ActiveRecord::Base
   has_many :comments
   belongs_to :category, :class_name => "DatasetCategory"
   
+  has_many :relations
+  accepts_nested_attributes_for :relations
+  
   default_scope includes(:translations)
   
   translates :title, :description
@@ -86,6 +89,10 @@ class DatasetDescription < ActiveRecord::Base
   
   def importable_fields
     field_descriptions.where(:importable => true).order("importable_column asc")
+  end
+  
+  def visible_fields_in_relation
+    field_descriptions.where(is_visible_in_relation: true)
   end
   
   def self.categories

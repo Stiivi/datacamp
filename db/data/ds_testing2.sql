@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS `ds_testing`;
+DROP TABLE IF EXISTS `ds_testing2`;
 
-CREATE TABLE `ds_testing` (
+CREATE TABLE `ds_testing2` (
   `_record_id` int(11) NOT NULL AUTO_INCREMENT,
   `created_by` varchar(255) DEFAULT NULL,
   `record_status` varchar(255) DEFAULT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE `ds_testing` (
 	`ico` int(11) DEFAULT NULL,
 	`company_name` varchar(255) DEFAULT NULL,
 	`company_address` varchar(255) DEFAULT NULL,
-	`id` int(11) DEFAULT NULL,
+	`relation_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`_record_id`),
   KEY `test_index` (`test`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;

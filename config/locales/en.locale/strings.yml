@@ -85,7 +85,12 @@ en:
         unit_of_analysis: Unit of analysis
         update_frequency: Update Frequency
         valid_from: Valid from
-    dataset: 
+    dataset:
+        relations: 'Relations' 
+        relationship_type: 'Relationship type'
+        relationship_dataset_description: 'Relationship table'
+        foreign_key_field_description_id: 'Foreign key'
+        refresh_foreign_keys: 'Refresh foreign keys'
         create: New dataset
         create_category: New category
         add_field_description: Add field description

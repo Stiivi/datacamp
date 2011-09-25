@@ -23,6 +23,15 @@ module Etl
     
     def digest(doc)
       advokat_table = doc.xpath("//div[@class='section']/table[@class='filter']").first
+      
+      trainees = doc.xpath("//div[@id='blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/attr/cms/section/proxyKoncipient']/div/div/table/tr")
+      trainees_attributes = trainees.map do |trainee|
+        next if trainee.xpath("./th").present? || trainee.inner_text.match(/Zoznam je prázdny/).present?
+        tr = trainee.xpath("./td[2]").first.inner_text.strip
+        match_data = tr.match(/(?<first_name>[^\s]+)\s+(?<last_name>[^\s]+)\s+(?<title>[^\s]+)/)
+        ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title]} rescue nil)
+      end.compact
+      
       {
         :name => advokat_table.xpath('./tr[1]/td[2]').inner_text.strip,
         :avokat_type => advokat_table.xpath('./tr[2]/td[2]').inner_text.strip,
@@ -35,7 +44,8 @@ module Etl
         :languages => advokat_table.xpath('./tr[9]/td[2]').inner_text.strip,
         :email => advokat_table.xpath('./tr[10]/td[2]').inner_text.strip,
         :website => (advokat_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
-        :url => @url
+        :url => @url,
+        :trainees_attributes => trainees_attributes
       }
     end
     

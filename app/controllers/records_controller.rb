@@ -35,6 +35,8 @@ class RecordsController < ApplicationController
       @field_descriptions = @dataset_description.visible_field_descriptions(:detail)
     end
     
+    @related_records_and_fields = related_records_and_fields(@dataset_description, @record)
+    
     load_comments
     
     @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
@@ -107,5 +109,13 @@ class RecordsController < ApplicationController
       @record = @dataset_class.new
     end
     @quality_status = @record.quality_status_messages
+  end
+  
+  def related_records_and_fields(dataset_description, record)
+    dataset_description.relations.map do |relation|
+      [ relation.relationship_dataset_description.dataset.dataset_record_class.where(relation.foreign_key_field_description.identifier => record),
+        relation.relationship_dataset_description.visible_fields_in_relation
+      ]
+    end
   end
 end

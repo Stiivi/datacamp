@@ -18,6 +18,8 @@
         %a{:href => "#is_visible_in_detail", :class => "switch_visibility"}= t "dataset.is_visible_in_detail"
       %th
         %a{:href => "#is_visible_in_export", :class => "switch_visibility"}= t "dataset.is_visible_in_export"
+      %th
+        %a{:href => "#is_visible_in_relation", :class => "switch_visibility"}= t "dataset.is_visible_in_relation"
   
     - @dataset_description.field_descriptions.each do |description|
       - f.fields_for :field_descriptions, description do |fields|
@@ -27,6 +29,7 @@
           %td.is_visible_in_search= fields.check_box :is_visible_in_search
           %td.is_visible_in_detail= fields.check_box :is_visible_in_detail
           %td.is_visible_in_export= fields.check_box :is_visible_in_export
+          %td.is_visible_in_relation= fields.check_box :is_visible_in_relation
           
   %br
   

@@ -10,21 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920101453) do
+ActiveRecord::Schema.define(:version => 20110923151116) do
 
   create_table "sta_advokats", :force => true do |t|
-    t.string "name"
-    t.string "avokat_type"
-    t.string "street"
-    t.string "city"
-    t.string "zip"
-    t.string "phone"
-    t.string "fax"
-    t.string "cell_phone"
-    t.string "languages"
-    t.string "email"
-    t.string "website"
-    t.string "url"
+    t.string   "name"
+    t.string   "avokat_type"
+    t.string   "street"
+    t.string   "city"
+    t.string   "zip"
+    t.string   "phone"
+    t.string   "fax"
+    t.string   "cell_phone"
+    t.string   "languages"
+    t.string   "email"
+    t.string   "website"
+    t.string   "url"
+    t.datetime "etl_loaded"
   end
 
   create_table "sta_employees", :force => true do |t|
@@ -195,5 +196,15 @@ ActiveRecord::Schema.define(:version => 20110920101453) do
   end
 
   add_index "sta_regis_size", ["id"], :name => "i_size"
+
+  create_table "sta_trainees", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "title"
+    t.integer  "advokat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "etl_loaded"
+  end
 
 end

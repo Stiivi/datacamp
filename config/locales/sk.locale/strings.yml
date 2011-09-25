@@ -47,7 +47,12 @@ sk:
     was_useful: "Bol tento komentár užitočný?"
     ? "yes"
     : Ano
-  dataset: 
+  dataset:
+    relations: 'Relácie' 
+    relationship_type: 'Typ relácie'
+    relationship_dataset_description: 'Tabuľka relácie'
+    foreign_key_field_description_id: 'Kľúč relácie'
+    refresh_foreign_keys: 'Obnoviť kľúče'
     active_search: "Záznamy sú filtrované %{predicates} podmienkami"
     add_field_description: "Pridať popis položky"
     selected_records: "%{count} záznam(y) je/sú vybraný/vybrané."

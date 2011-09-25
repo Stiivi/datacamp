@@ -244,6 +244,7 @@ class DatasetsController < ApplicationController
     @dataset_class        = @dataset_description.dataset.dataset_record_class
     @field_descriptions  = @dataset_description.visible_field_descriptions
   end
+
   
   def sitemap
     # TODO implement .. somehow ..
