@@ -44,6 +44,16 @@ class Dataset::Base
     dataset_record_class.establish_connection Rails.env + "_data"
     dataset_record_class.set_table_name @@prefix + @description.identifier
     
+    @description.relations.each do |relation|
+      next if relation.id.blank?
+      dataset_record_class.send(relation.relation_type.to_sym, 
+                                relation.relation_type == 'has_many' ? relation.relationship_dataset_description.identifier.pluralize : relation.relationship_dataset_description.identifier.singularize,
+                                :foreign_key => relation.foreign_key_field_description.identifier.to_sym, 
+                                :class_name => (@@prefix + relation.relationship_dataset_description.identifier).classify,
+                                :primary_key => :relation_id
+                                )
+    end
+    
     def dataset_record_class.find(*args)
       if dataset.has_derived_fields?
         select_columns = "*, " + dataset.derived_fields.map { |field, value| "#{value} as #{field}" }.join(",")
@@ -90,8 +100,7 @@ class Dataset::Base
   end
   
   def table_exists?
-    @table_exists ||= dataset_record_class.table_exists?
-    @table_exists
+    dataset_record_class.table_exists?
   end
   
   def to_param

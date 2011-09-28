@@ -41,8 +41,12 @@ class DataRepairsController < ApplicationController
   end
   
   def update_columns
-    ds_organisations = DatasetDescription.find_by_id(params[:id]).dataset.dataset_record_class
-    render :json => ds_organisations.columns.map(&:name).to_json, :layout => false
+    record_class = DatasetDescription.find_by_id(params[:id]).dataset.dataset_record_class
+    render :json => record_class.columns.map(&:name).to_json, :layout => false
+  end
+  
+  def update_columns_names
+    render :json => DatasetDescription.find_by_id(params[:id]).field_descriptions.map{|rc| [rc.id, rc.title]}.to_json, :layout => false
   end
   
   def start_repair

@@ -127,4 +127,11 @@ class DatasetDescription < ActiveRecord::Base
     @record_count
   end
   
+  def refresh_relation_keys
+    relations.each do |relation|
+      relationship_dataset_description = (relation.relation_type == 'has_many' ? relation.relationship_dataset_description : self)
+      relation.available_keys = relationship_dataset_description.field_descriptions.map{|fd| [fd.title, fd.id]}
+    end
+  end
+  
 end

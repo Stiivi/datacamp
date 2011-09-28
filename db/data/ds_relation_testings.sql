@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS `ds_testing2`;
+DROP TABLE IF EXISTS `ds_relation_testings`;
 
-CREATE TABLE `ds_testing2` (
+CREATE TABLE `ds_relation_testings` (
   `_record_id` int(11) NOT NULL AUTO_INCREMENT,
   `created_by` varchar(255) DEFAULT NULL,
   `record_status` varchar(255) DEFAULT NULL,

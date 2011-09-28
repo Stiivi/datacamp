@@ -1,16 +1,16 @@
 # -*- encoding : utf-8 -*-
 Given /^there are fields in need of company data repair$/ do
-  And %{a published dataset "testing"}
+  And %{a published dataset "testings"}
   And %{a published dataset "organisations"}
   dataset_description = DatasetDescription.find_by_identifier("organisations")
   Factory.create(:field_description, :title => 'ico', :identifier => 'ico', :dataset_description => dataset_description)
   Factory.create(:field_description, :title => 'name', :identifier => 'name', :dataset_description => dataset_description)
   Factory.create(:field_description, :title => 'address', :identifier => 'address', :dataset_description => dataset_description)
-  And %{ico repair field descriptions for dataset dataset "testing" exist}
-  And %{a record with ico, company_name and company_address fields exists for dataset "testing"}
-  And %{a record with ico, company_name fields exists for dataset "testing"}
-  And %{a record with ico, company_address fields exists for dataset "testing"}
-  And %{a record with ico field exists for dataset "testing"}
+  And %{ico repair field descriptions for dataset dataset "testings" exist}
+  And %{a record with ico, company_name and company_address fields exists for dataset "testings"}
+  And %{a record with ico, company_name fields exists for dataset "testings"}
+  And %{a record with ico, company_address fields exists for dataset "testings"}
+  And %{a record with ico field exists for dataset "testings"}
 end
 
 Given /^ico repair field descriptions for dataset dataset "([^"]*)" exist$/ do |dataset_description_identifier|

@@ -107,7 +107,7 @@ class DatasetDescriptionsController < ApplicationController
     @dataset_description.attributes = params[:dataset_description]
     
     if params[:skip_validations]
-      success = @dataset_description.save(false)
+      success = @dataset_description.save(:validate => false)
     else
       @dataset_description.save
     end
@@ -244,19 +244,26 @@ class DatasetDescriptionsController < ApplicationController
   
   
   def relations
-    @dataset_description.relations.build if @dataset_description.relations.blank?
-    @dataset_description.relations.each { |relation| relation.available_keys = relation.relationship_dataset_description.field_descriptions.map{|fd| [fd.title, fd.id]} }
+    if @dataset_description.relations.blank?
+      @dataset_description.relations.build 
+    else
+      @dataset_description.refresh_relation_keys
+    end
   end
   
   def update_relations
-    saved = @dataset_description.update_attributes(params[:dataset_description])
-    if params[:refresh_foreign_keys] || !saved
-      @dataset_description.relations.each { |relation| relation.available_keys = relation.relationship_dataset_description.field_descriptions.map{|fd| [fd.title, fd.id]} }
+    @dataset_description.attributes = params[:dataset_description]
+    @dataset_description.refresh_relation_keys
+    if params[:add_relation]
+      @dataset_description.relations.build
       render 'relations'
-    elsif saved
+    elsif params[:remove_relation]
+      @dataset_description.relations.delete(@dataset_description.relations.last)
+      render 'relations'
+    elsif params[:refresh_foreign_keys]
+      render 'relations'
+    elsif @dataset_description.update_attributes(params[:dataset_description])
       redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
-    else
-      render 'relations'
     end
   end
   

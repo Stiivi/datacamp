@@ -8,15 +8,17 @@
     = f.error_messages
     
     = f.fields_for :relations do |relation_fields|
-      .field= relation_fields.select :relation_type, options_for_select([['has_many', 'has_many'], ['belongs_to', 'belongs_to']], ''), label: t('dataset.relationship_type')
+      %fieldset
+        .field= relation_fields.select :relation_type, options_for_select([['has_many', 'has_many'], ['belongs_to', 'belongs_to']], relation_fields.object.relation_type), label: t('dataset.relationship_type')
       
-      .field
-        = relation_fields.label :relationship_dataset_description_id, t('dataset.relationship_dataset_description')
-        = relation_fields.grouped_collection_select :relationship_dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
-      %br
-      .field
-        = relation_fields.label :foreign_key_field_description_id, t('dataset.foreign_key_field_description_id')
-        = relation_fields.select :foreign_key_field_description_id, relation_fields.object.available_keys || [], :inline => true
-        = submit_tag t('dataset.refresh_foreign_keys'), name: 'refresh_foreign_keys'
-    %br    
+        .field.relationship_select{:data_update_columns => update_columns_names_data_repairs_path}
+          = relation_fields.label :relationship_dataset_description_id, t('dataset.relationship_dataset_description')
+          = relation_fields.grouped_collection_select :relationship_dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
+        .field
+          = relation_fields.label :foreign_key_field_description_id, t('dataset.foreign_key_field_description_id')
+          = relation_fields.select :foreign_key_field_description_id, relation_fields.object.available_keys || [], :inline => true
+        
+    = submit_tag '+', name: 'add_relation', id: 'add_button'
+    = submit_tag '-', name: 'remove_relation' if @dataset_description.relations.length > 1
+    = submit_tag t('dataset.refresh_foreign_keys'), name: 'refresh_foreign_keys'
     = f.submit 'Save relations'

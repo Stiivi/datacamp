@@ -22,7 +22,7 @@
         %a{:href => "#is_visible_in_relation", :class => "switch_visibility"}= t "dataset.is_visible_in_relation"
   
     - @dataset_description.field_descriptions.each do |description|
-      - f.fields_for :field_descriptions, description do |fields|
+      = f.fields_for :field_descriptions, description do |fields|
         %tr
           %td== #{description.title} (#{description.identifier})
           %td.is_visible_in_listing= fields.check_box :is_visible_in_listing

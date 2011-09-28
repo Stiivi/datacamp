@@ -6,6 +6,7 @@ sk:
       messages: 
         blank: "je potrebné vyplniť"
         blank_i18n: "je potrebné vyplniť pre všetky preklady"
+        record_invalid: "Prosím pozrite si tieto chyby a opravte príslušné polia"
       template: 
         body: "Prosím pozrite si tieto chyby a opravte príslušné polia"
         header: "Uloženiu zabránilo niekoľko chýb"
@@ -14,3 +15,7 @@ sk:
           attributes:
             email:
               taken: "Zadanú adresu ma priradenú už iný používateľ"
+  errors:
+    template: 
+      body: "Prosím pozrite si tieto chyby a opravte príslušné polia"
+      header: "Uloženiu zabránilo niekoľko chýb"

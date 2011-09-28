@@ -112,9 +112,9 @@ class RecordsController < ApplicationController
   end
   
   def related_records_and_fields(dataset_description, record)
-    dataset_description.relations.map do |relation|
-      [ relation.relationship_dataset_description.dataset.dataset_record_class.where(relation.foreign_key_field_description.identifier => record),
-        relation.relationship_dataset_description.visible_fields_in_relation
+    @dataset_class.reflect_on_all_associations.map do |reflection|
+      [ [record.send(reflection.name)].flatten,
+        DatasetDescription.find_by_identifier(reflection.name.pluralize).visible_fields_in_relation
       ]
     end
   end

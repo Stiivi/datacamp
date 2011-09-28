@@ -15,9 +15,17 @@ end
 Given /^a published record with "([^"]*)" exists for dataset "([^"]*)"$/ do |content, dataset_description_identifier|
   dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
   Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description)
+  Factory.create(:field_description, identifier: 'id', dataset_description: dataset_description, sk_title: 'id', en_title: 'id')
+  dataset_class = dataset_description.dataset.dataset_record_class
+  record = dataset_class.create(record_status: 'published', test: content, relation_id: 1)
+end
+
+Given /^a published record with "([^"]*)" exists for relation dataset "([^"]*)"$/ do |content, dataset_description_identifier|
+  dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
+  Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description, is_visible_in_relation: true)
   Factory.create(:field_description, identifier: 'relation_id', dataset_description: dataset_description, sk_title: 'relation_id', en_title: 'relation_id')
   dataset_class = dataset_description.dataset.dataset_record_class
-  dataset_class.create(record_status: 'published', test: content)
+  dataset_class.create(record_status: 'published', test: content, relation_id: 1)
 end
 
 Given /^an unpublished record exists for dataset "([^"]*)"$/ do |dataset_description_identifier|
@@ -27,17 +35,20 @@ Given /^an unpublished record exists for dataset "([^"]*)"$/ do |dataset_descrip
   dataset_class.create(:record_status => 'new', :test => 'some content')
 end
 
-When /^I set up a has_many relationship on "([^"]*)" to "([^"]*)" with foreign_key "([^"]*)"$/ do |dataset_description_identifier, dataset_description_identifier_for_relation, foreign_key|
+When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" with foreign_key "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation, foreign_key|
   And %{I go to the dataset descriptions page}
-  And %{I follow "testing"}
+  And %{I follow "#{dataset_description_identifier}"}
   And %{I follow "Relations"}
-  And %{I select "has_many" from "Relationship type"}
-  And %{I select "testing2" from "Relationship table"}
+  And %{I select "#{relationship_type}" from "Relationship type"}
+  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
   And %{I press "Refresh foreign keys"}
-  And %{I select "relation_id" from "Foreign key"}
+  And %{I select "#{foreign_key}" from "Foreign key"}
   And %{I press "Save relations"}
-  
-  And %{I follow "Visibility settings"}
+end
+
+When /^I display the first record for dataset "([^"]*)"$/ do |dataset|
+  And %{I display records for dataset "#{dataset}"}
+  And %{I follow "View"}
 end
 
 When /^I am logged in and showing records for dataset "([^"]*)"$/ do |dataset|
@@ -57,21 +68,21 @@ When /^I display page (\d+) of sorted records for dataset "([^"]*)"$/ do |page, 
 end
 
 When /^I batch edit selected records for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "testing"}
+  And %{I am logged in and showing records for dataset "testings"}
   And %{I check "record[]"}
   And %{I select "Suspended" from "status"}
 end
 
 When /^I batch edit all records for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "testing"}
+  And %{I am logged in and showing records for dataset "testings"}
   And %{I check "record[]"}
   And %{I select "All records" from "selection"}
   And %{I select "Suspended" from "status"}
 end
 
 When /^I batch edit search results for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "testing"}
-  dataset_class = DatasetDescription.find_by_identifier("testing").dataset.dataset_record_class
+  And %{I am logged in and showing records for dataset "testings"}
+  dataset_class = DatasetDescription.find_by_identifier("testings").dataset.dataset_record_class
   dataset_class.stubs(:search).returns(dataset_class.paginate(page: 1))
   And %{I follow "Search"}
   And %{I fill in "search[predicates][][value]" with "value"}
