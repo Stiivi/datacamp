@@ -290,7 +290,7 @@ def perform_dataset_search(dataset, query, options)
 		# Now fill results with stuff from table ...
         
         # FIXME: use datastore connection
-    	DatasetRecord.connection.execute(sql_query)
+    	Dataset::DatasetRecord.connection.execute(sql_query)
 
 	rescue Exception => e
 		# FIXME: create list of errors, pass an message

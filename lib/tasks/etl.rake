@@ -41,17 +41,17 @@ namespace :etl do
   end
   
   task :advokat_loading => :environment do
-    dataset_schema = DatasetRecord.connection.current_database
+    dataset_schema = Dataset::DatasetRecord.connection.current_database
     staging_schema = Staging::StaAdvokat.connection.current_database
     
-    DatasetRecord.transaction do
+    Dataset::DatasetRecord.transaction do
       sql = "INSERT INTO #{dataset_schema}.ds_advokats 
              (name, advokat_type, street, city, zip, phone, id)
              SELECT name, avokat_type, street, city, zip, phone, id FROM #{staging_schema}.#{Staging::StaAdvokat.table_name} WHERE etl_loaded IS NULL"
       Staging::StagingRecord.connection.execute(sql)
       Staging::StaAdvokat.update_all({:etl_loaded => Time.now}, {:etl_loaded => nil})
     end
-    DatasetRecord.transaction do
+    Dataset::DatasetRecord.transaction do
       sql = "INSERT INTO #{dataset_schema}.ds_trainees 
              (first_name, last_name, title, advokat_id)
              SELECT first_name, last_name, title, advokat_id FROM #{staging_schema}.#{Staging::StaTrainee.table_name} WHERE etl_loaded IS NULL"
@@ -65,7 +65,7 @@ namespace :etl do
     dataset_table = 'ds_procurements'
     regis_table = 'sta_regis_main'
     staging_schema = Staging::StagingRecord.connection.current_database
-    dataset_schema = DatasetRecord.connection.current_database
+    dataset_schema = Dataset::DatasetRecord.connection.current_database
 
     load = "INSERT INTO #{dataset_schema}.#{dataset_table} 
             (id, year, bulletin_id, procurement_id, customer_ico, customer_company_name, customer_company_address, customer_company_town, supplier_ico, supplier_company_name, supplier_region, supplier_company_address, supplier_company_town, procurement_subject, price, currency, is_vat_included, customer_ico_evidence, supplier_ico_evidence, subject_evidence, price_evidence, procurement_type_id, document_id, source_url, created_at, updated_at, is_price_part_of_range, customer_name, note, record_status)
@@ -122,10 +122,10 @@ namespace :etl do
 		dataset_table = 'ds_organisations'
 		
     staging_schema = Staging::StagingRecord.connection.current_database
-    dataset_schema = DatasetRecord.connection.current_database
+    dataset_schema = Dataset::DatasetRecord.connection.current_database
     
-    DatasetRecord.skip_callback :update, :after, :after_update
-    regis_ds_model = Class.new DatasetRecord
+    Dataset::DatasetRecord.skip_callback :update, :after, :after_update
+    regis_ds_model = Class.new Dataset::DatasetRecord
     regis_ds_model.set_table_name dataset_table
     
     append_new_records = "INSERT INTO #{dataset_schema}.#{dataset_table} 

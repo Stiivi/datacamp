@@ -201,7 +201,7 @@ class DatasetDescriptionsController < ApplicationController
     # FIXME: use datastore manager (not yet implemented)
     dd = DatasetDescription.find_by_id(params[:id])
     
-    @connection = DatasetRecord.connection
+    @connection = Dataset::DatasetRecord.connection
     begin
       table_desc = TableDescription.new(@connection, dd.dataset.table_name)
     rescue Exception => e

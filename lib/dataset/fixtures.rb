@@ -15,7 +15,7 @@ module Dataset::Fixtures
       FieldDescription.delete_all
       
       # We also want to delete everything from test_data table
-      connection = DatasetRecord.connection
+      connection = Dataset::DatasetRecord.connection
       connection.tables.each do |table|
         connection.drop_table(table)
       end

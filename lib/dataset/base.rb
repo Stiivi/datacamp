@@ -39,7 +39,7 @@ class Dataset::Base
     @errors = []
     
     # Setup DatasetRecord based on description
-    Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(DatasetRecord)) unless dataset_record_class
+    Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(Dataset::DatasetRecord)) unless dataset_record_class
     dataset_record_class.dataset = self
     dataset_record_class.establish_connection Rails.env + "_data"
     dataset_record_class.set_table_name @@prefix + @description.identifier
@@ -70,7 +70,7 @@ class Dataset::Base
     end
     
     # Get connection from model
-    @connection = DatasetRecord.connection
+    @connection = Dataset::DatasetRecord.connection
     
     # Add derived fields
     @derived_fields = Hash.new
@@ -117,7 +117,7 @@ class Dataset::Base
   
   def self.find_tables *args
     args = args.extract_options!
-    tables = DatasetRecord.connection.select_all('show tables').collect { |r| r.values[0] }
+    tables = Dataset::DatasetRecord.connection.select_all('show tables').collect { |r| r.values[0] }
     if args[:prefix]
       tables = tables.find_all { |r| r =~ /^#{args[:prefix]}_/ }
     end

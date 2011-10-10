@@ -24,7 +24,7 @@
 class DatastoreController < ApplicationController
 
 def initialize
-    @connection = DatasetRecord.connection
+    @connection = Dataset::DatasetRecord.connection
     @log = ApplicationLogger.new
 end
 
