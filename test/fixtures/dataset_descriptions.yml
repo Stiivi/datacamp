@@ -1,9 +1,0 @@
-articles:
-  identifier: organisations
-  created_at: 2008-01-01
-  updated_at: 2009-01-01
-  data_provider: Statisticky urad
-  update_frequency: weekly
-  collection_mode: auto
-  data_source_type: web
-  is_active: true
