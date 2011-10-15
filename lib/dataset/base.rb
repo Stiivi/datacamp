@@ -39,7 +39,8 @@ class Dataset::Base
     @errors = []
     
     # Setup DatasetRecord based on description
-    Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(Dataset::DatasetRecord)) unless dataset_record_class
+    Kernel.send(:remove_const, (@@prefix + @description.identifier).classify ) if dataset_record_class
+    Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(Dataset::DatasetRecord))
     dataset_record_class.dataset = self
     dataset_record_class.establish_connection Rails.env + "_data"
     dataset_record_class.set_table_name @@prefix + @description.identifier
