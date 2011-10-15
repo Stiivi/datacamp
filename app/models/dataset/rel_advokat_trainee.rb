@@ -4,6 +4,4 @@ class Dataset::RelAdvokatTrainee < Dataset::DatasetRecord
   
   belongs_to :ds_advokats, :class_name => "Dataset::DsAdvokat"
   belongs_to :ds_trainee, :class_name => "Dataset::DsTrainee"
-  
-  validates_uniqueness_of :url
 end

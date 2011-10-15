@@ -6,4 +6,6 @@ class Dataset::DsAdvokat < Dataset::DatasetRecord
   has_many :ds_trainees, :class_name => "Dataset::DsTrainee", :through => :rel_advokat_trainee
   
   accepts_nested_attributes_for :ds_trainees
+  
+  validates_uniqueness_of :url
 end

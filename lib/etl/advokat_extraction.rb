@@ -34,7 +34,7 @@ module Etl
       
       {
         :name => advokat_table.xpath('./tr[1]/td[2]').inner_text.strip,
-        :avokat_type => advokat_table.xpath('./tr[2]/td[2]').inner_text.strip,
+        :advokat_type => advokat_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => advokat_table.xpath('./tr[3]/td[2]').inner_text.strip,
         :city => advokat_table.xpath('./tr[4]/td[2]').inner_text.strip,
         :zip => advokat_table.xpath('./tr[5]/td[2]').inner_text.strip,
@@ -58,6 +58,7 @@ module Etl
     end
     
     def save(advokat_hash)
+      puts advokat_hash.inspect
       Dataset::DsAdvokat.create(advokat_hash)
     end
     
