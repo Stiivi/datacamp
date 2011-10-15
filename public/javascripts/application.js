@@ -32,6 +32,12 @@ var update_import_status = function(){
   });
 };
 
+function cleanup_hashes() {
+	$('input.remove_element,input.add_element').each(function(index, domElem){
+		$(domElem).val($(domElem).val().replace(/\s+#\d+$/, ''));
+	});
+}
+
 $(function(){
 	$("form.search").submit(function(event){
 		if(inscription_validate_form(this)) {
@@ -63,5 +69,19 @@ $(function(){
 	$('#data_repair_regis_table_name').change(function(){
 		update_select_fields($(this), "#data_repair_regis_ico_column, #data_repair_regis_name_column, #data_repair_regis_address_column", false);
 	});
-
+	
+	cleanup_hashes();
+	$('.add_element').live('click', function () { 
+		var content = $(this).attr("data-element");
+	  var new_id = new Date().getTime();
+	  var regexp = new RegExp("new_" + $(this).attr("data-association"), "g");
+		$(this).before(content.replace(regexp, new_id));
+	  cleanup_hashes();
+		return false;
+	});
+	$('.remove_element').live('click', function () { 
+		$(this).prev().val("1");
+		$(this).closest('fieldset').hide();
+		return false;
+	});
 });

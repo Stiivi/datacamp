@@ -1,0 +1,11 @@
+%fieldset
+  .field= f.select :relation_type, options_for_select([['has_many', 'has_many'], ['belongs_to', 'belongs_to'], ['has_and_belongs_to_many', 'has_and_belongs_to_many']], f.object.relation_type), label: t('dataset.relationship_type')
+
+  .field
+    = f.label :relationship_dataset_description_id, t('dataset.relationship_dataset_description')
+    = f.grouped_collection_select :relationship_dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
+    
+  .field= f.select :relation_table_identifier, @relation_tables || [], label: t('dataset.relation_table'), include_blank: true
+  
+  = f.hidden_field :_destroy
+  = submit_tag "- ##{index}", name: "remove_relation", class: 'remove_element'

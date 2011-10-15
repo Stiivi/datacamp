@@ -7,16 +7,10 @@
   = form_for([:update_relations, @dataset_description], :builder => ListFormBuilder) do |f|
     = f.error_messages
     
+    - index = 0
     = f.fields_for :relations do |relation_fields|
-      %fieldset
-        .field= relation_fields.select :relation_type, options_for_select([['has_many', 'has_many'], ['belongs_to', 'belongs_to'], ['has_and_belongs_to_many', 'has_and_belongs_to_many']], relation_fields.object.relation_type), label: t('dataset.relationship_type')
-      
-        .field.relationship_select{:data_update_columns => update_columns_names_data_repairs_path}
-          = relation_fields.label :relationship_dataset_description_id, t('dataset.relationship_dataset_description')
-          = relation_fields.grouped_collection_select :relationship_dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
+      = render partial: 'relation_fields', locals: {f: relation_fields, index: index}
+      - index += 1
           
-        .field= relation_fields.select :relation_table_identifier, @relation_tables, label: t('dataset.relation_table'), include_blank: true
-          
-    = submit_tag '+', name: 'add_relation', id: 'add_button'
-    = submit_tag '-', name: 'remove_relation' if @dataset_description.relations.length > 1
+    = link_to_add_fields '+', f, :relations
     = f.submit 'Save relations', name: 'save'

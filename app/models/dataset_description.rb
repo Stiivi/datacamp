@@ -6,8 +6,8 @@ class DatasetDescription < ActiveRecord::Base
   has_many :comments
   belongs_to :category, :class_name => "DatasetCategory"
   
-  has_many :relations
-  accepts_nested_attributes_for :relations
+  has_many :relations, :dependent => :destroy
+  accepts_nested_attributes_for :relations, :allow_destroy => true
   
   default_scope includes(:translations)
   
