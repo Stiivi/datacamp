@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110925170730) do
+ActiveRecord::Schema.define(:version => 20111011211615) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20110925170730) do
     t.integer  "foreign_key_field_description_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "relation_table_identifier"
   end
 
   create_table "relationship_description_translations", :force => true do |t|

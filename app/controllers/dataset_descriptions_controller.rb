@@ -244,26 +244,24 @@ class DatasetDescriptionsController < ApplicationController
   
   
   def relations
-    if @dataset_description.relations.blank?
-      @dataset_description.relations.build 
-    else
-      @dataset_description.refresh_relation_keys
-    end
+    @relation_tables = Dataset::Base.find_tables :prefix => "rel"
+    @dataset_description.relations.build if @dataset_description.relations.blank?
   end
   
   def update_relations
-    @dataset_description.attributes = params[:dataset_description]
-    @dataset_description.refresh_relation_keys
-    if params[:add_relation]
+    @relation_tables = Dataset::Base.find_tables :prefix => "rel"
+    if params[:save] && @dataset_description.update_attributes(params[:dataset_description])
+      redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
+    elsif params[:add_relation]
+      @dataset_description.attributes = params[:dataset_description]
       @dataset_description.relations.build
       render 'relations'
     elsif params[:remove_relation]
+      @dataset_description.attributes = params[:dataset_description]
       @dataset_description.relations.delete(@dataset_description.relations.last)
       render 'relations'
-    elsif params[:refresh_foreign_keys]
-      render 'relations'
-    elsif @dataset_description.update_attributes(params[:dataset_description])
-      redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
+    else
+      render 'relations', :notice => 'Please select all relevant fields!'
     end
   end
   

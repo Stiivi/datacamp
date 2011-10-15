@@ -45,7 +45,7 @@ module Etl
         :email => advokat_table.xpath('./tr[10]/td[2]').inner_text.strip,
         :website => (advokat_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
         :url => @url,
-        :trainees_attributes => trainees_attributes
+        :ds_trainees_attributes => trainees_attributes
       }
     end
     
@@ -58,7 +58,7 @@ module Etl
     end
     
     def save(advokat_hash)
-      Staging::StaAdvokat.create(advokat_hash)
+      Dataset::DsAdvokat.create(advokat_hash)
     end
     
     def get_downloads

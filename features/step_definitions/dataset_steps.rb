@@ -17,15 +17,16 @@ Given /^a published record with "([^"]*)" exists for dataset "([^"]*)"$/ do |con
   Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description)
   Factory.create(:field_description, identifier: 'id', dataset_description: dataset_description, sk_title: 'id', en_title: 'id')
   dataset_class = dataset_description.dataset.dataset_record_class
-  record = dataset_class.create(record_status: 'published', test: content, relation_id: 1)
+  @record = dataset_class.create(record_status: 'published', test: content)
 end
 
 Given /^a published record with "([^"]*)" exists for relation dataset "([^"]*)"$/ do |content, dataset_description_identifier|
+  foreign_key = "#{@record.class.table_name.singularize}_id"
   dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
   Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description, is_visible_in_relation: true)
-  Factory.create(:field_description, identifier: 'relation_id', dataset_description: dataset_description, sk_title: 'relation_id', en_title: 'relation_id')
+  Factory.create(:field_description, identifier: foreign_key, dataset_description: dataset_description, sk_title: foreign_key, en_title: foreign_key)
   dataset_class = dataset_description.dataset.dataset_record_class
-  dataset_class.create(record_status: 'published', test: content, relation_id: 1)
+  dataset_class.create(:record_status => 'published', :test => content, foreign_key.to_sym => @record._record_id)
 end
 
 Given /^an unpublished record exists for dataset "([^"]*)"$/ do |dataset_description_identifier|
@@ -35,14 +36,12 @@ Given /^an unpublished record exists for dataset "([^"]*)"$/ do |dataset_descrip
   dataset_class.create(:record_status => 'new', :test => 'some content')
 end
 
-When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" with foreign_key "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation, foreign_key|
+When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation|
   And %{I go to the dataset descriptions page}
   And %{I follow "#{dataset_description_identifier}"}
   And %{I follow "Relations"}
   And %{I select "#{relationship_type}" from "Relationship type"}
   And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
-  And %{I press "Refresh foreign keys"}
-  And %{I select "#{foreign_key}" from "Foreign key"}
   And %{I press "Save relations"}
 end
 

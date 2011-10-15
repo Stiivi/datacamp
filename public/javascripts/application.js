@@ -63,8 +63,5 @@ $(function(){
 	$('#data_repair_regis_table_name').change(function(){
 		update_select_fields($(this), "#data_repair_regis_ico_column, #data_repair_regis_name_column, #data_repair_regis_address_column", false);
 	});
-	
-	$('.relationship_select > select').change(function(){
-		update_select_fields($(this), $(this).parent().next().children().last(), true);
-	});
+
 });

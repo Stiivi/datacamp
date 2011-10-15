@@ -12,10 +12,10 @@ CREATE TABLE `ds_testings` (
   `is_hidden` tinyint(1) DEFAULT NULL,
   `batch_id` int(11) DEFAULT NULL,
   `test` varchar(255) DEFAULT NULL,
-	`ico` int(11) DEFAULT NULL,
-	`company_name` varchar(255) DEFAULT NULL,
-	`company_address` varchar(255) DEFAULT NULL,
-	`relation_id` int(11) DEFAULT NULL,
+  `ico` int(11) DEFAULT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `company_address` varchar(255) DEFAULT NULL,
+  `id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`_record_id`),
   KEY `test_index` (`test`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1397 DEFAULT CHARSET=utf8;
