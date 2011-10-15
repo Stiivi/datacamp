@@ -13,7 +13,7 @@
         =raw "%s |" % link_to(t("comments.reply"), new_comment_path(:parent_comment_id => comment.id))
       - else
         =raw "%s |" % link_to(t("comments.reply"), new_comment_path(:parent_comment_id => comment.parent_comment.id))
-      =raw "%s |" % link_to(t("comments.report"), report_comment_path(comment)) unless comment.added_by_staff?
+      =raw "%s |" % link_to(t("comments.report"), report_comment_path(comment)) if !comment.added_by_staff? && logged_in?
       - if logged_in? and current_user.has_privilege? :social_moderating
         = link_to t("comments.suspend"), comment, :method => :delete, :class => "ajax", :remote => :true
     .fr
