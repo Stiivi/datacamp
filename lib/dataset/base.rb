@@ -39,53 +39,53 @@ class Dataset::Base
     @errors = []
     
     # Setup DatasetRecord based on description
-    unless dataset_record_class
-      Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(Dataset::DatasetRecord)) 
-      dataset_record_class.dataset = self
-      dataset_record_class.establish_connection Rails.env + "_data"
-      dataset_record_class.set_table_name @@prefix + @description.identifier
+    Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(Dataset::DatasetRecord)) unless dataset_record_class
+    dataset_record_class.dataset = self
+    dataset_record_class.establish_connection Rails.env + "_data"
+    dataset_record_class.set_table_name @@prefix + @description.identifier
     
-      @description.relations.each do |relation|
-        next if relation.id.blank?
+    dataset_record_class.write_inheritable_attribute :reflections, {}
+  
+    @description.relations.each do |relation|
+      next if relation.id.blank?
+    
+      if relation.relation_type == 'has_and_belongs_to_many' && relation.relation_table_identifier.present?
+        relation_model = ( relation.relation_table_identifier.classify.constantize rescue Kernel.const_set(relation.relation_table_identifier.classify, Class.new(Dataset::DatasetRecord)) )
+        relation_model.set_table_name relation.relation_table_identifier
       
-        if relation.relation_type == 'has_and_belongs_to_many' && relation.relation_table_identifier.present?
-          relation_model = ( relation.relation_table_identifier.classify.constantize rescue Kernel.const_set(relation.relation_table_identifier.classify, Class.new(Dataset::DatasetRecord)) )
-          relation_model.set_table_name relation.relation_table_identifier
-        
-          relation_model.send( :belongs_to,
-                               (@@prefix + relation.relationship_dataset_description.identifier.singularize).to_sym,
-                               :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
-                             )
-                           
-          dataset_record_class.send( :has_many,
-                                     relation.relation_table_identifier.to_sym,
-                                     :class_name => relation_model.name
-                                   )              
-          dataset_record_class.send( :has_many,
-                                     (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,
-                                     :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify,
-                                     :through => relation.relation_table_identifier.to_sym
-                                   )
-        elsif relation.relation_type == 'has_many' || relation.relation_type == 'belongs_to'
-          dataset_record_class.send(relation.relation_type.to_sym, 
-                                    relation.relation_type == 'has_many' ? 
-                                    (@@prefix + relation.relationship_dataset_description.identifier.pluralize) : 
-                                    (@@prefix + relation.relationship_dataset_description.identifier.singularize),
-                                    :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify,
-                                    :primary_key => :_record_id
-                                    )
-        end
+        relation_model.send( :belongs_to,
+                             (@@prefix + relation.relationship_dataset_description.identifier.singularize).to_sym,
+                             :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
+                           )
+                         
+        dataset_record_class.send( :has_many,
+                                   relation.relation_table_identifier.to_sym,
+                                   :class_name => relation_model.name
+                                 )              
+        dataset_record_class.send( :has_many,
+                                   (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,
+                                   :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify,
+                                   :through => relation.relation_table_identifier.to_sym
+                                 )
+      elsif relation.relation_type == 'has_many' || relation.relation_type == 'belongs_to'
+        dataset_record_class.send(relation.relation_type.to_sym, 
+                                  relation.relation_type == 'has_many' ? 
+                                  (@@prefix + relation.relationship_dataset_description.identifier.pluralize) : 
+                                  (@@prefix + relation.relationship_dataset_description.identifier.singularize),
+                                  :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify,
+                                  :primary_key => :_record_id
+                                  )
       end
+    end
+  
+    def dataset_record_class.find(*args)
+      select_columns = ", " + dataset.derived_fields.map { |field, value| "#{value} as #{field}" }.join(",") if dataset.has_derived_fields?
     
-      def dataset_record_class.find(*args)
-        select_columns = ", " + dataset.derived_fields.map { |field, value| "#{value} as #{field}" }.join(",") if dataset.has_derived_fields?
-      
-        conditions = {}
-        # TODO should display only records with ok status
-      
-        with_scope(select(select_columns).where(conditions)) do
-          super(*args)
-        end
+      conditions = {}
+      # TODO should display only records with ok status
+    
+      with_scope(select(select_columns).where(conditions)) do
+        super(*args)
       end
     end
 

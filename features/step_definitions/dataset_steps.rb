@@ -20,6 +20,23 @@ Given /^a published record with "([^"]*)" exists for dataset "([^"]*)"$/ do |con
   @record = dataset_class.create(record_status: 'published', test: content)
 end
 
+
+When /^a published record for dataset "([^"]*)" with a related record for dataset "([^"]*)" through "([^"]*)"$/ do |dataset, related_adataset, through_table|
+  load_dataset_model(dataset).delete_all
+  load_dataset_model(related_adataset).delete_all
+  "Kernel::#{through_table.classify}".constantize.delete_all
+  
+  dataset_description = DatasetDescription.find_by_identifier(dataset)
+  relation_dataset_description = DatasetDescription.find_by_identifier(related_adataset)
+  
+  Factory.create(:field_description, identifier: 'name', dataset_description: dataset_description)
+  Factory.create(:field_description, identifier: 'first_name', dataset_description: relation_dataset_description, is_visible_in_relation: true)
+  
+  dd = dataset_description.dataset.dataset_record_class.create(record_status: 'published', name: 'some content')
+  rdd = relation_dataset_description.dataset.dataset_record_class.create(record_status: 'published', first_name: 'some content2')
+  "Kernel::#{through_table.classify}".constantize.create(ds_advokat_id: dd._record_id, ds_trainee_id: rdd._record_id)
+end
+
 Given /^a published record with "([^"]*)" exists for relation dataset "([^"]*)"$/ do |content, dataset_description_identifier|
   foreign_key = "#{@record.class.table_name.singularize}_id"
   dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
@@ -40,8 +57,20 @@ When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)"$/ do |relatio
   And %{I go to the dataset descriptions page}
   And %{I follow "#{dataset_description_identifier}"}
   And %{I follow "Relations"}
+  And %{I press "+"}
   And %{I select "#{relationship_type}" from "Relationship type"}
   And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  And %{I press "Save relations"}
+end
+
+When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" through "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation, through_table|
+  And %{I go to the dataset descriptions page}
+  And %{I follow "#{dataset_description_identifier}"}
+  And %{I follow "Relations"}
+  And %{I press "+"}
+  And %{I select "#{relationship_type}" from "Relationship type"}
+  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  And %{I select "#{through_table}" from "Relation Table"}
   And %{I press "Save relations"}
 end
 

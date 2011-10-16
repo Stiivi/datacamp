@@ -250,7 +250,6 @@ class DatasetDescriptionsController < ApplicationController
   def update_relations
     @relation_tables = Dataset::Base.find_tables :prefix => "rel"
     if params[:save] && @dataset_description.update_attributes(params[:dataset_description])
-      system "touch #{File.join(Rails.root,'tmp','restart.txt')}"
       redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
     elsif params[:add_relation]
       @dataset_description.attributes = params[:dataset_description]

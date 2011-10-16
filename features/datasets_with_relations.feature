@@ -18,6 +18,13 @@ Feature: Datasets with relations
     And I should see "some content2"
   
   Scenario: Publish a table with a has_many :through relationship
+    And a published dataset "advokats"
+    And a published dataset "trainees"
+    When I set up a "has_and_belongs_to_many" relationship on "advokats" to "trainees" through "rel_advokats_trainees"
+    And a published record for dataset "advokats" with a related record for dataset "trainees" through "rel_advokats_trainees"
+    And I display the first record for dataset "advokats"
+    Then I should see "some content"
+    And I should see "some content2"
   
   Scenario: Publish a table with a belongs_to relationship
     And a published record with "some content" exists for dataset "testings"
