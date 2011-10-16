@@ -1,7 +1,7 @@
 .bundle
 db/*.sqlite3
 log/*
-tmp/**/*
+tmp/*
 
 files/*
 config/database.yml
