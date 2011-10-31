@@ -1,3 +1,15 @@
+namespace :db_data do
+  task :load => :environment do
+    Dir[File.join(Rails.root, 'db', 'data', '*.sql')].each do |file|
+      File.open(file) do |f|
+        f.read.split(';').each do |update|
+          Dataset::DatasetRecord.connection.execute(update) if update.present?
+        end
+      end
+    end
+  end
+end
+
 namespace :db_staging do
   # desc "Raises an error if there are pending migrations"
   task :abort_if_pending_migrations => :environment do

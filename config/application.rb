@@ -74,7 +74,7 @@ module Datacamp
             has "#{field.identifier} IS NULL", :type => :integer, :as => "#{field.identifier}_nil" if field.identifier.present?
           end
         end
-      end
+      end if DatasetDescription.table_exists?
     end
     
   end
