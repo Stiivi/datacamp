@@ -7,5 +7,9 @@
     
   .field= f.select :relation_table_identifier, @relation_tables || [], label: t('dataset.relation_table'), include_blank: true
   
+  .field
+    = f.label :create_relation_field_table, t('dataset.create_relation_field_table')
+    = f.check_box :create_relation_field_table, inline: true
+  
   = f.hidden_field :_destroy
   = submit_tag "- ##{index}", name: "remove_relation", class: 'remove_element'

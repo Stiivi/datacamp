@@ -134,4 +134,21 @@ class DatasetDescription < ActiveRecord::Base
     end
   end
   
+  def create_relation_tables
+    relations.each do |relation|
+      if relation.create_relation_field_table
+        if relation.relation_type == 'has_and_belongs_to_many' 
+          Dataset::DatasetRecord.connection.create_table("rel_#{relation.dataset_description.identifier}_#{relation.relationship_dataset_description.identifier}", primary_key: '_record_id') do |t|
+            t.integer "ds_#{relation.dataset_description.identifier.singularize}_id"
+            t.integer "ds_#{relation.relationship_dataset_description.identifier.singularize}_id"
+          end unless relation.relation_table_exists?
+          relation.update_attribute(:relation_table_identifier, "rel_#{relation.dataset_description.identifier}_#{relation.relationship_dataset_description.identifier}")
+        elsif  relation.relation_type == 'has_many' 
+          Dataset::DatasetRecord.connection.add_column("ds_#{relation.relationship_dataset_description.identifier}", "ds_#{relation.dataset_description.identifier.singularize}_id", :integer) unless Dataset::DatasetRecord.connection.columns("ds_#{relation.relationship_dataset_description.identifier}").map(&:name).include?("ds_#{relation.dataset_description.identifier.singularize}_id")
+        elsif  relation.relation_type == 'belongs_to' 
+          Dataset::DatasetRecord.connection.add_column("ds_#{relation.dataset_description.identifier}", "ds_#{relation.relationship_dataset_description.identifier.singularize}_id", :integer) unless Dataset::DatasetRecord.connection.columns("ds_#{relation.dataset_description.identifier}").map(&:name).include?("ds_#{relation.relationship_dataset_description.identifier.singularize}_id")
+        end
+      end
+    end
+  end
 end

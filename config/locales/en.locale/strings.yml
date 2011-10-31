@@ -89,6 +89,7 @@ en:
         relations: 'Relations' 
         relationship_type: 'Relationship type'
         relationship_dataset_description: 'Relationship table'
+        create_relation_field_table: 'Create relationship field/table'
         foreign_key_field_description_id: 'Foreign key'
         refresh_foreign_keys: 'Refresh foreign keys'
         create: New dataset

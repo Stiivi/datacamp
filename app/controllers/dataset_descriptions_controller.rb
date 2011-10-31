@@ -250,6 +250,7 @@ class DatasetDescriptionsController < ApplicationController
   def update_relations
     @relation_tables = Dataset::Base.find_tables :prefix => "rel"
     if params[:save] && @dataset_description.update_attributes(params[:dataset_description])
+      @dataset_description.create_relation_tables
       redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
     elsif params[:add_relation]
       @dataset_description.attributes = params[:dataset_description]

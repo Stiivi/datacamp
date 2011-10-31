@@ -20,6 +20,7 @@ Feature: Datasets with relations
   Scenario: Publish a table with a has_many :through relationship
     And a published dataset "advokats"
     And a published dataset "trainees"
+    And there is a relation table "rel_advokats_trainees" with fields "ds_advokat_id" and "ds_trainee_id"
     When I set up a "has_and_belongs_to_many" relationship on "advokats" to "trainees" through "rel_advokats_trainees"
     And a published record for dataset "advokats" with a related record for dataset "trainees" through "rel_advokats_trainees"
     And I display the first record for dataset "advokats"
@@ -33,3 +34,24 @@ Feature: Datasets with relations
     And I display the first record for dataset "relation_testings"
     Then I should see "some content"
     And I should see "some content2"
+
+  Scenario: Publish a table with a belongs_to relationship that needs the relationship table created
+    And there are no tables with prefix "rel"
+    And a published dataset "advokats"
+    And a published dataset "trainees"
+    When I set up a "has_and_belongs_to_many" relationship on "advokats" to "trainees" through "rel_advokats_trainees" that needs the relationship table created
+    And a published record for dataset "advokats" with a related record for dataset "trainees" through "rel_advokats_trainees"
+    And I display the first record for dataset "advokats"
+    Then I should see "some content"
+    And I should see "some content2"
+    And there is a relation table "rel_advokats_trainees" with fields "ds_advokat_id" and "ds_trainee_id"
+    
+  Scenario: Publish a table with a has_many relationship that needs the foreign key created
+    And there is not a "ds_testing_id" column in "ds_relation_testings"
+    When I set up a "has_many" relationship on "testings" to "relation_testings" that needs the foreign key created
+    And a published record with "some content" exists for dataset "testings"
+    And a published record with "some content2" exists for relation dataset "relation_testings"
+    And I display the first record for dataset "testings"
+    Then I should see "some content"
+    And I should see "some content2"
+    And there is a "ds_testing_id" column in "ds_relation_testings"

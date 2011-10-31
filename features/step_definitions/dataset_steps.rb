@@ -43,6 +43,7 @@ Given /^a published record with "([^"]*)" exists for relation dataset "([^"]*)"$
   Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description, is_visible_in_relation: true)
   Factory.create(:field_description, identifier: foreign_key, dataset_description: dataset_description, sk_title: foreign_key, en_title: foreign_key)
   dataset_class = dataset_description.dataset.dataset_record_class
+  And %{there is a "foreign_key" column in "#{dataset_class.table_name}"}
   dataset_class.create(:record_status => 'published', :test => content, foreign_key.to_sym => @record._record_id)
 end
 
@@ -51,6 +52,50 @@ Given /^an unpublished record exists for dataset "([^"]*)"$/ do |dataset_descrip
   Factory.create(:field_description, :identifier => 'test', :dataset_description => dataset_description)
   dataset_class = dataset_description.dataset.dataset_record_class
   dataset_class.create(:record_status => 'new', :test => 'some content')
+end
+
+Given /^there is not a "([^"]*)" column in "([^"]*)"$/ do |column, table|
+  FieldDescription.where(identifier: column).delete_all
+  Dataset::DatasetRecord.connection.remove_column(table, column) if Dataset::DatasetRecord.connection.columns(table).map(&:name).include?(column)
+end
+
+Given /^there is a "([^"]*)" column in "([^"]*)"$/ do |column, table|
+  Dataset::DatasetRecord.connection.add_column(table, column, :integer) unless Dataset::DatasetRecord.connection.columns(table).map(&:name).include?(column)
+end
+
+Given /^there is a relation table "([^"]*)" with fields "([^"]*)" and "([^"]*)"$/ do |relation_table_name, first_field, second_field|
+  Dataset::DatasetRecord.connection.create_table(relation_table_name, primary_key: '_record_id') do |t|
+    t.integer first_field
+    t.integer second_field
+  end unless Dataset::DatasetRecord.connection.table_exists?(relation_table_name)
+end
+
+Given /^there are no tables with prefix "([^"]*)"$/ do |prefix|
+  Dataset::Base.find_tables(prefix: prefix).each do |table_name| 
+    Dataset::DatasetRecord.connection.drop_table(table_name) if Dataset::DatasetRecord.connection.table_exists?(table_name)
+  end
+end
+
+When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" through "([^"]*)" that needs the relationship table created$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation, through_table|
+  And %{I go to the dataset descriptions page}
+  And %{I follow "#{dataset_description_identifier}"}
+  And %{I follow "Relations"}
+  And %{I press "+"}
+  And %{I select "#{relationship_type}" from "Relationship type"}
+  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  check('Create relationship field/table')
+  And %{I press "Save relations"}
+end
+
+When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" that needs the foreign key created$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation|
+  And %{I go to the dataset descriptions page}
+  And %{I follow "#{dataset_description_identifier}"}
+  And %{I follow "Relations"}
+  And %{I press "+"}
+  And %{I select "#{relationship_type}" from "Relationship type"}
+  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  check('Create relationship field/table')
+  And %{I press "Save relations"}
 end
 
 When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation|
