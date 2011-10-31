@@ -51,7 +51,8 @@ gem 'test-unit'
 
 # bundle with '--without macosx' if you are not not a good system :)
 group :developemnt, :macosx do
-  gem 'rb-fsevent', :require => false 
+  # This branch is being used because of a problem with the gcc-only installer https://github.com/kennethreitz/osx-gcc-installer not being able to coompile it.
+  gem 'rb-fsevent', :git => 'git://github.com/ttilley/rb-fsevent.git', :branch => 'pre-compiled-gem-one-off', :require => :false
   gem 'growl'
 end
 
