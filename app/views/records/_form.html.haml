@@ -15,7 +15,22 @@
                 .fr
                   = image_tag "icons/cancel.png", :class => "cancel"
               %a{:href => fix_dataset_record_path(@dataset_description, @record, :field => field_description.identifier), :class => "quality_status"}= image_tag "icons/exclamation.png", :class => "quality_status"
-      
+    
+    - @related_records_and_fields.each do |records, fields, reflection_name|
+      %br
+      - if records.present?
+        %table
+          - records.each_with_index do |record, index|
+            %tr
+              %th 
+                %h1{:style => 'margin-bottom: 0;'}= "#{records.first.dataset.description.title} #{index+1}"
+            = f.fields_for reflection_name, record do |rf|
+              - fields.each do |field|
+                %tr
+                  %td.label= field.title
+                  %td.edit
+                    .field= rf.text_field field.identifier
+        
   %h2= t("dataset.meta_information")
   
   %table.plain

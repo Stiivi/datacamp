@@ -63,6 +63,7 @@ class RecordsController < ApplicationController
   
   def edit
     @form_url = dataset_record_path(@dataset_description, @record)
+    @related_records_and_fields = related_records_and_fields(@dataset_description, @record)
   end
   
   def update
@@ -113,9 +114,11 @@ class RecordsController < ApplicationController
   
   def related_records_and_fields(dataset_description, record)
     @dataset_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^rel_/ }.map do |reflection|
+      dd = DatasetDescription.find_by_identifier(reflection.name.to_s.gsub(Dataset::Base::prefix,'').pluralize)
       [ [record.send(reflection.name)].flatten.compact,
-        DatasetDescription.find_by_identifier(reflection.name.to_s.gsub(Dataset::Base::prefix,'').pluralize).visible_fields_in_relation
-      ]
+        dd.visible_fields_in_relation,
+        reflection.name
+      ] if dd.present?
     end
   end
 end

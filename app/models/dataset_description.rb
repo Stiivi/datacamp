@@ -136,7 +136,7 @@ class DatasetDescription < ActiveRecord::Base
   
   def create_relation_tables
     relations.each do |relation|
-      if relation.create_relation_field_table
+      if relation.create_relation_field_table && !relation.frozen?
         if relation.relation_type == 'has_and_belongs_to_many' 
           Dataset::DatasetRecord.connection.create_table("rel_#{relation.dataset_description.identifier}_#{relation.relationship_dataset_description.identifier}", primary_key: '_record_id') do |t|
             t.integer "ds_#{relation.dataset_description.identifier.singularize}_id"

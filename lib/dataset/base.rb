@@ -77,6 +77,9 @@ class Dataset::Base
                                     :primary_key => :_record_id
                                     )
         end
+        dataset_record_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^rel_/ }.map do |reflection|
+          dataset_record_class.accepts_nested_attributes_for(reflection.name)
+        end
       end
     end
   
