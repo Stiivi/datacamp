@@ -65,6 +65,7 @@ group :development do
 	# Deploy with Capistrano multistage
 	gem 'capistrano'
 	gem 'capistrano-ext'
+	gem 'rvm'
 end
 
 group :development, :test do
