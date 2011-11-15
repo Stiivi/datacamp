@@ -1,0 +1,8 @@
+en:
+  activities:
+    index:
+      all: 'Activity'
+      identifier: "Identifier"
+      field_name: "Field name"
+      old_field_value: "Original field value"
+      user_name: "User"

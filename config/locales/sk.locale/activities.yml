@@ -1,0 +1,9 @@
+sk:
+  activities:
+    index:
+      all: 'Všetka aktivita'
+      identifier: "Identifikátor"
+      field_name: "Názov stĺpca"
+      old_field_value: "Pôvodná hodnota"
+      user_name: "Používateľ"
+    

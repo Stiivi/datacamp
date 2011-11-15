@@ -1,5 +1,6 @@
 --- 
 sk:
+  n_a: 'Nevyplnené'
   sort: Usporiadať
   finish_sort: Ukončiť usporiadavanie 
   api:
@@ -125,6 +126,7 @@ sk:
     confirm_deletion: "Naozaj chcete odstrániť túto obľúbenú položku?"
     remove: (odstrániť)
   global:
+    activities: 'Aktivita'
     do_not_search: "Nevyhľadávať: %{name}"
     active: aktívne
     add_to_favorites: "Pridať k obľúbeným"

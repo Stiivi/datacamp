@@ -28,6 +28,7 @@ Datacamp::Application.routes.draw do
   end
   
   resources :watchers
+  resources :activities, only: [:index, :show]
 
   match '/locale/:locale' =>  'main#locale', :as => 'set_locale'
   
