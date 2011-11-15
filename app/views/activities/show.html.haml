@@ -1,0 +1,22 @@
+.node
+  .information
+    .clearfix.buttons
+      .fl
+        = button_link_to(image_tag("back.png") + t("global.back"), activities_path)
+    %table
+      %tr
+        %td.label= t(".identifier")
+        %td= @activity.dataset_description_identifier
+    
+      %tr
+        %td.label= t(".field_name")
+        %td= @activity.changed_field
+        
+      %tr
+        %td.label= t(".old_field_value")
+        %td= @activity.value
+        
+      %tr
+        %td.label= t(".user_name")
+        %td= @activity.user_name
+        
