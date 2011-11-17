@@ -5,18 +5,51 @@
         = button_link_to(image_tag("back.png") + t("global.back"), activities_path)
     %table
       %tr
-        %td.label= t(".identifier")
-        %td= @activity.dataset_description_identifier
+        %td.label= t(".date_time")
+        %td= l @activity.updated_at, format: :full
     
       %tr
-        %td.label= t(".field_name")
-        %td= @activity.changed_field
+        %td.label= t(".identifier")
+        %td= @activity.dataset_description_identifier
         
       %tr
-        %td.label= t(".old_field_value")
-        %td= @activity.value
+        %td.label= t(".change_type")
+        %td= @activity.change_type
         
+      - if @activity.record_id.present?
+        %tr
+          %td.label= t(".record_identifier")
+          %td= @activity.record_id
+          
       %tr
         %td.label= t(".user_name")
         %td= @activity.user_name
         
+      - if @activity.change_details.is_a?(Hash)
+        - if @activity.change_details[:updates].present?
+          %tr
+            %td.label= t(".batch_updates")
+            %td= @activity.change_details[:updates]
+        - if @activity.change_details[:update_conditions].present?
+          %tr
+            %td.label= t(".batch_records")
+            %td= @activity.change_details[:update_conditions][:_record_id]
+        - if @activity.change_details[:batch_file].present?
+          %tr
+            %td.label= t(".batch_file")
+            %td= @activity.change_details[:batch_file]
+        %tr
+          %td.label= t(".batch_count")
+          %td= @activity.change_details[:update_count]
+    
+    - if @activity.change_details.is_a?(Array)
+      %table
+        %tr
+          %th= t(".field_name")
+          %th= t(".old_field_value")
+          %th= t(".new_field_value")
+        - @activity.change_details.each do |change_detail|
+          %tr
+            %td= change_detail[:changed_field]
+            %td= change_detail[:old_value]
+            %td= change_detail[:new_value]

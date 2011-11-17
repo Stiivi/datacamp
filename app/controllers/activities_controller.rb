@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
 
   
   def index
-    @activities = Change.includes({:dataset_description => :translations}, :user).order('changes.created_at DESC').paginate(page: params[:page], per_page: 10)
+    @activities = Change.includes({:dataset_description => :translations}, :user).order('changes.created_at DESC').paginate(page: params[:page], per_page: 50)
   end
   
   def show

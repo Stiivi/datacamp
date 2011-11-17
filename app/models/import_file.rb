@@ -26,10 +26,10 @@ class ImportFile < ActiveRecord::Base
     dataset_description.default_import_format if dataset_description
   end
   
-  def import_into_dataset(column)
+  def import_into_dataset(column, current_user)
     importer = CsvImporter.new(encoding)
     importer.batch_id = id
     raise RuntimeException, "can't load file" unless importer.load_file(file_path, col_separator || ",", number_of_header_lines)
-    importer.import_into_dataset(self, column)
+    importer.import_into_dataset(self, column, current_user)
   end
 end

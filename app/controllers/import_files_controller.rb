@@ -99,7 +99,7 @@ class ImportFilesController < ApplicationController
       redirect_to preview_import_file_path(@import_file)
     end
     
-    @import_file.delay.import_into_dataset(params[:column])
+    @import_file.delay.import_into_dataset(params[:column], current_user)
     
     redirect_to state_import_file_path(@import_file)
   end

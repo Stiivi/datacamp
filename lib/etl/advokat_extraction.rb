@@ -58,7 +58,6 @@ module Etl
     end
     
     def save(advokat_hash)
-      puts advokat_hash.inspect
       Dataset::DsAdvokat.create(advokat_hash)
     end
     

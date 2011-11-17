@@ -2,7 +2,18 @@ en:
   activities:
     index:
       all: 'Activity'
-      identifier: "Identifier"
-      field_name: "Field name"
-      old_field_value: "Original field value"
+      identifier: "Dataset identifier"
       user_name: "User"
+      change_type: 'Change type'
+      user_name: "User"
+      date_time: 'Time of change'
+      
+    show:
+      date_time: 'Time of change'
+      identifier: "Dataset identifier"
+      change_type: 'Change type'
+      user_name: "User"
+      batch_updates: 'Changes to the batch'
+      batch_records: 'Ids of changed records'
+      batch_file: 'Imported file name'
+      batch_count: 'Number of changed records'

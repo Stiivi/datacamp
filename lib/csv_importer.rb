@@ -20,7 +20,7 @@ class CsvImporter
     end
   end
   
-  def import_into_dataset(import_file, column_mapping)
+  def import_into_dataset(import_file, column_mapping, current_user)
     raise RuntimeException, "Can't import, no file open" unless @file
     
     @import_file = import_file
@@ -38,6 +38,7 @@ class CsvImporter
     columns = column_mapping
     
     count = 0
+    saved_ids = []
     # Go through each line
     @file.rewind
     while not @file.eof? do
@@ -47,6 +48,7 @@ class CsvImporter
       record = @dataset_class.new
       record.record_status = "new"
       record.batch_id = @batch_id
+      record.is_part_of_import = true
       columns.each do |i, field_description_id|
         next unless field_description_id
         field_description = @field_descriptions.find_all{|description|description.id.to_i == field_description_id.to_i}[0]
@@ -56,11 +58,14 @@ class CsvImporter
       end
       record.save
       count += 1
+      saved_ids << record._record_id
       
       self.line_imported(count)
     end
     
     self.file_imported(count)
+    
+    Change.create(change_type: Change::BATCH_INSERT, user: current_user, change_details: {update_conditions: {_record_id: saved_ids}, update_count: count, batch_file: @import_file.path_file_name})
     
     return count
   end

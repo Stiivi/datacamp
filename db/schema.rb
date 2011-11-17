@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011211615) do
+ActiveRecord::Schema.define(:version => 20111116184901) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -85,11 +85,12 @@ ActiveRecord::Schema.define(:version => 20111011211615) do
   create_table "changes", :force => true do |t|
     t.string   "dataset_description_id"
     t.string   "record_id"
-    t.string   "changed_field"
-    t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.text     "change_details"
+    t.string   "change_type",               :null => false
+    t.text     "dataset_description_cache"
   end
 
   create_table "comment_ratings", :force => true do |t|

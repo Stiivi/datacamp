@@ -7,7 +7,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   class_inheritable_accessor :dataset
 
-  attr_accessor :handling_user
+  attr_accessor :handling_user, :is_part_of_import
 
   # FIXME: add this to initialize method, use datasetore manager!
   set_primary_key :_record_id
@@ -164,19 +164,21 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   ########################################################################################
   # Callbacks
 
-  after_update :record_changes
+  after_save :record_changes
   def record_changes
-    changed_attributes.each do |attribute, old_value|
-      next if attribute == "updated_at"
-      next if old_value == self[attribute]
-      change = Change.new
-      change.dataset_description_id = self.dataset.description.id
-      change.record_id = self.id
-      change.changed_field = attribute
-      change.value = old_value
-      change.user_id = @handling_user.id if @handling_user
-      change.save
+    unless is_part_of_import
+      change_details = []
+      changed_attributes.each do |attribute, old_value|
+        next if attribute == "updated_at"
+        next if old_value == self[attribute]
+        change_details << {changed_field: attribute, old_value: old_value, new_value: self[attribute]}
+      end
+      Change.create(record_id: self.id, change_type: self.id_changed? ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description: self.dataset.try(:description), user: @handling_user, change_details: change_details)
     end
   end
-
+  
+  before_destroy :record_destroy
+  def record_destroy
+    Change.create(change_type: Change::RECORD_DESTROY, dataset_description_cache: attributes, user: @handling_user)
+  end
 end

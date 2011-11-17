@@ -9,6 +9,10 @@ class DatasetDescription < ActiveRecord::Base
   has_many :relations, :dependent => :destroy
   accepts_nested_attributes_for :relations, :allow_destroy => true
   
+  after_save :log_changes
+  before_destroy :log_destroy
+   
+   
   default_scope includes(:translations)
   
   translates :title, :description
@@ -150,5 +154,19 @@ class DatasetDescription < ActiveRecord::Base
         end
       end
     end
+  end
+  
+private
+  def log_changes
+    change_details = []
+    changed_attributes.each do |attribute, old_value|
+      next if attribute == "updated_at"
+      next if old_value == self[attribute]
+      change_details << {changed_field: attribute, old_value: old_value, new_value: self[attribute]}
+    end
+    Change.create(change_type: self.id_changed? ? Change::DATASET_CREATE : Change::DATASET_UPDATE, dataset_description: self, user: @handling_user, change_details: change_details)
+  end
+  def log_destroy
+    Change.create(change_type: Change::DATASET_DESTROY, dataset_description_cache: attributes, user: @handling_user)
   end
 end

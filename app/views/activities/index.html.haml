@@ -4,17 +4,17 @@
 %table
   %tr
     %th= t(".identifier")
-    %th= t(".field_name")
-    %th= t(".old_field_value")
+    %th= t(".change_type")
     %th= t(".user_name")
+    %th= t(".date_time")
     %th
     
   - @activities.each do |activity|
     %tr
       %td= activity.dataset_description_identifier
-      %td= activity.changed_field
-      %td= activity.value
+      %td= activity.change_type
       %td= activity.user_name
+      %td= l activity.updated_at, format: :full
       %td= link_to(image_tag("icons/show.png", :alt => t("global.show")), activity_path(activity))
 
 .box= will_paginate @activities, :previous_label => t("global.previous"), :next_label => t("global.next")

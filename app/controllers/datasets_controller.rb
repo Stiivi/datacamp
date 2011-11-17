@@ -231,7 +231,8 @@ class DatasetsController < ApplicationController
       end
     end
   
-    @dataset_class.update_all(updates, update_conditions)
+    update_count = @dataset_class.update_all(updates, update_conditions)
+    Change.create(change_type: Change::BATCH_UPDATE, user: current_user, change_details: {updates: updates, update_conditions: update_conditions, update_count: update_count})
 
     flash[:notice] = I18n.t("dataset.batch_updated", :count => @count_updated)
     params.delete(:search_id) if params[:search_id].blank? #FIXME: ewww ugly!

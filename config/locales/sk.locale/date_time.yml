@@ -46,4 +46,5 @@ sk:
     am: am
     formats: 
       default: "%d.%m.%Y"
+      full: "%d.%m.%Y %H:%M"
     pm: pm
