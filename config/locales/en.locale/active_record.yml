@@ -1,8 +1,19 @@
 en:
-    activerecord:
-        errors:
-            messages:
-                blank_i18n: "can't be blank for any of translations"
-        attributes:
-          email:
-            taken: "E-mail address is already taken"
+  activerecord:
+      errors:
+        messages:
+          blank_i18n: "can't be blank for any of translations"
+        models:
+          user:
+            attributes:
+              email:
+                taken: "E-mail address is already taken"
+                too_short: "is too short"
+                bad_format: "does not look like a real email"
+              login:
+                too_short: "is too short"
+                bad_format: "please use standard characters, numbers and the following characters .-@"
+              password:
+                too_short: "is too short"
+              accepts_terms:
+                accepted: 'should be checked'

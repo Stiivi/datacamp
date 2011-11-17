@@ -314,7 +314,7 @@ sk:
     password: Heslo
     reset_password: "Vytvoriť nové heslo"
     reset_password_message: "Kliknite na nasledovnú linku aby sa vám vytvorilo nové heslo: %{link}"
-    set_new_password: "Nastaviť nové heslo"
+    set_new_password: "%{site_name} - nastaviť nové heslo"
     submit: Odoslať
     user_name: Používateľ
   settings: 
@@ -369,3 +369,6 @@ sk:
       attribute_name: Názov
       attribute_value: Hodnota
       update_all: Aktualizovať všetky
+  recaptcha:
+    errors:
+      verification_failed: 'Kontrola reCAPTCHA neprebehla úspešne. Skúste prosím znova.'

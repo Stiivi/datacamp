@@ -1,6 +1,7 @@
 %h1= t("users.register")
 
 = form_for @account, :url => account_path, :builder => ListFormBuilder do |f|
+  = f.error_messages
   %ul
     = f.text_field :login
     = f.text_field :email

@@ -48,17 +48,15 @@ class AccountsController < ApplicationController
   end
   
   def forgot
-    if request.method == :post
+    if request.post?
       @account = User.find_by_email(params[:user][:email])
-      unless @account
-        flash[:error] = I18n.t("global.user_not_found")
-        return redirect_to forgot_account_path
+      if @account.blank?
+        return redirect_to forgot_account_path, notice: I18n.t("global.user_not_found")
       end
       @account.create_restoration_code
       @account.save(false)
       UserMailer.deliver_forgot_password(@account)
-      flash[:notice] = I18n.t("global.email_sent")
-      redirect_to forgot_account_path
+      redirect_to login_path, notice: I18n.t("global.email_sent")
     end
   end
   

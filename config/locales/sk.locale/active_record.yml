@@ -15,6 +15,15 @@ sk:
           attributes:
             email:
               taken: "Zadanú adresu ma priradenú už iný používateľ"
+              too_short: "je príliš krátky"
+              bad_format: "nevyzerá ako skutočný email"
+            login:
+              too_short: "je príliš krátky"
+              bad_format: "použite prosím iba čísla, písmená a nasledovné znaky .-@"
+            password:
+              too_short: "je príliš krátke"
+            accepts_terms:
+              accepted: 'je zaškrtnuté'
   errors:
     template: 
       body: "Prosím pozrite si tieto chyby a opravte príslušné polia"

@@ -324,6 +324,7 @@ en:
         insufficient_privileges: "You have insufficient privileges to perform action %{action}."
         register: Sign up for account
         update_successfull: "User data update was successfull."
+        agree_with: 'I accept the terms of service'
     pages:
         all_pages: All pages
         name: Name

@@ -13,7 +13,7 @@ gem "sequel"
 
 gem 'globalize3'
 gem 'paperclip'
-gem 'recaptcha', :require => "recaptcha/rails"
+gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
 gem 'spawn'
 gem 'validation_reflection'
 gem 'will_paginate', '3.0.pre2'
@@ -58,6 +58,7 @@ end
 
 group :development do
   gem 'pry'
+  gem "mailcatcher"
 	gem "rails-erd"
 	gem 'jquery-rails'
 	gem 'awesome_print'
