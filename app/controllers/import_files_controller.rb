@@ -23,15 +23,10 @@ class ImportFilesController < ApplicationController
   
   privilege_required :import_from_file
   
-  ######################################################################
-  # Pre-step: show load form
   def new
-    @import_file = ImportFile.new
-    @import_file.col_separator = ","
-    @import_file.number_of_header_lines = 1
-    @import_file.dataset_description_id = params[:dataset_description_id]
+    @import_file = ImportFile.new(col_separator: ',', number_of_header_lines: 1, dataset_description_id: params[:dataset_description_id])
     
-    template = CSV_TEMPLATES.find{|tpl|tpl[:id]==params[:template]}
+    template = CSV_TEMPLATES.find{ |tpl| tpl[:id] == params[:template] }
     if template
       @template_id = template[:id]
       @import_file.col_separator = template[:col_separator]
@@ -41,14 +36,11 @@ class ImportFilesController < ApplicationController
     end
     
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @import_file }
       format.js
     end
   end
-
-  ######################################################################
-  # Step 1: Upload file & save information in the table
   
   def create
     @import_file = ImportFile.new(params[:import_file])
@@ -64,23 +56,13 @@ class ImportFilesController < ApplicationController
     @import_file = ImportFile.find_by_id!(params[:id])
     @import_file.update_attributes(params[:import_file])
     redirect_to preview_import_file_path(@import_file)
-    
   end
-  
-  ######################################################################
-  # Step 2: Preview first X lines of file, let the user change
-  # column association, show potential errors & provide link to
-  # actual import.
-  
+    
   def preview
     prepare_file
     @mapping = mapping_from_header
     @lines = @file.load_lines(20)
   end
-  
-  ######################################################################
-  # Step 3: Do the import. Redirect it back to preview if errors 
-  # occur.
   
   def import
     prepare_file
@@ -118,15 +100,12 @@ class ImportFilesController < ApplicationController
   
 protected
   def mapping_from_header
-    # We wanna skip default mapping and start over
-    # trying to guess it from header.
     
     raise "Can't guess mapping if file has no headers." if (@import_file.number_of_header_lines||0)==0
     
     mapping = []
     @dataset_description = @import_file.dataset_description
     
-    # Load a few first lines
     @lines = @file.load_lines(@import_file.number_of_header_lines)
     
     max_guessed_lines = 0
@@ -146,7 +125,6 @@ protected
         mapping = line_mapping
       end
     end
-    
     mapping
   end
   
