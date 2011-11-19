@@ -23,12 +23,6 @@
               
         %tr
           %td
-            = f.label :number_of_header_lines
-          %td
-            = f.text_field :number_of_header_lines
-            
-        %tr
-          %td
             = f.label :col_separator
           %td
             = f.text_field :col_separator
@@ -71,7 +65,7 @@
           %b= i+1
         %td= field_description_picker(i)
         %td= @lines[0][i]
-        %td= @lines[@import_file.number_of_header_lines || 0][i]
+        %td= @lines[1][i]
   
   %br
   

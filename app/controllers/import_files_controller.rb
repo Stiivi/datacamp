@@ -20,36 +20,29 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class ImportFilesController < ApplicationController
+  respond_to :html, :xml, :js
   
   privilege_required :import_from_file
+  before_filter :prepare_file, only: [:import, :preview]
   
   def new
-    @import_file = ImportFile.new(col_separator: ',', number_of_header_lines: 1, dataset_description_id: params[:dataset_description_id])
-    
-    template = CSV_TEMPLATES.find{ |tpl| tpl[:id] == params[:template] }
-    if template
-      @template_id = template[:id]
-      @import_file.col_separator = template[:col_separator]
-      @import_file.number_of_header_lines = template[:header_lines]
-    else
-      @template_id = "default"
-    end
-    
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @import_file }
-      format.js
-    end
+    @import_file = ImportFile.new(dataset_description_id: params[:dataset_description_id])
+    respond_with(@import_file)
   end
   
   def create
     @import_file = ImportFile.new(params[:import_file])
-
+    
     if @import_file.save
       redirect_to preview_import_file_path(@import_file)
     else
-      render :action => "new"
+      render "new"
     end
+  end
+  
+  def preview
+    @mapping = mapping_from_header
+    @lines = @file.load_lines(20)
   end
   
   def update
@@ -57,16 +50,8 @@ class ImportFilesController < ApplicationController
     @import_file.update_attributes(params[:import_file])
     redirect_to preview_import_file_path(@import_file)
   end
-    
-  def preview
-    prepare_file
-    @mapping = mapping_from_header
-    @lines = @file.load_lines(20)
-  end
   
   def import
-    prepare_file
-    
     if @import_file.status == 'success'
       flash[:notice] = t("import.file_already_imported")
       redirect_to preview_import_file_path(@import_file)
@@ -84,13 +69,14 @@ class ImportFilesController < ApplicationController
       wants.js
     end
   end
-
+  
+private
   def prepare_file
     @import_file = ImportFile.find_by_id!(params[:id])
 
     @importer = CsvImporter.new(@import_file.encoding)
     @importer.batch_id = @import_file.id
-    if @importer.load_file(@import_file.file_path, @import_file.col_separator || ",", @import_file.number_of_header_lines)
+    if @importer.load_file(@import_file.file_path, @import_file.col_separator || ",", 1)
       @file = @importer.file
     else
       @file = @importer.file
@@ -98,15 +84,15 @@ class ImportFilesController < ApplicationController
     end
   end
   
-protected
   def mapping_from_header
     
-    raise "Can't guess mapping if file has no headers." if (@import_file.number_of_header_lines||0)==0
+    # raise "Can't guess mapping if file has no headers." if (@import_file.number_of_header_lines||0)==0
     
     mapping = []
     @dataset_description = @import_file.dataset_description
     
-    @lines = @file.load_lines(@import_file.number_of_header_lines)
+    # @lines = @file.load_lines(@import_file.number_of_header_lines)
+    @lines = @file.load_lines(1)
     
     max_guessed_lines = 0
     @lines.each do |line|

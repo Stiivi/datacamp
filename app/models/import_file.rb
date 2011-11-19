@@ -4,20 +4,15 @@ class ImportFile < ActiveRecord::Base
   
   belongs_to :dataset_description
   
-  ###############################################################
-  ## Validations
   validates_presence_of :dataset_description_id, :col_separator, :path
   validates_attachment_presence :path
-  
-  ###############################################################
-  ## Getters & Setters
+
+  after_initialize :init_values
   
   def status
     self[:status] || "ready"
   end
   
-  ###############################################################
-  ## Loads associated file as instance of CsvFile class
   def file_path
     File.join(Rails.root, 'files', "#{id}_#{path_file_name}")
   end
@@ -29,7 +24,12 @@ class ImportFile < ActiveRecord::Base
   def import_into_dataset(column, current_user)
     importer = CsvImporter.new(encoding)
     importer.batch_id = id
-    raise RuntimeException, "can't load file" unless importer.load_file(file_path, col_separator || ",", number_of_header_lines)
+    raise RuntimeException, "can't load file" unless importer.load_file(file_path, col_separator || ",", 1)
     importer.import_into_dataset(self, column, current_user)
+  end
+  
+private
+  def init_values
+    self.col_separator ||= ','
   end
 end

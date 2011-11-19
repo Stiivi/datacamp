@@ -1,4 +1,5 @@
 = form_for @import_file, :builder => ListFormBuilder, :html => {:multipart => true, :class => "preloader", :"data-preloader-message" => I18n.t("import.importing")} do |f|
+  = f.error_messages
   %h2= t "import.file_information"
   %ul
     = f.grouped_collection_select :dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title
@@ -10,14 +11,11 @@
   %ul#file_settings
     %li.clearfix
       %label= t "import.preset"
-      .fl.nopadding
-        = select_tag(:import_file_template, options_for_select(CSV_TEMPLATES.map{|i|[i[:title],i[:id]]}, @import_file.default_import_format || SystemVariable.get('default_import_format')))
-    :javascript
-      var import_templates = #{CSV_TEMPLATES.to_json}
-    
+      = select_tag(:import_file_template, options_for_select(CSV_TEMPLATES.map{|i|[i[:title],i[:id]]}, @import_file.default_import_format || SystemVariable.get('default_import_format')))
     = f.text_field :col_separator
-    = f.text_field :number_of_header_lines
     = f.select :encoding, IMPORT_ENCODINGS
   
   %p
     = f.submit t("global.continue")
+:javascript
+  var import_templates = #{CSV_TEMPLATES.to_json}

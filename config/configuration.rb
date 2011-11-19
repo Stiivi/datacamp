@@ -8,14 +8,10 @@ CSV_TEMPLATES = [
   {
     :id => "csv",
     :title => "CSV",
-    :column_separator => ",",
-    :number_of_header_lines => 1
   },
   {
     :id => "csv_extended_header",
     :title => "CSV with extended header",
-    :column_separator => ",",
-    :number_of_header_lines => 2
   }
 ]
 

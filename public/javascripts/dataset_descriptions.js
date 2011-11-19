@@ -73,19 +73,6 @@ $(document).ready(function(){
 // // // // // // // // // // // // // // // // // // // // // // // // 
 // Import template picker
 
-$(document).ready(function(){
-  $("#import_file_template").change(function(){
-    // Find data for selected value
-    var template_id = $(this).val();
-    var template = $.grep(import_templates, function(i){return i.id==template_id});
-    template = template[0];
-    if(template)
-    {
-      $("#import_file_col_separator").val(template.col_separator);
-      $("#import_file_number_of_header_lines").val(template.number_of_header_lines);
-    };
-  }).change();
-});
 
 $(document).ready(function(){
   $("#settings").toggle();

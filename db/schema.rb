@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116184901) do
+ActiveRecord::Schema.define(:version => 20111119192606) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -270,7 +270,6 @@ ActiveRecord::Schema.define(:version => 20111116184901) do
     t.integer  "path_file_size"
     t.datetime "path_updated_at"
     t.string   "col_separator",           :default => ","
-    t.integer  "number_of_header_lines"
     t.integer  "identifier_line"
     t.string   "encoding"
     t.integer  "count_of_imported_lines"
