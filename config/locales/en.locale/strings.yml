@@ -172,7 +172,7 @@ en:
         file_information: File information
         file_settings: File settings
         file_not_loaded: "File at <small>%{path}</small> couldn't be loaded"
-        file_ready: "File %{title} is ready to be uploaded."
+        file_ready: "File %{title} is ready to be imported."
         go_to_description: "Go to %{dataset}"
         header_lines: Number of header lines (which will be skipped on final import)
         identifier_line: Line with identifiers (will be used to guess field descriptions)

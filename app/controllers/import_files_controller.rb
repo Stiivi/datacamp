@@ -74,16 +74,7 @@ class ImportFilesController < ApplicationController
   
   def preview
     prepare_file
-    
-    # Load default mapping
-    @mapping = default_mapping_from_description
-    
-    # Guess mapping from header
-    if params[:guess_mapping]
-      @mapping = guess_mapping_from_headers
-    end
-    
-    # Now we wanna do nothing but load first 20 lines of file
+    @mapping = mapping_from_header
     @lines = @file.load_lines(20)
   end
   
@@ -125,22 +116,8 @@ class ImportFilesController < ApplicationController
     end
   end
   
-  protected
-  
-  ######################################################################
-  # Default mapping from description
-  
-  def default_mapping_from_description
-    mapping = []
-    i = 0
-    @import_file.dataset_description.importable_fields.each do |fd|
-      mapping[i] = fd.id
-      i += 1
-    end
-    mapping
-  end
-  
-  def guess_mapping_from_headers
+protected
+  def mapping_from_header
     # We wanna skip default mapping and start over
     # trying to guess it from header.
     
@@ -156,11 +133,10 @@ class ImportFilesController < ApplicationController
     @lines.each do |line|
       guessed_lines = 0
       line_mapping = []
-      line.each_index do |i|
-        column = line[i]
+      line.each_with_index do |column, i|
         field_description = @dataset_description.field_descriptions.where(:identifier => column.to_s.downcase.strip).first
         if field_description
-          guessed_lines += 1 if field_description
+          guessed_lines += 1
           line_mapping[i] = field_description.id
         end
       end

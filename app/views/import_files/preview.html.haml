@@ -54,10 +54,6 @@
 .clearfix
   .fl
     %h1= t "import.column_mapping"
-  .fr.clearfix
-    - if (@import_file.number_of_header_lines || 0) > 0
-      = button_link_to t("import.guess_from_header"), preview_import_file_path(@import_file, :guess_mapping => true)
-    = button_link_to t("import.use_default_mapping"), preview_import_file_path(@import_file)
 
 - if params[:guess_mapping]
   %p.notice= t("import.guessing_mapping")
