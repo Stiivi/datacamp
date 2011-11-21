@@ -22,7 +22,7 @@ Datacamp::Application.routes.draw do
   
   resources :import_files do
     member do
-      get :preview, :state
+      get :preview, :state, :cancel
       post :import
     end
   end

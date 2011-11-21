@@ -38,11 +38,17 @@ class ImportFile < ActiveRecord::Base
         count += 1
         saved_ids << record._record_id
         
-        self.update_attributes(count_of_imported_lines: count, status: 'in_progress') if count - self.count_of_imported_lines > 100
+        if count - self.count_of_imported_lines > 100
+          if self.reload.status != 'canceled'
+            self.update_attributes(count_of_imported_lines: count, status: 'in_progress')
+          else
+            break
+          end
+        end
       end
     end
     
-    self.update_attributes(count_of_imported_lines: count, status: 'success')
+    self.update_attributes(count_of_imported_lines: count, status: 'success') if !self.new_record? && self.reload.status != 'canceled'
       
     Change.create(change_type: Change::BATCH_INSERT, user: current_user, change_details: {update_conditions: {_record_id: saved_ids}, update_count: count, batch_file: self.path_file_name})
   end
@@ -87,6 +93,9 @@ class ImportFile < ActiveRecord::Base
     [CSV_EXTENDED_HEADER_TEMPLATE[:id], CSV_TEMPLATE[:id]].include?(self.file_template)
   end
 
+  def cancel
+    update_attribute(:status, 'canceled')
+  end
   
 private
   def prepare_record

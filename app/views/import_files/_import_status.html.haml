@@ -5,6 +5,8 @@
   .progress_bar
 - elsif @import_file.status == 'failed'
   %h1= t("import.importing_failed")
+- elsif @import_file.status == 'canceled'
+  %h1= t("import.importing_canceled")
 - else
   %h1= t("import.importing_not_started_yet")
   
@@ -17,3 +19,4 @@
 
 .clearfix
   = button_link_to t("import.go_to_dataset"), dataset_path(@import_file.dataset_description)
+  = button_link_to t("import.cancel"), cancel_import_file_path(@import_file)

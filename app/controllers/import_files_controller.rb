@@ -78,6 +78,12 @@ class ImportFilesController < ApplicationController
     respond_with(@import_file)
   end
   
+  def cancel
+    @import_file = ImportFile.find(params[:id])
+    @import_file.cancel
+    redirect_to state_import_file_path(@import_file)
+  end
+  
 private
   def init_menu
     @submenu_partial = "data_dictionary"

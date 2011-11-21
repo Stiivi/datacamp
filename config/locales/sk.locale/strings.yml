@@ -254,6 +254,8 @@ sk:
     start_import: Importovať
     status: Stav
     use_default_mapping: "Použiť prednadstavené mapovanie"
+    cancel: 'Zrušiť import'
+    importing_canceled: 'Import bol zrušený'
   messages: 
     application_testing_notice: "The application is currently in private beta testing."
     testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='%{url}'>register here</a>."
