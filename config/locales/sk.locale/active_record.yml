@@ -28,3 +28,4 @@ sk:
     template: 
       body: "Prosím pozrite si tieto chyby a opravte príslušné polia"
       header: "Uloženiu zabránilo niekoľko chýb"
+    invalid_csv_file: "CSV sa nepodarilo spracovať. Skontrolujte prosím, či je súbor v poriadku (neobsahuje preklepy a pod.). Ďalej skontrolujte, či ste správne vybrali kódovanie a šablónu."

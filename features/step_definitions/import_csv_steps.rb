@@ -1,6 +1,6 @@
 When /^I upload a new file$/ do
   visit(new_import_file_path)
-  attach_file('Path', Rails.root.join('features', 'files_for_upload', 'test.csv'))
+  attach_file('File', Rails.root.join('features', 'files_for_upload', 'test.csv'))
   fill_in('Col separator', with: ';')
   click_button('Continue')
 end

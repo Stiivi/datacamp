@@ -75,9 +75,9 @@ $(document).ready(function(){
 
 
 $(document).ready(function(){
-  $("#settings").toggle();
+  $("#settings, .settings").toggle();
   $("a.toggle_settings").click(function(){
-    $("#settings").toggle();
+    $("#settings, .settings").toggle();
     return false;
   });
 });

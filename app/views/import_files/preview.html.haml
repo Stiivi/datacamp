@@ -2,49 +2,14 @@
 
 .node
   .information
-    
     .clearfix
       %h1.fl= t "import.file_ready", :title => @import_file.title
       .fr
         = button_link_to t("import.edit_settings"), '#', :class => "toggle_settings"
-
-    = form_for @import_file, :html => {:class => "inline"} do |f|
-      %table#settings
-        %tr
-          %td
-            = f.label :source
-          %td
-            = f.text_field :source
-        %tr
-          %td
-            = f.label :dataset_description_id
-          %td
-            = f.grouped_collection_select :dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :prompt => true
-              
-        %tr
-          %td
-            = f.label :col_separator
-          %td
-            = f.text_field :col_separator
-        
-        %tr
-          %td
-            = f.label :encoding
-          %td
-            = f.select :encoding, IMPORT_ENCODINGS
-            
-        %tr
-          %td
-            %strong= t("import.status")
-          %td
-            %b= t("import.statuses.#{@import_file.status}")
-        
-        %tr
-          %td
-          %td= f.submit t("global.save")
+    .settings
+      = render 'form'
     
 %br
-
 .clearfix
   .fl
     %h1= t "import.column_mapping"
@@ -57,17 +22,16 @@
     %tr
       %th{:width => 30}= t "import.column"
       %th{:width => 200}= t "import.field_description"
-      %th= t "import.header"
+      %th= t "import.header" if @mapping.present?
       %th= t "import.preview"
-    - @importer.file.column_count.times do |i|
+      
+    - @import_file.header.each_with_index do |header, i|
       %tr
         %td
           %b= i+1
         %td= field_description_picker(i)
-        %td= @lines[0][i]
-        %td= @lines[1][i]
-  
-  %br
+        %td= @import_file.header[i] if @mapping.present?
+        %td= @sample[i]
   
   = submit_tag t("import.start_import")
   

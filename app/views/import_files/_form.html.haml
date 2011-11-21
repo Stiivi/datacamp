@@ -3,7 +3,12 @@
   %h2= t "import.file_information"
   %ul
     = f.grouped_collection_select :dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title
-    = f.file_field :path
+    %li.clearfix
+      = f.label :path
+      - if @import_file.path.present?
+        .fl= image_tag('excel.png', alt: 'Download')
+        .fl{style: 'margin-left: 5px'} or replace with
+      .fl{style: 'margin-left: 5px'}= f.file_field :path, inline: true
     = f.text_field :title
     = f.text_field :source
     
@@ -11,11 +16,11 @@
   %ul#file_settings
     %li.clearfix
       %label= t "import.preset"
-      = select_tag(:import_file_template, options_for_select(CSV_TEMPLATES.map{|i|[i[:title],i[:id]]}, @import_file.default_import_format || SystemVariable.get('default_import_format')))
+      = select_tag('import_file[file_template]', options_for_select(ImportFile::CSV_TEMPLATES.map{|i|[i[:title],i[:id]]}, @import_file.default_import_format))
     = f.text_field :col_separator
     = f.select :encoding, IMPORT_ENCODINGS
   
   %p
     = f.submit t("global.continue")
 :javascript
-  var import_templates = #{CSV_TEMPLATES.to_json}
+  var import_templates = #{ImportFile::CSV_TEMPLATES.to_json}

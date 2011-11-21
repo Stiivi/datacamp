@@ -23,3 +23,11 @@ sk:
         password: Heslo
         password_confirmation: Potvrdenie hesla
         accepts_terms: Súhlasim s podmienkami používania
+      import_file:
+        dataset_description_id: 'Súbor údajov'
+        path: 'Súbor'
+        path_file_name: 'Súbor'
+        title: 'Titul'
+        source: 'Zdroj'
+        col_separator: 'Oddelovač'
+        encoding: 'Kódovanie'

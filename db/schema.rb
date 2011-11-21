@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119192606) do
+ActiveRecord::Schema.define(:version => 20111120124010) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -274,6 +274,7 @@ ActiveRecord::Schema.define(:version => 20111119192606) do
     t.string   "encoding"
     t.integer  "count_of_imported_lines"
     t.string   "status",                  :default => "ready"
+    t.string   "file_template"
   end
 
   create_table "known_datacamps", :force => true do |t|

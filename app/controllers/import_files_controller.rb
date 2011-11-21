@@ -23,7 +23,10 @@ class ImportFilesController < ApplicationController
   respond_to :html, :xml, :js
   
   privilege_required :import_from_file
-  before_filter :prepare_file, only: [:import, :preview]
+  
+  def index
+    redirect_to new_import_file_path
+  end
   
   def new
     @import_file = ImportFile.new(dataset_description_id: params[:dataset_description_id])
@@ -32,88 +35,50 @@ class ImportFilesController < ApplicationController
   
   def create
     @import_file = ImportFile.new(params[:import_file])
-    
-    if @import_file.save
+
+    if @import_file.save && @import_file.attachment_csv_errors.blank?
       redirect_to preview_import_file_path(@import_file)
     else
-      render "new"
+      render :new
     end
   end
   
   def preview
-    @mapping = mapping_from_header
-    @lines = @file.load_lines(20)
+    @import_file = ImportFile.find(params[:id])
+    @mapping = @import_file.mapping_from_header if @import_file.has_header?
+    @sample = @import_file.sample
   end
   
   def update
-    @import_file = ImportFile.find_by_id!(params[:id])
-    @import_file.update_attributes(params[:import_file])
-    redirect_to preview_import_file_path(@import_file)
+    @import_file = ImportFile.find(params[:id])
+    if @import_file.update_attributes(params[:import_file]) && @import_file.attachment_csv_errors.blank?
+      redirect_to preview_import_file_path(@import_file)
+    else
+      render :new
+    end
+  end
+  
+  def show
+    @import_file = ImportFile.find(params[:id])
+    render :new
   end
   
   def import
+    @import_file = ImportFile.find(params[:id])
     if @import_file.status == 'success'
-      flash[:notice] = t("import.file_already_imported")
-      redirect_to preview_import_file_path(@import_file)
+      redirect_to preview_import_file_path(@import_file), notice: t("import.file_already_imported")
+    else
+      @import_file.delay.import_into_dataset(params[:column], current_user)
+      redirect_to state_import_file_path(@import_file)
     end
-    
-    @import_file.delay.import_into_dataset(params[:column], current_user)
-    
-    redirect_to state_import_file_path(@import_file)
   end
   
   def state
-    @import_file = ImportFile.find_by_id!(params[:id])
-    respond_to do |wants|
-      wants.html
-      wants.js
-    end
+    @import_file = ImportFile.find(params[:id])
+    respond_with(@import_file)
   end
   
 private
-  def prepare_file
-    @import_file = ImportFile.find_by_id!(params[:id])
-
-    @importer = CsvImporter.new(@import_file.encoding)
-    @importer.batch_id = @import_file.id
-    if @importer.load_file(@import_file.file_path, @import_file.col_separator || ",", 1)
-      @file = @importer.file
-    else
-      @file = @importer.file
-      return render :action => "errors"
-    end
-  end
-  
-  def mapping_from_header
-    
-    # raise "Can't guess mapping if file has no headers." if (@import_file.number_of_header_lines||0)==0
-    
-    mapping = []
-    @dataset_description = @import_file.dataset_description
-    
-    # @lines = @file.load_lines(@import_file.number_of_header_lines)
-    @lines = @file.load_lines(1)
-    
-    max_guessed_lines = 0
-    @lines.each do |line|
-      guessed_lines = 0
-      line_mapping = []
-      line.each_with_index do |column, i|
-        field_description = @dataset_description.field_descriptions.where(:identifier => column.to_s.downcase.strip).first
-        if field_description
-          guessed_lines += 1
-          line_mapping[i] = field_description.id
-        end
-      end
-      if guessed_lines > max_guessed_lines
-        # Found new most accurate line, let's use it as mapping
-        max_guessed_lines = guessed_lines
-        mapping = line_mapping
-      end
-    end
-    mapping
-  end
-  
   def init_menu
     @submenu_partial = "data_dictionary"
   end
