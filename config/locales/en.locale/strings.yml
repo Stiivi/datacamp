@@ -372,3 +372,9 @@ en:
             super_user: Super User
             api_access: API
             api_all: All
+            
+    relation:
+      added: 'Relation successfully added.'
+      add_failed: 'Adding relation failed.'
+      deleted: 'Relation deleted.'
+      delete_failed: 'Deleting relation failed.'

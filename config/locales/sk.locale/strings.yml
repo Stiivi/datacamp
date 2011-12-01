@@ -374,3 +374,8 @@ sk:
   recaptcha:
     errors:
       verification_failed: 'Kontrola reCAPTCHA neprebehla úspešne. Skúste prosím znova.'
+  relation:
+    added: 'Relácia úspešne pridaná.'
+    add_failed: 'Pridávanie relácie zlyhalo.'
+    deleted: 'Relácia zmazaná.'
+    delete_failed: 'Mazanie relácie zlyhalo.'

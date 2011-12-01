@@ -166,14 +166,14 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   after_save :record_changes
   def record_changes
-    unless is_part_of_import
+    if !is_part_of_import && !self.class.table_name.match(/^rel_/)
       change_details = []
       changed_attributes.each do |attribute, old_value|
         next if attribute == "updated_at"
         next if old_value == self[attribute]
         change_details << {changed_field: attribute, old_value: old_value, new_value: self[attribute]}
       end
-      Change.create(record_id: self.id, change_type: self.id_changed? ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description: self.dataset.try(:description), user: @handling_user, change_details: change_details)
+      Change.create(record_id: self.id, change_type: self.id_changed? ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description_id: (self.dataset.try(:description).try(:id) rescue nil), user: User.current, change_details: change_details)
     end
   end
   

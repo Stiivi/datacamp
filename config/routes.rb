@@ -81,6 +81,10 @@ Datacamp::Application.routes.draw do
     get :search, :on => :collection
     resources :records do
       get :fix, :update_status, :on => :member
+      member do
+        post :add_relationship
+        delete :delete_relationship
+      end
     end
   end
   

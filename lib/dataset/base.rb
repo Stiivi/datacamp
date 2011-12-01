@@ -61,7 +61,8 @@ class Dataset::Base
                          
           dataset_record_class.send( :has_many,
                                      relation.relation_table_identifier.to_sym,
-                                     :class_name => relation_model.name
+                                     :class_name => relation_model.name,
+                                     :dependent => :destroy
                                    )              
           dataset_record_class.send( :has_many,
                                      (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,

@@ -56,7 +56,16 @@ class ApplicationController < ActionController::Base
     has_privilege? :delayed_job_admin
   end
   
-  protected
+  before_filter :set_request_environment
+private
+  # stores parameters for current request
+  def set_request_environment
+    User.current = current_user # current_user is set by restful_authentication
+    # You would also set the time zone for Rails time zone support here:
+    # Time.zone = Person.current.time_zone
+  end
+    
+protected
   def update_all_positions(model, ids)
     items = model.all
     items.each do |item|

@@ -82,6 +82,12 @@ $(function(){
 	$('.remove_element').live('click', function () { 
 		$(this).prev().val("1");
 		$(this).closest('fieldset').hide();
+		$(this).closest('table').hide();
 		return false;
+	});
+	
+	$('.prev_div_toggler').click(function(){
+	  $(this).prev().toggle();
+	  return false;
 	});
 });

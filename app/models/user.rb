@@ -43,6 +43,14 @@ class User < ActiveRecord::Base
   validates_presence_of :accepts_terms
   validates_acceptance_of :accepts_terms
   
+  def self.current
+    Thread.current[:user]
+  end
+ 
+  def self.current=(user)
+    Thread.current[:user] = user
+  end
+  
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
   # uff.  this is really an authorization, not authentication routine.  
