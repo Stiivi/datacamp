@@ -146,7 +146,7 @@ class DatasetDescription < ActiveRecord::Base
             t.integer "ds_#{relation.dataset_description.identifier.singularize}_id"
             t.integer "ds_#{relation.relationship_dataset_description.identifier.singularize}_id"
           end unless relation.relation_table_exists?
-          relation.update_attribute(:relation_table_identifier, "rel_#{relation.dataset_description.identifier}_#{relation.relationship_dataset_description.identifier}")
+          relation.update_attribute(:relation_table_identifier, relation.locate_relation_table_name)
         elsif  relation.relation_type == 'has_many' 
           Dataset::DatasetRecord.connection.add_column("ds_#{relation.relationship_dataset_description.identifier}", "ds_#{relation.dataset_description.identifier.singularize}_id", :integer) unless Dataset::DatasetRecord.connection.columns("ds_#{relation.relationship_dataset_description.identifier}").map(&:name).include?("ds_#{relation.dataset_description.identifier.singularize}_id")
         elsif  relation.relation_type == 'belongs_to' 

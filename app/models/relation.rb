@@ -13,4 +13,12 @@ class Relation < ActiveRecord::Base
     Dataset::DatasetRecord.connection.table_exists?("rel_#{dataset_description.identifier}_#{relationship_dataset_description.identifier}") || 
     Dataset::DatasetRecord.connection.table_exists?("rel_#{relationship_dataset_description.identifier}_#{dataset_description.identifier}")
   end
+  
+  def locate_relation_table_name
+    [ "rel_#{dataset_description.identifier}_#{relationship_dataset_description.identifier}", 
+      "rel_#{relationship_dataset_description.identifier}_#{dataset_description.identifier}"].each do |relation_table_name|
+        return relation_table_name if Dataset::DatasetRecord.connection.table_exists?(relation_table_name)  
+    end
+    nil
+  end
 end

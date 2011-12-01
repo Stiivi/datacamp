@@ -58,6 +58,11 @@ class Dataset::Base
                                (@@prefix + relation.relationship_dataset_description.identifier.singularize).to_sym,
                                :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
                              )
+                             
+          relation_model.send( :belongs_to,
+                              (@@prefix + relation.dataset_description.identifier.singularize).to_sym,
+                              :class_name => "Kernel::" + (@@prefix + relation.dataset_description.identifier).classify
+                            )
                          
           dataset_record_class.send( :has_many,
                                      relation.relation_table_identifier.to_sym,
