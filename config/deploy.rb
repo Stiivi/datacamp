@@ -2,7 +2,7 @@
 require 'bundler/capistrano'
 set :bundle_without, [:development, :test, :macosx]
 
-set :stages, %w(staging production leela leela_staging)
+set :stages, %w(staging production)
 require 'capistrano/ext/multistage'
 set :application, "datanest_capistrano"
 

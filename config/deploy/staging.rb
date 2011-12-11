@@ -1,10 +1,12 @@
-# -*- encoding : utf-8 -*-
-# Add RVM's lib directory to the load path.
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+set :default_environment, { 'PATH' => "/usr/local/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 
-# Load RVM's capistrano plugin.    
-require "rvm/capistrano"
-set :rvm_ruby_string, '1.9.2'
-set :rails_env, "production"
+set :application, "datanest"
+set(:deploy_to) { "/home/datanest/rails/#{application}/staging" }
+server "46.231.96.101", :app, :web, :db, :primary => true
 
-server "195.210.28.155", :app, :web, :db, :primary => true
+require "delayed/recipes"
+set :rails_env, "production" #added for delayed job
+# Delayed Job
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"

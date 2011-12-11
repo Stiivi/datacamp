@@ -1,14 +1,8 @@
-# -*- encoding : utf-8 -*-
-# Add RVM's lib directory to the load path.
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+set :default_environment, { 'PATH' => "/usr/local/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
 
-# Load RVM's capistrano plugin.    
-require "rvm/capistrano"
-set :rvm_ruby_string, '1.9.2'
-
-set :rails_env, "production"
-
-server "195.210.28.155", :app, :web, :db, :primary => true
+set :application, "datanest"
+set(:deploy_to) { "/home/datanest/rails/#{application}/production" }
+server "46.231.96.101", :app, :web, :db, :primary => true
 
 # update crontab
 set :whenever_command, "bundle exec whenever"
