@@ -11,6 +11,8 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   # FIXME: add this to initialize method, use datasetore manager!
   set_primary_key :_record_id
+  
+  default_scope order('created_at DESC')
 
   scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
 
