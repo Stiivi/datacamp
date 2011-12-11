@@ -13,3 +13,4 @@ sk:
         doubtful: Neistý
         unclear: Nejasný
         absent: Chýbajúci
+        regis_match_fail: Nenašiel sa v regis-e
