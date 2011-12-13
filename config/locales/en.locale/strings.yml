@@ -28,6 +28,7 @@ en:
         set_new_password: "Set new %{site_name} password"
         reset_password_message: "Click on the following link to reset password on your account: %{link}"
         reset_password: Reset password
+        note_failed_signin: Username and/or password is incorrect. Please check if you entered them correctly and try again.
     settings:
         name: Name
         description: Description

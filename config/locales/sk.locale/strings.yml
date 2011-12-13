@@ -319,6 +319,7 @@ sk:
     set_new_password: "%{site_name} - nastaviť nové heslo"
     submit: Odoslať
     user_name: Používateľ
+    note_failed_signin: 'Zadané meno a/alebo heslo je nesprávne. Skontrolujte prosím či ste ich zadali správne a skúste znova.'
   settings: 
     description: Description
     name: Name
