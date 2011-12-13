@@ -54,8 +54,8 @@ class AccountsController < ApplicationController
         return redirect_to forgot_account_path, notice: I18n.t("global.user_not_found")
       end
       @account.create_restoration_code
-      @account.save(false)
-      UserMailer.deliver_forgot_password(@account)
+      @account.save(:validate => false)
+      UserMailer.forgot_password(@account).deliver
       redirect_to login_path, notice: I18n.t("global.email_sent")
     end
   end
@@ -76,8 +76,8 @@ class AccountsController < ApplicationController
     if @account.valid? && verify_captcha_for(@account)
       @account.save
       self.current_user = @account
-      flash[:notice] = t("users.registration_complete")
-      redirect_to root_path
+      UserMailer.registration_complete(@account).deliver
+      redirect_to root_path, notice: t("users.registration_complete")
     else
       render :action => "new"
     end

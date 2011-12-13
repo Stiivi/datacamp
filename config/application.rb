@@ -54,6 +54,8 @@ module Datacamp
     
     config.action_mailer.delivery_method = :sendmail
     
+    config.action_mailer.default_url_options = { host: 'datanest.fair-play.sk' }
+    
     config.after_initialize do
       DatasetDescription.all.each do |dataset_description|
         dataset_description.dataset.dataset_record_class.define_index do

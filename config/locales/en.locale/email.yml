@@ -1,0 +1,8 @@
+en:
+  email:
+    mailing_address_label: 'Our email address is:'
+    
+    registration_complete:
+      subject: 'Thank you for registering'
+      title: 'Thank you for registering'
+      text: 'Datanest je databázový projekt Aliancie Fair-play, na ktorom pracuje od roku 2003. Od roku 2004 boli pod názvom Databázy Aliancie Fair-play zverejnené stovky tisíc údajov o narábaní s verejnými prostriedkami a o obsadení dôležitých funkcií. V roku 2008 Aliancia začla práce na vylepšení systému a na preprogramovaní. O dva roky sa podarilo Datanest Aliancie Fair-play (pracovný názov bol Datacamp) spustiť do prevádzky a verejnosti ponúknuť pilotnú verziu.'

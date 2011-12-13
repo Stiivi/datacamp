@@ -18,6 +18,15 @@ GIT
   specs:
     rb-fsevent (0.4.3.1pre1)
 
+GIT
+  remote: https://github.com/ndbroadbent/actionmailer_inline_css.git
+  revision: 037a5340aa235802c6c093a21be87b95176ee83e
+  specs:
+    actionmailer_inline_css (1.4.0)
+      actionmailer (>= 3.0.0)
+      nokogiri (>= 1.4.4)
+      premailer (>= 1.7.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -74,6 +83,8 @@ GEM
     cocaine (0.1.0)
     coderay (0.9.8)
     colored (1.2)
+    css_parser (1.2.5)
+      addressable
     cucumber (1.0.0)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -131,6 +142,7 @@ GEM
       haml (~> 3.0)
       railties (~> 3.0)
     highline (1.6.2)
+    htmlentities (4.3.1)
     i18n (0.5.0)
     jquery-rails (1.0.12)
       railties (~> 3.0)
@@ -174,6 +186,9 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
     polyglot (0.3.1)
+    premailer (1.7.3)
+      css_parser (>= 1.1.9)
+      htmlentities (>= 4.0.0)
     pry (0.9.3)
       coderay (>= 0.9.8)
       method_source (>= 0.6.0)
@@ -283,6 +298,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  actionmailer_inline_css!
   awesome_print
   capistrano
   capistrano-ext

@@ -1,4 +1,5 @@
 class EtlMailer < ActionMailer::Base
+  layout 'mailer'
   default :from => 'admin@datanest.sk'
   
   def vvo_loading_status(records_with_error, records_with_note)

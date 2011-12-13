@@ -27,6 +27,7 @@ gem 'whenever', :require => false
 gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 gem 'newrelic_rpm'
 gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
+gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git'
 
 gem 'test-unit'
 
