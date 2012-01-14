@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS `ds_advokats`;
+DROP TABLE IF EXISTS `ds_lawyers`;
 
-CREATE TABLE `ds_advokats` (
+CREATE TABLE `ds_lawyers` (
   `_record_id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE `ds_advokats` (
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `advokat_type` varchar(255) DEFAULT NULL,
+  `lawyer_type` varchar(255) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `zip` varchar(255) DEFAULT NULL,
@@ -28,5 +28,6 @@ CREATE TABLE `ds_advokats` (
   `website` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   `etl_loaded` datetime DEFAULT NULL,
+  `sak_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`_record_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16105 DEFAULT CHARSET=utf8;

@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS `ds_trainees`;
+DROP TABLE IF EXISTS `ds_associates`;
 
-CREATE TABLE `ds_trainees` (
+CREATE TABLE `ds_associates` (
   `_record_id` int(11) NOT NULL AUTO_INCREMENT,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,

@@ -3,7 +3,7 @@
 require 'fileutils'
 
 module Etl
-  class AdvokatExtraction
+  class LawyerExtraction
     
     def initialize(url, reset_url = nil, cookie = nil, parent_url = nil)
       @url, @reset_url, @cookie, @parent_url = url, reset_url, cookie, parent_url
@@ -22,17 +22,17 @@ module Etl
     end
     
     def digest(doc)
-      advokat_table = doc.xpath("//div[@class='section']/table[@class='filter']").first
+      lawyer_table = doc.xpath("//div[@class='section']/table[@class='filter']").first
       
-      trainees = doc.xpath("//div[@id='blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/attr/cms/section/proxyKoncipient']/div/div/table/tr")
-      trainees_attributes = trainees.map do |trainee|
-        next if trainee.xpath("./th").present? || trainee.inner_text.match(/Zoznam je prázdny/).present?
-        tr = trainee.xpath("./td[2]").first.inner_text.strip
+      associates = doc.xpath("//div[@id='blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/attr/cms/section/proxyKoncipient']/div/div/table/tr")
+      associates_attributes = associates.map do |associate|
+        next if associate.xpath("./th").present? || associate.inner_text.match(/Zoznam je prázdny/).present?
+        tr = associate.xpath("./td[2]").first.inner_text.strip
         match_data = tr.match(/(?<first_name>[^\s]+)\s+(?<last_name>[^\s]+)\s+(?<title>[^\s]+)/)
         ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title], original_name: tr} rescue nil)
       end.compact
       
-      original_name = advokat_table.xpath('./tr[1]/td[2]').inner_text.strip
+      original_name = lawyer_table.xpath('./tr[1]/td[2]').inner_text.strip
       match_data = original_name.match(/(?<last_name>[^\s]+)\s+(?<first_name>[^\s]+)(\s+(?<title>[^\s]+))*/)
       sak_id = (@url.match(/\d+/)[0].to_i rescue nil)
       {
@@ -40,32 +40,32 @@ module Etl
         :first_name => match_data[:first_name],
         :last_name => match_data[:last_name],
         :title => match_data[:title],
-        :advokat_type => advokat_table.xpath('./tr[2]/td[2]').inner_text.strip,
-        :street => advokat_table.xpath('./tr[3]/td[2]').inner_text.strip,
-        :city => advokat_table.xpath('./tr[4]/td[2]').inner_text.strip,
-        :zip => advokat_table.xpath('./tr[5]/td[2]').inner_text.strip,
-        :phone => advokat_table.xpath('./tr[6]/td[2]').inner_text.strip,
-        :fax => advokat_table.xpath('./tr[7]/td[2]').inner_text.strip,
-        :cell_phone => advokat_table.xpath('./tr[8]/td[2]').inner_text.strip,
-        :languages => advokat_table.xpath('./tr[9]/td[2]').inner_text.strip,
-        :email => advokat_table.xpath('./tr[10]/td[2]').inner_text.strip,
-        :website => (advokat_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
+        :lawyer_type => lawyer_table.xpath('./tr[2]/td[2]').inner_text.strip,
+        :street => lawyer_table.xpath('./tr[3]/td[2]').inner_text.strip,
+        :city => lawyer_table.xpath('./tr[4]/td[2]').inner_text.strip,
+        :zip => lawyer_table.xpath('./tr[5]/td[2]').inner_text.strip,
+        :phone => lawyer_table.xpath('./tr[6]/td[2]').inner_text.strip,
+        :fax => lawyer_table.xpath('./tr[7]/td[2]').inner_text.strip,
+        :cell_phone => lawyer_table.xpath('./tr[8]/td[2]').inner_text.strip,
+        :languages => lawyer_table.xpath('./tr[9]/td[2]').inner_text.strip,
+        :email => lawyer_table.xpath('./tr[10]/td[2]').inner_text.strip,
+        :website => (lawyer_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
         :url => @url,
         :sak_id => sak_id,
-        :ds_trainees_attributes => trainees_attributes
+        :ds_associates_attributes => associates_attributes
       }
     end
     
     def perform
       document = download
       if is_acceptable?(document)
-        advokat_hash = digest(document)
-        save(advokat_hash)
+        lawyer_hash = digest(document)
+        save(lawyer_hash)
       end
     end
     
-    def save(advokat_hash)
-      Dataset::DsAdvokat.create(advokat_hash)
+    def save(lawyer_hash)
+      Dataset::DsLawyer.create(lawyer_hash)
     end
     
     def get_downloads
@@ -83,7 +83,7 @@ module Etl
     
     def parse_for_links(doc, reset_url, cookie, parent_url)
       doc.xpath("//div[@class='result']/table//a").map do |link|
-        Etl::AdvokatExtraction.new("https://www.sak.sk/#{link.attributes['href'].value.match(/'(.*)'/)[1]}", reset_url, cookie, parent_url)
+        Etl::LawyerExtraction.new("https://www.sak.sk/#{link.attributes['href'].value.match(/'(.*)'/)[1]}", reset_url, cookie, parent_url)
       end
     end
     

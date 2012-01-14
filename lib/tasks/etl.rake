@@ -36,7 +36,7 @@ namespace :etl do
       ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event']
     ].each do |links|
-      Etl::AdvokatExtraction.new(links[0], links[1]).get_downloads.each{|adv| Delayed::Job.enqueue adv }
+      Etl::LawyerExtraction.new(links[0], links[1]).get_downloads.each{|adv| Delayed::Job.enqueue adv }
     end
   end
   
