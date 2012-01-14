@@ -29,11 +29,17 @@ module Etl
         next if trainee.xpath("./th").present? || trainee.inner_text.match(/Zoznam je prázdny/).present?
         tr = trainee.xpath("./td[2]").first.inner_text.strip
         match_data = tr.match(/(?<first_name>[^\s]+)\s+(?<last_name>[^\s]+)\s+(?<title>[^\s]+)/)
-        ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title]} rescue nil)
+        ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title], original_name: tr} rescue nil)
       end.compact
       
+      original_name = advokat_table.xpath('./tr[1]/td[2]').inner_text.strip
+      match_data = original_name.match(/(?<last_name>[^\s]+)\s+(?<first_name>[^\s]+)(\s+(?<title>[^\s]+))*/)
+      sak_id = (@url.match(/\d+/)[0].to_i rescue nil)
       {
-        :name => advokat_table.xpath('./tr[1]/td[2]').inner_text.strip,
+        :original_name => original_name,
+        :first_name => match_data[:first_name],
+        :last_name => match_data[:last_name],
+        :title => match_data[:title],
         :advokat_type => advokat_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => advokat_table.xpath('./tr[3]/td[2]').inner_text.strip,
         :city => advokat_table.xpath('./tr[4]/td[2]').inner_text.strip,
@@ -45,6 +51,7 @@ module Etl
         :email => advokat_table.xpath('./tr[10]/td[2]').inner_text.strip,
         :website => (advokat_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
         :url => @url,
+        :sak_id => sak_id,
         :ds_trainees_attributes => trainees_attributes
       }
     end

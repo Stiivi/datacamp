@@ -31,32 +31,12 @@ namespace :etl do
     [
       ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event'],
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/bpp/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/bpp/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event']
     ].each do |links|
       Etl::AdvokatExtraction.new(links[0], links[1]).get_downloads.each{|adv| Delayed::Job.enqueue adv }
-    end
-  end
-  
-  task :advokat_loading => :environment do
-    dataset_schema = Dataset::DatasetRecord.connection.current_database
-    staging_schema = Staging::StaAdvokat.connection.current_database
-    
-    Dataset::DatasetRecord.transaction do
-      sql = "INSERT INTO #{dataset_schema}.ds_advokats 
-             (name, advokat_type, street, city, zip, phone, id)
-             SELECT name, avokat_type, street, city, zip, phone, id FROM #{staging_schema}.#{Staging::StaAdvokat.table_name} WHERE etl_loaded IS NULL"
-      Staging::StagingRecord.connection.execute(sql)
-      Staging::StaAdvokat.update_all({:etl_loaded => Time.now}, {:etl_loaded => nil})
-    end
-    Dataset::DatasetRecord.transaction do
-      sql = "INSERT INTO #{dataset_schema}.ds_trainees 
-             (first_name, last_name, title, advokat_id)
-             SELECT first_name, last_name, title, advokat_id FROM #{staging_schema}.#{Staging::StaTrainee.table_name} WHERE etl_loaded IS NULL"
-      Staging::StagingRecord.connection.execute(sql)
-      Staging::StaTrainee.update_all({:etl_loaded => Time.now}, {:etl_loaded => nil})
     end
   end
   

@@ -14,6 +14,6 @@ CREATE TABLE `ds_trainees` (
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `ds_advokat_id` int(11) DEFAULT NULL,
+  `original_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`_record_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2344 DEFAULT CHARSET=utf8;

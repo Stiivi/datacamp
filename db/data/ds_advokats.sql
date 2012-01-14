@@ -12,7 +12,10 @@ CREATE TABLE `ds_advokats` (
   `validity_date` date DEFAULT NULL,
   `is_hidden` tinyint(1) DEFAULT NULL,
   
-  `name` varchar(255) DEFAULT NULL,
+  `original_name` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `advokat_type` varchar(255) DEFAULT NULL,
   `street` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
