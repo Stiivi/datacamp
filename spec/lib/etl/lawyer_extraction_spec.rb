@@ -86,16 +86,16 @@ describe Etl::LawyerExtraction do
       end
     end
     
-    # it 'should not save the same record with a different url twice' do
-    #   VCR.use_cassette('advokat_167897') do
-    #     extractor1 = Etl::AdvokatExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/167897/link/display/event")
-    #     extractor2 = Etl::AdvokatExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/rows/167897/link/display/event")
-    #     extractor1.perform
-    #     extractor2.perform
-    #     
-    #     Dataset::DsAdvokat.count.should == 1
-    #   end
-    # end
+    it 'should not save the same record with a different url twice' do
+      VCR.use_cassette('advokat_167897') do
+        extractor1 = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/167897/link/display/event")
+        extractor2 = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/rows/167897/link/display/event")
+        extractor1.perform
+        extractor2.perform
+        
+        Dataset::DsLawyer.count.should == 1
+      end
+    end
     
   end
   

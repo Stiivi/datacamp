@@ -4,9 +4,10 @@ require 'fileutils'
 
 module Etl
   class LawyerExtraction
+    attr_reader :url
     
-    def initialize(url, reset_url = nil, cookie = nil, parent_url = nil)
-      @url, @reset_url, @cookie, @parent_url = url, reset_url, cookie, parent_url
+    def initialize(url, reset_url = nil, cookie = nil, parent_url = nil, filter = nil)
+      @url, @reset_url, @cookie, @parent_url, @filter = url, reset_url, cookie, parent_url, filter
     end
     
     def is_acceptable?(document)
@@ -29,7 +30,7 @@ module Etl
         next if associate.xpath("./th").present? || associate.inner_text.match(/Zoznam je prázdny/).present?
         tr = associate.xpath("./td[2]").first.inner_text.strip
         match_data = tr.match(/(?<first_name>[^\s]+)\s+(?<last_name>[^\s]+)\s+(?<title>[^\s]+)/)
-        ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title], original_name: tr} rescue nil)
+        ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title], original_name: tr, is_part_of_import: true} rescue nil)
       end.compact
       
       original_name = lawyer_table.xpath('./tr[1]/td[2]').inner_text.strip
@@ -52,7 +53,8 @@ module Etl
         :website => (lawyer_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
         :url => @url,
         :sak_id => sak_id,
-        :ds_associates_attributes => associates_attributes
+        :ds_associates_attributes => associates_attributes,
+        :is_part_of_import => true
       }
     end
     
@@ -65,7 +67,8 @@ module Etl
     end
     
     def save(lawyer_hash)
-      Dataset::DsLawyer.create(lawyer_hash)
+      lawyer = Dataset::DsLawyer.find_or_initialize_by_sak_id(lawyer_hash[:sak_id])
+      lawyer.update_attributes!(lawyer_hash)
     end
     
     def get_downloads
@@ -75,15 +78,19 @@ module Etl
         doc_data = Typhoeus::Request.get(@url + id.to_s)
         cookie = doc_data.headers_hash['Set-Cookie'].match(/[^ ;]*/)[0]
         doc = Nokogiri::HTML( doc_data.body )
-        downloads << parse_for_links(doc, @reset_url, cookie, @url + id.to_s)
+        downloads << parse_for_links(doc, @reset_url, cookie, @url + id.to_s, @filter)
         id += 10
       end while doc.xpath("//div[@class='buttonbar']/table//tr[1]//td[@style='opacity: 0.5']").inner_html.match(/but_arrow_right.gif/).blank?
       downloads.flatten
     end
     
-    def parse_for_links(doc, reset_url, cookie, parent_url)
+    def get_ids_from_downloads
+      get_downloads.map{ |d| (d.url.match(/\d+/)[0].to_i rescue nil) }
+    end
+    
+    def parse_for_links(doc, reset_url, cookie, parent_url, filter)
       doc.xpath("//div[@class='result']/table//a").map do |link|
-        Etl::LawyerExtraction.new("https://www.sak.sk/#{link.attributes['href'].value.match(/'(.*)'/)[1]}", reset_url, cookie, parent_url)
+        Etl::LawyerExtraction.new("https://www.sak.sk/#{link.attributes['href'].value.match(/'(.*)'/)[1]}", reset_url, cookie, parent_url, filter)
       end
     end
     

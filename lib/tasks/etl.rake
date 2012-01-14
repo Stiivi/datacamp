@@ -27,16 +27,25 @@ namespace :etl do
     Delayed::Job.enqueue Etl::ExekutorExtraction.new
   end
   
-  task :advokat_extraction => :environment do
+  task lawyer_extraction: :environment do
     [
       ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event'],
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/link/display/formular/button/close/event'],
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/link/display/formular/button/close/event'],
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event'],
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event']
     ].each do |links|
       Etl::LawyerExtraction.new(links[0], links[1]).get_downloads.each{|adv| Delayed::Job.enqueue adv }
+    end
+  end
+  
+  task lawyer_lists: :environment do
+    [
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event', 'is_suspended'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/link/display/formular/button/close/event', 'is_state'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/link/display/formular/button/close/event', 'is_exoffo'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event', 'is_constitution'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event', 'is_asylum']
+    ].each do |links|
+      Dataset::DsLawyer.update_all(links[2] => false)
+      Dataset::DsLawyer.where(sak_id: Etl::LawyerExtraction.new(links[0], links[1]).get_ids_from_downloads).update_all(links[2] => true)
     end
   end
   

@@ -29,5 +29,11 @@ CREATE TABLE `ds_lawyers` (
   `url` varchar(255) DEFAULT NULL,
   `etl_loaded` datetime DEFAULT NULL,
   `sak_id` int(11) DEFAULT NULL,
+  
+  `is_suspended` tinyint(1) DEFAULT NULL,
+  `is_state` tinyint(1) DEFAULT NULL,
+  `is_exoffo` tinyint(1) DEFAULT NULL,
+  `is_constitution` tinyint(1) DEFAULT NULL,
+  `is_asylum` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`_record_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16105 DEFAULT CHARSET=utf8;
