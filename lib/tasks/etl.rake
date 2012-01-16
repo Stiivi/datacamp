@@ -49,6 +49,12 @@ namespace :etl do
     end
   end
   
+  task lawyer_partnership_extraction: :environment do
+    downloads = Etl::LawyerPartnershipExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/formular/picker/event/page/', 
+                                          'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/link/display/spolocnost/button/close/event').get_downloads
+    downloads.each{|download| Delayed::Job.enqueue download }
+  end
+  
   task :vvo_loading => :environment do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'
