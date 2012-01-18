@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111120124010) do
+ActiveRecord::Schema.define(:version => 20120118141131) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(:version => 20111120124010) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "position",           :default => 0
+  end
+
+  create_table "change_details", :force => true do |t|
+    t.string   "changed_field"
+    t.text     "old_value"
+    t.text     "new_value"
+    t.integer  "change_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "changes", :force => true do |t|
@@ -310,12 +319,9 @@ ActiveRecord::Schema.define(:version => 20111120124010) do
 
   create_table "relations", :force => true do |t|
     t.integer  "dataset_description_id"
-    t.string   "relation_type"
     t.integer  "relationship_dataset_description_id"
-    t.integer  "foreign_key_field_description_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "relation_table_identifier"
   end
 
   create_table "relationship_description_translations", :force => true do |t|

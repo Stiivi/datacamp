@@ -2,7 +2,9 @@
 class Dataset::DatasetRecord < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper
-
+  
+  self.abstract_class = true
+  
   establish_connection Rails.env + "_data"
 
   class_inheritable_accessor :dataset

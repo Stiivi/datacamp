@@ -6,8 +6,7 @@ Feature: Import files
   
   Background:
     Given I am a new, authenticated user "test" with password "password"
-    And a published dataset "testings"
-    And a published record with "content" exists for dataset "testings"
+    Given two published datasets with data exist
   
   @cleanup_files_after
   Scenario: Upload a file

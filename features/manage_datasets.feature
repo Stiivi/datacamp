@@ -3,28 +3,27 @@
 Feature: Dataset management and display
 
   Background:
-    Given a published dataset "testings"
+    Given two published datasets with data exist
 
   Scenario: A dataset record that is published should be shown to all users
-    And a published record exists for dataset "testings"
-    When I display records for dataset "testings"
-    Then I should see "some content"
+    When I display records for dataset "lawyers"
+    Then I should see "Franz Kafka"
    
   Scenario: A dataset record that is not published should not be shown to all users
-    And an unpublished record exists for dataset "testings"
-    When I display records for dataset "testings"
+    And an unpublished record exists for dataset "lawyers"
+    When I display records for dataset "lawyers"
     Then I should not see "some content"
     
   Scenario: A dataset record that is not published should not be shown to all users even when they are guessing urls
-    And an unpublished record exists for dataset "testings"
-    When I display page 1 of sorted records for dataset "testings"
+    And an unpublished record exists for dataset "lawyers"
+    When I display page 1 of sorted records for dataset "lawyers"
     Then I should not see "some content"
   
   Scenario: A dataset record that is not published should be shown to admin user
     And I am a new, authenticated user "test" with password "password"
-    And an unpublished record exists for dataset "testings"
-    When I display records for dataset "testings"
-    Then I should see "some content"
+    And an unpublished record exists for dataset "lawyers"
+    When I display records for dataset "lawyers"
+    Then I should see "Franz Kafka"
     
   @selenium
   Scenario: Batch editing of selected dataset records

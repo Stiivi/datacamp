@@ -1,3 +1,51 @@
+Given /^two published datasets with data exist$/ do
+  Dataset::DcRelation.delete_all
+  
+  @lawyers = Factory(:dataset_description, :identifier => 'lawyers', :en_title => 'lawyers')
+  @lawyer_associates = Factory(:dataset_description, :identifier => 'lawyer_associates', :en_title => 'lawyer_associates')
+  
+  Factory.create(:field_description, identifier: 'original_name', dataset_description: @lawyers, is_visible_in_relation: true)
+  @lawyers.dataset.dataset_record_class.delete_all
+  @lawyer_record = @lawyers.dataset.dataset_record_class.create!(original_name: 'Franz Kafka', record_status: 'published')
+  
+  Factory.create(:field_description, identifier: 'original_name', dataset_description: @lawyer_associates, is_visible_in_relation: true)
+  @lawyer_associates.dataset.dataset_record_class.delete_all
+  @lawyer_associate_record = @lawyer_associates.dataset.dataset_record_class.create!(original_name: 'Lionel Hutz', record_status: 'published')
+end
+
+When /^I setup a relation between the datasets$/ do
+  visit relations_dataset_description_path(@lawyers)
+  click_button('+')
+  select(@lawyer_associates.identifier, :from => 'Relationship table')
+  click_button('Save relations')
+end
+
+When /^I setup relations for both sides of the datasets$/ do
+  When %{I setup a relation between the datasets}
+  visit relations_dataset_description_path(@lawyer_associates)
+  click_button('+')
+  select(@lawyers.identifier, :from => 'Relationship table')
+  click_button('Save relations')
+end
+
+When /^setup a relationship between the data$/ do
+  @lawyer_record.ds_lawyer_associates << @lawyer_associate_record
+end
+
+Then /^I should see related data in on the detail page of a record$/ do
+  visit dataset_record_path(@lawyers, @lawyers.dataset.dataset_record_class.first)
+  page.should have_content(@lawyer_associates.dataset.dataset_record_class.first.original_name)
+end
+
+Then /^I should see related data in on the detail page of a record belonging to the second dataset$/ do
+  Then %{I should see related data in on the detail page of a record}
+  visit dataset_record_path(@lawyer_associates, @lawyer_associates.dataset.dataset_record_class.first)
+  page.should have_content(@lawyers.dataset.dataset_record_class.first.original_name)
+end
+
+
+
+
 Given /^a published dataset "([^"]*)"$/ do |dataset_description_identifier|
   dataset_description = Factory(:dataset_description, :identifier => dataset_description_identifier, :en_title => dataset_description_identifier)
   And %{an empty dataset "#{dataset_description_identifier}"}
@@ -15,7 +63,6 @@ end
 Given /^a published record with "([^"]*)" exists for dataset "([^"]*)"$/ do |content, dataset_description_identifier|
   dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
   Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description)
-  Factory.create(:field_description, identifier: 'id', dataset_description: dataset_description, sk_title: 'id', en_title: 'id')
   dataset_class = dataset_description.dataset.dataset_record_class
   @record = dataset_class.create(record_status: 'published', test: content)
 end
@@ -141,21 +188,21 @@ When /^I display page (\d+) of sorted records for dataset "([^"]*)"$/ do |page, 
 end
 
 When /^I batch edit selected records for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "testings"}
+  And %{I am logged in and showing records for dataset "lawyers"}
   And %{I check "record[]"}
   And %{I select "Suspended" from "status"}
 end
 
 When /^I batch edit all records for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "testings"}
+  And %{I am logged in and showing records for dataset "lawyers"}
   And %{I check "record[]"}
   And %{I select "All records" from "selection"}
   And %{I select "Suspended" from "status"}
 end
 
 When /^I batch edit search results for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "testings"}
-  dataset_class = DatasetDescription.find_by_identifier("testings").dataset.dataset_record_class
+  And %{I am logged in and showing records for dataset "lawyers"}
+  dataset_class = DatasetDescription.find_by_identifier("lawyers").dataset.dataset_record_class
   dataset_class.stubs(:search).returns(dataset_class.paginate(page: 1))
   And %{I follow "Search"}
   And %{I fill in "search[predicates][][value]" with "value"}

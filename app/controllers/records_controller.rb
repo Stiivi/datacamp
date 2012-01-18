@@ -142,7 +142,7 @@ class RecordsController < ApplicationController
   end
   
   def related_records_and_fields(dataset_description, record)
-    @dataset_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^rel_/ }.map do |reflection|
+    @dataset_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^dc_/ }.map do |reflection|
       dd = DatasetDescription.find_by_identifier(reflection.name.to_s.gsub(Dataset::Base::prefix,'').pluralize)
       [ [record.send(reflection.name)].flatten.compact,
         dd.visible_fields_in_relation,

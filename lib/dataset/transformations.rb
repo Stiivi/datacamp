@@ -103,35 +103,34 @@ module Dataset::Transformations
     category_name = table_name.sub('ds_', '').split('_')[0].humanize
     # @description.category   = DatasetCategory.find_or_create_by_title(category_name)
     @description.title      = @description.identifier.sub('ds_', '').humanize.titleize
-    @description.save(false)
-    
+    @description.save(validate: false)
+
     dataset_record_class.columns.each do |column|
       create_description_for_column(column)
     end
   end
   
   def create_description_for_column(column)
-
     # FIXME: this should be handled outside of this method. this method
     # should describe ANY column, just based in it's name - it is string
     # operation
-    return if (system_columns.keys + [:_record_id]).include? column.name.to_sym
+    if !(system_columns.keys + [:_record_id]).include?(column.name.to_sym)
 
-	# FIXME: rewrite this
-    field_description = @description.field_descriptions.find_or_initialize_by_identifier(column.name.to_s)
-    field_description.title = column.name.to_s.humanize.titleize
+  	  # FIXME: rewrite this
+      field_description = @description.field_descriptions.find_or_initialize_by_identifier(column.name.to_s)
+      field_description.title = column.name.to_s.humanize.titleize
 
-    # if column.name.to_s.split("_").length > 1 && dataset_record_class.columns.find_all{ |c| c.name.split("_").length > 1 && c.name.split("_")[0] == column.name.split("_")[0] }.length > 1
-    #  prefix = column.name.to_s.split("_")[0]
-    #  field_description.category = prefix.humanize.titleize
-    #  field_description.title = column.name.sub("#{prefix}_", "").humanize.titleize
-    #else
-	  # FIXME: not localizable!
-      field_description.category = "Other"
-      # field_description.weight = 100
-    # end
-    
-    field_description.save(false)
+      # if column.name.to_s.split("_").length > 1 && dataset_record_class.columns.find_all{ |c| c.name.split("_").length > 1 && c.name.split("_")[0] == column.name.split("_")[0] }.length > 1
+      #  prefix = column.name.to_s.split("_")[0]
+      #  field_description.category = prefix.humanize.titleize
+      #  field_description.title = column.name.sub("#{prefix}_", "").humanize.titleize
+      #else
+  	  # FIXME: not localizable!
+        field_description.category = "Other"
+        # field_description.weight = 100
+      # end
+      field_description.save(validate: false)
+    end
   end
   
   ######################################################################
@@ -149,7 +148,7 @@ module Dataset::Transformations
       return false
     end
     
-    @description.save(false)
+    @description.save(validate: false)
     
     @connection.create_table(@description.identifier, :options => 'DEFAULT CHARSET=utf8', :primary_key => "_record_id") {}
     

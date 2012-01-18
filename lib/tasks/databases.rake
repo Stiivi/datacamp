@@ -8,6 +8,35 @@ namespace :db_data do
       end
     end
   end
+  
+  task initialize_datasets: :environment do
+    # FIXME: move the list to a configuration
+    ['lawyers', 'lawyer_associates', 'lawyer_partnerships'].each do |identifier|
+      dataset = Dataset::Base.new(identifier)
+      dataset.add_system_columns if dataset.description.new_record?
+      if dataset.create_description!
+        puts "Initializing #{identifier} successfull"
+      else
+        puts "Initializing #{identifier} unsuccessfull"
+      end
+      puts dataset.errors
+    end
+  end
+  
+  desc "Migrate the staging database (options: VERSION=x, VERBOSE=false)."
+  task :migrate => :environment do
+    ActiveRecord::Base.establish_connection Rails.env + "_data"
+    
+    ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
+    ActiveRecord::Migrator.migrate("db/migrate_data/", ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
+  end
+  desc 'Rolls the schema back to the previous version (specify steps w/ STEP=n).'
+  task :rollback => :environment do
+    ActiveRecord::Base.establish_connection Rails.env + "_data"
+    
+    step = ENV['STEP'] ? ENV['STEP'].to_i : 1
+    ActiveRecord::Migrator.rollback('db/migrate_data/', step)
+  end
 end
 
 namespace :db_staging do
@@ -66,7 +95,7 @@ namespace :db_staging do
       if File.exists?(file)
         load(file)
       else
-        abort %{#{file} doesn't exist yet. Run "rake db:migrate" to create it then try again. If you do not intend to use a database, you should instead alter #{Rails.root}/config/application.rb to limit the frameworks that will be loaded}
+        abort %{#{file} doesn't exist yet. Run "rake db_staging:migrate" to create it then try again. If you do not intend to use a database, you should instead alter #{Rails.root}/config/application.rb to limit the frameworks that will be loaded}
       end
     end
   end

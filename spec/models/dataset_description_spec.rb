@@ -60,7 +60,7 @@ describe DatasetDescription do
   
   describe 'log deletion of a dataset record' do
     before :each do
-      @dataset_description.update_attributes(identifier: 'advokats')
+      @dataset_description.update_attributes(identifier: 'lawyers')
       @dataset_description.dataset.dataset_record_class.create
       Change.destroy_all
     end
@@ -73,12 +73,12 @@ describe DatasetDescription do
   
   describe 'log changes to a dataset record' do
     before :each do
-      @dataset_description.update_attributes(identifier: 'advokats')
+      @dataset_description.update_attributes(identifier: 'lawyers')
       Change.destroy_all
     end
     
     it 'should record a change to a dataset record' do
-      @dataset_description.dataset.dataset_record_class.create
+      @dataset_description.dataset.dataset_record_class.create(sak_id: 1)
       Change.should have(1).records
     end
   end

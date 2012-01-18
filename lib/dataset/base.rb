@@ -44,46 +44,23 @@ class Dataset::Base
     dataset_record_class.establish_connection Rails.env + "_data"
     dataset_record_class.set_table_name @@prefix + @description.identifier
     
-    dataset_record_class.write_inheritable_attribute :reflections, {}
-  
+    dataset_record_class.write_inheritable_attribute(:reflections, {}) unless Rails.env.test?
     if Relation.table_exists?
       @description.relations.each do |relation|
         next if relation.id.blank?
-    
-        if relation.relation_type == 'has_and_belongs_to_many' && relation.relation_table_identifier.present?
-          relation_model = ( relation.relation_table_identifier.classify.constantize rescue Kernel.const_set(relation.relation_table_identifier.classify, Class.new(Dataset::DatasetRecord)) )
-          relation_model.set_table_name relation.relation_table_identifier
-      
-          relation_model.send( :belongs_to,
-                               (@@prefix + relation.relationship_dataset_description.identifier.singularize).to_sym,
-                               :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
-                             )
-                             
-          relation_model.send( :belongs_to,
-                              (@@prefix + relation.dataset_description.identifier.singularize).to_sym,
-                              :class_name => "Kernel::" + (@@prefix + relation.dataset_description.identifier).classify
-                            )
-                         
-          dataset_record_class.send( :has_many,
-                                     relation.relation_table_identifier.to_sym,
-                                     :class_name => relation_model.name,
-                                     :dependent => :destroy
-                                   )              
-          dataset_record_class.send( :has_many,
-                                     (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,
-                                     :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify,
-                                     :through => relation.relation_table_identifier.to_sym
-                                   )
-        elsif relation.relation_type == 'has_many' || relation.relation_type == 'belongs_to'
-          dataset_record_class.send(relation.relation_type.to_sym, 
-                                    relation.relation_type == 'has_many' ? 
-                                    (@@prefix + relation.relationship_dataset_description.identifier.pluralize) : 
-                                    (@@prefix + relation.relationship_dataset_description.identifier.singularize),
-                                    :class_name => "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify,
-                                    :primary_key => :_record_id
-                                    )
-        end
-        dataset_record_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^rel_/ }.map do |reflection|
+        
+        left_association = (description.identifier < relation.relationship_dataset_description.identifier)
+        dataset_record_class.send( :has_many, (left_association ? :dc_relations_left : :dc_relations_right),
+                                   class_name: 'Dataset::DcRelation', 
+                                   as: (left_association ? :relatable_left : :relatable_right)
+                                 )
+        dataset_record_class.send( :has_many, 
+                                  (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,
+                                  through: (left_association ? :dc_relations_left : :dc_relations_right),
+                                  source: (left_association ? :relatable_right : :relatable_left),
+                                  source_type: "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
+                                )
+        dataset_record_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^dc_/ }.map do |reflection|
           dataset_record_class.accepts_nested_attributes_for(reflection.name)
         end
       end

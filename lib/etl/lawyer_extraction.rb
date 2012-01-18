@@ -53,7 +53,7 @@ module Etl
         :website => (lawyer_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
         :url => @url,
         :sak_id => sak_id,
-        :ds_associates_attributes => associates_attributes,
+        :ds_lawyer_associates_attributes => associates_attributes,
         :is_part_of_import => true
       }
     end
@@ -67,7 +67,8 @@ module Etl
     end
     
     def save(lawyer_hash)
-      lawyer = Dataset::DsLawyer.find_or_initialize_by_sak_id(lawyer_hash[:sak_id])
+      # raise Kernel::DsLawyer.reflect_on_all_associations.inspect
+      lawyer = Kernel::DsLawyer.find_or_initialize_by_sak_id(lawyer_hash[:sak_id])
       lawyer.update_attributes!(lawyer_hash)
     end
     
