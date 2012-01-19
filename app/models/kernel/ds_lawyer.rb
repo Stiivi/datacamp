@@ -6,5 +6,7 @@ class Kernel::DsLawyer < Dataset::DatasetRecord
   has_many :ds_lawyer_associates, through: :dc_relations_right, source: :relatable_left, source_type: 'Kernel::DsLawyerAssociate'
   accepts_nested_attributes_for :ds_lawyer_associates
   
+  has_many :dc_updates, class_name: 'Dataset::DcUpdate', as: :updatable
+  
   validates_uniqueness_of :sak_id
 end

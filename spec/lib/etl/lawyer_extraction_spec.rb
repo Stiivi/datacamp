@@ -106,4 +106,12 @@ describe Etl::LawyerExtraction do
     end
   end
   
+  it 'should have update a lawyer if it is already in the database' do
+    VCR.use_cassette('advokat_4690') do
+      Kernel::DsLawyer.create({:original_name=>"ABELOVSKÁ Iveta JUDr.", :first_name => 'Iveta', :last_name => 'ABELOVSKÁ', :title => 'JUDr.', :lawyer_type=>"Advokát", :street=>"Hlučínska 1", :city=>"BRATISLAVA 3", :zip=>"831 03", :phone=>"02/12345", :fax=>"02/44454498", :cell_phone=>"", :languages=>"rusky", :email=>"kancelaria@abelovskasulva.sk", :website=>nil, :url => "https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4690/link/display/event", :sak_id => 4690, :ds_lawyer_associates_attributes => [], is_part_of_import:true})
+      @extractor.perform
+      Dataset::DcUpdate.count.should == 1
+    end
+  end
+  
 end

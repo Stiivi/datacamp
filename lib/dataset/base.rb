@@ -45,6 +45,7 @@ class Dataset::Base
     dataset_record_class.set_table_name @@prefix + @description.identifier
     
     dataset_record_class.write_inheritable_attribute(:reflections, {}) unless Rails.env.test?
+    dataset_record_class.send(:has_many, :dc_updates, class_name: 'Dataset::DcUpdate', as: :updatable)
     if Relation.table_exists?
       @description.relations.each do |relation|
         next if relation.id.blank?

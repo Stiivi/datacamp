@@ -67,7 +67,6 @@ module Etl
     end
     
     def save(lawyer_hash)
-      # raise Kernel::DsLawyer.reflect_on_all_associations.inspect
       lawyer = Kernel::DsLawyer.find_or_initialize_by_sak_id(lawyer_hash[:sak_id])
       lawyer.update_attributes!(lawyer_hash)
     end
