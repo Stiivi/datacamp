@@ -6,6 +6,7 @@ sk:
         deleted: Vymazaný
         suspended: Skrytý
         absent: Chýbajúci
+        morphed: Presunutý
     quality_statuses:
         ok: V poriadku
         duplicate: Duplicitný

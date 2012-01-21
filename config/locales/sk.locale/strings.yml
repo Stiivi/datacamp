@@ -380,3 +380,6 @@ sk:
     add_failed: 'Pridávanie relácie zlyhalo.'
     deleted: 'Relácia zmazaná.'
     delete_failed: 'Mazanie relácie zlyhalo.'
+  records:
+    show:
+      no_related_records: 'Nie sú príradené žiadne záznamy.'

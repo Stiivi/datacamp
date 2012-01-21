@@ -25,7 +25,7 @@ attr_accessor :schema
 	[:is_hidden,:boolean]
 ]
 
-@@record_statuses = ["loaded","new","published","suspended", "deleted"]
+@@record_statuses = ["loaded","new","published","suspended", "deleted", 'morphed']
 
 @@available_data_types = [:string, :decimal, :integer, :date, :text]
 

@@ -6,6 +6,7 @@ en:
         deleted: Deleted
         suspended: Suspended
         absent: Absent
+        morphed: Morphed
     quality_statuses:
         ok: OK
         duplicate: Duplicate

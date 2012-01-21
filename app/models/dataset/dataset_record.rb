@@ -181,7 +181,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   
   before_save :record_updates
   def record_updates
-    unless self.new_record?
+    if !self.class.table_name.match(/^(rel_|dc_)/) && !self.new_record?
       change_hash = changed_attributes.map { |attribute, old_value| {updated_column: attribute, original_value: old_value, new_value: self[attribute]} }
       self.dc_updates.build(change_hash)
     end

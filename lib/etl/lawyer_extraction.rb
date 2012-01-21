@@ -25,21 +25,13 @@ module Etl
     def digest(doc)
       lawyer_table = doc.xpath("//div[@class='section']/table[@class='filter']").first
       
-      associates = doc.xpath("//div[@id='blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/attr/cms/section/proxyKoncipient']/div/div/table/tr")
-      associates_attributes = associates.map do |associate|
-        next if associate.xpath("./th").present? || associate.inner_text.match(/Zoznam je prázdny/).present?
-        tr = associate.xpath("./td[2]").first.inner_text.strip
-        match_data = tr.match(/(?<first_name>[^\s]+)\s+(?<last_name>[^\s]+)\s+(?<title>[^\s]+)/)
-        ({first_name: match_data[:first_name], last_name: match_data[:last_name], title: match_data[:title], original_name: tr, is_part_of_import: true} rescue nil)
-      end.compact
-      
       original_name = lawyer_table.xpath('./tr[1]/td[2]').inner_text.strip
       match_data = original_name.match(/(?<last_name>[^\s]+)\s+(?<first_name>[^\s]+)(\s+(?<title>[^\s]+))*/)
       sak_id = (@url.match(/\d+/)[0].to_i rescue nil)
       {
         :original_name => original_name,
-        :first_name => match_data[:first_name],
-        :last_name => match_data[:last_name],
+        :first_name => "#{match_data[:first_name].mb_chars.capitalize}",
+        :last_name => "#{match_data[:last_name].mb_chars.capitalize}",
         :title => match_data[:title],
         :lawyer_type => lawyer_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => lawyer_table.xpath('./tr[3]/td[2]').inner_text.strip,
@@ -53,7 +45,6 @@ module Etl
         :website => (lawyer_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
         :url => @url,
         :sak_id => sak_id,
-        :ds_lawyer_associates_attributes => associates_attributes,
         :is_part_of_import => true
       }
     end
@@ -67,7 +58,7 @@ module Etl
     end
     
     def save(lawyer_hash)
-      lawyer = Kernel::DsLawyer.find_or_initialize_by_sak_id(lawyer_hash[:sak_id])
+      lawyer = Kernel::DsLawyer.find_or_initialize_by_sak_id(lawyer_hash[:sak_id]) 
       lawyer.update_attributes!(lawyer_hash)
     end
     
