@@ -8,21 +8,7 @@ namespace :db_data do
       end
     end
   end
-  
-  task initialize_datasets: :environment do
-    # FIXME: move the list to a configuration
-    ['lawyers', 'lawyer_associates', 'lawyer_partnerships'].each do |identifier|
-      dataset = Dataset::Base.new(identifier)
-      dataset.add_system_columns if dataset.description.new_record?
-      if dataset.create_description!
-        puts "Initializing #{identifier} successfull"
-      else
-        puts "Initializing #{identifier} unsuccessfull"
-      end
-      puts dataset.errors
-    end
-  end
-  
+
   desc "Migrate the staging database (options: VERSION=x, VERBOSE=false)."
   task :migrate => :environment do
     ActiveRecord::Base.establish_connection Rails.env + "_data"
@@ -36,6 +22,35 @@ namespace :db_data do
     
     step = ENV['STEP'] ? ENV['STEP'].to_i : 1
     ActiveRecord::Migrator.rollback('db/migrate_data/', step)
+  end
+  
+  task initialize_datasets: :environment do
+    ['lawyers', 'lawyer_associates', 'lawyer_partnerships'].each do |identifier|
+      dataset = Dataset::Base.new(identifier)
+      dataset.add_system_columns if dataset.description.new_record?
+      if dataset.create_description!
+        puts "Initializing #{identifier} successfull"
+      else
+        puts "Initializing #{identifier} unsuccessfull"
+      end
+      puts dataset.errors
+    end
+  end
+  
+  task initialize_relations: :environment do
+    lawyers = DatasetDescription.find_by_identifier('lawyers')
+    lawyer_associates = DatasetDescription.find_by_identifier('lawyer_associates')
+    lawyer_partnerships = DatasetDescription.find_by_identifier('lawyer_partnerships')
+    
+    lawyers.relationship_dataset_descriptions << lawyer_associates unless lawyers.relationship_dataset_descriptions.include?(lawyer_associates)
+    lawyers.relationship_dataset_descriptions << lawyer_partnerships unless lawyers.relationship_dataset_descriptions.include?(lawyer_partnerships)
+    
+    lawyer_associates.relationship_dataset_descriptions << lawyers unless lawyer_associates.relationship_dataset_descriptions.include?(lawyers)
+    lawyer_associates.relationship_dataset_descriptions << lawyer_partnerships unless lawyer_associates.relationship_dataset_descriptions.include?(lawyer_partnerships)
+    Relation.create(dataset_description: lawyer_associates, relationship_dataset_description: lawyers, morph: true) unless Relation.find_by_dataset_description_id_and_relationship_dataset_description_id_and_morph(lawyer_associates.id, lawyers.id, true)
+    
+    lawyer_partnerships.relationship_dataset_descriptions << lawyer_associates unless lawyer_partnerships.relationship_dataset_descriptions.include?(lawyer_associates)
+    lawyer_partnerships.relationship_dataset_descriptions << lawyers unless lawyer_partnerships.relationship_dataset_descriptions.include?(lawyers)
   end
 end
 

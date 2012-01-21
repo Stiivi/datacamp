@@ -10,7 +10,7 @@ Given /^two published datasets with data exist$/ do
   
   Factory.create(:field_description, identifier: 'original_name', dataset_description: @lawyer_associates, is_visible_in_relation: true)
   @lawyer_associates.dataset.dataset_record_class.delete_all
-  @lawyer_associate_record = @lawyer_associates.dataset.dataset_record_class.create!(original_name: 'Lionel Hutz', record_status: 'published')
+  @lawyer_associate_record = @lawyer_associates.dataset.dataset_record_class.create!(original_name: 'Lionel Hutz', record_status: 'published', sak_id: 1)
 end
 
 When /^I setup a relation between the datasets$/ do

@@ -35,17 +35,8 @@ module Etl
       
       lawyer_sak_links = lawyer_partnership_table.xpath(".//div[@class='section']//table[1]//a")
       lawyer_sak_ids = lawyer_sak_links.map{ |link| link.attributes['href'].value.match(/\d+/); $&; }
-      lawyers = Dataset::DsLawyer.find_all_by_sak_id(lawyer_sak_ids)
+      lawyers = Kernel::DsLawyer.find_all_by_sak_id(lawyer_sak_ids)
       
-      associate_sak_names = lawyer_partnership_table.xpath(".//div[@class='section']")[1].xpath('.//table//tr/td[2]')
-      associates = associate_sak_names.map do |aname| 
-        associate = Dataset::DsAssociate.find_by_original_name(aname.inner_text.strip)
-        if associate.blank?
-          associate_params = aname.inner_text.strip.match(/(?<first_name>[^\s]+)\s+(?<last_name>[^\s]+)(\s+(?<title>[^\s]+))*/)
-          associate = Dataset::DsAssociate.create!(original_name: aname.inner_text.strip, first_name: associate_params[:first_name], last_name: associate_params[:last_name], title: associate_params[:title], is_part_of_import: true)
-        end
-        associate
-      end
       
       sak_id = (@url.match(/\d+/)[0].to_i rescue nil)
       {
@@ -64,7 +55,6 @@ module Etl
         :website => (lawyer_partnership_table.xpath('./tr[13]/td[2]/a').first.attributes['href'].value rescue nil),
         :sak_id => sak_id,
         :ds_lawyers => lawyers,
-        :ds_associates => associates,
         :url => @url,
         :is_part_of_import => true
       }

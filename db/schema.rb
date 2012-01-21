@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120118141131) do
+ActiveRecord::Schema.define(:version => 20120121210739) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -322,6 +322,7 @@ ActiveRecord::Schema.define(:version => 20120118141131) do
     t.integer  "relationship_dataset_description_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "morph"
   end
 
   create_table "relationship_description_translations", :force => true do |t|

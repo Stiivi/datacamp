@@ -8,6 +8,7 @@ class DatasetDescription < ActiveRecord::Base
   
   has_many :relations, :dependent => :destroy
   accepts_nested_attributes_for :relations, :allow_destroy => true
+  has_many :relationship_dataset_descriptions, through: :relations
   
   after_save :log_changes
   before_destroy :log_destroy

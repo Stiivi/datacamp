@@ -55,6 +55,25 @@ namespace :etl do
     downloads.each{|download| Delayed::Job.enqueue download }
   end
   
+  task lawyer_associate_extraction: :environment do
+    downloads = Etl::LawyerAssociateExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/list/formular/picker/event/page/', 
+                                          'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/link/display/formular/button/close/event').get_downloads
+    sak_ids = downloads.map{|d| d.url.match(/\d+/)[0] }
+    Kernel::DsLawyerAssociate.where("sak_id NOT IN (?) and record_status!='morphed'", sak_ids).update_all(record_status: 'suspended')
+    downloads.each{|download| Delayed::Job.enqueue download }
+  end
+  
+  task lawyer_associate_morph: :environment do
+    Kernel::DsLawyerAssociate.where(record_status: 'suspended').find_each do |associate|
+      lawyer = Kernel::DsLawyer.where(first_name: associate.first_name, last_name: associate.last_name).first
+      if lawyer.present? && associate.ds_lawyers_morphed.blank?
+        associate.update_attribute(:record_status, 'morphed')
+        associate.ds_lawyers_morphed << lawyer
+        # TODO: notify via email about autoset morphs
+      end
+    end
+  end
+  
   task :vvo_loading => :environment do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'

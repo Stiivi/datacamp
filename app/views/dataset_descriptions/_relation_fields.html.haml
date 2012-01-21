@@ -4,5 +4,8 @@
     = f.label :relationship_dataset_description_id, t('dataset.relationship_dataset_description')
     = f.grouped_collection_select :relationship_dataset_description_id, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
   
+  .field
+    = f.check_box :morph
+  %br
   = f.hidden_field :_destroy
   = submit_tag "- ##{index}", name: "remove_relation", class: 'remove_element'

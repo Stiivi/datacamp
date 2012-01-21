@@ -51,16 +51,31 @@ class Dataset::Base
         next if relation.id.blank?
         
         left_association = (description.identifier < relation.relationship_dataset_description.identifier)
-        dataset_record_class.send( :has_many, (left_association ? :dc_relations_left : :dc_relations_right),
-                                   class_name: 'Dataset::DcRelation', 
-                                   as: (left_association ? :relatable_left : :relatable_right)
-                                 )
-        dataset_record_class.send( :has_many, 
-                                  (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,
-                                  through: (left_association ? :dc_relations_left : :dc_relations_right),
-                                  source: (left_association ? :relatable_right : :relatable_left),
-                                  source_type: "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
-                                )
+        if relation.respond_to?(:morph) && relation.morph?
+          dataset_record_class.send( :has_many, (left_association ? :dc_relations_left_morphed : :dc_relations_right_morphed),
+                                     class_name: 'Dataset::DcRelation', 
+                                     as: (left_association ? :relatable_left : :relatable_right),
+                                     conditions: {morphed: true}
+                                   )
+          dataset_record_class.send( :has_many, 
+                                    (@@prefix + relation.relationship_dataset_description.identifier.pluralize + '_morphed').to_sym,
+                                    through: (left_association ? :dc_relations_left_morphed : :dc_relations_right_morphed),
+                                    source: (left_association ? :relatable_right : :relatable_left),
+                                    source_type: "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
+                                  )
+        else
+          dataset_record_class.send( :has_many, (left_association ? :dc_relations_left : :dc_relations_right),
+                                     class_name: 'Dataset::DcRelation', 
+                                     as: (left_association ? :relatable_left : :relatable_right),
+                                     conditions: {morphed: false}
+                                   )
+          dataset_record_class.send( :has_many, 
+                                    (@@prefix + relation.relationship_dataset_description.identifier.pluralize).to_sym,
+                                    through: (left_association ? :dc_relations_left : :dc_relations_right),
+                                    source: (left_association ? :relatable_right : :relatable_left),
+                                    source_type: "Kernel::" + (@@prefix + relation.relationship_dataset_description.identifier).classify
+                                  )
+        end
         dataset_record_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^dc_/ }.map do |reflection|
           dataset_record_class.accepts_nested_attributes_for(reflection.name)
         end

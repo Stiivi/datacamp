@@ -96,7 +96,7 @@ class DatasetsController < ApplicationController
       filters.each do |key, value|
         paginate_options[:conditions].merge!({key.to_sym => value})
       end
-      paginate_options[:conditions].merge!({:record_status => DatastoreManager.record_statuses[2]}) unless current_user && current_user.has_privilege?(:data_management)
+      paginate_options[:conditions].merge!({:record_status => [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]]}) unless current_user && current_user.has_privilege?(:data_management)
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
@@ -108,7 +108,7 @@ class DatasetsController < ApplicationController
         per_page = paginate_options[:per_page].to_i
         @records = @dataset_class.select('*').from("(SELECT _record_id from #{@dataset_class.table_name} ORDER BY #{@dataset_class.table_name}.#{ActiveRecord::Base.sanitize(params[:sort]).gsub("'",'')} #{ActiveRecord::Base.sanitize(sort_direction).gsub("'",'')} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN #{@dataset_class.table_name} t on q._record_id = t._record_id")
         if !current_user || !current_user.has_privilege?(:data_management)
-          @records = @records.where('t.record_status = ?', DatastoreManager.record_statuses[2])
+          @records = @records.where('t.record_status in (?)', [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]])
         elsif @filters
           @dataset_class = @dataset_class.where('t.record_status = ?', @filters['record_status']) if @filters['record_status'].present?
           @dataset_class = @dataset_class.where('t.quality_status = ?', @filters['quality_status']) if @filters['quality_status'].present?
