@@ -1,5 +1,5 @@
 .bar.clearfix
-  %a.home{:href => !@import_file.new_record? ? import_file_path(@import_file_path) : new_import_file_path, :class => ["new", "update", "show"].include?(params[:action]) ? "active" : ""}
+  %a.home{:href => !@import_file.new_record? ? import_file_path(@import_file) : new_import_file_path, :class => ["new", "update", "show"].include?(params[:action]) ? "active" : ""}
     %span= t "import.select_file"
   %a{:href => !@import_file.new_record? ? preview_import_file_path(@import_file) : "", :class => params[:action]=="preview" ? "active" : ""}
     %span= t "import.preview"
