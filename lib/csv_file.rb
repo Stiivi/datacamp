@@ -31,7 +31,7 @@ class CsvFile
   end
   
   def is_valid?
-    CSV.parse(csv_file, col_sep: @col_sep)
+    CSV.parse(csv_file.read, col_sep: @col_sep)
   rescue Exception
     false
   end
