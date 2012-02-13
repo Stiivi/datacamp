@@ -1,0 +1,99 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+# Install the MySQL driver:
+#   gem install mysql2
+#
+# And be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+development:
+  adapter: mysql2
+  database: datanest_app
+  # pool: 5
+  timeout: 5000
+  encoding: utf8
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+development_data:
+  adapter: mysql2
+  database: datanest_data
+  # pool: 5
+  timeout: 5000
+  encoding: utf8
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+development_staging:
+  adapter: mysql2
+  database: datanest_staging
+  # pool: 5
+  timeout: 5000
+  encoding: utf8
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+  
+production:
+  adapter: mysql2
+  database: datanest_app
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+production_data:
+  adapter: mysql2
+  database: datanest_data
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+production_staging:
+  adapter: mysql2
+  database: datanest_staging
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: datanest_app_test
+  pool: 5
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+test_data:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: datanest_data_test
+  pool: 5
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+test_staging:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: datanest_staging_test
+  pool: 5
+  username: root
+  password: 
+  socket: /tmp/mysql.sock
+
+cucumber:
+  <<: *test
