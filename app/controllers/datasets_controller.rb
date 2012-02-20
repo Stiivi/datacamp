@@ -96,7 +96,7 @@ class DatasetsController < ApplicationController
       filters.each do |key, value|
         paginate_options[:conditions].merge!({key.to_sym => value})
       end
-      paginate_options[:conditions].merge!({:record_status => [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]]}) unless current_user && current_user.has_privilege?(:data_management)
+      paginate_options[:conditions].merge!({:record_status => "#{DatastoreManager.record_statuses[2]}|#{DatastoreManager.record_statuses[5]}"}) unless current_user && current_user.has_privilege?(:data_management)
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
