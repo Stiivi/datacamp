@@ -20,6 +20,7 @@ sk:
             login:
               too_short: "je príliš krátky"
               bad_format: "použite prosím iba čísla, písmená a nasledovné znaky .-@"
+              taken: 'už niekto používa. Zvolte prosím iný.'
             password:
               too_short: "je príliš krátke"
             accepts_terms:
