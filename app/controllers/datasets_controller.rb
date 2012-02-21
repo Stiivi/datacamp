@@ -54,7 +54,7 @@ class DatasetsController < ApplicationController
       return redirect_to datasets_path
     end
     
-    @dataset_class = @dataset_class.order('created_at DESC') if params[:sort].blank?
+    @dataset_class = @dataset_class.order('created_at DESC, _record_id DESC') if params[:sort].blank?
     
     # Comments
     load_comments
