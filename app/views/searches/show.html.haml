@@ -1,40 +1,40 @@
 %h1.main.clearfix
-	/ .fl= h(t("search.results_count", :query_string => @search.query_string, :count => @results.count))
-	.fr.actions
-		= link_to t("global.back"), datasets_path
- 
+  / .fl= h(t("search.results_count", :query_string => @search.query_string, :count => @results.count))
+  .fr.actions
+    = link_to t("global.back"), datasets_path
+
 %ul
 - @results.each do |dataset_category, result|
-	%li{:class => (params[:category_id].to_i == dataset_category.id) ? "active": nil, :style => 'list-style:none;'}
-		%h2.bordered= link_to(dataset_category.title, "?category_id=#{dataset_category.id}")
-		- result.each do |dataset_description, result_records|
-			%h2.clearfix.in_container
-				.fl= dataset_description.title
-			%table.frontend.small
-				- fds = dataset_description.visible_field_descriptions(:search, 5)
-				%tr
-					- fds.each do |field|
-						%th= field.title
-					%th{:class => "actions"} &nbsp;
-				- result_records.each do |result|
-					%tr
-						-fds.each do |field|
-							%td= result.get_html_value(field)
-						%td.actions
-							= link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(result.dataset.description, result, :page => params[:page]))
-			.fl= t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => (result_records.total_entries > 5 ? 5 : result_records.total_entries))
-			.fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset_description.id), :class => "search_preloader")
-			%br
-			%br
-			
+  %li{:class => (params[:category_id].to_i == dataset_category.id) ? "active": nil, :style => 'list-style:none;'}
+    %h2.bordered= link_to(dataset_category.title, "?category_id=#{dataset_category.id}")
+    - result.each do |dataset_description, result_records|
+      %h2.clearfix.in_container
+        .fl= dataset_description.title
+      %table.frontend.small
+        - fds = dataset_description.visible_field_descriptions(:search, 5)
+        %tr
+          - fds.each do |field|
+            %th= field.title
+          %th{:class => "actions"} &nbsp;
+        - result_records.each do |result|
+          %tr
+            -fds.each do |field|
+              %td= result.get_html_value(field)
+            %td.actions
+              = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(result.dataset.description, result, :page => params[:page]))
+      .fl= t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => (result_records.total_entries > 5 ? 5 : result_records.total_entries))
+      .fr= button_link_to(t("search.more_results"), dataset_path(dataset_description, :search_id => @search.id), :class => "search_preloader")
+      %br
+      %br
+
 %br
 %br
 #top_search
-	= form_tag quick_searches_path, :class => "search" do
-		= text_field_tag :query_string, (@search.query_string if @search)
-		= submit_tag t("search.search_action"), :id => "query_submit", :style => 'float:left; margin-right: 10px;'
-		.clearfix
-		- DatasetDescription.disabled_in_quick_search.each do |dd|
-			= label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :class => 'search_label'
-			= check_box_tag 'disabled_descriptions[]', dd.id, (!@disabled_descriptions && controller_name != 'searches') || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s)), :style => 'margin-top:8px;'
+  = form_tag quick_searches_path, :class => "search" do
+    = text_field_tag :query_string, (@search.query_string if @search)
+    = submit_tag t("search.search_action"), :id => "query_submit", :style => 'float:left; margin-right: 10px;'
+    .clearfix
+    - DatasetDescription.disabled_in_quick_search.each do |dd|
+      = label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :class => 'search_label'
+      = check_box_tag 'disabled_descriptions[]', dd.id, (!@disabled_descriptions && controller_name != 'searches') || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s)), :style => 'margin-top:8px;'
 .clearfix &nbsp;
