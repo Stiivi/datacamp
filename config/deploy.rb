@@ -11,7 +11,6 @@ set(:deploy_to) { "/var/www/projects/#{application}/#{stage}" }
 set :scm, :git
 set :repository, "git://github.com/fairplaysk/datacamp.git"
 set :use_sudo, false
-set :branch, 'rails3'
 set :keep_releases, 4 
 
 set(:user) { Capistrano::CLI.ui.ask "user:" }
