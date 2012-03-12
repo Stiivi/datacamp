@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Search < ActiveRecord::Base
   set_table_name :searches
   

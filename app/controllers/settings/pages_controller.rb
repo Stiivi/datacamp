@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Settings
   class PagesController < ApplicationController
     before_filter :login_required
@@ -34,6 +35,10 @@ module Settings
       else
         render :action => "edit"
       end
+    end
+    
+    def init_menu
+      @submenu_partial = "settings"
     end
   end
 end

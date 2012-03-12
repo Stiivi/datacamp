@@ -8,15 +8,14 @@
     %th= t "global.user"
     %th= t "global.comment"
     %th= t "global.created_at"
-    %th &nbsp;
     
   - @comments.each do |comment|
     %tr
-      - if comment.dataset_description
-        %td= link_to comment.dataset_description.title, dataset_path(comment.dataset_description)
+      %td
+        - if comment.dataset_description
+          = link_to comment.dataset_description.title, dataset_path(comment.dataset_description)
       %td= comment.user.name
       %td
         %a{:href => edit_comment_path(comment)}
-          = comment.is_suspended ? "<del>" + comment.text + "</del>" : comment.text
+          = comment.is_suspended ? "<del>#{comment.text}</del>".html_safe : comment.text
       %td= comment.created_at
-      %td

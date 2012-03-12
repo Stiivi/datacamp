@@ -33,3 +33,5 @@
       - if @dataset_description.dataset.table_exists?
         %li{:class => params[:action]=="datastore_status" ? "active" : nil}
           %a{:href => datastore_status_dataset_description_path(@dataset_description)}= t("dataset.datastore_status")
+      %li{:class => params[:action]=="relations"||params[:action]=="update_relations" ? "active" : nil}
+        %a{:href => relations_dataset_description_path(@dataset_description)}= t("dataset.relations")

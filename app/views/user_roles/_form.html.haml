@@ -1,4 +1,4 @@
-- form_for @user_role, :url => user_role_path(@user_role), :method => "put" do |f|
+= form_for @user_role, :url => user_role_path(@user_role), :method => "put" do |f|
   
   %ul
     %li.clearfix
@@ -11,7 +11,7 @@
   %h2 Privileges
   = hidden_field_tag "access_role[access_right_ids][]", ""
   %table
-    - AccessRight.find(:all).each do |p|
+    - AccessRight.all.each do |p|
       %tr
         %td
           = check_box_tag "access_role[access_right_ids][]", p.id, @user_role.access_rights.include?(p)

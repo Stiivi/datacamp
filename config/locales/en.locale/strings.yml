@@ -1,4 +1,7 @@
 en: 
+    n_a: 'n/a'
+    sort: Sort
+    finish_sort: Finish sorting
     api:
         levels:
             restricted: Restricted
@@ -14,6 +17,7 @@ en:
         edit_block: Edit
         show_block: Show
         new_block: New block
+        delete_block: Delete
     session: 
         submit: Submit
         lost_password_label: Have you forgotten your password?
@@ -21,9 +25,10 @@ en:
         password: Password
         login: Login
         lost_password: Have you forgotten your password?
-        set_new_password: "Set new {{site_name}} password"
-        reset_password_message: "Click on the following link to reset password on your account: {{link}}"
+        set_new_password: "Set new %{site_name} password"
+        reset_password_message: "Click on the following link to reset password on your account: %{link}"
         reset_password: Reset password
+        note_failed_signin: Username and/or password is incorrect. Please check if you entered them correctly and try again.
     settings:
         name: Name
         description: Description
@@ -38,10 +43,10 @@ en:
         new: New comment
         poor: Poor
         post: Post
-        rating: "{{useful}} out of {{total}} find this comment useful."
-        record: "Record #{{id}}"
+        rating: "%{useful} out of %{total} find this comment useful."
+        record: "Record #%{id}"
         reply: Reply
-        replying_to: "Replying to comment #{{parent}}"
+        replying_to: "Replying to comment #%{parent}"
         report_label: Report a comment
         report: Report
         spam_report: Spam
@@ -65,7 +70,7 @@ en:
         data_editing: Data Editing
     password_reset: 
         title: Restore your account
-        body: "Click on the following link to reset password on your account: {{link}}"
+        body: "Click on the following link to reset password on your account: %{link}"
         subject: Restore your account
         restore_account: Restore account
     metadata: 
@@ -82,21 +87,27 @@ en:
         unit_of_analysis: Unit of analysis
         update_frequency: Update Frequency
         valid_from: Valid from
-    dataset: 
+    dataset:
+        relations: 'Relations' 
+        relationship_type: 'Relationship type'
+        relationship_dataset_description: 'Relationship table'
+        create_relation_field_table: 'Create relationship field/table'
+        foreign_key_field_description_id: 'Foreign key'
+        refresh_foreign_keys: 'Refresh foreign keys'
         create: New dataset
         create_category: New category
         add_field_description: Add field description
-        selected_records: "{{count}} records are selected."
+        selected_records: "%{count} records are selected."
         batch_edit: "Batch edit"
         edit_selected: Selected records
         edit_all: "All records"
-        batch_updated: "{{count}} records were successfuly updated."
-        cant_setup_dataset: "Can't setup dataset {{dataset}} to {{identifier}}. Please check your database."
+        batch_updated: "%{count} records were successfuly updated."
+        cant_setup_dataset: "Can't setup dataset %{dataset} to %{identifier}. Please check your database."
         click_to_select_all: Click to select/deselect all.
         columns_for_import: Columns for import
         confirm_add_pk: Add primary key?
         create_record: Create record
-        create_table: Create table {{table}}
+        create_table: Create table %{table}
         created_message: Dataset created 
         data_types: Data types
         dataset_choose: Choose dataset
@@ -104,7 +115,7 @@ en:
         dataset_import_help: "<p>These datasets exists in database, but are not used by application.</p><p>After clicking a table name the setup sequence will be triggered: Table will be transformed to work with application and a schema in data dictionary will be generated based on table structure. Also, table name will be prefixed with <strong>ds</strong> shortcut.</p>"
         datastore_status: Datastore Status
         descriptions: Dataset descriptions
-        internal_dataset_error: "Couldn't load dataset {{title}}. We are aware of this error and working to fix it."
+        internal_dataset_error: "Couldn't load dataset %{title}. We are aware of this error and working to fix it."
         edit_description: Edit description
         field_descriptions: Field descriptions
         field_description: Field
@@ -116,7 +127,7 @@ en:
         information: Dataset information
         initialize_from_table: Initialize from table
         initialize_table_info: You're about to turn this description into actual dataset
-        initialize_table: Initilize table {{identifier}}
+        initialize_table: Initilize table %{identifier}
         initialize: Initialize
         initialized_datasets_info: These datasets were already initialized and contain system columns.
         initialized_datasets: Initialized datasets
@@ -131,7 +142,7 @@ en:
         in_favorites: Your favorite
         move: Move dataset
         no_pk: Missing primary key
-        no_table_for_new_dataset: "This dataset has no table yet (we're looking for {{identifier}}). Customize the strucutre, and when you're done, <a href='{{target}}'>click here</a> to create the table."
+        no_table_for_new_dataset: "This dataset has no table yet (we're looking for %{identifier}). Customize the strucutre, and when you're done, <a href='%{target}'>click here</a> to create the table."
         no_table_in_databaes: As there no such table in your databases, you might want to create it.
         not_enough_records_selected: Select at least 1 record for batch edit.
         not_in_database: Not in database
@@ -142,14 +153,14 @@ en:
         save_and_create: Save and create
         set_quality: Set quality
         set_status: Set status
-        short_summary: "{{count}} records provided by {{provider}}"
+        short_summary: "published records: %{count} provided by %{provider}"
         table_name: Table Name
         title: Title
         type: Type
         uninitialized_datasets: Uninitialized datasets
         visibility_settings: Visibility settings
         record_preview: Record preview
-        active_search: "Results are currently filtered by an active search with {{predicates}} conditions."
+        active_search: "Results are currently filtered by an active search with %{predicates} conditions."
         edit_search: Edit search
         data: Data
         meta_information: Meta information
@@ -161,28 +172,28 @@ en:
     import:
         file_information: File information
         file_settings: File settings
-        file_not_loaded: "File at <small>{{path}}</small> couldn't be loaded"
-        file_ready: "File {{title}} is ready to be uploaded."
-        go_to_description: "Go to {{dataset}}"
+        file_not_loaded: "File at <small>%{path}</small> couldn't be loaded"
+        file_ready: "File %{title} is ready to be imported."
+        go_to_description: "Go to %{dataset}"
         header_lines: Number of header lines (which will be skipped on final import)
         identifier_line: Line with identifiers (will be used to guess field descriptions)
-        parsing_first: "Parsing first {{count}} lines"
+        parsing_first: "Parsing first %{count} lines"
         column_mapping: Column mapping
-        first_ok: "First {{count}} rows have same count of columns"
-        load_success: "File <small>{{path}}</small> loaded successfuly"
+        first_ok: "First %{count} rows have same count of columns"
+        load_success: "File <small>%{path}</small> loaded successfuly"
         importing_files: "Importing files ..."
         importing_failed: "Importing failed."
         importing_not_started_yet: "Importing wasn't triggered yet."
-        first_not_ok: "First {{count}} rows have different count of columns"
+        first_not_ok: "First %{count} rows have different count of columns"
         file_already_imported: This file was already imported into the database.
-        column_count_ok: Number of columns ({{count}}) matches database
-        column_count_not_ok: "File has {{actual_count}} columns, while database expects {{expected_count}} columns"
+        column_count_ok: Number of columns (%{count}) matches database
+        column_count_not_ok: "File has %{actual_count} columns, while database expects %{expected_count}% columns"
         import_data: Import data
         import_title: Import data
         column_separator: Column separator
         has_header: Contains header
         file_imported: File was successfully imported into the database.
-        lines_imported: "{{count}} lines were stored in database."
+        lines_imported: "%{count} lines were stored in database."
         status: Status
         source: Source
         empty: Empty
@@ -203,8 +214,12 @@ en:
         guessing_mapping: "Guessing mapping: Based on header lines(s) in your file, we just tried to map columns in your file to our field descriptions."
         importing: "Uploading file"
         statuses:
-          ready: Ready
-    global: 
+        ready: Ready
+        cancel: Cancel
+        importing_canceled: 'Importing was canceled'
+    global:
+        activities: 'Activity'
+        do_not_search: "Do not search: %{name}"
         new_category: New Category
         active: active
         add_to_favorites_hint: Is this page interesting?
@@ -281,7 +296,7 @@ en:
         status: Status
         submit: Submit
         system_datastore_management: System Datastore Management
-        testing_get_informed: "If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>."
+        testing_get_informed: "If you'd like to be informed when it goes public, <a href='%{url}'>register here</a>."
         testing_notice: The application is currently in private beta testing.
         title: Title
         total_entries: Total entries
@@ -289,7 +304,7 @@ en:
         users: Users
         user: User
         value: Value
-        load_error: "Couldn't load {{what}}"
+        load_error: "Couldn't load %{what}"
         categories: Categories
     users: 
         user_not_found: User not found.
@@ -306,11 +321,13 @@ en:
         no_api_key: "You don't have any API key yet."
         create_api_key: "Create new API key"
         current_api_key: "Your current API key:"
-        current_api_key_for: "Current API key for {{user}}:"
-        no_api_key_for: "{{user}} doesn't have any API key yet."
+        current_api_key_for: "Current API key for %{user}:"
+        no_api_key_for: "%{user} doesn't have any API key yet."
         logged_in: "You was logged in successfuly"
-        insufficient_privileges: "You have insufficient privileges to perform action {{action}}."
+        insufficient_privileges: "You have insufficient privileges to perform action %{action}."
         register: Sign up for account
+        update_successfull: "User data update was successfull."
+        agree_with: 'I accept the terms of service'
     pages:
         all_pages: All pages
         name: Name
@@ -320,26 +337,27 @@ en:
         show_page: Show
         new_page: New page
     search:
-        through: "Search through {{dataset}}" 
-        create_search: "Create your search for {{dataset}}"
+        through: "Search through %{dataset}" 
+        create_search: "Create your search for %{dataset}"
         searching_wait_notice: Searching ...
         search_action: Search!
         query_field: "Search:"
         search_term: Term
-        results_count: "{{count}} results for '{{query_string}}'"
+        results_count: "%{count} results for '%{query_string}'"
         categories: Categories
         dataset_name: Dataset
         processing: "Processing your search"
-        results: "{{results}} results"
+        results: "%{results} results"
         more_results: More results
         any_field: Any field
+        showing_first_results: Showing first %{showing_count} of %{all_count}. Please click the More results link to show all.
     validations:
         blank: can't be blank
     messages:
         application_testing_notice: The application is currently in private beta testing.
-        testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>."
+        testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='%{url}'>register here</a>."
     batch_editing:
-        editing_selected: "Editing {{count}} selected records."
+        editing_selected: "Editing %{count} selected records."
         editing_all_search: "Editing all records that match your search."
         editing_all_table: "Editing all records in table."
         attribute_name: Attribute name
@@ -355,3 +373,9 @@ en:
             super_user: Super User
             api_access: API
             api_all: All
+            
+    relation:
+      added: 'Relation successfully added.'
+      add_failed: 'Adding relation failed.'
+      deleted: 'Relation deleted.'
+      delete_failed: 'Deleting relation failed.'

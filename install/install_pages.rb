@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ########################################################################
 # Installation of localized static pages
 

@@ -1,4 +1,4 @@
-- form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "inline submit_on_change"} do |f|
+= form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "inline submit_on_change"} do |f|
   
   %table{:class => "small #{@dataset_description.identifier}"}
     %tr.header
@@ -19,13 +19,8 @@
         %td.checkbox
           = check_box_tag "record[]", record._record_id, false, :class => "record"
         %td.status
-          = image_tag "icons/record_status/#{record.record_status}.png", :alt => t("record_statuses.#{record.record_status}"), :class => "tooltip"
-          / - if record.quality_status && record.quality_status != "ok"
-          /             = image_tag "icons/#{record.quality_status}.png", :class => "quality_status"
-          /           - if record.record_status && record.record_status == "flagged"
-          /             = image_tag "icons/flag.png", :alt => "Flagged (has errros)", :class => "tooltip"
-          /           - else
-          /             = image_tag "icons/ok.png", :alt => "OK (published)", :class => "tooltip"
+          = image_tag "icons/record_status/icon_#{record.record_status}.png", :alt => t("record_statuses.#{record.record_status}"), :class => "tooltip"
+          = image_tag "icons/record_status/icon_#{record.quality_status}.png", :alt => t("quality_statuses.#{record.quality_status}"), :class => "tooltip"
         - @field_descriptions.each do |field_description|
           %td
             - value = record.get_truncated_html_value(field_description)

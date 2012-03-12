@@ -1,7 +1,7 @@
 = render :partial => "header"
 
 .content.clearfix
-  %div.action_box= "Table name: <strong>#{@table_name}</strong>"
+  %div.action_box= "Table name: <strong>#{@table_name}</strong>".html_safe
   %br
   
   %h2 Missing descriptions in data dictionary

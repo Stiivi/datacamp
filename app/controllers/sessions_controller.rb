@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Sessions Controller
 #
 # This controller handles the login/logout function of the site.  
@@ -65,7 +66,7 @@ class SessionsController < ApplicationController
 protected
   # Track failed login attempts
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
+    flash[:error] = I18n.t('session.note_failed_signin')
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end

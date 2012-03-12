@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module I18nValidations
   
   def self.included(base)

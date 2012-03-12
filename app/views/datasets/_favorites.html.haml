@@ -1,7 +1,7 @@
 - if logged_in?
   #actions.clearfix
     - unless current_user.has_favorite?(@dataset_description, @record)
-      - form_for @favorite do |f|
+      = form_for @favorite do |f|
         = f.hidden_field :dataset_description_id
         = f.hidden_field :record_id
         = f.hidden_field :user_id

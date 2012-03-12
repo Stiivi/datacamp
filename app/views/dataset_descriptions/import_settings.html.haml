@@ -1,7 +1,7 @@
 = render :partial => "header"
 
 /*** Form ***/
-- form_for @dataset_description, :html => { :class => 'plain' } do |f|
+= form_for @dataset_description, :html => { :class => 'plain' } do |f|
 
   = f.hidden_field :import_settings
   

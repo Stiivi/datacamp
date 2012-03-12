@@ -1,0 +1,9 @@
+.sortable .title, .title { font-weight: bold; font-size: 13px; background-color: #efefef !important; border-bottom: 2px solid #e1e1e1 !important; padding: 10px; }
+.title div { padding-left: 15px;}
+.sortable .title a { font-weight: normal; font-style: normal; font-size: 11px; color: #7b7b7b; }
+.sortable div { padding: 0 10px;}
+.sortable .placeholder { background-color: #cfcfcf; }
+.sortable .nopadding{ padding: 0;}
+.sortable .clear{ clear:both; }
+.sortable li { margin: 10px 0 0 0;}
+.sortable .activeitem {padding 0;}

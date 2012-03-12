@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Accounts Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -35,6 +36,7 @@ class AccountsController < ApplicationController
     @account.attributes = params[:user]
     # raise @account.to_yaml
     if @account.save
+      flash[:notice] = t('users.update_successfull')
       if params[:redirect]
         redirect_to params[:redirect]
       else
@@ -46,17 +48,15 @@ class AccountsController < ApplicationController
   end
   
   def forgot
-    if request.method == :post
+    if request.post?
       @account = User.find_by_email(params[:user][:email])
-      unless @account
-        flash[:error] = I18n.t("global.user_not_found")
-        return redirect_to forgot_account_path
+      if @account.blank?
+        return redirect_to forgot_account_path, notice: I18n.t("global.user_not_found")
       end
       @account.create_restoration_code
-      @account.save(false)
-      UserMailer.deliver_forgot_password(@account)
-      flash[:notice] = I18n.t("global.email_sent")
-      redirect_to forgot_account_path
+      @account.save(:validate => false)
+      UserMailer.forgot_password(@account).deliver
+      redirect_to login_path, notice: I18n.t("global.email_sent")
     end
   end
   
@@ -76,8 +76,8 @@ class AccountsController < ApplicationController
     if @account.valid? && verify_captcha_for(@account)
       @account.save
       self.current_user = @account
-      flash[:notice] = t("users.registration_complete")
-      redirect_to root_path
+      UserMailer.registration_complete(@account).deliver
+      redirect_to root_path, notice: t("users.registration_complete")
     else
       render :action => "new"
     end
@@ -87,7 +87,8 @@ class AccountsController < ApplicationController
   
   def get_account
     @account = current_user
-    @comments = Comment.find_include_suspended :all, :conditions => {:user_id => current_user.id}
+    @account.accepts_terms = '1'
+    @comments = Comment.find_include_suspended(:user_id => current_user.id)
     @favorites = @account.favorites || []
     # FIXME: This might get slow with many favorites. Favorites tab should be loaded
     # with Ajax after clicking it.

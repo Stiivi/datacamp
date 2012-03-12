@@ -6,6 +6,7 @@ sk:
       messages: 
         blank: "je potrebné vyplniť"
         blank_i18n: "je potrebné vyplniť pre všetky preklady"
+        record_invalid: "Prosím pozrite si tieto chyby a opravte príslušné polia"
       template: 
         body: "Prosím pozrite si tieto chyby a opravte príslušné polia"
         header: "Uloženiu zabránilo niekoľko chýb"
@@ -14,3 +15,18 @@ sk:
           attributes:
             email:
               taken: "Zadanú adresu ma priradenú už iný používateľ"
+              too_short: "je príliš krátky"
+              bad_format: "nevyzerá ako skutočný email"
+            login:
+              too_short: "je príliš krátky"
+              bad_format: "použite prosím iba čísla, písmená a nasledovné znaky .-@"
+              taken: 'už niekto používa. Zvolte prosím iný.'
+            password:
+              too_short: "je príliš krátke"
+            accepts_terms:
+              accepted: 'je zaškrtnuté'
+  errors:
+    template: 
+      body: "Prosím pozrite si tieto chyby a opravte príslušné polia"
+      header: "Uloženiu zabránilo niekoľko chýb"
+    invalid_csv_file: "CSV sa nepodarilo spracovať. Skontrolujte prosím, či je súbor v poriadku (neobsahuje preklepy a pod.). Ďalej skontrolujte, či ste správne vybrali kódovanie a šablónu."

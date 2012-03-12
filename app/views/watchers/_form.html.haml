@@ -1,4 +1,4 @@
-- form_for @watcher, :builder => ListFormBuilder do |f|
+= form_for @watcher, :builder => ListFormBuilder do |f|
   %ul
     = f.text_field :email, :label => t("watchers.email")
     = f.text_field :organization, :label => t("watchers.organization")

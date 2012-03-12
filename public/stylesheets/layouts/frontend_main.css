@@ -36,7 +36,7 @@ h2 {
       padding-right: 5px;
       font-size: 11px; }
   #main #header {
-    height: 60px;
+    height: 75px;
     position: relative; }
     #main #header #social-links {
         margin-top:14px; }
@@ -187,7 +187,9 @@ h2 {
       outline-width: 0px;
       
       }
-
+		#top_search .search_label{
+			width:auto; padding-top: 6px; font-size: 10px
+		}
 /* ************************** */
 
 

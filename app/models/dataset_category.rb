@@ -1,5 +1,8 @@
+# -*- encoding : utf-8 -*-
 class DatasetCategory < ActiveRecord::Base
-  has_many :dataset_descriptions, :foreign_key => "category_id", :dependent => :nullify
+  has_many :dataset_descriptions, :foreign_key => "category_id", :dependent => :nullify, :order => :position
+  
+  default_scope includes(:translations)
   
   translates :title, :description
   locale_accessor I18N_LOCALES
@@ -11,13 +14,13 @@ class DatasetCategory < ActiveRecord::Base
   end
   
   def title
-    title = attributes[:title]
-    title = title.blank? ? translations.find(:first).title : title
+    title = read_attribute(:title)
+    title = translations.first.title if title.blank? && translations.first.present?
     title.blank? ? '(n/a)' : title
   end
   
   def self.find_or_create_by_title(title)
-    cat = find :first, :include => :translations, :conditions => {"dataset_category_translations.title" => title}
+    cat = where("dataset_category_translations.title" => title).includes(:translations).first
     if cat
       return cat
     else

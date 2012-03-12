@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RelationshipDescription < ActiveRecord::Base
   belongs_to :dataset_description
   belongs_to :target_dataset_description

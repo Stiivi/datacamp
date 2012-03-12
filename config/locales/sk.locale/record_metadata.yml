@@ -5,6 +5,8 @@ sk:
         published: Publikovaný
         deleted: Vymazaný
         suspended: Skrytý
+        absent: Chýbajúci
+        morphed: Presunutý
     quality_statuses:
         ok: V poriadku
         duplicate: Duplicitný
@@ -12,3 +14,4 @@ sk:
         doubtful: Neistý
         unclear: Nejasný
         absent: Chýbajúci
+        regis_match_fail: Nenašiel sa v regis-e

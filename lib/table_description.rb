@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class TableDescription
 attr_reader :column_descriptions, :column_names
 def initialize(connection, tableName)

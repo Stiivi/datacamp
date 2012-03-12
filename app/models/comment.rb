@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :dataset_description
@@ -8,8 +9,10 @@ class Comment < ActiveRecord::Base
   
   default_scope :conditions => { :is_suspended => nil }
 
-  def self.find_include_suspended *args
-    self.with_exclusive_scope { find(*args) }
+  def self.find_include_suspended conditions=''
+    with_exclusive_scope() do
+      where(conditions)
+    end
   end
   
   def self.find_by_id! id
@@ -47,7 +50,7 @@ class Comment < ActiveRecord::Base
   end
   
   def rated_by_user? user
-    comment_ratings.find(:first, :conditions => {:user_id => user.id}) ? true : false
+    comment_ratings.where(:user_id => user.id).first ? true : false
   end
   
   ##############################################################################

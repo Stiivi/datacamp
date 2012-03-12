@@ -3,7 +3,7 @@
     = t("watchers.watcher_list")
 
   .buttons.clearfix.fr
-    =link_to "<span>Users</span>", users_path, :class => "button"
+    =link_to "<span>Users</span>".html_safe, users_path, :class => "button"
 
 %table
   %tr

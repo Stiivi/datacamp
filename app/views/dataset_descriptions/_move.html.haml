@@ -1,6 +1,6 @@
 %h1= t("dataset.move")
 
-- form_for @dataset_description, :builder => ListFormBuilder, :html => {:class => "small"} do |f|
+= form_for @dataset_description, :builder => ListFormBuilder, :html => {:class => "small"} do |f|
 
   %ul
     = f.collection_select :category_id, DatasetCategory.all, :id, :title

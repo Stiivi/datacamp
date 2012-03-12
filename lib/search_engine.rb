@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require "shellwords"
 require 'logger'
 
@@ -62,8 +63,7 @@ def create_dataset_search_with_predicates(predicates, dataset)
   raise "Predicates shouldn't be nil" if predicates.nil?
   
 	search = Search.new
-	query = SearchQuery.query_with_predicates(predicates, :scope=>"dataset",
-														  :object=>dataset)
+	query = SearchQuery.query_with_predicates(predicates, :scope=>"dataset", :object=>dataset)
 	search.query = query
 	search.search_type = "predicates"
 	search.save
@@ -173,9 +173,9 @@ def sql_condition_for_dataset_query(dataset, query)
 	
 	record_predicates.each { |predicate|
 		# Rails.logger.info "DEBUG -- f:#{predicate.field} a:#{predicate.argument}"
-		if predicate.field and all_field_names.include?(predicate.field)
+		if predicate.search_field and all_field_names.include?(predicate.search_field)
 			# IF field is specified, use that field
-			field = dataset.field_with_identifier(predicate.field)
+			field = dataset.field_with_identifier(predicate.search_field)
 			
 			condition = sql_condition_for_field(predicate, dataset, field)
 			# Rails.logger.info "DEBUG condition: #{condition}"
@@ -290,7 +290,7 @@ def perform_dataset_search(dataset, query, options)
 		# Now fill results with stuff from table ...
         
         # FIXME: use datastore connection
-    	DatasetRecord.connection.execute(sql_query)
+    	Dataset::DatasetRecord.connection.execute(sql_query)
 
 	rescue Exception => e
 		# FIXME: create list of errors, pass an message

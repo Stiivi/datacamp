@@ -1,6 +1,7 @@
+# -*- encoding : utf-8 -*-
 class Dataset::Test
   
-  @@test_path = File.join(RAILS_ROOT, "dataset_tests")
+  @@test_path = File.join(Rails.root, "dataset_tests")
   cattr_reader :test_path
   attr_reader :log
   attr_accessor :title

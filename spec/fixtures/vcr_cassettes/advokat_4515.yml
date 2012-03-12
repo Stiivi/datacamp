@@ -1,0 +1,348 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event
+    body: 
+    headers: 
+      cookie: 
+      - JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 0
+      message: 
+    headers: 
+    body: 
+    http_version: 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://www.sak.sk:443/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/0
+    body: 
+    headers: 
+      cookie: 
+      - JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Fri, 23 Sep 2011 10:29:57 GMT
+      server: 
+      - Apache-Coyote/1.1
+      x-powered-by: 
+      - "Servlet 2.4; JBoss-4.2.2.GA (build: SVNTag=JBoss_4_2_2_GA date=200710221139)/Tomcat-5.5"
+      cache-control: 
+      - no-cache, must-revalidate
+      pragma: 
+      - no-cache
+      last-modified: 
+      - Sep 23, 2011 12:29:57 PM
+      expires: 
+      - Sep 23, 2011 12:29:57 PM
+      bloxajaxcontext: 
+      - ""
+      content-type: 
+      - text/html;charset=UTF-8
+      content-language: 
+      - sk-SK
+      set-cookie: 
+      - JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49; Path=/
+      via: 
+      - 1.1 sak2.blox.sk
+      transfer-encoding: 
+      - chunked
+    body: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"  \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"\n\
+      <html>\n  <head>\n    <title>Slovensk\xC3\xA1 advok\xC3\xA1tska komora</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />  \n      \n    <link type=\"text/css\" rel=\"stylesheet\" media=\"screen\" href=\"/sak2/public/dizajn/sak2/css/screen.css\">\n    <link type=\"text/css\" rel=\"stylesheet\" media=\"print\" href=\"/sak2/public/dizajn/sak2/css/print.css\">  \n    \n    <script language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/defaultPage.js\"></script>\n    <script language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/onLoadFcCatalog.js\"></script> \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/mootools-1.2-core.js\"></script>\n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/mootools-1.2-more.js\"></script>\n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/mootools-compat-core.js\"></script>\n    <script language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/menu.js\"></script>\n    \n    <link type=\"text/css\" rel=\"stylesheet\" href=\"/sak2/public/common/js/calendar/calendar.css\"/>    \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/common/js/calendar/calendar_sk.js\"></script> \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/common/js/ckeditor/ckeditor.js\"></script> \n    \n    <!-- Blox Base Components -->\n\
+      <!--   \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/common/js/base/bloxLoader.js\"></script> \n    <script type=\"text/javascript\">\n      var BLOX_BASE_PATH = \"/sak2/public/common\";\n      var BLOX_LANGUAGE = \"sk\";\n      var BLOX_AJAX = true;\n      var BLOX_DEBUG = true;\n      bloxLoadBase(); \n    </script> \n\
+      -->\n\n\
+      <!-- Custom CSS -->\n   \n\n    <script type=\"text/javascript\" language=\"JavaScript\"> \n      var iconCheck = new Array(7);      \n      iconCheck[1]=new Image;iconCheck[1].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconUnchecked.gif'; \n      iconCheck[2]=new Image;iconCheck[2].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconChecked.gif'; \n      iconCheck[3]=new Image;iconCheck[3].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconCheckedBySubnodes.gif'; \n      iconCheck[4]=new Image;iconCheck[4].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconUncheckedInactive.gif'; \n      iconCheck[5]=new Image;iconCheck[5].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconCheckedInactive.gif'; \n      iconCheck[6]=new Image;iconCheck[6].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconCheckedBySubnodesInactive.gif'; \n\n      \n      function fckEditorReplacement(){\n      }; \n      \n            \n      function editAreaEditorSubmit(){\n      }; \n\n    </script>\n    <script type=\"text/javascript\">\n       var TREE_CHECK_ADV = [0]; \n    </script>\n  </head> \n\n\
+      <body onLoad=\"onLoadFcCatalog(0);\"> \n  <form id=\"bloxMainForm\" action=\"\" method=\"post\" enctype=\"multipart/form-data\">\n    <input type=\"hidden\" name=\"clickitem\" value=\"1\"/> \n    <input type=\"hidden\" name=\"scrollYOffset\" value=\"0\"/> \n    \n    <div style=\"position:absolute; left:0px; top:25px\">\n       <a href=\"/blox/cms\"><img src=\"/sak2/public/dizajn/sak2/images/px.gif\"  width=\"1000\" height=\"90\" border=\"0\"></a>\n    </div>\n\n\
+      <!-- LOGO PRE TLAC -->\n    <div id=\"logoprint\"><img src=\"/sak2/public/dizajn/sak2/images/logo_print.jpg\" border=\"0\"></div>\n \n\
+      <!-- VYBER JAZYKOVEJ VERZIE -->\n\n    <div id=\"langbar\">\n        <p>&nbsp;<a href=\"/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/0\" title=\"Slovensky\"><b><span style=\"color:#005AAB\">SK</span></b></a>&nbsp;/&nbsp;<a href=\"/blox/cms/en/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/0\" title=\"English\">EN</a>&nbsp;/&nbsp;<a href=\"/blox/cms/de/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/0\" title=\"Deutch\">DE</a>&nbsp;</p>\n    </div>\n\n\
+      <!-- OBSAH STRANKY -->\n\n    <div id=\"content\">\n\n    <!-- LAVY STLPEC - BOXY -->\n    \n      <div id=\"leftcolumn\">    \n        \n    <div class=\"activebox\">\n      <div id=\"menubox\">\n        <div class=\"ttl\"><a href=/blox/cms><img src=\"/sak2/public/dizajn/sak2/images/ttl_komora_active.gif\" alt=\"KOMORA\" width=\"250\" height=\"30\" border=\"0\"></a></div>\n        <div class=\"leftbox\">\n          <ul class=\"menu_level_1\"> \n            <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">SAK</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/sak/about\">Profil SAK</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/sak/organy\">Org\xC3\xA1ny SAK</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/sak/history\">Hist\xC3\xB3ria</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/sak/odpocet\">Odpo\xC4\x8Det \xC4\x8Dinnosti</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp_select\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Advok\xC3\xA1ti</a>\n  <ul class=\"menu_level_2\"><li class=\"select\"><a  href=\"/blox/cms/sk/sak/adv/vyhladanie\">Vyh\xC4\xBEadanie advok\xC3\xA1ta</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/osp\">Advok\xC3\xA1tske spolo\xC4\x8Denstv\xC3\xA1</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/konc\">Vyh\xC4\xBEadanie koncipienta</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/stop\">Pozastaven\xC3\xBD v\xC3\xBDkon advok\xC3\xA1cie</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/bpp\">Bezplatn\xC3\xA1 pr\xC3\xA1vna pomoc</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/exoffo\">Exoffo advok\xC3\xA1ti</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/us\">Zastupovania pred \xC3\x9AS</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/av\">Zastupovania v azylov\xC3\xBDch veciach</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">M\xC3\xA9di\xC3\xA1</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/media/z_medii\">Z m\xC3\xA9di\xC3\xAD</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/media/pre_media\">Pre m\xC3\xA9di\xC3\xA1</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/spravy\">Spr\xC3\xA1vy</a></li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Bulletin</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/bulletin/aktualne_cislo\">Aktu\xC3\xA1lne \xC4\x8D\xC3\xADslo</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/archiv\">Arch\xC3\xADv</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/pokyny\">Pokyny pre inzerentov</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/mimoriadne_cislo\">Mimoriadne \xC4\x8D\xC3\xADslo</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/harmonogram\">Harmongram BSA na rok 2011</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/id1\">Pokyny pre autorov</a></li>\n\
+      <li ><a title=\"Uznesenie P SAK o autorsk\xC3\xBDch odmen\xC3\xA1ch\" href=\"/blox/cms/sk/sak/bulletin/odmeny\">Uznesenie P SAK o autorsk\xC3\xBDch o...</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Advok\xC3\xA1tske sk\xC3\xBA\xC5\xA1ky</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/skusky/skusobny_poriadok\">Sk\xC3\xBA\xC5\xA1obn\xC3\xBD poriadok</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/skusky/terminy\">Term\xC3\xADny</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/skusky/otazky\">Ot\xC3\xA1zky na advok\xC3\xA1tske sk\xC3\xBA\xC5\xA1ky</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Dokumenty</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/doc/_search\">Vyh\xC4\xBEad\xC3\xA1vanie v dokumentoch</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/20\">Bulletin</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/61\">Smernice</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/37\">Uznesenia org\xC3\xA1nov komory</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/11\">Vestn\xC3\xADk</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/43\">Vyhl\xC3\xA1\xC5\xA1ky</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/12\">Z\xC3\xA1kony</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">U\xC5\xBEito\xC4\x8Dn\xC3\xA9 inform\xC3\xA1cie</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/info/dotazy_matrika\">Z\xC3\xA1pisy do zoznamov </a></li>\n\
+      <li ><a title=\"\xC4\x8Cestn\xC3\xA9 vyhl\xC3\xA1senie advok\xC3\xA1tskeho koncipienta (vzor) \" href=\"/blox/cms/sk/sak/info/vyhlasenie\">\xC4\x8Cestn\xC3\xA9 vyhl\xC3\xA1senie advok\xC3\xA1tskeho...</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">U\xC5\xBEito\xC4\x8Dn\xC3\xA9 linky</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/linky/minisrerstva\">Ministerstv\xC3\xA1</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/linky/sudy\">S\xC3\xBAdy SR</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/linky/statOrg\">\xC5\xA0t\xC3\xA1tne organiz\xC3\xA1cie</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/linky/zahranicne\">Zahrani\xC4\x8Dn\xC3\xA9 linky</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Kontakty</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/kontakty/sak\">SAK</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/tajomnik\">Tajomn\xC3\xADk</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/sekretariat\">Sekretari\xC3\xA1t</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/mezinarodneVztahy\">Odbor medzin. vz\xC5\xA5ahov</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/vnutorneVeci\">Odbor vn\xC3\xBAtorn\xC3\xBDch vec\xC3\xAD</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/staznosti\">S\xC5\xA5a\xC5\xBEnosti</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/medialnyOdbor\">Medi\xC3\xA1lny odbor</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/legislativnyOdbor\">Legislat\xC3\xADvny odbor</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/ekonomickyOdbor\">Ekonomick\xC3\xBD a hosp. odbor</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/podatelna\">Podate\xC4\xBE\xC5\x88a</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/spravca\">Spr\xC3\xA1vca</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/vratnica\">Kancel\xC3\xA1ria prv\xC3\xA9ho kontaktu</a></li>\n\
+      </ul>\n\
+      </li>\n\n          </ul>\n          <div class=\"clearing\"></div>\n        </div>\n      </div>\n    </div>\n  \n  \n        <div class=\"inactivebox\">\n            <div id=\"loginbox\">\n              <div class=\"ttl\"><img src=\"/sak2/public/dizajn/sak2/images/ttl_login_inactive.gif\" alt=\"PRIHL\xC3\x81SENIE\" width=\"250\" height=\"30\" border=\"0\"></div>\n              <div class=\"leftbox\">\n                  \n\
+      <!-- Formular menu begin -->\n\n\
+      <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" class=\"%%skin%%_table\"> \n   <tr><td>\n\
+      <input type=\"text\" class=\"formtext\" size=\"15\" name=\"blox/cms/sk/loginForm/attr/name\" value=\"meno\" style=\"margin-bottom:10px;\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/loginForm/button/login/event');\" />\n\
+      </td></tr><tr><td>\n\
+      <input type=\"password\" class=\"formtext\" size=\"%%size%%\" name=\"blox/cms/sk/loginForm/attr/password\" value=\"HESLO\" style=\"margin-bottom:10px;\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/loginForm/button/login/event');\" />\n\
+      </td><td>\n    <input value=\"Prihl\xC3\xA1si\xC5\xA5\" type=\"button\" class=\"formbutt\" onclick=\"javascript: setItemName('blox/cms/sk/loginForm/button/login/event');\" />\n  </td></tr>\n\
+      </table>\n\
+      <!-- Formular menu end -->\n\n              </div>\n            </div>\n    </div>\n  \n  \n        <div class=\"inactivebox\">\n            <div id=\"loginbox\">\n              <div class=\"ttl\"><img src=\"/sak2/public/dizajn/sak2/images/ttl_search_inactive.gif\" alt=\"PRIHL\xC3\x81SENIE\" width=\"250\" height=\"30\" border=\"0\"></div>\n              <div class=\"leftbox\">\n                  \n\
+      <!-- Formular menu begin -->\n\n\
+      <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" class=\"%%skin%%_table\"> \n   <tr><td>\n\
+      <input type=\"text\" class=\"formtext\" size=\"15\" name=\"blox/cms/sk/search/record/attr/search\" value=\"\" style=\"margin-bottom:10px;\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/search/record/button/search/event');\" />\n\
+      </td><td>\n    <input value=\"Vyh\xC4\xBEadaj\" type=\"button\" class=\"formbutt\" onclick=\"javascript: setItemName('blox/cms/sk/search/record/button/search/event');\" />\n  </td></tr>\n\
+      </table>\n\
+      <!-- Formular menu end -->\n\n              </div>\n            </div>\n    </div>\n  \n        <div class=\"inactivebox\">\n            <div id=\"nadaciabox\">\n                <a href=\"http://www.nadaciasa.eu\"><img src=\"/sak2/public/dizajn/sak2/images/banner_nsa.jpg\" alt=\"NSA\" width=\"250\" height=\"90\" border=\"0\"></a>\n            </div>\n        </div>\n\n        <div class=\"inactivebox\">\n            <div id=\"nadaciabox\">\n                <a href=\"http://www.nasaadvokacia.sk\"><img src=\"/sak2/public/dizajn/sak2/images/nasaadvokacia.jpg\" alt=\"NSA\" width=\"250\" height=\"90\" border=\"0\"></a>\n            </div>\n        </div>\n\n      </div>\n      \n    <!-- PRAVY STLPEC - OBSAH -->\n\n      <div id=\"maincolumn\">\n          \n        <div id=\"mainitem\">\n          <div class=\"mainitem\">\n            \n  <div class=\"pathbar\">\n    <span class=\"path\"><a href=\" /blox/cms/sk/sak/adv/vyhladanie/proxy/select\">Advok\xC3\xA1ti</a> : Vyh\xC4\xBEadanie advok\xC3\xA1ta</span>\n    <a href=\"javascript:window.print()\" class=\"but_print\"><img src=\"/sak2/public/dizajn/sak2/images/but_print.gif\" width=\"24\" height=\"24\" border=\"0\" /></a>\n  </div>\n\n\
+      <!-- Ajax area begin -->\n\
+      <div id=\"blox/cms/sk/sak/adv/vyhladanie/proxy/list\"> \n\n  <!-- Labeled section begin -->\n  \n  <div class=\"section\">        \n      <h1>Vyh\xC4\xBEadanie advok\xC3\xA1ta</h1>\n          \n\
+      <!-- vertical section begin --> \n     \n     \n\
+      <!-- horizontal section begin -->\n\n\
+      <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">  \n    <td style=\"border:none\" valign=\"top\">\n    <!-- Formular edit begin -->\n    \n    <table width=\"690\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"filter\">\n       \n\
+      <tr> \n  <td  width=\"150\">Typ advok\xC3\xA1ta:</td>\n  <td>\n    <select name=\"blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/attr/adv_type_id\"  >\n        \n      <option value=\"__null__\" >V\xC5\xA1etci</option> \n\n      <option value=\"1\" >Advok\xC3\xA1t</option> \n\n      <option value=\"2\" >Hos\xC5\xA5uj\xC3\xBAci advok\xC3\xA1ti</option> \n\n      <option value=\"3\" >Usaden\xC3\xAD euroadvok\xC3\xA1ti</option> \n\n      <option value=\"4\" >Zahrani\xC4\x8Dn\xC3\xAD advok\xC3\xA1ti</option> \n\n      <option value=\"5\" >Medzin\xC3\xA1rodn\xC3\xAD advok\xC3\xA1ti</option> \n    \n    </select> \n  </td>\n\
+      </tr>\n\n\
+      <tr>\n  <td>Meno advok\xC3\xA1ta:</td>\n  <td class=\"sans\"><input name=\"blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/attr/adv_full_name\" type=\"text\" class=\"formtext\" value=\"\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/button/filter/event');\" /></td>\n\
+      </tr>\n\n\
+      <tr>\n  <td>Mesto:</td>\n  <td class=\"sans\"><input name=\"blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/attr/addr_city\" type=\"text\" class=\"formtext\" value=\"\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/button/filter/event');\" /></td>\n\
+      </tr>\n\n\
+      <tr> \n  <td  width=\"150\">Jazykov\xC3\xA9 znalosti:</td>\n  <td>\n    <select name=\"blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/attr/adv_lang\"  >\n        \n      <option value=\"__null__\" >V\xC5\xA1etky</option> \n\n      <option value=\"adv_lang_ang\" >Anglicky</option> \n\n      <option value=\"adv_lang_deu\" >Nemecky</option> \n\n      <option value=\"adv_lang_fra\" >Franc\xC3\xBAzsky</option> \n\n      <option value=\"adv_lang_mag\" >Ma\xC4\x8Farsky</option> \n\n      <option value=\"adv_lang_cze\" >Chorv\xC3\xA1tsky</option> \n\n      <option value=\"adv_lang_pol\" >Po\xC4\xBEsky</option> \n\n      <option value=\"adv_lang_rus\" >Rusky</option> \n\n      <option value=\"adv_lang_spa\" >\xC5\xA0panielsky</option> \n\n      <option value=\"adv_lang_ita\" >Taliansky</option> \n\n      <option value=\"adv_lang_jap\" >Japonsky</option> \n\n      <option value=\"adv_lang_arab\" >Arabsky</option> \n\n      <option value=\"adv_lang_ukr\" >Ukrajinsky</option> \n\n      <option value=\"adv_lang_srb\" >Srbochorv\xC3\xA1tsky</option> \n\n      <option value=\"adv_lang_rom\" >R\xC3\xB3msky</option> \n\n      <option value=\"adv_lang_bul\" >Bulharsky</option> \n\n      <option value=\"adv_lang_rum\" >Rumunsky</option> \n\n      <option value=\"adv_lang_por\" >Portugalsky</option> \n    \n    </select> \n  </td>\n\
+      </tr>\n\n      \n\
+      <!-- Button line begin -->\n        <tr> \n          <td></td>\n          <td>\n    <input value=\"h\xC4\xBEada\xC5\xA5\" type=\"button\" class=\"formbutt\" onclick=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/filter/button/filter/event');\" />\n  </td>\n        </tr>\n\
+      <!-- Button line end -->\n\n    </table>\n    <!-- Formular edit end -->\n    </td>\n\
+      </table>\n\
+      <!-- horizontal section end -->\n\n\
+      <!-- Form list begin -->\n  \n  <div class=\"result\">\n    <table width=\"690\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n      \n  <!-- Form header begin -->\n  <tr>\n    <th></td>\n    <th>Meno</td><th>Mesto</td><th>Typ advok\xC3\xA1ta</td><th></td>\n    <th></td>\n  </tr>\n  <!-- Form header end -->\n\n      \n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4690/link/display/event');\">ABELOVSK\xC3\x81 Iveta JUDr.</a></td><td>BRATISLAVA 3</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/365/link/display/event');\">ABELOVSK\xC3\x9D Miroslav JUDr.</a></td><td>ZVOLEN</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/2090/link/display/event');\">ABELOVSK\xC3\x9D \xC5\xA0tefan JUDr.</a></td><td>BRATISLAVA 5</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/155439/link/display/event');\">ABRAH\xC3\x81M Martin JUDr.</a></td><td>BRATISLAVA 2</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/19669/link/display/event');\">ADAM Andrej JUDr.</a></td><td>BRACOVCE</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/167897/link/display/event');\">ADAMCOV\xC3\x81 Janette Mgr.</a></td><td>Myjava</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/295627/link/display/event');\">ADAM\xC4\x8C\xC3\x8DK Andrej Mgr.</a></td><td>Bratislava 1</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/18777/link/display/event');\">ADAM\xC4\x8C\xC3\x8DK Daniel JUDr.</a></td><td>VE\xC4\xBDK\xC3\x89 KAPU\xC5\xA0ANY</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4515/link/display/event');\">ADAM\xC4\x8C\xC3\x8DK Rudolf JUDr.</a></td><td>BRATISLAVA 2</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td><a href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/302775/link/display/event');\">ADAMEC Tom\xC3\xA1\xC5\xA1 Mgr.</a></td><td>SPI\xC5\xA0SK\xC3\x81 NOV\xC3\x81 VES</td><td>Advok\xC3\xA1t</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n    </table>\n  </div>\n  \n    <!-- Form footer begin -->\n      <div class=\"statusbar\">Zobrazen\xC3\xBDch od <b>1</b> do <b>10</b> z <b>4513</b> z\xC3\xA1znamov&nbsp;&nbsp;&nbsp;</div>\n        \n\
+      <div class=\"filter\">\n  \n\
+      </div>\n\
+      <div class=\"buttonbar\">\n  <table width=\"100%\">\n  <tr>\n    <div class=\"pages\">\n        <td width=\"28\" style=\"opacity: 0.5\"><img src=\"/sak2/public/dizajn/sak2/images/but_dbarrow_left.gif\" width=\"24\" height=\"24\" border=\"0\"></td>\n              <td width=\"28\" style=\"opacity: 0.5\"><img src=\"/sak2/public/dizajn/sak2/images/but_arrow_left.gif\" width=\"24\" height=\"24\" border=\"0\"></td>\n              <td width=\"28\"><a class=\"but_num\" href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/10 ');\"><img src=\"/sak2/public/dizajn/sak2/images/but_arrow_right.gif\" width=\"24\" height=\"24\" border=\"0\"></a></td>\n              <td width=\"28\"><a class=\"but_num\" href=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/4510 ');\"><img src=\"/sak2/public/dizajn/sak2/images/but_dbarrow_right.gif\" width=\"24\" height=\"24\" border=\"0\"></a></td>\n      \n      <td width=\"100%\"></td>\n      <td ></td> \n    </div>  \n  </tr>\n  </table>  \n\
+      </div>\n           \n    <!-- Form footer end -->\n  \n\
+      <!-- Form list end -->\n\n\
+      <!-- vertical section end --> \n\n  </div>        \n  <!-- Labeled section end -->\n\n\
+      </div>\n\
+      <!-- Ajax area end -->\n\n          </div>\n        </div>\n      </div>\n    </div>\n\n\
+      <!-- PATA STRANKY - KONTAKTY -->\n\n    <div id=\"footer\">\n      <div id=\"foot\">\n\n        <p>\n          <strong>Slovensk\xC3\xA1 advok\xC3\xA1tska komora</strong><br>\n      Kol\xC3\xA1rska 4, 813 42 Bratislava, tel: 02/5296 15 22, fax: 02/5296 15 54, e-mail: <a href=\"mailto:office@sak.sk\">office@sak.sk</a><span style=\"float:right;\">&copy; 2011</span><br>\n            \n        </p>\n      </div>\n    </div>\n  </form>      \n\
+      </body> \n\n\
+      </html>"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://www.sak.sk:443/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4515/link/display/event
+    body: 
+    headers: 
+      cookie: 
+      - JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Fri, 23 Sep 2011 10:29:57 GMT
+      server: 
+      - Apache-Coyote/1.1
+      x-powered-by: 
+      - "Servlet 2.4; JBoss-4.2.2.GA (build: SVNTag=JBoss_4_2_2_GA date=200710221139)/Tomcat-5.5"
+      cache-control: 
+      - no-cache, must-revalidate
+      pragma: 
+      - no-cache
+      last-modified: 
+      - Sep 23, 2011 12:29:58 PM
+      expires: 
+      - Sep 23, 2011 12:29:58 PM
+      bloxajaxcontext: 
+      - ""
+      content-type: 
+      - text/html;charset=UTF-8
+      content-language: 
+      - sk-SK
+      via: 
+      - 1.1 sak2.blox.sk
+      transfer-encoding: 
+      - chunked
+    body: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"  \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"\n\
+      <html>\n  <head>\n    <title>Slovensk\xC3\xA1 advok\xC3\xA1tska komora</title>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />  \n      \n    <link type=\"text/css\" rel=\"stylesheet\" media=\"screen\" href=\"/sak2/public/dizajn/sak2/css/screen.css\">\n    <link type=\"text/css\" rel=\"stylesheet\" media=\"print\" href=\"/sak2/public/dizajn/sak2/css/print.css\">  \n    \n    <script language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/defaultPage.js\"></script>\n    <script language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/onLoadFcCatalog.js\"></script> \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/mootools-1.2-core.js\"></script>\n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/mootools-1.2-more.js\"></script>\n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/mootools-compat-core.js\"></script>\n    <script language=\"JavaScript\" src=\"/sak2/public/dizajn/sak2/js/menu.js\"></script>\n    \n    <link type=\"text/css\" rel=\"stylesheet\" href=\"/sak2/public/common/js/calendar/calendar.css\"/>    \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/common/js/calendar/calendar_sk.js\"></script> \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/common/js/ckeditor/ckeditor.js\"></script> \n    \n    <!-- Blox Base Components -->\n\
+      <!--   \n    <script type=\"text/javascript\" language=\"JavaScript\" src=\"/sak2/public/common/js/base/bloxLoader.js\"></script> \n    <script type=\"text/javascript\">\n      var BLOX_BASE_PATH = \"/sak2/public/common\";\n      var BLOX_LANGUAGE = \"sk\";\n      var BLOX_AJAX = true;\n      var BLOX_DEBUG = true;\n      bloxLoadBase(); \n    </script> \n\
+      -->\n\n\
+      <!-- Custom CSS -->\n   \n\n    <script type=\"text/javascript\" language=\"JavaScript\"> \n      var iconCheck = new Array(7);      \n      iconCheck[1]=new Image;iconCheck[1].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconUnchecked.gif'; \n      iconCheck[2]=new Image;iconCheck[2].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconChecked.gif'; \n      iconCheck[3]=new Image;iconCheck[3].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconCheckedBySubnodes.gif'; \n      iconCheck[4]=new Image;iconCheck[4].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconUncheckedInactive.gif'; \n      iconCheck[5]=new Image;iconCheck[5].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconCheckedInactive.gif'; \n      iconCheck[6]=new Image;iconCheck[6].src='/blox-framework/public/common/../dizajn/simple/image/tree_img/iconCheckedBySubnodesInactive.gif'; \n\n      \n      function fckEditorReplacement(){\n      }; \n      \n            \n      function editAreaEditorSubmit(){\n      }; \n\n    </script>\n    <script type=\"text/javascript\">\n       var TREE_CHECK_ADV = [0]; \n    </script>\n  </head> \n\n\
+      <body onLoad=\"onLoadFcCatalog(0);\"> \n  <form id=\"bloxMainForm\" action=\"\" method=\"post\" enctype=\"multipart/form-data\">\n    <input type=\"hidden\" name=\"clickitem\" value=\"1\"/> \n    <input type=\"hidden\" name=\"scrollYOffset\" value=\"0\"/> \n    \n    <div style=\"position:absolute; left:0px; top:25px\">\n       <a href=\"/blox/cms\"><img src=\"/sak2/public/dizajn/sak2/images/px.gif\"  width=\"1000\" height=\"90\" border=\"0\"></a>\n    </div>\n\n\
+      <!-- LOGO PRE TLAC -->\n    <div id=\"logoprint\"><img src=\"/sak2/public/dizajn/sak2/images/logo_print.jpg\" border=\"0\"></div>\n \n\
+      <!-- VYBER JAZYKOVEJ VERZIE -->\n\n    <div id=\"langbar\">\n        <p>&nbsp;<a href=\"/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4515/link/display/event\" title=\"Slovensky\"><b><span style=\"color:#005AAB\">SK</span></b></a>&nbsp;/&nbsp;<a href=\"/blox/cms/en/sak/adv/vyhladanie/proxy/list/formular/rows/4515/link/display/event\" title=\"English\">EN</a>&nbsp;/&nbsp;<a href=\"/blox/cms/de/sak/adv/vyhladanie/proxy/list/formular/rows/4515/link/display/event\" title=\"Deutch\">DE</a>&nbsp;</p>\n    </div>\n\n\
+      <!-- OBSAH STRANKY -->\n\n    <div id=\"content\">\n\n    <!-- LAVY STLPEC - BOXY -->\n    \n      <div id=\"leftcolumn\">    \n        \n    <div class=\"activebox\">\n      <div id=\"menubox\">\n        <div class=\"ttl\"><a href=/blox/cms><img src=\"/sak2/public/dizajn/sak2/images/ttl_komora_active.gif\" alt=\"KOMORA\" width=\"250\" height=\"30\" border=\"0\"></a></div>\n        <div class=\"leftbox\">\n          <ul class=\"menu_level_1\"> \n            <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">SAK</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/sak/about\">Profil SAK</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/sak/organy\">Org\xC3\xA1ny SAK</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/sak/history\">Hist\xC3\xB3ria</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/sak/odpocet\">Odpo\xC4\x8Det \xC4\x8Dinnosti</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp_select\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Advok\xC3\xA1ti</a>\n  <ul class=\"menu_level_2\"><li class=\"select\"><a  href=\"/blox/cms/sk/sak/adv/vyhladanie\">Vyh\xC4\xBEadanie advok\xC3\xA1ta</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/osp\">Advok\xC3\xA1tske spolo\xC4\x8Denstv\xC3\xA1</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/konc\">Vyh\xC4\xBEadanie koncipienta</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/stop\">Pozastaven\xC3\xBD v\xC3\xBDkon advok\xC3\xA1cie</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/bpp\">Bezplatn\xC3\xA1 pr\xC3\xA1vna pomoc</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/exoffo\">Exoffo advok\xC3\xA1ti</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/us\">Zastupovania pred \xC3\x9AS</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/adv/av\">Zastupovania v azylov\xC3\xBDch veciach</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">M\xC3\xA9di\xC3\xA1</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/media/z_medii\">Z m\xC3\xA9di\xC3\xAD</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/media/pre_media\">Pre m\xC3\xA9di\xC3\xA1</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/spravy\">Spr\xC3\xA1vy</a></li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Bulletin</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/bulletin/aktualne_cislo\">Aktu\xC3\xA1lne \xC4\x8D\xC3\xADslo</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/archiv\">Arch\xC3\xADv</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/pokyny\">Pokyny pre inzerentov</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/mimoriadne_cislo\">Mimoriadne \xC4\x8D\xC3\xADslo</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/harmonogram\">Harmongram BSA na rok 2011</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/bulletin/id1\">Pokyny pre autorov</a></li>\n\
+      <li ><a title=\"Uznesenie P SAK o autorsk\xC3\xBDch odmen\xC3\xA1ch\" href=\"/blox/cms/sk/sak/bulletin/odmeny\">Uznesenie P SAK o autorsk\xC3\xBDch o...</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Advok\xC3\xA1tske sk\xC3\xBA\xC5\xA1ky</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/skusky/skusobny_poriadok\">Sk\xC3\xBA\xC5\xA1obn\xC3\xBD poriadok</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/skusky/terminy\">Term\xC3\xADny</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/skusky/otazky\">Ot\xC3\xA1zky na advok\xC3\xA1tske sk\xC3\xBA\xC5\xA1ky</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Dokumenty</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/doc/_search\">Vyh\xC4\xBEad\xC3\xA1vanie v dokumentoch</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/20\">Bulletin</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/61\">Smernice</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/37\">Uznesenia org\xC3\xA1nov komory</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/11\">Vestn\xC3\xADk</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/43\">Vyhl\xC3\xA1\xC5\xA1ky</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/doc/12\">Z\xC3\xA1kony</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">U\xC5\xBEito\xC4\x8Dn\xC3\xA9 inform\xC3\xA1cie</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/info/dotazy_matrika\">Z\xC3\xA1pisy do zoznamov </a></li>\n\
+      <li ><a title=\"\xC4\x8Cestn\xC3\xA9 vyhl\xC3\xA1senie advok\xC3\xA1tskeho koncipienta (vzor) \" href=\"/blox/cms/sk/sak/info/vyhlasenie\">\xC4\x8Cestn\xC3\xA9 vyhl\xC3\xA1senie advok\xC3\xA1tskeho...</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">U\xC5\xBEito\xC4\x8Dn\xC3\xA9 linky</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/linky/minisrerstva\">Ministerstv\xC3\xA1</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/linky/sudy\">S\xC3\xBAdy SR</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/linky/statOrg\">\xC5\xA0t\xC3\xA1tne organiz\xC3\xA1cie</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/linky/zahranicne\">Zahrani\xC4\x8Dn\xC3\xA9 linky</a></li>\n\
+      </ul>\n\
+      </li>\n\
+      <li class=\"exp\"><a  href=\"javascript: ;\" onclick=\"javascript:clickMenuLevel1(this);\">Kontakty</a>\n  <ul class=\"menu_level_2\"><li ><a  href=\"/blox/cms/sk/sak/kontakty/sak\">SAK</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/tajomnik\">Tajomn\xC3\xADk</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/sekretariat\">Sekretari\xC3\xA1t</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/mezinarodneVztahy\">Odbor medzin. vz\xC5\xA5ahov</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/vnutorneVeci\">Odbor vn\xC3\xBAtorn\xC3\xBDch vec\xC3\xAD</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/staznosti\">S\xC5\xA5a\xC5\xBEnosti</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/medialnyOdbor\">Medi\xC3\xA1lny odbor</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/legislativnyOdbor\">Legislat\xC3\xADvny odbor</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/ekonomickyOdbor\">Ekonomick\xC3\xBD a hosp. odbor</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/podatelna\">Podate\xC4\xBE\xC5\x88a</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/spravca\">Spr\xC3\xA1vca</a></li>\n\
+      <li ><a  href=\"/blox/cms/sk/sak/kontakty/vratnica\">Kancel\xC3\xA1ria prv\xC3\xA9ho kontaktu</a></li>\n\
+      </ul>\n\
+      </li>\n\n          </ul>\n          <div class=\"clearing\"></div>\n        </div>\n      </div>\n    </div>\n  \n  \n        <div class=\"inactivebox\">\n            <div id=\"loginbox\">\n              <div class=\"ttl\"><img src=\"/sak2/public/dizajn/sak2/images/ttl_login_inactive.gif\" alt=\"PRIHL\xC3\x81SENIE\" width=\"250\" height=\"30\" border=\"0\"></div>\n              <div class=\"leftbox\">\n                  \n\
+      <!-- Formular menu begin -->\n\n\
+      <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" class=\"%%skin%%_table\"> \n   <tr><td>\n\
+      <input type=\"text\" class=\"formtext\" size=\"15\" name=\"blox/cms/sk/loginForm/attr/name\" value=\"meno\" style=\"margin-bottom:10px;\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/loginForm/button/login/event');\" />\n\
+      </td></tr><tr><td>\n\
+      <input type=\"password\" class=\"formtext\" size=\"%%size%%\" name=\"blox/cms/sk/loginForm/attr/password\" value=\"HESLO\" style=\"margin-bottom:10px;\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/loginForm/button/login/event');\" />\n\
+      </td><td>\n    <input value=\"Prihl\xC3\xA1si\xC5\xA5\" type=\"button\" class=\"formbutt\" onclick=\"javascript: setItemName('blox/cms/sk/loginForm/button/login/event');\" />\n  </td></tr>\n\
+      </table>\n\
+      <!-- Formular menu end -->\n\n              </div>\n            </div>\n    </div>\n  \n  \n        <div class=\"inactivebox\">\n            <div id=\"loginbox\">\n              <div class=\"ttl\"><img src=\"/sak2/public/dizajn/sak2/images/ttl_search_inactive.gif\" alt=\"PRIHL\xC3\x81SENIE\" width=\"250\" height=\"30\" border=\"0\"></div>\n              <div class=\"leftbox\">\n                  \n\
+      <!-- Formular menu begin -->\n\n\
+      <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\" class=\"%%skin%%_table\"> \n   <tr><td>\n\
+      <input type=\"text\" class=\"formtext\" size=\"15\" name=\"blox/cms/sk/search/record/attr/search\" value=\"\" style=\"margin-bottom:10px;\"   onkeypress=\"return _submitOnEnter(event, 'blox/cms/sk/search/record/button/search/event');\" />\n\
+      </td><td>\n    <input value=\"Vyh\xC4\xBEadaj\" type=\"button\" class=\"formbutt\" onclick=\"javascript: setItemName('blox/cms/sk/search/record/button/search/event');\" />\n  </td></tr>\n\
+      </table>\n\
+      <!-- Formular menu end -->\n\n              </div>\n            </div>\n    </div>\n  \n        <div class=\"inactivebox\">\n            <div id=\"nadaciabox\">\n                <a href=\"http://www.nadaciasa.eu\"><img src=\"/sak2/public/dizajn/sak2/images/banner_nsa.jpg\" alt=\"NSA\" width=\"250\" height=\"90\" border=\"0\"></a>\n            </div>\n        </div>\n\n        <div class=\"inactivebox\">\n            <div id=\"nadaciabox\">\n                <a href=\"http://www.nasaadvokacia.sk\"><img src=\"/sak2/public/dizajn/sak2/images/nasaadvokacia.jpg\" alt=\"NSA\" width=\"250\" height=\"90\" border=\"0\"></a>\n            </div>\n        </div>\n\n      </div>\n      \n    <!-- PRAVY STLPEC - OBSAH -->\n\n      <div id=\"maincolumn\">\n          \n        <div id=\"mainitem\">\n          <div class=\"mainitem\">\n            \n  <div class=\"pathbar\">\n    <span class=\"path\"><a href=\" /blox/cms/sk/sak/adv/vyhladanie/proxy/select\">Advok\xC3\xA1ti</a> : <a href=\" /blox/cms/sk/sak/adv/vyhladanie/proxy/select\">Vyh\xC4\xBEadanie advok\xC3\xA1ta</a> : Zobrazenie advok\xC3\xA1ta</span>\n    <a href=\"javascript:window.print()\" class=\"but_print\"><img src=\"/sak2/public/dizajn/sak2/images/but_print.gif\" width=\"24\" height=\"24\" border=\"0\" /></a>\n  </div>\n\n\
+      <!-- Ajax area begin -->\n\
+      <div id=\"blox/cms/sk/sak/adv/vyhladanie/proxy/link/display\"> \n\n  <!-- Labeled section begin -->\n  \n  <div class=\"section\">        \n      <h1>Zobrazenie advok\xC3\xA1ta</h1>\n          \n    <!-- Formular display begin -->\n    \n    <table width=\"690\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"filter\">\n        \n\
+      <tr>\n  <td width=150>Meno:</td>\n  <td>ADAM\xC4\x8C\xC3\x8DK Rudolf JUDr.</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Typ advok\xC3\xA1ta:</td>\n  <td>Advok\xC3\xA1t</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Ulica:</td>\n  <td>Liptovsk\xC3\xA1 2/A, P.O. BOX 67</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Mesto:</td>\n  <td>BRATISLAVA 2</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>PS\xC4\x8C:</td>\n  <td>820 05</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Tel. \xC4\x8D\xC3\xADslo:</td>\n  <td>02/53413792, 53412855</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Fax:</td>\n  <td>02/53413793</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Mobil:</td>\n  <td></td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Jazyky:</td>\n  <td>nemecky, rusky</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>E-mail:</td>\n  <td>office@ada-ap.sk</td>\n\
+      </tr>\n\n\
+      <tr>\n  <td width=150>Person\xC3\xA1lna str\xC3\xA1nka:</td>\n  <td></td>\n\
+      </tr>\n\n\
+      <!-- CMS attribut begin -->\n\n\
+      <!-- Ajax form area begin -->\n\
+      <tr class=\"%%odd%%\"> \n  <td class=\"on\" colspan=2 style=\"border:none\">\n    <div id=\"blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/attr/cms/section\"> \n\n\
+      <!-- vertical section begin --> \n     \n     \n\
+      <!-- Ajax area begin -->\n\
+      <div id=\"blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/attr/cms/section/proxyKoncipient\"> \n\n  <!-- Labeled section begin -->\n  \n  <div class=\"section\">        \n      <h1>Zoznam koncipientov</h1>\n          \n\
+      <!-- Form list begin -->\n  \n  <div class=\"result\">\n    <table width=\"690\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n      \n  <!-- Form header begin -->\n  <tr>\n    <th></td>\n    <th>Meno koncipienta</td><th></td>\n    <th></td>\n  </tr>\n  <!-- Form header end -->\n\n      \n  <!-- Form row begin -->\n  <tr> \n    <td></td><td>\xC4\x8Curaj Luk\xC3\xA1\xC5\xA1 Mgr.</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n  <!-- Form row begin -->\n  <tr> \n    <td></td><td>\xC5\xA0tiak Peter MUDr.Mgr.</td>\n  <!-- Form link root begin -->\n  <td>\n    \n  </td>\n  <!-- Form link root end -->\n\n  </tr> \n  <!-- Form row end -->\n\n    </table>\n  </div>\n  \n\
+      <!-- Form list end -->\n\n  </div>        \n  <!-- Labeled section end -->\n\n\
+      </div>\n\
+      <!-- Ajax area end -->\n\n\
+      <!-- vertical section end --> \n\n    </div>\n  </td> \n\
+      </tr>\n\
+      <!-- Ajax form area end -->\n\n\
+      <!-- CMS attribut end -->\n\n       \n\
+      <!-- Button line begin -->\n        <tr> \n          <td></td>\n          <td>\n    <input value=\"n\xC3\xA1vrat na zoznam advok\xC3\xA1tov\" type=\"button\" class=\"formbutt\" onclick=\"javascript: setItemName('blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event');\" />\n  </td>\n        </tr>\n\
+      <!-- Button line end -->\n\n    </table> \n    <!-- Formular display end -->\n    \n  </div>        \n  <!-- Labeled section end -->\n\n\
+      </div>\n\
+      <!-- Ajax area end -->\n\n          </div>\n        </div>\n      </div>\n    </div>\n\n\
+      <!-- PATA STRANKY - KONTAKTY -->\n\n    <div id=\"footer\">\n      <div id=\"foot\">\n\n        <p>\n          <strong>Slovensk\xC3\xA1 advok\xC3\xA1tska komora</strong><br>\n      Kol\xC3\xA1rska 4, 813 42 Bratislava, tel: 02/5296 15 22, fax: 02/5296 15 54, e-mail: <a href=\"mailto:office@sak.sk\">office@sak.sk</a><span style=\"float:right;\">&copy; 2011</span><br>\n            \n        </p>\n      </div>\n    </div>\n  </form>      \n\
+      </body> \n\n\
+      </html>"
+    http_version: "1.1"

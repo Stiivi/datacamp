@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Dataset Categories Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -19,9 +20,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetCategoriesController < ApplicationController
+  before_filter :login_required
+  privilege_required :edit_dataset_description
+  
   def index
     @categories = DatasetCategory.all
     respond_to do |wants|
+      wants.html
       wants.xml { render :xml => @categories.to_xml(:methods => [:title, :description], :root => "category") }
     end
   end
@@ -69,7 +74,12 @@ class DatasetCategoriesController < ApplicationController
     @category.destroy
     
     respond_to do |wants|
-      wants.html { redirect_to dataset_descriptions_path }
+      wants.html { redirect_to params[:return_to_category_index] ? dataset_categories_path : dataset_descriptions_path }
     end
+  end
+  
+  protected
+  def init_menu
+    @submenu_partial = "data_dictionary"
   end
 end

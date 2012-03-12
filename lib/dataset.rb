@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Dataset
 def initialize(manager)
     @manager = manager

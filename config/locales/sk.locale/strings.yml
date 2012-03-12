@@ -1,5 +1,8 @@
 --- 
-sk: 
+sk:
+  n_a: 'Nevyplnené'
+  sort: Usporiadať
+  finish_sort: Ukončiť usporiadavanie 
   api:
     levels:
       restricted: Zakázané
@@ -15,6 +18,14 @@ sk:
     edit_block: Upraviť
     show_block: Zobraziť
     new_block: Vytvoriť blok
+    delete_block: Vymazať
+  categories:
+    all: Zoznam kategórií
+    new: Nová kategória
+    name: Titul
+    last_update: Posledná úprava
+    edit: Úprava kategórie
+    destroy: Zmazať
   comments: 
     neutral: Neutral
     new: "Nový komentár"
@@ -22,10 +33,10 @@ sk:
     : Nie
     poor: Zlé
     post: Komentár
-    rating: "{{useful}} z {{total}} považuje tento komentár za užitočný"
-    record: "Záznam #{{id}}"
+    rating: "%{useful} z %{total} považuje tento komentár za užitočný"
+    record: "Záznam #%{id}"
     reply: Odpovedať
-    replying_to: "Odpoveď na komentár #{{parent}}"
+    replying_to: "Odpoveď na komentár #%{parent}"
     report: Zažalovať
     report_label: "Zažalovať komentár"
     spam_report: Spam
@@ -37,19 +48,27 @@ sk:
     was_useful: "Bol tento komentár užitočný?"
     ? "yes"
     : Ano
-  dataset: 
-    active_search: "Záznamy sú filtrované {{predicates}} podmienkami"
+  dataset:
+    relations: 'Relácie' 
+    relationship_type: 'Typ relácie'
+    relationship_dataset_description: 'Tabuľka relácie'
+    foreign_key_field_description_id: 'Kľúč relácie'
+    refresh_foreign_keys: 'Obnoviť kľúče'
+    active_search: "Záznamy sú filtrované %{predicates} podmienkami"
     add_field_description: "Pridať popis položky"
+    selected_records: "%{count} záznam(y) je/sú vybraný/vybrané."
     batch_edit: "Hromadná úprava"
-    batch_updated: "{{count}} záznamov bolo upravených."
-    cant_setup_dataset: "Nie je možné nastaviť súbor {{dataset}} na tabuľku {{identifier}}. Skontrolujte prosím databázu."
+    edit_selected: Vybrané záznamy
+    edit_all: Všetky záznamy
+    batch_updated: "%{count} záznamov bolo upravených."
+    cant_setup_dataset: "Nie je možné nastaviť súbor %{dataset} na tabuľku %{identifier}. Skontrolujte prosím databázu."
     click_to_select_all: "Kliknite pre označenie/odznačenie všetkých."
     columns_for_import: "Stĺpce pre import"
     confirm_add_pk: "Pridať primary key?"
     create: "Nový súbor údajov"
     create_category: "Nová kategória"
     create_record: "Vytvoriť záznam"
-    create_table: "Vytvoriť tabuľku {{table}}"
+    create_table: "Vytvoriť tabuľku %{table}"
     created_message: "Súbor údajov bol vytvorený"
     data_types: "Dátove typy"
     dataset_choose: "Výber súboru údajov"
@@ -70,11 +89,11 @@ sk:
     information: "Informácie o súbore údajov"
     initialize: Inicializovať
     initialize_from_table: "Inicializovať z tabuľky"
-    initialize_table: "Inicializovať tabuľku {{identifier}}"
+    initialize_table: "Inicializovať tabuľku %{identifier}"
     initialize_table_info: "Podľa tohto popisu sa vytvorí súbor údajov"
     initialized_datasets: "Inicializovať súbor údajov"
     initialized_datasets_info: "Tieto súbory údajov sú už inicializované."
-    internal_dataset_error: "Nie je možné načítať súbor údajov {{title}}. Sme si vedomí tohto problému a pracujeme na jeho odstránení."
+    internal_dataset_error: "Nie je možné načítať súbor údajov %{title}. Sme si vedomí tohto problému a pracujeme na jeho odstránení."
     is_to_many: "Je jeden-ku-viac"
     is_visible_in_detail: "Zobraziť v detajloch"
     is_visible_in_export: "Exportovať (API)"
@@ -85,7 +104,7 @@ sk:
     new_description: "Vytvoriť popis súboru údajov"
     no_category: "Bez skupiny"
     no_pk: "Chýba primary key"
-    no_table_for_new_dataset: "Tento súbor ešte nemá tabuľku ({{identifier}}). Upravte štruktúru, ked skončíte tak <a href='{{target}}'>kliknite sem</a> pre vytvorenie tabuľky."
+    no_table_for_new_dataset: "Tento súbor ešte nemá tabuľku (%{identifier}). Upravte štruktúru, ked skončíte tak <a href='%{target}'>kliknite sem</a> pre vytvorenie tabuľky."
     no_table_in_databaes: "V databáze nie je taká tabuľka, môžte ju vytvoriť."
     not_enough_records_selected: "Oznažte aspon jeden záznam pre hromadnú úpravu"
     not_in_database: "Nie je v databáze"
@@ -97,7 +116,7 @@ sk:
     save_and_create: "Uložiť a vytvoriť"
     set_quality: "Nastaviť kvalitu"
     set_status: "Nastaviť status"
-    short_summary: "{{count}} záznamov, poskytovateľ: {{provider}}"
+    short_summary: "publikovaných záznamov: %{count}, poskytovateľ: %{provider}"
     table_name: "Názov tabuľky"
     title: Nadpis
     type: Typ
@@ -106,7 +125,9 @@ sk:
   favorites: 
     confirm_deletion: "Naozaj chcete odstrániť túto obľúbenú položku?"
     remove: (odstrániť)
-  global: 
+  global:
+    activities: 'Aktivita'
+    do_not_search: "Nevyhľadávať: %{name}"
     active: aktívne
     add_to_favorites: "Pridať k obľúbeným"
     add_to_favorites_hint: "Je táto stránka zaujimavá?"
@@ -148,7 +169,7 @@ sk:
     information: Informácie
     is_favorite: "Vaše obľúbené."
     language: Jazyk
-    load_error: "Nie je možné načítať {{what}}"
+    load_error: "Nie je možné načítať %{what}"
     login: Prihlásenie
     logout: Odhlásenie
     metadata: Metadata
@@ -185,7 +206,7 @@ sk:
     status: Stav
     submit: Odoslať
     system_datastore_management: "System Datastore Management"
-    testing_get_informed: "Ak chcete vedieť, kedy bude portál verejný, <a href='{{url}}'>registrujte sa tu</a>."
+    testing_get_informed: "Ak chcete vedieť, kedy bude portál verejný, <a href='%{url}'>registrujte sa tu</a>."
     testing_notice: "Táto aplikácie je v súčasnosti v uzavretom kole testovania."
     title: Nadpis
     total_entries: "Spolu záznamov"
@@ -195,8 +216,8 @@ sk:
     value: Hodnota
   import: 
     column: Stĺpec
-    column_count_not_ok: "Súbor má {{actual_count}} stĺpcov, databáza očakáva {{expected_count}} stĺpcov"
-    column_count_ok: "Počet stĺpcov ({{count}}) sa zhoduje s databázou"
+    column_count_not_ok: "Súbor má %{actual_count} stĺpcov, databáza očakáva %{expected_count} stĺpcov"
+    column_count_ok: "Počet stĺpcov (%{count}) sa zhoduje s databázou"
     column_mapping: "Mapovanie stĺpcov"
     column_separator: "Oddelovač stĺpca"
     default_settings: "Prednastavená šablóna"
@@ -206,13 +227,13 @@ sk:
     file_already_imported: "Tento súbor už bol raz importovaný do databázy."
     file_imported: "Súbor bol úspešne importovaný do databázy."
     file_information: "Informácie o súbore"
-    file_not_loaded: "Súbor <small>{{path}}</small> nie je možné načítať"
-    file_ready: "Súbor {{title}} je pripravený na import."
+    file_not_loaded: "Súbor <small>%{path}</small> nie je možné načítať"
+    file_ready: "Súbor %{title} je pripravený na import."
     file_settings: "Nastavenie súboru"
-    first_not_ok: "Prvých {{count}} riadkov nemá rovnaký počet stĺpcov"
-    first_ok: "Prvých {{count}} riadkov má rovnaký počet stĺpcov"
+    first_not_ok: "Prvých %{count} riadkov nemá rovnaký počet stĺpcov"
+    first_ok: "Prvých %{count} riadkov má rovnaký počet stĺpcov"
     go_to_dataset: "Zobraziť dataset"
-    go_to_description: "Zobraz {{dataset}}"
+    go_to_description: "Zobraz %{dataset}"
     guess_from_header: "Uhádnuť mapovanie"
     guessing_mapping: "Pokus o zistenie mapovania stĺpcov: Na základe prvých riadkov v súbore prebehol pokus o uhádnutie názvov položiek."
     has_header: "Obsahuje hlavičku"
@@ -222,9 +243,9 @@ sk:
     import_data: "Import údajov"
     import_title: "Importovať data"
     importing: "Súbor sa načitáva ..."
-    lines_imported: "{{count}} riadkov bolo uložených do databázy"
-    load_success: "Súbor <small>{{path}}</small> úspešne načítaný"
-    parsing_first: "Čítam prvých {{count}} riadkov"
+    lines_imported: "%{count} riadkov bolo uložených do databázy"
+    load_success: "Súbor <small>%{path}</small> úspešne načítaný"
+    parsing_first: "Čítam prvých %{count} riadkov"
     preset: Šablóna
     preview: Náhľad
     process: Spracovať
@@ -233,9 +254,11 @@ sk:
     start_import: Importovať
     status: Stav
     use_default_mapping: "Použiť prednadstavené mapovanie"
+    cancel: 'Zrušiť import'
+    importing_canceled: 'Import bol zrušený'
   messages: 
     application_testing_notice: "The application is currently in private beta testing."
-    testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='{{url}}'>register here</a>."
+    testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='%{url}'>register here</a>."
   metadata: 
     collection_mode: "Spôsob získavania"
     created_on: "Vytvorené dňa"
@@ -259,7 +282,7 @@ sk:
     show_page: Zobraziť
     new_page: Vytvoriť stránku
   password_reset: 
-    body: "Klikni na nasledovný link na vyresetovanie hesla: {{link}}"
+    body: "Klikni na nasledovný link na vyresetovanie hesla: %{link}"
     restore_account: "Obnoviť účet"
     subject: "Obnoviť váš účet"
     title: "Obnoviť váš účet"
@@ -274,27 +297,29 @@ sk:
   search: 
     any_field: "‹ Akákoľvek položka ›"
     categories: Kategórie
-    create_search: "Vytvorte vyhľadávanie pre {{dataset}}"
+    create_search: "Vytvorte vyhľadávanie pre %{dataset}"
     dataset_name: "Súbor údajov"
     more_results: "Viac a podrobnejšie"
     processing: "Prebieha vyhľadávanie"
     query_field: "Hľadať:"
-    results: "{{results}} výsledkov"
-    results_count: "{{count}} výsledkov pre '{{query_string}}'"
+    results: "%{results} výsledkov"
+    results_count: "%{count} výsledkov pre '%{query_string}'"
     search_action: Hľadať!
     search_term: Výraz
     searching_wait_notice: "Vyhľadávam ..."
-    through: "Vyhľadávať v {{dataset}}"
+    through: "Vyhľadávať v %{dataset}"
+    showing_first_results: Zobrazuje prvých %{showing_count} záznamov z %{all_count}. Pokiaľ chcete vidieť všetky kliknite na Viac a podrobnejšie.
   session: 
     login: Prihlásenie
     lost_password: "Zabudli ste heslo?"
     lost_password_label: "Zabudli ste heslo?"
     password: Heslo
     reset_password: "Vytvoriť nové heslo"
-    reset_password_message: "Kliknite na nasledovnú linku aby sa vám vytvorilo nové heslo: {{link}}"
-    set_new_password: "Nastaviť nové heslo"
+    reset_password_message: "Kliknite na nasledovnú linku aby sa vám vytvorilo nové heslo: %{link}"
+    set_new_password: "%{site_name} - nastaviť nové heslo"
     submit: Odoslať
     user_name: Používateľ
+    note_failed_signin: 'Zadané meno a/alebo heslo je nesprávne. Skontrolujte prosím či ste ich zadali správne a skúste znova.'
   settings: 
     description: Description
     name: Name
@@ -317,9 +342,10 @@ sk:
     user_not_found: "Používateľ nebol nájdený"
     register: Vytvoriť konto
     registration_complete: "Vaše konto bolo vytvorené."
-    insufficient_privileges: "Nemáte právo na vykonanie akcie {{action}}."
-    agree_with: "Súhlasím s %s"
+    insufficient_privileges: "Nemáte právo na vykonanie akcie %{action}."
+    agree_with: "Súhlasím s %{s}"
     with_terms_of_use: "podmienkami používania"
+    update_successfull: "Aktualizácia údajov používateľa bola úspešná."
   validations: 
     blank: "nemôže byť prázdne"
   watchers: 
@@ -339,3 +365,21 @@ sk:
       super_user: Super User
       api_access: API
       api_all: Všetko
+  batch_editing:
+      editing_selected: "Upravuje/Upravujú sa %{count} záznamov/záznamy."
+      editing_all_search: "Upravujú sa všetky záznamy, ktoré boli výsledkom vyhľadania."
+      editing_all_table: "Updavujú sa všetky záznamy."
+      attribute_name: Názov
+      attribute_value: Hodnota
+      update_all: Aktualizovať všetky
+  recaptcha:
+    errors:
+      verification_failed: 'Kontrola reCAPTCHA neprebehla úspešne. Skúste prosím znova.'
+  relation:
+    added: 'Relácia úspešne pridaná.'
+    add_failed: 'Pridávanie relácie zlyhalo.'
+    deleted: 'Relácia zmazaná.'
+    delete_failed: 'Mazanie relácie zlyhalo.'
+  records:
+    show:
+      no_related_records: 'Nie sú príradené žiadne záznamy.'

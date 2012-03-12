@@ -4,7 +4,7 @@
       %span= t "global.search"
       = image_tag "homepage_search.png"
   .span-13.search.right
-    - form_tag searches_path, :class => "validate search" do
+    = form_tag searches_path, :class => "validate search" do
       %div.clearfix
         = text_field_tag :query_string, nil, :class => "search required"
       %div.clearfix

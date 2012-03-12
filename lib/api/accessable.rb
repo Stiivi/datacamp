@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Api
   RESTRICTED = 0
   REGULAR = 1

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ApplicationLogger
   
   attr_reader :messages

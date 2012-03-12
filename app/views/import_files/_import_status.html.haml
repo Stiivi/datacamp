@@ -1,19 +1,22 @@
 - if @import_file.status == 'success'
-  %h1= t("import.load_success", :path => @import_file.file_path.split('/').last)
+  %h1= t("import.load_success", :path => @import_file.file_path.split('/').last).html_safe
 - elsif @import_file.status == 'in_progress'
   %h1= t("import.importing_files")
   .progress_bar
 - elsif @import_file.status == 'failed'
   %h1= t("import.importing_failed")
+- elsif @import_file.status == 'canceled'
+  %h1= t("import.importing_canceled")
 - else
   %h1= t("import.importing_not_started_yet")
   
 %p
   = t("import.lines_imported", :count => @import_file.count_of_imported_lines)
-  - if @import_file.status == 'in_progress'
-    = link_to "Refresh", status_import_file_path(@import_file), :class => "ajax refresh hidden"
+  - if @import_file.status == 'in_progress' || @import_file.status == 'ready'
+    = link_to "Refresh", state_import_file_path(@import_file), :class => "ajax refresh hidden"
 
 %br
 
 .clearfix
   = button_link_to t("import.go_to_dataset"), dataset_path(@import_file.dataset_description)
+  = button_link_to t("import.cancel"), cancel_import_file_path(@import_file)

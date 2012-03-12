@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 puts "=> Removing all sharing service!"
 SharingService.delete_all
 

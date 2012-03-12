@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # API Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -18,11 +19,9 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-require 'csv'
-
 class ApiController < ApplicationController
 Mime::Type.register "text/yaml", :yml
-Mime::Type.register "text/csv", :csv
+# Mime::Type.register "text/csv", :csv
 
 skip_before_filter :login_required
 around_filter :default_exception_handler
@@ -85,7 +84,7 @@ def version
 end
 
 def known_datacamps
-    datacamps = KnownDatacamp.find(:all)
+    datacamps = KnownDatacamp.all
     urls = datacamps.collect { |dc| dc.url }
     respond_to do |format|
         format.text  { render :text => "#{urls.join("\n")}\n" }
@@ -96,7 +95,7 @@ end
 
 def datasets
     # FIXME: take localization into account
-    datasets = DatasetDescription.find(:all)
+    datasets = DatasetDescription.all
 
     # FIXME: Filter hidden fields    
     datasets = datasets.select { |dataset| 
@@ -138,24 +137,16 @@ def dataset_dump
 end
 
 def dataset_records
-    # error :unknown_request,
-    #      :message => "records_in_dataset is not yet implemented"
-    # return
-
     dataset_description = find_dataset(params[:dataset_id].to_i) || return
-
-    dataset_class = dataset_description.dataset.dataset_record_class
-
-    # FIXME: use appropriate API key based filtering
-
-    field_descriptions = dataset_description.visible_field_descriptions(:export)
-    fields =  ["_record_id"] + field_descriptions.collect{ |description| description.identifier }
+    name = dataset_description.identifier
+    file = Pathname(dataset_dump_path) + "#{name}-dump.csv"
     
-    render :text => proc { |response, output|
-        output.write("#{CSV.generate_line(fields)}\n")
-        flush_counter = 0        
-        render_records_in_dataset(dataset_description, output)
-    }
+    if file.exist?
+        
+        send_file file, :type=>"text/csv; charset=utf-8", :x_sendfile => true, :filename => file.basename
+    else
+        error :object_not_found, :message => "There is no dump available for dataset #{name} (id=#{params[:dataset_id]})"
+    end
 end
 
 def render_records_in_dataset(dataset, output)
@@ -165,7 +156,7 @@ def render_records_in_dataset(dataset, output)
     fields_for_export = dataset.visible_field_descriptions(:export)
     visible_fields = ["_record_id"] + fields_for_export.collect{ |field| field.identifier }
 
-    dataset_class.find_each (:batch_size => 100) do |record|
+    dataset_class.find_each :batch_size => 100 do |record|
         values = record.values_for_fields(visible_fields)
         line = CSV.generate_line(values)
         output.write("#{line}\n")
@@ -231,7 +222,7 @@ def error code, info = {}
 end
 
 def dataset_dump_path
-    Datacamp::Config.get(:dataset_dump_path, "#{RAILS_ROOT}/tmp")
+    Datacamp::Config.get(:dataset_dump_path, "#{Rails.root}/tmp")
 end
 
 def default_exception_handler
@@ -249,7 +240,7 @@ def authorize_api_key
         error :access_denied, :message => "No API key provided"
         return
     end
-    key = ApiKey.find(:first, :conditions => [ "`key` = ? AND is_valid = 1", @api_key])
+    key = ApiKey.where("`key` = ? AND is_valid = 1", @api_key).first
     if !key
         error :access_denied, :message => "Invalid API key"
         return

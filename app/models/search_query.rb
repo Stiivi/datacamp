@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 require 'shellwords'
 require 'yaml'
 
@@ -10,7 +11,6 @@ has_many :search_predicates
 has_many :predicates, :class_name => "SearchPredicate"
 
 has_many :results, :class_name => "SearchResult", :foreign_key => "search_query_id"
-after_initialize :after_initalize
 
 attr_reader :include_words, :exclude_words, :include_datasets, :exclude_datasets
 attr_reader :include_categories, :exclude_categories, :include_fields, :exclude_fields
@@ -97,7 +97,7 @@ def create_predicates_from_tokens(tokens)
 
 			predicate = SearchPredicate.new
 			predicate.scope = scope
-			predicate.field = field
+			predicate.search_field = field
 			predicate.argument = argument
 			if not exclude
 				predicate.operator = "contains"
@@ -107,7 +107,7 @@ def create_predicates_from_tokens(tokens)
 		else
 			predicate = SearchPredicate.new
 			predicate.scope = "record"
-			predicate.field = nil
+			predicate.search_field = nil
 
 			argument = nil
 			if token =~ /^\*.*[^\*]$/
@@ -159,7 +159,7 @@ def self.parse_string(query_string)
 end
 
 def searched_datasets
-	datasets = DatasetDescription.find(:all, :conditions => {:is_active => true})
+	datasets = DatasetDescription.where(:is_active => true)
 	
 	Rails.logger.info "search: find datasets"
 

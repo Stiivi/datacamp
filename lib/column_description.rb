@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ColumnDescription
 attr_reader :name, :type, :extra, :is_null
 def initialize(options)

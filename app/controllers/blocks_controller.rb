@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Blocks Controller
 # 
 # Author:: Juraj Frank <juraj.frank@gmail.com>

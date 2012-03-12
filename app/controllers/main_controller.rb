@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Main Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -24,7 +25,7 @@ class MainController < ApplicationController
   before_filter :login_required, :except => [:index, :locale]
   
   def index
-    return redirect_to datasets_path if logged_in?
+    return redirect_to datasets_path, notice: flash[:notice] if logged_in?
     if index_page = Page.find_by_page_name("index")
       redirect_to page_path(index_page)
     end

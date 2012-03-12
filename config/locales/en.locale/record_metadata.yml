@@ -5,6 +5,8 @@ en:
         published: Published
         deleted: Deleted
         suspended: Suspended
+        absent: Absent
+        morphed: Morphed
     quality_statuses:
         ok: OK
         duplicate: Duplicate
@@ -12,3 +14,4 @@ en:
         doubtful: Doubtful
         unclear: Unclear
         absent: Absent
+        regis_match_fail: Regis match fail

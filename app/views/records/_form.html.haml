@@ -1,4 +1,4 @@
-- form_for @record, :url => (@form_url) do |f|
+= form_for @record, :url => (@form_url) do |f|
 
   %h2= t("dataset.data")
 
@@ -15,7 +15,7 @@
                 .fr
                   = image_tag "icons/cancel.png", :class => "cancel"
               %a{:href => fix_dataset_record_path(@dataset_description, @record, :field => field_description.identifier), :class => "quality_status"}= image_tag "icons/exclamation.png", :class => "quality_status"
-      
+  
   %h2= t("dataset.meta_information")
   
   %table.plain

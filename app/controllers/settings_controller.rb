@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # System Settings Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -22,7 +23,7 @@ class SettingsController < ApplicationController
   privilege_required :edit_system_settings
   
   def index
-    @settings = SystemVariable.find :all
+    @settings = SystemVariable.all
   end
   
   def update_all

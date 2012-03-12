@@ -1,6 +1,6 @@
 %h1= t "global.settings"
 
-- form_for :settings, :url => update_all_settings_path, :html => {:method => :put} do |f|
+= form_for :settings, :url => update_all_settings_path, :html => {:method => :put} do |f|
   %table
     %tr
       %th= t "settings.name"
@@ -8,13 +8,12 @@
       %th= t "settings.value"
     - @settings.each do |setting|
       %tr
-      - fields_for "settings[#{setting.id}]", setting do |fields|
         %td
           %b= setting.name
         %td
-          = setting.description
+          %b= setting.description
         %td
-          = fields.text_field :value
+          = text_field_tag "settings[#{setting.id}][value]", setting.value
   
   .action_box
     = f.submit t "global.save"
