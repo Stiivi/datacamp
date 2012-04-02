@@ -3,8 +3,8 @@ sk:
         integer: Celé číslo
         string: String
         date: Dátum
-        decimal: Reálne číslo
         text: Text
+        float: Reálne číslo
     data_formats:
         number: Číslo
         currency: Finančná hodnota
@@ -25,4 +25,4 @@ sk:
         flag_1: Hodnoty
     data_format_values:
         format_flag_false: "nie"
-        format_flag_true: "áno"        
+        format_flag_true: "áno"

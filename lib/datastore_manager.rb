@@ -14,24 +14,24 @@ attr_accessor :schema
 @@id_column = :_record_id
 
 @@record_metadata_columns = [
-	[:created_at, :datetime],
-	[:updated_at,:datetime],
-	[:created_by,:varchar],
-	[:updated_by,:varchar],
-	[:record_status,:varchar],
-	[:quality_status,:varchar],
-	[:batch_id,:integer],
-	[:validity_date,:date],
-	[:is_hidden,:boolean]
+  [:created_at, :datetime],
+  [:updated_at,:datetime],
+  [:created_by,:varchar],
+  [:updated_by,:varchar],
+  [:record_status,:varchar],
+  [:quality_status,:varchar],
+  [:batch_id,:integer],
+  [:validity_date,:date],
+  [:is_hidden,:boolean]
 ]
 
 @@record_statuses = ["loaded","new","published","suspended", "deleted", 'morphed']
 
-@@available_data_types = [:string, :decimal, :integer, :date, :text]
+@@available_data_types = [:string, :integer, :date, :text, :float]
 
 @@field_type_map = {
-		:string => :varchar
-	}
+    :string => :varchar
+  }
 
 def self.manager_with_default_connection
   unless @@instance
@@ -46,81 +46,81 @@ def establish_rails_default_connection
 end
 
 def establish_rails_named_connection(connection_name)
-	path = Pathname.new(Rails.root)
-	path = path + "config" + "database.yml"
-	yaml =  YAML.load_file(path)
-	
-	connection_info = yaml[connection_name]
-	if connection_info
-		establish_connection(yaml[connection_name])	
-	else
-		raise "No Rails database connection named #{connection_name}"
-	end
+  path = Pathname.new(Rails.root)
+  path = path + "config" + "database.yml"
+  yaml =  YAML.load_file(path)
+
+  connection_info = yaml[connection_name]
+  if connection_info
+    establish_connection(yaml[connection_name])
+  else
+    raise "No Rails database connection named #{connection_name}"
+  end
 end
 
 def establish_connection(connection_info)
     # Create database connection
-    
+
     @connection_info = connection_info
 
     @connection = Sequel.mysql2(connection_info["database"],
             :user => connection_info["username"] || "root",
-            :password => connection_info["password"], 
+            :password => connection_info["password"],
             :host => connection_info["host"],
             :encoding => 'utf8'
             )
 
     Sequel::MySQL.default_charset = 'utf8'
-   
-	if @connection.nil?
-		raise "Unable to establish database connection"
-	end
 
-	@schema = connection_info["schema"]
+  if @connection.nil?
+    raise "Unable to establish database connection"
+  end
+
+  @schema = connection_info["schema"]
 end
 
 def extract_dataset_into_file(identifier, file, options = nil)
-	path = Pathname(file)
-	dirname = path.dirname
-	
-	# Notes:
-	# * file will be overwritten
-	
-	dirname.mkpath
+  path = Pathname(file)
+  dirname = path.dirname
+
+  # Notes:
+  # * file will be overwritten
+
+  dirname.mkpath
 
 end
 
 def dataset_exists?(dataset)
-	return datasets.includes?(dataset)
+  return datasets.includes?(dataset)
 end
 
 
 def dataset_fields(dataset)
-	table = table_for_dataset(dataset)
-	metadata = @@record_metadata_columns.collect { |col| col[0]}
-	fields = @connection[table].columns
-	fields = fields - metadata
-	fields.delete(@@id_column)
-	
-	return fields
+  table = table_for_dataset(dataset)
+  metadata = @@record_metadata_columns.collect { |col| col[0]}
+  fields = @connection[table].columns
+  fields = fields - metadata
+  fields.delete(@@id_column)
+
+  return fields
 end
 
 def dataset_information(dataset)
-	info = {}
-	
-	info[:count] = 9999
+  info = {}
+
+  info[:count] = 9999
 end
 
 def dataset_field_types(dataset)
-	table = table_for_dataset(dataset)
-	schema = @connection.schema(table)
-	metadata = @@record_metadata_columns.collect { |col| col[0]}
+  table = table_for_dataset(dataset)
+  schema = @connection.schema(table)
+  metadata = @@record_metadata_columns.collect { |col| col[0]}
 
-	schema = schema.select { | field | 
-								not metadata.include?(field[0]) and
-									field[0] != @@id_column  }
-	schema = schema.collect { |field| [field[0], field[1][:type]] }
-	return schema
+  schema = schema.select { | field |
+                not metadata.include?(field[0]) and
+                  field[0] != @@id_column  }
+  schema = schema.collect { |field| [field[0], field[1][:type]] }
+  return schema
 end
 
 def dataset_field_type(dataset, field)
@@ -130,136 +130,136 @@ def dataset_field_type(dataset, field)
 end
 
 def add_dataset_field(dataset, field, type)
-	table = table_for_dataset(dataset)
-	mapped_type = @@field_type_map[type.to_sym]
+  table = table_for_dataset(dataset)
+  mapped_type = @@field_type_map[type.to_sym]
 
-	if mapped_type
-		type = mapped_type
-	end
-	@connection.add_column(table, field, type)
+  if mapped_type
+    type = mapped_type
+  end
+  @connection.add_column(table, field, type)
 end
 
 def set_dataset_field_type(dataset, field, type)
-	table = table_for_dataset(dataset)
+  table = table_for_dataset(dataset)
 
-	mapped_type = @@field_type_map[type.to_sym]
-	if mapped_type
-		type = mapped_type
-	end
-	@connection.set_column_type(table, field, type)
+  mapped_type = @@field_type_map[type.to_sym]
+  if mapped_type
+    type = mapped_type
+  end
+  @connection.set_column_type(table, field, type)
 end
 
 def rename_dataset_field(dataset, field, new_name)
-	table = table_for_dataset(dataset)
-	@connection.rename_column(table, field, new_name)
+  table = table_for_dataset(dataset)
+  @connection.rename_column(table, field, new_name)
 end
 
 def remove_dataset_field(dataset, field)
-	table = table_for_dataset(dataset)
-	@connection.drop_column(table, field)
+  table = table_for_dataset(dataset)
+  @connection.drop_column(table, field)
 end
 
 def datasets
-	# FIXME: Does not work on oracle
-	data = @connection[:information_schema__tables]
-	data = data.filter(:table_schema => @schema)
+  # FIXME: Does not work on oracle
+  data = @connection[:information_schema__tables]
+  data = data.filter(:table_schema => @schema)
 
-	tables = Array.new
-	puts data.sql
-	data.all do |row|
-		tables << row[:TABLE_NAME]
-	end
-	tables = tables.select { |table| table =~ /^#{@@dataset_table_prefix}/ }
-	tables = tables.collect { |table| table.sub(/^#{@@dataset_table_prefix}/,"") }
-	return tables
+  tables = Array.new
+  puts data.sql
+  data.all do |row|
+    tables << row[:TABLE_NAME]
+  end
+  tables = tables.select { |table| table =~ /^#{@@dataset_table_prefix}/ }
+  tables = tables.collect { |table| table.sub(/^#{@@dataset_table_prefix}/,"") }
+  return tables
 end
 
 def dataset_exists?(identifier)
-	return datasets.include?(identifier)
+  return datasets.include?(identifier)
 end
 
 def create_dataset(identifier)
-	dataset_table = table_for_dataset(identifier)
+  dataset_table = table_for_dataset(identifier)
 
-	# FIXME: is this charset option portable (for example to oracle)?
-	@connection.create_table(dataset_table, :options => 'DEFAULT CHARSET=utf8') do
-		primary_key @@id_column
-		@@record_metadata_columns.each do |column|
-			column column[0], column[1]
-		end
-	end
+  # FIXME: is this charset option portable (for example to oracle)?
+  @connection.create_table(dataset_table, :options => 'DEFAULT CHARSET=utf8') do
+    primary_key @@id_column
+    @@record_metadata_columns.each do |column|
+      column column[0], column[1]
+    end
+  end
 end
 
 def create_dataset_as_copy_of_table(table, dataset_name = nil)
-	if not dataset_name
-		dataset_name = table
-	end
-	
-	dataset_table = table_for_dataset(table)
-	
-	if @connection.table_exists?(dataset_table)
-		raise "Dataset #{dataset_name} already exists"
-	end
+  if not dataset_name
+    dataset_name = table
+  end
 
-	# 1. Perform checks
-	columns = @connection[table.to_sym].columns
-	metadata = @@record_metadata_columns.collect { |col| col[0]}
+  dataset_table = table_for_dataset(table)
 
-	existing_metadata_columns = metadata & columns
-	puts "HERE->> (#{existing_metadata_columns.join(",")})"
+  if @connection.table_exists?(dataset_table)
+    raise "Dataset #{dataset_name} already exists"
+  end
 
-	if not existing_metadata_columns.empty?
-		raise "Table #{table} contains columns with same name as " +
-				"metadata columns (#{existing_metadata_columns.join(",")})"
-	end
-	# 2. copy table
+  # 1. Perform checks
+  columns = @connection[table.to_sym].columns
+  metadata = @@record_metadata_columns.collect { |col| col[0]}
 
-	statement = "CREATE TABLE #{dataset_table} AS SELECT * FROM #{table}"
-	connection << statement
-	
-	# 3. create dataset columns
-	fix_dataset_metadata(dataset_name)
+  existing_metadata_columns = metadata & columns
+  puts "HERE->> (#{existing_metadata_columns.join(",")})"
+
+  if not existing_metadata_columns.empty?
+    raise "Table #{table} contains columns with same name as " +
+        "metadata columns (#{existing_metadata_columns.join(",")})"
+  end
+  # 2. copy table
+
+  statement = "CREATE TABLE #{dataset_table} AS SELECT * FROM #{table}"
+  connection << statement
+
+  # 3. create dataset columns
+  fix_dataset_metadata(dataset_name)
 end
 
 def check_missing_dataset_metadata(dataset)
-	dataset_table = table_for_dataset(dataset)
-	
-	columns = @connection[dataset_table].columns
-	metadata = @@record_metadata_columns.collect { |col| col[0]}
+  dataset_table = table_for_dataset(dataset)
 
-	missing_metadata = @@record_metadata_columns.select { |mcolumn|
-				not columns.include?(mcolumn[0])
-		}
+  columns = @connection[dataset_table].columns
+  metadata = @@record_metadata_columns.collect { |col| col[0]}
 
-	if not columns.include?(@@id_column)
-		missing_metadata << @@id_column
-	end
-	
-	return missing_metadata
+  missing_metadata = @@record_metadata_columns.select { |mcolumn|
+        not columns.include?(mcolumn[0])
+    }
+
+  if not columns.include?(@@id_column)
+    missing_metadata << @@id_column
+  end
+
+  return missing_metadata
 end
 
 def fix_dataset_metadata(dataset)
-	dataset_table = table_for_dataset(dataset)
-	missing_metadata = check_missing_dataset_metadata(dataset)
+  dataset_table = table_for_dataset(dataset)
+  missing_metadata = check_missing_dataset_metadata(dataset)
 
-	missing_id = false
-	if missing_metadata.include?(@@id_column)
-		missing_id = true
-		missing_metadata.delete(@@id_column)
-	end
-	
-	# FIXME: handle missing/misconfigured ID as special case
-	@connection.alter_table dataset_table do
-		if missing_id
-			add_primary_key @@id_column, :auto_increment => true
-		end
+  missing_id = false
+  if missing_metadata.include?(@@id_column)
+    missing_id = true
+    missing_metadata.delete(@@id_column)
+  end
 
-		missing_metadata.each do |column|
-			add_column column[0], column[1]
-		end
-	end
-	
-	# FIXME: fill metadata columns here or not?
+  # FIXME: handle missing/misconfigured ID as special case
+  @connection.alter_table dataset_table do
+    if missing_id
+      add_primary_key @@id_column, :auto_increment => true
+    end
+
+    missing_metadata.each do |column|
+      add_column column[0], column[1]
+    end
+  end
+
+  # FIXME: fill metadata columns here or not?
 end
 
 def table_for_dataset(dataset)
