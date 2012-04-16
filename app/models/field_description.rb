@@ -72,10 +72,11 @@ class FieldDescription < ActiveRecord::Base
     return unless @data_type
     manager = DatastoreManager.manager_with_default_connection
     current_data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
-    unless @data_type.to_s == current_data_type
+    unless @data_type.to_s == current_data_type.to_s
       manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
 
-      Kernel.const_set(dataset_description.dataset.dataset_record_class.name.gsub('Kernel::', ''), nil)
+      # FIXME: this restarts the app server for the changes to take effect. It is dependent on how passenger works and should be generalized
+      system "touch #{Rails.root.join('tmp', 'restart.txt')}"
     end
   end
 end
