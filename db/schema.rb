@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120121210739) do
+ActiveRecord::Schema.define(:version => 20120419205431) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -82,24 +82,15 @@ ActiveRecord::Schema.define(:version => 20120121210739) do
     t.integer  "position",           :default => 0
   end
 
-  create_table "change_details", :force => true do |t|
-    t.string   "changed_field"
-    t.text     "old_value"
-    t.text     "new_value"
-    t.integer  "change_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "changes", :force => true do |t|
     t.string   "dataset_description_id"
     t.string   "record_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.text     "change_details"
     t.string   "change_type",               :null => false
     t.text     "dataset_description_cache"
+    t.text     "change_details"
   end
 
   create_table "comment_ratings", :force => true do |t|
@@ -265,7 +256,7 @@ ActiveRecord::Schema.define(:version => 20120121210739) do
     t.integer "data_format_id"
     t.string  "data_format_argument"
     t.string  "reference"
-    t.boolean "is_visible_in_relation"
+    t.boolean "is_visible_in_relation", :default => true
   end
 
   create_table "import_files", :force => true do |t|
