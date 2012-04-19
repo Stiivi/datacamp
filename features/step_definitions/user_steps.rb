@@ -3,26 +3,26 @@ Given /^I have one\s+user "([^\"]*)" with password "([^\"]*)" and username "([^\
 end
 
 Given /^I am not authenticated$/ do
-  And %{I go to the logout page}
-  And %{I follow "English"}
+  step %{I go to the logout page}
+  step %{I follow "English"}
 end
 
 Given /^I am a new, authenticated user "([^"]*)" with password "([^"]*)"$/ do |username, password|
-  Given %{I have one user "#{username}@email.com" with password "#{password}" and username "#{username}"}
-  And %{I am not authenticated}
-  And %{I am loged in as user "#{username}" with password "#{password}"}
+  step %{I have one user "#{username}@email.com" with password "#{password}" and username "#{username}"}
+  step %{I am not authenticated}
+  step %{I am loged in as user "#{username}" with password "#{password}"}
 end
 
 Given /^I am loged in as user "([^"]*)" with password "([^"]*)"$/ do |username, password|
-  And %{I go to the login page}
-  And %{I fill in "Username" with "#{username}"}
-  And %{I fill in "Password" with "#{password}"}
-  And %{I press "Submit"}
+  step %{I go to the login page}
+  step %{I fill in "Username" with "#{username}"}
+  step %{I fill in "Password" with "#{password}"}
+  step %{I press "Submit"}
 end
 
 When /^I go and change my password to "([^"]*)"$/ do |password|
-  And %{I go to the account page}
-  And %{I fill in "Password" with "#{password}"}
-  And %{I fill in "Password confirmation" with "#{password}"}
-  And %{I press "Save"}
+  step %{I go to the account page}
+  step %{I fill in "Password" with "#{password}"}
+  step %{I fill in "Password confirmation" with "#{password}"}
+  step %{I press "Save"}
 end

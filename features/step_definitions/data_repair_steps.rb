@@ -1,16 +1,16 @@
 # -*- encoding : utf-8 -*-
 Given /^there are fields in need of company data repair$/ do
-  And %{a published dataset "lawyers"}
-  And %{a published dataset "organisations"}
+  step %{a published dataset "lawyers"}
+  step %{a published dataset "organisations"}
   dataset_description = DatasetDescription.find_by_identifier("organisations")
   Factory.create(:field_description, :title => 'ico', :identifier => 'ico', :dataset_description => dataset_description)
   Factory.create(:field_description, :title => 'name', :identifier => 'name', :dataset_description => dataset_description)
   Factory.create(:field_description, :title => 'address', :identifier => 'address', :dataset_description => dataset_description)
-  And %{ico repair field descriptions for dataset dataset "lawyers" exist}
-  And %{a record with ico, company_name and company_address fields exists for dataset "lawyers"}
-  And %{a record with ico, company_name fields exists for dataset "lawyers"}
-  And %{a record with ico, company_address fields exists for dataset "lawyers"}
-  And %{a record with ico field exists for dataset "lawyers"}
+  step %{ico repair field descriptions for dataset dataset "lawyers" exist}
+  step %{a record with ico, company_name and company_address fields exists for dataset "lawyers"}
+  step %{a record with ico, company_name fields exists for dataset "lawyers"}
+  step %{a record with ico, company_address fields exists for dataset "lawyers"}
+  step %{a record with ico field exists for dataset "lawyers"}
 end
 
 Given /^ico repair field descriptions for dataset dataset "([^"]*)" exist$/ do |dataset_description_identifier|
@@ -40,19 +40,19 @@ Given /^a record with ico field exists for dataset "([^"]*)"$/ do |dataset_descr
 end
 
 When /^I submit the company data form with the show results option$/ do
-  And %{I select "organisations" from "Regis table"}
-  And %{I select "ico" from "Regis ico column"}
-  And %{I select "name" from "Regis name column"}
-  And %{I select "address" from "Regis address column"}
+  step %{I select "organisations" from "Regis table"}
+  step %{I select "ico" from "Regis ico column"}
+  step %{I select "name" from "Regis name column"}
+  step %{I select "address" from "Regis address column"}
 
-  And %{I select "lawyers" from "Target table"}
-  And %{I select "ico" from "Target ico column"}
-  And %{I select "company_name" from "Target name column"}
-  And %{I select "company_address" from "Target address column"}
-  And %{I press "Show matching items"}
+  step %{I select "lawyers" from "Target table"}
+  step %{I select "ico" from "Target ico column"}
+  step %{I select "company_name" from "Target name column"}
+  step %{I select "company_address" from "Target address column"}
+  step %{I press "Show matching items"}
 end
 
 Then /^I should see matching fields$/ do
-  And %{I should see "789123"}
-  And %{I should see "some company only name"}
+  step %{I should see "789123"}
+  step %{I should see "some company only name"}
 end

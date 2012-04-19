@@ -1,13 +1,13 @@
 Given /^two published datasets with data exist$/ do
   Dataset::DcRelation.delete_all
-  
+
   @lawyers = Factory(:dataset_description, :identifier => 'lawyers', :en_title => 'lawyers')
   @lawyer_associates = Factory(:dataset_description, :identifier => 'lawyer_associates', :en_title => 'lawyer_associates')
-  
+
   Factory.create(:field_description, identifier: 'original_name', dataset_description: @lawyers, is_visible_in_relation: true)
   @lawyers.dataset.dataset_record_class.delete_all
   @lawyer_record = @lawyers.dataset.dataset_record_class.create!(original_name: 'Franz Kafka', record_status: 'published')
-  
+
   Factory.create(:field_description, identifier: 'original_name', dataset_description: @lawyer_associates, is_visible_in_relation: true)
   @lawyer_associates.dataset.dataset_record_class.delete_all
   @lawyer_associate_record = @lawyer_associates.dataset.dataset_record_class.create!(original_name: 'Lionel Hutz', record_status: 'published', sak_id: 1)
@@ -21,7 +21,7 @@ When /^I setup a relation between the datasets$/ do
 end
 
 When /^I setup relations for both sides of the datasets$/ do
-  When %{I setup a relation between the datasets}
+  step %{I setup a relation between the datasets}
   visit relations_dataset_description_path(@lawyer_associates)
   click_button('+')
   select(@lawyers.identifier, :from => 'Relationship table')
@@ -38,7 +38,7 @@ Then /^I should see related data in on the detail page of a record$/ do
 end
 
 Then /^I should see related data in on the detail page of a record belonging to the second dataset$/ do
-  Then %{I should see related data in on the detail page of a record}
+  step %{I should see related data in on the detail page of a record}
   visit dataset_record_path(@lawyer_associates, @lawyer_associates.dataset.dataset_record_class.first)
   page.should have_content(@lawyers.dataset.dataset_record_class.first.original_name)
 end
@@ -48,7 +48,7 @@ end
 
 Given /^a published dataset "([^"]*)"$/ do |dataset_description_identifier|
   dataset_description = Factory(:dataset_description, :identifier => dataset_description_identifier, :en_title => dataset_description_identifier)
-  And %{an empty dataset "#{dataset_description_identifier}"}
+  step %{an empty dataset "#{dataset_description_identifier}"}
 end
 
 Given /^an empty dataset "([^"]*)"$/ do |dataset_description_identifier|
@@ -57,7 +57,7 @@ Given /^an empty dataset "([^"]*)"$/ do |dataset_description_identifier|
 end
 
 Given /^a published record exists for dataset "([^"]*)"$/ do |dataset_description_identifier|
-  And %{a published record with "some content" exists for dataset "#{dataset_description_identifier}"}
+  step %{a published record with "some content" exists for dataset "#{dataset_description_identifier}"}
 end
 
 Given /^a published record with "([^"]*)" exists for dataset "([^"]*)"$/ do |content, dataset_description_identifier|
@@ -72,13 +72,13 @@ When /^a published record for dataset "([^"]*)" with a related record for datase
   load_dataset_model(dataset).delete_all
   load_dataset_model(related_adataset).delete_all
   "Kernel::#{through_table.classify}".constantize.delete_all
-  
+
   dataset_description = DatasetDescription.find_by_identifier(dataset)
   relation_dataset_description = DatasetDescription.find_by_identifier(related_adataset)
-  
+
   Factory.create(:field_description, identifier: 'name', dataset_description: dataset_description)
   Factory.create(:field_description, identifier: 'first_name', dataset_description: relation_dataset_description, is_visible_in_relation: true)
-  
+
   dd = dataset_description.dataset.dataset_record_class.create(record_status: 'published', name: 'some content')
   rdd = relation_dataset_description.dataset.dataset_record_class.create(record_status: 'published', first_name: 'some content2')
   "Kernel::#{through_table.classify}".constantize.create(ds_advokat_id: dd._record_id, ds_trainee_id: rdd._record_id)
@@ -90,7 +90,7 @@ Given /^a published record with "([^"]*)" exists for relation dataset "([^"]*)"$
   Factory.create(:field_description, identifier: 'test', dataset_description: dataset_description, is_visible_in_relation: true)
   Factory.create(:field_description, identifier: foreign_key, dataset_description: dataset_description, sk_title: foreign_key, en_title: foreign_key)
   dataset_class = dataset_description.dataset.dataset_record_class
-  And %{there is a "foreign_key" column in "#{dataset_class.table_name}"}
+  step %{there is a "foreign_key" column in "#{dataset_class.table_name}"}
   dataset_class.create(:record_status => 'published', :test => content, foreign_key.to_sym => @record._record_id)
 end
 
@@ -118,63 +118,63 @@ Given /^there is a relation table "([^"]*)" with fields "([^"]*)" and "([^"]*)"$
 end
 
 Given /^there are no tables with prefix "([^"]*)"$/ do |prefix|
-  Dataset::Base.find_tables(prefix: prefix).each do |table_name| 
+  Dataset::Base.find_tables(prefix: prefix).each do |table_name|
     Dataset::DatasetRecord.connection.drop_table(table_name) if Dataset::DatasetRecord.connection.table_exists?(table_name)
   end
 end
 
 When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" through "([^"]*)" that needs the relationship table created$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation, through_table|
-  And %{I go to the dataset descriptions page}
-  And %{I follow "#{dataset_description_identifier}"}
-  And %{I follow "Relations"}
-  And %{I press "+"}
-  And %{I select "#{relationship_type}" from "Relationship type"}
-  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  step %{I go to the dataset descriptions page}
+  step %{I follow "#{dataset_description_identifier}"}
+  step %{I follow "Relations"}
+  step %{I press "+"}
+  step %{I select "#{relationship_type}" from "Relationship type"}
+  step %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
   check('Create relationship field/table')
-  And %{I press "Save relations"}
+  step %{I press "Save relations"}
 end
 
 When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" that needs the foreign key created$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation|
-  And %{I go to the dataset descriptions page}
-  And %{I follow "#{dataset_description_identifier}"}
-  And %{I follow "Relations"}
-  And %{I press "+"}
-  And %{I select "#{relationship_type}" from "Relationship type"}
-  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  step %{I go to the dataset descriptions page}
+  step %{I follow "#{dataset_description_identifier}"}
+  step %{I follow "Relations"}
+  step %{I press "+"}
+  step %{I select "#{relationship_type}" from "Relationship type"}
+  step %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
   check('Create relationship field/table')
-  And %{I press "Save relations"}
+  step %{I press "Save relations"}
 end
 
 When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation|
-  And %{I go to the dataset descriptions page}
-  And %{I follow "#{dataset_description_identifier}"}
-  And %{I follow "Relations"}
-  And %{I press "+"}
-  And %{I select "#{relationship_type}" from "Relationship type"}
-  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
-  And %{I press "Save relations"}
+  step %{I go to the dataset descriptions page}
+  step %{I follow "#{dataset_description_identifier}"}
+  step %{I follow "Relations"}
+  step %{I press "+"}
+  step %{I select "#{relationship_type}" from "Relationship type"}
+  step %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  step %{I press "Save relations"}
 end
 
 When /^I set up a "([^"]*)" relationship on "([^"]*)" to "([^"]*)" through "([^"]*)"$/ do |relationship_type, dataset_description_identifier, dataset_description_identifier_for_relation, through_table|
-  And %{I go to the dataset descriptions page}
-  And %{I follow "#{dataset_description_identifier}"}
-  And %{I follow "Relations"}
-  And %{I press "+"}
-  And %{I select "#{relationship_type}" from "Relationship type"}
-  And %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
-  And %{I select "#{through_table}" from "Relation Table"}
-  And %{I press "Save relations"}
+  step %{I go to the dataset descriptions page}
+  step %{I follow "#{dataset_description_identifier}"}
+  step %{I follow "Relations"}
+  step %{I press "+"}
+  step %{I select "#{relationship_type}" from "Relationship type"}
+  step %{I select "#{dataset_description_identifier_for_relation}" from "Relationship table"}
+  step %{I select "#{through_table}" from "Relation Table"}
+  step %{I press "Save relations"}
 end
 
 When /^I display the first record for dataset "([^"]*)"$/ do |dataset|
-  And %{I display records for dataset "#{dataset}"}
-  And %{I follow "View"}
+  step %{I display records for dataset "#{dataset}"}
+  step %{I follow "View"}
 end
 
 When /^I am logged in and showing records for dataset "([^"]*)"$/ do |dataset|
-  And %{a published record exists for dataset "#{dataset}"}
-  And %{I am a new, authenticated user "test" with password "password"}
-  When %{I display records for dataset "#{dataset}"}
+  step %{a published record exists for dataset "#{dataset}"}
+  step %{I am a new, authenticated user "test" with password "password"}
+  step %{I display records for dataset "#{dataset}"}
 end
 
 When /^I display records for dataset "([^"]*)"$/ do |dataset_description_identifier|
@@ -188,26 +188,26 @@ When /^I display page (\d+) of sorted records for dataset "([^"]*)"$/ do |page, 
 end
 
 When /^I batch edit selected records for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "lawyers"}
-  And %{I check "record[]"}
-  And %{I select "Suspended" from "status"}
+  step %{I am logged in and showing records for dataset "lawyers"}
+  step %{I check "record[]"}
+  step %{I select "Suspended" from "status"}
 end
 
 When /^I batch edit all records for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "lawyers"}
-  And %{I check "record[]"}
-  And %{I select "All records" from "selection"}
-  And %{I select "Suspended" from "status"}
+  step %{I am logged in and showing records for dataset "lawyers"}
+  step %{I check "record[]"}
+  step %{I select "All records" from "selection"}
+  step %{I select "Suspended" from "status"}
 end
 
 When /^I batch edit search results for a dataset to suspended$/ do
-  And %{I am logged in and showing records for dataset "lawyers"}
+  step %{I am logged in and showing records for dataset "lawyers"}
   dataset_class = DatasetDescription.find_by_identifier("lawyers").dataset.dataset_record_class
   dataset_class.stubs(:search).returns(dataset_class.paginate(page: 1))
-  And %{I follow "Search"}
-  And %{I fill in "search[predicates][][value]" with "value"}
-  And %{I press "Submit"}
-  And %{I check "record[]"}
-  And %{I select "All records" from "selection"}
-  And %{I select "Suspended" from "status"}
+  step %{I follow "Search"}
+  step %{I fill in "search[predicates][][value]" with "value"}
+  step %{I press "Submit"}
+  step %{I check "record[]"}
+  step %{I select "All records" from "selection"}
+  step %{I select "Suspended" from "status"}
 end

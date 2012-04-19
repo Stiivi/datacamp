@@ -29,7 +29,7 @@ gem 'newrelic_rpm'
 gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
 gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git'
 
-gem 'test-unit'
+# gem 'test-unit'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -80,9 +80,4 @@ group :development, :test do
   gem 'launchy'    # So you can do Then show me the page
   gem "factory_girl_rails", "~> 1.2.0"
   gem 'vcr'
-
-  gem 'guard-rspec'
-  gem 'guard-livereload'
-  gem 'guard-cucumber'
-  gem 'guard-spork'
 end

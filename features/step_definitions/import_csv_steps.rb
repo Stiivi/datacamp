@@ -11,6 +11,6 @@ Then /^columns should be matched based what is in the file header$/ do
 end
 
 When /^I start an import$/ do
-  When %{I upload a new file}
+  step %{I upload a new file}
   click_button('Import')
 end

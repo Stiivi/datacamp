@@ -13,7 +13,7 @@ Then /^I should see all of the recent activity that is in the database$/ do
 end
 
 When /^I display the first activity$/ do
-  And %{I display the recent activities}
+  step %{I display the recent activities}
   click_link('View')
 end
 
