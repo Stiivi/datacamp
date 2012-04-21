@@ -27,10 +27,11 @@ attr_accessor :schema
 
 @@record_statuses = ["loaded","new","published","suspended", "deleted", 'morphed']
 
-@@available_data_types = [:string, :integer, :date, :text, :float]
+@@available_data_types = [:string, :integer, :date, :text, :decimal]
 
 @@field_type_map = {
-    :string => :varchar
+    :string => :varchar,
+    :decimal => 'decimal(10,2)'
   }
 
 def self.manager_with_default_connection
