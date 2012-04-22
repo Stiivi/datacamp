@@ -8,6 +8,7 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 EtlConfiguration.find_or_create_by_name('vvo_extraction', :start_id => 2642, :batch_limit => 1000)
+EtlConfiguration.find_or_create_by_name('notary_extraction', :start_id => 1, :batch_limit => 100)
 
 
 def initialize_dataset(name)
@@ -17,12 +18,14 @@ def initialize_dataset(name)
     dataset_base.add_primary_key
     dataset_base.add_system_columns
     puts 'finished transormation'
+    puts dataset_base.errors
     dataset_base.create_description!
     puts 'finished creating dataset description'
     puts '--------'
   end
 end
 
+# Lawyers for the ETL
 initialize_dataset('lawyers')
 initialize_dataset('lawyer_partnerships')
 initialize_dataset('lawyer_associates')
@@ -40,5 +43,15 @@ Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_descr
 
 Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_partnership_description.id, lawyer_description.id)
 Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_partnership_description.id, lawyer_associates_description.id)
+
+# Notaries for the ETL
+initialize_dataset('notaries')
+initialize_dataset('notary_employees')
+
+notary_description = DatasetDescription.find_by_identifier!('notaries')
+notary_employees_description = DatasetDescription.find_by_identifier!('notary_employees')
+
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(notary_description.id, notary_employees_description.id)
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(notary_employees_description.id, notary_description.id)
 
 

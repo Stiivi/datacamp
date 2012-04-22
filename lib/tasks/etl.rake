@@ -15,12 +15,18 @@ namespace :etl do
     end
   end
 
+  desc 'Run this to download/update notaries'
   task :notari_extraction => :environment do
-    config = EtlConfiguration.find_by_name('notari_extraction')
+    config = EtlConfiguration.find_by_name('notary_extraction')
     end_id = config.start_id + config.batch_limit
     (config.start_id..end_id).each do |id|
       Delayed::Job.enqueue Etl::NotarExtraction.new(config.start_id, config.batch_limit,id)
     end
+  end
+
+  desc 'Run this to mark active notaries'
+  task notari_activate: :environment do
+    Etl::NotarExtraction.activate_docs
   end
 
   task :executor_extraction => :environment do
