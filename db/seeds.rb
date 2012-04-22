@@ -54,4 +54,5 @@ notary_employees_description = DatasetDescription.find_by_identifier!('notary_em
 Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(notary_description.id, notary_employees_description.id)
 Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(notary_employees_description.id, notary_description.id)
 
-
+# Executors for the ETL
+initialize_dataset('executors')

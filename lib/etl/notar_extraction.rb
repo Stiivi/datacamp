@@ -87,8 +87,8 @@ module Etl
 
     def save(notari_hash)
       if notari_hash.present?
-        current_record = Kernel::DsNotary.where(name: notari_hash[:name]).where('(zip IS NULL OR zip = ?) AND (city IS NULL OR city = ?)', notari_hash[:zip], notari_hash[:city]).first
-        
+        current_record = Kernel::DsNotary.find_by_doc_id(notari_hash[:doc_id])
+
         notari_hash[:ds_notary_employees] = create_notrary_employees(notari_hash.delete(:ds_notary_employees_attributes))
 
         if current_record.present?

@@ -29,8 +29,9 @@ namespace :etl do
     Etl::NotarExtraction.activate_docs
   end
 
+  desc 'Run this to download/update executors'
   task :executor_extraction => :environment do
-    Delayed::Job.enqueue Etl::ExekutorExtraction.new
+    Etl::ExekutorExtraction.new.perform
   end
 
   desc 'Run this to download/update all lawyers from sak.sk page.'

@@ -37,7 +37,10 @@ module Etl
     
     
     def save(executors_hash)
-      Staging::StaExecutor.create(executors_hash)
+      executors_hash.each do |executor_hash|
+        executor = Kernel::DsExecutor.find_or_initialize_by_name_and_city(executor_hash[:name], executor_hash[:city])
+        executor.update_attributes(executor_hash)
+      end
     end
     
     def perform
