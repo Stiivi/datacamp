@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419205431) do
+ActiveRecord::Schema.define(:version => 20120424110300) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -188,7 +188,7 @@ ActiveRecord::Schema.define(:version => 20120419205431) do
     t.string   "collection_mode"
     t.string   "data_source_type"
     t.integer  "category_id"
-    t.boolean  "is_active",                       :default => true
+    t.boolean  "is_active",                       :default => false
     t.string   "default_import_format"
     t.integer  "api_access_level",                :default => 0
     t.boolean  "can_be_disabled_in_quick_search"
