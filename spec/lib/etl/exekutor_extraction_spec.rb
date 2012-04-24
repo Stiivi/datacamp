@@ -1,18 +1,18 @@
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
 
+class Kernel::DsExecutor; end
+
 describe Etl::ExekutorExtraction do
   before :each do
     @extractor = Etl::ExekutorExtraction.new
-    
-    #for some reason this does is not included in the transaction and has to be cleaned manually
-    Staging::StaExecutor.delete_all
   end
   
   it 'should have a perform method that downloads, parses and saves to the db' do
     VCR.use_cassette('executors') do
+      executor = stub(update_attributes: true)
+      Kernel::DsExecutor.should_receive(:find_or_initialize_by_name_and_city).exactly(299).times.and_return(executor)
       @extractor.perform
-      Staging::StaExecutor.count.should == 299
     end
   end
   
