@@ -1,5 +1,5 @@
 Given /^I have one\s+user "([^\"]*)" with password "([^\"]*)" and username "([^\"]*)"$/ do |email, password, username|
-  User.create(:login => username, :email => email, :name => username, :password => password, :is_super_user => true, :password_confirmation => password, :accepts_terms => '1')
+  User.create(:login => username, :email => email, :name => username, :password => password, :is_super_user => true, :password_confirmation => password, :accepts_terms => '1', api_access_level: 3)
 end
 
 Given /^I am not authenticated$/ do

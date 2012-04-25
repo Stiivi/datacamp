@@ -47,7 +47,7 @@ end
 
 
 Given /^a published dataset "([^"]*)"$/ do |dataset_description_identifier|
-  dataset_description = Factory(:dataset_description, :identifier => dataset_description_identifier, :en_title => dataset_description_identifier)
+  dataset_description = Factory(:dataset_description, :identifier => dataset_description_identifier, :en_title => dataset_description_identifier, api_access_level: 1)
   step %{an empty dataset "#{dataset_description_identifier}"}
 end
 

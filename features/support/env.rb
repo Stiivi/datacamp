@@ -4,7 +4,7 @@ require 'cucumber/rails'
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
-Capybara.default_selector = :css
+Capybara.default_selector = :xpath
 
 # This silences the annoying 'rack-1.2.3/lib/rack/utils.rb:16: warning: regexp match /.../n against to UTF-8 string'. If they fix it then the next line can be removed.
 $VERBOSE = nil
@@ -21,8 +21,8 @@ if defined?(ActiveRecord::Base)
 end
 
 # By default, any exception happening in your Rails application will bubble up
-# to Cucumber so that your scenario will fail. This is a different from how 
-# your application behaves in the production environment, where an error page will 
+# to Cucumber so that your scenario will fail. This is a different from how
+# your application behaves in the production environment, where an error page will
 # be rendered instead.
 #
 # Sometimes we want to override this default behaviour and allow Rails to rescue

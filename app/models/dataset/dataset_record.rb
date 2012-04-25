@@ -2,9 +2,9 @@
 class Dataset::DatasetRecord < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper
-  
+
   self.abstract_class = true
-  
+
   establish_connection Rails.env + "_data"
 
   class_inheritable_accessor :dataset
@@ -13,7 +13,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   # FIXME: add this to initialize method, use datasetore manager!
   set_primary_key :_record_id
-  
+
   scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
 
   # def self.to_s
@@ -79,14 +79,8 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     return fields_for_export.collect{ |description| description.identifier }
   end
 
-  def values_for_fields fields
-	values = fields.collect { |field| self[field]}
-  end
-
-  def to_xml
-  	hash = self.to_hash
-    # Return xml
-    return hash.to_xml :root => description.identifier
+  def values_for_fields(fields)
+    values = fields.collect { |field| self[field]}
   end
 
   ########################################################################################
@@ -178,7 +172,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       Change.create(record_id: self.id, change_type: self.id_changed? ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description_id: (self.dataset.try(:description).try(:id) rescue nil), user: User.current, change_details: change_details)
     end
   end
-  
+
   before_save :record_updates
   def record_updates
     if !self.class.table_name.match(/^(rel_|dc_)/) && !self.new_record?
@@ -186,7 +180,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       self.dc_updates.build(change_hash)
     end
   end
-  
+
   before_destroy :record_destroy
   def record_destroy
     Change.create(change_type: Change::RECORD_DESTROY, dataset_description_cache: attributes, user: @handling_user)

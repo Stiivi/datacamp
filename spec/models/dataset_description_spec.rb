@@ -5,6 +5,13 @@ describe DatasetDescription do
     @dataset_description = Factory(:dataset_description)
   end
 
+  it 'should fetch changes' do
+    @dataset_description.stub(:dataset_record_class).and_return(stub(name: 'name'))
+    updates = [stub('update')]
+    Dataset::DcUpdate.should_receive(:find_all_by_updatable_type).with('name').and_return(updates)
+    @dataset_description.fetch_changes.should == updates
+  end
+
   describe "log creating a dataset" do
 
     it 'should report new dataset creation to the changes table' do

@@ -2,7 +2,7 @@
 # API Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
-# 
+#
 # Author:: Stefan Urbanek <stefan@knowerce.sk>
 # Date: Sep 2009
 #
@@ -10,12 +10,12 @@
 # it under the terms of the GNU Lesser General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -52,9 +52,9 @@ class ApiController < ApplicationController
       :message => "Internal inconsistency",
       :resolution => "Contact application development team"
     },
-    :unknown_request => { 
-      :status => 400, 
-      :message => "Unknown API request" 
+    :unknown_request => {
+      :status => 400,
+      :message => "Unknown API request"
     },
     :invalid_argument => {
       :status => 400,
@@ -93,11 +93,11 @@ class ApiController < ApplicationController
     # FIXME: take localization into account
     datasets = DatasetDescription.all
 
-    # FIXME: Filter hidden fields    
-    datasets = datasets.select { |dataset| 
+    # FIXME: Filter hidden fields
+    datasets = datasets.select { |dataset|
       !dataset.is_hidden? || (dataset.is_hidden? && @current_user.has_right?(:view_hidden_datasets))
     }
-    
+
     # FIXME find only those dataset that are not restricted by API
     # access level
 
@@ -106,7 +106,7 @@ class ApiController < ApplicationController
 
   def dataset_description
     dataset = find_dataset(params[:dataset_id].to_i) || return
-    
+
     render :xml => dataset.to_xml(:include => [ :field_descriptions ])
   end
 
@@ -133,11 +133,20 @@ class ApiController < ApplicationController
     dataset_description = find_dataset(params[:dataset_id].to_i) || return
     name = dataset_description.identifier
     file = Pathname(dataset_dump_path) + "#{name}-dump.csv"
-    
+
     if file.exist?
       send_file file, :type=>"text/csv; charset=utf-8", :x_sendfile => true, :filename => file.basename
     else
       error :object_not_found, :message => "There is no dump available for dataset #{name} (id=#{params[:dataset_id]})"
+    end
+  end
+
+  def dataset_changes
+    dataset = find_dataset(params[:dataset_id].to_i) || return
+    changes = dataset.fetch_changes
+
+    respond_to do |format|
+      format.xml { render xml: changes.to_xml }
     end
   end
 
@@ -164,12 +173,12 @@ class ApiController < ApplicationController
     dataset_id = params[:dataset_id].to_i
     dataset_description = find_dataset(dataset_id) || return
     record_id = params[:record_id].to_i
-    
+
     if dataset_id.nil?
       error :invalid_argument, :message => "record_id is not specified"
       return
     end
-    
+
     dataset_class = dataset_description.dataset.dataset_record_class
 
     # FIXME: use appropriate API key based filtering
@@ -208,7 +217,7 @@ private
     reply[:code] = code
     reply[:message] = message if not message.nil?
     reply[:resolution] = error[:resolution] if not error[:resolution].nil?
-    
+
     render :xml => reply.to_xml, :status => error[:status]
   end
 
@@ -226,7 +235,7 @@ private
 
   def authorize_api_key
     @api_key = params[:api_key]
-    
+
     if !@api_key or @api_key == ""
       error :access_denied, :message => "No API key provided"
       return
@@ -242,7 +251,7 @@ private
       error :access_denied, :message => "Unathorized key user"
       return
     end
-    
+
     @current_user = user
   end
 
@@ -253,7 +262,7 @@ private
     end
 
     dataset = DatasetDescription.find_by_id(dataset_id)
-    
+
     if dataset.nil?
       error :object_not_found, :message => "Dataset with id #{dataset_id} was not found"
       return false
@@ -263,25 +272,25 @@ private
       error :access_denied, :message => "Insufficient privileges for dataset with id #{dataset_id}"
       return false
     end
-    
+
     # TODO add checking if user can access datasets
     unless current_user.api_level > Api::RESTRICTED
       error :access_denied, :message => "Access denied for this account"
       return false
     end
-    
+
     # TODO add checking if dataset can be accessed
     unless dataset.api_level > Api::RESTRICTED
       error :access_denied, :message => "Access denied for this dataset"
       return false
     end
-    
+
     # TODO add checking if dataset is premium
     if dataset.api_level > current_user.api_level
       error :access_denied, :message => "Insufficient privileges"
       return false
     end
-    
+
     return dataset
   end
 end

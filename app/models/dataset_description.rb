@@ -139,6 +139,10 @@ class DatasetDescription < ActiveRecord::Base
     end
   end
 
+  def fetch_changes
+    Dataset::DcUpdate.find_all_by_updatable_type(dataset_record_class.name)
+  end
+
 private
   def log_changes
     change_details = []
