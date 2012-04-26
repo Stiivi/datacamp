@@ -9,6 +9,8 @@
 
 EtlConfiguration.find_or_create_by_name('vvo_extraction', :start_id => 2642, :batch_limit => 1000)
 EtlConfiguration.find_or_create_by_name('notary_extraction', :start_id => 1, :batch_limit => 100)
+EtlConfiguration.find_or_create_by_name('executor_extraction')
+EtlConfiguration.find_or_create_by_name('lawyer_extraction')
 
 
 def initialize_dataset(name)

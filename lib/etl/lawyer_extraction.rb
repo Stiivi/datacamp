@@ -10,6 +10,10 @@ module Etl
       @url, @reset_url, @cookie, @parent_url, @filter = url, reset_url, cookie, parent_url, filter
     end
 
+    def self.update_last_run_time
+      EtlConfiguration.find_by_name('lawyer_extraction').update_attribute(:last_run_time, Time.now)
+    end
+
     def is_acceptable?(document)
       document.xpath("//div[@class='section']/table[@class='filter']").present?
     end

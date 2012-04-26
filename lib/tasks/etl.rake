@@ -27,11 +27,17 @@ namespace :etl do
   desc 'Run this to mark active notaries'
   task notari_activate: :environment do
     Etl::NotarExtraction.activate_docs
+
+    EtlMailer.notari_status.deliver
+    Etl::NotarExtraction.update_last_run_time
   end
 
   desc 'Run this to download/update executors'
   task :executor_extraction => :environment do
     Etl::ExekutorExtraction.new.perform
+
+    EtlMailer.executor_status.deliver
+    Etl::ExekutorExtraction.update_last_run_time
   end
 
   desc 'Run this to download/update all lawyers from sak.sk page.'
@@ -55,6 +61,9 @@ namespace :etl do
       Dataset::DsLawyer.update_all(links[2] => false)
       Dataset::DsLawyer.where(sak_id: Etl::LawyerExtraction.new(links[0], links[1]).get_ids_from_downloads).update_all(links[2] => true)
     end
+
+    EtlMailer.lawyer_status.deliver
+    Etl::LawyerExtraction.update_last_run_time
   end
 
   desc 'Run this to download/update all lawyer partnerships and link lawyers to them.'

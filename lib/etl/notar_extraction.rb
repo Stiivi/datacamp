@@ -12,6 +12,10 @@ module Etl
       URI.encode "http://www.notar.sk/Úvod/Notárskecentrálneregistre/Notárskeúrady.aspx?__EVENTTARGET=dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1&__EVENTARGUMENT=Page$#{id}"
     end
 
+    def self.update_last_run_time
+      EtlConfiguration.find_by_name('notary_extraction').update_attribute(:last_run_time, Time.now)
+    end
+
     def download(id)
       Nokogiri::HTML(Typhoeus::Request.get(document_url(id)).body)
     end

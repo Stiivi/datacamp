@@ -2,19 +2,23 @@
 
 module Etl
   class ExekutorExtraction
-    
+
     def document_url
       "http://www.ske.sk/ExecutorList/"
     end
-    
+
     def download
       Nokogiri::HTML(Typhoeus::Request.get(document_url).body)
     end
-    
+
+    def self.update_last_run_time
+      EtlConfiguration.find_by_name('executor_extraction').update_attribute(:last_run_time, Time.now)
+    end
+
     def is_acceptable?(document)
       document.xpath("//div[@id='main']").present?
     end
-    
+
     def digest(doc)
       doc.xpath("//div[@id='main']/div").map do |list_item|
         address = (list_item.inner_html.match(/<strong>Adresa:<\/strong>(?<address> .*?)<br>/)[:address].strip rescue nil)
@@ -34,15 +38,15 @@ module Etl
         }
       end
     end
-    
-    
+
+
     def save(executors_hash)
       executors_hash.each do |executor_hash|
         executor = Kernel::DsExecutor.find_or_initialize_by_name_and_city(executor_hash[:name], executor_hash[:city])
         executor.update_attributes(executor_hash)
       end
     end
-    
+
     def perform
       document = download
       if is_acceptable?(document)
@@ -50,6 +54,6 @@ module Etl
         save(executors_hash)
       end
     end
-    
+
   end
 end

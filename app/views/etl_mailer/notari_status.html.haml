@@ -1,0 +1,12 @@
+- content_for :email_preview do
+  = "Download ds_notari bol dokonceny."
+
+%h4= 'Notari download report'
+%div
+  %strong= "Od posledného stiahnutia údajov #{l(@last_run_time)} bolo zmenenych #{@updated_record_ids.count} a vytvorených #{@created_record_ids.count} záznamov."
+  %p
+    Zoznam zmenených záznamov:
+    = @updated_record_ids.join(', ')
+  %p
+    Zoznam vytvorených záznamov:
+    = @created_record_ids.join(', ')

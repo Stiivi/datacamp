@@ -19,7 +19,7 @@ module Datacamp
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    
+
     config.autoload_paths += %W( #{Rails.root}/app/form_builders )
     config.autoload_paths += %W( #{Rails.root}/lib )
 
@@ -33,13 +33,13 @@ module Datacamp
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
-    
+
     config.time_zone = 'UTC'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    
+
     config.i18n.load_path += Dir[File.join(Rails.root, 'config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :sk
 
@@ -51,11 +51,11 @@ module Datacamp
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
+
     config.action_mailer.delivery_method = :sendmail
-    
+
     config.action_mailer.default_url_options = { host: 'datanest.fair-play.sk' }
-    
+
     config.after_initialize do
       DatasetDescription.all.each do |dataset_description|
         dataset_description.dataset.dataset_record_class.define_index do
@@ -66,7 +66,7 @@ module Datacamp
           dataset_description.visible_field_descriptions(:detail).each do |field|
             if field.data_type != :integer && field.data_type != :date
               next if field_count > 28
-              field_count += 1 
+              field_count += 1
               indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
             else
               has field.identifier.to_sym if field.identifier.present?
@@ -78,6 +78,8 @@ module Datacamp
         end
       end if DatasetDescription.table_exists?
     end
-    
+
+    config.admin_emails = ''
+
   end
 end
