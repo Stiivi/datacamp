@@ -32,7 +32,7 @@
       - if related_dataset_description.present?
         - if reflection_name.to_s.include?('morph')
           - if records.present? || (current_user.present? && current_user.has_privilege?(:edit_record))
-            %h1{:style => 'margin-bottom: 0;'}= t(".morhed_#{@dataset_description.identifier}_#{related_dataset_description.identifier}", default: t('.record_history'))
+            %h1{:style => 'margin-bottom: 0;'}= t(".morphed_#{@dataset_description.identifier}_#{related_dataset_description.identifier}", default: t('.record_history'))
             = render partial: 'related_table', locals: {fields: fields, records: records, related_dataset_description: related_dataset_description, reflection_name: reflection_name, macro: macro}
         - else
           %h1{:style => 'margin-bottom: 0;'}= related_dataset_description.title
