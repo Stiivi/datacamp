@@ -52,12 +52,21 @@ module Etl
         :fax => lawyer_partnership_table.xpath('./tr[10]/td[2]').inner_text.strip,
         :cell_phone => lawyer_partnership_table.xpath('./tr[11]/td[2]').inner_text.strip,
         :email => lawyer_partnership_table.xpath('./tr[12]/td[2]').inner_text.strip,
-        :website => (lawyer_partnership_table.xpath('./tr[13]/td[2]/a').first.attributes['href'].value rescue nil),
+        :website => (validate_url(lawyer_partnership_table.xpath('./tr[13]/td[2]/a').first.attributes['href'].value) rescue nil),
         :sak_id => sak_id,
         :ds_lawyers => lawyers,
         :url => @url,
         :is_part_of_import => true
       }
+    end
+
+    def validate_url(url)
+      parsed_url = URI.parse(url)
+      if parsed_url.class == URI::HTTP
+        url
+      else
+        nil
+      end
     end
 
     def save(lawyer_partnership_hash)

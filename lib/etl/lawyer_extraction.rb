@@ -46,11 +46,20 @@ module Etl
         :cell_phone => lawyer_table.xpath('./tr[8]/td[2]').inner_text.strip,
         :languages => lawyer_table.xpath('./tr[9]/td[2]').inner_text.strip,
         :email => lawyer_table.xpath('./tr[10]/td[2]').inner_text.strip,
-        :website => (lawyer_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value rescue nil),
+        :website => (validate_url(lawyer_table.xpath('./tr[11]/td[2]/a').first.attributes['href'].value) rescue nil),
         :url => @url,
         :sak_id => sak_id,
         :is_part_of_import => true
       }
+    end
+
+    def validate_url(url)
+      parsed_url = URI.parse(url)
+      if parsed_url.class == URI::HTTP
+        url
+      else
+        nil
+      end
     end
 
     def perform
