@@ -382,4 +382,9 @@ sk:
     delete_failed: 'Mazanie relácie zlyhalo.'
   records:
     show:
+      record_history: 'História záznamu'
       no_related_records: 'Nie sú príradené žiadne záznamy.'
+      no_related_records_lawyer_associates_lawyers: 'Tento koncipient nie je priradený k žiadnemu advokátovi.'
+      no_related_records_lawyers_lawyer_associates: 'Tento advokát nemá žiadnych koncipientov.'
+      no_related_records_lawyers_lawyer_partnerships: 'Tento advokát nie je členom advokátskeho spoločenstva.'
+
