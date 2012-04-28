@@ -46,7 +46,7 @@ module Etl
         :ico => lawyer_partnership_table.xpath('./tr[4]/td[2]').inner_text.strip,
         :dic => lawyer_partnership_table.xpath('./tr[5]/td[2]').inner_text.strip,
         :street => lawyer_partnership_table.xpath('./tr[6]/td[2]').inner_text.strip,
-        :city => lawyer_partnership_table.xpath('./tr[7]/td[2]').inner_text.strip,
+        :city => (lawyer_partnership_table.xpath('./tr[7]/td[2]').inner_text.strip.mb_chars.titleize rescue nil),
         :zip => lawyer_partnership_table.xpath('./tr[8]/td[2]').inner_text.gsub(/\s+/, '').strip,
         :phone => lawyer_partnership_table.xpath('./tr[9]/td[2]').inner_text.strip,
         :fax => lawyer_partnership_table.xpath('./tr[10]/td[2]').inner_text.strip,
