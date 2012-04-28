@@ -135,18 +135,18 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   def get_html_value(field_description, length = nil)
     value = get_formatted_value(field_description) rescue nil
-    value = truncate(value.to_s, :length => length, :omission => "&hellip;") if length
+    formatted_value = length.present? ? truncate(value.to_s, :length => length, :omission => "&hellip;") : value
 
     data_format = field_description.data_format
     if data_format.present?
      case data_format.name
      when "url"
-       value = "<a href=\"#{value}\">#{value}</a>".html_safe
+       formatted_value = "<a href=\"#{value}\">#{formatted_value}</a>".html_safe
      when "email"
-       value = "<a href=\"mailto:#{value}\">#{value}</a>".html_safe
+       formatted_value = "<a href=\"mailto:#{value}\">#{formatted_value}</a>".html_safe
      end
     end
-    return value
+    return formatted_value
   end
 
   def get_truncated_html_value(field_description)
