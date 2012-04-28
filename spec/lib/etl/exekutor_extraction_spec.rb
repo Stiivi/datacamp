@@ -32,6 +32,7 @@ describe Etl::ExekutorExtraction do
         executors.length.should == 299
         executors.first.should == {:name=>"JUDr. Ádám Atila", :street => 'Čajakova 5', :zip => '040 01', :city => 'Košice', :telephone=>"+421 55/6424552", :fax=>"+421 55/6424552", :email=>"atila.adam@ske.sk"}
         executors.last.should == {:name=>"JUDr. Žužová Lucia", :street => 'ul.Okružná 5', :zip => '071 01', :city => 'Michalovce', :telephone=>"056 6882891,-2", :fax=>"056 6882893", :email=>"lucia.zuzova@ske.sk"}
+        executors[282].should == {:name=>"JUDr. Vančík Emil", :street=>"Rákocziho 12", :zip=>"940 01", :city=>"Nové Zámky", :telephone=>"035/6401 729", :fax=>"035/6401 729", :email=>"evancik.exekutor@gmail.com"}
       end
     end
     

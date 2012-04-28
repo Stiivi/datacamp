@@ -24,7 +24,7 @@ module Etl
         address = (list_item.inner_html.match(/<strong>Adresa:<\/strong>(?<address> .*?)<br>/)[:address].strip rescue nil)
         if address
           street = address.split(',').first
-          city = address.split(',').last.match(/(?<city>[^ \d]+ \d+|[^ \d]+)$/)[:city] if address.split(',').last.match(/(?<city>[^ \d]+ \d+|[^ \d]+)$/).present?
+          city = address.split(',').last.match(/(?<zip>\d+ \d+|\d+)\s?(?<city>[^\d]+\d?)/)[:city] if address.split(',').last.match(/(?<zip>\d+ \d+|\d+)\s?(?<city>[^\d]+\d?)/).present?
           zip = address.split(',').last.match(/(?<zip>\d+ \d+|\d+)/)[:zip] if address.split(',').last.match(/(?<zip>\d+ \d+)/).present?
         end
         {
