@@ -27,7 +27,7 @@ attr_accessor :schema
 
 @@record_statuses = ["loaded","new","published","suspended", "deleted", 'morphed']
 
-@@available_data_types = [:string, :integer, :date, :text, :decimal]
+@@available_data_types = [:string, :integer, :date, :text, :decimal, :boolean]
 
 @@field_type_map = {
     :string => :varchar,

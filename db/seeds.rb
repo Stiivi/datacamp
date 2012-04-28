@@ -58,3 +58,6 @@ Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_descr
 
 # Executors for the ETL
 initialize_dataset('executors')
+
+
+DataFormat.find_or_create_by_name('flag')
