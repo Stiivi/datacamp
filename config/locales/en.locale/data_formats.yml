@@ -16,6 +16,7 @@ en:
         bytes: "Size in bytes"
         date: Date
         flag: Flag
+        zip: Zip
     data_format_arguments:
         number_1: Decimal places
         currency_1: Decimal places

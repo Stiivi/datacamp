@@ -111,6 +111,8 @@ class Dataset::DatasetRecord < ActiveRecord::Base
         value = number_to_percentage(value)
       when "bytes"
         value = number_to_human_size(value)
+      when 'zip'
+        value = value.present? ? "%05i" % value : value
       when "flag"
         if format_arg and format_arg != ""
           flag_values = format_arg.split(",")

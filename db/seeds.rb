@@ -61,3 +61,4 @@ initialize_dataset('executors')
 
 
 DataFormat.find_or_create_by_name('flag')
+DataFormat.find_or_create_by_name('zip')
