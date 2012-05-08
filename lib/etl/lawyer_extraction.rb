@@ -39,7 +39,7 @@ module Etl
         :title => match_data[:title],
         :lawyer_type => lawyer_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => lawyer_table.xpath('./tr[3]/td[2]').inner_text.strip,
-        :city => (lawyer_table.xpath('./tr[4]/td[2]').inner_text.strip.mb_chars.titleize rescue nil),
+        :city => (lawyer_table.xpath('./tr[4]/td[2]').inner_text.strip.mb_chars.upcase rescue nil),
         :zip => lawyer_table.xpath('./tr[5]/td[2]').inner_text.gsub(/\s+/, '').strip,
         :phone => lawyer_table.xpath('./tr[6]/td[2]').inner_text.strip,
         :fax => lawyer_table.xpath('./tr[7]/td[2]').inner_text.strip,
