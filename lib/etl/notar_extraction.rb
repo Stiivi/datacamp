@@ -121,7 +121,8 @@ module Etl
     end
 
     def self.activate_docs
-      Kernel::DsNotary.where(doc_id: get_active_docs).update_all(active: true)
+      Kernel::DsNotary.update_all(record_status: 'suspended')
+      Kernel::DsNotary.where(doc_id: get_active_docs).update_all(record_status: 'published')
     end
 
     def self.get_active_docs
