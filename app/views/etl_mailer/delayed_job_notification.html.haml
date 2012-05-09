@@ -1,0 +1,14 @@
+- content_for :email_preview do
+  = "Pri stahovani nastala fatalna chyba."
+
+%h4= 'Parser problem'
+%div
+  %strong= "Pri poslednom stiahnuti nastali nasledovne fatalne chyby."
+  - @failed_jobs.each do |failed_job|
+    %p
+      %strong Uloha:
+      = failed_job.handler
+      %br
+      %strong Chyba:
+      = failed_job.last_error.truncate(200)
+      %hr

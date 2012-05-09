@@ -4,7 +4,7 @@ require 'fileutils'
 
 module Etl
   class LawyerExtraction
-    attr_reader :url
+    attr_reader :url, :parent_url, :reset_url
 
     def initialize(url, reset_url = nil, cookie = nil, parent_url = nil, filter = nil)
       @url, @reset_url, @cookie, @parent_url, @filter = url, reset_url, cookie, parent_url, filter
@@ -88,8 +88,16 @@ module Etl
       downloads.flatten
     end
 
+    def parse_id
+      url.match(/\d+/)[0].to_i rescue nil
+    end
+
+    def self.map_ids(downloads)
+      downloads.map{ |d| d.parse_id }
+    end
+
     def get_ids_from_downloads
-      get_downloads.map{ |d| (d.url.match(/\d+/)[0].to_i rescue nil) }
+       Etl::LawyerExtraction.map_ids(get_downloads)
     end
 
     def parse_for_links(doc, reset_url, cookie, parent_url, filter)

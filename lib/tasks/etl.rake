@@ -15,6 +15,14 @@ namespace :etl do
     end
   end
 
+  desc 'sends a delayed job notification email'
+  task delayed_job_notification: :environment do
+    failed_jobs = Delayed::Job.where('last_error is not null')
+    if failed_jobs.present?
+      EtlMailer.delayed_job_notification(failed_jobs).deliver
+    end
+  end
+
   desc 'Run this to download/update notaries'
   task :notari_extraction => :environment do
     config = EtlConfiguration.find_by_name('notary_extraction')
@@ -26,17 +34,29 @@ namespace :etl do
 
   desc 'Run this to mark active notaries'
   task notari_activate: :environment do
-    Etl::NotarExtraction.activate_docs
+    activation_result = Etl::NotarExtraction.activate_docs
 
     EtlMailer.notari_status.deliver
+    if activation_result.present?
+      EtlMailer.notari_parser_problem(activation_result).deliver
+    end
+
     Etl::NotarExtraction.update_last_run_time
   end
 
   desc 'Run this to download/update executors'
   task :executor_extraction => :environment do
-    Etl::ExekutorExtraction.new.perform
+    executor_extraction = Etl::ExekutorExtraction.new
+    executor_extraction.perform
 
     EtlMailer.executor_status.deliver
+
+    published_count = Kernel::DsExecutor.where(record_status: 'published').count
+    elements_to_parse_count = executor_extraction.elements_to_parse_count
+    if published_count != elements_to_parse_count
+      EtlMailer.executor_parser_problem(published_count, elements_to_parse_count).deliver
+    end
+
     Etl::ExekutorExtraction.update_last_run_time
   end
 
@@ -63,6 +83,54 @@ namespace :etl do
     end
 
     EtlMailer.lawyer_status.deliver
+
+    # advokati
+    active_downloads = [
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event'],
+    ].map do |links|
+      Etl::LawyerExtraction.new(links[0], links[1]).get_downloads
+    end.flatten
+    active_ids = Etl::LawyerExtraction.map_ids(active_downloads)
+
+    Dataset::DsLawyer.update_all(record_status: 'suspended')
+    active_lawyers = Dataset::DsLawyer.where(sak_id: active_ids)
+    active_lawyers.update_all(record_status: 'published')
+    not_downloaded = active_ids.map{|ai| ai.to_s} - active_lawyers.select(:sak_id).map{|l| l.sak_id.to_s}
+    not_downloaded_downloads = active_downloads.select{|ad| not_downloaded.include?(ad.parse_id.to_s) }
+    if not_downloaded_downloads.present?
+      EtlMailer.lawyer_parser_problem(not_downloaded_downloads).deliver
+    end
+
+    #spolocenstva
+    active_downloads = Etl::LawyerPartnershipExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/formular/picker/event/page/',
+                                          'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/link/display/spolocnost/button/close/event').get_downloads
+    active_ids = Etl::LawyerPartnershipExtraction.map_ids(active_downloads)
+    Dataset::DsLawyerPartnership.update_all(record_status: 'suspended')
+    active_lawyer_partnerships = Dataset::DsLawyerPartnership.where(sak_id: active_ids)
+    active_lawyer_partnerships.update_all(record_status: 'published')
+    not_downloaded = active_ids.map{|ai| ai.to_s} - active_lawyer_partnerships.select(:sak_id).map{|l| l.sak_id.to_s}
+    not_downloaded_downloads = active_downloads.select{|ad| not_downloaded.include?(ad.parse_id.to_s) }
+    if not_downloaded_downloads.present?
+      EtlMailer.lawyer_partnerships_parser_problem(not_downloaded_downloads).deliver
+    end
+
+    #koncipienti
+    downloads = Etl::LawyerAssociateExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/list/formular/picker/event/page/',
+                                          'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/link/display/formular/button/close/event').get_downloads
+    active_ids = Etl::LawyerAssociateExtraction.map_ids(active_downloads)
+    Dataset::DsLawyerAssociate.update_all(record_status: 'suspended')
+    active_lawyer_associates = Dataset::DsLawyerAssociate.where(sak_id: active_ids)
+    active_lawyer_associates.update_all(record_status: 'published')
+    not_downloaded = active_ids.map{|ai| ai.to_s} - active_lawyer_associates.select(:sak_id).map{|l| l.sak_id.to_s}
+    not_downloaded_downloads = active_downloads.select{|ad| not_downloaded.include?(ad.parse_id.to_s) }
+    if not_downloaded_downloads.present?
+      EtlMailer.lawyer_associates_parser_problem(not_downloaded_downloads).deliver
+    end
+
+
+
+
     Etl::LawyerExtraction.update_last_run_time
   end
 

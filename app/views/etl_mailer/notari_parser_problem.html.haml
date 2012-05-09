@@ -1,0 +1,12 @@
+- content_for :email_preview do
+  = "Pri stahovani exekutorov sa vyskytol problem."
+
+%h4= 'Exekutori download problem'
+%div
+  %strong= "Pri poslednom stiahnuti najskor neboli stiahnute vsetky udaje."
+  %p
+    Zaznamy, ktore neboli stihanute:
+    - @activation_result.map do |result|
+      = link_to result, Etl::NotarExtraction.new(nil,nil,nil).document_url(result)
+      |
+

@@ -4,7 +4,7 @@ require 'fileutils'
 
 module Etl
   class LawyerAssociateExtraction
-    attr_reader :url
+    attr_reader :url, :reset_url, :parent_url
     
     def initialize(url, reset_url = nil, cookie = nil, parent_url = nil, filter = nil)
       @url, @reset_url, @cookie, @parent_url, @filter = url, reset_url, cookie, parent_url, filter
@@ -61,6 +61,18 @@ module Etl
     def save(lawyer_associate_hash)
       lawyer_associate = Dataset::DsLawyerAssociate.find_or_initialize_by_sak_id(lawyer_associate_hash[:sak_id])
       lawyer_associate.update_attributes!(lawyer_associate_hash)
+    end
+
+    def parse_id
+      url.match(/\d+/)[0].to_i rescue nil
+    end
+
+    def self.map_ids(downloads)
+      downloads.map{ |d| d.parse_id }
+    end
+
+    def get_ids_from_downloads
+       Etl::LawyerExtraction.map_ids(get_downloads)
     end
     
     def get_downloads

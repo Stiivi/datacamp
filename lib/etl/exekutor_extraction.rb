@@ -19,6 +19,10 @@ module Etl
       document.xpath("//div[@id='main']").present?
     end
 
+    def elements_to_parse_count
+      download.xpath("//div[@id='main']/div").count
+    end
+
     def digest(doc)
       doc.xpath("//div[@id='main']/div").map do |list_item|
         address = (list_item.inner_html.match(/<strong>Adresa:<\/strong>(?<address> .*?)<br>/)[:address].strip rescue nil)
@@ -41,10 +45,13 @@ module Etl
 
 
     def save(executors_hash)
-      executors_hash.each do |executor_hash|
+      Kernel::DsExecutor.update_all(record_status: 'suspended')
+      active_executor_ids = executors_hash.map do |executor_hash|
         executor = Kernel::DsExecutor.find_or_initialize_by_name_and_city(executor_hash[:name], executor_hash[:city])
         executor.update_attributes(executor_hash)
+        executor.id
       end
+      Kernel::DsExecutor.where(_record_id: active_executor_ids).update_all(record_status: 'published')
     end
 
     def perform

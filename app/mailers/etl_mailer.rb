@@ -13,12 +13,20 @@ class EtlMailer < ActionMailer::Base
     @created_record_ids = Kernel::DsNotary.where('created_at > ?', @last_run_time).map(&:_record_id)
     mail(to: Datacamp::Application.config.admin_emails, subject: "Notari download report.")
   end
+  def notari_parser_problem(activation_result)
+    @activation_result = activation_result
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Notari parser problem.")
+  end
 
   def executor_status
     @last_run_time = EtlConfiguration.find_by_name('executor_extraction').last_run_time || Time.now
     @updated_record_ids = Dataset::DcUpdate.where(updatable_type: 'Kernel::DsExecutor').where('updated_at > ?', @last_run_time).map(&:updatable_id).uniq
     @created_record_ids = Kernel::DsExecutor.where('created_at > ?', @last_run_time).map(&:_record_id)
     mail(to: Datacamp::Application.config.admin_emails, subject: "Exekutori download report.")
+  end
+  def executor_parser_problem(actual_count, to_parse_count)
+    @actual_count, @to_parse_count = actual_count, to_parse_count
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Exekutori download problem.")
   end
 
   def lawyer_status
@@ -34,5 +42,22 @@ class EtlMailer < ActionMailer::Base
     @partnership_created_record_ids = Kernel::DsLawyerPartnership.where('created_at > ?', @last_run_time).map(&:_record_id)
 
     mail(to: Datacamp::Application.config.admin_emails, subject: "Pravnici download report.")
+  end
+  def lawyer_parser_problem(activation_result)
+    @activation_result = activation_result
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Advokati parser problem.")
+  end
+  def lawyer_partnerships_parser_problem(activation_result)
+    @activation_result = activation_result
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Spolocenstva parser problem.")
+  end
+  def lawyer_associates_parser_problem(activation_result)
+    @activation_result = activation_result
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Koncipienti parser problem.")
+  end
+
+  def delayed_job_notification(failed_jobs)
+    @failed_jobs = failed_jobs
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Parser crashed.") 
   end
 end
