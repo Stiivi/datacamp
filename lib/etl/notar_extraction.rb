@@ -84,8 +84,7 @@ module Etl
         :zip => zip,
         :doc_id => id,
         :url => document_url(id),
-        :ds_notary_employees_attributes => employees,
-        :active => false
+        :ds_notary_employees_attributes => employees
       }
     end
 
