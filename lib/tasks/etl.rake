@@ -116,7 +116,7 @@ namespace :etl do
     end
 
     #koncipienti
-    downloads = Etl::LawyerAssociateExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/list/formular/picker/event/page/',
+    active_downloads = Etl::LawyerAssociateExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/list/formular/picker/event/page/',
                                           'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/link/display/formular/button/close/event').get_downloads
     active_ids = Etl::LawyerAssociateExtraction.map_ids(active_downloads)
     Dataset::DsLawyerAssociate.update_all(record_status: 'suspended')
