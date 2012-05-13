@@ -152,7 +152,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   end
 
   def get_truncated_html_value(field_description)
-    get_html_value(field_description, 100)
+    get_html_value(field_description, 100).html_safe
   end
 
   def search_string_for_field_description(field_description)
