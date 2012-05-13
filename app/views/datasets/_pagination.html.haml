@@ -1,6 +1,6 @@
 .fl
   = will_paginate @records, :previous_label => t("global.previous"), :next_label => t("global.next")
-- if has_privilege?(:data_management)
+- if has_privilege?(:power_user)
   .filters.fr= render :partial => "datasets/admin/filter"
 .fr
   - if current_user

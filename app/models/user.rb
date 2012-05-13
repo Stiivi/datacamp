@@ -84,6 +84,9 @@ class User < ActiveRecord::Base
     @access_rights ||= self.access_rights.collect(&:identifier)
     return true if @access_rights.include?(right.to_s)
 
+    @access_roles ||= self.access_roles.collect(&:identifier)
+    return true if @access_roles.include?(right.to_s)
+
     # Check for rights in roles
     @rights_from_roles ||= (self.access_roles.collect do |role|
       role.access_rights.collect(&:identifier)
