@@ -1,4 +1,4 @@
-en: 
+en:
     n_a: 'n/a'
     sort: Sort
     finish_sort: Finish sorting
@@ -36,7 +36,9 @@ en:
     profile: 
         edit_my_profile: Edit my profile
         create_new_password: Create new password
-    comments: 
+    comments:
+        created_notice: 'The comment was created.'
+        created_error_notice: 'An error has occured while creating your comment. Please try again. If the problem persists, please contact the administrator.'
         "no": "No"
         "yes": "Yes"
         neutral: Neutral

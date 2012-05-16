@@ -26,7 +26,9 @@ sk:
     last_update: Posledná úprava
     edit: Úprava kategórie
     destroy: Zmazať
-  comments: 
+  comments:
+    created_notice: 'Komentár vytvorený.'
+    created_error_notice: 'Nastala chyba pri vytváraní komentáru. Skúste prosim znova. Ak tento problém pretrváva, kontaktujte administrátora.'
     neutral: Neutral
     new: "Nový komentár"
     ? "no"

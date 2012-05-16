@@ -42,9 +42,9 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(params[:comment].merge(user: current_user))
     if comment.save
-      redirect_to comment_return_path(comment), notice: 'Successfull post!'
+      redirect_to comment_return_path(comment), notice: I18n.t('comments.created_notice')
     else
-      redirect_to root_url, notice: 'An error occured'
+      redirect_to root_url, notice: I18n.t('comments.created_error_notice')
     end
   end
 
