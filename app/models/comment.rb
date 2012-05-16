@@ -9,6 +9,8 @@ class Comment < ActiveRecord::Base
   
   default_scope :conditions => { :is_suspended => nil }
 
+  validates_presence_of :user, :dataset_description
+
   def self.find_include_suspended conditions=''
     with_exclusive_scope() do
       where(conditions)

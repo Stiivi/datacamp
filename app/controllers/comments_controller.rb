@@ -38,19 +38,16 @@ class CommentsController < ApplicationController
       @comment.record_id = @parent_comment.record_id
     end
   end
-  
+
   def create
-    @comment = Comment.new
-    @comment.update_attributes(params[:comment])
-    @comment.user = current_user
-    @comment.save
-    
-    respond_to do |wants|
-      wants.html { redirect_to comment_return_path(@comment) }
-      wants.js
+    comment = Comment.new(params[:comment].merge(user: current_user))
+    if comment.save
+      redirect_to comment_return_path(comment), notice: 'Successfull post!'
+    else
+      redirect_to root_url, notice: 'An error occured'
     end
   end
-  
+
   def edit
     @comment = Comment.find_include_suspended(:id=>params[:id]).first
   end
