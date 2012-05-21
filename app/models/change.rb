@@ -23,6 +23,6 @@ class Change < ActiveRecord::Base
   end
   
   def user_name
-    user.present? ? user.name : I18n.t('n_a')
+    user.present? ? user.email : I18n.t('n_a')
   end
 end

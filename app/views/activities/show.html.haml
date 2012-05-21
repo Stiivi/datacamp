@@ -33,7 +33,9 @@
         - if @activity.change_details[:update_conditions].present?
           %tr
             %td.label= t(".batch_records")
-            %td= @activity.change_details[:update_conditions][:_record_id]
+            %td
+              = link_to "#{t('global.show')}/#{t('global.hide')}", nil, class: 'next_toggler'
+              %div.hidden= @activity.change_details[:update_conditions][:_record_id]
         - if @activity.change_details[:batch_file].present?
           %tr
             %td.label= t(".batch_file")

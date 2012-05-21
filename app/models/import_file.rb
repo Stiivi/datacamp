@@ -23,10 +23,10 @@ class ImportFile < ActiveRecord::Base
 
   def import_into_dataset(column_mapping, current_user=nil)
     self.update_attributes(count_of_imported_lines: 0, status: 'in_progress')
-    
+
     saved_ids = []
     count = 0
-    
+
     csv_file.parse_all_lines do |row|
       record = prepare_record
       column_mapping.each do |index, field_desription_id|
@@ -37,7 +37,7 @@ class ImportFile < ActiveRecord::Base
       if record.save
         count += 1
         saved_ids << record._record_id
-        
+
         if count - self.count_of_imported_lines > 100
           if self.reload.status != 'canceled'
             self.update_attributes(count_of_imported_lines: count, status: 'in_progress')
@@ -47,12 +47,18 @@ class ImportFile < ActiveRecord::Base
         end
       end
     end
-    
+
     self.update_attributes(count_of_imported_lines: count, status: 'success') if !self.new_record? && self.reload.status != 'canceled'
-      
-    Change.create(change_type: Change::BATCH_INSERT, user: current_user, change_details: {update_conditions: {_record_id: saved_ids}, update_count: count, batch_file: self.path_file_name})
+
+    Change.create(change_type: Change::BATCH_INSERT,
+                  user: current_user,
+                  change_details: {update_conditions: {_record_id: saved_ids},
+                                   update_count: count,
+                                   batch_file: self.path_file_name},
+                  dataset_description: dataset_description
+                 )
   end
-    
+
   def default_import_format
     if self.file_template.present?
       self.file_template

@@ -170,6 +170,7 @@ sk:
     save_changes: "Uložiť zmeny"
     search: "Hľadať v databázach"
     show: Zobraziť
+    hide: Skryť
     show_all: "Zobraziť všetko"
     source: Zdroj
     status: Stav

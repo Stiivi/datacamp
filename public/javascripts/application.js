@@ -90,4 +90,9 @@ $(function(){
 	  $(this).prev().toggle();
 	  return false;
 	});
+ 	$('.next_toggler').click(function(){
+	  $(this).next().toggle();
+	  return false;
+	});
+
 });

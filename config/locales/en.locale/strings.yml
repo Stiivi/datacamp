@@ -294,6 +294,7 @@ en:
         settings: Settings
         show_all: Show All
         show: View
+        hide: Hide
         source: Source
         status: Status
         submit: Submit
