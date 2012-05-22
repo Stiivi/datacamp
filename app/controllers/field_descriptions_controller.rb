@@ -22,6 +22,7 @@
 class FieldDescriptionsController < ApplicationController
   before_filter :get_dataset_description
   protect_from_forgery :except => 'order'
+  privilege_required :edit_dataset_description
   
   def index
   end
