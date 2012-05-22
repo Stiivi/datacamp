@@ -25,6 +25,13 @@ sk:
               too_short: "je príliš krátke"
             accepts_terms:
               accepted: 'je zaškrtnuté'
+        field_description:
+          attributes:
+            min_width:
+              not_a_number: 'Zadali ste nečíselnú hodnotu'
+    attributes:
+      field_description:
+        min_width: 'Šírka v px'
   errors:
     template: 
       body: "Prosím pozrite si tieto chyby a opravte príslušné polia"

@@ -8,7 +8,7 @@
   - @records.each do |record|
     %tr{:class => cycle("odd", "even")}
       - @field_descriptions.each do |field_description|
-        %td
+        %td{style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""}
           - value = record.get_truncated_html_value(field_description)
           - unless field_description.reference.blank?
             = link_to(value, new_search_path(:query_string => record.search_string_for_field_description(field_description)))

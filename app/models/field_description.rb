@@ -11,6 +11,7 @@ class FieldDescription < ActiveRecord::Base
   validates_presence_of :identifier
   validates_uniqueness_of :identifier, :scope => :dataset_description_id
   validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
+  validates_numericality_of :min_width, if: lambda { min_width.present? }
 
   after_save :update_data_type
   after_create :setup_in_database

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120521110136) do
+ActiveRecord::Schema.define(:version => 20120522085434) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(:version => 20120521110136) do
     t.string  "data_format_argument"
     t.string  "reference"
     t.boolean "is_visible_in_relation", :default => true
+    t.integer "min_width"
   end
 
   create_table "import_files", :force => true do |t|
