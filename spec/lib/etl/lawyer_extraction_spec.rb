@@ -89,7 +89,16 @@ describe Etl::LawyerExtraction do
         lawyer.should == {:original_name=>"BEZNÁKOVÁ Soňa", :first_name=>"Soňa", :last_name=>"Beznáková", :title=>nil, :lawyer_type=>"Advokát", :street=>"Štúrova 76/11", :city=>"DUBNICA NAD VÁHOM", :zip=>"01841", :phone=>"", :fax=>"", :cell_phone=>"", :languages=>"", :email=>"", :website=>"http://", :url=>"https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/20576/link/display/event", :sak_id => 20576, is_part_of_import:true}
       end
     end
-    
+
+    it 'should get information from a document' do
+      VCR.use_cassette('advokat_129463') do
+        extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/129463/link/display/event", 'blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event', 'JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/4190')
+        document = extractor.download
+        lawyer = extractor.digest(document)
+        lawyer.should == {:original_name=>"TORSHER Daniel Edward", :first_name=>"Daniel", :last_name=>"Torsher", :middle_name=>"Edward", :title=>nil, :lawyer_type=>"Zahraničný advokát", :street=>"Hviezdoslavovo nám. 13", :city=>'BRATISLAVA 1', :zip=>"81102", :phone=>"02/59291111", :fax=>"02/59291210", :cell_phone=>"", :languages=>"anglicky", :email=>"", :website=>nil, :url=>"https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/129463/link/display/event", :sak_id=>129463, :is_part_of_import=>true}
+      end
+    end
+
     it 'should not save the same record with a different url twice' do
       lawyer = stub(update_attributes!: true)
       Kernel::DsLawyer.should_receive(:find_or_initialize_by_sak_id).exactly(2).times.and_return(lawyer)
