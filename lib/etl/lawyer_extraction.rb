@@ -30,12 +30,14 @@ module Etl
       lawyer_table = doc.xpath("//div[@class='section']/table[@class='filter']").first
 
       original_name = lawyer_table.xpath('./tr[1]/td[2]').inner_text.strip
-      match_data = original_name.match(/(?<last_name>[^\s]+)\s+(?<first_name>[^\s]+)(\s+(?<title>[^\s]+))*/)
+      match_data = original_name.match(/(?<last_name>[^\s]+)\s+(?<first_name>[^\s]+)?(\s+(?<middle_name>.+[^,\.](?=\s|\z)))*(\s+(?<title>.{2,}\.))?/)
+
       sak_id = (@url.match(/\d+/)[0].to_i rescue nil)
       {
         :original_name => original_name,
         :first_name => "#{match_data[:first_name].mb_chars.capitalize}",
         :last_name => "#{match_data[:last_name].mb_chars.capitalize}",
+        :middle_name => "#{match_data[:middle_name].mb_chars.capitalize if match_data[:middle_name].present?}",
         :title => match_data[:title],
         :lawyer_type => lawyer_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => lawyer_table.xpath('./tr[3]/td[2]').inner_text.strip,
