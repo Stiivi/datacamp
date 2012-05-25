@@ -22,41 +22,46 @@ class ImportFile < ActiveRecord::Base
   end
 
   def import_into_dataset(column_mapping, current_user=nil)
-    self.update_attributes(count_of_imported_lines: 0, status: 'in_progress')
+    if status == 'ready'
+      self.update_attributes(count_of_imported_lines: 0, status: 'in_progress')
 
-    saved_ids = []
-    count = 0
+      saved_ids = []
+      count = 0
 
-    csv_file.parse_all_lines do |row|
-      record = prepare_record
-      column_mapping.each do |index, field_desription_id|
-        next unless field_desription_id
-        field_description = dataset_description_field_descriptions.select{|fd| fd.id == field_desription_id.to_i}.first
-        record[field_description.identifier] = row[index.to_i].to_s if field_description.present?
-      end
-      if record.save
-        count += 1
-        saved_ids << record._record_id
+      csv_file.parse_all_lines do |row|
+        record = prepare_record
+        column_mapping.each do |index, field_desription_id|
+          next unless field_desription_id
+          field_description = dataset_description_field_descriptions.select{|fd| fd.id == field_desription_id.to_i}.first
+          record[field_description.identifier] = row[index.to_i].to_s if field_description.present?
+        end
+        if record.save
+          count += 1
+          saved_ids << record._record_id
 
-        if count - self.count_of_imported_lines > 100
-          if self.reload.status != 'canceled'
-            self.update_attributes(count_of_imported_lines: count, status: 'in_progress')
-          else
-            break
+          if count - self.count_of_imported_lines > 100
+            if self.reload.status != 'canceled'
+              self.update_attributes(count_of_imported_lines: count, status: 'in_progress')
+            else
+              break
+            end
           end
         end
       end
+
+      self.update_attributes(count_of_imported_lines: count, status: 'success') if !self.new_record? && self.reload.status != 'canceled'
+
+      Change.create(change_type: Change::BATCH_INSERT,
+                    user: current_user,
+                    change_details: {update_conditions: {_record_id: saved_ids},
+                                     update_count: count,
+                                     batch_file: self.path_file_name},
+                    dataset_description: dataset_description
+                   )
+    else
+      # This should never happen
+      self.update_attribute(:status, 'failed')
     end
-
-    self.update_attributes(count_of_imported_lines: count, status: 'success') if !self.new_record? && self.reload.status != 'canceled'
-
-    Change.create(change_type: Change::BATCH_INSERT,
-                  user: current_user,
-                  change_details: {update_conditions: {_record_id: saved_ids},
-                                   update_count: count,
-                                   batch_file: self.path_file_name},
-                  dataset_description: dataset_description
-                 )
   end
 
   def default_import_format
