@@ -40,6 +40,7 @@ Given /^a record with ico field exists for dataset "([^"]*)"$/ do |dataset_descr
 end
 
 When /^I submit the company data form with the show results option$/ do
+  visit new_data_repair_path(locale: :en)
   step %{I select "organisations" from "Regis table"}
   step %{I select "ico" from "Regis ico column"}
   step %{I select "name" from "Regis name column"}

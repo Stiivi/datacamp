@@ -41,11 +41,8 @@ class SessionsController < ApplicationController
       # reset_session
       self.current_user = user
       # Set locale
-      if user.loc
-        session[:locale] = user.loc
-        I18n.locale = user.loc
-      end
-      new_cookie_flag = (params[:remember_me] == "1")
+      I18n.locale = user.loc if user.loc?
+      new_cookie_flag = true
       handle_remember_cookie! new_cookie_flag
       flash[:notice] = t("users.logged_in")
       return redirect_to params[:return] || flash[:return] || '/'

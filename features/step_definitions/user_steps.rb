@@ -14,14 +14,14 @@ Given /^I am a new, authenticated user "([^"]*)" with password "([^"]*)"$/ do |u
 end
 
 Given /^I am loged in as user "([^"]*)" with password "([^"]*)"$/ do |username, password|
-  step %{I go to the login page}
+  visit new_session_path(locale: :en)
   step %{I fill in "Username" with "#{username}"}
   step %{I fill in "Password" with "#{password}"}
   step %{I press "Submit"}
 end
 
 When /^I go and change my password to "([^"]*)"$/ do |password|
-  step %{I go to the account page}
+  visit account_path(locale: :en)
   step %{I fill in "Password" with "#{password}"}
   step %{I fill in "Password confirmation" with "#{password}"}
   step %{I press "Save"}

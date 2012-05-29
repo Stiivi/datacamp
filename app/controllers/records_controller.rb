@@ -28,6 +28,8 @@ class RecordsController < ApplicationController
   privilege_required :create_record, :only => [:new, :create]
   
   def show
+    expires_in 5.minutes
+
     # Field descriptions
     if logged_in? && current_user.has_privilege?(:power_user)
       @field_descriptions = @dataset_description.field_descriptions

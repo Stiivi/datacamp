@@ -28,6 +28,7 @@ class DatasetsController < ApplicationController
   helper_method :has_filters?
   
   def index
+    expires_in 5.minutes, public: true
     @all_dataset_descriptions = DatasetDescription.where(:is_active => true)
     @dataset_categories = DatasetCategory.order('dataset_categories.position, dataset_descriptions.position').includes(:dataset_descriptions => :translations).where("dataset_descriptions.is_active = 1")
     respond_to do |wants|
@@ -36,7 +37,9 @@ class DatasetsController < ApplicationController
     end
   end
   
-  def show    
+  def show
+    expires_in 5.minutes, public: true
+
     @dataset_description = DatasetDescription.find_by_id!(params[:id])
     @field_descriptions  = @dataset_description.visible_field_descriptions
     @dataset             = @dataset_description.dataset

@@ -14,7 +14,7 @@ Given /^two published datasets with data exist$/ do
 end
 
 When /^I setup a relation between the datasets$/ do
-  visit relations_dataset_description_path(@lawyers)
+  visit relations_dataset_description_path(@lawyers, locale: :en)
   click_button('+')
   select(@lawyer_associates.identifier, :from => 'Relationship table')
   click_button('Save relations')
@@ -22,7 +22,7 @@ end
 
 When /^I setup relations for both sides of the datasets$/ do
   step %{I setup a relation between the datasets}
-  visit relations_dataset_description_path(@lawyer_associates)
+  visit relations_dataset_description_path(@lawyer_associates, locale: :en)
   click_button('+')
   select(@lawyers.identifier, :from => 'Relationship table')
   click_button('Save relations')
@@ -33,13 +33,13 @@ When /^setup a relationship between the data$/ do
 end
 
 Then /^I should see related data in on the detail page of a record$/ do
-  visit dataset_record_path(@lawyers, @lawyers.dataset.dataset_record_class.first)
+  visit dataset_record_path(@lawyers, @lawyers.dataset.dataset_record_class.first, locale: :en)
   page.should have_content(@lawyer_associates.dataset.dataset_record_class.first.original_name)
 end
 
 Then /^I should see related data in on the detail page of a record belonging to the second dataset$/ do
   step %{I should see related data in on the detail page of a record}
-  visit dataset_record_path(@lawyer_associates, @lawyer_associates.dataset.dataset_record_class.first)
+  visit dataset_record_path(@lawyer_associates, @lawyer_associates.dataset.dataset_record_class.first, locale: :en)
   page.should have_content(@lawyers.dataset.dataset_record_class.first.original_name)
 end
 
@@ -179,12 +179,12 @@ end
 
 When /^I display records for dataset "([^"]*)"$/ do |dataset_description_identifier|
   dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
-  visit dataset_path(dataset_description)
+  visit dataset_path(dataset_description, locale: :en)
 end
 
 When /^I display page (\d+) of sorted records for dataset "([^"]*)"$/ do |page, dataset_description_identifier|
   dataset_description = DatasetDescription.find_by_identifier(dataset_description_identifier)
-  visit dataset_path(dataset_description, :page => page, :sort => 'test')
+  visit dataset_path(dataset_description, page: page, sort: 'test', locale: :en)
 end
 
 When /^I batch edit selected records for a dataset to suspended$/ do

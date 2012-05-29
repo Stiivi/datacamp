@@ -3,7 +3,7 @@ Given /^some recent activity exists$/ do
 end
 
 When /^I display the recent activities$/ do
-  visit activities_path
+  visit activities_path(locale: :en)
 end
 
 Then /^I should see all of the recent activity that is in the database$/ do

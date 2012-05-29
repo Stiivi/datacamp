@@ -21,13 +21,14 @@ class ApplicationController < ActionController::Base
   helper :all
   layout "frontend_main"
 
-  def set_locale
-    if session[:locale].blank?
-      I18n.locale = :sk
-    else
-      I18n.locale = session[:locale].to_sym
-    end
+  def default_url_options(options={})
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    { locale: I18n.locale != :sk ? I18n.locale : nil }
   end
+
+  def set_locale
+    I18n.locale = params[:locale] || :sk
+   end
 
   def session_init
     @current_session = Session.new_from_session(session, request)

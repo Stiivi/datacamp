@@ -20,12 +20,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class PagesController < ApplicationController
+  before_filter lambda {
+    expires_in 5.minutes, public: true
+  }
+
   def show
-    begin
-      @page = Page.find_by_page_name!(params[:id])
-    rescue Exception => e
-      @page = Page.find_by_id!(params[:id])
-    end
-    @blocks = @page.blocks.paginate :all, :conditions => {:is_enabled => true}, :page => params[:page], :order => "name", :per_page => 9
+    @page = Page.find_by_page_name(params[:id]) || Page.find_by_id(params[:id])
+    @blocks = @page.blocks.paginate(
+      :all,
+      conditions: {is_enabled: true},
+      page: params[:page],
+      order: :name,
+      per_page: 9
+    )
   end
 end
