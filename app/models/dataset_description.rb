@@ -143,6 +143,11 @@ class DatasetDescription < ActiveRecord::Base
     Dataset::DcUpdate.find_all_by_updatable_type(dataset_record_class.name)
   end
 
+  def fetch_relations
+    drc = dataset_record_class
+    Dataset::DcRelation.where('relatable_left_type = ? or relatable_right_type = ?', drc.name, drc.name)
+  end
+
 private
   def log_changes
     change_details = []

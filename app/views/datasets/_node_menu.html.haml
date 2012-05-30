@@ -10,6 +10,13 @@
       %a{:href => '#search'}= t("global.search_current")
   %ul.tabs.small.clearfix.fr
     - if logged_in?
+      %li= link_to( t('dataset.relations_xml'), |
+                    url_for(controller: :api, |
+                            action: :dataset_relations, |
+                            api_key: @current_user.api_key.key, |
+                            dataset_id: @dataset_description.id, |
+                            format: :xml), |
+                    rel: 'download-relations')
       %li= link_to( t('dataset.changes_xml'), |
                     url_for( controller: :api, |
                             action: :dataset_changes, |

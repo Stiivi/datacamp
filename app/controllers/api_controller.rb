@@ -150,6 +150,15 @@ class ApiController < ApplicationController
     end
   end
 
+  def dataset_relations
+    dataset = find_dataset(params[:dataset_id].to_i) || return
+    relations = dataset.fetch_relations
+
+    respond_to do |format|
+      format.xml { render xml: relations.to_xml }
+    end
+  end
+
   def render_records_in_dataset(dataset, output)
     dataset_class = dataset.dataset.dataset_record_class
     flush_counter = 0

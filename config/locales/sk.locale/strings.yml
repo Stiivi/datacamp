@@ -124,6 +124,10 @@ sk:
     type: Typ
     uninitialized_datasets: "Neinicialozované súbory údajov"
     visibility_settings: "Nastavenia zobrazenia"
+    csv_export: 'Obsah CSV'
+    description_xml: 'Popis XML'
+    changes_xml: 'Zmeny XML'
+    relations_xml: 'Relácie XML'
   favorites: 
     confirm_deletion: "Naozaj chcete odstrániť túto obľúbenú položku?"
     remove: (odstrániť)
