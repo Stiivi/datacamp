@@ -30,15 +30,35 @@ module Etl
       lawyer_table = doc.xpath("//div[@class='section']/table[@class='filter']").first
 
       original_name = lawyer_table.xpath('./tr[1]/td[2]').inner_text.strip
-      match_data = original_name.match(/(?<last_name>[A-ZÁ-Ž\-\s]+)\s+(?<first_name>[^\s]+)?(\s+(?<middle_name>.+[^,\.](?=\s|\z)))*(\s+(?<title>.{2,}\.))?/)
+      name_ary = original_name.split
+      match_data = {last_name: [], first_name: [], middle_name: [], title: []}
+      name_ary.each_with_index do |name_part, index|
+        if [0,1].include?(index)
+          if name_part.match(/[A-ZŘÁÉÍÓÚÝČĎĽŇŠŤŽÔÄ]+(?=\s|\z)/)
+            match_data[:last_name] << name_part.mb_chars.titleize
+          elsif name_part.match(/(ova|ová)(?=\s|\z)/)
+            match_data[:last_name] << name_part.mb_chars.titleize
+          elsif index == 1
+            match_data[:first_name] << name_part.mb_chars.titleize
+          end
+        elsif name_part.match(/\.|,/)
+          match_data[:title] << name_part
+        elsif index == 2 && match_data[:last_name].length == 2
+          match_data[:first_name] << name_part
+        elsif match_data[:title].present?
+          match_data[:title] << name_part
+        else
+          match_data[:middle_name] << name_part.mb_chars.titleize
+        end
+      end
 
       sak_id = (@url.match(/\d+/)[0].to_i rescue nil)
       {
         :original_name => original_name,
-        :first_name => "#{match_data[:first_name].mb_chars.titleize}",
-        :last_name => "#{match_data[:last_name].mb_chars.titleize}",
-        :middle_name => "#{match_data[:middle_name].mb_chars.titleize if match_data[:middle_name].present?}",
-        :title => match_data[:title],
+        first_name: match_data[:first_name].join(' '),
+        last_name: match_data[:last_name].join(' '),
+        middle_name: match_data[:middle_name].join(' '),
+        title: match_data[:title].join,
         :lawyer_type => lawyer_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => lawyer_table.xpath('./tr[3]/td[2]').inner_text.strip,
         :city => (lawyer_table.xpath('./tr[4]/td[2]').inner_text.strip.mb_chars.upcase rescue nil),
