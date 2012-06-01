@@ -33,22 +33,14 @@ module Etl
       name_ary = original_name.split
       match_data = {last_name: [], first_name: [], middle_name: [], title: []}
       name_ary.each_with_index do |name_part, index|
-        if [0,1].include?(index)
-          if name_part.match(/[A-ZŘÁÉÍÓÚÝČĎĽŇŠŤŽÔÄ]+(?=\s|\z)/)
-            match_data[:last_name] << name_part.mb_chars.titleize
-          elsif name_part.match(/(ova|ová)(?=\s|\z)/)
-            match_data[:last_name] << name_part.mb_chars.titleize
-          elsif index == 1
-            match_data[:first_name] << name_part.mb_chars.titleize
-          end
-        elsif name_part.match(/\.|,/)
-          match_data[:title] << name_part
-        elsif index == 2 && match_data[:last_name].length == 2
+        if (index+1 != name_ary.length) && (name_part.match(/[A-ZŘÁÉÍÓÚÝČĎĽŇŠŤŽÔÄů]+(?=\s|\z)/) || name_part.match(/(ova|ová|ska|ská)(?=\s|\z)/))
+          match_data[:last_name] << name_part.mb_chars.titleize
+        elsif match_data[:first_name].blank?
           match_data[:first_name] << name_part
-        elsif match_data[:title].present?
-          match_data[:title] << name_part
-        else
-          match_data[:middle_name] << name_part.mb_chars.titleize
+        elsif mat = name_part.match(/(?<title>dr\.jur\.|^et$|DDr|Doc|JUD(r|R)|CSc|Ph\.D|PhD|D\.Phil|DPhil|Dott|Dr|LL\.M|Ing|Mgr|JCLic|Bc|Ph\.D|MBA|MPH|MVDr|Prof|RNDr|DiS|Dott|^ssa$|DrSc|M\.E\.S|MBLT|MUDr|PaedDr|Mag|BA|(p|P)rom\.|(p|P)ráv\.|M\.A\.|(i|I)(u|U)(r|R)\.)(\.?)/)
+          match_data[:title] << name_part if mat[:title].present?
+        elsif !name_part.match(/(st|ml)\.|\./)
+          match_data[:middle_name] << name_part
         end
       end
 
@@ -57,8 +49,8 @@ module Etl
         :original_name => original_name,
         first_name: match_data[:first_name].join(' '),
         last_name: match_data[:last_name].join(' '),
-        middle_name: match_data[:middle_name].join(' '),
-        title: match_data[:title].join,
+        middle_name: match_data[:middle_name].present? ? match_data[:middle_name].join(' ') : nil,
+        title: match_data[:title].join(' '),
         :lawyer_type => lawyer_table.xpath('./tr[2]/td[2]').inner_text.strip,
         :street => lawyer_table.xpath('./tr[3]/td[2]').inner_text.strip,
         :city => (lawyer_table.xpath('./tr[4]/td[2]').inner_text.strip.mb_chars.upcase rescue nil),
