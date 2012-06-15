@@ -126,7 +126,21 @@ module Etl
       docs_to_activate = Kernel::DsNotary.where(doc_id: active_docs)
 
       docs_to_activate.update_all(record_status: 'published')
-      
+
+      Kernel::DsNotaryEmployee.update_all(record_status: 'suspended')
+      emp_ids_to_activate = Dataset::DcRelation.
+        where(
+          relatable_left_type: 'Kernel::DsNotaryEmployee',
+          relatable_right_type: 'Kernel::DsNotary',
+          relatable_right_id: docs_to_activate.map(&:_record_id)
+        ).
+        select(:relatable_left_id).
+        map(&:relatable_left_id)
+
+      Kernel::DsNotaryEmployee.
+        where(_record_id: emp_ids_to_activate).
+        update_all(record_status: 'published')
+
       activated_docs = docs_to_activate.select(:doc_id).map{ |d| d.doc_id.to_s }
       active_docs - activated_docs
     end
