@@ -352,6 +352,11 @@ sk:
     agree_with: "Súhlasím s %{s}"
     with_terms_of_use: "podmienkami používania"
     update_successfull: "Aktualizácia údajov používateľa bola úspešná."
+    password_restored: 'Heslo bolo zmenené. Môžte ho použiť na prihlásenie.'
+    password_invalid: 'Nesprávne zadané heslo.'
+
+    restore:
+      code_invalid: 'Obnovovací kód je neplatný.'
   validations: 
     blank: "nemôže byť prázdne"
   watchers: 

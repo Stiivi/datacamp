@@ -87,16 +87,16 @@ class UsersController < ApplicationController
   end
   
   def restore
-    @account = User.find_by_restoration_code!(params[:id] || ".")
-    if request.method == :put
+    @account = User.find_by_restoration_code(params[:id] || ".")
+    if request.put?
       user = params[:user]
-      if user[:password] == user[:password_confirmation]
+      if user[:password].present? && user[:password] == user[:password_confirmation]
         @account.password = user[:password]
+        @account.restoration_code = nil
         @account.save(false)
-        flash[:notice] = "Saved."
-        redirect_to root_path
+        redirect_to login_path, notice: t('users.password_restored')
       else
-        flash.now[:error] = "Password don't match."
+        flash.now[:error] = t('users.password_invalid')
       end
     end
   end

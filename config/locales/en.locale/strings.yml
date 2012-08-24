@@ -331,6 +331,11 @@ en:
         register: Sign up for account
         update_successfull: "User data update was successfull."
         agree_with: 'I accept the terms of service'
+        password_restored: 'Password was changed. Please use the new one to login.'
+        password_invalid: 'Password invalid.'
+
+        restore:
+          code_invalid: 'Restore code is invalid.'
     pages:
         all_pages: All pages
         name: Name
