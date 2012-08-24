@@ -28,6 +28,8 @@ class CsvFile
   
   def parse_line
     CSV.parse_line(csv_file.readline, col_sep: @col_sep)
+  rescue Exception
+    nil
   end
   
   def is_valid?
