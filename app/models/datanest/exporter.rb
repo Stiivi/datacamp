@@ -40,8 +40,7 @@ module Datanest
       end
 
       def datasets
-        #DatasetDescription.all
-        [DatasetDescription.find_by_identifier('pozicky_stranam')]
+        DatasetDescription.all
       end
 
       def export_path
