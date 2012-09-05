@@ -54,6 +54,7 @@ class DatasetDescription < ActiveRecord::Base
     else
       # puts "using db for #{self.identifier} → #{type}"
       @field_descriptions_cache[type] = field_descriptions.where(where => true).includes(:translations)
+      @field_descriptions_cache[type].unshift FieldDescription.new(identifier: '_record_id') if type == :export
       result = @field_descriptions_cache[type]
     end
     if limit
@@ -146,6 +147,12 @@ class DatasetDescription < ActiveRecord::Base
   def fetch_relations
     drc = dataset_record_class
     Dataset::DcRelation.where('relatable_left_type = ? or relatable_right_type = ?', drc.name, drc.name)
+  end
+
+  def each_published_records
+    dataset_record_class.where(record_status: 'published').find_each do |record|
+      yield record
+    end
   end
 
 private

@@ -90,6 +90,10 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     self[field_description.identifier.to_sym]
   end
 
+  def formatted_values_for_fields(field_descriptions)
+    field_descriptions.map {|fd| get_formatted_value(fd).to_s.force_encoding("utf-8") }
+  end
+
   def get_formatted_value(field_description)
     value = get_value(field_description)
     # Apply format
@@ -108,11 +112,13 @@ class Dataset::DatasetRecord < ActiveRecord::Base
         # FIXME: Put format into argument 2
         value = number_to_currency(value, :unit => format_arg, :format => "%n %u")
       when "percentage"
-        value = number_to_percentage(value)
+        value = (number_to_percentage(value) rescue value)
       when "bytes"
         value = number_to_human_size(value)
       when 'zip'
         value = value.present? ? "%05i" % value : value
+      when 'ico'
+        value = value.present? ? '%08i' % value : value
       when "flag"
         if format_arg and format_arg != ""
           flag_values = format_arg.split(",")

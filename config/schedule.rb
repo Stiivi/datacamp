@@ -30,7 +30,7 @@ every 1.day, :at => '2:30 am' do
 end
 
 every 1.day, :at => '4:30 am' do
-  rake "db:dump"
+  rake "db:export"
 end
 
 every 1.day, :at => '5:05 am' do
