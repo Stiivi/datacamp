@@ -116,7 +116,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       when "bytes"
         value = number_to_human_size(value)
       when 'zip'
-        value = value.present? ? "%05i" % value : value
+        value = ("%05i" % value rescue value)
       when 'ico'
         value = value.present? ? '%08i' % value : value
       when "flag"
