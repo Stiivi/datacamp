@@ -10,8 +10,7 @@ describe Etl::ExekutorExtraction do
   
   it 'should have a perform method that downloads, parses and saves to the db' do
     VCR.use_cassette('executors') do
-      executor = stub(update_attributes: true)
-      Kernel::DsExecutor.should_receive(:find_or_initialize_by_name_and_city).exactly(299).times.and_return(executor)
+      @extractor.should_receive(:save)
       @extractor.perform
     end
   end

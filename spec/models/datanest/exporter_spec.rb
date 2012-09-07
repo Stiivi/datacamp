@@ -48,7 +48,7 @@ describe Datanest::Exporter do
     dumper_klass.should_receive(:new).with(columns, file).and_return(dumper_instance)
 
     dumper_instance.should_receive(:write_header)
-    dumper_instance.should_receive(:write_records).with([[1,2,3]])
+    dumper_instance.should_receive(:write_record).with([[1,2,3]])
 
     subject.should_receive(:gather_columns).with(dataset).and_return(columns)
     subject.should_receive(:open_file).with(dataset).and_yield(file)

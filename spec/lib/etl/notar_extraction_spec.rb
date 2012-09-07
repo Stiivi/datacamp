@@ -301,12 +301,5 @@ describe Etl::NotarExtraction do
     it 'should return a correctly formatted list url' do
       Etl::NotarExtraction.list_url(12345).should == URI.encode("http://www.notar.sk/Úvod/Notárskecentrálneregistre/Notárskeúrady.aspx?__EVENTTARGET=dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1&__EVENTARGUMENT=Page$12345")
     end
-    
-    it 'should activate active docs' do
-      Kernel::DsNotary.should_receive(:where).and_return(stub(update_all: true))
-      Etl::NotarExtraction.stub(:get_active_docs).and_return(["1"])
-      Etl::NotarExtraction.activate_docs
-    end
   end
-  
 end
