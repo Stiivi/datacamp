@@ -94,18 +94,7 @@ class FieldDescriptionsController < ApplicationController
   # POST /dataset_descriptions/1/attributes/order
   # Saves order
   def order
-    weight = 1
-    ids = params[:order].split(',')
-    ids.each do |id|
-      begin
-        ea = FieldDescription.find(id)
-        ea.weight = weight
-        ea.save(false)
-        weight += 1
-      rescue
-        next
-      end
-    end
+    update_all_positions(params[:field_description_category].keys, params[:field_description])
     render :nothing => true
   end
   
@@ -142,4 +131,15 @@ class FieldDescriptionsController < ApplicationController
   def get_dataset_description
     @dataset_description = DatasetDescription.find_by_id!(params[:dataset_description_id])
   end
+
+  private
+    def update_all_positions(category_placement, field_placement)
+      super(FieldDescriptionCategory, category_placement)
+      items = FieldDescription.where(id: field_placement.keys)
+      items.each do |item|
+        new_index = field_placement.keys.index(item.id.to_s)
+        item.update_attributes(:weight => new_index+1, :field_description_category_id => field_placement[item.id.to_s]) if new_index
+      end
+
+    end
 end

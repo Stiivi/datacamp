@@ -1,16 +1,16 @@
-%tr[field_description]
-  %td.title
-    - unless field_description.exists_in_database?
-      = link_to(image_tag("icons/error.png"), datastore_status_dataset_description_path(@dataset_description))
-    = link_to field_description.title, edit_dataset_description_field_description_path(dataset_description, field_description)
-  %td.description
-    = field_description.description.to_s.empty? ? 'n/a' : field_description.description
-  %td.type
-    = field_description.data_type
-  %td.type
-    = field_description.identifier
-  %td.order
-    =link_to(image_tag('icons/arrow_up.png'), order_dataset_description_field_descriptions_path(@dataset_description), :class => "order up")
-    =link_to(image_tag('icons/arrow_down.png'), order_dataset_description_field_descriptions_path(@dataset_description), :class => "order down")
-  %td.actions
-    =link_to(image_tag('icons/trash.gif'), dataset_description_field_description_path(dataset_description, field_description), :method => 'delete', :confirm => t("global.delete_confirmation"))
+%li[field_description]
+  %div
+    .fl.hidden.nopadding= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
+    .span-5
+      - unless field_description.exists_in_database?
+        = link_to(image_tag("icons/error.png"), datastore_status_dataset_description_path(dataset_description))
+      = link_to field_description.title, edit_dataset_description_field_description_path(dataset_description, field_description)
+    .span-5= field_description.description.to_s.empty? ? 'n/a' : field_description.description
+    .span-3= field_description.data_type
+    .span-4= field_description.identifier
+    .fr= link_to(image_tag('icons/trash.gif'),
+                      dataset_description_field_description_path(dataset_description, field_description),
+                      method: 'delete',
+                      confirm: t("global.delete_confirmation"))
+    .clear
+

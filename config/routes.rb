@@ -101,9 +101,17 @@ Datacamp::Application.routes.draw do
 
     resources :dataset_descriptions do
       member do
-        get :import_settings, :setup_dataset, :visibility, :datastore_status, :add_primary_key, :relations
-        post :setup_dataset, :set_visibility
-        put :update_relations
+        get :import_settings,
+            :setup_dataset,
+            :visibility,
+            :datastore_status,
+            :add_primary_key,
+            :relations,
+            :edit_field_description_categories
+        post :setup_dataset,
+             :set_visibility
+        put :update_relations,
+            :update_field_description_categories
       end
       collection do
         get :import, :do_import
@@ -119,6 +127,7 @@ Datacamp::Application.routes.draw do
     end
     resources :categories, :controller => "dataset_categories"
     resources :dataset_categories
+    resources :field_description_categories
   end
 
 

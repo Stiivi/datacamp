@@ -2,6 +2,7 @@
 class FieldDescription < ActiveRecord::Base
   belongs_to :dataset_description
   belongs_to :data_format
+  belongs_to :field_description_category
 
   translates :title, :description, :category
   locale_accessor I18N_LOCALES
@@ -10,7 +11,7 @@ class FieldDescription < ActiveRecord::Base
   # Validations
   validates_presence_of :identifier
   validates_uniqueness_of :identifier, :scope => :dataset_description_id
-  validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
+  #validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
   validates_numericality_of :min_width, if: lambda { min_width.present? }
 
   after_save :update_data_type

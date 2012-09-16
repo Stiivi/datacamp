@@ -20,7 +20,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetDescriptionsController < ApplicationController
-  before_filter :get_dataset_description, :only => [:show, :edit, :update, :destroy, :import_settings, :setup_dataset, :set_visibility, :add_primary_key, :relations, :update_relations]
+  before_filter :get_dataset_description, :only => [:show,
+                                                    :edit,
+                                                    :update,
+                                                    :destroy,
+                                                    :import_settings,
+                                                    :setup_dataset,
+                                                    :set_visibility,
+                                                    :add_primary_key,
+                                                    :relations,
+                                                    :update_relations,
+                                                    :edit_field_description_categories,
+                                                    :update_field_description_categories]
   before_filter :load_datasets, :only => [:import, :do_import]
   
   privilege_required :edit_dataset_description
@@ -42,8 +53,12 @@ class DatasetDescriptionsController < ApplicationController
 
   def show
     @dataset = @dataset_description.dataset
-    @field_descriptions = @dataset_description.field_descriptions if @dataset.dataset_record_class.table_exists?
-    
+    if @dataset.dataset_record_class.table_exists?
+      @field_descriptions = @dataset_description.field_descriptions
+      @field_description_categories = @dataset_description.field_description_categories
+      @other_field_descriptions = @dataset_description.field_descriptions.where('field_description_category_id IS NULL OR field_description_category_id = 0')
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @dataset_description }
@@ -259,6 +274,19 @@ class DatasetDescriptionsController < ApplicationController
       render 'relations'
     else
       render 'relations', :notice => 'Please select all relevant fields!'
+    end
+  end
+
+  def edit_field_description_categories
+    @field_description_categories = @dataset_description.field_description_categories
+  end
+
+  def update_field_description_categories
+    if @dataset_description.update_attributes(params[:dataset_description])
+      redirect_to @dataset_description, notice: 'success'
+    else
+      @field_description_categories = @dataset_description.field_description_categories
+      render :edit_field_description_categories, notice: 'failure'
     end
   end
   

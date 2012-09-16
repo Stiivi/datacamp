@@ -1,25 +1,39 @@
-%h2= t("dataset.field_descriptions")
-
 - if @field_descriptions.present?
+  .buttons.clearfix.fr
+    = link_to edit_field_description_categories_dataset_description_path, class: 'button' do
+      %span  Priradit kategorie popisov
+    = sorting_links(order_dataset_description_field_descriptions_path(@dataset_description))
+    = link_to "<span>#{t("dataset.add_field_description")}</span>".html_safe, new_dataset_description_field_description_path(@dataset_description), :class => 'button'
+  %br
+  %br
+
   %table.backend
     %tr.title
       %th.title= t("global.title")
-      %th.description= t("global.description")
+      %th.description{style: 'width: 215px;'}= t("global.description")
       %th.type= t("dataset.type")
       %th.type= t("dataset.identifier")
-      %th.order
       %th.actions
-    - @field_descriptions.group_by(&:category).each do |group, field_descriptions|
-      %tr.title
-        %td.title= group.to_s.empty? ? t("dataset.no_category") : group
-        %td
-        %td
-        %td
-        %td
-        %td
-      = render :partial => 'field_description', :collection => field_descriptions, :as => :field_description, :locals => { :dataset_description => @dataset_description }        
 
-%br
+  %ul.sortable{style: 'margin-right: 0px;'}
+    - @field_description_categories.each do |field_description_category|
+      %li[field_description_category]{style: 'padding: 7px 0px;'}
+        .title.clear
+          .fl.hidden= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
+          %span[field_description_category]
+            = field_description_category.title
+          %span.actions
+            -#= link_to t("global.edit"), edit_category_path(group), :class => "ajax"
+            -#= link_to t("global.delete"), category_path(group), :method => "delete"
 
-.clearfix
-  =link_to "<span>#{t("dataset.add_field_description")}</span>".html_safe, new_dataset_description_field_description_path(@dataset_description), :class => 'button'
+        %ul
+          = render partial: 'field_description',
+                    collection: field_description_category.field_descriptions & @dataset_description.field_descriptions,
+                    locals: { dataset_description: @dataset_description }
+
+    %li
+      .title.clear
+        =t("dataset.no_category")
+      %ul= render partial: 'field_description',
+                    collection: @other_field_descriptions,
+                    locals: { dataset_description: @dataset_description }

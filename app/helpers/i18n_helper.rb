@@ -12,7 +12,7 @@ module I18nHelper
   def locale_tabs form, *locales, &block
     fields = ''.html_safe
     locales.flatten.each do |locale|
-      fields << content_tag(:ul, capture(I18nFormBuilder.new(locale, form), &block),:id => dom_id(form.object) + "_" + locale.to_s)
+      fields << content_tag(:ul, capture(I18nFormBuilder.new(locale, form), &block), id: dom_id(form.object) + "_" + locale.to_s)
     end
     content_tag(:li, content_tag(:div, fields, :class => 'tabs'))
   end

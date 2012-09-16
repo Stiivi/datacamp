@@ -309,6 +309,7 @@ en:
         value: Value
         load_error: "Couldn't load %{what}"
         categories: Categories
+        field_description_categories: 'Field desc. categories'
     users: 
         user_not_found: User not found.
         my_account: My Account

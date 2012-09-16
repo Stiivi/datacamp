@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120522085434) do
+ActiveRecord::Schema.define(:version => 20120916193836) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(:version => 20120522085434) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "position",           :default => 0
+  end
+
+  create_table "category_assignments", :force => true do |t|
+    t.integer  "dataset_description_id"
+    t.integer  "field_description_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "changes", :force => true do |t|
@@ -230,6 +237,22 @@ ActiveRecord::Schema.define(:version => 20120522085434) do
     t.string   "note"
   end
 
+  create_table "field_description_categories", :force => true do |t|
+    t.integer  "position",   :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "field_description_category_translations", :force => true do |t|
+    t.integer  "field_description_category_id"
+    t.string   "locale"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "field_description_category_translations", ["field_description_category_id"], :name => "index_5a61cda13c4d0823bfc83227ae1e550ca79aae50"
+
   create_table "field_description_translations", :force => true do |t|
     t.integer  "field_description_id"
     t.string   "locale"
@@ -245,20 +268,21 @@ ActiveRecord::Schema.define(:version => 20120522085434) do
     t.string  "identifier"
     t.integer "weight"
     t.integer "format_rule_id"
-    t.boolean "importable",             :default => false
+    t.boolean "importable",                    :default => false
     t.integer "importable_column"
     t.integer "data_type_id"
-    t.boolean "is_visible_in_listing",  :default => true
+    t.boolean "is_visible_in_listing",         :default => true
     t.boolean "is_derived"
     t.string  "derived_value"
-    t.boolean "is_visible_in_search",   :default => true
-    t.boolean "is_visible_in_detail",   :default => true
-    t.boolean "is_visible_in_export",   :default => true
+    t.boolean "is_visible_in_search",          :default => true
+    t.boolean "is_visible_in_detail",          :default => true
+    t.boolean "is_visible_in_export",          :default => true
     t.integer "data_format_id"
     t.string  "data_format_argument"
     t.string  "reference"
-    t.boolean "is_visible_in_relation", :default => true
+    t.boolean "is_visible_in_relation",        :default => true
     t.integer "min_width"
+    t.integer "field_description_category_id"
   end
 
   create_table "import_files", :force => true do |t|

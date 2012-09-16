@@ -1,6 +1,11 @@
 # -*- encoding : utf-8 -*-
 class DatasetDescription < ActiveRecord::Base
   has_many :field_descriptions, :include => :translations
+
+  has_many :category_assignments
+  has_many :field_description_categories,
+            include: :translations,
+            through: :category_assignments
   # accepts_nested_attributes_for :field_descriptions
   has_many :relationship_descriptions
   has_many :comments

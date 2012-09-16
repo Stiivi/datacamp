@@ -142,7 +142,8 @@ sk:
     back: Naspäť
     blocks: Bloky
     browse_dataset: "Prezerať súbor údajov"
-    categories: "Kategórie"
+    categories: "Kategórie súborov"
+    field_description_categories: 'Kategórie popisov údajov'
     cancel: Zrušiť
     captcha: Kontrola
     collapse: Zbaliť
