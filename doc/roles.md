@@ -35,19 +35,47 @@ Same as User Manager
 
 Datastore manager
 -----------------
-* edit dataset description
-* create dataset
-* destroy dataset
+
+The role is not used anywhere
+
+* edit dataset description -> same as above 
+* create dataset -> is needed to show the create datasetdescription link in
+  the menu. Also a user needs to have this with
+  edit_dataset_description to be able to create a dataset.
+* destroy dataset -> is needed to perform the destroy datasetdescription
+  action and to destroy datasetdescription category
 
 User manager
 ------------
-* manage users
-* block users
-* grant rights
-* power user
+
+The role is not used anywhere
+
+* manage users -> is used in the Users CRUD, API to create a new token
+  for a different user than is requesting API access, to display links
+  to the users CRUD
+* block users -> not used
+* grant rights -> is used to display the rights tab on user settings,
+  but is not checked in the Users CRUD manage_users is still required
+  for that...
 
 Same as Data Editor
 * view hidden fields
 * view hidden records
 * search in hidden fields
 * search in hidden records
+
+Power User
+----------
+
+Used in queries when showing dataset show and record
+show to show hidden fields and records.
+
+Misc
+----
+
+These are not linked to a role
+
+* use_in_development -> not used
+* moderate_comments -> OK used to protect Comments CRUD, show in menu
+* delete_comments -> not used 
+
