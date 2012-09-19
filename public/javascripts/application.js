@@ -95,4 +95,10 @@ $(function(){
 	  return false;
 	});
 
+  $('a.reload_anchor').click(function(e) {
+      e.preventDefault(); // Prevent the browser from handling the link normally, this stops the page from jumping around. Remove this line if you do want it to jump to the anchor as normal.
+      var anchor = $(this).attr('href');
+      location.href = anchor;
+      location.reload(true);
+  });
 });
