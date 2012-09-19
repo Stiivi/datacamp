@@ -3,14 +3,24 @@ Datanest roles
 
 Data Editor
 -----------
-* edit record
-* create record
-* edit record metadata
-* edit locked record
-* import from file
-* edit dataset description
+* edit record -> OK
+* create record -> OK
 
-Same as user manager
+* edit record metadata -> Actually edit_record is required (Added by
+  Vojto) to submit the action on the dataset show page, even though
+  the user needs to have the edit_record_metadata privilege to access
+  the controlls (added also by Vojto)...
+
+* edit locked record -> not used anywhere...
+* import from file -> OK
+* edit dataset description -> used in: DatasetCategories CRUD,
+  DatasetDescription CRUD, FieldDescriptionCategory CRUD,
+  FieldDescription CRUD, to show edit DatasetDescription on dataset show
+  page, to show data dictionary on the menu, to show DatasetDescription
+  CRUD link in the menu, to show the categories CRUD link in the menu.
+  This should be a role in itself...
+
+Same as User Manager
 * view hidden fields
 * view hidden records
 * search in hidden fields
@@ -28,6 +38,8 @@ User manager
 * block users
 * grant rights
 * power user
+
+Same as Data Editor
 * view hidden fields
 * view hidden records
 * search in hidden fields
