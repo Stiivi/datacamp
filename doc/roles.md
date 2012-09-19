@@ -1,8 +1,8 @@
 Datanest roles
-======================
+==============
 
 Data Editor
-----------------------
+-----------
 * edit record
 * create record
 * edit record metadata
@@ -10,19 +10,20 @@ Data Editor
 * import from file
 * edit dataset description
 
+Same as user manager
 * view hidden fields
 * view hidden records
 * search in hidden fields
 * search in hidden records
 
 Datastore manager
-----------------------
+-----------------
 * edit dataset description
 * create dataset
 * destroy dataset
 
 User manager
-----------------------
+------------
 * manage users
 * block users
 * grant rights
