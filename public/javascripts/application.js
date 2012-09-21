@@ -101,4 +101,6 @@ $(function(){
       location.href = anchor;
       location.reload(true);
   });
+
+  $('.has-tip').tooltip();
 });

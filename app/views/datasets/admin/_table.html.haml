@@ -8,6 +8,7 @@
       - @field_descriptions.each do |field_description|
         %th{:class => field_description.identifier}
           = sort_link(field_description)
+          %div= image_tag 'icons/magnifier.png', class: 'has-tip', title: field_description.description
       %th.actions{:width => 160} &nbsp;
       
     %tr.batch

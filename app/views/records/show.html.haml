@@ -26,6 +26,7 @@
               - if @quality_status.find { |qs| qs.column_name == field_description.identifier }
                 = image_tag "icons/exclamation.png", :class => "quality_status"
               = field_description.title
+              = image_tag 'icons/magnifier.png', class: 'has-tip', title: field_description.description
             %td= @record.get_html_value(field_description)
     - @related_records_and_fields.each do |records, fields, reflection_name, related_dataset_description, macro|
       %br
