@@ -3,7 +3,8 @@
     - @field_descriptions.each do |field_description|
       %th{:class => field_description.identifier}
         = sort_link(field_description)
-        %div= image_tag 'icons/magnifier.png', class: 'has-tip', title: field_description.description
+        - if field_description.description.present?
+          %div= image_tag 'icons/magnifier.png', class: 'has-tip', title: field_description.description
     %th{:class => "actions"} &nbsp;
   
   - @records.each do |record|
