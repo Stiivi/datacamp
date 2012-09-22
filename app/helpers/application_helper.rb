@@ -24,5 +24,8 @@ module ApplicationHelper
     end
     f.submit name, :name => "add_#{association.to_s.singularize}", :class => 'add_element', 'data-element' => "#{fields}", 'data-association' => association
   end
-  
+
+  def textile(text)
+    RedCloth.new(text || '').to_html.html_safe
+  end
 end
