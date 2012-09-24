@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916193836) do
+ActiveRecord::Schema.define(:version => 20120922094522) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -200,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20120916193836) do
     t.integer  "api_access_level",                :default => 0
     t.boolean  "can_be_disabled_in_quick_search"
     t.integer  "position",                        :default => 0
+    t.boolean  "bad_quality",                     :default => false, :null => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -468,6 +469,7 @@ ActiveRecord::Schema.define(:version => 20120916193836) do
     t.boolean  "is_super_user"
     t.integer  "records_per_page"
     t.integer  "api_access_level",                         :default => 0
+    t.boolean  "show_bad_quality_datasets",                :default => false, :null => false
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

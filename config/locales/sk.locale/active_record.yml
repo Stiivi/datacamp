@@ -32,6 +32,8 @@ sk:
     attributes:
       field_description:
         min_width: 'Šírka v px'
+      user:
+        show_bad_quality_datasets: 'Zobraziť datasety so zlou kvalitou údajov'
   errors:
     template: 
       body: "Prosím pozrite si tieto chyby a opravte príslušné polia"

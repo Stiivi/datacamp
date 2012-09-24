@@ -6,15 +6,23 @@
 
   %table.frontend
     - dataset_category.dataset_descriptions.each do |description|
-      %tr
-        %td{:width => 200}
-          %strong= link_to(description.title, dataset_path(description))
-        %td
-          %em= truncate(description.description.to_s, :length => 80)
-        %td.actions{:align => 'right'}
-          .clearfix
-            = link_to("<span>#{t("global.browse_dataset")}</span>".html_safe, dataset_path(description), :class => "button", rel: 'show-dataset')
-            - if description.api_allowed_for?(current_user)
-              = link_to "<span>API is enabled</span>".html_safe, page_path("api-access"), :class => "api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
+      - if !description.bad_quality? || (description.bad_quality? && current_user.present? && current_user.show_bad_quality_datasets?) || (description.bad_quality && params[:show_bad_quality])
+        %tr
+          %td{:width => 200}
+            %strong= link_to(description.title, dataset_path(description))
+            = image_tag 'icons/record_status/icon_doubtful.png', title: t('.bad_quality') if description.bad_quality?
+          %td
+            %em= truncate(description.description.to_s, :length => 80)
+          %td.actions{:align => 'right'}
+            .clearfix
+              = link_to("<span>#{t("global.browse_dataset")}</span>".html_safe, dataset_path(description), :class => "button", rel: 'show-dataset')
+              - if description.api_allowed_for?(current_user)
+                = link_to "<span>API is enabled</span>".html_safe, page_path("api-access"), :class => "api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
 
   %br
+- if params[:show_bad_quality].blank? && (current_user.present? && !current_user.show_bad_quality_datasets?)
+  .fr
+    = link_to datasets_path(show_bad_quality: true), class: 'button' do
+      %span= t('.show_bad_quality')
+  %br
+

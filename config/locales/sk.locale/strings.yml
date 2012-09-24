@@ -50,6 +50,10 @@ sk:
     was_useful: "Bol tento komentár užitočný?"
     ? "yes"
     : Ano
+  datasets:
+    index:
+      show_bad_quality: 'Zobraziť datasety so zlou kvalitou údajov'
+      bad_quality: 'Zlá kvalita'
   dataset:
     relations: 'Relácie' 
     relationship_type: 'Typ relácie'

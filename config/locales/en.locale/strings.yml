@@ -89,6 +89,10 @@ en:
         unit_of_analysis: Unit of analysis
         update_frequency: Update Frequency
         valid_from: Valid from
+    datasets:
+      index:
+        show_bad_quality: 'Show datasets with bad data quality.'
+        bad_quality: 'Bad quality'
     dataset:
         relations: 'Relations' 
         relationship_type: 'Relationship type'

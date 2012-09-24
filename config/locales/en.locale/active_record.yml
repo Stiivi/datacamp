@@ -3,6 +3,8 @@ en:
     attributes:
       import_file:
         path: 'File'
+      user:
+        show_bad_quality_datasets: 'Display datasets with bad data quality'
     errors:
       messages:
         blank_i18n: "can't be blank for any of translations"
