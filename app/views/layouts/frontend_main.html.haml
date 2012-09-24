@@ -2,6 +2,8 @@
 %html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    - if @dataset_description.present?
+      %meta{ property: 'og:description', content: @dataset_description.description }
     =raw SystemVariable.get("meta_information")
     %title= SystemVariable.get "site_name", "Datacamp"
     = csrf_meta_tag unless response.cache_control[:public]

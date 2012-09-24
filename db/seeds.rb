@@ -64,3 +64,46 @@ DataFormat.find_or_create_by_name('flag')
 DataFormat.find_or_create_by_name('zip')
 DataFormat.find_or_create_by_name('ico')
 
+[
+  {:name => "theme",
+   :en_description => "Theme",
+   :value => "default"
+  },
+  {
+    :name => "site_name",
+    :en_description => "Site Name",
+    :value => "Datacamp Site"
+  },
+  {
+    :name => "default_import_format",
+    :en_description => "Default import format",
+    :value => "csv"
+  },
+  {
+    :name => "login_required",
+    :en_description => "Login required to use application",
+    :value => 1
+  },
+  {
+    :name => "copyright_notice",
+    :en_description => "Copyright notice displayed in the footer.",
+    :value => "&copy; Your Comapny"
+  },
+  {
+    :name => "private_mode",
+    :en_description => "Users can't register, only subscribe for beta program.",
+    :value => 1
+  },
+  {
+    :name => "registration_confirmation_required",
+    :en_description => "Users need their accounts confirmed by admin before being able to use them.",
+    :value => 0
+  },
+  {
+    :name => "meta_information",
+    :en_description => "Meta information that is inserted in the head portion of the webpage",
+    :value => nil
+  }
+].each do |system_variable_attrs|
+  SystemVariable.find_or_create_by_name(system_variable_attrs[:name], system_variable_attrs.except(:name))
+end
