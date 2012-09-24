@@ -12,7 +12,9 @@ class ImportFile < ActiveRecord::Base
   validates_attachment_presence :path, message: I18n.t('validations.blank')
 
   after_initialize :init_values
-  
+
+  serialize :unparsable_lines
+
   def status
     self[:status] || "ready"
   end
@@ -27,8 +29,11 @@ class ImportFile < ActiveRecord::Base
 
       saved_ids = []
       count = 0
+      index = 0
+      unparsable_lines = []
 
       csv_file.parse_all_lines do |row|
+        index += 1
         if row != nil
           record = prepare_record
           column_mapping.each do |index, field_desription_id|
@@ -48,10 +53,12 @@ class ImportFile < ActiveRecord::Base
               end
             end
           end
+        else
+          unparsable_lines << index
         end
       end
       
-      self.update_attributes(count_of_imported_lines: count, status: 'success') if !self.new_record? && self.reload.status != 'canceled'
+      self.update_attributes(count_of_imported_lines: count, status: 'success', unparsable_lines: unparsable_lines) if !self.new_record? && self.reload.status != 'canceled'
 
       Change.create(change_type: Change::BATCH_INSERT,
                     user: current_user,

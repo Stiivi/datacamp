@@ -223,6 +223,7 @@ en:
         ready: Ready
         cancel: Cancel
         importing_canceled: 'Importing was canceled'
+        unparsable_lines: 'Unparsable lines'
     global:
         activities: 'Activity'
         do_not_search: "Do not search: %{name}"

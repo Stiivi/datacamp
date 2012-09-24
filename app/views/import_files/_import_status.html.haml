@@ -12,6 +12,10 @@
   
 %p
   = t("import.lines_imported", :count => @import_file.count_of_imported_lines)
+%p
+  - if @import_file.unparsable_lines.present?
+    = t("import.unparsable_lines")
+    = @import_file.unparsable_lines
   - if @import_file.status == 'in_progress' || @import_file.status == 'ready'
     = link_to "Refresh", state_import_file_path(@import_file), :class => "ajax refresh hidden"
 
