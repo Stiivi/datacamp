@@ -1,12 +1,13 @@
-- if @field_descriptions.present?
-  .buttons.clearfix.fr
+.buttons.clearfix.fr
+  - if @field_descriptions.present?
     = link_to edit_field_description_categories_dataset_description_path, class: 'button' do
       %span  Priradit kategorie popisov
     = sorting_links(order_dataset_description_field_descriptions_path(@dataset_description))
-    = link_to "<span>#{t("dataset.add_field_description")}</span>".html_safe, new_dataset_description_field_description_path(@dataset_description), :class => 'button'
-  %br
-  %br
+  = link_to "<span>#{t("dataset.add_field_description")}</span>".html_safe, new_dataset_description_field_description_path(@dataset_description), :class => 'button'
+%br
+%br
 
+- if @field_descriptions.present?
   %table.backend
     %tr.title
       %th.title= t("global.title")
