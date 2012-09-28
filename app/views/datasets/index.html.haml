@@ -1,16 +1,15 @@
 %h1.main=t "global.datasets"
 
 - @dataset_categories.each do |dataset_category|
-  %h2.bordered
-    %a{:name => dataset_category ? dataset_category.title : t("global.other")}= dataset_category ? dataset_category.title : t("global.other")
+  %h2.bordered= link_to dataset_category ? dataset_category.title : t('global.other'),
+                        "##{dataset_category ? dataset_category.title : t('global.other')}",
+                        name: dataset_category ? dataset_category.title : t("global.other")
 
   %table.frontend
     - dataset_category.dataset_descriptions.each do |description|
       - if !description.bad_quality? || (description.bad_quality? && current_user.present? && current_user.show_bad_quality_datasets?) || (description.bad_quality && params[:show_bad_quality])
         %tr
           %td{:width => 200}
-            = link_to "##{description.identifier}", name: description.identifier do
-              = image_tag 'icons/chain.png'
             %strong= link_to description.title, dataset_path(description)
             = image_tag 'icons/record_status/icon_doubtful.png', title: t('.bad_quality') if description.bad_quality?
           %td
