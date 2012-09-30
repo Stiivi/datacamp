@@ -15,7 +15,7 @@ class FieldDescriptionCategoriesController < ApplicationController
   def create
     @category = FieldDescriptionCategory.new(params[:field_description_category])
     flash[:notice] = 'Successfully created' if @category.save
-    respond_with @category
+    respond_with @category, location: field_description_categories_path
   end
 
   def edit
