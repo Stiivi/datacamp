@@ -13,7 +13,7 @@
 
     %p= t("dataset.short_summary", :count => @dataset_description.record_count, :provider => @dataset_description.data_provider)
     %p
-      = truncate(textile(@dataset_description.description), length: 200)
+      = truncate(textile(@dataset_description.description), length: 200).html_safe
       = link_to t('global.information'), '#/information', class: 'reload_anchor'
 
 
