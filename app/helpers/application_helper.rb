@@ -28,4 +28,8 @@ module ApplicationHelper
   def textile(text)
     RedCloth.new(text || '').to_html.html_safe
   end
+
+  def clear_textile(text)
+    strip_tags(RedCloth.new(text || '').to_html)
+  end
 end

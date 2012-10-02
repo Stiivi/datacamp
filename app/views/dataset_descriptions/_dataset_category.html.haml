@@ -20,7 +20,8 @@
             = link_to (dataset_description.title.blank? ? dataset_description.identifier : dataset_description.title), dataset_path(dataset_description)
             - unless dataset_description.is_active
               = "(%s)" % t("global.inactive")
-          .span-14= truncate(dataset_description.description, :length => 110)
+          .span-14
+            = truncate(clear_textile(dataset_description.description), length: 110).html_safe
           .fr
             =link_to image_tag('icons/edit.gif'), dataset_description_url(dataset_description)
             - if current_user.has_privilege?(:destroy_dataset)
