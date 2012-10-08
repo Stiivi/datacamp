@@ -25,7 +25,7 @@ module Parsers
 
       def self.parse(html, year)
         ::Parsers::Support.save(parse_location(year), 'csv', bucketize: false)
-        CSV.open(::Parsers::Support.get_path(parse_location(year), bucketize: false), "wb") do |csv|
+        CSV.open(::Parsers::Support.get_path(parse_location(year), bucketize: false), "wb", force_quotes: true) do |csv|
           csv << ATTRIBUTES
 
           doc = Nokogiri::HTML(html)
