@@ -1,0 +1,33 @@
+sk:
+  activerecord:
+    models:
+    attributes:
+      dataset_description:
+        title: Názov
+        description: Popis
+        category: Kategória
+        identifier: Názov tabuľky
+        data_provider: Poskytovateľ dát
+        update_frequency: Frekvencia aktualizácie
+        keywords: Kľúčové slová
+        unit_of_analysis: Jednotka analýzy
+        granularity: Zrnitosť
+        collection_mode: Spôsob zbierania
+        data_source_type: Typ dátového zdroja
+        default_import_format: Predvolený formát pre import
+        active: Aktívne?
+        can_be_disabled_in_quick_search: Môže byť vypnutý pre rýchle vyhľadávanie?
+      user:
+        login: Login
+        email: E-mail
+        password: Heslo
+        password_confirmation: Potvrdenie hesla
+        accepts_terms: Súhlasim s podmienkami používania
+      import_file:
+        dataset_description_id: 'Súbor údajov'
+        path: 'Súbor'
+        path_file_name: 'Súbor'
+        title: 'Titul'
+        source: 'Zdroj'
+        col_separator: 'Oddelovač'
+        encoding: 'Kódovanie'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924122335) do
+ActiveRecord::Schema.define(:version => 20121008065642) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -227,7 +227,12 @@ ActiveRecord::Schema.define(:version => 20120924122335) do
     t.datetime "updated_at"
     t.integer  "last_processed_id"
     t.datetime "last_run_time"
+    t.boolean  "parser",            :default => false, :null => false
+    t.string   "status"
+    t.string   "download_path"
   end
+
+  add_index "etl_configurations", ["name"], :name => "index_etl_configurations_on_name"
 
   create_table "favorites", :force => true do |t|
     t.integer  "dataset_description_id"

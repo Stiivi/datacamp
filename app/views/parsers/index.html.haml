@@ -1,0 +1,16 @@
+.clearfix
+  %h1.fl= t '.header'
+
+%table
+  %tr
+    %th= t ".table.name"
+    %th= t ".table.status"
+    %th
+    %th
+
+  - @parsers.each do |parser|
+    %tr
+      %td= parser.name
+      %td= parser.status
+      %td= link_to t('.download'), download_parser_path(parser) if parser.done?
+      %td= button_link_to t(".show"), parser_path(parser), rel: 'show'

@@ -11,3 +11,4 @@
     %li= link_to t('global.field_description_categories'), field_description_categories_path
   - if current_user && current_user.has_privilege?(:data_editor)
     %li= link_to t('global.data_repairs'), data_repairs_path
+    %li= link_to t('global.parsers'), parsers_path

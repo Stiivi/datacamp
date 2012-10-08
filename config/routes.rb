@@ -1,5 +1,13 @@
 # -*- encoding : utf-8 -*-
 Datacamp::Application.routes.draw do
+
+  resources :parsers, only: [:index, :show] do
+    member do
+      post :run
+      get :download
+    end
+  end
+
   match '/locale/:locale' =>  'main#locale', :as => 'set_locale'
 
   match '/logout' => 'sessions#destroy', :as => :logout

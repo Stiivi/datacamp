@@ -80,4 +80,5 @@ group :development, :test do
   gem 'launchy'    # So you can do Then show me the page
   gem "factory_girl_rails", "~> 1.2.0"
   gem 'vcr'
+  gem 'fakeweb'
 end

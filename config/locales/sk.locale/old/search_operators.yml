@@ -1,0 +1,18 @@
+sk:
+    operators:
+        begins_with: začína
+        ends_with: končí
+        contains: obsahuje
+        does_not_contain: neobsahuje
+        matches: je presne
+        greater: je viac ako
+        less: je menej ako
+        greater_or_equal: je viac alebo rovné
+        less_or_equal: je menej alebo rovné
+        equal: rovné
+        not_equal: nie je rovné
+        is_set: je vyplnené
+        is_not_set: nie je vyplnené
+        within_last_days: za posledných dní
+        within_last_weeks: za posledných týždňov
+        within_last_months: za posledných mesiacov

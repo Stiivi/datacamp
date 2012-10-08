@@ -1,0 +1,18 @@
+en:
+  parsers:
+    index:
+      header: 'Parser index'
+      show: 'Detail'
+      download: 'Download'
+      table:
+        name: 'Name'
+        status: 'Status'
+
+    donations_parser_form:
+      header: 'Parser kultúrnych dotácií'
+      label:
+        year: 'Rok'
+      submit: 'Spustiť'
+
+    run:
+      success: 'Parser was initialized'

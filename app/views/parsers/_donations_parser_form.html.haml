@@ -1,0 +1,9 @@
+%h1= t '.header'
+
+= form_tag run_parser_path(parser) do
+  %ul
+    %li.clearfix
+      = label_tag 'settings[year]', t('.label.year')
+      = text_field_tag 'settings[year]'
+
+    %li.clearfix= submit_tag t('.submit'), rel: 'run'
