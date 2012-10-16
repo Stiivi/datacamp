@@ -14,6 +14,7 @@ config/environments/production.rb
 /update
 /remote
 /backup
+/data
 index/data*
 index/*.conf
 index/*.rb
