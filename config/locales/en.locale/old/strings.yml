@@ -93,6 +93,8 @@ en:
       index:
         show_bad_quality: 'Show datasets with bad data quality.'
         bad_quality: 'Bad quality'
+      information:
+        similar: 'Similar datasets'
     dataset:
         relations: 'Relations' 
         relationship_type: 'Relationship type'
