@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008065642) do
+ActiveRecord::Schema.define(:version => 20121016081930) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -417,6 +417,13 @@ ActiveRecord::Schema.define(:version => 20121008065642) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+  end
+
+  create_table "similar_datasets", :force => true do |t|
+    t.integer  "similar_source_id"
+    t.integer  "similar_target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "system_variable_translations", :force => true do |t|
