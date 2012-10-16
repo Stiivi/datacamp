@@ -1,6 +1,6 @@
 = form_for(@dataset_description, :builder => ListFormBuilder) do |f|
   = f.error_messages
-  
+
   %ul
     %li.clearfix.locale_switcher
       %label Language
@@ -9,7 +9,7 @@
     = f.locale_tabs I18N_LOCALES do |trans|
       = trans.text_field :title
       = trans.text_area :description
-      
+
     %li.clearfix
       .fl.clearfix
         = f.label :category_id
@@ -32,7 +32,9 @@
     = f.check_box :is_active
     = f.check_box :can_be_disabled_in_quick_search
     = f.select :api_access_level, options_for_select(Api.access_levels.collect{|k,v|[I18n.t("api.levels.#{k}"), v]}, @dataset_description.api_access_level)
-        
+    = hidden_field_tag 'dataset_description[similar_dataset_description_ids][]', nil
+    = f.collection_select :similar_dataset_description_ids, DatasetDescription.where('id != ?', @dataset_description.id), :id, :title, {}, {multiple: true, class: 'asmselect'}
+
   %p
     = f.submit t("global.save")
     = f.submit t("global.save_and_create")

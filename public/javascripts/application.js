@@ -103,4 +103,5 @@ $(function(){
   });
 
   $('.has-tip').tooltip();
+  $("select[multiple].asmselect").asmSelect(); 
 });

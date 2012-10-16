@@ -1,5 +1,13 @@
 # -*- encoding : utf-8 -*-
 class DatasetDescription < ActiveRecord::Base
+  has_many :similar_datasets,
+           source: :dataset_description_source,
+           foreign_key: :similar_source_id
+
+  has_many :similar_dataset_descriptions,
+           through: :similar_datasets,
+           source: :dataset_description_target
+
   has_many :field_descriptions, :include => :translations
 
   has_many :category_assignments
