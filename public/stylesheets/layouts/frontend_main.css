@@ -31,10 +31,6 @@ h2 {
   margin: auto;
   min-height: 800px;
   _height: 800px; }
-  #main #top-nav {
-      text-align: right;
-      padding-right: 5px;
-      font-size: 11px; }
   #main #header {
     height: 75px;
     position: relative; }

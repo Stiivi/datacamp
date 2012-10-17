@@ -12,13 +12,10 @@
     = javascript_include_tag @javascripts if @javascripts.present? # FIXME: remove this when moving to asset pipeline
 
   %body
-    = render :partial => "layouts/search_processing"
+    = render partial: "layouts/search_processing"
     #main
-      #top-nav
-        = render :partial => "layouts/user"
-        |
-        - I18N_LOCALES.each do |locale|
-          = link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
+      = render 'layouts/menutop'
+
       #header
         .container
           .span-4

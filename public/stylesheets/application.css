@@ -1,0 +1,600 @@
+/* General */
+body {
+	margin:0px;
+	padding:0px;
+	font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
+	font-size:12px;
+	font-weight:normal;
+	color:#333333;
+}
+h1 {
+	margin:0px 15px 20px 15px;
+	font-size:18px;
+	color:#333333;
+}
+
+/* Logo */
+#logo {
+	display:inline-block;
+
+	margin:0px 15px 15px 15px;
+}
+#logo a {
+	display:block;
+	overflow:hidden;
+}
+
+#main {
+	display:block;
+	width:960px;
+	margin:0px auto 50px auto;
+	padding:0;
+	float:none;
+	overflow:hidden;
+	font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
+}
+
+#container {
+	display:block;
+	float:none;
+	overflow:hidden;
+	margin:20px 0px 0px 0px;
+	padding:0px;
+}
+
+/* Menu Top */
+#menutop {
+	display:block;
+	float:none;
+	overflow:hidden;
+	margin:15px 0px 10px 0px;
+}
+#menutop ul {
+	font-size:12px;
+	list-style:none;
+	margin:0; padding:0;
+	background:transparent;
+	float:none;
+	display:block;
+	overflow:hidden;
+}
+#menutop li {
+	float:right;
+	padding:0px 0px 0px 7px;
+
+  /* FIXME: remove this line when the whole thing is revised. Overrides other.css:12 */
+  border: none;
+}
+#menutop li.soc_button {
+	padding:2px 0px 0px 7px;
+}
+#menutop a {
+	overflow:hidden;
+	color:#333333;
+	text-decoration:none;
+}
+#menutop a:hover {
+	color:#333333;
+	text-decoration:underline;
+}
+#menutop a:active {
+	color:#333333;
+	text-decoration:underline;
+}
+
+
+/* Menu */
+/*#menu {*/
+	/*width:960px;*/
+	/*height:37px;*/
+	/*display:block;*/
+	/*float:none;*/
+	/*overflow:hidden;*/
+	/*background:#2bb673;*/
+	/*background:-webkit-linear-gradient(top, #2bb673, #00a651);*/
+	/*background:-moz-linear-gradient(top, #46b84b, #46b84b);*/
+	/*-moz-border-radius:5px;*/
+	/*border-radius:5px;*/
+	/*[> Menu bez zaoblených spodných hrán - Rozšírené vyhľadávanie, Submenu <]*/
+	/*/* border-top-left-radius:5px;*/
+	/*-moz-border-radius-topleft:5px;*/
+	/*border-top-right-radius:5px;*/
+	/*-moz-border-radius-topright:5px; */*/
+	/*margin:0px;*/
+	/*font-size:12px;*/
+/*}*/
+
+/*#menu ul {*/
+	/*list-style:none;*/
+	/*margin:0;*/
+	/*padding:0;*/
+	/*float:left;*/
+	/*display:block;*/
+	/*overflow:hidden;*/
+/*}*/
+/*#menu li {*/
+	/*float:left;*/
+/*}*/
+/*#menu a {*/
+	/*color:#ffffff;*/
+	/*display:block;*/
+	/*height:37px;*/
+	/*padding:11px 15px 0px 15px;*/
+	/*border:none;;*/
+	/*text-decoration:none;*/
+/*}*/
+/*#menu a:hover {*/
+	/*background:#444444;*/
+	/*background:-webkit-linear-gradient(top, #888888, #444444);*/
+	/*background:-moz-linear-gradient(top, #888888, #444444);*/
+/*}*/
+/*#menu a:active {*/
+	/*background:#444444;*/
+	/*background:-webkit-linear-gradient(top, #888888, #444444);*/
+	/*background:-moz-linear-gradient(top, #888888, #444444);*/
+/*}*/
+/*#menu form {*/
+	/*padding:3px 0px 0px 0px;*/
+	/*float:right;*/
+	/*overflow:hidden;*/
+	/*display:block;*/
+	/*border:0px solid red;*/
+/*}*/
+/*#menu input.search {*/
+	/*font-size:12px;*/
+	/*display:block;*/
+	/*border:none;*/
+	/*float:right;*/
+	/*background:#ffffff;*/
+	/*width:350px;*/
+	/*[> height:31px; <]*/
+	/*color:#666666;*/
+	/*padding:8px 10px 8px 10px;*/
+	/*border:none;*/
+	/*margin:0px;*/
+/*}*/
+/*#menu input.search_button {*/
+	/*cursor:pointer;*/
+	/*background:url(button_search.png) no-repeat center;*/
+	/*width:30px;*/
+	/*height:30px;*/
+	/*border:none;*/
+	/*padding:0;*/
+	/*margin:0px 4px 0px 4px;*/
+	/*display:block;*/
+	/*float:right;*/
+/*}*/
+
+/* Submenu */
+#submenu {
+	height:37px;
+	display:block;
+	float:none;
+	overflow:hidden;
+	background:#444444;
+	background:-webkit-linear-gradient(top, #888888, #444444);
+	background: -moz-linear-gradient(top, #888888, #444444);
+	border-bottom-left-radius:5px;
+	-moz-border-radius-bottomleft:5px;
+	border-bottom-right-radius:5px;
+	-moz-border-radius-bottompright:5px;
+	margin:0px 0px 20px 0px;
+	font-size:12px;
+}
+#submenu ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	float:left;
+	display:block;
+	overflow:hidden;
+}
+#submenu li {
+	float:left;
+}
+#submenu a {
+	color:#ffffff;
+	display:block;
+	height:37px;
+	padding:11px 15px 0px 15px;
+	border:none;
+	text-decoration:none;
+}
+#submenu a:hover {
+	background:#111111;
+	background:-webkit-linear-gradient(top, #555555, #111111);
+	background: -moz-linear-gradient(top, #555555, #111111);
+}
+#submenu a:active {
+	background:#111111;
+	background:-webkit-linear-gradient(top, #555555, #111111);
+	background: -moz-linear-gradient(top, #555555, #111111);
+}
+
+/* Dataset Category Headline */
+#dataset_category_head {
+	display:block;
+	float:none;
+	overflow:hidden;
+	background: #777777;
+	background: -webkit-linear-gradient(top, #aaaaaa, #777777);
+	background: -moz-linear-gradient(top, #aaaaaa, #777777);
+	border-top-left-radius:5px;
+	-moz-border-radius-topleft:5px;
+	border-top-right-radius:5px;
+	-moz-border-radius-topright:5px;
+}
+#dataset_category_head a {
+	background:transparent;
+	color:#ffffff;
+	display:inline-block;
+	text-decoration:none;
+}
+#dataset_category_head a.headline {
+	padding:10px 15px;
+	float:left;
+	font-size:14px;
+}
+#dataset_category_head a.view_wrong_dataset {
+	padding:12px 15px 12px 15px;
+	background:-webkit-linear-gradient(top, #888888, #444444);
+	background: -moz-linear-gradient(top, #888888, #444444);
+	float:right;
+	font-size:11px;
+	text-align:right;
+}
+#dataset_category_head a.view_wrong_dataset:hover {
+	background:-webkit-linear-gradient(top, #555555, #111111);
+	background:-moz-linear-gradient(top, #555555, #111111);
+}
+#dataset_category_head a.view_wrong_dataset:active {
+	background:-webkit-linear-gradient(top, #555555, #111111);
+	background:-moz-linear-gradient(top, #555555, #111111);
+}
+
+/* Dataset */
+#dataset {
+	display:block;
+	float:none;
+	overflow:hidden;
+	background:#f9f9f9;
+	border-bottom:1px solid #eaeaea;
+	font-size:10px;
+}
+#dataset a {
+	color:#333333;
+	display:inline-block;
+	text-decoration:none;
+}
+#dataset a.dataset_line {
+	float:left;
+	padding:15px 15px;
+	width:796px;
+}
+#dataset a.dataset_line:hover {
+	background:#dddddd;
+}
+#dataset .dataset_name {
+	font-size:12px;
+	display:inline-block;
+	width:200px;
+}
+#dataset a.dataset_status {
+	margin:12px 15px 0px 0px;
+	float:right;
+	width:21px;
+	height:21px;
+	background:url(ok_icon.png);
+}
+#dataset a.dataset_status_wrong {
+	margin:12px 15px 0px 0px;
+	float:right;
+	width:21px;
+	height:21px;
+	background:url(wrong_icon.png);
+}
+#dataset a.api {
+	margin:12px 15px 0px 0px;
+	float:right;
+	width:21px;
+	height:21px;
+	background:url(api_icon.png);
+}
+
+		
+/* Dataset Menu */
+#dataset_menu {
+	height:37px;
+	display:block;
+	float:none;
+	overflow:hidden;
+	background: #777777;
+	background: -webkit-linear-gradient(top, #aaaaaa, #777777);
+	background: -moz-linear-gradient(top, #aaaaaa, #777777);
+	border-top-left-radius:5px;
+	-moz-border-radius-topleft:5px;
+	border-top-right-radius:5px;
+	-moz-border-radius-topright:5px;
+	margin:0px 0px 0px 0px;
+	font-size:12px;
+}
+#dataset_menu ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	float:none;
+	display:block;
+	overflow:hidden;
+}
+#dataset_menu li {
+	float:left;
+}
+#dataset_menu li.navigation {
+	border:none;
+	display:block;
+	float:right;
+}
+#dataset_menu a.navigation {
+	float:left;
+	color:#eeeeee;
+	display:block;
+	padding:12px 15px 0px 0px;
+	border:none;
+	text-decoration:none;
+	font-size:10px;
+	
+}
+#dataset_menu a.navigation:hover {
+	background:transparent;
+	text-decoration:underline;
+}
+
+#dataset_menu a {
+	color:#ffffff;
+	display:block;
+	height:37px;
+	padding:11px 15px 0px 15px;
+	border:none;
+	text-decoration:none;
+}
+#dataset_menu a:hover {
+	background:#444444;
+	background:-webkit-linear-gradient(top, #888888, #444444);
+	background: -moz-linear-gradient(top, #888888, #444444);
+}
+#dataset_menu form {
+	padding:3px 0px 0px 0px;
+	float:right;
+	overflow:hidden;
+	display:block;
+	border:0px solid red;
+}
+#dataset_menu input.search {
+	font-size:12px;
+	display:block;
+	border:none;
+	float:right;
+	background:#ffffff;
+	width:350px;
+	/* height:31px; */
+	color:#666666;
+	padding:8px 10px 8px 10px;
+	border:none;
+	margin:0px;
+}
+#dataset_menu input.search_button {
+	cursor:pointer;
+	background:url(button_search.png) no-repeat center;
+	width:30px;
+	height:30px;
+	border:none;
+	padding:0;
+	margin:0px 4px 0px 4px;
+	display:block;
+	float:right;
+}
+
+#dataset_navigation_admin {
+	display:block;
+	float:none;
+	overflow:hidden;
+	background:#666666;
+	padding:10px 10px;
+}
+#dataset_navigation_admin a {
+	color:#ffffff;
+	font-size:10px;
+	overflow:hidden;
+	float:right;
+	margin:0px 0px 0px 10px;
+	text-decoration:none;
+}
+#dataset_navigation_admin a:hover {
+	text-decoration:underline;
+}
+#dataset_navigation_admin a:active {
+	text-decoration:underline;
+}
+
+#dataset_info_container {
+	line-height:18px;
+	font-size:12px;
+	float:none;
+	overflow:hidden;
+	display:block;
+	padding:20px 25px;
+	background:#f0f0f0;
+	border-bottom-left-radius:5px;
+	-moz-border-radius-bottomleft:5px;
+	border-bottom-right-radius:5px;
+	-moz-border-radius-bottompright:5px;
+}
+#dataset_info_container .headline {
+	font-weight:bold;
+	font-size:18px;
+	margin:0px 0px 20px 0px;
+	display:block;
+	float:none;
+	overflow:hidden;
+}
+#dataset_info_container .perex {
+	width:560px;
+	display:block;
+	float:left;
+	overflow:hidden;
+}
+#dataset_info_container .info {
+	font-size:13px;
+	width:260px;
+	display:block;
+	float:right;
+	overflow:hidden;
+}
+#dataset_info_container a {
+	color:#333333;
+	font-weight:bold;
+	text-decoration:none;
+}
+#dataset_info_container a:hover {
+	text-decoration:underline;
+}
+
+/* Rozšírené vyhľadávanie */
+#search_advanced {
+	display:none;
+	width:900px;
+	padding:25px 30px;
+	background:#000000;
+	border-bottom-left-radius:5px;
+	-moz-border-radius-bottomleft:5px;
+	border-bottom-right-radius:5px;
+	-moz-border-radius-bottomright:5px;
+	opacity: 0.9;
+	-moz-opacity: 0.9;
+	filter:alpha(opacity=90);
+	position:absolute;
+	top:161px;
+}
+
+#search_advanced ul {
+	list-style:none;
+	margin:0;
+	padding:0px 0px 20px 0px;
+	float:none;
+	display:block;
+	overflow:hidden;
+}
+#search_advanced li {
+	float:left;
+	margin:0px 5px 0px 0px;
+}
+#search_advanced li.button {
+	float:right;
+	margin:0px 5px 0px 0px;
+	padding:3px 0px 0px 0px;
+}
+#search_advanced a.plus_row {
+	display:block;
+	width:16px;
+	height:17px;
+	background:url(plus.png);
+}
+#search_advanced a.minus_row {
+	display:block;
+	width:16px;
+	height:17px;
+	background:url(minus.png);
+	margin:0px 2px 0px 0px;
+}
+#search_advanced .search_button_container {
+	display:inline-block;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	background:#009200;
+	background:-webkit-linear-gradient(top, #46b84b, #267d31);
+	background:-moz-linear-gradient(top, #00c109, #009200);
+}
+#search_advanced input.search_button {
+	cursor:pointer;
+	background:url(button_search.png) no-repeat center;
+	width:40px;
+	height:30px;
+	border:none;
+	padding:0;
+	margin:0px 4px 0px 4px;
+	display:block;
+	float:none;
+}
+#search_advanced input.search_value {
+	width:450px;
+}
+#search_advanced h1 {
+	margin:0px 0px 20px 0px;
+	padding:0px;
+	font-size:16px;
+	color:#ffffff;
+	font-weight:normal;
+}
+#search_advanced h2 {
+	margin:10px 0px 5px 0px;
+	padding:0px;
+	font-size:12px;
+	color:#ffffff;
+	font-weight:normal;
+}
+
+
+/* Footer */
+footer {
+	font-size:12px;
+	background:transparent;
+	display:block;
+	float:none;
+	overflow:hidden;
+	border-top:1px solid #cccccc;
+	margin:50px 0px 0px 0px;
+	padding:10px 15px 10px 15px;
+	color:#999999;
+}
+
+/* Newsfeed - Novinky */
+#newsfeed {
+	display:block;
+	float:none;
+	overflow:hidden;
+	background:url(cover2.png);
+}
+#newsfeed ul {
+	width:260px;
+	list-style:none;
+	margin:0;
+	padding:0;
+	float:right;
+	overflow:hidden;
+	font-size:14px;
+}
+#newsfeed li {
+	margin:0px 0px 20px 0px;
+}
+
+#newsfeed a.headline {
+	display:block;
+	font-size:20px;
+	font-weight:bold;
+	color:#2bb673;
+	margin:0px;
+	padding:20px 0px 0px 0px;
+	text-decoration:none;
+}
+#newsfeed a.headline_newsfeed {
+	display:block;
+	color:#333333;
+	font-size:15px;
+	font-weight:bold;
+	margin:0px;
+	padding:0px;
+	text-decoration:none;
+	}
+#newsfeed a:hover {
+	text-decoration:underline;
+}
