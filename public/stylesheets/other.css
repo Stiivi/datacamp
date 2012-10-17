@@ -93,11 +93,11 @@ div.content_box ul li { background: url(../images/bullet.png) no-repeat left 12p
 
 div.content_box .buttons { margin-top: 15px; }
 
-body.frontend div.box { width: 100%; border: none; padding: 20px; padding-top: 15px; padding-bottom: 40px; margin-left: -15px; margin-top: -9px; width: 865px; position: relative; }
+div.box { width: 100%; border: none; padding: 20px; padding-top: 15px; padding-bottom: 40px; margin-left: -15px; margin-top: -9px; width: 865px; position: relative; }
 
-body.frontend div.box .actions { position: absolute; bottom: 7px; right: 25px; text-align: right; }
+div.box .actions { position: absolute; bottom: 7px; right: 25px; text-align: right; }
 
-body.frontend div.box .actions a { font-size: 11px; }
+div.box .actions a { font-size: 11px; }
 
 /* @end */
 
