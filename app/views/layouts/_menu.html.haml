@@ -1,17 +1,30 @@
-.clearfix.relative
-
-  %ul.menu.clearfix.main.span-18
+#menu{class: ('rounded' if @submenu_partial.blank?)}
+  %ul
     %li= link_to t("global.home"), root_path
     %li= link_to t("global.data_catalogue"), datasets_path
-    - if current_user
+
+    - if logged_in?
       - if current_user.has_privilege? :edit_dataset_description
-        %li{:class => @submenu_partial == "data_dictionary" ? "active" : ""}
+        %li{class: @submenu_partial == "data_dictionary" ? "active" : ""}
           = link_to t("global.data_dictionary"), dataset_descriptions_path
+
       - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings, :edit_pages)
         %li
           = link_to t("global.settings"), settings_path
+
       - if current_user.is_super_user?
         %li= link_to t('global.activities'), activities_path
 
-  - if @submenu_partial
-    = render :partial => "menus/#{@submenu_partial}"
+  = form_tag quick_searches_path, :class => "search" do
+    = submit_tag '', id: "query_submit", class: 'search_button'
+    = text_field_tag :query_string, (@search.query_string if @search), class: 'search', placeholder: t("search.search_action")
+    -#- DatasetDescription.disabled_in_quick_search.each do |dd|
+      = label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :class => 'search_label'
+      = check_box_tag 'disabled_descriptions[]', dd.id, (!@disabled_descriptions && controller_name != 'searches') || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s))
+
+- if @submenu_partial.present?
+  = render "menus/#{@submenu_partial}"
+
+
+
+

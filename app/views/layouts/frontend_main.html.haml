@@ -12,7 +12,7 @@
     = javascript_include_tag @javascripts if @javascripts.present? # FIXME: remove this when moving to asset pipeline
 
   %body
-    = render partial: "layouts/search_processing"
+    = render "layouts/search_processing"
 
     #main
       = render 'layouts/menutop'
@@ -21,7 +21,8 @@
         = link_to root_url do
           = image_tag 'logo_datanest.png'
 
-      #menu
+      = render 'layouts/menu'
+      -##menu
         = render :partial => "layouts/menu"
       #container
         - unless response.cache_control[:public]

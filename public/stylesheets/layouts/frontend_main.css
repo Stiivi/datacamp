@@ -31,30 +31,6 @@ h2 {
   margin: auto;
   min-height: 800px;
   _height: 800px; }
-  #main #menu {
-    background: url(../../images/menu_full.png) no-repeat;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px; }
-    #main #menu ul.main li {
-      background: url(../../images/frontend_menu_divider.png) no-repeat right;
-      padding-top: 9px; }
-    #main #menu ul {
-      margin-left: 10px;
-      padding-top: 0px; }
-      #main #menu ul li {
-        border: none;
-        float: left;
-        margin: 0px;
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-top: 8px; }
-        #main #menu ul li.active a {
-          text-decoration: underline; }
-        #main #menu ul li a {
-          color: #fff;
-          font-size: 11px;
-          font-weight: bold;
-          text-decoration: none; }
   #main #container {
     margin-top: 15px;
     padding: 15px; }
