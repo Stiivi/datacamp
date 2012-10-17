@@ -3,7 +3,8 @@
   %head
     %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
     - if @dataset_description.present?
-      %meta{ property: 'og:description', content: @dataset_description.description }
+      %meta{ property: 'og:title', content: "#{@dataset_description.title} - #{SystemVariable.get 'site_name', 'Datacamp'}" }
+      %meta{ property: 'og:description', content: truncate(clear_textile(@dataset_description.description || ''), length: 200).html_safe }
     =raw SystemVariable.get("meta_information")
     %title= SystemVariable.get "site_name", "Datacamp"
     = csrf_meta_tag unless response.cache_control[:public]
