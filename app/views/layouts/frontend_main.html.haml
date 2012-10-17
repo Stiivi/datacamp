@@ -13,17 +13,14 @@
 
   %body
     = render partial: "layouts/search_processing"
+
     #main
       = render 'layouts/menutop'
 
-      #header
-        .container
-          .span-4
-            = link_to("&nbsp;".html_safe, root_path, :class => "home")
-          .prepend-7.span-15
-            = render :partial => "layouts/top_search"
-          .span-2.last
-            = render :partial => "layouts/social_links"
+      #logo
+        = link_to root_url do
+          = image_tag 'logo_datanest.png'
+
       #menu
         = render :partial => "layouts/menu"
       #container
