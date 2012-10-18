@@ -1,19 +1,19 @@
 #menu{class: ('rounded' if @submenu_partial.blank?)}
   %ul
-    %li= link_to t("global.home"), root_path
-    %li= link_to t("global.data_catalogue"), datasets_path
+    %li= link_to t("global.home"), root_path, class: (params[:controller] == "pages" && params[:id] == 'index' ? "active" : "")
+    %li= link_to t("global.data_catalogue"), datasets_path, class: (params[:controller] == "datasets" ? "active" : "")
 
     - if logged_in?
       - if current_user.has_privilege? :edit_dataset_description
-        %li{class: @submenu_partial == "data_dictionary" ? "active" : ""}
-          = link_to t("global.data_dictionary"), dataset_descriptions_path
+        %li
+          = link_to t("global.data_dictionary"), dataset_descriptions_path, class: (@submenu_partial == "data_dictionary" ? "active" : "")
 
       - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings, :edit_pages)
         %li
-          = link_to t("global.settings"), settings_path
+          = link_to t("global.settings"), settings_path, class: (@submenu_partial == "settings" ? "active" : "")
 
       - if current_user.is_super_user?
-        %li= link_to t('global.activities'), activities_path
+        %li= link_to t('global.activities'), activities_path, class: (params[:controller] == "activities" ? "active" : "")
 
   = form_tag quick_searches_path, :class => "search" do
     = submit_tag '', id: "query_submit", class: 'search_button'

@@ -22,8 +22,7 @@
           = image_tag 'logo_datanest.png'
 
       = render 'layouts/menu'
-      -##menu
-        = render :partial => "layouts/menu"
+
       #container
         - unless response.cache_control[:public]
           - if flash[:notice]
