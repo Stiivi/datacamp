@@ -82,6 +82,34 @@ h1 {
 	text-decoration:underline;
 }
 
+#menutop a.twitter {
+	margin:2px 5px 0px 0px;
+	display:block;
+	width:20px;
+	height:20px;
+	overflow:hidden;
+	float:left;
+	background:url(../images/twitter.png);
+}
+#menutop a.twitter:hover {
+	background:url(../images/twitter.png);
+	background-position:0 -20px;
+}
+
+#menutop a.facebook {
+	margin:2px 0px 0px 0px;
+	display:block;
+	width:20px;
+	height:20px;
+	overflow:hidden;
+	float:left;
+	background:url(../images/facebook.png);
+}
+#menutop a.facebook:hover {
+	background:url(../images/facebook.png);
+	background-position:0 -20px;
+}
+
 
 /* Menu */
 #menu {
@@ -132,12 +160,7 @@ h1 {
   border:none;;
   text-decoration:none;
 }
-#menu a:hover {
-  background:#444444;
-  background:-webkit-linear-gradient(top, #888888, #444444);
-  background:-moz-linear-gradient(top, #888888, #444444);
-}
-#menu a:active {
+#menu a:hover, #menu a.active, #menu a:active {
   background:#444444;
   background:-webkit-linear-gradient(top, #888888, #444444);
   background:-moz-linear-gradient(top, #888888, #444444);

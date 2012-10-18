@@ -1,10 +1,8 @@
 #menutop
   %ul
-    %li.soc_button
-      = link_to "http://twitter.com/alianciaFP" do
-        = image_tag 'twitter.png'
-      = link_to 'http://www.facebook.com/pages/Datanest-Aliancie-Fair-play/151055951576439' do
-        = image_tag 'facebook.png'
+    %li
+      = link_to '', "http://twitter.com/alianciaFP", class: 'twitter'
+      = link_to '', 'http://www.facebook.com/pages/Datanest-Aliancie-Fair-play/151055951576439', class: 'facebook'
     %li /
 
     - if logged_in?
