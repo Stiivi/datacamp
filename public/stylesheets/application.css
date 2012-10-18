@@ -155,6 +155,10 @@ a:hover {
 
   /* FIXME: remove this line when the whole thing is revised. Overrides other.css:20 */
   padding: 0;
+  border: 0;
+  margin: 0;
+  /* FIXME: remove when removing screen.css:16 */
+  line-height: 15px;
 }
 
 #menu a {
@@ -184,7 +188,7 @@ a:hover {
   float:right;
   background:#ffffff;
   width:350px;
-  [> height:31px; <]
+  height:15px;
   color:#666666;
   padding:8px 10px 8px 10px;
   border:none;
