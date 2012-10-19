@@ -10,7 +10,7 @@
 
       - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings, :edit_pages)
         %li
-          = link_to t("global.settings"), settings_path, class: (@submenu_partial == "settings" ? "active" : "")
+          = link_to t("global.settings"), settings_system_variables_path, class: (@submenu_partial == "settings" ? "active" : "")
 
       - if current_user.is_super_user?
         %li= link_to t('global.activities'), activities_path, class: (params[:controller] == "activities" ? "active" : "")

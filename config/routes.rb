@@ -17,6 +17,38 @@ Datacamp::Application.routes.draw do
 
 
   scope "(:locale)", :locale => /sk|en/ do
+    namespace :settings do
+      resources :pages
+      resources :blocks do
+        post :update_positions, on: :collection
+      end
+      resources :users do
+        member do
+          get :restore
+          put :restore
+        end
+      end
+      resources :comments, only: [:index, :edit, :update, :destroy]
+      resources :system_variables, only: :index do
+        put :update_all, on: :collection
+      end
+      resources :news, only: [:index, :new, :create, :edit, :update]
+    end
+
+    resources :pages do
+      resources :blocks
+    end
+
+    resources :comments, only: [:new, :create] do
+      member do
+        get :rate, :report
+        post :report
+      end
+    end
+
+    resources :news, only: [:index, :show]
+
+
     resources :watchers
     resources :activities, only: [:index, :show]
 
@@ -25,19 +57,6 @@ Datacamp::Application.routes.draw do
         get :update_columns, :update_columns_names
         post :start_repair, :sphinx_reindex
       end
-    end
-
-    namespace :settings do
-      resources :pages
-      resources :blocks do
-        collection do
-          post :update_positions
-        end
-      end
-    end
-
-    resources :settings do
-      put :update_all, :on => :collection
     end
 
     resources :import_files do
@@ -52,15 +71,6 @@ Datacamp::Application.routes.draw do
       post :quick, :on => :collection
     end
 
-    resources :user_roles
-
-    resources :users do
-      member do
-        get :restore
-        put :restore
-      end
-    end
-
     resource :account do
       collection do
         get :forgot, :password
@@ -71,13 +81,6 @@ Datacamp::Application.routes.draw do
     resources :api_keys
 
     resource :session
-
-    resources :comments do
-      member do
-        get :rate, :report
-        post :report
-      end
-    end
 
     resources :favorites do
       get :create, :on => :collection
@@ -96,9 +99,6 @@ Datacamp::Application.routes.draw do
           delete :delete_relationship
         end
       end
-    end
-    resources :pages do
-      resources :blocks
     end
 
     resources :data_types

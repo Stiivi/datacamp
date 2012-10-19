@@ -1,0 +1,5 @@
+%h1= @news_item.title
+
+%p= textile @news_item.text
+
+= button_link_to t('.index'), news_index_path

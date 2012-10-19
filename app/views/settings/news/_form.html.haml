@@ -1,4 +1,4 @@
-= form_for([:settings, @page], :builder => ListFormBuilder) do |f|
+= form_for([:settings, @news_item], :builder => ListFormBuilder) do |f|
   = f.error_messages
 
   %ul
@@ -8,10 +8,9 @@
 
     - f.locale_tabs I18N_LOCALES do |trans|
       = trans.text_field :title
-      = trans.text_area :body, :class => "large"
-      = trans.text_area :block, class: 'large'
+      = trans.text_area :text, :class => "large"
 
-    = f.text_field :page_name
+    = f.check_box :published, label: t('.published')
 
     %li.clearfix
       %label

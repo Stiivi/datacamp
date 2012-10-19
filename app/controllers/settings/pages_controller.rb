@@ -6,11 +6,11 @@ module Settings
     def index
       @pages = Page.all
     end
-    
+
     def new
       @page = Page.new
     end
-    
+
     def create
       @page = Page.new(params[:page])
       if @page.save
@@ -19,15 +19,15 @@ module Settings
         render :action => "new"
       end
     end
-    
+
     def show
       redirect_to edit_settings_page_path(params[:id])
     end
-    
+
     def edit
       @page = Page.find_by_page_name!(params[:id])
     end
-    
+
     def update
       @page = Page.find_by_page_name(params[:id])
       if @page.update_attributes(params[:page])
@@ -35,10 +35,6 @@ module Settings
       else
         render :action => "edit"
       end
-    end
-    
-    def init_menu
-      @submenu_partial = "settings"
     end
   end
 end

@@ -1,15 +1,19 @@
 %ul#submenu
-  - if current_user && current_user.has_privilege?(:edit_system_settings)
-    %li= link_to t("global.settings"), settings_path
+  - if logged_in?
+    - if current_user.has_privilege?(:edit_system_settings)
+      %li= link_to t("global.settings"), settings_system_variables_path
 
-  - if current_user && current_user.has_privilege?(:manage_users)
-    %li= link_to t("global.users"), users_path
+    - if current_user.has_privilege?(:manage_users)
+      %li= link_to t("global.users"), settings_users_path
 
-  - if current_user && current_user.has_privilege?(:moderate_comments)
-    %li= link_to t("global.moderation"), comments_path
+    - if current_user.has_privilege?(:moderate_comments)
+      %li= link_to t("global.moderation"), settings_comments_path
 
-  - if current_user && current_user.has_privilege?(:edit_pages)
-    %li= link_to t("global.pages"), settings_pages_path
+    - if current_user.has_privilege?(:edit_pages)
+      %li= link_to t("global.pages"), settings_pages_path
 
-  - if current_user && current_user.has_privilege?(:edit_blocks)
-    %li= link_to t("global.blocks"), settings_blocks_path
+    - if current_user.has_privilege?(:data_editor)
+      %li= link_to t("global.news"), settings_news_index_path
+
+    - if current_user.has_privilege?(:edit_blocks)
+      %li= link_to t("global.blocks"), settings_blocks_path

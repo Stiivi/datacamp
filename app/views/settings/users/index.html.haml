@@ -1,13 +1,13 @@
 .clearfix
   %h1.fl
     = t("settings.users.users")
-    = link_to t("settings.users.download_csv"), users_path(:format => "csv")
+    = link_to t("settings.users.download_csv"), settings_users_path(:format => "csv")
 
   .buttons.clearfix.fr
     =link_to "<span>Watchers</span>".html_safe, watchers_path, :class => "button"
-    =link_to "<span>New User</span>".html_safe, new_user_path, :class => "button"
+    =link_to "<span>New User</span>".html_safe, new_settings_user_path, :class => "button"
 
-= form_tag users_path, :method => "get" do
+= form_tag settings_users_path, :method => "get" do
   %table
     %tr
       %th= t("settings.users.login")
@@ -31,9 +31,9 @@
       %tr
         %td
           - if user.is_super_user
-            = link_to(user.login, edit_user_path(user), :class => "tooltip em", :name => t("settings.users.super_user"))
+            = link_to(user.login, edit_settings_user_path(user), :class => "tooltip em", :name => t("settings.users.super_user"))
           - else
-            = link_to(user.login, edit_user_path(user))
+            = link_to(user.login, edit_settings_user_path(user))
 
         %td= user.name
         %td= user.email
@@ -41,7 +41,7 @@
           = image_tag("accessable_level_#{accessable_level_name_for_level(user.api_access_level)}.png", :class => "tooltip", :alt => t("api.levels.#{accessable_level_name_for_level(user.api_access_level)}"))
         %td.actions
           .actions
-            =link_to(image_tag('icons/trash.gif'), user_path(user), :confirm => 'Are you sure you want to delete this item?', :method => 'delete')
+            =link_to(image_tag('icons/trash.gif'), settings_user_path(user), :confirm => 'Are you sure you want to delete this item?', :method => 'delete')
             
   .box
     = will_paginate @records, :previous_label => t("global.previous"), :next_label => t("global.next")
