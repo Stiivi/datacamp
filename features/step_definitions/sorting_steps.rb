@@ -8,7 +8,7 @@ When /^I reorder field descriptions for the first dataset$/ do
 
   find("//a[contains(@class, 'sort_link')]").click
 
-  drop_place = find("//div[@id='footer']")
+  drop_place = find("//footer")
   find("//div[@id='field_descriptions']").find(".//li[@class='field_description'][1]//img").drag_to(drop_place)
   find("//a[contains(@class, 'finish_sort_link')]").click
 end
