@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Page < ActiveRecord::Base
-    translates :body, :title
+    translates :body, :title, :block
     locale_accessor I18N_LOCALES
     
     has_many :blocks

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019143252) do
+ActiveRecord::Schema.define(:version => 20121019164935) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -344,6 +344,7 @@ ActiveRecord::Schema.define(:version => 20121019143252) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "block"
   end
 
   create_table "pages", :force => true do |t|

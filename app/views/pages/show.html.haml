@@ -9,6 +9,8 @@
       = render partial: 'news/news_item', collection: @news
 
 .clearfix &nbsp;
+
+#blocks=raw @page.block
 -#- if @blocks.present?
   %p
     .blocks.container.prepend-top.append-bottom.prepend-1
