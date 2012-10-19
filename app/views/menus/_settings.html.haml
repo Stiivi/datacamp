@@ -1,20 +1,15 @@
-%ul.menu.submenu.clearfix
+%ul#submenu
   - if current_user && current_user.has_privilege?(:edit_system_settings)
-    %li
-      = link_to t("global.settings"), settings_path
-    
+    %li= link_to t("global.settings"), settings_path
+
   - if current_user && current_user.has_privilege?(:manage_users)
-    %li
-      = link_to t("global.users"), users_path  
-    
+    %li= link_to t("global.users"), users_path
+
   - if current_user && current_user.has_privilege?(:moderate_comments)
-    %li
-      = link_to t("global.moderation"), comments_path
+    %li= link_to t("global.moderation"), comments_path
 
   - if current_user && current_user.has_privilege?(:edit_pages)
-    %li
-      = link_to t("global.pages"), settings_pages_path
-      
+    %li= link_to t("global.pages"), settings_pages_path
+
   - if current_user && current_user.has_privilege?(:edit_blocks)
-    %li
-      = link_to t("global.blocks"), settings_blocks_path
+    %li= link_to t("global.blocks"), settings_blocks_path

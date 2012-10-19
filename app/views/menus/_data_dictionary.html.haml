@@ -1,14 +1,18 @@
-%ul.menu.submenu.clearfix
+%ul#submenu
   - if current_user && current_user.has_privilege?(:edit_dataset_description)
     %li= link_to t('global.datasets'), dataset_descriptions_path
+
   - if current_user && current_user.has_privilege?(:create_dataset) 
     %li= link_to t('dataset.create'), new_dataset_description_path
     %li= link_to t('dataset.initialize'), import_dataset_descriptions_path
+
   - if current_user && current_user.has_privilege?(:import_from_file)
     %li= link_to t('global.import'), new_import_file_path
+
   - if current_user && current_user.has_privilege?(:edit_dataset_description)
     %li= link_to t('global.categories'), categories_path
     %li= link_to t('global.field_description_categories'), field_description_categories_path
+
   - if current_user && current_user.has_privilege?(:data_editor)
     %li= link_to t('global.data_repairs'), data_repairs_path
     %li= link_to t('global.parsers'), parsers_path

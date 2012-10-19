@@ -2,9 +2,9 @@
 
 
 a {
-  color: #394627 !important; }
+  color: #264000; }
   a:hover {
-    color: #394627; }
+    color: #264000; }
 
 h2 {
   margin-right: 0px; }
@@ -15,3 +15,4 @@ h2 {
     font-weight: normal; }
   h2.bordered {
     border-bottom: 5px solid #EAEAEA; }
+

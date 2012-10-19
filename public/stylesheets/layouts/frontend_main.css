@@ -26,58 +26,6 @@ h2 {
 /* ************************** */
 
 
-#main {
-  width: 960px;
-  margin: auto;
-  min-height: 800px;
-  _height: 800px; }
-  #main #top-nav {
-      text-align: right;
-      padding-right: 5px;
-      font-size: 11px; }
-  #main #header {
-    height: 75px;
-    position: relative; }
-    #main #header #social-links {
-        margin-top:14px; }
-    #main #header a.home {
-      text-decoration: none;
-      display: block;
-      position: absolute;
-      width: 200px;
-      height: 40px;
-      top: 10px; }
-    #main #header #nav {
-      text-align: right;
-      padding-top: 20px;
-      font-size: 11px; }
-  #main #menu {
-    background: url(../../images/menu_full.png) no-repeat;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px; }
-    #main #menu ul.main li {
-      background: url(../../images/frontend_menu_divider.png) no-repeat right;
-      padding-top: 9px; }
-    #main #menu ul {
-      margin-left: 10px;
-      padding-top: 0px; }
-      #main #menu ul li {
-        border: none;
-        float: left;
-        margin: 0px;
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-top: 8px; }
-        #main #menu ul li.active a {
-          text-decoration: underline; }
-        #main #menu ul li a {
-          color: #fff;
-          font-size: 11px;
-          font-weight: bold;
-          text-decoration: none; }
-  #main #container {
-    margin-top: 15px;
-    padding: 15px; }
     #main #container #block_pagination {
       margin-bottom: 35px;
       color: #AAA; } 
@@ -105,14 +53,6 @@ h2 {
       background-color: #CCC;
       background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#BBB));
       background-image: -moz-linear-gradient(0% 100% 90deg,#BBB, #EEE);   }  
-  #main #footer {
-    padding: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
-    border-top: 5px solid #eaeaea;
-    font-size: 11px; }
-    #main #footer a {
-      font-size: 11px; }
 
 .notice {
   margin-top: 10px; }
@@ -135,77 +75,13 @@ h2 {
       background: #fff url(../../images/icons/search.png) no-repeat 5px 4px;
       -webkit-border-radius: 15px;
       outline: none; }
-      
-#top_search {
-  background: transparent; }
-  #top_search form {
-    background: transparent;
-    margin-right: 15px; 
-    margin-top: 4px; 
-    margin-bottom: 0;
-    padding: 0;}
-    #top_search form #query_string {
-      border-width: 2px 0 2px 2px;
-      border-style: solid;
-      border-color: #AAA;
-      -webkit-border-top-left-radius: 6px 6px;
-      -moz-border-radius-topleft: 6px 6px;
-      border-top-left-radius: 6px 6px;
-      -webkit-border-bottom-left-radius: 6px 6px;
-      -moz-border-radius-bottomleft: 6px 6px;
-      border-bottom-left-radius: 6px 6px;
-      margin-top: 10px;
-      width: 300px;
-      padding: 6px;
-      background-color: #FFF;
-      font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: bold;
-      }
-    #top_search form #query_submit {
-      line-height: 17px;
-      border-width: 2px 2px 2px 0;
-      border-style: solid;
-      border-color: #AAA;
-      -webkit-border-top-right-radius: 6px 6px;
-      -moz-border-radius-topright: 6px 6px;
-      border-top-right-radius: 6px 6px;
-      -webkit-border-bottom-right-radius: 6px 6px;
-      -moz-border-radius-bottomright: 6px 6px;
-      border-bottom-right-radius: 6px 6px;
-      margin-top: 10px;
-      margin-left: -1px;
-      padding: 5px 18px;
-      background-color: #CCC;
-      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#EEE), to(#BBB));
-      background-image: -moz-linear-gradient(0% 100% 90deg,#BBB, #EEE);
-      font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: bold;
-      outline-width: 0px;
-      
-      }
-		#top_search .search_label{
-			width:auto; padding-top: 6px; font-size: 10px
-		}
+
 /* ************************** */
 
 
 table {
   margin-top: 10px; }
-  
-/* home page, intro */ 
-.section#intro {
-  padding-bottom: 10px;}
-  .section#intro p {
-    color: #555; }
-  span.opening {
-    font-size: 14px; 
-    color: #222;
-    font-weight: bold; }
-    
+
 /* ************************** */
 
 .blocks {

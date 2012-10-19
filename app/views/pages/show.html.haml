@@ -1,6 +1,14 @@
 %h1= @page.title
-%p=raw @page.html_body
+#page_content{class: params[:id] == 'index' ? 'with_sidebar': ''}=raw @page.html_body
 
+#newsfeed
+  %ul
+    %li=link_to 'Novinky', '', class: 'headline'
+    %li
+      = link_to 'Lorem ipsum dolor sit amet', '', class: 'headline_newsfeed'
+      Consectetur adipiscing elit. Curabitur quis lacus id massa suscipit pretium vitae sed erat.
+
+.clearfix &nbsp;
 - if @blocks.present?
   %p
     .blocks.container.prepend-top.append-bottom.prepend-1

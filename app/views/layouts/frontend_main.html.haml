@@ -1,39 +1,28 @@
 !!!
-%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+%html
   %head
-    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
-    - if @dataset_description.present?
-      %meta{ property: 'og:title', content: "#{@dataset_description.title} - #{SystemVariable.get 'site_name', 'Datacamp'}" }
-      %meta{ property: 'og:description', content: truncate(clear_textile(@dataset_description.description || ''), length: 200).html_safe }
-    =raw SystemVariable.get("meta_information")
+    %meta{ charset: 'utf-8' }
+    = render 'layouts/facebook_meta' if @dataset_description.present?
+    = raw SystemVariable.get("meta_information")
     %title= SystemVariable.get "site_name", "Datacamp"
+
     = csrf_meta_tag unless response.cache_control[:public]
-    = stylesheet_link_tag 'blueprint/screen.css', 'special', 'other', 'typo', 'buttons', 'tables', 'forms', 'layouts/frontend_main'
-    = stylesheet_link_tag 'modules/main', 'modules/dataset_descriptions', 'modules/datasets', 'modules/searches'
-    = stylesheet_link_tag "/themes/#{SystemVariable.get("theme", "default")}/stylesheets/screen.css"
-    = stylesheet_link_tag 'sortables', 'jquery.asmselect.css'
-    = javascript_include_tag 'jquery.min.js', 'rails.js', 'jquery.history.js', 'jquery.tooltip.js', 'jquery.asmselect.js'
-    = javascript_include_tag 'inscription.js', 'dataset_descriptions.js', 'searches.js', 'datasets.js', 'application.js', 'jquery.ui.custom.min.js', 'jquery.ui.nestedSortable.js', 'sorting.js'
-    - if @javascripts
-      = javascript_include_tag @javascripts
-  %body.frontend
-    = render :partial => "layouts/search_processing"
+
+    = render 'layouts/asset_includes' # FIXME: remove this when moving to asset pipeline
+    = javascript_include_tag @javascripts if @javascripts.present? # FIXME: remove this when moving to asset pipeline
+
+  %body
+    = render "layouts/search_processing"
+
     #main
-      #top-nav
-        = render :partial => "layouts/user"
-        |
-        - I18N_LOCALES.each do |locale|
-          = link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
-      #header
-        .container
-          .span-4
-            = link_to("&nbsp;".html_safe, root_path, :class => "home")
-          .prepend-7.span-15
-            = render :partial => "layouts/top_search"
-          .span-2.last
-            = render :partial => "layouts/social_links"
-      #menu
-        = render :partial => "layouts/menu"
+      = render 'layouts/menutop'
+
+      #logo
+        = link_to root_url do
+          = image_tag 'logo_datanest.png'
+
+      = render 'layouts/menu'
+
       #container
         - unless response.cache_control[:public]
           - if flash[:notice]
@@ -41,5 +30,5 @@
           - if flash[:error]
             %p.error= flash[:error]
         = yield
-      #footer
-        = render :partial => "layouts/footer"
+
+      = render 'layouts/footer'

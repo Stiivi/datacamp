@@ -1,21 +1,24 @@
-.clearfix
-	.fl
-		%span= link_to_page "about_service"
-		%span= link_to_page "terms_of_service"
-		%span= link_to_page "about_organisation"
-	.fr
-		%span=raw SystemVariable.get("copyright_notice")
-		%span= link_to_page "copyright"
-		%span= link_to_page "contact"
+%footer
+  = raw SystemVariable.get("copyright_notice")
+  \/
+  = link_to_page "about_service"
+  \/
+  = link_to_page "terms_of_service"
+  \/
+  = link_to_page "copyright"
+  \/
+  = link_to_page "about_organisation"
+  \/
+  = link_to_page "contact"
 
-- if Rails.env.production?    
-	:javascript
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-1568476-19']);
-		_gaq.push(['_trackPageview']);
+- if Rails.env.production?
+  :javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1568476-19']);
+    _gaq.push(['_trackPageview']);
 
-		(function() {
-			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
