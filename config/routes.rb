@@ -20,10 +20,18 @@ Datacamp::Application.routes.draw do
           put :restore
         end
       end
+      resources :comments, only: [:index, :edit, :update, :destroy]
     end
 
     resources :pages do
       resources :blocks
+    end
+
+    resources :comments, only: [:new, :create] do
+      member do
+        get :rate, :report
+        post :report
+      end
     end
 
 
@@ -63,13 +71,6 @@ Datacamp::Application.routes.draw do
     resources :api_keys
 
     resource :session
-
-    resources :comments do
-      member do
-        get :rate, :report
-        post :report
-      end
-    end
 
     resources :favorites do
       get :create, :on => :collection

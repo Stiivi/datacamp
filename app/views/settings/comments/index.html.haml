@@ -14,8 +14,8 @@
       %td
         - if comment.dataset_description
           = link_to comment.dataset_description.title, dataset_path(comment.dataset_description)
-      %td= comment.user.name
+      %td= comment.user.try(:name)
       %td
-        %a{:href => edit_comment_path(comment)}
+        %a{:href => edit_settings_comment_path(comment)}
           = comment.is_suspended ? "<del>#{comment.text}</del>".html_safe : comment.text
       %td= comment.created_at

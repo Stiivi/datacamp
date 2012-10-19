@@ -6,7 +6,7 @@
     %li= link_to t("global.users"), settings_users_path
 
   - if current_user && current_user.has_privilege?(:moderate_comments)
-    %li= link_to t("global.moderation"), comments_path
+    %li= link_to t("global.moderation"), settings_comments_path
 
   - if current_user && current_user.has_privilege?(:edit_pages)
     %li= link_to t("global.pages"), settings_pages_path
