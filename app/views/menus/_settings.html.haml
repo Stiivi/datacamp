@@ -1,6 +1,6 @@
 %ul#submenu
   - if current_user && current_user.has_privilege?(:edit_system_settings)
-    %li= link_to t("global.settings"), settings_path
+    %li= link_to t("global.settings"), settings_system_variables_path
 
   - if current_user && current_user.has_privilege?(:manage_users)
     %li= link_to t("global.users"), settings_users_path

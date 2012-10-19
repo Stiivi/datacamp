@@ -21,6 +21,9 @@ Datacamp::Application.routes.draw do
         end
       end
       resources :comments, only: [:index, :edit, :update, :destroy]
+      resources :system_variables, only: :index do
+        put :update_all, on: :collection
+      end
     end
 
     resources :pages do
@@ -43,10 +46,6 @@ Datacamp::Application.routes.draw do
         get :update_columns, :update_columns_names
         post :start_repair, :sphinx_reindex
       end
-    end
-
-    resources :settings do
-      put :update_all, :on => :collection
     end
 
     resources :import_files do
