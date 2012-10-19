@@ -125,7 +125,7 @@ a:hover {
   overflow:hidden;
   background:#2bb673;
   background:-webkit-linear-gradient(top, #2bb673, #00a651);
-  background:-moz-linear-gradient(top, #46b84b, #46b84b);
+  background:-moz-linear-gradient(top, #2bb673, #00a651);
 
   /* Menu bez zaoblených spodných hrán - Rozšírené vyhľadávanie, Submenu */
    border-top-left-radius:5px;
@@ -625,6 +625,15 @@ footer a:hover {
 	text-decoration:underline;
 }
 
+#page_content {
+	display:block;
+	float:left;
+	overflow:hidden;
+  padding:30px 0;
+}
+#page_content.with_sidebar {
+  width:700px;
+}
 
 /* Newsfeed - Novinky */
 #newsfeed {
@@ -644,6 +653,10 @@ footer a:hover {
 }
 #newsfeed li {
 	margin:0px 0px 20px 0px;
+
+  /* FIXME: remove this when styles get fixed. Overrides other.css:20:12 */
+  padding: 0;
+  border: none;
 }
 
 #newsfeed a.headline {
