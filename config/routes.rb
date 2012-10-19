@@ -24,6 +24,7 @@ Datacamp::Application.routes.draw do
       resources :system_variables, only: :index do
         put :update_all, on: :collection
       end
+      resources :news, only: [:index, :new, :create, :edit, :update]
     end
 
     resources :pages do
@@ -36,6 +37,8 @@ Datacamp::Application.routes.draw do
         post :report
       end
     end
+
+    resources :news, only: [:index, :show]
 
 
     resources :watchers

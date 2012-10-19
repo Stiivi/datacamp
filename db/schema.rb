@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924122335) do
+ActiveRecord::Schema.define(:version => 20121019143252) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -227,7 +228,12 @@ ActiveRecord::Schema.define(:version => 20120924122335) do
     t.datetime "updated_at"
     t.integer  "last_processed_id"
     t.datetime "last_run_time"
+    t.boolean  "parser",            :default => false, :null => false
+    t.string   "status"
+    t.string   "download_path"
   end
+
+  add_index "etl_configurations", ["name"], :name => "index_etl_configurations_on_name"
 
   create_table "favorites", :force => true do |t|
     t.integer  "dataset_description_id"
@@ -313,6 +319,23 @@ ActiveRecord::Schema.define(:version => 20120924122335) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "news", :force => true do |t|
+    t.boolean  "published",  :default => false, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "news_translations", :force => true do |t|
+    t.integer  "news_id"
+    t.string   "locale"
+    t.string   "title"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "news_translations", ["news_id"], :name => "index_news_translations_on_news_id"
 
   create_table "page_translations", :force => true do |t|
     t.integer  "page_id"
@@ -412,6 +435,13 @@ ActiveRecord::Schema.define(:version => 20120924122335) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+  end
+
+  create_table "similar_datasets", :force => true do |t|
+    t.integer  "similar_source_id"
+    t.integer  "similar_target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "system_variable_translations", :force => true do |t|

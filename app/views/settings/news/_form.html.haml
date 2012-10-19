@@ -1,0 +1,17 @@
+= form_for([:settings, @news_item], :builder => ListFormBuilder) do |f|
+  = f.error_messages
+
+  %ul
+    %li.clearfix.locale_switcher
+      %label Language
+      = f.locale_switcher I18N_LOCALES
+
+    - f.locale_tabs I18N_LOCALES do |trans|
+      = trans.text_field :title
+      = trans.text_area :text, :class => "large"
+
+    = f.check_box :published, label: t('.published')
+
+    %li.clearfix
+      %label
+      = f.submit

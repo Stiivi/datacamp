@@ -1,13 +1,12 @@
 %h1= @page.title
-#page_content{class: params[:id] == 'index' ? 'with_sidebar': ''}=raw @page.html_body
+#page_content{class: params[:id] == 'index' && @news.present? ? 'with_sidebar': ''}=raw @page.html_body
 
-- if params[:id] == 'index'
+- if params[:id] == 'index' && @news.present?
   #newsfeed
     %ul
-      %li=link_to 'Novinky', '', class: 'headline'
-      %li
-        = link_to 'Lorem ipsum dolor sit amet', '', class: 'headline_newsfeed'
-        Consectetur adipiscing elit. Curabitur quis lacus id massa suscipit pretium vitae sed erat.
+      %li=link_to t('.news_header'), news_index_path, class: 'headline'
+
+      = render partial: 'news/news_item', collection: @news
 
 .clearfix &nbsp;
 -#- if @blocks.present?
