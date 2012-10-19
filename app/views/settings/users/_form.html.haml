@@ -1,4 +1,4 @@
-= form_for @user, :builder => ListFormBuilder do |f|
+= form_for [:settings, @user], :builder => ListFormBuilder do |f|
   
   .errors= f.error_messages
   

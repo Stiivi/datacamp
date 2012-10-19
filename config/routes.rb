@@ -9,6 +9,24 @@ Datacamp::Application.routes.draw do
 
 
   scope "(:locale)", :locale => /sk|en/ do
+    namespace :settings do
+      resources :pages
+      resources :blocks do
+        post :update_positions, on: :collection
+      end
+      resources :users do
+        member do
+          get :restore
+          put :restore
+        end
+      end
+    end
+
+    resources :pages do
+      resources :blocks
+    end
+
+
     resources :watchers
     resources :activities, only: [:index, :show]
 
@@ -16,15 +34,6 @@ Datacamp::Application.routes.draw do
       collection do
         get :update_columns, :update_columns_names
         post :start_repair, :sphinx_reindex
-      end
-    end
-
-    namespace :settings do
-      resources :pages
-      resources :blocks do
-        collection do
-          post :update_positions
-        end
       end
     end
 
@@ -42,15 +51,6 @@ Datacamp::Application.routes.draw do
     resources :searches do
       get :broaden, :on => :member
       post :quick, :on => :collection
-    end
-
-    resources :user_roles
-
-    resources :users do
-      member do
-        get :restore
-        put :restore
-      end
     end
 
     resource :account do
@@ -88,9 +88,6 @@ Datacamp::Application.routes.draw do
           delete :delete_relationship
         end
       end
-    end
-    resources :pages do
-      resources :blocks
     end
 
     resources :data_types
