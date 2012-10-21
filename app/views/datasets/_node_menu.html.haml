@@ -6,8 +6,7 @@
       %a{:href => '#information'}= t("global.information")
     %li
       %a{:href => '#comments'}= t("global.comments")
-    %li
-      %a{:href => '#search'}= t("global.search_current")
+
   %ul.tabs.small.clearfix.fr
     - if logged_in?
       %li= link_to( t('dataset.relations_xml'), |

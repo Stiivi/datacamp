@@ -30,5 +30,8 @@
           - if flash[:error]
             %p.error= flash[:error]
         = yield
+        #search_advanced.hidden
+          %h1= 'Rozsirene vyhladavanie'
+          = render "searches/predicates_form", predicates: @search_predicates
 
       = render 'layouts/footer'

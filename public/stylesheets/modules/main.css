@@ -4,12 +4,6 @@
     padding-left: 80px; }
     .homepage .right.padded {
       padding-top: 15px; }
-  .homepage .search form {
-    border: none; }
-    .homepage .search form input.search {
-      padding: 10px;
-      font-size: 20px;
-      width: 400px; }
   .homepage ul li {
     width: 235px;
     float: left;

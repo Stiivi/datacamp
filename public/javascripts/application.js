@@ -103,5 +103,10 @@ $(function(){
   });
 
   $('.has-tip').tooltip();
-  $("select[multiple].asmselect").asmSelect(); 
+  $("select[multiple].asmselect").asmSelect();
+
+  $('#query_string').focus(function() {
+    $('#search_advanced').toggleClass('hidden');
+  });
+
 });

@@ -521,7 +521,6 @@ a:hover {
 
 /* Rozšírené vyhľadávanie */
 #search_advanced {
-	display:none;
 	width:900px;
 	padding:25px 30px;
 	background:#000000;
@@ -535,6 +534,9 @@ a:hover {
 	position:absolute;
 	top:161px;
 }
+#search_advanced form {
+  padding: 0;
+}
 
 #search_advanced ul {
 	list-style:none;
@@ -547,6 +549,16 @@ a:hover {
 #search_advanced li {
 	float:left;
 	margin:0px 5px 0px 0px;
+
+  /* FIXME: override other.css:20 */
+  padding: 0;
+  border: 0;
+}
+#search_advanced select {
+  /* FIXME: overrides forms.css:61 */
+  font-size: 11px;
+  /* FIXME: overrides other:82 */
+  margin: 0;
 }
 #search_advanced li.button {
 	float:right;
@@ -576,7 +588,7 @@ a:hover {
 }
 #search_advanced input.search_button {
 	cursor:pointer;
-	background:url(button_search.png) no-repeat center;
+	background:url(../images/button_search.png) no-repeat center;
 	width:40px;
 	height:30px;
 	border:none;
@@ -587,6 +599,11 @@ a:hover {
 }
 #search_advanced input.search_value {
 	width:450px;
+
+  /* FIXME: overrides forms:43 */
+  font-size: 11px;
+  /* FIXME: overrides forms:43 */
+  padding: 0;
 }
 #search_advanced h1 {
 	margin:0px 0px 20px 0px;

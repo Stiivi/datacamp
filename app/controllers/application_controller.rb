@@ -18,6 +18,15 @@ class ApplicationController < ActionController::Base
   before_filter :init_menu
   before_filter :set_mailer
 
+  before_filter :init_search_object
+  def init_search_object
+    if params[:search_id].present?
+      @search_predicates = Search.find_by_id(params[:search_id]).query.predicates
+    elsif params[:controller] == 'searches' && params[:id].present?
+      @search_predicates = Search.find_by_id(params[:id]).query.predicates
+    end
+  end
+
   helper :all
   layout "frontend_main"
 

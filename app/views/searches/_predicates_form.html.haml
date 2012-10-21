@@ -1,15 +1,23 @@
-= form_tag searches_path, :class => "new_search search" do
-  %h2= t "search.create_search", :dataset => @dataset_description.title
-  
-  = hidden_field_tag "search[dataset]", @dataset_description.identifier
-  
-  %ul.search
+= form_tag searches_path do
+  -#%h2= t "search.create_search", :dataset => @dataset_description.try(:title)
+  %h2 Dataset
+
+  = select_tag 'search[dataset]',
+               options_from_collection_for_select(DatasetDescription.where(is_active: true),
+                                                  :identifier,
+                                                  :title,
+                                                  @dataset_description.try(:identifier)),
+               class: 'string'
+
+
+  %h2 Filter
+
+  #predicate_rows{data: {'refresh-url' => predicate_rows_searches_path}}
     - predicates ||= []
     - predicates.each do |predicate|
-      = render :partial => "searches/predicate_row", :locals => {:predicate => predicate}
-  
+      %ul.search_row= render :partial => "searches/predicate_row", :locals => {:predicate => predicate}
+
     - if predicates.size == 0
-      = render :partial => "searches/predicate_row"
-        
-  %br
-  = submit_tag t("global.submit")
+      %ul.search_row= render :partial => "searches/predicate_row"
+
+  .search_button_container= submit_tag '', class: 'search_button'

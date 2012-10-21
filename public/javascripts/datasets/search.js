@@ -1,15 +1,28 @@
 var optgroups = null;
 
 $(document).ready(function(){
+  $('#search_dataset').unbind("change").change(function(e) {
+    $('#predicate_rows').html('');
+
+    $('#predicate_rows').load($('#predicate_rows').data('refresh-url') + '?identifier=' + $(this).val(), {}, function(){
+      init_search_form();
+    });
+  });
+
+  //$('#search_dataset').trigger('change');
+  init_search_form();
+});
+
+var init_search_form = function() {
   optgroups = $("select.search_operator:first").clone();
   $(".search_row:first").find("a.remove_row").hide();
   $(".search_row").each(function(){
     init_search($(this), false);
   });
-});
+}
 
 var init_search = function(row, reset){
-  
+
   row.find("a.add_row").click(function(){
     // Duplicate row
     cloned = row.clone();
@@ -18,20 +31,20 @@ var init_search = function(row, reset){
     init_search(cloned, true);
     return false;
   });
-  
+
   row.find("a.remove_row").click(function(){
     row.remove();
     return false;
   });
-  
+
   row.find("select.search_field").change(function(){
     opt = $(this).find("option:selected");
     type = opt.attr('class');
     row.find("select.search_operator").empty();
     optgroups.find("optgroup."+type).clone().children().appendTo(row.find("select.search_operator"));
   });
-  
-  
+
+
   operator_value = row.find("select.search_operator").val();
   row.find("select.search_field").trigger("change");
   if(reset == true)

@@ -133,10 +133,8 @@ class DatasetsController < ApplicationController
     else
       @records = @dataset_class.search(sphinx_search, paginate_options)
     end
-    
-    # Extra javascripts
-    add_javascript('datasets/search.js')
-    
+
+
     respond_to do |wants|
       wants.html { 
         #check to see if user can view the records if the dataset is

@@ -17,6 +17,8 @@ Datacamp::Application.routes.draw do
 
 
   scope "(:locale)", :locale => /sk|en/ do
+
+    # Settings backend
     namespace :settings do
       resources :pages
       resources :blocks do
@@ -34,7 +36,10 @@ Datacamp::Application.routes.draw do
       end
       resources :news, only: [:index, :new, :create, :edit, :update]
     end
+    ##################
 
+
+    # Settings frontend
     resources :pages do
       resources :blocks
     end
@@ -47,6 +52,17 @@ Datacamp::Application.routes.draw do
     end
 
     resources :news, only: [:index, :show]
+    ##################
+
+
+    resources :searches, only: [:new, :create, :show] do
+      collection do
+        post :quick
+        get :predicate_rows
+      end
+    end
+
+
 
 
     resources :watchers
@@ -64,11 +80,6 @@ Datacamp::Application.routes.draw do
         get :preview, :state, :cancel
         post :import
       end
-    end
-
-    resources :searches do
-      get :broaden, :on => :member
-      post :quick, :on => :collection
     end
 
     resource :account do

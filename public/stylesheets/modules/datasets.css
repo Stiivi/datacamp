@@ -240,22 +240,6 @@ p.excerpt { color: #444; font-size: 11px; }
 
 /* @end */
 
-/* @group Search */
-
-ul.search {  }
-
-ul.search li { background-image: url(../../images/search_item_background.png); -webkit-border-radius: 3px; -moz-border-radius: 3px; }
-
-ul.search li select.search_field { width: 260px; }
-
-ul.search li select.search_operator { width: 160px; }
-
-ul.search li input.search_value { width: 370px !important; padding: 3px; margin-top: 4px; }
-
-ul.search li .fl { margin-left: 10px; padding: 3px 0 0; }
-
-ul.search li .buttons { padding-top: 10px; padding-right: 10px; }
-
 /* @end */
 
 /* @group Batch Edit */
