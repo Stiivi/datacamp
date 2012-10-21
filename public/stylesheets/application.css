@@ -565,17 +565,17 @@ a:hover {
 	margin:0px 5px 0px 0px;
 	padding:3px 0px 0px 0px;
 }
-#search_advanced a.plus_row {
+#search_advanced a.add_row {
 	display:block;
 	width:16px;
 	height:17px;
-	background:url(plus.png);
+	background:url(../images/icons/plus.png);
 }
-#search_advanced a.minus_row {
+#search_advanced a.remove_row {
 	display:block;
 	width:16px;
 	height:17px;
-	background:url(minus.png);
+	background:url(../images/icons/minus.png);
 	margin:0px 2px 0px 0px;
 }
 #search_advanced .search_button_container {
