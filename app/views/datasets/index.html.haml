@@ -1,11 +1,23 @@
 %h1.main=t "global.datasets"
 
 - @dataset_categories.each do |dataset_category|
-  %h2.bordered= link_to dataset_category ? dataset_category.title : t('global.other'),
-                        "##{dataset_category ? dataset_category.title : t('global.other')}",
-                        name: dataset_category ? dataset_category.title : t("global.other")
+  #dataset_category_head
+    = link_to dataset_category ? dataset_category.title : t('global.other'),
+              "##{dataset_category ? dataset_category.title : t('global.other')}",
+              name: dataset_category ? dataset_category.title : t("global.other"),
+              class: 'headline'
+    = link_to t('.show_bad_quality'), nil, class: 'view_wrong_dataset'
 
-  %table.frontend
+  - dataset_category.dataset_descriptions.each do |description|
+    #dataset{class: description.bad_quality? ? 'bad_quality' : ''}
+      = link_to dataset_path(description), class: 'dataset_line' do
+        %span.dataset_name= description.title
+        %span= truncate(clear_textile(description.description), length: 80).html_safe
+      - if description.api_allowed_for?(current_user)
+        = link_to '', page_path("api-access"), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
+      = link_to '', nil, class: "dataset_status#{description.bad_quality? ? '_wrong' : ''}"
+
+  -#%table.frontend
     - dataset_category.dataset_descriptions.each do |description|
       - if !description.bad_quality? || (description.bad_quality? && current_user.present? && current_user.show_bad_quality_datasets?) || (description.bad_quality && params[:show_bad_quality])
         %tr
@@ -20,10 +32,10 @@
               - if description.api_allowed_for?(current_user)
                 = link_to "<span>API is enabled</span>".html_safe, page_path("api-access"), :class => "api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
 
-  %br
-- if params[:show_bad_quality].blank? && (current_user.present? && !current_user.show_bad_quality_datasets?)
-  .fr
-    = link_to datasets_path(show_bad_quality: true), class: 'button' do
-      %span= t('.show_bad_quality')
-  %br
+  -#%br
+-#- if params[:show_bad_quality].blank? && (current_user.present? && !current_user.show_bad_quality_datasets?)
+  -#.fr
+    -#= link_to datasets_path(show_bad_quality: true), class: 'button' do
+      -#%span= t('.show_bad_quality')
+  -#%br
 

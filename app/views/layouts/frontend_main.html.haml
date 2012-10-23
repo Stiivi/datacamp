@@ -32,7 +32,7 @@
         = yield
         #search_advanced.hidden
           %h1
-            = 'Rozsirene vyhladavanie'
+            = t('search.header')
             = link_to '', nil, class: 'button_close'
 
           = render "searches/predicates_form", predicates: @search_predicates

@@ -331,6 +331,9 @@ a:hover {
 	border-bottom:1px solid #eaeaea;
 	font-size:10px;
 }
+#dataset.bad_quality {
+  display: none;
+}
 #dataset a {
 	color:#333333;
 	display:inline-block;
@@ -354,24 +357,24 @@ a:hover {
 	float:right;
 	width:21px;
 	height:21px;
-	background:url(ok_icon.png);
+	background:url(../images/ok_icon.png);
 }
 #dataset a.dataset_status_wrong {
 	margin:12px 15px 0px 0px;
 	float:right;
 	width:21px;
 	height:21px;
-	background:url(wrong_icon.png);
+	background:url(../images/wrong_icon.png);
 }
 #dataset a.api {
 	margin:12px 15px 0px 0px;
 	float:right;
 	width:21px;
 	height:21px;
-	background:url(api_icon.png);
+	background:url(../images/api_icon.png);
 }
 #dataset a.api:hover {
-	background:url(api_icon.png);
+	background:url(../images/api_icon.png);
 	background-position: 0 -21px;
 }
 

@@ -228,12 +228,6 @@ table.ds_konsolidacna th.id { width: 20px; }
 
 /* @group Other */
 
-a.api_link { background: url(../../images/api_icon.png); display: block; width: 21px; height: 21px; margin-top: 4px; margin-right: 8px; cursor: pointer; }
-
-a.api_link:hover { background-position: 0 -21px; }
-
-a.api_link span { display: none; }
-
 p.excerpt { color: #444; font-size: 11px; }
 
 .filters { padding-left: 5px; }
