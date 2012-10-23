@@ -2,4 +2,4 @@
   %p.notice
     = link_to(image_tag("tooltip_cancel.png"), params.except(:search_id))
     = t("dataset.active_search", :predicates => @search_predicates.count)
-    %a{:href => '#search', :onclick => '$(".node ul.tabs a[href=#search]").trigger("click"); return false;'}= t("dataset.edit_search")
+    %a{:href => '#search', :onclick => '$(".button_disclosure").trigger("click"); return false;'}= t("dataset.edit_search")

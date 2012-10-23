@@ -15,7 +15,11 @@ class SearchesController < ApplicationController
     if search_params[:predicates]
       query = SearchQuery.query_with_predicates(create_predicates_from_hash(search_params[:predicates]), :scope=>"dataset", :object => search_params[:dataset])
       search = Search.create(:query => query, :search_type => 'predicates', :session => @current_session)
-      redirect_to dataset_path(DatasetDescription.find_by_identifier(search.query.object), :search_id => search.id) 
+      if search_params[:dataset].present?
+        redirect_to dataset_path(DatasetDescription.find_by_identifier(search.query.object), :search_id => search.id) 
+      else
+        redirect_to search_path(search)
+      end
     else
       redirect_to datasets_path, :notice => 'Something went wrong...'
     end
