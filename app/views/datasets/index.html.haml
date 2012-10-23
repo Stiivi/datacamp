@@ -9,7 +9,7 @@
     = link_to t('.show_bad_quality'), nil, class: 'view_wrong_dataset'
 
   - dataset_category.dataset_descriptions.each do |description|
-    #dataset{class: description.bad_quality? ? 'bad_quality' : ''}
+    #dataset{class: (description.bad_quality? && (current_user.present? && !current_user.show_bad_quality_datasets?)) ? 'bad_quality' : ''}
       = link_to dataset_path(description), class: 'dataset_line' do
         %span.dataset_name= description.title
         %span= truncate(clear_textile(description.description), length: 80).html_safe

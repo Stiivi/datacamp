@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => I18n.t('activerecord.errors.models.user.attributes.email.bad_format')
 
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, :loc, :about, :records_per_page, :is_super_user, :api_access_level, :accepts_terms
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :user_role_id, :loc, :about, :records_per_page, :is_super_user, :api_access_level, :accepts_terms, :show_bad_quality_datasets
 
   # Callbacks
   after_create :generate_api_key
