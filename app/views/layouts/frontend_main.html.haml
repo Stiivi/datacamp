@@ -31,7 +31,10 @@
             %p.error= flash[:error]
         = yield
         #search_advanced.hidden
-          %h1= 'Rozsirene vyhladavanie'
+          %h1
+            = 'Rozsirene vyhladavanie'
+            = link_to '', nil, class: 'button_close'
+
           = render "searches/predicates_form", predicates: @search_predicates
 
       = render 'layouts/footer'

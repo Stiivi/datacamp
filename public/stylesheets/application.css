@@ -629,11 +629,21 @@ a:hover {
   padding: 0;
 }
 #search_advanced h1 {
+	display:block;
+	float:none;
+	overflow:hidden;
 	margin:0px 0px 20px 0px;
 	padding:0px;
 	font-size:16px;
 	color:#ffffff;
 	font-weight:normal;
+}
+#search_advanced a.button_close {
+	width:21px;
+	height:21px;
+	background:url(../images/button_close.png);
+	float:right;
+	overflow:hidden;
 }
 #search_advanced h2 {
 	margin:10px 0px 5px 0px;

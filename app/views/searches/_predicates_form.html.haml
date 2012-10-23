@@ -1,6 +1,6 @@
 = form_tag searches_path do
   -#%h2= t "search.create_search", :dataset => @dataset_description.try(:title)
-  %h2 Dataset
+  %h1 Dataset
 
   = select_tag 'search[dataset]',
                options_from_collection_for_select(DatasetDescription.where(is_active: true),
