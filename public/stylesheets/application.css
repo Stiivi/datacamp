@@ -194,6 +194,29 @@ a:hover {
   border:none;
   margin:0px;
 }
+#menu a.button_disclosure {
+	cursor:pointer;
+	font-size:12px;
+	display:block;
+	border:none;
+	float:right;
+	overflow:hidden;
+	background:url(../images/button_disclosure.png) no-repeat #ffffff;
+	width:20px;
+	height:31px;
+	color:#666666;
+	padding:0px;
+	border:none;
+	margin:0px;
+}
+#menu a.button_disclosure:hover {
+	background:url(../images/button_disclosure.png) no-repeat #ffffff;
+	background-position:0 -31px;
+}
+#menu a.button_disclosure:active {
+	background:url(../images/button_disclosure.png) no-repeat #ffffff;
+	background-position:0 -31px;
+}
 #menu input.search_button {
   cursor:pointer;
   background:url(../images/button_search.png) no-repeat center;

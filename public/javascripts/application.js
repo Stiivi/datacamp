@@ -105,7 +105,8 @@ $(function(){
   $('.has-tip').tooltip();
   $("select[multiple].asmselect").asmSelect();
 
-  $('#query_string').focus(function() {
+  $('.button_disclosure').click(function(e) {
+    e.preventDefault();
     $('#search_advanced').toggleClass('hidden');
   });
 
