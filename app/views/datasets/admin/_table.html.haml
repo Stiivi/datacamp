@@ -7,9 +7,7 @@
       %th.status{:width => 40}
       - @field_descriptions.each do |field_description|
         %th{:class => field_description.identifier}
-          = sort_link(field_description)
-          - if field_description.description.present?
-            -#%div= image_tag 'icons/magnifier.png', class: 'has-tip', title: field_description.description
+          %div{title: field_description.description, class: field_description.description.present? ? 'has-tip' : ''}= sort_link(field_description)
       %th.actions{:width => 160} &nbsp;
       
     %tr.batch
