@@ -116,6 +116,11 @@ class ImportFile < ActiveRecord::Base
   def cancel
     update_attribute(:status, 'canceled')
   end
+
+  def delete_records!
+    dataset_description.dataset_record_class.where(batch_id: id).delete_all
+    update_attribute(:status, 'deleted_records')
+  end
   
 private
   def prepare_record

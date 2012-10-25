@@ -83,6 +83,12 @@ class ImportFilesController < ApplicationController
     @import_file.cancel
     redirect_to state_import_file_path(@import_file)
   end
+
+  def delete_records
+    @import_file = ImportFile.find(params[:id])
+    @import_file.delete_records!
+    redirect_to state_import_file_path(@import_file), notice: t("import.deleted_records")
+  end
   
 private
   def init_menu

@@ -230,8 +230,10 @@ en:
         ready: Ready
         cancel: Cancel
         importing_canceled: 'Importing was canceled'
+        importing_deleted_records: 'Imported records were deleted'
         unparsable_lines: 'Unparsable lines'
-
+        delete_records: 'Delete imported records'
+        deleted_records: 'Imported records were deleted'
     users: 
         user_not_found: User not found.
         my_account: My Account
