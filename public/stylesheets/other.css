@@ -23,30 +23,6 @@ ul.bordered { border-top: 5px solid #eaeaea; padding-top: 5px; }
 
 /* @end */
 
-/* @group Tabs */
-
-ul.tabs { list-style-type: none; margin: 5px 0px; border-bottom: 1px solid #dedede; margin-right: 20px; margin-left: -1px; }
-
-ul.tabs.small { border-bottom: none; }
-
-ul.tabs li { float: left; padding: 4px 8px; margin-right: 4px; position: relative; top: 2px; background: #686d70; color: #fff; border: 1px solid #dedede; border-bottom: #686d70; }
-
-ul.tabs li a { text-decoration: none; color: #fff; padding-bottom: 2px; }
-
-ul.tabs li.active { background: #fff; border-bottom: 1px solid #fff; top: 2px; }
-
-ul.tabs li.active a { color: #444; }
-
-ul.tabs.frontend { background: url(../images/frontend_tabs.png) 0px 3px no-repeat; border: none; width: 920px; padding-left: 10px; margin-bottom: 15px; }
-
-ul.tabs.frontend li { background: transparent; border: none; padding: 0px 0px; margin: 0px; }
-
-ul.tabs.frontend li a { display: block; padding: 10px; padding-top: 11px; padding-bottom: 11px; font-size: 12px; font-weight: bold; color: #6e6e6e; text-shadow: 1px 1px 0px #fff; margin-left: 3px; }
-
-ul.tabs.frontend li.active { background: #fff url(../images/frontend_tab_active.png) 0px 0px no-repeat; }
-
-ul.tabs.frontend li.active a { background: url(../images/frontend_tab_active.png) top right no-repeat; }
-
 div.tab { padding-top: 10px; }
 
 /* @end */

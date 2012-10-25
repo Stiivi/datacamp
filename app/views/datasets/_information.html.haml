@@ -1,11 +1,3 @@
 #information_inside.clearfix
   .description
     = textile(@dataset_description.description)
-
-    - if @dataset_description.similar_dataset_descriptions.present?
-      %br
-      %h1= t '.similar'
-      %ul
-        - @dataset_description.similar_dataset_descriptions.each do |similar|
-          %li= link_to similar.title, dataset_path(similar)
-

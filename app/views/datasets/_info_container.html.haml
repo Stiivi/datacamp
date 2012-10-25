@@ -1,0 +1,14 @@
+#dataset_info_container
+  .headline= @dataset_description.title
+  .perex
+    = textile(truncate(@dataset_description.description, length: 200))
+    = link_to t('.more_information'), nil, onclick: %{$('a[href="#information"]').trigger('click'); return false;}
+  .info
+    = t '.last_update'
+    %strong= l @dataset_description.updated_at, format: :full
+    %br
+    = t '.published_count'
+    %strong= @dataset_description.record_count
+    %br
+    = t '.data_provider'
+    %strong= @dataset_description.data_provider

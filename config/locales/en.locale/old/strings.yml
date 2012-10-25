@@ -94,8 +94,13 @@ en:
         show_bad_quality: 'Show all datasets'
         show_good_quality: 'Show only good quality datasets'
         bad_quality: 'Bad quality'
-      information:
-        similar: 'Similar datasets'
+      info_container:
+        more_information: 'I want to know more...'
+        last_update: 'Last Update:'
+        published_count: 'Published records:'
+        data_provider: 'Provider'
+      similar_datasets:
+        header: 'Similar datasets'
     dataset:
         relations: 'Relations' 
         relationship_type: 'Relationship type'
@@ -162,7 +167,6 @@ en:
         save_and_create: Save and create
         set_quality: Set quality
         set_status: Set status
-        short_summary: "published records: %{count} provided by %{provider}"
         table_name: Table Name
         title: Title
         type: Type

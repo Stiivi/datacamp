@@ -1,4 +1,8 @@
-.node
+= render 'node_menu'
+= render 'datasets/admin/navigation'
+= render 'info_container'
+
+-#.node
   .information
     .clearfix
       .fl
@@ -21,22 +25,26 @@
 
 
 #data
-  
+
   .pagination.ajax.clearfix
     = render :partial => "pagination"
-    
+
   #results
     = render :partial => "search_status"
     - if has_privilege?(:edit_record_metadata)
       = render :partial => "datasets/admin/table"
     - else
       = render :partial => "datasets/table"
-          
+
   .pagination.ajax
     = render :partial => "pagination"
-    
+
 #information
   = render :partial => "information"
-          
+
 #comments
   = render :partial => "comments"
+
+.clearfix &nbsp;
+
+= render 'similar_datasets'

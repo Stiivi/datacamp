@@ -1,0 +1,9 @@
+- if @dataset_description.similar_dataset_descriptions.present?
+  #datanest_similar_container
+    #dataset_category_head= link_to t('.header'), nil, class: 'headline'
+
+    - @dataset_description.similar_dataset_descriptions.each do |similar|
+      #dataset_similar
+        = link_to dataset_path(similar), class: 'dataset_line' do
+          %span.dataset_name= similar.title
+          %span= truncate(clear_textile(similar.description), length: 100).html_safe

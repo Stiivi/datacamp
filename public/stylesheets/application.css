@@ -387,6 +387,41 @@ a.view_wrong_dataset:active {
 	background-position: 0 -21px;
 }
 
+/* Dataset Similar */
+#datanest_similar_container {
+	display:block;
+	float:none;
+	overflow:hidden;
+	margin:20px 0px 0px 0px;
+	padding:0px;
+}
+
+#dataset_similar {
+	display:block;
+	float:none;
+	overflow:hidden;
+	background:#f9f9f9;
+	border-bottom:1px solid #eaeaea;
+	font-size:10px;
+}
+#dataset_similar a {
+	color:#333333;
+	display:inline-block;
+	text-decoration:none;
+}
+#dataset_similar a.dataset_line {
+	display:block;
+	float:none;
+	padding:15px 15px;
+}
+#dataset_similar a.dataset_line:hover {
+	background:#dddddd;
+}
+#dataset_similar .dataset_name {
+	font-size:12px;
+	display:inline-block;
+	width:200px;
+}
 		
 /* Dataset Menu */
 #dataset_menu {
@@ -414,6 +449,13 @@ a.view_wrong_dataset:active {
 #dataset_menu li {
 	overflow:hidden;
 	float:left;
+
+  /* FIXME: override other.css:20 */
+  padding: 0;
+  border: 0;
+  margin: 0;
+  /* FIXME: remove when removing screen.css:16 */
+  line-height: 15px;
 }
 #dataset_menu li.navigation {
 	border:none;
@@ -495,6 +537,8 @@ a.view_wrong_dataset:active {
 	overflow:hidden;
 	background:#444444;
 	padding:10px 10px;
+  /* FIXME: remove when removing screen.css:16 */
+  line-height: 13px;
 }
 #dataset_navigation_admin a {
 	color:#ffffff;
