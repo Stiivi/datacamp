@@ -15,8 +15,12 @@ module Parsers
                     Downloader.download_location(@year), bucketize: false)
 
         Parser.parse(html, @year)
+        download_paths = parser.download_path || []
+        download_paths << Parser.parse_location(@year)
+        download_paths = download_paths.pop(5)
+
         parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[2])
-        parser.update_attribute(:download_path, Parser.parse_location(@year))
+        parser.update_attribute(:download_path, download_paths)
       rescue
         get_config(@parser_id).update_attribute(:status, EtlConfiguration::STATUS_ENUM[3])
       end

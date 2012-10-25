@@ -93,7 +93,7 @@ module Parsers
             :remove_trailing_comma => true,
             :remove_spaces => false
           })
-          str = str.strip.squeeze(' ').tr("\n\t", '')
+          str = str.strip.squeeze(' ').tr("\n\t\r", '')
           str = str.sub(/,\Z/, '') if options[:remove_trailing_comma]
           str = str.tr(' ', '') if options[:remove_spaces]
           str

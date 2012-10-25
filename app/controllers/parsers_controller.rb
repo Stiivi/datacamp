@@ -11,6 +11,7 @@ class ParsersController < ApplicationController
   def run
     @parser = EtlConfiguration.find(params[:id])
     if @parser.valid_for_parsing?(params[:settings])
+      @parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[1])
       "Parsers::#{@parser.name.classify}::Downloader".constantize.new(@parser.id, params[:settings][:year]).delay.perform
       redirect_to parsers_path, notice: t('parsers.run.success')
     else
@@ -19,8 +20,7 @@ class ParsersController < ApplicationController
   end
 
   def download
-    parser = EtlConfiguration.find(params[:id])
-    download_location = Parsers::Support.get_path(parser.download_path, bucketize: false)
+    download_location = Parsers::Support.get_path(params[:download_path], bucketize: false)
     file = Pathname(download_location)
     if file.exist?
       send_file file, type: "text/csv; charset=utf-8", disposition: 'inline', x_sendfile: false
