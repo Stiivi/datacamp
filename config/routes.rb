@@ -78,7 +78,7 @@ Datacamp::Application.routes.draw do
     resources :import_files do
       member do
         get :preview, :state, :cancel
-        post :import
+        post :import, :delete_records
       end
     end
 

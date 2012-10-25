@@ -7,20 +7,25 @@
   %h1= t("import.importing_failed")
 - elsif @import_file.status == 'canceled'
   %h1= t("import.importing_canceled")
+- elsif @import_file.status == 'deleted_records'
+  %h1= t("import.importing_deleted_records")
 - else
   %h1= t("import.importing_not_started_yet")
-  
-%p
-  = t("import.lines_imported", :count => @import_file.count_of_imported_lines)
-%p
-  - if @import_file.unparsable_lines.present?
-    = t("import.unparsable_lines")
-    = @import_file.unparsable_lines
-  - if @import_file.status == 'in_progress' || @import_file.status == 'ready'
-    = link_to "Refresh", state_import_file_path(@import_file), :class => "ajax refresh hidden"
+
+- if @import_file.status != 'deleted_records'
+  %p= t("import.lines_imported", :count => @import_file.count_of_imported_lines)
+
+  %p
+    - if @import_file.unparsable_lines.present?
+      = t("import.unparsable_lines")
+      = @import_file.unparsable_lines
+    - if @import_file.status == 'in_progress' || @import_file.status == 'ready'
+      = link_to "Refresh", state_import_file_path(@import_file), :class => "ajax refresh hidden"
 
 %br
 
 .clearfix
   = button_link_to t("import.go_to_dataset"), dataset_path(@import_file.dataset_description)
-  = button_link_to t("import.cancel"), cancel_import_file_path(@import_file)
+  - if @import_file.status != 'deleted_records'
+    = button_link_to t("import.cancel"), cancel_import_file_path(@import_file)
+    = button_link_to t('import.delete_records'), delete_records_import_file_path(@import_file), method: :post, confirm: 'really?'

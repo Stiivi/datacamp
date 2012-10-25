@@ -186,7 +186,10 @@ sk:
     use_default_mapping: "Použiť prednadstavené mapovanie"
     cancel: 'Zrušiť import'
     importing_canceled: 'Import bol zrušený'
+    importing_deleted_records: 'Importované záznamy boli zmazané'
     unparsable_lines: 'Riadky, ktoré sa nepodarilo importovať'
+    delete_records: 'Zmazať importované záznamy'
+    deleted_records: 'Importované záznamy boli zmazané'
   messages: 
     application_testing_notice: "The application is currently in private beta testing."
     testing_feedback_notice: "If you'd like to be informed when it goes public, <a href='%{url}'>register here</a>."
