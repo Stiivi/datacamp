@@ -1,4 +1,10 @@
-%h1.main=t "global.datasets"
+%h1.main
+  =t "global.datasets"
+  - params[:show_bad_quality] = 'true' if params[:show_bad_quality].blank? && current_user.present? && current_user.show_bad_quality_datasets?
+  - if params[:show_bad_quality] == 'true'
+    = link_to t('.show_good_quality'), datasets_path(show_bad_quality: 'false'), class: 'view_wrong_dataset'
+  - else
+    = link_to t('.show_bad_quality'), datasets_path(show_bad_quality: 'true'), class: 'view_wrong_dataset'
 
 - @dataset_categories.each do |dataset_category|
   #dataset_category_head
@@ -6,16 +12,16 @@
               "##{dataset_category ? dataset_category.title : t('global.other')}",
               name: dataset_category ? dataset_category.title : t("global.other"),
               class: 'headline'
-    = link_to t('.show_bad_quality'), nil, class: 'view_wrong_dataset'
 
   - dataset_category.dataset_descriptions.each do |description|
-    #dataset{class: (description.bad_quality? && (current_user.present? && !current_user.show_bad_quality_datasets?)) ? 'bad_quality' : ''}
-      = link_to dataset_path(description), class: 'dataset_line' do
-        %span.dataset_name= description.title
-        %span= truncate(clear_textile(description.description), length: 80).html_safe
-      - if description.api_allowed_for?(current_user)
-        = link_to '', page_path("api-access"), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
-      = link_to '', nil, class: "dataset_status#{description.bad_quality? ? '_wrong' : ''}"
+    - if !description.bad_quality? || (description.bad_quality && params[:show_bad_quality] == 'true')
+      #dataset
+        = link_to dataset_path(description), class: 'dataset_line' do
+          %span.dataset_name= description.title
+          %span= truncate(clear_textile(description.description), length: 80).html_safe
+        - if description.api_allowed_for?(current_user)
+          = link_to '', page_path("api-access"), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
+        = link_to '', nil, class: "dataset_status#{description.bad_quality? ? '_wrong' : ''}"
 
   -#%table.frontend
     - dataset_category.dataset_descriptions.each do |description|
