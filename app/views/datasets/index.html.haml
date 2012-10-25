@@ -21,7 +21,7 @@
           %span= truncate(clear_textile(description.description), length: 80).html_safe
         - if description.api_allowed_for?(current_user)
           = link_to '', page_path("api-access"), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
-        = link_to '', nil, class: "dataset_status#{description.bad_quality? ? '_wrong' : ''}"
+        = link_to '', nil, name: t(".good_quality_#{!description.bad_quality?}"), class: "tooltip dataset_status#{description.bad_quality? ? '_wrong' : ''}"
 
   -#%table.frontend
     - dataset_category.dataset_descriptions.each do |description|
