@@ -8,7 +8,7 @@ sk:
       restricted: Zakázané
       regular: Obyčajné
       premium: Premium
-    allowed_for_dataset: API je povolené
+    allowed_for_dataset: download
   blocks_heading: Aplikácie postavené na Dataneste
   blocks:
     all_blocks: Všetky bloky
