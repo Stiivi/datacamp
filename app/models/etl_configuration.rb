@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class EtlConfiguration < ActiveRecord::Base
+  serialize :download_path, Array
   STATUS_ENUM = [:ready, :in_progress, :done, :failed]
   def status
     attr = read_attribute(:status)
