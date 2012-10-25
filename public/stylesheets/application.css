@@ -8,9 +8,12 @@ body {
 	color:#333333;
 }
 h1 {
-	margin:0px 15px 20px 15px;
+	display:block;
+	margin:0px 0px 20px 15px;
 	font-size:18px;
 	color:#333333;
+	float:none;
+	overflow:hidden;
 }
 
 a {
@@ -20,6 +23,33 @@ a {
 a:hover {
 	color:#2bb673;
 	text-decoration:underline;
+}
+
+a.view_wrong_dataset {
+	-moz-border-radius:5px;
+	border-radius:5px;
+	padding:10px 13px 10px 13px;
+	background:666666;
+	background:-webkit-linear-gradient(top, #888888, #666666);
+	background: -moz-linear-gradient(top, #888888, #666666);
+	float:right;
+	font-size:10px;
+	text-align:right;
+	color:#ffffff;
+	font-weight:normal;
+	text-decoration:none;
+}
+a.view_wrong_dataset:hover {
+	background:333333;
+	background:-webkit-linear-gradient(top, #555555, #333333);
+	background: -moz-linear-gradient(top, #555555, #333333);
+	text-decoration:none;
+}
+a.view_wrong_dataset:active {
+	background:333333;
+	background:-webkit-linear-gradient(top, #555555, #333333);
+	background: -moz-linear-gradient(top, #555555, #333333);
+	text-decoration:none;
 }
 
 /* Logo */
@@ -302,25 +332,6 @@ a:hover {
 	float:left;
 	font-size:14px;
 }
-#dataset_category_head a.view_wrong_dataset {
-	padding:12px 15px 12px 15px;
-	background:333333;
-	background:-webkit-linear-gradient(top, #555555, #333333);
-	background: -moz-linear-gradient(top, #555555, #333333);
-	float:right;
-	font-size:11px;
-	text-align:right;
-}
-#dataset_category_head a.view_wrong_dataset:hover {
-	background:#000000;
-	background:-webkit-linear-gradient(top, #333333, #000000);
-	background:-moz-linear-gradient(top, #333333, #000000);
-}
-#dataset_category_head a.view_wrong_dataset:active {
-	background:#000000;
-	background:-webkit-linear-gradient(top, #333333, #000000);
-	background:-moz-linear-gradient(top, #333333, #000000);
-}
 
 /* Dataset */
 #dataset {
@@ -331,9 +342,7 @@ a:hover {
 	border-bottom:1px solid #eaeaea;
 	font-size:10px;
 }
-#dataset.bad_quality {
-  display: none;
-}
+
 #dataset a {
 	color:#333333;
 	display:inline-block;

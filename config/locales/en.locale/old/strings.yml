@@ -91,7 +91,8 @@ en:
         valid_from: Valid from
     datasets:
       index:
-        show_bad_quality: 'Show datasets with bad data quality.'
+        show_bad_quality: 'Show all datasets'
+        show_good_quality: 'Show only good quality datasets'
         bad_quality: 'Bad quality'
       information:
         similar: 'Similar datasets'

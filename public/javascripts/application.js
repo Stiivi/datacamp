@@ -109,9 +109,4 @@ $(function(){
     e.preventDefault();
     $('#search_advanced').toggleClass('hidden');
   });
-  $('.view_wrong_dataset').click(function(e) {
-    e.preventDefault();
-    $('#dataset.bad_quality').toggle();
-  });
-
 });
