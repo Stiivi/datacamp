@@ -309,6 +309,13 @@ a.view_wrong_dataset:active {
 }
 
 /* Dataset Category Headline */
+#dataset_category_container {
+  display:block;
+  float:none;
+  overflow:hidden;
+  margin:0px 0px 20px 0px;
+  padding:0px;
+}
 #dataset_category_head {
 	display:block;
 	float:none;

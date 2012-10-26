@@ -7,21 +7,22 @@
     = link_to t('.show_bad_quality'), datasets_path(show_bad_quality: 'true'), class: 'view_wrong_dataset'
 
 - @dataset_categories.each do |dataset_category|
-  #dataset_category_head
-    = link_to dataset_category ? dataset_category.title : t('global.other'),
-              "##{dataset_category ? dataset_category.title : t('global.other')}",
-              name: dataset_category ? dataset_category.title : t("global.other"),
-              class: 'headline'
+  #dataset_category_container
+    #dataset_category_head
+      = link_to dataset_category ? dataset_category.title : t('global.other'),
+                "##{dataset_category ? dataset_category.title : t('global.other')}",
+                name: dataset_category ? dataset_category.title : t("global.other"),
+                class: 'headline'
 
-  - dataset_category.dataset_descriptions.each do |description|
-    - if !description.bad_quality? || (description.bad_quality && params[:show_bad_quality] == 'true')
-      #dataset
-        = link_to dataset_path(description), class: 'dataset_line' do
-          %span.dataset_name= description.title
-          %span= truncate(clear_textile(description.description), length: 80).html_safe
-        - if description.api_allowed_for?(current_user)
-          = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
-        = link_to '', nil, name: t(".good_quality_#{!description.bad_quality?}"), class: "tooltip dataset_status#{description.bad_quality? ? '_wrong' : ''}"
+    - dataset_category.dataset_descriptions.each do |description|
+      - if !description.bad_quality? || (description.bad_quality && params[:show_bad_quality] == 'true')
+        #dataset
+          = link_to dataset_path(description), class: 'dataset_line' do
+            %span.dataset_name= description.title
+            %span= truncate(clear_textile(description.description), length: 80).html_safe
+          - if description.api_allowed_for?(current_user)
+            = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
+          = link_to '', nil, name: t(".good_quality_#{!description.bad_quality?}"), class: "tooltip dataset_status#{description.bad_quality? ? '_wrong' : ''}"
 
   -#%table.frontend
     - dataset_category.dataset_descriptions.each do |description|
