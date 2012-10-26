@@ -25,7 +25,7 @@ class PagesController < ApplicationController
   }
 
   def show
-    @page = Page.find_by_page_name(params[:id]) || Page.find_by_id(params[:id])
+    @page = Page.find_by_page_name(params[:id]) || Page.find_by_id!(params[:id])
     @news = News.published.limit(5) if params[:id] == 'index'
     @blocks = @page.blocks.paginate(
       :all,
