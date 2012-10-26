@@ -52,6 +52,10 @@ class ApplicationController < ActionController::Base
     @javascripts << what
   end
 
+  rescue_from 'ActiveRecord::RecordNotFound' do |exception|
+    render 'pages/datanest_404', status: 404
+  end
+
   private
 
   # Abstract
