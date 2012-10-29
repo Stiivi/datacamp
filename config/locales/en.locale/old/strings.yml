@@ -94,6 +94,8 @@ en:
         show_bad_quality: 'Show all datasets'
         show_good_quality: 'Show only good quality datasets'
         bad_quality: 'Bad quality'
+        good_quality_true: 'Good quality dataset'
+        good_quality_false: 'Bad quality dataset'
       info_container:
         more_information: 'I want to know more...'
         last_update: 'Last Update:'
