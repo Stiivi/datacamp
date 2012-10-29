@@ -12,7 +12,7 @@ module Etl
 
     def self.update_last_run_time
       EtlConfiguration.find_by_name('lawyer_extraction').update_attribute(:last_run_time, Time.now)
-      DatasetDescription.where(identifier: %w{lawyers lawyer_associates lawyer_partnerships}).update_attributes(data_updated_at: Time.zone.now)
+      DatasetDescription.where(identifier: %w{lawyers lawyer_associates lawyer_partnerships}).update_all(data_updated_at: Time.zone.now)
     end
 
     def is_acceptable?(document)
