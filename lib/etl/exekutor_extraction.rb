@@ -13,6 +13,7 @@ module Etl
 
     def self.update_last_run_time
       EtlConfiguration.find_by_name('executor_extraction').update_attribute(:last_run_time, Time.now)
+      DatasetDescription.find_by_identifier('executors').update_attribute(:data_updated_at, Time.zone.now)
     end
 
     def is_acceptable?(document)

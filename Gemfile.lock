@@ -20,7 +20,8 @@ GIT
 
 GIT
   remote: https://github.com/ndbroadbent/actionmailer_inline_css.git
-  revision: 7d08b92d2bb3f5ebf052f9384bf8079a243fa9b6
+  revision: a9c939f94c424a0b9e3a92bb1b280141c87f6195
+  ref: a9c939f94c424a0b9e3a92bb1b280141c87f6195
   specs:
     actionmailer_inline_css (1.5.2)
       actionmailer (>= 3.0.0)
@@ -269,7 +270,7 @@ GEM
     typhoeus (0.2.4)
       mime-types
       mime-types
-    tzinfo (0.3.33)
+    tzinfo (0.3.34)
     validation_reflection (1.0.0)
     vcr (1.10.3)
     whenever (0.7.0)

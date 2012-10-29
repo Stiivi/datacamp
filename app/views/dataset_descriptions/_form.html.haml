@@ -9,6 +9,7 @@
     = f.locale_tabs I18N_LOCALES do |trans|
       = trans.text_field :title
       = trans.text_area :description
+      = trans.text_area :perex
 
     %li.clearfix
       .fl.clearfix
@@ -19,6 +20,10 @@
         or create new:
       .fl.clearfix
         = f.text_field :category, :inline => true, :value => ''
+
+    %li.clearfix
+      = f.label :data_updated_at
+      = f.datetime_select :data_updated_at, default: Time.zone.now
     = f.text_field :identifier
     = f.text_field :data_provider
     = f.text_field :update_frequency

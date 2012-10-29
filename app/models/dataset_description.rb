@@ -29,7 +29,7 @@ class DatasetDescription < ActiveRecord::Base
 
   default_scope includes(:translations)
 
-  translates :title, :description
+  translates :title, :description, :perex
   locale_accessor I18N_LOCALES
 
   include Api::Accessable

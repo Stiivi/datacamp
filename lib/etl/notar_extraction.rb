@@ -14,6 +14,8 @@ module Etl
 
     def self.update_last_run_time
       EtlConfiguration.find_by_name('notary_extraction').update_attribute(:last_run_time, Time.now)
+      DatasetDescription.find_by_identifier('notaries').update_attribute(:data_updated_at, Time.zone.now)
+      DatasetDescription.find_by_identifier('notary_employees').update_attribute(:data_updated_at, Time.zone.now)
     end
 
     def download(id)

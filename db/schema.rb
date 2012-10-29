@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019164935) do
+ActiveRecord::Schema.define(:version => 20121029175859) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20121019164935) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "perex"
   end
 
   create_table "dataset_descriptions", :force => true do |t|
@@ -202,6 +203,7 @@ ActiveRecord::Schema.define(:version => 20121019164935) do
     t.boolean  "can_be_disabled_in_quick_search"
     t.integer  "position",                        :default => 0
     t.boolean  "bad_quality",                     :default => false, :null => false
+    t.datetime "data_updated_at"
   end
 
   create_table "delayed_jobs", :force => true do |t|

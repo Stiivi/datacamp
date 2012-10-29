@@ -217,6 +217,8 @@ namespace :etl do
     records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL").select(:_record_id)
 
     EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present
+
+    DatasetDescription.find_by_identifier('procurements').update_attribute(:data_updated_at, Time.zone.now)
   end
 
   task :regis_loading => :environment do
@@ -279,6 +281,7 @@ namespace :etl do
                                                              :ownership_code => r.ownership_code, :size => r.size, :size_code => r.size_code)
     end
 
+    DatasetDescription.find_by_identifier('organisations').update_attribute(:data_updated_at, Time.zone.now)
   end
 
 
