@@ -41,7 +41,7 @@ every 1.week do
   rake "users:cleanup_sessions"
 end
 
-every 30.days do
+every 25.days do
   rake 'etl:executor_extraction'
   rake 'etl:lawyer_extraction'
   rake 'etl:lawyer_partnership_extraction'
@@ -49,7 +49,7 @@ every 30.days do
   rake 'etl:notari_extraction'
 end
 
-every 31.days do
+every 26.days do
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
   rake 'etl:notari_activate'
