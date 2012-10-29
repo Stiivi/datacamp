@@ -6,4 +6,4 @@
       #dataset_similar
         = link_to dataset_path(similar), class: 'dataset_line' do
           %span.dataset_name= similar.title
-          %span= truncate(clear_textile(similar.description), length: 100).html_safe
+          %span= clear_textile(similar.perex).html_safe
