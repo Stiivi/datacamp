@@ -25,7 +25,7 @@
       %td
         %a.fr.proceed.submit_form{:href => "#"}= "proceed"
         - if @filters.present?
-          %a.fr.delete{:href => users_path}= "reset"
+          %a.fr.delete{:href => settings_users_path}= "reset"
     
     - @users.each do |user|
       %tr
