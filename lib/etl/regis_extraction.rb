@@ -18,7 +18,7 @@ module Etl
     
     def digest(doc)
       ico = name = legal_form = date_start = date_end = address = region = ''
-      doc.xpath("//div[@class='telo']//table[@class='tabid']/tbody/tr").each do |row|
+      doc.xpath("//table[@class='tabid']//tr").each do |row|
         if row.xpath(".//td[1]").inner_text.match(/i(Č|č|c)o/i)
           ico = row.xpath(".//td[3]").inner_text
         elsif row.xpath(".//td[1]").inner_text.match(/meno/i)
@@ -37,7 +37,7 @@ module Etl
       end
 
       activity1 = activity2 = account_sector = ownership = size = ''
-      doc.xpath("//div[@class='telo']//table[@class='tablist']/tbody/tr").each do |row|
+      doc.xpath("//table[@class='tablist']//tr").each do |row|
         if row.xpath(".//td[1]").inner_text.match(/SK NACE/i)
           activity1 = row.xpath(".//td[2]").inner_text
         elsif row.xpath(".//td[1]").inner_text.match(/OKE(Č|č|c)/i)
