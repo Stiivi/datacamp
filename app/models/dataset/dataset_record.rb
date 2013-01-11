@@ -118,6 +118,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       when 'zip'
         value = ("%05i" % value rescue value)
       when 'ico'
+        value.gsub!('0', '') if value.kind_of?(String) # there were cases of '00123456' which would trip up the formatting and raise
         value = value.present? ? '%08i' % value : value
       when "flag"
         if format_arg and format_arg != ""
@@ -139,10 +140,12 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       end
     end
     value
+  rescue
+    nil
   end
 
   def get_html_value(field_description, length = nil)
-    value = get_formatted_value(field_description) rescue nil
+    value = get_formatted_value(field_description)
     formatted_value = length.present? ? truncate(value.to_s, :length => length, :omission => "&hellip;") : value
 
     data_format = field_description.data_format
