@@ -39,7 +39,7 @@ module Parsers
               proposal[:name] = clean_string(e.text)
               e = e.next.next
               proposal[:address] = clean_string(e.text, :remove_trailing_comma => false)
-              if proposal[:address][-1] == 44 # ','
+              if proposal[:address][-1] == ','
                 e = e.next.next
                 proposal[:address] << clean_string(e.text)
               end
