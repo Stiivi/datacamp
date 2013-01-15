@@ -823,6 +823,7 @@ a.view_wrong_dataset:active {
 	display:block;
 	float:none;
 	overflow:hidden;
+  color:#333333;
 }
 #dataset_admin_submenu .perex {
 	display:block;

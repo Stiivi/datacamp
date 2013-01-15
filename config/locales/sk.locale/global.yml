@@ -2,7 +2,7 @@ sk:
   global:
     activities: 'Aktivita'
     do_not_search: "Nevyhľadávať: %{name}"
-    active: aktívne
+    active: Aktívne
     add_to_favorites: "Pridať k obľúbeným"
     add_to_favorites_hint: "Je táto stránka zaujimavá?"
     advanced_search: "Pokročilé vyhľadávanie"
@@ -40,7 +40,7 @@ sk:
     field: Položka
     home: Domov
     import: Import
-    inactive: neaktívne
+    inactive: Neaktívne
     information: Informácie
     is_favorite: "Vaše obľúbené."
     language: Jazyk
