@@ -58,7 +58,6 @@ group :developemnt, :macosx do
 end
 
 group :development do
-  gem 'pry'
   gem "mailcatcher"
   gem "rails-erd"
   gem 'jquery-rails'
@@ -81,4 +80,5 @@ group :development, :test do
   gem "factory_girl_rails", "~> 1.2.0"
   gem 'vcr'
   gem 'fakeweb'
+  gem 'pry'
 end

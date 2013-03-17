@@ -24,6 +24,11 @@ namespace :etl do
   end
 
   desc 'Run this to download/update notaries'
+  task :otvorenezmluvy_extraction => :environment do
+    Delayed::Job.enqueue Etl::OtvoreneZmluvyExtraction.new
+  end
+
+  desc 'Run this to download/update notaries'
   task :notari_extraction => :environment do
     config = EtlConfiguration.find_by_name('notary_extraction')
     end_id = config.start_id + config.batch_limit

@@ -23,7 +23,7 @@ describe Etl::VvoExtraction do
   end
   
   it 'should return a correctly formatted document url' do
-    @extractor.document_url(12345).should == "http://www.e-vestnik.sk/EVestnik/Detail/12345"
+    @extractor.document_url(12345).should == "http://www.uvo.gov.sk/sk/evestnik/-/vestnik/12345"
   end
   
   it 'should return a configuration' do
@@ -44,11 +44,11 @@ describe Etl::VvoExtraction do
   end
   
   it 'should save extracted information to the database' do
-    VCR.use_cassette('vvo_2675') do
-      document = @extractor.download(2675)
+    VCR.use_cassette('vvo_185504') do
+      document = @extractor.download(185504)
       procurement_hash = @extractor.digest(document)
       @extractor.save(procurement_hash)
-      Staging::StaProcurement.count.should == 45
+      Staging::StaProcurement.count.should == 1
     end
   end
   
@@ -70,82 +70,111 @@ describe Etl::VvoExtraction do
   end
   
   it 'should not save the same thing twice into the database' do
-    VCR.use_cassette('vvo_2675') do
-      document = @extractor.download(2675)
+    VCR.use_cassette('vvo_185504') do
+      document = @extractor.download(185504)
       procurement_hash = @extractor.digest(document)
       @extractor.save(procurement_hash) and @extractor.save(procurement_hash)
-      Staging::StaProcurement.count.should == 45
+      Staging::StaProcurement.count.should == 1
     end
   end
   
   it 'should have a perform method that downloads, parses and saves to the db' do
-    VCR.use_cassette('vvo_2675') do
-      config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 2669, :batch_limit => 5)
+    VCR.use_cassette('vvo_185504') do
+      config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 185503, :batch_limit => 5)
+      @extractor = Etl::VvoExtraction.new(1, 2,185504)
       @extractor.perform
-      Staging::StaProcurement.count.should == 45
-      config.reload.last_processed_id.should == 2675
+      Staging::StaProcurement.count.should == 1
+      config.reload.last_processed_id.should == 185504
     end
   end
-  
+
   it 'should update the last_processed_id only when something was processed' do
-    VCR.use_cassette('vvo_2692') do
-      config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 2669, :batch_limit => 5)
-      extractor = Etl::VvoExtraction.new(1, 2,2692)
+    VCR.use_cassette('vvo_185506') do
+      config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 185505, :batch_limit => 5)
+      extractor = Etl::VvoExtraction.new(1, 2,185506)
       extractor.perform
-      config.reload.last_processed_id.should == 2669
+      config.reload.last_processed_id.should == 185505
     end
   end
-  
+
   describe 'parsing' do
     it 'should test and accept documents that have a V in the h2 header' do
-      VCR.use_cassette('vvo_2675') do
-        document = @extractor.download(2675)
+      VCR.use_cassette('vvo_185504') do
+        document = @extractor.download(185504)
         @extractor.is_acceptable?(document).should be_true
       end
     end
 
     it 'should test and not accept documents that do not have a V in the h2 header' do
-      VCR.use_cassette('vvo_2692') do
-        document = @extractor.download(2692)
+      VCR.use_cassette('vvo_185506') do
+        document = @extractor.download(185506)
         @extractor.is_acceptable?(document).should be_false
       end
     end
 
     it 'should get basic information from a document' do
-      VCR.use_cassette('vvo_2675') do
-        document = @extractor.download(2675)
-        @extractor.basic_information(document).should == {:procurement_id => '00035 - VST', :bulletin_id => 4, :year => 2009}
+      VCR.use_cassette('vvo_185504') do
+        document = @extractor.download(185504)
+        @extractor.basic_information(document).should == {:procurement_id=>"12683 - VST", :bulletin_id=>204, :year=>2012}
       end
     end
 
     it 'should get basic customer information from a document' do
-      VCR.use_cassette('vvo_2675') do
-        document = @extractor.download(2675)
-        @extractor.customer_information(document).should == {:customer_name => "Fakultná nemocnica Trnava",:customer_ico => 610381}
+      VCR.use_cassette('vvo_185504') do
+        document = @extractor.download(185504)
+        @extractor.customer_information(document).should == {:customer_name=>"Nemocnica s poliklinikou Považská Bystrica", :customer_ico=>"00610411"}
       end
     end
 
     it 'should get basic contract information from a document' do
-      VCR.use_cassette('vvo_2675') do
-        document = @extractor.download(2675)
-        @extractor.contract_information(document).should == {:procurement_subject => "Lieky a liečivá pre potreby Nemocničnej lekárne Fakultnej nemocnice Trnava."}
-      end
-    end
-    
-    it 'should get price even if it was not finalized' do
-      VCR.use_cassette('vvo_4606') do
-        document = @extractor.download(4606)
-        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"GASTROPLUS, s. r. o.", :supplier_ico=>36308935.0, :is_price_part_of_range=>false, :price=>37828.9, :currency=>"EUR", :vat_included=>false}]}
+      VCR.use_cassette('vvo_185504') do
+        document = @extractor.download(185504)
+        @extractor.contract_information(document).should == {:procurement_subject => "Vaky na odber darcovskej krvi a spracovanie krvných prípravkov."}
       end
     end
 
+    it 'should get price even if it was not finalized' do
+      VCR.use_cassette('vvo_185504') do
+        document = @extractor.download(185504)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"PHARMA GROUP,a.s.", :supplier_ico=>31320911.0, :is_price_part_of_range=>false, :price=>48933.72, :currency=>"EUR", :vat_included=>true}]}
+      end
+    end
+
+    it 'should get price even if it was not finalized' do
+      VCR.use_cassette('vvo_185583') do
+        document = @extractor.download(185583)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"MONTRÚR s.r.o.", :supplier_ico=>31657095.0, :is_price_part_of_range=>false, :price=>5400000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"BMS BOJŇANSKÝ s.r.o.", :supplier_ico=>36546941.0, :is_price_part_of_range=>false, :price=>4400000.0, :currency=>"EUR", :vat_included=>false}]}
+      end
+    end
+
+    it 'should get price even if it was not finalized' do
+      VCR.use_cassette('vvo_191763') do
+        document = @extractor.download(191763)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"PRODEX spol. s.r.o.", :supplier_ico=>17314569.0, :is_price_part_of_range=>true, :price=>865866.0, :currency=>"EUR", :vat_included=>false}]}
+      end
+    end
+
+    it 'should get price even if it was not finalized' do
+      VCR.use_cassette('vvo_186450') do
+        document = @extractor.download(186450)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"DOXX Stravné lístky, spol. s r.o.", :supplier_ico=>36391000.0, :is_price_part_of_range=>false, :price=>1588134.401, :currency=>"EUR", :vat_included=>false}]}
+      end
+    end
+
+    it 'should get price even if it was not finalized' do
+      VCR.use_cassette('vvo_185892') do
+        document = @extractor.download(185892)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"Bundesdruckerei GmbH", :supplier_ico=>81274661.0, :is_price_part_of_range=>false, :price=>3509600.0, :currency=>"EUR", :vat_included=>false}]}
+      end
+    end
+
+
     it 'should get suppliers information from a document' do
-      VCR.use_cassette('vvo_2675') do
-        document = @extractor.download(2675)
-        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>22050.91, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>13944.57, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>17788.24, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK, a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>48521.6, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>13496.21, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>30214.48, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL, SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>99202.25, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL, SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>23624.11, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"IMUNA PHARM, a. s.", :supplier_ico=>36473685.0, :is_price_part_of_range=>false, :price=>64329.81, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"INTRAVENA, s. r. o.", :supplier_ico=>31717802.0, :is_price_part_of_range=>false, :price=>134721.67, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>37627.09, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK, a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>51644.76, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>19038.11, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>35888.2, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>32816.43, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>17749.34, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>116435.2, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>18030.66, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK, a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>39778.6, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>18954.15, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>33074.02, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK, a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>30011.12, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>63694.12, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED-ART, spol. s r. o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>16868.14, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>40025.89, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK, a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>31945.83, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA, 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>35667.32, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>20822.41, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>35645.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>7439.66, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>176668.36, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>42665.94, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>47065.24, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>16127.73, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>230770.76, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>16489.15, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"COOPEX M spol. s.r.o.", :supplier_ico=>31385117.0, :is_price_part_of_range=>false, :price=>24756.02, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>31758.93, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>20865.19, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"UNIPHARMA PRIEVIDZA 1. slovenská lekárnická akciová spoločnosť", :supplier_ico=>31625657.0, :is_price_part_of_range=>false, :price=>30188.43, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"INTRAVENA s.r.o.", :supplier_ico=>31717802.0, :is_price_part_of_range=>false, :price=>22115.56, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MARTEK MEDICAL SK a. s.", :supplier_ico=>31708030.0, :is_price_part_of_range=>false, :price=>173569.67, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>23409.5, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>128046.34, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"MED - ART, spol. s r.o.", :supplier_ico=>34113924.0, :is_price_part_of_range=>false, :price=>28171.67, :currency=>"EUR", :vat_included=>false}]}
+      VCR.use_cassette('vvo_192396') do
+        document = @extractor.download(192396)
+        @extractor.suppliers_information(document).should == {:suppliers=>[{:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>3000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>432860.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>339000.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>48427.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>19370.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>9690.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Rudolf Olšiak ml.", :supplier_ico=>37106767.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Ján Šróba", :supplier_ico=>40587894.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Miroslav Brijak", :supplier_ico=>40592600.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Milan Plavucha", :supplier_ico=>40145735.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"Štefan Kubáš", :supplier_ico=>46130250.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>29060.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"DR DREVO s.r.o.", :supplier_ico=>36023892.0, :is_price_part_of_range=>false, :price=>24210.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>24210.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>24210.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"DR DREVO s.r.o.", :supplier_ico=>36023892.0, :is_price_part_of_range=>false, :price=>24210.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"SPODNIAK s.r.o.", :supplier_ico=>43877460.0, :is_price_part_of_range=>false, :price=>24210.0, :currency=>"EUR", :vat_included=>false}, {:supplier_name=>"PLENT, s.r.o.", :supplier_ico=>36007391.0, :is_price_part_of_range=>false, :price=>24210.0, :currency=>"EUR", :vat_included=>false}]}
       end
     end
   end
-  
-  
+
 end

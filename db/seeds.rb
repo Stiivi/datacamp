@@ -12,6 +12,7 @@ EtlConfiguration.find_or_create_by_name('notary_extraction', :start_id => 1, :ba
 EtlConfiguration.find_or_create_by_name('executor_extraction')
 EtlConfiguration.find_or_create_by_name('lawyer_extraction')
 EtlConfiguration.find_or_create_by_name('donations_parser', parser: true)
+EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start_id: 201110)
 
 
 def initialize_dataset(name)
@@ -59,6 +60,9 @@ Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_descr
 
 # Executors for the ETL
 initialize_dataset('executors')
+
+
+initialize_dataset('otvorenezmluvy')
 
 
 DataFormat.find_or_create_by_name('flag')
