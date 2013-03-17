@@ -118,8 +118,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       when 'zip'
         value = ("%05i" % value rescue value)
       when 'ico'
-        value.gsub!('0', '') if value.kind_of?(String) # there were cases of '00123456' which would trip up the formatting and raise
-        value = value.present? ? '%08i' % value : value
+        value = value.present? ? '%08i' % value.to_i : value
       when "flag"
         if format_arg and format_arg != ""
           flag_values = format_arg.split(",")
