@@ -37,7 +37,7 @@ belongs_to :search_query
 }
 
 def sphinx_condition(operand)
-  options = {}
+  options = {with: {}, without: {}}
   operand ||= "*"
   
   case operator

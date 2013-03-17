@@ -88,7 +88,8 @@ class DatasetsController < ApplicationController
         condition = predicate.sphinx_condition(operand)
         paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
         sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
-        paginate_options.merge!(condition)
+        paginate_options[:with].merge!(condition[:with])
+        paginate_options[:without].merge!(condition[:without])
       end
     end
     if @filters
@@ -134,6 +135,7 @@ class DatasetsController < ApplicationController
       end
     else
       begin
+        #raise paginate_options.inspect
         @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true))
       rescue ThinkingSphinx::SphinxError
         @sphinx_single_negative_search = true
