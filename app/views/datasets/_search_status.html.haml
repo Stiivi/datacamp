@@ -1,5 +1,8 @@
 - if @search_predicates
   %p.notice
     = link_to(image_tag("tooltip_cancel.png"), params.except(:search_id))
-    = t("dataset.active_search", :predicates => @search_predicates.count)
+    - if @sphinx_single_negative_search
+      = t('.sphinx_single_negative_search')
+    - else
+      = t(".active_search", :predicates => @search_predicates.count)
     %a{:href => '#search', :onclick => '$(".button_disclosure").trigger("click"); return false;'}= t("dataset.edit_search")

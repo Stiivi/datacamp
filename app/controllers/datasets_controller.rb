@@ -44,21 +44,19 @@ class DatasetsController < ApplicationController
     @field_descriptions  = @dataset_description.visible_field_descriptions
     @dataset             = @dataset_description.dataset
     @dataset_class       = @dataset.dataset_record_class
-    
+
     unless @dataset_class.table_exists?
       logger.error "Dataset table doesn't exist for #{@dataset_description.title} (#{@dataset_class.table_name})"
       flash[:error] = I18n.t("dataset.internal_dataset_error", :title => @dataset_description.title)
       return redirect_to datasets_path
     end
-    
+
     unless @dataset.has_pk?
       logger.error "Dataset is missing PK _record_id: #{@dataset_description.title} (#{@dataset_description.identifier})"
       flash[:error] = I18n.t("dataset.internal_dataset_error", :title => @dataset_description.title)
       return redirect_to datasets_path
     end
-    
-    @dataset_class = @dataset_class.order('created_at DESC, _record_id DESC') if params[:sort].blank?
-    
+
     # Comments
     load_comments
     
@@ -86,10 +84,10 @@ class DatasetsController < ApplicationController
       @search_predicates = search_object.query.predicates
       search_object.query.predicates.each do |predicate|
         field_description = FieldDescription.find_by_identifier(predicate.search_field)
-      	operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
-      	condition = predicate.sphinx_condition(operand)
-      	paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
-      	sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
+        operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
+        condition = predicate.sphinx_condition(operand)
+        paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
+        sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
         paginate_options.merge!(condition)
       end
     end
@@ -121,7 +119,11 @@ class DatasetsController < ApplicationController
         @records.define_singleton_method(:previous_page) { page > 1 ? (page - 1) : nil }
         @records.define_singleton_method(:next_page) { page < total_pages ? (page + 1) : nil }
       else
-        @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}") if params[:sort]
+        if params[:sort]
+          @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}")
+        else
+          @dataset_class.order('created_at DESC, _record_id DESC')
+        end
         if !current_user || !current_user.has_privilege?(:power_user)
           @dataset_class = @dataset_class.where(:record_status => DatastoreManager.record_statuses[2])
         elsif @filters
@@ -131,7 +133,12 @@ class DatasetsController < ApplicationController
         @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
       end
     else
-      @records = @dataset_class.search(sphinx_search, paginate_options)
+      begin
+        @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true))
+      rescue ThinkingSphinx::SphinxError
+        @sphinx_single_negative_search = true
+        @records = @dataset_class.search("", paginate_options)
+      end
     end
 
 

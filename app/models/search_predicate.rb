@@ -44,7 +44,7 @@ def sphinx_condition(operand)
   when "contains"
     options[:sphinx_search] = "@#{operand} \"#{argument}\","
   when "does_not_contain"
-    # options[:sphinx_search] = "@#{operand} !\"#{argument}\","
+     options[:sphinx_search] = "@#{operand} !\"#{argument}\","
   when "begins_with"
     options[:sphinx_search] = "@#{operand} \"^#{argument}\","
   when "ends_with"                     
