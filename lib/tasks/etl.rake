@@ -23,9 +23,9 @@ namespace :etl do
     end
   end
 
-  desc 'Run this to download/update notaries'
+  desc 'Run this to download/update otvorenezmluvy'
   task :otvorenezmluvy_extraction => :environment do
-    Delayed::Job.enqueue Etl::OtvoreneZmluvyExtraction.new
+    Delayed::Job.enqueue Etl::OtvorenezmluvyExtraction.new
   end
 
   desc 'Run this to download/update notaries'

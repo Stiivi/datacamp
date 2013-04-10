@@ -54,3 +54,7 @@ every 26.days do
   rake 'etl:lawyer_lists'
   rake 'etl:notari_activate'
 end
+
+every 25.days do
+  rake 'etl:otvorenezmluvy_extraction'
+end

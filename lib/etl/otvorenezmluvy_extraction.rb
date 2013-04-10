@@ -22,7 +22,21 @@ module Etl
     private
       def parse(data)
         CSV.parse(data, headers: true, header_converters: :symbol) do |row|
-          Kernel::DsOtvorenezmluvy.create! name: row[:name], otvorenezmluvy_type: row[:type], department: row[:department], customer: row[:customer], supplier: row[:supplier], supplier_ico: row[:supplier_ico], contracted_amount: row[:contracted_amount], total_amount: row[:total_amount], published_on: row[:published_on], effective_from: row[:effective_from], expires_on: row[:expires_on], note: row[:note], page_count: row[:pocet_stran]
+          Kernel::DsOtvorenezmluvy.create!(name: row[:name],
+                                           otvorenezmluvy_type: row[:type],
+                                           department: row[:department],
+                                           customer: row[:customer],
+                                           supplier: row[:supplier],
+                                           supplier_ico: row[:supplier_ico],
+                                           contracted_amount: row[:contracted_amount],
+                                           total_amount: row[:total_amount],
+                                           published_on: row[:published_on],
+                                           effective_from: row[:effective_from],
+                                           expires_on: row[:expires_on],
+                                           note: row[:note],
+                                           page_count: row[:pocet_stran],
+                                           source_url: "http://otvorenezmluvy.sk/documents/#{row[:id]}"
+                                          )
         end
       end
 
