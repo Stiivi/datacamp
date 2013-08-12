@@ -22,7 +22,7 @@
 class DatasetsController < ApplicationController
   include CommentsLoader
   
-  before_filter :prepare_filters, :only => [:show]
+  before_filter :prepare_filters, :only => [:show, :update]
   privilege_required :edit_record, :only => [:update]
   
   helper_method :has_filters?
@@ -178,20 +178,20 @@ class DatasetsController < ApplicationController
       end
     end
   end
-  
+
   # Batch update
   def update
     @dataset_description  = DatasetDescription.find_by_id(params[:id])
     @dataset_class        = @dataset_description.dataset.dataset_record_class
-    
+
     if params[:record].blank?
       flash[:error] = I18n.t("dataset.not_enough_records_selected")
       return redirect_to(dataset_path(@dataset_description)) 
     end
-      
+
     # Conditions for update
     update_conditions = {}
-        
+
     if params[:selection] == "selected"
       # The easier case. User used checkboxes to choose what
       # records they want to edit.
@@ -215,34 +215,35 @@ class DatasetsController < ApplicationController
           @search_predicates = search_object.query.predicates
           search_object.query.predicates.each do |predicate|
             field_description = FieldDescription.find_by_identifier(predicate.search_field)
-          	operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
-          	condition = predicate.sphinx_condition(operand)
-          	paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
-          	sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
+            operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
+            condition = predicate.sphinx_condition(operand)
+            paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
+            sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
             paginate_options.merge!(condition)
           end
         end
-        
-        update_conditions[:_record_id] = @dataset_class.search(sphinx_search, paginate_options).map(&:_record_id)
       else
         # User has chosen to edit all records and to search is
         # specified. We just won't pass any options to update statement
         # and just update whole dataset.
+
+        @dataset_class = @dataset_class.where(:record_status => @filters['record_status']) if @filters['record_status'].present?
+        @dataset_class = @dataset_class.where(:quality_status => @filters['quality_status']) if @filters['quality_status'].present?
         @count_updated = @dataset_class.count
       end
     end
-    
+
     updates = {}
     updates[:record_status] = params[:status] if params[:status].present?
     updates[:quality_status] = params[:quality] if params[:quality].present?
-    
+
     # Update attributes (only if using batch edit form)
     if params[:update_attribute].present? && params[:attribute_value].present?
       params[:update_attribute].each do |attr_name|
         updates[attr_name] = params[:attribute_value][attr_name]
       end
     end
-  
+
     update_count = @dataset_class.update_all(updates, update_conditions)
     Change.create(change_type: Change::BATCH_UPDATE, user: current_user, change_details: {updates: updates, update_conditions: update_conditions, update_count: update_count})
 
@@ -251,7 +252,7 @@ class DatasetsController < ApplicationController
     params.delete :page if params[:page].blank?
     redirect_to(dataset_path(@dataset_description, :search_id => params[:search_id], :page => params[:page]))
   end
-  
+
   def batch_edit
     @dataset_description = DatasetDescription.find_by_id(params[:id])
     @dataset_class        = @dataset_description.dataset.dataset_record_class

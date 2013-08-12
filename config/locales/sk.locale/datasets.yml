@@ -15,7 +15,7 @@ sk:
     selected_records: "%{count} záznam(y) je/sú vybraný/vybrané."
     batch_edit: "Hromadná úprava"
     edit_selected: Vybrané záznamy
-    edit_all: Všetky záznamy
+    edit_all: 'Všetky vyfiltrované záznamy'
     batch_updated: "%{count} záznamov bolo upravených."
     cant_setup_dataset: "Nie je možné nastaviť súbor %{dataset} na tabuľku %{identifier}. Skontrolujte prosím databázu."
     click_to_select_all: "Kliknite pre označenie/odznačenie všetkých."
