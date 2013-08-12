@@ -2,28 +2,6 @@
 = render 'datasets/admin/navigation'
 = render 'info_container'
 
--#.node
-  .information
-    .clearfix
-      .fl
-        %h1.main= @dataset_description.title
-      .fr.actions
-        - if logged_in? && current_user.has_privilege?(:create_record)
-          = link_to t("dataset.create_record"), new_dataset_record_path(@dataset_description)
-        - if logged_in? && current_user.has_privilege?(:edit_dataset_description)
-          = link_to t("dataset.edit_description"), dataset_description_path(@dataset_description)
-        - if logged_in? && current_user.has_privilege?(:import_from_file)
-          = link_to t("global.import"), new_import_file_path(:dataset_description_id => @dataset_description.id)
-
-    %p= t("dataset.short_summary", :count => @dataset_description.record_count, :provider => @dataset_description.data_provider)
-    %p
-      = textile(truncate(@dataset_description.description, length: 200))
-      = link_to t('global.information'), '#/information', class: 'reload_anchor'
-
-
-  = render :partial => 'node_menu'
-
-
 #data
 
   .pagination.ajax.clearfix
