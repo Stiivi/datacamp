@@ -31,7 +31,7 @@ attr_accessor :schema
 
 @@field_type_map = {
     :string => :varchar,
-    :decimal => 'decimal(10,2)'
+    :decimal => 'decimal(15,2)'
   }
 
 def self.manager_with_default_connection
