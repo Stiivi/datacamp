@@ -9,5 +9,11 @@ namespace :db do
       end
     end
   end
+
+  task upgrade_decimal_dataset_descriptions: :environment do
+    manager = DatastoreManager.manager_with_default_connection
+    decimal_field_descriptions = FieldDescription.all.keep_if{|fd| fd.data_type == :decimal }
+    decimal_field_descriptions.each {|dfd| manager.set_dataset_field_type(dfd.dataset_description.identifier, dfd.identifier, dfd.data_type) }
+  end
 end
 
