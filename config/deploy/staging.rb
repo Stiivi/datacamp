@@ -4,8 +4,6 @@ set :application, "datanest"
 set(:deploy_to) { "/home/datanest/rails/#{application}/staging" }
 server "46.231.96.101", :app, :web, :db, :primary => true
 
-set :branch, 'develop'
-
 require "delayed/recipes"
 set :rails_env, "production" #added for delayed job
 # Delayed Job
