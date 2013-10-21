@@ -68,7 +68,7 @@ namespace :etl do
   desc 'Run this to download/update all lawyers from sak.sk page.'
   task lawyer_extraction: :environment do
     [
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event'],
     ].each do |links|
       Etl::LawyerExtraction.new(links[0], links[1]).get_downloads.each{|adv| Delayed::Job.enqueue adv }
@@ -78,7 +78,7 @@ namespace :etl do
   task lawyer_lists: :environment do
     [
       ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event', 'is_suspended'],
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/link/display/formular/button/close/event', 'is_state'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/list/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/cpp/proxy/link/display/formular/button/close/event', 'is_state'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/link/display/formular/button/close/event', 'is_exoffo'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event', 'is_constitution'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event', 'is_asylum']
@@ -91,7 +91,7 @@ namespace :etl do
 
     # advokati
     active_downloads = [
-      ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
+      ['https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/list/formular/picker/event/page//', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event'],
       ['https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/link/display/formular/button/close/event'],
     ].map do |links|
       Etl::LawyerExtraction.new(links[0], links[1]).get_downloads
@@ -108,7 +108,7 @@ namespace :etl do
     end
 
     #spolocenstva
-    active_downloads = Etl::LawyerPartnershipExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/formular/picker/event/page/',
+    active_downloads = Etl::LawyerPartnershipExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/list/formular/picker/event/page/',
                                           'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/link/display/spolocnost/button/close/event').get_downloads
     active_ids = Etl::LawyerPartnershipExtraction.map_ids(active_downloads)
     Dataset::DsLawyerPartnership.update_all(record_status: 'suspended')
@@ -141,7 +141,7 @@ namespace :etl do
 
   desc 'Run this to download/update all lawyer partnerships and link lawyers to them.'
   task lawyer_partnership_extraction: :environment do
-    downloads = Etl::LawyerPartnershipExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/formular/picker/event/page/',
+    downloads = Etl::LawyerPartnershipExtraction.new( 'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/list/formular/picker/event/page/',
                                           'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/link/display/spolocnost/button/close/event').get_downloads
     downloads.each{|download| Delayed::Job.enqueue download }
   end
