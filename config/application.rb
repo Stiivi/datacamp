@@ -64,13 +64,20 @@ module Datacamp
           indexes :quality_status
           field_count = 0
           dataset_description.visible_field_descriptions(:detail).each do |field|
-            if field.data_type != :integer && field.data_type != :date
+            if ![:integer, :date, :decimal].include?(field.data_type)
               next if field_count > 28
               field_count += 1
               indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
             else
-              has field.identifier.to_sym if field.identifier.present?
-              has field.identifier.to_sym, :as => "#{field.identifier}_sort" if field.identifier.present?
+              if field.identifier.present?
+                has field.identifier.to_sym
+
+                if field.data_type == :decimal
+                  has field.identifier.to_sym, :as => "#{field.identifier}_sort", type: :float
+                else
+                  has field.identifier.to_sym, :as => "#{field.identifier}_sort"
+                end
+              end
             end
             has "#{field.identifier} IS NOT NULL", :type => :integer, :as => "#{field.identifier}_not_nil" if field.identifier.present?
             has "#{field.identifier} IS NULL", :type => :integer, :as => "#{field.identifier}_nil" if field.identifier.present?
