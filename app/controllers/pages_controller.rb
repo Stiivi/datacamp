@@ -21,7 +21,9 @@
 
 class PagesController < ApplicationController
   before_filter lambda {
-    expires_in 5.minutes, public: true
+    if params[:bust_cache].blank? && current_user.blank?
+      expires_in 5.minutes, public: true
+    end
   }
 
   def show

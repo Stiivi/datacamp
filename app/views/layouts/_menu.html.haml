@@ -1,7 +1,7 @@
 #menu{class: ('rounded' if @submenu_partial.blank?)}
   %ul
-    %li= link_to t("global.home"), root_path, class: (params[:controller] == "pages" && params[:id] == 'index' ? "active" : "")
-    %li= link_to t("global.data_catalogue"), datasets_path, class: (params[:controller] == "datasets" ? "active" : "")
+    %li= link_to t("global.home"), root_path(cache_bust: (rand if current_user.present?)), class: (params[:controller] == "pages" && params[:id] == 'index' ? "active" : "")
+    %li= link_to t("global.data_catalogue"), datasets_path(cache_bust: (rand if current_user.present?)), class: (params[:controller] == "datasets" ? "active" : "")
 
     - if logged_in?
       - if current_user.has_privilege? :edit_dataset_description

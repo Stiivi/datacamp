@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
   privilege_required :create_record, :only => [:new, :create]
   
   def show
-    expires_in 5.minutes
+    expires_in 5.minutes if current_user.blank?
 
     # Field descriptions
     if logged_in? && current_user.has_privilege?(:power_user)

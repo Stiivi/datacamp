@@ -17,7 +17,7 @@
     - dataset_category.dataset_descriptions.each do |description|
       - if !description.bad_quality? || (description.bad_quality && params[:show_bad_quality] == 'true')
         #dataset
-          = link_to dataset_path(description), class: 'dataset_line' do
+          = link_to dataset_path(description, cache_bust: (rand if current_user.present?)), class: 'dataset_line' do
             %span.dataset_name= description.title
             %span= clear_textile(description.perex).html_safe
           - if description.api_allowed_for?(current_user)
