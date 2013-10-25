@@ -113,7 +113,13 @@ class DatasetsController < ApplicationController
           @records = @records.where('t.record_status in (?)', [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]])
         elsif @filters
           @dataset_class = @dataset_class.where('t.record_status = ?', @filters['record_status']) if @filters['record_status'].present?
-          @dataset_class = @dataset_class.where('t.quality_status = ?', @filters['quality_status']) if @filters['quality_status'].present?
+          if @filters['quality_status'].present?
+            if @filters['quality_status'] == 'absent'
+              @dataset_class = @dataset_class.where('t.quality_status IS NULL OR t.quality_status = ?', @filters['quality_status'])
+            else
+              @dataset_class = @dataset_class.where('t.quality_status = ?', @filters['quality_status'])
+            end
+          end
         end
         @records.define_singleton_method(:total_pages) { (total_pages/per_page.to_f).ceil }
         @records.define_singleton_method(:current_page) { page }
@@ -129,7 +135,13 @@ class DatasetsController < ApplicationController
           @dataset_class = @dataset_class.where(:record_status => DatastoreManager.record_statuses[2])
         elsif @filters
           @dataset_class = @dataset_class.where(:record_status => @filters['record_status']) if @filters['record_status'].present?
-          @dataset_class = @dataset_class.where(:quality_status => @filters['quality_status']) if @filters['quality_status'].present?
+          if @filters['quality_status'].present?
+            if @filters['quality_status'] == 'absent'
+              @dataset_class = @dataset_class.where('quality_status IS NULL OR quality_status = ?', @filters['quality_status'])
+            else
+              @dataset_class = @dataset_class.where(quality_status: @filters['quality_status'])
+            end
+          end
         end
         @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
       end
