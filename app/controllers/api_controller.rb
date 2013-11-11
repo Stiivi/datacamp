@@ -213,21 +213,25 @@ class ApiController < ApplicationController
 
 private
   def error code, info = {}
-    error = @@errors[code.to_sym]
-    if error.nil?
-      error = @@errors[:internal_inconsistency]
-      message = "Unknown error code '#{code}'"
-      code = :internal_inconsistency
+    if params[:format] == 'xml'
+      error = @@errors[code.to_sym]
+      if error.nil?
+        error = @@errors[:internal_inconsistency]
+        message = "Unknown error code '#{code}'"
+        code = :internal_inconsistency
+      else
+        message = info[:message].nil? ? error[:message] : info[:message]
+      end
+
+      reply = Hash.new
+      reply[:code] = code
+      reply[:message] = message if not message.nil?
+      reply[:resolution] = error[:resolution] if not error[:resolution].nil?
+
+      render :xml => reply.to_xml, :status => error[:status]
     else
-      message = info[:message].nil? ? error[:message] : info[:message]
+      render 'pages/datanest_401', status: 401
     end
-
-    reply = Hash.new
-    reply[:code] = code
-    reply[:message] = message if not message.nil?
-    reply[:resolution] = error[:resolution] if not error[:resolution].nil?
-
-    render :xml => reply.to_xml, :status => error[:status]
   end
 
   def dataset_dump_path

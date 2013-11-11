@@ -15,38 +15,38 @@ module Etl
         update_last_processed(id)
       end
     end
-    
+
     def download(id)
       Typhoeus::Request.get(document_url(id))
     end
-    
+
     def update_last_processed(id)
       config.update_attribute(:last_processed_id, id)
     end
-    
+
     def config
       @configuration ||= EtlConfiguration.find_by_name('regis_update')
     end
-    
+
     def document_url(id)
       "http://www.statistics.sk/pls/wregis/detail?wxidorg=#{id}"
     end
-    
+
     def save(procurement_hash, document_id)
       regis_model = Kernel.const_get 'StagingRecord'
       regis_model.set_table_name "sta_regis_main"
       modified_element = regis_model.find_by_doc_id(document_id)
       modified_element.update_attributes(procurement_hash)
     end
-    
+
     def parse(id, document)
         file_content = Iconv.conv('utf-8', 'cp1250', document.body).gsub("&nbsp;",' ')
         doc = Nokogiri::HTML(file_content)
-      
+
         return :unknown_announcement_type if doc.xpath("//div[@class='telo']").empty?
         return digest(doc, id, document_url(id))
     end
-    
+
     def digest(doc, doc_id, base_url, url = nil)
       ico = name = legal_form = date_start = date_end = address = region = ''
       doc.xpath("//div[@class='telo']//table[@class='tabid']/tbody/tr").each do |row|
@@ -78,7 +78,7 @@ module Etl
         elsif row.xpath(".//td[1]").inner_text.match(/vlastn(i|í|Í)ctva/i)
           ownership = row.xpath(".//td[2]").inner_text
         elsif row.xpath(".//td[1]").inner_text.match(/ve(l|ľ|Ľ)kosti/i)
-          size = row.xpath(".//td[2]").inner_text  
+          size = row.xpath(".//td[2]").inner_text
         end
       end
 
@@ -103,7 +103,7 @@ module Etl
         :date_created => Time.now,
         :source_url => url }
     end
-    
+
     def after(job)
       if id == (start_id + batch_limit) && !config.last_processed_id > start_id
           config.update_attribute(:start_id, id+1)

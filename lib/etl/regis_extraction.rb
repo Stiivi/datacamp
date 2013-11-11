@@ -7,15 +7,15 @@ module Etl
     def document_url(id)
       "http://www.statistics.sk/pls/wregis/detail?wxidorg=#{id}"
     end
-    
+
     def is_acceptable?(document)
       document.xpath("//div[@class='telo']").present?
     end
-    
+
     def config
       @configuration ||= EtlConfiguration.find_by_name('regis_extraction')
     end
-    
+
     def digest(doc)
       ico = name = legal_form = date_start = date_end = address = region = ''
       doc.xpath("//table[@class='tabid']//tr").each do |row|
@@ -47,7 +47,7 @@ module Etl
         elsif row.xpath(".//td[1]").inner_text.match(/vlastn(i|í|Í)ctva/i)
           ownership = row.xpath(".//td[2]").inner_text
         elsif row.xpath(".//td[1]").inner_text.match(/ve(l|ľ|Ľ)kosti/i)
-          size = row.xpath(".//td[2]").inner_text  
+          size = row.xpath(".//td[2]").inner_text
         end
       end
 
@@ -72,11 +72,11 @@ module Etl
         :date_created => Time.now,
         :source_url => url }
     end
-    
+
     def save(procurement_hash)
       Staging::StaRegisMain.create(procurement_hash)
     end
-    
+
     def enque_job(document_id)
       Delayed::Job.enqueue Etl::RegisExtraction.new(id+1, config.batch_limit, document_id)
     end

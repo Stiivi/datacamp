@@ -2,3 +2,5 @@ sk:
   pages:
     show:
       news_header: 'Novinky'
+    datanest_401:
+      notice: 'Bohužiaľ, na stiahnutie týchto dát nemáte dostatočné práva. Ak máte o prístup záujem, kontaktujte prosím administrátora na'

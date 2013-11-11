@@ -2,3 +2,5 @@ en:
   pages:
     show:
       news_header: 'News'
+    datanest_401:
+      notice: 'You do not have sufficient privileges to perform this action. Please contact the administrator'

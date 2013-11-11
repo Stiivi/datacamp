@@ -920,3 +920,25 @@ footer a:hover {
 #newsfeed a:hover {
 	text-decoration:underline;
 }
+
+#accessdenied {
+  display:block;
+  background:url(../images/datanest_access_denied.png) no-repeat top;
+  margin:0;
+  padding:0;
+  float:none;
+  overflow:hidden;
+}
+#accessdenied .text{
+  display:block;
+  margin:520px 80px 70px 80px;
+  padding:0px;
+  font-size:16px;
+  font-weight:bold;
+  text-align:center;
+  line-height:26px;
+  color:#231F20;
+}
+#accessdenied a{
+  color:#FF5D37;
+}
