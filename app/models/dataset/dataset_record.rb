@@ -119,6 +119,8 @@ class Dataset::DatasetRecord < ActiveRecord::Base
         value = ("%05i" % value rescue value)
       when 'ico'
         value = value.present? ? '%08i' % value.to_i : value
+      when 'history'
+        value = YAML::load(value).map{|time, val| "#{time}: #{val}"}.join("<br/>").html_safe if value.present?
       when "flag"
         if format_arg and format_arg != ""
           flag_values = format_arg.split(",")
@@ -187,7 +189,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   def record_updates
     if !self.class.table_name.match(/^(rel_|dc_)/) && !self.new_record?
       change_hash = changed_attributes.map { |attribute, old_value| {updated_column: attribute, original_value: old_value, new_value: self[attribute]} }
-      self.dc_updates.build(change_hash)
+      self.dc_updates.build(change_hash) if respond_to?(:dc_updates)
     end
   end
 

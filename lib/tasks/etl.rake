@@ -238,7 +238,7 @@ namespace :etl do
     regis_ds_model.set_table_name dataset_table
 
     append_new_records = "INSERT INTO #{dataset_schema}.#{dataset_table}
-                         (doc_id, ico, name, legal_form, legal_form_code, date_start, date_end, address, region, activity1, activity1_code, activity2, activity2_code, account_sector, account_sector_code, ownership, ownership_code, size, size_code, source_url, created_at, updated_at, created_by, record_status)
+                         (doc_id, ico, name, legal_form, legal_form_code, date_start, date_end, address, region, activity1, activity1_code, activity2, activity2_code, account_sector, account_sector_code, ownership, ownership_code, size, size_code, source_url, created_at, updated_at, created_by, record_status, name_history)
                          SELECT doc_id, ico, name,
                                  lf.text legal_form, legal_form legal_form_code,
                                  m.date_start, m.date_end,
@@ -248,7 +248,7 @@ namespace :etl do
                                  acc.text account_sector, account_sector account_sector_code,
                                  os.text ownership, ownership ownership_code,
                                  s.text size, size size_code,
-                                 source_url, m.date_created, m.updated_at, 'system_loading' created_by, 'published' record_status
+                                 source_url, m.date_created, m.updated_at, 'system_loading' created_by, 'published' record_status, name_history
                          FROM #{staging_schema}.#{source_table} m
                          LEFT JOIN #{staging_schema}.sta_regis_legal_form lf ON lf.id = m.legal_form
                          LEFT JOIN #{staging_schema}.sta_regis_activity1 a1 ON a1.id = m.activity1
@@ -265,7 +265,7 @@ namespace :etl do
                                           m.date_start, m.date_end, address, region, a1.text activity1, activity1 activity1_code,
                                           a2.text activity2, activity2 activity2_code, acc.text account_sector,
                                           account_sector account_sector_code, os.text ownership, ownership ownership_code,
-                                          s.text size, size size_code, source_url, etl_loaded_date").
+                                          s.text size, size size_code, source_url, etl_loaded_date, name_history").
                                    from("#{staging_schema}.#{source_table} as m").
                                    joins("LEFT JOIN #{staging_schema}.sta_regis_legal_form lf ON lf.id = m.legal_form").
                                    joins("LEFT JOIN #{staging_schema}.sta_regis_activity1 a1 ON a1.id = m.activity1").
@@ -283,7 +283,7 @@ namespace :etl do
                                                              :date_start => r.date_start, :date_end => r.date_end, :address => r.address, :region => r.region, :activity1 => r.activity1,
                                                              :activity1_code => r.activity1_code, :activity2 => r.activity2, :activity2_code => r.activity2_code,
                                                              :account_sector => r.account_sector, :account_sector_code => r.account_sector_code, :ownership => r.ownership,
-                                                             :ownership_code => r.ownership_code, :size => r.size, :size_code => r.size_code)
+                                                             :ownership_code => r.ownership_code, :size => r.size, :size_code => r.size_code, name_history: r.name_history)
     end
 
     DatasetDescription.find_by_identifier('organisations').update_attribute(:data_updated_at, Time.zone.now)

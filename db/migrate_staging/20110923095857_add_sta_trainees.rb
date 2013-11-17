@@ -7,7 +7,7 @@ class AddStaTrainees < ActiveRecord::Migration
       t.integer :advokat_id
 
       t.timestamps
-    end
+    end unless table_exists? :sta_trainees
   end
 
   def self.down

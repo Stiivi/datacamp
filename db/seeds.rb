@@ -68,6 +68,7 @@ initialize_dataset('otvorenezmluvy')
 DataFormat.find_or_create_by_name('flag')
 DataFormat.find_or_create_by_name('zip')
 DataFormat.find_or_create_by_name('ico')
+DataFormat.find_or_create_by_name('history')
 
 [
   {:name => "theme",
