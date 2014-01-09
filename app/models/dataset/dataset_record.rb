@@ -120,7 +120,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
       when 'ico'
         value = value.present? ? '%08i' % value.to_i : value
       when 'history'
-        value = YAML::load(value).map{|time, val| "#{time}: #{val}"}.join("<br/>").html_safe if value.present?
+        value = YAML::load(value).map{|time, val| "#{time.strftime('%Y-%m-%d')}: #{val}"}.join("<br/>").html_safe if value.present?
       when "flag"
         if format_arg and format_arg != ""
           flag_values = format_arg.split(",")
