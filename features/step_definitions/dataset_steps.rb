@@ -203,11 +203,20 @@ end
 When /^I batch edit search results for a dataset to suspended$/ do
   step %{I am logged in and showing records for dataset "lawyers"}
   dataset_class = DatasetDescription.find_by_identifier("lawyers").dataset.dataset_record_class
-  dataset_class.stubs(:search).returns(dataset_class.paginate(page: 1))
+  dataset_class.instance_eval do
+    def search(*args)
+      paginate(page: 1)
+    end
+  end
+
   find("//a[@class='button_disclosure']").click
   step %{I fill in "search[predicates][][value]" with "value"}
   find("//*[@id='search_advanced']//*[@class='search_button']").click
   step %{I check "record[]"}
   step %{I select "All filtered records" from "selection"}
   step %{I select "Suspended" from "status"}
+end
+
+Then /^I should see a "([^"]*)" image$/ do |img_alt|
+  page.should have_xpath("//img[@alt='#{img_alt}']")
 end

@@ -25,17 +25,17 @@ Feature: Dataset management and display
     When I display records for dataset "lawyers"
     Then I should see "Franz Kafka"
 
-  @selenium
+  @javascript
   Scenario: Batch editing of selected dataset records
     When I batch edit selected records for a dataset to suspended
-    Then I should see "Suspended"
+    Then I should see a "Suspended" image
 
-  @selenium
+  @javascript
   Scenario: Batch editing all records for a dataset
     When I batch edit all records for a dataset to suspended
-    Then I should see "Suspended"
+    Then I should see a "Suspended" image
 
-  @selenium
+  @javascript
   Scenario: Batch edit search results for a dataset
     When I batch edit search results for a dataset to suspended
-    Then I should see "Suspended"
+    Then I should see a "Suspended" image

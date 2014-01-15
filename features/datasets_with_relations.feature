@@ -3,10 +3,10 @@ Feature: Datasets with relations
   In order to be able to publish data with database realtion
   As an administrator
   I want to be able to publish a dataset that has a relation defined and displays fields from the related table
-  
+
   Background:
     Given I am a new, authenticated user "test" with password "password"
-  
+
   Scenario: Publish a table with a relationship
     Given two published datasets with data exist
     When I setup a relation between the datasets

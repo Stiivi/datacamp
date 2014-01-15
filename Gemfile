@@ -74,9 +74,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'spork', '>= 0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem "factory_girl_rails", "~> 1.2.0"
   gem 'vcr'
