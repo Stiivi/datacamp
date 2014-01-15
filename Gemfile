@@ -1,11 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.17'
+gem 'rails', '3.1.12'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.1.7'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier',     '>= 1.0.3'
+end
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '~> 0.2.7'
+gem 'mysql2'
+
+gem 'jquery-rails'
 
 gem 'haml-rails'
 gem "RedCloth", :require => "redcloth"
@@ -59,9 +67,7 @@ end
 
 group :development do
   gem "mailcatcher"
-  gem "rails-erd"
-  gem 'jquery-rails'
-  gem 'awesome_print'
+
   gem 'rails_best_practices'
   # Deploy with Capistrano multistage
   gem 'capistrano'
