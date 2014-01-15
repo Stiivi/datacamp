@@ -29,11 +29,8 @@ class PagesController < ApplicationController
   def show
     @page = Page.find_by_page_name(params[:id]) || Page.find_by_id!(params[:id])
     @news = News.published.limit(2) if params[:id] == 'index'
-    @blocks = @page.blocks.paginate(
-      :all,
-      conditions: {is_enabled: true},
+    @blocks = @page.blocks.where(is_enabled: true).order(:name).paginate(
       page: params[:page],
-      order: :name,
       per_page: 9
     )
   end
