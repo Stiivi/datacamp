@@ -8,7 +8,8 @@
 
     = csrf_meta_tag unless response.cache_control[:public]
 
-    = render 'layouts/asset_includes' # FIXME: remove this when moving to asset pipeline
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
     = javascript_include_tag @javascripts if @javascripts.present? # FIXME: remove this when moving to asset pipeline
 
   %body

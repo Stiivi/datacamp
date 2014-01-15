@@ -26,3 +26,5 @@ db/sphinx/*
 
 .DS_Store
 rerun.txt
+
+.sass-cache

@@ -9,16 +9,13 @@ $(document).ready(function(){
   }, function(){
     $(this).find('.more').hide();
   });
-  
+
   // // // // // // // // // // // // // // // // // // // // // // //
   // Sortable lists
-  $.getScript('/javascripts/jquery.ui.sortable.js', function(){
-    // // // // // // // // // // // // // // // // // // // // // // //
-    // Sortables for import settings
-    
-    $("#all_field_descriptions ul").sortable({connectWith: '#importable_field_descriptions ul', update: update_import_settings});
-    $("#importable_field_descriptions ul").sortable({connectWith: '#all_field_descriptions ul', update: update_import_settings});
-  });
+  // // // // // // // // // // // // // // // // // // // // // // //
+  // Sortables for import settings
+  $("#all_field_descriptions ul").sortable({connectWith: '#importable_field_descriptions ul', update: update_import_settings});
+  $("#importable_field_descriptions ul").sortable({connectWith: '#all_field_descriptions ul', update: update_import_settings});
 });
 
 var update_import_settings = function(){
