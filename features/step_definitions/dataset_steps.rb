@@ -196,7 +196,7 @@ end
 When /^I batch edit all records for a dataset to suspended$/ do
   step %{I am logged in and showing records for dataset "lawyers"}
   step %{I check "record[]"}
-  step %{I select "All records" from "selection"}
+  step %{I select "All filtered records" from "selection"}
   step %{I select "Suspended" from "status"}
 end
 
@@ -204,10 +204,10 @@ When /^I batch edit search results for a dataset to suspended$/ do
   step %{I am logged in and showing records for dataset "lawyers"}
   dataset_class = DatasetDescription.find_by_identifier("lawyers").dataset.dataset_record_class
   dataset_class.stubs(:search).returns(dataset_class.paginate(page: 1))
-  step %{I follow "Search"}
+  find("//a[@class='button_disclosure']").click
   step %{I fill in "search[predicates][][value]" with "value"}
-  step %{I press "Submit"}
+  find("//*[@id='search_advanced']//*[@class='search_button']").click
   step %{I check "record[]"}
-  step %{I select "All records" from "selection"}
+  step %{I select "All filtered records" from "selection"}
   step %{I select "Suspended" from "status"}
 end

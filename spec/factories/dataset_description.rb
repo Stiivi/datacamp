@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  
+
   factory :field_description do
     is_visible_in_listing true
     is_visible_in_detail true
@@ -8,12 +8,12 @@ FactoryGirl.define do
     sk_title 'sk title'
     en_title 'sk title'
   end
-  
+
   factory :dataset_category, :aliases => [:category] do
     sk_title 'sk title'
     en_title 'sk title'
   end
-  
+
   factory :dataset_description do
     identifier 'something'
     sk_title 'sk title'
@@ -21,5 +21,5 @@ FactoryGirl.define do
     is_active true
     category
   end
-  
+
 end
