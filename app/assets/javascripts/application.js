@@ -25,3 +25,4 @@
 //= require jquery.ui.nestedSortable
 //= require sorting
 //= require datasets/search
+//= require ga_tracker

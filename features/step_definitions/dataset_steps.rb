@@ -209,7 +209,7 @@ When /^I batch edit search results for a dataset to suspended$/ do
     end
   end
 
-  find("//a[@class='button_disclosure']").click
+  find("//a[contains(@class,'js_advanced_search_toggle')]").click
   step %{I fill in "search[predicates][][value]" with "value"}
   find("//*[@id='search_advanced']//*[@class='search_button']").click
   step %{I check "record[]"}

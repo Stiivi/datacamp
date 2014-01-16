@@ -45,6 +45,7 @@ class SessionsController < ApplicationController
       new_cookie_flag = true
       handle_remember_cookie! new_cookie_flag
       flash[:notice] = t("users.logged_in")
+      flash[:user_signed_in] = true
       return redirect_to page_path(Page.find_by_page_name("index"), bust_cache: rand)
     else
       note_failed_signin

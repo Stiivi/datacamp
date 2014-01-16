@@ -17,11 +17,11 @@
     - dataset_category.dataset_descriptions.each do |description|
       - if !description.bad_quality? || (description.bad_quality && params[:show_bad_quality] == 'true')
         #dataset
-          = link_to dataset_path(description, cache_bust: (rand if current_user.present?)), class: 'dataset_line' do
+          = link_to dataset_path(description, cache_bust: (rand if current_user.present?)), class: 'dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier} do
             %span.dataset_name= description.title
             %span= clear_textile(description.perex).html_safe
           - if description.api_allowed_for?(current_user)
-            = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "api api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
+            = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier }
           = link_to '', nil, name: t(".good_quality_#{!description.bad_quality?}"), class: "tooltip dataset_status#{description.bad_quality? ? '_wrong' : ''}"
 
   -#%table.frontend
