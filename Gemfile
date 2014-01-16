@@ -1,11 +1,19 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.17'
+gem 'rails', '3.1.12'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.1.7'
+  gem 'coffee-rails', '~> 3.1.1'
+  gem 'uglifier',     '>= 1.0.3'
+end
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '~> 0.2.7'
+gem 'mysql2'
+
+gem 'jquery-rails'
 
 gem 'haml-rails'
 gem "RedCloth", :require => "redcloth"
@@ -16,7 +24,7 @@ gem 'paperclip'
 gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
 gem 'spawn'
 gem 'validation_reflection'
-gem 'will_paginate', '3.0.pre2'
+gem 'will_paginate'
 #gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 gem 'delayed_job'
 gem 'nokogiri'
@@ -28,6 +36,7 @@ gem "exception_notification", :git => "git://github.com/rails/exception_notifica
 gem 'newrelic_rpm'
 gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
 gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git', ref: 'a9c939f94c424a0b9e3a92bb1b280141c87f6195'
+gem 'gabba'
 
 # gem 'test-unit'
 
@@ -59,9 +68,7 @@ end
 
 group :development do
   gem "mailcatcher"
-  gem "rails-erd"
-  gem 'jquery-rails'
-  gem 'awesome_print'
+
   gem 'rails_best_practices'
   # Deploy with Capistrano multistage
   gem 'capistrano'
@@ -74,8 +81,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'mocha'
   gem 'capybara'
+  gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'spork', '>= 0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem "factory_girl_rails", "~> 1.2.0"
   gem 'vcr'

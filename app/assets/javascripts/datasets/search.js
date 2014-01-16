@@ -29,6 +29,7 @@ var init_search = function(row, reset){
     cloned.find("a.remove_row").show();
     cloned.appendTo(row.parent());
     init_search(cloned, true);
+    GATracker._advanced_search_field_add();
     return false;
   });
 
@@ -39,9 +40,14 @@ var init_search = function(row, reset){
 
   row.find("select.search_field").change(function(){
     opt = $(this).find("option:selected");
+    GATracker._advanced_search_field_change(opt.val());
     type = opt.attr('class');
     row.find("select.search_operator").empty();
     optgroups.find("optgroup."+type).clone().children().appendTo(row.find("select.search_operator"));
+  });
+
+  row.find("select.search_operator").change(function(){
+    GATracker._advanced_search_field_type_change($(this).val());
   });
 
 

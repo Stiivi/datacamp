@@ -29,7 +29,7 @@ div.tab { padding-top: 10px; }
 
 /* @group Tooltip */
 
-div.tooltip { font-size: 11px; font-weight: bold; background: url(../images/tooltip.png) repeat-x !important; _background: #000; padding: 7px !important; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
+div.tooltip { font-size: 11px; font-weight: bold; background: image-url('tooltip.png') repeat-x !important; _background: #000; padding: 7px !important; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
 
 
 
@@ -37,11 +37,11 @@ div.tooltip { font-size: 11px; font-weight: bold; background: url(../images/tool
 
 /* @group Locale switcher */
 
-ul.locale_switcher li { width: 40px; padding: 0px; height: 29px; background: url(../images/language_switcher.png) no-repeat -40px -31px; border: none; margin: 0px; }
+ul.locale_switcher li { width: 40px; padding: 0px; height: 29px; background: image-url('language_switcher.png') no-repeat -40px -31px; border: none; margin: 0px; }
 
 ul.locale_switcher li a { border: none; padding: 5px; padding-top: 6px; text-align: center; display: block; color: #8e8e8e; font-weight: bold; font-size: 12px; }
 
-ul.locale_switcher li.active { background: url(../images/language_switcher.png) no-repeat -40px 0px; }
+ul.locale_switcher li.active { background: image-url('language_switcher.png') no-repeat -40px 0px; }
 
 ul.locale_switcher li.active a { color: #fff; }
 
@@ -105,7 +105,7 @@ p.error, div.error { border: none; background: #910000; color: #fff; }
 
 div._inscription_Loading { position: fixed; top: 0px; left: 0px; width: 100%; background-color: #000; color: #fff; font-size: 20px; padding: 15px; }
 
-div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: url(../images/ajax_preloader_dark.gif) no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
+div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: image-url('ajax_preloader_dark.gif') no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
 
 
 
@@ -117,13 +117,13 @@ div._inscription_Loading div.text { display: block; margin: auto; width: 150px; 
 
 div._inscription_Overlay { position: fixed; _position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: #000; }
 
-div._inscription_Modal { overflow: hidden; background: url(../images/modal_small.png) no-repeat; z-index: 9999; }
+div._inscription_Modal { overflow: hidden; background: image-url('modal_small.png') no-repeat; z-index: 9999; }
 
 div._inscription_Modal div.inner { padding: 15px; position: relative; }
 
 /* Modal Window */
 
-div._inscription_Modal.window { width: 568px; height: 326px; margin-top: -163px; margin-left: -284px; background: url(../images/modal_window.png); }
+div._inscription_Modal.window { width: 568px; height: 326px; margin-top: -163px; margin-left: -284px; background: image-url('modal_window.png'); }
 
 div._inscription_Modal.window div.inner { padding: 40px; height: 246px; }
 
@@ -135,7 +135,7 @@ div._inscription_Modal.under div.inner {  }
 
 /* Model right from action element */
 
-div._inscription_Modal.right { background: url(../images/modal_small_to_right.png); width: 372px; height: 130px; margin-top: -13px; }
+div._inscription_Modal.right { background: image-url('modal_small_to_right.png'); width: 372px; height: 130px; margin-top: -13px; }
 
 div._inscription_Modal.right div.inner { padding: 15px 15px 15px 20px; }
 
@@ -149,13 +149,13 @@ div._inscription_Modal .actions { position: absolute; bottom: 40px; left: 0px; w
 
 /* @group Buttons */
 
-a.delete { display: block; width: 16px; height: 16px; background-image: url(../images/icons/delete.png); text-indent: -9999px; margin-top: 2px; }
+a.delete { display: block; width: 16px; height: 16px; background-image: image-url('icons/delete.png'); text-indent: -9999px; margin-top: 2px; }
 
 a.delete span { display: none; }
 
 a.delete:hover { background-position: 0 -16px; }
 
-a.proceed { display: block; width: 16px; height: 16px; background-image: url(../images/icons/proceed.png); text-indent: -9999px; margin-top: 2px; }
+a.proceed { display: block; width: 16px; height: 16px; background-image: image-url('icons/proceed.png'); text-indent: -9999px; margin-top: 2px; }
 
 a.proceed span { display: none; }
 
@@ -195,9 +195,9 @@ div.excerpt em { color: #b5b5b5; font-weight: bold; }
 
 /* @group Breadcumb */
 
-.bar { height: 36px; background-image: url(../images/bar.png); margin-bottom: 15px; font-size: 11px; }
+.bar { height: 36px; background-image: image-url('bar.png'); margin-bottom: 15px; font-size: 11px; }
 
-.bar a { display: block; float: left; height: 36px; background: url(../images/bar.png) right -74px; color: #a5b4c3; font-size: 11px; text-decoration: none; }
+.bar a { display: block; float: left; height: 36px; background: image-url('bar.png') right -74px; color: #a5b4c3; font-size: 11px; text-decoration: none; }
 
 .bar a:hover { color: #a5b4c3; }
 
@@ -205,7 +205,7 @@ div.excerpt em { color: #b5b5b5; font-weight: bold; }
 
 .bar a.home {  }
 
-.bar a.home span { background: url(../images/bar.png) 0 -37px; margin-right: 20px; padding-right: 10px; }
+.bar a.home span { background: image-url('bar.png') 0 -37px; margin-right: 20px; padding-right: 10px; }
 
 .bar a.active span { color: #525252; }
 
@@ -237,7 +237,7 @@ div.excerpt em { color: #b5b5b5; font-weight: bold; }
 
 /* @group Progress bar */
 
-.progress_bar { background-image: url(../images/progress.gif); width: 300px; height: 17px; border: 1px solid #588ddb; -webkit-border-radius: 3px; margin-bottom: 15px; }
+.progress_bar { background-image: image-url('progress.gif'); width: 300px; height: 17px; border: 1px solid #588ddb; -webkit-border-radius: 3px; margin-bottom: 15px; }
 
 
 
@@ -245,7 +245,7 @@ div.excerpt em { color: #b5b5b5; font-weight: bold; }
 
 /* @group Homepage buttons */
 
-a.homepage_button { display: block; float: left; padding: 13px 20px 10px; background-image: url(../images/homepage_buttons.png); text-decoration: none; color: #729441; font-weight: bold; width: 170px; font-size: 14px; }
+a.homepage_button { display: block; float: left; padding: 13px 20px 10px; background-image: image-url('homepage_buttons.png'); text-decoration: none; color: #729441; font-weight: bold; width: 170px; font-size: 14px; }
 
 a.homepage_button:hover { color: #729441; }
 

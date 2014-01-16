@@ -125,10 +125,10 @@ a.view_wrong_dataset:active {
 	height:20px;
 	overflow:hidden;
 	float:left;
-	background:url(../images/twitter.png);
+	background: image-url('twitter.png');
 }
 #menutop a.twitter:hover {
-	background:url(../images/twitter.png);
+	background: image-url('twitter.png');
 	background-position:0 -20px;
 }
 
@@ -139,10 +139,10 @@ a.view_wrong_dataset:active {
 	height:20px;
 	overflow:hidden;
 	float:left;
-	background:url(../images/facebook.png);
+	background:image-url('facebook.png');
 }
 #menutop a.facebook:hover {
-	background:url(../images/facebook.png);
+	background:image-url('facebook.png');
 	background-position:0 -20px;
 }
 
@@ -231,7 +231,7 @@ a.view_wrong_dataset:active {
 	border:none;
 	float:right;
 	overflow:hidden;
-	background:url(../images/button_disclosure.png) no-repeat #ffffff;
+	background:image-url('button_disclosure.png') no-repeat #ffffff;
 	width:20px;
 	height:31px;
 	color:#666666;
@@ -240,16 +240,16 @@ a.view_wrong_dataset:active {
 	margin:0px;
 }
 #menu a.button_disclosure:hover {
-	background:url(../images/button_disclosure.png) no-repeat #ffffff;
+	background:image-url('button_disclosure.png') no-repeat #ffffff;
 	background-position:0 -31px;
 }
 #menu a.button_disclosure:active {
-	background:url(../images/button_disclosure.png) no-repeat #ffffff;
+	background:image-url('button_disclosure.png') no-repeat #ffffff;
 	background-position:0 -31px;
 }
 #menu input.search_button {
   cursor:pointer;
-  background:url(../images/button_search.png) no-repeat center;
+  background:image-url('button_search.png') no-repeat center;
   width:30px;
   height:30px;
   border:none;
@@ -373,24 +373,24 @@ a.view_wrong_dataset:active {
 	float:right;
 	width:21px;
 	height:21px;
-	background:url(../images/ok_icon.png);
+	background:image-url('ok_icon.png');
 }
 #dataset a.dataset_status_wrong {
 	margin:12px 15px 0px 0px;
 	float:right;
 	width:21px;
 	height:21px;
-	background:url(../images/wrong_icon.png);
+	background:image-url('wrong_icon.png');
 }
 #dataset a.api {
 	margin:12px 15px 0px 0px;
 	float:right;
 	width:21px;
 	height:21px;
-	background:url(../images/api_icon.png);
+	background:image-url('api_icon.png');
 }
 #dataset a.api:hover {
-	background:url(../images/api_icon.png);
+	background:image-url('api_icon.png');
 	background-position: 0 -21px;
 }
 
@@ -655,13 +655,13 @@ a.view_wrong_dataset:active {
 	display:block;
 	width:16px;
 	height:17px;
-	background:url(../images/icons/plus.png);
+	background:image-url('icons/plus.png');
 }
 #search_advanced a.remove_row {
 	display:block;
 	width:16px;
 	height:17px;
-	background:url(../images/icons/minus.png);
+	background:image-url('icons/minus.png');
 	margin:0px 2px 0px 0px;
 }
 #search_advanced .search_button_container {
@@ -674,7 +674,7 @@ a.view_wrong_dataset:active {
 }
 #search_advanced input.search_button {
 	cursor:pointer;
-	background:url(../images/button_search.png) no-repeat center;
+	background:image-url('button_search.png') no-repeat center;
 	width:40px;
 	height:30px;
 	border:none;
@@ -704,7 +704,7 @@ a.view_wrong_dataset:active {
 #search_advanced a.button_close {
 	width:21px;
 	height:21px;
-	background:url(../images/button_close.png);
+	background:image-url('button_close.png');
 	float:right;
 	overflow:hidden;
 }
@@ -771,15 +771,15 @@ a.view_wrong_dataset:active {
 }
 #dataset_admin_submenu a.back {
 	padding:11px 15px 11px 30px;
-	background:url(../images/arrow_left.png) no-repeat left center;
+	background:image-url('arrow_left.png') no-repeat left center;
 }
 #dataset_admin_submenu a.back:active {
 	padding:11px 15px 11px 30px;
-	background:url(../images/arrow_left.png) no-repeat left center #444444;
+	background:image-url('arrow_left.png') no-repeat left center #444444;
 }
 #dataset_admin_submenu a.back:hover {
 	padding:11px 15px 11px 30px;
-	background:url(../images/arrow_left.png) no-repeat left center #444444;
+	background:image-url('arrow_left.png') no-repeat left center #444444;
 }
 #dataset_admin_submenu .flags_bar {
 	display:block;
@@ -923,7 +923,7 @@ footer a:hover {
 
 #accessdenied {
   display:block;
-  background:url(../images/datanest_access_denied.png) no-repeat top;
+  background:image-url('datanest_access_denied.png') no-repeat top;
   margin:0;
   padding:0;
   float:none;

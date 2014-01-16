@@ -34,7 +34,7 @@ form .fieldWithErrors label { color: #900000; }
 
 form .fieldWithErrors input { border: 1px solid #900000; }
 
-form.loading { background: url(../../images/ajax_preloader_hq.gif) center center no-repeat; }
+form.loading { background: image-url('ajax_preloader_hq.gif') center center no-repeat; }
 
 form.inline { border: none; background-color: inherit; margin: none; padding: none; width: inherit; }
 

@@ -7,7 +7,7 @@
       %strong= current_user.api_key.key
   - else
     %p= t "users.no_api_key"
-    
+
   %br
-  
-  = button_link_to t("users.create_api_key"), new_api_key_path
+
+  = button_link_to t("users.create_api_key"), new_api_key_path, class: 'js-create-api-key'

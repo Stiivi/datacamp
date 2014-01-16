@@ -7,9 +7,12 @@ require 'rails/all'
 
 require 'csv'
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require *Rails.groups(:assets => %w(development test))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module Datacamp
   class Application < Rails::Application
@@ -27,6 +30,9 @@ module Datacamp
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
+    config.assets.enabled = true
+    config.assets.version = '1.0'
+
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
@@ -40,6 +46,7 @@ module Datacamp
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.i18n.enforce_available_locales = false # silence warning "[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message."
     config.i18n.load_path = Dir[File.join(Rails.root, 'config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :sk
 

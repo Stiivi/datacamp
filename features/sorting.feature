@@ -4,7 +4,7 @@ Feature: Sorting items
   A data manager
   Should be able to drag items around in lists
 
-  @selenium
+  @javascript
   Scenario: Reorder field description information
     Given two published datasets with data exist
     And I am a new, authenticated user "test" with password "password"

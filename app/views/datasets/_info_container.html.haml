@@ -2,7 +2,7 @@
   .headline= @dataset_description.title
   .perex
     = textile @dataset_description.perex
-    = link_to t('.more_information'), nil, onclick: %{$('a[href="#information"]').trigger('click'); return false;}
+    = link_to t('.more_information'), nil, onclick: %{$('a[href="#information"]').trigger('click'); GATracker._more_information_click('#{@dataset_description.identifier}'); return false;}
   .info
     - if @dataset_description.data_updated_at.present?
       = t '.last_update'

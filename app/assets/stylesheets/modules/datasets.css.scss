@@ -2,7 +2,7 @@
 
 .dropdown_trigger { position: relative; }
 
-.dropdown_trigger .dropdown_content { position: absolute; z-index: 10000; top: 31px; right: -18px; width: 150px; background: #d5d5d5 url(../../images/node_background.png) 0px -38px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; padding-top: 5px; margin-top: 0px; display: none; }
+.dropdown_trigger .dropdown_content { position: absolute; z-index: 10000; top: 31px; right: -18px; width: 150px; background: #d5d5d5 image-url('node_background.png') 0px -38px; -moz-border-radius-bottomleft: 5px; -moz-border-radius-bottomright: 5px; -webkit-border-bottom-left-radius: 5px; -webkit-border-bottom-right-radius: 5px; padding-top: 5px; margin-top: 0px; display: none; }
 
 .dropdown_trigger ul.dropdown_content li { float: none; border-bottom: 1px solid #bcbcbc; border-top: 1px solid #d8d8d8; margin: 0px; text-align: right; padding: 6px; padding-right: 10px; }
 
@@ -30,7 +30,7 @@
 
 table.ds_konsolidacna th.id { width: 20px; }
 
-#results.loading { background: url(../../images/ajax_preloader_hq.gif) center center no-repeat; }
+#results.loading { background: image-url('ajax_preloader_hq.gif') center center no-repeat; }
 
 /* @end */
 
@@ -46,7 +46,7 @@ table.ds_konsolidacna th.id { width: 20px; }
 
 #information table td.edit .field input[type=text]:focus { outline: none; border-color: #bbb; }
 
-#information table td.edit .field .suggestion { position: absolute; background: url(../../images/tooltip.png); width: 214px; padding: 5px; color: #fff; top: 31px; display: none; }
+#information table td.edit .field .suggestion { position: absolute; background: image-url('tooltip.png'); width: 214px; padding: 5px; color: #fff; top: 31px; display: none; }
 
 #information table td.edit .field .suggestion img.cancel { position: relative; top: 4px; right: 2px; }
 
@@ -192,7 +192,7 @@ p.excerpt { color: #444; font-size: 11px; }
 
 /* @group Batch Edit */
 
-#batch_edit { background-image: url(../../images/dataset_batch_edit.png); padding: 5px 10px; color: #3c3c3c; font-size: 12px; font-weight: bold; }
+#batch_edit { background-image: image-url('dataset_batch_edit.png'); padding: 5px 10px; color: #3c3c3c; font-size: 12px; font-weight: bold; }
 
 #batch_edit .information > .fl { padding-top: 4px; }
 

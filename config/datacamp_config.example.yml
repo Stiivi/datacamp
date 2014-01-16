@@ -16,3 +16,5 @@ sphinx_port: 9312
 gmail_user: 'gmail_user'
 gmail_password: 'gmail_password'
 gmail_domain: 'gmail_domain'
+
+google_analytics_code: 'XXX'

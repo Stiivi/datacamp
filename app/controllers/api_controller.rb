@@ -106,6 +106,7 @@ class ApiController < ApplicationController
 
   def dataset_description
     dataset = find_dataset(params[:dataset_id].to_i) || return
+    track_download('popis-xml', dataset.identifier)
 
     render :xml => dataset.to_xml(:include => [ :field_descriptions ])
   end
@@ -131,6 +132,7 @@ class ApiController < ApplicationController
 
   def dataset_records
     dataset_description = find_dataset(params[:dataset_id].to_i) || return
+    track_download('obsah-csv', dataset_description.identifier)
     name = dataset_description.identifier
     file = Pathname(dataset_dump_path) + "#{name}-dump.csv"
 
@@ -143,6 +145,7 @@ class ApiController < ApplicationController
 
   def dataset_changes
     dataset = find_dataset(params[:dataset_id].to_i) || return
+    track_download('zmeny-xml', dataset.identifier)
     changes = dataset.fetch_changes
 
     respond_to do |format|
@@ -152,6 +155,7 @@ class ApiController < ApplicationController
 
   def dataset_relations
     dataset = find_dataset(params[:dataset_id].to_i) || return
+    track_download('relacie-xml', dataset.identifier)
     relations = dataset.fetch_relations
 
     respond_to do |format|
@@ -212,6 +216,12 @@ class ApiController < ApplicationController
   end
 
 private
+  def track_download(action, dataset_identifier)
+    Gabba::Gabba.new(Datacamp::Config.get('google_analytics_code'), 'datanest.fair-play.sk').event('api-download', action, dataset_identifier)
+  rescue
+    # :)
+  end
+
   def error code, info = {}
     if params[:format] == 'xml'
       error = @@errors[code.to_sym]

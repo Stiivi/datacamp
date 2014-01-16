@@ -3,6 +3,7 @@ Given /^I have one\s+user "([^\"]*)" with password "([^\"]*)" and username "([^\
 end
 
 Given /^I am not authenticated$/ do
+  Page.new(page_name: 'index').save!
   step %{I go to the logout page}
   step %{I follow "English"}
 end

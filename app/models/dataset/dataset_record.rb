@@ -7,7 +7,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   establish_connection Rails.env + "_data"
 
-  class_inheritable_accessor :dataset
+  class_attribute :dataset
 
   attr_accessor :handling_user, :is_part_of_import
 

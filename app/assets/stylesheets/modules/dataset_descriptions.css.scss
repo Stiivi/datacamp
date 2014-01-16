@@ -39,12 +39,12 @@ div.field_descriptions, div.relationship_descriptions {
         color: #333;
         border-bottom: 1px solid #dedede;
         margin-bottom: 0px;
-        background: url(../images/table_header.png) left top;
+        background: image-url('table_header.png') left top;
         padding: 10px;
         padding-top: 9px;
         padding-bottom: 8px; }
       div.field_descriptions > ul > li.section,       div.relationship_descriptions > ul > li.section {
-        background: url(../images/table_row.png) left top;
+        background: image-url('table_row.png') left top;
         font-weight: bold;
         font-size: 13px; }
       div.field_descriptions > ul > li.with_form,       div.relationship_descriptions > ul > li.with_form {
