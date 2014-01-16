@@ -12,6 +12,7 @@ set :scm, :git
 set :repository, "git://github.com/fairplaysk/datacamp.git"
 set :use_sudo, false
 set :keep_releases, 4
+after "deploy", "deploy:cleanup" # keep only the last 4 releases
 
 set(:user) { Capistrano::CLI.ui.ask "user:" }
 
