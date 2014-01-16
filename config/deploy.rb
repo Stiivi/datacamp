@@ -12,6 +12,7 @@ set :scm, :git
 set :repository, "git://github.com/fairplaysk/datacamp.git"
 set :use_sudo, false
 set :keep_releases, 4
+after "deploy", "deploy:cleanup" # keep only the last 4 releases
 
 set(:user) { Capistrano::CLI.ui.ask "user:" }
 
@@ -52,7 +53,8 @@ namespace :deploy do
   end
 end
 
-after 'deploy:update_code', 'deploy:symlink_shared'
+#after 'deploy:update_code', 'deploy:symlink_shared'
+after "deploy:finalize_update", "deploy:symlink_shared"
 # after 'deploy:symlink_shared', 'deploy:dump_db'
 # after 'deploy:dump_db', 'deploy:start_search_server'
 # after 'deploy:start_search_server', 'deploy:refresh_indexes'
