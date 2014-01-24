@@ -234,8 +234,8 @@ namespace :etl do
     dataset_schema = Dataset::DatasetRecord.connection.current_database
 
     Dataset::DatasetRecord.skip_callback :update, :after, :after_update
-    regis_ds_model = Class.new Dataset::DatasetRecord
-    regis_ds_model.set_table_name dataset_table
+    Dataset::TmpOrganisation = Class.new Dataset::DatasetRecord
+    Dataset::TmpOrganisation.set_table_name dataset_table
 
     append_new_records = "INSERT INTO #{dataset_schema}.#{dataset_table}
                          (doc_id, ico, name, legal_form, legal_form_code, date_start, date_end, address, region, activity1, activity1_code, activity2, activity2_code, account_sector, account_sector_code, ownership, ownership_code, size, size_code, source_url, created_at, updated_at, created_by, record_status, name_history)
@@ -276,8 +276,7 @@ namespace :etl do
                                    where('m.updated_at > m.etl_loaded_date')
 
     modified_records.each do |r|
-      puts r.doc_id
-      record_to_update = regis_ds_model.find_by_doc_id(r.doc_id)
+      record_to_update = Dataset::TmpOrganisation.find_by_doc_id(r.doc_id)
       Staging::StaRegisMain.find_by_doc_id(r.doc_id).update_attribute(:etl_loaded_date, Time.now) if record_to_update.update_attributes(
                                                              :ico => r.ico, :name => r.name, :legal_form => r.legal_form, :legal_form_code => r.legal_form_code,
                                                              :date_start => r.date_start, :date_end => r.date_end, :address => r.address, :region => r.region, :activity1 => r.activity1,
