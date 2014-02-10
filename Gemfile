@@ -40,6 +40,8 @@ gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
 gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git', ref: 'a9c939f94c424a0b9e3a92bb1b280141c87f6195'
 gem 'gabba'
 
+gem 'unicorn'
+
 # gem 'test-unit'
 
 # Use unicorn as the web server
@@ -73,7 +75,7 @@ group :development do
 
   gem 'rails_best_practices'
   # Deploy with Capistrano multistage
-  gem 'capistrano'
+  gem 'capistrano', '~> 2'
   gem 'capistrano-ext'
   gem 'rvm'
 end
