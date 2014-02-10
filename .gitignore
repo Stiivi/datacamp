@@ -5,6 +5,7 @@ tmp/*
 
 files/*
 config/database.yml
+config/newrelic.yml
 config/datacamp_config.yml
 config/sphinx.yml
 config/*sphinx.conf
