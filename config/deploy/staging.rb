@@ -1,12 +1,42 @@
-set :default_environment, { 'PATH' => "/usr/local/bin:/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
+set :application, "datanest_staging"
+set :repository,  "git://github.com/fairplaysk/datacamp.git"
+set :branch, "master"
+set :keep_releases, 5
 
-set :application, "datanest"
-set(:deploy_to) { "/home/datanest/rails/#{application}/staging" }
-server "46.231.96.101", :app, :web, :db, :primary => true
+# Code Repository
+# =========
+set :scm, :git
+set :scm_verbose, true
+set :deploy_via, :remote_cache
 
-require "delayed/recipes"
-set :rails_env, "production" #added for delayed job
-# Delayed Job
-after "deploy:stop",    "delayed_job:stop"
-after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
+# Remote Server
+# =============
+set :use_sudo, false
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
+# Bundler
+# -------
+require 'bundler/capistrano'
+set :bundle_flags, "--deployment --binstubs"
+set :bundle_without, [:test, :development, :deploy, :macosx]
+
+# Rbenv
+# -----
+default_run_options[:shell] = '/bin/bash --login'
+
+set :user, "deploy"
+server "46.231.96.104", :web, :app, :db, :primary => true
+set :deploy_to, "/home/apps/#{application}"
+
+namespace :deploy do
+  task :start do
+    run "sudo sv up datanest_staging"
+  end
+  task :stop do
+    run "sudo sv down datanest_staging"
+  end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "sudo sv restart datanest_staging"
+  end
+end

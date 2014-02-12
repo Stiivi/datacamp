@@ -2,7 +2,7 @@
 require 'bundler/capistrano'
 set :bundle_without, [:development, :test, :macosx]
 
-set :stages, %w(staging production)
+set :stages, %w(staging production old_production old_staging)
 require 'capistrano/ext/multistage'
 set :application, "datanest_capistrano"
 
@@ -26,6 +26,7 @@ namespace :deploy do
   desc "Symlink shared resources on each release"
   task :symlink_shared, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
     run "ln -nfs #{shared_path}/config/datacamp_config.yml #{release_path}/config/datacamp_config.yml"
     run "ln -nfs #{shared_path}/config/sphinx.yml #{release_path}/config/sphinx.yml"
     run "ln -nfs #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf"
