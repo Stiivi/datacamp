@@ -41,6 +41,7 @@ gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmai
 gem 'gabba'
 
 gem 'unicorn'
+gem 'rack-rewrite'
 
 # gem 'test-unit'
 

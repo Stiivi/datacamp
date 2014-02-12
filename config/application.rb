@@ -95,5 +95,11 @@ module Datacamp
 
     config.admin_emails = ''
 
+    config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+      r301 %r{.*}, "http://#{Datacamp::Config.get('canonical_url')}$&", if: Proc.new {|rack_env|
+        Datacamp::Config.get('canonical_url').present? && rack_env['SERVER_NAME'] != Datacamp::Config.get('canonical_url')
+      }
+    end
+
   end
 end
