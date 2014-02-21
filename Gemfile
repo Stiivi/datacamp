@@ -34,11 +34,11 @@ gem 'riddle'
 gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
-gem "exception_notification", :git => "git://github.com/rails/exception_notification", :require => 'exception_notifier'
 gem 'newrelic_rpm'
 gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
 gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git', ref: 'a9c939f94c424a0b9e3a92bb1b280141c87f6195'
 gem 'gabba'
+gem 'rollbar'
 
 gem 'unicorn'
 gem 'rack-rewrite'
