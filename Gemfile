@@ -43,6 +43,8 @@ gem 'rollbar'
 gem 'unicorn'
 gem 'rack-rewrite'
 
+gem 'tlsmail'
+
 # gem 'test-unit'
 
 # Use unicorn as the web server

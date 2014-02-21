@@ -79,8 +79,3 @@ namespace :deploy do
 end
 
 after "deploy:finalize_update", "deploy:symlink_shared"
-
-# Delayed Job
-after "deploy:stop",    "delayed_job:stop"
-after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
