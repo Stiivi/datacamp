@@ -1,26 +1,50 @@
 # -*- encoding : utf-8 -*-
-require 'bundler/capistrano'
-set :bundle_without, [:development, :test, :macosx]
 
+# Bundler
+# -------
+require 'bundler/capistrano'
+set :bundle_flags, "--deployment --binstubs"
+set :bundle_without, [:test, :development, :deploy, :macosx]
+
+
+# multistage
 set :stages, %w(staging production old_production old_staging)
 require 'capistrano/ext/multistage'
-set :application, "datanest_capistrano"
+set :application, "datanest"
 
-set(:deploy_to) { "/var/www/projects/#{application}/#{stage}" }
-
+# Code Repository
+# =========
 set :scm, :git
 set :repository, "git://github.com/fairplaysk/datacamp.git"
+set :scm_verbose, true
+set :deploy_via, :remote_cache
+
+# Remote Server
+# =============
 set :use_sudo, false
-set :keep_releases, 4
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
+# Rbenv
+# -----
+default_run_options[:shell] = '/bin/bash --login'
+
+set :keep_releases, 5
 after "deploy", "deploy:cleanup" # keep only the last 4 releases
 
-set(:user) { Capistrano::CLI.ui.ask "user:" }
+set :user, "deploy"
+server "46.231.96.104", :web, :app, :db, :primary => true
+set :deploy_to, "/home/apps/#{application}"
 
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
+  task :start do
+    run "sudo sv up datanest"
+  end
+  task :stop do
+    run "sudo sv down datanest"
+  end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+    run "sudo sv restart datanest"
   end
 
   desc "Symlink shared resources on each release"
@@ -54,9 +78,9 @@ namespace :deploy do
   end
 end
 
-#after 'deploy:update_code', 'deploy:symlink_shared'
 after "deploy:finalize_update", "deploy:symlink_shared"
-# after 'deploy:symlink_shared', 'deploy:dump_db'
-# after 'deploy:dump_db', 'deploy:start_search_server'
-# after 'deploy:start_search_server', 'deploy:refresh_indexes'
 
+# Delayed Job
+after "deploy:stop",    "delayed_job:stop"
+after "deploy:start",   "delayed_job:start"
+after "deploy:restart", "delayed_job:restart"
