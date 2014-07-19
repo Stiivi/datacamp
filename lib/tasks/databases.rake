@@ -52,6 +52,31 @@ namespace :db_data do
     lawyer_partnerships.relationship_dataset_descriptions << lawyer_associates unless lawyer_partnerships.relationship_dataset_descriptions.include?(lawyer_associates)
     lawyer_partnerships.relationship_dataset_descriptions << lawyers unless lawyer_partnerships.relationship_dataset_descriptions.include?(lawyers)
   end
+
+  namespace :schema do
+    desc "Create a db/schema_data.rb file that can be portably used against any DB supported by AR"
+    task :dump => :environment do
+      require 'active_record/schema_dumper'
+      ActiveRecord::Base.establish_connection Rails.env + "_data"
+
+      File.open(ENV['SCHEMA'] || "#{Rails.root}/db/schema_data.rb", "w") do |file|
+        ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
+      end
+      Rake::Task["db_data:schema:dump"].reenable
+    end
+
+    desc "Load a schema_data.rb file into the database"
+    task :load => :environment do
+      ActiveRecord::Base.establish_connection Rails.env + "_data"
+
+      file = ENV['SCHEMA'] || "#{Rails.root}/db/schema_data.rb"
+      if File.exists?(file)
+        load(file)
+      else
+        abort %{#{file} doesn't exist yet. Run "rake db_data:migrate" to create it then try again. If you do not intend to use a database, you should instead alter #{Rails.root}/config/application.rb to limit the frameworks that will be loaded}
+      end
+    end
+  end
 end
 
 namespace :db_staging do
