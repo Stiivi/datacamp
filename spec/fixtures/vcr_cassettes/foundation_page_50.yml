@@ -1,0 +1,118 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://www.ives.sk:80/registre/zoznamrnd.do?action=azzu&cisloStrany=50&locale=sk
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Mon, 21 Jul 2014 13:41:36 GMT
+      server: 
+      - Apache/2.2.22 (Debian)
+      set-cookie: 
+      - JSESSIONID=E64DB40EBA3715D3DE9E689561132E59; Path=/
+      vary: 
+      - Accept-Encoding
+      content-length: 
+      - "7426"
+      content-type: 
+      - text/html;charset=UTF-8
+    body: "\r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
+      \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
+      \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
+      \r\n\
+      \r\n \r\n \r\n \r\n\
+      \r\n\
+      \r\n\
+      <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
+      \r\n \r\n\
+      <!--\r\n\
+      <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
+      -->\r\n\
+      <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
+      </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\"> \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      <h2>Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</h2>\r\n\
+      \r\n\
+      \r\n  <div class=\"znaky\">\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=0&amp;typ=U\">0-9</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=A&amp;typ=U\">A</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=B&amp;typ=U\">B</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=C&amp;typ=U\">C</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=D&amp;typ=U\">D</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=E&amp;typ=U\">E</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=F&amp;typ=U\">F</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=G&amp;typ=U\">G</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=H&amp;typ=U\">H</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=I&amp;typ=U\">I</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=J&amp;typ=U\">J</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=K&amp;typ=U\">K</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=L&amp;typ=U\">L</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=M&amp;typ=U\">M</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=N&amp;typ=U\">N</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=O&amp;typ=U\">O</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=P&amp;typ=U\">P</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=R&amp;typ=U\">R</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=S&amp;typ=U\">S</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=T&amp;typ=U\">T</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=U&amp;typ=U\">U</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=V&amp;typ=U\">V</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=Y&amp;typ=U\">Y</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=Z&amp;typ=U\">Z</a>&nbsp;    \r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azX&pa=>&amp;typ=U\">In\xC3\xA9</a>&nbsp;|\r\n  </div>\r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      <div class=\"msgerror\"></div>\r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59\">Hlavn\xC3\xBD zoznam</a>\r\n\
+      |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
+      |</div>\r\n\
+      \r\n\
+      \r\n\
+      <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
+      \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
+      \r\n\
+      \r\n\
+      \r\n\
+      \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=E64DB40EBA3715D3DE9E689561132E59?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
+      \r\n\
+      &nbsp;\r\n\
+      <hr>\r\n \r\n\
+      \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
+      </html>\r\n\
+      \r\n"
+    http_version: "1.1"

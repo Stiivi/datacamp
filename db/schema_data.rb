@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117180746) do
+ActiveRecord::Schema.define(:version => 20140721071923) do
 
   create_table "dc_relations", :primary_key => "_record_id", :force => true do |t|
     t.integer "relatable_left_id"
@@ -54,6 +54,89 @@ ActiveRecord::Schema.define(:version => 20131117180746) do
     t.date     "validity_date"
     t.boolean  "is_hidden"
   end
+
+  create_table "ds_foundation_founders", :primary_key => "_record_id", :force => true do |t|
+    t.string   "name"
+    t.string   "identification_number"
+    t.string   "address"
+    t.decimal  "contribution_value",    :precision => 10, :scale => 0
+    t.string   "contribution_currency"
+    t.string   "contribution_subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.string   "record_status"
+    t.string   "quality_status"
+    t.integer  "batch_id"
+    t.date     "validity_date"
+    t.boolean  "is_hidden"
+  end
+
+  add_index "ds_foundation_founders", ["name", "address"], :name => "index_ds_foundation_founders_on_name_and_address"
+
+  create_table "ds_foundation_liquidators", :primary_key => "_record_id", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.date     "liquidator_from"
+    t.date     "liquidator_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.string   "record_status"
+    t.string   "quality_status"
+    t.integer  "batch_id"
+    t.date     "validity_date"
+    t.boolean  "is_hidden"
+  end
+
+  add_index "ds_foundation_liquidators", ["name", "address"], :name => "index_ds_foundation_liquidators_on_name_and_address"
+
+  create_table "ds_foundation_trustees", :primary_key => "_record_id", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.date     "trustee_from"
+    t.date     "trustee_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.string   "record_status"
+    t.string   "quality_status"
+    t.integer  "batch_id"
+    t.date     "validity_date"
+    t.boolean  "is_hidden"
+  end
+
+  add_index "ds_foundation_trustees", ["name", "address"], :name => "index_ds_foundation_trustees_on_name_and_address"
+
+  create_table "ds_foundations", :primary_key => "_record_id", :force => true do |t|
+    t.string   "name"
+    t.string   "identification_number"
+    t.string   "registration_number"
+    t.string   "address"
+    t.text     "objective"
+    t.date     "date_start"
+    t.date     "date_registration"
+    t.date     "date_liquidation"
+    t.date     "date_end"
+    t.decimal  "assets_value",          :precision => 10, :scale => 0
+    t.string   "assets_currency"
+    t.string   "url"
+    t.integer  "ives_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.string   "record_status"
+    t.string   "quality_status"
+    t.integer  "batch_id"
+    t.date     "validity_date"
+    t.boolean  "is_hidden"
+  end
+
+  add_index "ds_foundations", ["ives_id"], :name => "index_ds_foundations_on_ives_id", :unique => true
 
   create_table "ds_lawyer_associates", :primary_key => "_record_id", :force => true do |t|
     t.string   "original_name"

@@ -1,4 +1,12 @@
 namespace :etl do
+
+  # Foundations
+  desc 'Download foundations'
+  task :foundation_extraction => :environment do
+    Delayed::Job.enqueue Etl::FoundationPageExtraction.new
+    Etl::FoundationExtraction.update_last_run_time
+  end
+
   task :vvo_extraction => :environment do
     config = EtlConfiguration.find_by_name('vvo_extraction')
     end_id = config.start_id + config.batch_limit

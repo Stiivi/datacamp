@@ -13,7 +13,7 @@ EtlConfiguration.find_or_create_by_name('executor_extraction')
 EtlConfiguration.find_or_create_by_name('lawyer_extraction')
 EtlConfiguration.find_or_create_by_name('donations_parser', parser: true)
 EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start_id: 201110)
-
+EtlConfiguration.find_or_create_by_name('foundation_extraction')
 
 def initialize_dataset(name)
   if Dataset::DatasetRecord.connection.table_exists?("ds_#{name}")
@@ -28,6 +28,26 @@ def initialize_dataset(name)
     puts '--------'
   end
 end
+
+# Foundations for ETL
+initialize_dataset('foundations')
+initialize_dataset('foundation_founders')
+initialize_dataset('foundation_trustees')
+initialize_dataset('foundation_liquidators')
+
+foundations_description = DatasetDescription.find_by_identifier!('foundations')
+foundation_founders_description = DatasetDescription.find_by_identifier!('foundation_founders')
+foundation_trustees_description = DatasetDescription.find_by_identifier!('foundation_trustees')
+foundation_liquidators_description = DatasetDescription.find_by_identifier!('foundation_liquidators')
+
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundations_description.id, foundation_founders_description.id)
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundation_founders_description.id, foundations_description.id)
+
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundations_description.id, foundation_trustees_description.id)
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundation_trustees_description.id, foundations_description.id)
+
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundations_description.id, foundation_liquidators_description.id)
+Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundation_liquidators_description.id, foundations_description.id)
 
 # Lawyers for the ETL
 initialize_dataset('lawyers')
