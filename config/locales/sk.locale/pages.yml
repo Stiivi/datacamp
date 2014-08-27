@@ -4,3 +4,8 @@ sk:
       news_header: 'Novinky'
     datanest_401:
       notice: 'Bohužiaľ, na stiahnutie týchto dát nemáte dostatočné práva. Ak máte o prístup záujem, kontaktujte prosím administrátora na'
+    feedback_banner:
+      intro: 'Dobrý deň, chceli by sme vás veľmi pekne poprosiť o vyplnenie krátkeho dotazníka o vašich skúsenostiach s Datanestom. Spätná väzba nám pomôže do budúcna vylepšiť stránku.'
+      link: 'Dotazník nájdete tu.'
+      thanks: 'Ďakujeme!'
+      hide: 'Skryť túto správu'

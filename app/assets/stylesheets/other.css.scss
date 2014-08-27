@@ -254,3 +254,65 @@ a.homepage_button.alternative { background-position: 0 -46px; color: #5b81aa; }
 
 
 /* @end */
+
+/* @group Feedback banner */
+
+#feedback_banner {
+  display:block;
+  float:none;
+  overflow:hidden;
+  margin: 10px 0;
+
+  .notice {
+    margin: 0;
+    padding: 5px;
+    font-size: 11px;
+
+    a {
+      color: #2bb673;
+    }
+  }
+
+  a.btn_hide {
+    margin-left: 10px;
+    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background-color: #f9f9f9;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -moz-border-radius-bottomright: 6px;
+    border-bottom-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    border-bottom-left-radius: 6px;
+    text-indent: 0px;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    color: #666666;
+    font-family: Arial;
+    font-size: 11px;
+    font-weight: normal;
+    font-style: normal;
+    height: 19px;
+    line-height: 19px;
+    width: 103px;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0px #ffffff;
+  }
+  .btn_hide:hover {
+    background-color: #e9e9e9;
+  }
+  .btn_hide:active {
+    position: relative;
+    top: 1px;
+  }
+}
+
+/* @end */

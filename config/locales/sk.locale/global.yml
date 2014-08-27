@@ -89,5 +89,4 @@ sk:
     user_not_found: "Používateľ nenájdený"
     users: Používatelia
     value: Hodnota
-
     parsers: 'Parsery'

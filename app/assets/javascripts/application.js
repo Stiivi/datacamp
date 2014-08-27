@@ -15,6 +15,7 @@
 //= require jquery.history
 //= require jquery.tooltip
 //= require jquery.asmselect
+//= require jquery.cookie
 //= require inscription
 //= require jquery.ui.sortable
 //= require dataset_descriptions
@@ -26,3 +27,4 @@
 //= require sorting
 //= require datasets/search
 //= require ga_tracker
+//= require feedback_banner
