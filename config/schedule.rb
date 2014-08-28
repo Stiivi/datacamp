@@ -59,3 +59,7 @@ end
 every 25.days do
   rake 'etl:otvorenezmluvy_extraction'
 end
+
+every 30.days do
+  rake 'etl:foundation_extraction'
+end
