@@ -8,8 +8,8 @@ module Etl
       URI.encode "http://www.notar.sk/Úvod/Notárskecentrálneregistre/Notárskeúrady/Notárskeúradydetail.aspx?id=#{id}"
     end
 
-    def self.list_url(id)
-      URI.encode "http://www.notar.sk/Úvod/Notárskecentrálneregistre/Notárskeúrady.aspx?__EVENTTARGET=dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1&__EVENTARGUMENT=Page$#{id}"
+    def self.list_url
+      URI.encode "http://www.notar.sk/Úvod/Notárskecentrálneregistre/Notárskeúrady.aspx"
     end
 
     def self.update_last_run_time
@@ -150,14 +150,60 @@ module Etl
     def self.get_active_docs
       id = 1
       active_docs = []
+      last_doc = nil
       begin
-        doc_data = Typhoeus::Request.get list_url(id)
-        doc = Nokogiri::HTML( doc_data.body )
+        doc = download_page(id, last_doc)
         active_docs << parse_for_ids(doc)
+        last_doc = doc
         id += 1
       end while doc.xpath("//table[@id='dnn_ctr729_ViewSimpleWrapper_SimpleWrapperControl_729_DataGrid1']/tr[12]/td/table/tr/td[11]/a").inner_text.match(/\.\.\./) || doc.xpath("//table[@id='dnn_ctr729_ViewSimpleWrapper_SimpleWrapperControl_729_DataGrid1']/tr[12]/td/table/tr/td[12]/a").inner_text.match(/\.\.\./) ||
       doc.xpath("//table[@id='dnn_ctr729_ViewSimpleWrapper_SimpleWrapperControl_729_DataGrid1']/tr[12]/td/table/tr/td[11]/a").present?
       active_docs.flatten
+    end
+
+    def self.parse_view_state_and_event_validation(doc)
+      form_view_state = doc.css("input[name='__VIEWSTATE']").first.attributes['value']
+      form_event_validation = doc.css("input[name='__EVENTVALIDATION']" ).first.attributes['value']
+      return form_event_validation, form_view_state
+    end
+
+    def self.download_page(page_id, last_doc)
+      if last_doc == nil
+        doc_data = Typhoeus::Request.get list_url
+        last_doc = Nokogiri::HTML(doc_data.body)
+      end
+      form_event_validation, form_view_state = parse_view_state_and_event_validation(last_doc)
+
+      if page_id == 1
+        doc_data = download_first_page(form_event_validation, form_view_state)
+      else
+        doc_data = download_other_page(page_id, form_event_validation, form_view_state)
+      end
+      Nokogiri::HTML( doc_data.body )
+    end
+
+    def self.download_first_page(event_validation, view_state)
+      Typhoeus::Request.post 'http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady.aspx', params: {
+        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$txtOtvoreneVCase' => '00:00',
+        '__EVENTTARGET' => 'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1',
+        '__EVENTARGUMENT' => 'Page$1',
+        '__VIEWSTATE' => view_state,
+        '__VIEWSTATEENCRYPTED' => '',
+        '__EVENTVALIDATION' => event_validation,
+        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$Vyhladaj.x' => '-750',
+        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$Vyhladaj.y' => '-763'
+      }
+    end
+
+    def self.download_other_page(page, event_validation, view_state)
+      Typhoeus::Request.post 'http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady.aspx', params: {
+        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$txtOtvoreneVCase' => '00:00',
+        '__EVENTTARGET' => 'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1',
+        '__EVENTARGUMENT' => "Page$#{page}",
+        '__VIEWSTATE' => view_state,
+        '__VIEWSTATEENCRYPTED' => '',
+        '__EVENTVALIDATION' => event_validation
+      }
     end
 
     def self.parse_for_ids(doc)
