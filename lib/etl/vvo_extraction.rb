@@ -146,5 +146,76 @@ module Etl
     def enque_job(document_id)
       Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, config.batch_limit, document_id)
     end
+
+    # Fix old source urls
+
+    def self.update_old_source_urls
+      all_procurements_hash = all_procurements
+      Staging::StaProcurement.where("source_url LIKE ?", 'http://www.e-vestnik.sk/EVestnik/Detail/%').each do |sta_procurement|
+        self.update_source_url_and_document_id sta_procurement, all_procurements_hash
+      end
+    end
+
+    def self.update_source_url_and_document_id(sta_procurement, all_procurements_hash)
+      key = "#{sta_procurement.bulletin_id}/#{sta_procurement.year}"
+      url = all_procurements_hash[key]
+
+      document = Nokogiri::HTML(Typhoeus::Request.get(url).body)
+      find_text = sta_procurement.procurement_id
+      elements = document.xpath("//a[contains(text(), '#{find_text}')]")
+      source_url = nil
+      if elements.count == 1
+        source_url = elements.first.attributes["href"].text
+      else
+        find_text = find_text[1..-1] if find_text.starts_with?'0'
+        elements = document.xpath("//a[contains(text(), '#{find_text}')]")
+        if elements.count == 1
+          source_url = elements.first.attributes["href"].text
+        end
+      end
+
+      if source_url
+        document_id = source_url.match(/http:\/\/www.uvo.gov.sk\/sk\/evestnik\/-\/vestnik\/(\d*)/u)[1].to_i
+        document_url = "http://www.uvo.gov.sk/sk/evestnik/-/vestnik/#{document_id}"
+
+        document = Nokogiri::HTML(Typhoeus::Request.get(document_url).body)
+        header = document.xpath("//div[@class='oznamenie']")
+
+        procurement_id = header.xpath("./h2[1]").inner_text
+        bulletin_and_year = header.xpath('./div[1]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u)
+        unless bulletin_and_year.nil?
+          bulletin_id = bulletin_and_year[1]
+          year = bulletin_and_year[2]
+        end
+
+        # UPDATE
+        if sta_procurement.year == year.to_i && sta_procurement.bulletin_id == bulletin_id.to_i && sta_procurement.procurement_id == procurement_id
+          puts "Old: #{sta_procurement.document_id} - New: #{document_id}"
+          sta_procurement.update_attributes(document_id: document_id, source_url: document_url)
+        else
+          puts "NOT CONSIST DATA #{document_url} #{sta_procurement.inspect}"
+        end
+      else
+        puts "PROBLEM #{sta_procurement.inspect}"
+      end
+    end
+
+    def self.all_procurements
+      document_url = "http://www.uvo.gov.sk/sk/evestnik/-/vestnik/all"
+      document = Nokogiri::HTML(Typhoeus::Request.get(document_url).body)
+
+      links = {}
+      document.css('#layout-column_column-2 .portlet-body a').each_with_index do |css_link|
+        if css_link.inner_text.include? '/'
+          href = css_link.attributes['href'].text
+          bulletin_and_year = css_link.inner_text.gsub(/ /,'').match(/.*?(\d*)\/(\d*)/u)
+          bulletin_id = bulletin_and_year[1]
+          year = bulletin_and_year[2]
+          links[ "#{bulletin_id}/#{year}" ] = href
+        end
+      end
+      links
+    end
+
   end
 end
