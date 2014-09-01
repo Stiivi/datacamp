@@ -167,7 +167,9 @@ module Etl
       if elements.count == 1
         source_url = elements.first.attributes["href"].text
       else
-        find_text = find_text[1..-1] if find_text.starts_with?'0'
+        while find_text.starts_with?'0' do
+          find_text = find_text[1..-1]
+        end
         elements = document.xpath("//a[contains(text(), '#{find_text}')]")
         if elements.count == 1
           source_url = elements.first.attributes["href"].text
@@ -182,7 +184,7 @@ module Etl
         header = document.xpath("//div[@class='oznamenie']")
 
         procurement_id = header.xpath("./h2[1]").inner_text
-        bulletin_and_year = header.xpath('./div[1]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u)
+        bulletin_and_year = header.xpath('./div[1]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u) || header.xpath('./div[2]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u)
         unless bulletin_and_year.nil?
           bulletin_id = bulletin_and_year[1]
           year = bulletin_and_year[2]
@@ -190,7 +192,6 @@ module Etl
 
         # UPDATE
         if sta_procurement.year == year.to_i && sta_procurement.bulletin_id == bulletin_id.to_i && sta_procurement.procurement_id == procurement_id
-          puts "Old: #{sta_procurement.document_id} - New: #{document_id}"
           sta_procurement.update_attributes(document_id: document_id, source_url: document_url)
         else
           puts "NOT CONSIST DATA #{document_url} #{sta_procurement.inspect}"
