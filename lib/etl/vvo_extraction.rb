@@ -25,7 +25,7 @@ module Etl
       header = document.xpath("//div[@class='oznamenie']")
 
       procurement_id = header.xpath("./div[@class='MainHeader'][1]").inner_text
-      bulletin_and_year = header.xpath('./div[2]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u)
+      bulletin_and_year = header.xpath('./div[2]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u) || header.xpath('./div[3]').inner_text.gsub(/ /,'').match(/Vestník.*?(\d*)\/(\d*)/u)
       unless bulletin_and_year.nil?
         bulletin_id = bulletin_and_year[1]
         year = bulletin_and_year[2]
@@ -145,6 +145,17 @@ module Etl
 
     def enque_job(document_id)
       Delayed::Job.enqueue Etl::VvoExtraction.new(id+1, config.batch_limit, document_id)
+    end
+
+    # Fix bad year and bulletin_id
+
+    def self.update_bulletin_id_and_years
+      Staging::StaProcurement.where(bulletin_id: 0).each do |sta_procurement|
+        extraction = Etl::VvoExtraction.new
+        document = extraction.download(sta_procurement.document_id)
+        basic_information = extraction.basic_information(document)
+        sta_procurement.update_attributes(basic_information)
+      end
     end
 
     # Fix old source urls
