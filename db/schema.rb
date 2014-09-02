@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029175859) do
+ActiveRecord::Schema.define(:version => 20140902075302) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(:version => 20121029175859) do
     t.datetime "last_run_time"
     t.boolean  "parser",            :default => false, :null => false
     t.string   "status"
-    t.string   "download_path"
+    t.text     "download_path"
   end
 
   add_index "etl_configurations", ["name"], :name => "index_etl_configurations_on_name"
