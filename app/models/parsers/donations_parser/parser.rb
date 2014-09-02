@@ -13,6 +13,7 @@ module Parsers
                       :in,
                       :number,
                       :contract_date,
+                      :decision_date,
                       :project,
                       :program,
                       :requested,
@@ -34,31 +35,11 @@ module Parsers
             if tds[0] and tds[0].text =~ /^\s*\d+/
               proposal = {}
               proposal[:year] = year
-              e = tds[1].css('span.cervene').first
-              next unless e
-              proposal[:name] = clean_string(e.text)
-              e = e.next.next
-              proposal[:address] = clean_string(e.text, :remove_trailing_comma => false)
-              if proposal[:address][-1] == ','
-                e = e.next.next
-                proposal[:address] << clean_string(e.text)
-              end
-              while e.next
-                e = e.next
-                case e.text.strip
-                when 'okres:'
-                  proposal[:district] = clean_string(e.next.text)
-                when 'kraj:'
-                  proposal[:region] = clean_string(e.next.text)
-                when 'IČO:'
-                  proposal[:in] = clean_string(e.next.text, :remove_spaces => true)
-                when "evidenčné číslo žiadosti:"
-                  proposal[:number] = clean_string(e.next.text)
-                when 'dátum uzatvorenia zmluvy:'
-                  proposal[:contract_date] = clean_string(e.next.text)
-                when /^Projekt: (.*)/ # Projekt: for 2007
-                  proposal[:project] = clean_string($1)
-                end
+
+              if year < 2013
+                proposal.merge! parse_recipient_2007_2012(tds[1])
+              else
+                proposal.merge! parse_recipient_2013(tds[1])
               end
 
               if proposal[:project].present? # different columns for 2007
@@ -79,6 +60,71 @@ module Parsers
       end
 
       private
+        def self.parse_recipient_2013(td)
+          proposal = {}
+          e = td.css('span.cervene').first
+          return proposal unless e
+          proposal[:name] = clean_string(e.text)
+          e = td.children[3]
+          proposal[:address] = clean_string(e.children[0].text, :remove_trailing_comma => true)
+          it = 1
+          while it < e.children.count
+            case e.children[it].text.strip
+              when 'okres:'
+                proposal[:district] = clean_string(e.children[it+1].text)
+                it+= 1
+              when 'kraj:'
+                proposal[:region] = clean_string(e.children[it+1].text)
+                it+= 2
+              when 'IČO:'
+                proposal[:in] = clean_string(e.children[it+1].text, :remove_spaces => true)
+                it+= 2
+              when "evid. číslo žiadosti:"
+                proposal[:number] = clean_string(e.children[it+1].text)
+                it+= 2
+              when "dátum rozhodnutia:"
+                proposal[:decision_date] = clean_string(e.children[it+1].text)
+                it+= 2
+              when 'dátum uzatvorenia zmluvy:'
+                proposal[:contract_date] = clean_string(e.children[it+1].text)
+                it+= 2
+            end
+            it+= 1
+          end
+          proposal
+        end
+
+        def self.parse_recipient_2007_2012(td)
+          proposal = {}
+          e = td.css('span.cervene').first
+          return proposal unless e
+          proposal[:name] = clean_string(e.text)
+          e = e.next.next
+          proposal[:address] = clean_string(e.text, :remove_trailing_comma => false)
+          if proposal[:address][-1] == ','
+            e = e.next.next
+            proposal[:address] << clean_string(e.text)
+          end
+          while e.next
+            e = e.next
+            case e.text.strip
+              when 'okres:'
+                proposal[:district] = clean_string(e.next.text)
+              when 'kraj:'
+                proposal[:region] = clean_string(e.next.text)
+              when 'IČO:'
+                proposal[:in] = clean_string(e.next.text, :remove_spaces => true)
+              when "evidenčné číslo žiadosti:"
+                proposal[:number] = clean_string(e.next.text)
+              when 'dátum uzatvorenia zmluvy:'
+                proposal[:contract_date] = clean_string(e.next.text)
+              when /^Projekt: (.*)/ # Projekt: for 2007
+                proposal[:project] = clean_string($1)
+            end
+          end
+          proposal
+        end
+
         def self.parse_donation(e)
           amount = e.children.first.text.gsub(/(\d)\D(\d)/, '\1\2').to_i
           if amount > 0

@@ -10,14 +10,14 @@ module Parsers
         parser = get_config(@parser_id)
         parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[1])
 
-        html = ::Parsers::Support.download_via_post("https://registerkultury.gov.sk/granty#{@year}/zobraz_ziadosti.php",
-                    { filter: '', typ: 'vsetky' },
-                    Downloader.download_location(@year), bucketize: false)
+        # html = ::Parsers::Support.download_via_post("https://registerkultury.gov.sk/granty#{@year}/zobraz_ziadosti.php",
+        #             { filter: '', typ: 'vsetky' },
+        #             Downloader.download_location(@year), bucketize: false)
 
+        html = File.open( ::Parsers::Support.get_path(Downloader.download_location(@year), bucketize: false) , "rb" ).read
         Parser.parse(html, @year)
         download_paths = parser.download_path || []
         download_paths << Parser.parse_location(@year)
-        download_paths = download_paths.pop(5)
 
         parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[2])
         parser.update_attribute(:download_path, download_paths)

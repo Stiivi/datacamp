@@ -15,7 +15,7 @@ class EtlConfiguration < ActiveRecord::Base
 
   def valid_for_parsing?(settings)
     if name == 'donations_parser' && settings.present?
-      [2007, 2008, 2009, 2010, 2011, 2012].include?(settings.fetch(:year, 0).to_i)
+      [2007, 2008, 2009, 2010, 2011, 2012, 2013].include?(settings.fetch(:year, 0).to_i)
     else
       false
     end
