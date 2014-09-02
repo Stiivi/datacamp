@@ -16,7 +16,7 @@ EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start_id: 2
 EtlConfiguration.find_or_create_by_name('foundation_extraction')
 
 def initialize_dataset(name)
-  if Dataset::DatasetRecord.connection.table_exists?("ds_#{name}")
+  if Dataset::DatasetRecord.connection.table_exists?("ds_#{name}") && !DatasetDescription.find_by_identifier(name)
     puts "initializing #{name}"
     dataset_base = Dataset::Base.new(name)
     dataset_base.add_primary_key
