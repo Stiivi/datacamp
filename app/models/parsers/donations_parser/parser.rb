@@ -8,16 +8,19 @@ module Parsers
                       :year,
                       :name,
                       :address,
+                      :town,
+                      :zip_code,
                       :district,
                       :region,
                       :in,
                       :number,
                       :contract_date,
                       :decision_date,
-                      :project,
-                      :program,
+                      :project_name,
+                      :program_number,
                       :requested,
-                      :approved
+                      :approved,
+                      :currency
                     ]
 
       def self.parse_location(year)
@@ -42,16 +45,22 @@ module Parsers
                 proposal.merge! parse_recipient_2013(tds[1])
               end
 
-              if proposal[:project].present? # different columns for 2007
-                proposal[:program] = clean_string(tds[2].text)
+              town, zip_code = parse_town_and_zip_code(proposal[:address])
+              proposal[:town] = town
+              proposal[:zip_code] = zip_code
+
+              if proposal[:project_name].present? # different columns for 2007
+                proposal[:program_number] = clean_string(tds[2].text)
                 proposal[:requested], proposal[:requested_currency] = parse_donation(tds[3])
                 proposal[:approved], proposal[:approved_currency] = parse_donation(tds[4])
               else
-                proposal[:project] = clean_string(tds[2].text)
-                proposal[:program] = clean_string(tds[3].text)
+                proposal[:project_name] = clean_string(tds[2].text)
+                proposal[:program_number] = clean_string(tds[3].text)
                 proposal[:requested], proposal[:requested_currency] = parse_donation(tds[4])
                 proposal[:approved], proposal[:approved_currency] = parse_donation(tds[5])
               end
+
+              proposal[:currency] = proposal[:requested_currency] || proposal[:approved_currency]
 
               csv << ATTRIBUTES.map{ |a| proposal.fetch(a, nil) }
             end
@@ -60,6 +69,13 @@ module Parsers
       end
 
       private
+        def self.parse_town_and_zip_code(address)
+          town_and_zip_code = address.split(',').last
+          zip_code = town_and_zip_code[0..5].gsub(' ','').strip
+          town = town_and_zip_code[6..-1].strip
+          return town, zip_code
+        end
+
         def self.parse_recipient_2013(td)
           proposal = {}
           e = td.css('span.cervene').first
@@ -119,7 +135,7 @@ module Parsers
               when 'dátum uzatvorenia zmluvy:'
                 proposal[:contract_date] = clean_string(e.next.text)
               when /^Projekt: (.*)/ # Projekt: for 2007
-                proposal[:project] = clean_string($1)
+                proposal[:project_name] = clean_string($1)
             end
           end
           proposal
@@ -127,9 +143,10 @@ module Parsers
 
         def self.parse_donation(e)
           amount = e.children.first.text.gsub(/(\d)\D(\d)/, '\1\2').to_i
+          currency = nil
           if amount > 0
             currency = e.children.first.text.gsub(/(\d{1,3}.)+(\w+)/, '\2').strip
-            currency = (currency == 'Eur' ? 'euro' : 'sk')
+            currency = (currency == 'Eur' ? 'EUR' : 'SKK')
           end
           [amount, currency]
         end
