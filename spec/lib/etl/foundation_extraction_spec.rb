@@ -3,12 +3,6 @@ require 'spec_helper'
 
 describe Etl::FoundationExtraction do
 
-  # TODO
-  # 1. multpile extractor - initializing in spec
-  # 2. test funder_digest, trustee_digest
-  # 3. test update references entity
-  # 4. Check if exist other - Štatutárny organ: Správca
-
   before :each do
     @extractor = Etl::FoundationExtraction.new(158823)
   end
@@ -208,6 +202,17 @@ describe Etl::FoundationExtraction do
   end
 
   describe '#save' do
+
+    before(:each) do
+      initialize_datasets( ['foundations', 'foundation_founders', 'foundation_trustees', 'foundation_liquidators'],
+                           [
+                               ['foundations','foundation_founders'], ['foundation_founders','foundations'],
+                               ['foundations','foundation_trustees'], ['foundation_trustees','foundations'],
+                               ['foundations','foundation_liquidators'], ['foundation_liquidators','foundations']
+                           ]
+      )
+    end
+
     it 'save all attributes' do
       VCR.use_cassette('foundation_158823') do
         doc = @extractor.download

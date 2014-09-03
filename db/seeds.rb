@@ -1,89 +1,74 @@
 # -*- encoding : utf-8 -*-
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# The data can then be loaded with the rake db:seed (or created alonge the db with db:setup).
 #
 # Examples:
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-EtlConfiguration.find_or_create_by_name('vvo_extraction', :start_id => 2642, :batch_limit => 1000)
-EtlConfiguration.find_or_create_by_name('notary_extraction', :start_id => 1, :batch_limit => 100)
+require 'dataset/utils'
+
+EtlConfiguration.find_or_create_by_name('vvo_extraction', :start => 2642, :batch_limit => 1000)
+EtlConfiguration.find_or_create_by_name('notary_extraction', :start => 1, :batch_limit => 100)
 EtlConfiguration.find_or_create_by_name('executor_extraction')
 EtlConfiguration.find_or_create_by_name('lawyer_extraction')
 EtlConfiguration.find_or_create_by_name('donations_parser', parser: true)
-EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start_id: 201110)
+EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start: 201110)
 EtlConfiguration.find_or_create_by_name('foundation_extraction')
 
-def initialize_dataset(name)
-  if Dataset::DatasetRecord.connection.table_exists?("ds_#{name}") && !DatasetDescription.find_by_identifier(name)
-    puts "initializing #{name}"
-    dataset_base = Dataset::Base.new(name)
-    dataset_base.add_primary_key
-    dataset_base.add_system_columns
-    puts 'finished transormation'
-    puts dataset_base.errors
-    dataset_base.create_description!
-    puts 'finished creating dataset description'
-    puts '--------'
-  end
-end
+# Initialize datasets and relations
 
 # Foundations for ETL
-initialize_dataset('foundations')
-initialize_dataset('foundation_founders')
-initialize_dataset('foundation_trustees')
-initialize_dataset('foundation_liquidators')
 
-foundations_description = DatasetDescription.find_by_identifier!('foundations')
-foundation_founders_description = DatasetDescription.find_by_identifier!('foundation_founders')
-foundation_trustees_description = DatasetDescription.find_by_identifier!('foundation_trustees')
-foundation_liquidators_description = DatasetDescription.find_by_identifier!('foundation_liquidators')
+foundations_dataset = Dataset::Utils.initialize_dataset('foundations', true)
+foundation_founders_dataset = Dataset::Utils.initialize_dataset('foundation_founders', true)
+foundation_trustees_dataset = Dataset::Utils.initialize_dataset('foundation_trustees', true)
+foundation_liquidators_dataset = Dataset::Utils.initialize_dataset('foundation_liquidators', true)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundations_description.id, foundation_founders_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundation_founders_description.id, foundations_description.id)
+Dataset::Utils.create_relation(foundations_dataset, foundation_founders_dataset)
+Dataset::Utils.create_relation(foundation_founders_dataset, foundations_dataset)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundations_description.id, foundation_trustees_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundation_trustees_description.id, foundations_description.id)
+Dataset::Utils.create_relation(foundations_dataset, foundation_trustees_dataset)
+Dataset::Utils.create_relation(foundation_trustees_dataset, foundations_dataset)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundations_description.id, foundation_liquidators_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(foundation_liquidators_description.id, foundations_description.id)
+Dataset::Utils.create_relation(foundations_dataset, foundation_liquidators_dataset)
+Dataset::Utils.create_relation(foundation_liquidators_dataset, foundations_dataset)
+
 
 # Lawyers for the ETL
-initialize_dataset('lawyers')
-initialize_dataset('lawyer_partnerships')
-initialize_dataset('lawyer_associates')
 
-lawyer_description = DatasetDescription.find_by_identifier!('lawyers')
-lawyer_associates_description = DatasetDescription.find_by_identifier!('lawyer_associates')
-lawyer_partnership_description = DatasetDescription.find_by_identifier!('lawyer_partnerships')
+lawyer_dataset = Dataset::Utils.initialize_dataset('lawyers', true)
+lawyer_associates_dataset = Dataset::Utils.initialize_dataset('lawyer_partnerships', true)
+lawyer_partnership_dataset = Dataset::Utils.initialize_dataset('lawyer_associates', true)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_description.id, lawyer_associates_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_description.id, lawyer_partnership_description.id)
+Dataset::Utils.create_relation(lawyer_dataset, lawyer_associates_dataset)
+Dataset::Utils.create_relation(lawyer_dataset, lawyer_partnership_dataset)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_associates_description.id, lawyer_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id_and_morph(lawyer_associates_description.id, lawyer_description.id, true)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_associates_description.id, lawyer_partnership_description.id)
+Dataset::Utils.create_relation(lawyer_associates_dataset, lawyer_dataset)
+Dataset::Utils.create_relation(lawyer_associates_dataset, lawyer_dataset, true)
+Dataset::Utils.create_relation(lawyer_associates_dataset, lawyer_partnership_dataset)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_partnership_description.id, lawyer_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(lawyer_partnership_description.id, lawyer_associates_description.id)
+Dataset::Utils.create_relation(lawyer_partnership_dataset, lawyer_dataset)
+Dataset::Utils.create_relation(lawyer_partnership_dataset, lawyer_associates_dataset)
+
 
 # Notaries for the ETL
-initialize_dataset('notaries')
-initialize_dataset('notary_employees')
 
-notary_description = DatasetDescription.find_by_identifier!('notaries')
-notary_employees_description = DatasetDescription.find_by_identifier!('notary_employees')
+notary_dataset = Dataset::Utils.initialize_dataset('notaries', true)
+notary_employees_dataset = Dataset::Utils.initialize_dataset('notary_employees', true)
 
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(notary_description.id, notary_employees_description.id)
-Relation.find_or_create_by_dataset_description_id_and_relationship_dataset_description_id(notary_employees_description.id, notary_description.id)
+Dataset::Utils.create_relation(notary_dataset, notary_employees_dataset)
+Dataset::Utils.create_relation(notary_employees_dataset, notary_dataset)
+
 
 # Executors for the ETL
-initialize_dataset('executors')
+
+Dataset::Utils.initialize_dataset('executors', true)
+Dataset::Utils.initialize_dataset('otvorenezmluvy', true)
 
 
-initialize_dataset('otvorenezmluvy')
-
+# Data Formats
 
 DataFormat.find_or_create_by_name('flag')
 DataFormat.find_or_create_by_name('zip')

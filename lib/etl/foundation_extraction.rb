@@ -160,20 +160,42 @@ module Etl
       current_foundation = Dataset::DsFoundation.find_or_initialize_by_ives_id(foundation_hash[:ives_id])
 
       unless current_foundation.new_record?
-        foundation_hash[:ds_foundation_founders] = create_resources(current_foundation.ds_foundation_founders, foundation_hash.delete(:ds_foundation_founders_attributes))
-        foundation_hash[:ds_foundation_trustees] = create_resources(current_foundation.ds_foundation_trustees, foundation_hash.delete(:ds_foundation_trustees_attributes))
-        foundation_hash[:ds_foundation_liquidators] = create_resources(current_foundation.ds_foundation_liquidators, foundation_hash.delete(:ds_foundation_liquidators_attributes))
+        foundation_hash[:ds_foundation_founders] = create_resources(:founder, current_foundation.ds_foundation_founders, foundation_hash.delete(:ds_foundation_founders_attributes))
+        foundation_hash[:ds_foundation_trustees] = create_resources(:trustee, current_foundation.ds_foundation_trustees, foundation_hash.delete(:ds_foundation_trustees_attributes))
+        foundation_hash[:ds_foundation_liquidators] = create_resources(:liquidator, current_foundation.ds_foundation_liquidators, foundation_hash.delete(:ds_foundation_liquidators_attributes))
       end
 
       current_foundation.update_attributes(foundation_hash)
     end
 
-    def create_resources(resources, attributes)
-      attributes.map do |obj_hash|
-        obj = resources.find_or_initialize_by_name_and_address(obj_hash[:name], obj_hash[:address])
+    def create_resources(resource_type, resources, attributes)
+      all_ids = resources.map(&:_record_id)
+      active_objects = []
+      attributes.each do |obj_hash|
+        case resource_type
+          when :founder
+            obj = resources.find_or_initialize_by_name_and_address(obj_hash[:name], obj_hash[:address])
+          when :trustee
+            obj = resources.find_or_initialize_by_name_and_address_and_trustee_from_and_trustee_to(obj_hash[:name], obj_hash[:address], obj_hash[:trustee_from], obj_hash[:trustee_to])
+          when :liquidator
+            obj = resources.find_or_initialize_by_name_and_address_and_liquidator_from_and_liquidator_to(obj_hash[:name], obj_hash[:address], obj_hash[:liquidator_from], obj_hash[:liquidator_to])
+        end
         obj.update_attributes(obj_hash)
-        obj
+        active_objects << obj
       end
+      # deleted ids
+      active_ids = active_objects.map(&:_record_id)
+      old_ids = all_ids - active_ids
+      resource_class = case resource_type
+                         when :founder
+                           Dataset::DsFoundationFounder
+                         when :trustee
+                           Dataset::DsFoundationTrustee
+                         when :liquidator
+                           Dataset::DsFoundationLiquidator
+                      end
+      resource_class.where(_record_id: old_ids).delete_all
+      active_objects
     end
 
     def perform
