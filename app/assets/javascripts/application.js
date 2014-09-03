@@ -27,4 +27,4 @@
 //= require sorting
 //= require datasets/search
 //= require ga_tracker
-//= require feedback_banner
+//= require banners

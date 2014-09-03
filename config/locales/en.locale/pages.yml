@@ -9,3 +9,7 @@ en:
       link: 'Dotazník nájdete tu.'
       thanks: 'Ďakujeme!'
       hide: 'Skryť túto správu'
+    cookie_banner:
+      intro: 'Aby Datanest.sk lepšie fungoval, využívame na ňom súbory cookie. Používaním tejto stránky súhlasíte s ich využitím.'
+      about: 'Čo sú cookies?'
+      hide: 'OK'

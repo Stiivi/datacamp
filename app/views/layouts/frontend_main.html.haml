@@ -15,6 +15,7 @@
     = tag :meta, name: "user-registered", :content => '' if flash[:user_registered]
     = tag :meta, name: "user-signed-in", :content => '' if flash[:user_signed_in]
   %body
+    = render 'layouts/cookie_banner'
     = render "layouts/search_processing"
 
     #main

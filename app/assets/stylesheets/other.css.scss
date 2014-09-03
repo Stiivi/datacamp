@@ -316,3 +316,37 @@ a.homepage_button.alternative { background-position: 0 -46px; color: #5b81aa; }
 }
 
 /* @end */
+
+/* @group Cookie bar */
+
+#cookie_banner {
+  display: block;
+  float: none;
+  overflow: hidden;
+  background: #222222;
+  color: #ffffff;
+  padding: 5px 12px;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+#cookie_banner a {
+  display: inline-block;
+  padding: 0 7px;
+  margin: 0 0 0 10px;
+  background: #666666;
+  color: #ffffff;
+  text-decoration: none;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+#cookie_banner a:hover {
+  background: #555555;
+  color: #dddddd;
+}
+
+/* @end */
