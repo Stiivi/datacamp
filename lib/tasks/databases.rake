@@ -71,6 +71,7 @@ namespace :db_data do
     desc "Load a schema_data.rb file into the database"
     task :load => :environment do
       ActiveRecord::Base.establish_connection Rails.env + "_data"
+      ActiveRecord::Migrator.migrations_path = 'db/migrate_data'
 
       file = ENV['SCHEMA'] || "#{Rails.root}/db/schema_data.rb"
       if File.exists?(file)
@@ -133,10 +134,12 @@ namespace :db_staging do
     desc "Load a schema_staging.rb file into the database"
     task :load => :environment do
       ActiveRecord::Base.establish_connection Rails.env + "_staging"
+      ActiveRecord::Migrator.migrations_path = 'db/migrate_staging'
 
       file = ENV['SCHEMA'] || "#{Rails.root}/db/schema_staging.rb"
       if File.exists?(file)
         load(file)
+
       else
         abort %{#{file} doesn't exist yet. Run "rake db_staging:migrate" to create it then try again. If you do not intend to use a database, you should instead alter #{Rails.root}/config/application.rb to limit the frameworks that will be loaded}
       end
