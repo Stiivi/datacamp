@@ -19,7 +19,7 @@ system_variables = [
   {
     :name => "login_required",
     :description => "Login required to use application",
-    :value => 1
+    :value => 0
   },
   {
     :name => "copyright_notice",
@@ -29,7 +29,7 @@ system_variables = [
   {
     :name => "private_mode",
     :description => "Users can't register, only subscribe for beta program.",
-    :value => 1
+    :value => 0
   },
   {
     :name => "registration_confirmation_required",
