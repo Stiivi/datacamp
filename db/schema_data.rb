@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140721071923) do
+ActiveRecord::Schema.define(:version => 20140903103235) do
 
   create_table "dc_relations", :primary_key => "_record_id", :force => true do |t|
     t.integer "relatable_left_id"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20140721071923) do
     t.string   "name"
     t.string   "identification_number"
     t.string   "address"
-    t.decimal  "contribution_value",    :precision => 10, :scale => 0
+    t.decimal  "contribution_value",    :precision => 10, :scale => 2
     t.string   "contribution_currency"
     t.string   "contribution_subject"
     t.datetime "created_at"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20140721071923) do
     t.boolean  "is_hidden"
   end
 
+  add_index "ds_foundation_liquidators", ["name", "address", "liquidator_from", "liquidator_to"], :name => "index_ds_foundation_liquid_on_name_and_address_and_from_and_to"
   add_index "ds_foundation_liquidators", ["name", "address"], :name => "index_ds_foundation_liquidators_on_name_and_address"
 
   create_table "ds_foundation_trustees", :primary_key => "_record_id", :force => true do |t|
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20140721071923) do
     t.boolean  "is_hidden"
   end
 
+  add_index "ds_foundation_trustees", ["name", "address", "trustee_from", "trustee_to"], :name => "index_ds_foundation_trust_on_name_and_address_and_from_and_to"
   add_index "ds_foundation_trustees", ["name", "address"], :name => "index_ds_foundation_trustees_on_name_and_address"
 
   create_table "ds_foundations", :primary_key => "_record_id", :force => true do |t|
@@ -121,7 +123,7 @@ ActiveRecord::Schema.define(:version => 20140721071923) do
     t.date     "date_registration"
     t.date     "date_liquidation"
     t.date     "date_end"
-    t.decimal  "assets_value",          :precision => 10, :scale => 0
+    t.decimal  "assets_value",          :precision => 10, :scale => 2
     t.string   "assets_currency"
     t.string   "url"
     t.integer  "ives_id"
@@ -262,52 +264,28 @@ ActiveRecord::Schema.define(:version => 20140721071923) do
   end
 
   create_table "ds_organisations", :primary_key => "_record_id", :force => true do |t|
-    t.integer  "id",                               :default => 0
-    t.integer  "doc_id"
-    t.integer  "ico",                 :limit => 8
-    t.string   "name"
-    t.string   "legal_form"
-    t.integer  "legal_form_code"
-    t.date     "date_start"
-    t.date     "date_end"
-    t.string   "address"
-    t.string   "region"
-    t.string   "activity1"
-    t.integer  "activity1_code"
-    t.string   "activity2"
-    t.integer  "activity2_code"
-    t.string   "account_sector"
-    t.integer  "account_sector_code"
-    t.string   "ownership"
-    t.integer  "ownership_code"
-    t.string   "size"
-    t.integer  "size_code"
-    t.string   "source_url"
-    t.string   "quality_status"
-    t.datetime "updated_at"
-    t.integer  "batch_id"
-    t.datetime "created_at"
-    t.date     "validity_date"
-    t.string   "created_by"
-    t.boolean  "is_hidden"
-    t.string   "updated_by"
-    t.string   "record_status"
-    t.string   "batch_record_code"
+    t.integer "doc_id"
+    t.integer "ico"
+    t.string  "name"
+    t.string  "legal_form"
+    t.integer "legal_form_code"
+    t.date    "date_start"
+    t.date    "date_end"
+    t.string  "address"
+    t.string  "region"
+    t.string  "activity1"
+    t.integer "activity1_code"
+    t.string  "activity2"
+    t.integer "activity2_code"
+    t.string  "account_sector"
+    t.integer "account_sector_code"
+    t.string  "ownership"
+    t.integer "ownership_code"
+    t.string  "size"
+    t.integer "size_code"
+    t.string  "source_url"
+    t.text    "name_history"
   end
-
-  add_index "ds_organisations", ["account_sector"], :name => "account_sector_index"
-  add_index "ds_organisations", ["activity1"], :name => "activity1_index"
-  add_index "ds_organisations", ["activity2"], :name => "activity2_index"
-  add_index "ds_organisations", ["address"], :name => "address_index"
-  add_index "ds_organisations", ["date_end"], :name => "date_end_index"
-  add_index "ds_organisations", ["date_start"], :name => "date_start_index"
-  add_index "ds_organisations", ["ico"], :name => "ico_index"
-  add_index "ds_organisations", ["legal_form"], :name => "legal_form_index"
-  add_index "ds_organisations", ["name"], :name => "name_index"
-  add_index "ds_organisations", ["ownership"], :name => "ownership_index"
-  add_index "ds_organisations", ["region"], :name => "region_index"
-  add_index "ds_organisations", ["size"], :name => "size_index"
-  add_index "ds_organisations", ["source_url"], :name => "source_url_index"
 
   create_table "ds_otvorenezmluvy", :primary_key => "_record_id", :force => true do |t|
     t.string   "name"
@@ -333,59 +311,6 @@ ActiveRecord::Schema.define(:version => 20140721071923) do
     t.integer  "batch_id"
     t.date     "validity_date"
     t.boolean  "is_hidden"
-  end
-
-  create_table "ds_relation_testings", :primary_key => "_record_id", :force => true do |t|
-    t.string   "created_by"
-    t.string   "record_status"
-    t.string   "updated_by"
-    t.datetime "updated_at"
-    t.datetime "created_at"
-    t.date     "validity_date"
-    t.string   "quality_status"
-    t.boolean  "is_hidden"
-    t.integer  "batch_id"
-    t.string   "test"
-    t.integer  "ico"
-    t.string   "company_name"
-    t.string   "company_address"
-    t.integer  "ds_testing_id"
-  end
-
-  add_index "ds_relation_testings", ["test"], :name => "test_index"
-
-  create_table "ds_testings", :primary_key => "_record_id", :force => true do |t|
-    t.string   "created_by"
-    t.string   "record_status"
-    t.string   "updated_by"
-    t.datetime "updated_at"
-    t.datetime "created_at"
-    t.date     "validity_date"
-    t.string   "quality_status"
-    t.boolean  "is_hidden"
-    t.integer  "batch_id"
-    t.string   "test"
-    t.integer  "ico"
-    t.string   "company_name"
-    t.string   "company_address"
-    t.string   "id"
-  end
-
-  add_index "ds_testings", ["test"], :name => "test_index"
-
-  create_table "rel_associates_partnerships", :primary_key => "_record_id", :force => true do |t|
-    t.integer "ds_lawyer_partnership_id"
-    t.integer "ds_associate_id"
-  end
-
-  create_table "rel_lawyers_associates", :primary_key => "_record_id", :force => true do |t|
-    t.integer "ds_lawyer_id"
-    t.integer "ds_associate_id"
-  end
-
-  create_table "rel_lawyers_partnerships", :primary_key => "_record_id", :force => true do |t|
-    t.integer "ds_lawyer_id"
-    t.integer "ds_lawyer_partnership_id"
   end
 
 end

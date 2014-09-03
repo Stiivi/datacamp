@@ -15,6 +15,7 @@ namespace :db_data do
 
     ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
     ActiveRecord::Migrator.migrate("db/migrate_data/", ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
+    Rake::Task["db_data:schema:dump"].invoke if ActiveRecord::Base.schema_format == :ruby
   end
   desc 'Rolls the schema back to the previous version (specify steps w/ STEP=n).'
   task :rollback => :environment do
@@ -23,6 +24,8 @@ namespace :db_data do
     step = ENV['STEP'] ? ENV['STEP'].to_i : 1
     ActiveRecord::Migrator.rollback('db/migrate_data/', step)
   end
+
+  # TODO dupliacate codes with seeds
 
   task initialize_datasets: :environment do
     ['lawyers', 'lawyer_associates', 'lawyer_partnerships'].each do |identifier|
