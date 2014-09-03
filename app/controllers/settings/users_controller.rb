@@ -33,7 +33,7 @@ module Settings
 
     def create
       @user = User.new(params[:user])
-      success = @user && @user.save(false)
+      success = @user && @user.save(validate: false)
       if success
         redirect_to settings_users_path
       else
@@ -58,7 +58,7 @@ module Settings
       @user.access_right_ids = params[:user][:access_right_ids]
       @user.access_role_ids = params[:user][:access_role_ids]
 
-      if @user.save(false)
+      if @user.save(validate: false)
         redirect_to edit_settings_user_path(@user)
       else
         render :action => "edit"
@@ -72,7 +72,7 @@ module Settings
         if user[:password].present? && user[:password] == user[:password_confirmation]
           @account.password = user[:password]
           @account.restoration_code = nil
-          @account.save(false)
+          @account.save(validate: false)
           redirect_to login_path, notice: t('users.password_restored')
         else
           flash.now[:error] = t('users.password_invalid')
