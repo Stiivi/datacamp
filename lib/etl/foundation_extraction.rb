@@ -174,7 +174,7 @@ module Etl
       attributes.each do |obj_hash|
         case resource_type
           when :founder
-            obj = resources.find_or_initialize_by_name_and_address(obj_hash[:name], obj_hash[:address])
+            obj = resources.find_or_initialize_by_name_and_address_and_identification_number_and_contribution_value_and_contribution_currency_and_contribution_subject(obj_hash[:name], obj_hash[:address], obj_hash[:identification_number], obj_hash[:contribution_value], obj_hash[:contribution_currency], obj_hash[:contribution_subject])
           when :trustee
             obj = resources.find_or_initialize_by_name_and_address_and_trustee_from_and_trustee_to(obj_hash[:name], obj_hash[:address], obj_hash[:trustee_from], obj_hash[:trustee_to])
           when :liquidator
