@@ -60,6 +60,6 @@ every 25.days do
   rake 'etl:otvorenezmluvy_extraction'
 end
 
-every 30.days do
+every 30.days, :at => '1:30' do
   rake 'etl:foundation_extraction'
 end

@@ -180,7 +180,8 @@ module Etl
           when :liquidator
             obj = resources.find_or_initialize_by_name_and_address_and_liquidator_from_and_liquidator_to(obj_hash[:name], obj_hash[:address], obj_hash[:liquidator_from], obj_hash[:liquidator_to])
         end
-        obj.update_attributes(obj_hash)
+        # publish resource
+        obj.update_attributes(obj_hash.merge(record_status: 'published'))
         active_objects << obj
       end
       # deleted ids
@@ -193,15 +194,16 @@ module Etl
                            Dataset::DsFoundationTrustee
                          when :liquidator
                            Dataset::DsFoundationLiquidator
-                      end
-      resource_class.where(_record_id: old_ids).delete_all
+                       end
+      # Suspend which deleted resources
+      resource_class.where(_record_id: old_ids).update_all(record_status: 'suspended')
       active_objects
     end
 
     def perform
       document = download
       foundation_hash = digest(document)
-      save(foundation_hash)
+      save(foundation_hash.merge(record_status: 'published'))
     end
 
   end

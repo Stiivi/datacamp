@@ -3,8 +3,9 @@ namespace :etl do
   # Foundations
   desc 'Download foundations'
   task :foundation_extraction => :environment do
+    Dataset::DsFoundation.update_all(record_status: 'suspended')
     Delayed::Job.enqueue Etl::FoundationPageExtraction.new
-    Etl::FoundationExtraction.update_last_run_time
+    Etl::NotarExtraction.update_last_run_time
   end
 
   task :vvo_extraction => :environment do
