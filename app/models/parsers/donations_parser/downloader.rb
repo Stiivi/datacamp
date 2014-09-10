@@ -21,8 +21,7 @@ module Parsers
 
         parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[2])
         parser.update_attribute(:download_path, download_paths)
-      rescue ex
-        puts "Donation parser error - #{ex.inspect}"
+      rescue
         get_config(@parser_id).update_attribute(:status, EtlConfiguration::STATUS_ENUM[3])
       end
 

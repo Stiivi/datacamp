@@ -12,7 +12,7 @@ class ParsersController < ApplicationController
     @parser = EtlConfiguration.find(params[:id])
     if @parser.valid_for_parsing?(params[:settings])
       @parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[1])
-      "Parsers::#{@parser.name.classify}::Downloader".constantize.new(@parser.id, params[:settings][:year]).delay.perform
+      "Parsers::#{@parser.name.classify}::Downloader".constantize.new(@parser.id, params[:settings][:year].to_i).delay.perform
       redirect_to parsers_path, notice: t('parsers.run.success')
     else
       render :show
