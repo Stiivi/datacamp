@@ -1,6 +1,6 @@
 .bundle
 db/*.sqlite3
-log/*
+log/*.log
 tmp/*
 
 files/*
@@ -29,4 +29,3 @@ db/sphinx/*
 rerun.txt
 
 .sass-cache
-.ruby-version
