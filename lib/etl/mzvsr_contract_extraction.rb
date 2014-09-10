@@ -18,7 +18,9 @@ class Etl::MzvsrContractExtraction
   end
 
   def save
-    Dataset::DsMzvsrContract.create!(attributes)
+    contract = Dataset::DsMzvsrContract.find_or_initialize_by_uri(attributes[:uri])
+
+    contract.update_attributes!(attributes)
   end
 
   def perform

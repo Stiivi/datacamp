@@ -48,13 +48,31 @@ describe Etl::MzvsrContractExtraction do
     end
   end
 
-  describe '#save' do
-    it 'saves attributes' do
-      pending
+  describe '#perform' do
+    before :each do
+      Dataset::Base.new('mzvsr_contracts')
+    end
+
+    it 'saves contract' do
+      VCR.use_cassette('mzvsr_contract') do
+        expect { extractor.perform }.to change(Dataset::DsMzvsrContract, :count).by(1)
+
+        record = Dataset::DsMzvsrContract.last
+
+        extractor.attributes.each do |attribute, value|
+          expect(record.send(attribute)).to eql(value)
+        end
+      end
     end
 
     it 'updates existing contracts' do
-      pending
+      VCR.use_cassette('mzvsr_contract') do
+        extractor.perform
+
+        extractor = Etl::MzvsrContractExtraction.new(uri)
+
+        expect { extractor.perform }.not_to change(Dataset::DsMzvsrContract, :count)
+      end
     end
   end
 end
