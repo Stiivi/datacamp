@@ -51,6 +51,8 @@ describe Etl::MzvsrContractExtraction do
   describe '#perform' do
     before :each do
       Dataset::Base.new('mzvsr_contracts')
+
+      Dataset::DsMzvsrContract.delete_all # TODO: use DatabaseCleaner?
     end
 
     it 'saves contract' do
