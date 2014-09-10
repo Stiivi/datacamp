@@ -36,5 +36,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  # Put deprecation warnings to file
+  config.deprecation_stream = 'log/deprecations.log'
+
   config.include(DatasetHelpers)
 end
