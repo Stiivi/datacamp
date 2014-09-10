@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140903103235) do
+ActiveRecord::Schema.define(:version => 20140910102518) do
 
   create_table "dc_relations", :primary_key => "_record_id", :force => true do |t|
     t.integer "relatable_left_id"
@@ -225,6 +225,23 @@ ActiveRecord::Schema.define(:version => 20140903103235) do
   end
 
   add_index "ds_lawyers", ["sak_id"], :name => "index_ds_lawyers_on_sak_id"
+
+  create_table "ds_mzvsr_contracts", :primary_key => "_record_id", :force => true do |t|
+    t.string  "uri",             :limit => 1024, :null => false
+    t.string  "title_sk",        :limit => 2048, :null => false
+    t.string  "title_en",        :limit => 2048
+    t.string  "administrator"
+    t.string  "place"
+    t.string  "type"
+    t.string  "country"
+    t.date    "signed_on"
+    t.date    "valid_from"
+    t.string  "law_index"
+    t.boolean "priority"
+    t.string  "protocol_number"
+  end
+
+  add_index "ds_mzvsr_contracts", ["title_sk"], :name => "index_ds_mzvsr_contracts_on_title_sk", :length => {"title_sk"=>255}
 
   create_table "ds_notaries", :primary_key => "_record_id", :force => true do |t|
     t.string   "name"
