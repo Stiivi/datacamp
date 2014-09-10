@@ -33,17 +33,17 @@ class DatasetDescriptionsController < ApplicationController
                                                     :edit_field_description_categories,
                                                     :update_field_description_categories]
   before_filter :load_datasets, :only => [:import, :do_import]
-  
+
   privilege_required :edit_dataset_description
   privilege_required :create_dataset, :only => [:new, :create]
   privilege_required :destroy_dataset, :only => [:destroy]
-  
+
   protect_from_forgery :except => :set_visibility
-  
+
   def index
     @dataset_categories = DatasetCategory.order(:position).includes(:dataset_descriptions)
     @other_descriptions = DatasetDescription.where("category_id IS NULL OR category_id = 0").order(:position).includes(:translations)
-    
+
     respond_to do |format|
       format.html
       format.js
@@ -84,11 +84,11 @@ class DatasetDescriptionsController < ApplicationController
 
   def create
     @dataset_description = DatasetDescription.new
-    
+
     create_category_if_needed!
-    
+
     @dataset_description.attributes = params[:dataset_description]
-    
+
     respond_to do |format|
       if @dataset_description.save
         @dataset_description.dataset.setup_table
@@ -118,15 +118,15 @@ class DatasetDescriptionsController < ApplicationController
     end
 
     create_category_if_needed!
-    
+
     @dataset_description.attributes = params[:dataset_description]
-    
+
     if params[:skip_validations]
       success = @dataset_description.save(:validate => false)
     else
       @dataset_description.save
     end
-    
+
     respond_to do |format|
       if success
         flash[:notice] = 'DatasetDescription was successfully updated.'
@@ -152,23 +152,23 @@ class DatasetDescriptionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   def add_primary_key
     dataset = @dataset_description.dataset
     dataset.add_primary_key
-    
+
     redirect_to @dataset_description
   end
-  
+
   def import_settings
     @all_field_descriptions = @dataset_description.field_descriptions.where(:importable => false).order('importable_column asc').select{|field|!field.is_derived}
     @importable_field_descriptions = @dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
   end
-  
+
   def import
-    
+
   end
-  
+
   def do_import
     @dataset = Dataset::Base.new(params[:dataset])
     if params[:revert]
@@ -176,14 +176,14 @@ class DatasetDescriptionsController < ApplicationController
     else
       success = @dataset.transform! && @dataset.create_description!
     end
-    
+
     if success
       redirect_to import_dataset_descriptions_path
     else
       render :action => "import"
     end
   end
-  
+
   def setup_dataset
     if request.method == :post
       if @dataset_description.dataset.setup_table
@@ -194,11 +194,11 @@ class DatasetDescriptionsController < ApplicationController
       redirect_to @dataset_description
     end
   end
-  
+
   def visibility
     @dataset_description = DatasetDescription.find_by_id(params[:id])
   end
-  
+
   def set_visibility
     @dataset_description.field_descriptions.each do |fd|
       if params[:field_description_visible][fd.id.to_s]
@@ -208,14 +208,14 @@ class DatasetDescriptionsController < ApplicationController
       end
       fd.save(false)
     end
-    
+
     render :nothing => true
   end
-  
+
   def datastore_status
     # FIXME: use datastore manager (not yet implemented)
     dd = DatasetDescription.find_by_id(params[:id])
-    
+
     @connection = Dataset::DatasetRecord.connection
     begin
       table_desc = TableDescription.new(@connection, dd.dataset.table_name)
@@ -223,7 +223,7 @@ class DatasetDescriptionsController < ApplicationController
       logger.error e.message
       return redirect_to dd
     end
-    
+
     column_names = table_desc.column_names
     field_names = dd.field_descriptions.collect { |fd| fd.identifier }
 
@@ -233,14 +233,14 @@ class DatasetDescriptionsController < ApplicationController
     @missing_columns = Array.new
     @missing_descriptions = Array.new
     @table_name = dd.identifier
-    
+
     dd.field_descriptions.each do |fd|
         # Check if exists
         if not column_names.include?(fd.identifier)
             @missing_columns.push(fd.identifier)
         end
     end
-    
+
     column_names.each do |column_name|
         # Check if exists
         if not field_names.include?(column_name) \
@@ -251,16 +251,16 @@ class DatasetDescriptionsController < ApplicationController
     end
     @dataset_description = dd
   end
-  
+
   def update_positions
     update_all_positions(params[:dataset_category].keys, params[:dataset_description])
     render :nothing => true
   end
-  
-  
+
+
   def relations
   end
-  
+
   def update_relations
     if params[:save] && @dataset_description.update_attributes(params[:dataset_description])
       redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
@@ -289,7 +289,7 @@ class DatasetDescriptionsController < ApplicationController
       render :edit_field_description_categories, notice: 'failure'
     end
   end
-  
+
   private
   def update_all_positions(category_placement, description_placement)
     super(DatasetCategory, category_placement)
@@ -299,28 +299,28 @@ class DatasetDescriptionsController < ApplicationController
       item.update_attributes(:position => new_index+1, :category_id => description_placement[item.id.to_s]) if new_index
     end
   end
-  
+
   protected
-  
+
   def get_dataset_description
     @dataset_description = DatasetDescription.find_by_id!(params[:id])
   end
-  
+
   def load_datasets
     @dataset_description = DatasetDescription.new
     @unbound_datasets = Dataset::Base.find_tables :prefix_not => "ds"
   end
-  
+
   def init_menu
     @submenu_partial = "data_dictionary"
   end
-  
+
   def create_category_if_needed!
     if params[:dataset_description][:category]
       # Create a new category for this one
       unless params[:dataset_description][:category].blank?
         category = DatasetCategory.find_or_create_by_title(params[:dataset_description][:category])
-        category.save(false)
+        category.save(validate: false)
         @dataset_description.category = category
       end
       params[:dataset_description].delete(:category)
