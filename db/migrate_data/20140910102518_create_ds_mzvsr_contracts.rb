@@ -19,6 +19,7 @@ class CreateDsMzvsrContracts < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :ds_mzvsr_contracts
+    drop_table   :ds_mzvsr_contracts
+    remove_index :ds_mzvsr_contracts, :title_sk
   end
 end
