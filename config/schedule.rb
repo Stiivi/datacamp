@@ -63,3 +63,7 @@ end
 every 30.days, :at => '1:30' do
   rake 'etl:foundation_extraction'
 end
+
+every 30.days, :at => '1:50' do
+  rake 'etl:mzvsr_extraction'
+end
