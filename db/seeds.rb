@@ -9,13 +9,14 @@
 
 require 'dataset/utils'
 
-EtlConfiguration.find_or_create_by_name('vvo_extraction', :start => 2642, :batch_limit => 1000)
-EtlConfiguration.find_or_create_by_name('notary_extraction', :start => 1, :batch_limit => 100)
+EtlConfiguration.find_or_create_by_name('vvo_extraction', start_id: 2642, batch_limit: 1000)
+EtlConfiguration.find_or_create_by_name('notary_extraction', start_id: 1, batch_limit: 100)
 EtlConfiguration.find_or_create_by_name('executor_extraction')
 EtlConfiguration.find_or_create_by_name('lawyer_extraction')
 EtlConfiguration.find_or_create_by_name('donations_parser', parser: true)
-EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start: 201110)
+EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start_id: 201110)
 EtlConfiguration.find_or_create_by_name('foundation_extraction')
+EtlConfiguration.find_or_create_by_name('mzvsr_contracts_extraction')
 
 # Initialize datasets and relations
 
@@ -67,6 +68,8 @@ Dataset::Utils.create_relation(notary_employees_dataset, notary_dataset)
 Dataset::Utils.initialize_dataset('executors', true)
 Dataset::Utils.initialize_dataset('otvorenezmluvy', true)
 
+# MZVSR Contracts
+Dataset::Utils.initialize_dataset('mzvsr_contracts', true)
 
 # Data Formats
 
