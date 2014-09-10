@@ -50,6 +50,12 @@ namespace :etl do
     end
   end
 
+  desc 'Run this to download/update contracts from MZVSR'
+  task mzvsr_contracts_extraction: :environment do
+    Dataset::DsMzvsrContract.update_all(record_status: 'suspended')
+    Delayed::Job.enqueue Etl::MzvsrContractsPageExtraction.new
+  end
+
   desc 'Run this to mark active notaries'
   task notari_activate: :environment do
     activation_result = Etl::NotarExtraction.activate_docs
