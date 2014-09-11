@@ -30,7 +30,7 @@ gem 'will_paginate'
 #gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 gem 'delayed_job'
 gem 'nokogiri'
-gem 'riddle'
+gem 'riddle', '>= 1.3.3'
 gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
