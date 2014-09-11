@@ -44,6 +44,7 @@ gem 'unicorn'
 gem 'rack-rewrite'
 
 gem 'tlsmail'
+gem 'roadie'
 
 # gem 'test-unit'
 
@@ -81,6 +82,7 @@ group :development do
   gem 'capistrano', '~> 2'
   gem 'capistrano-ext'
   gem 'rvm'
+  gem 'letter_opener'
 end
 
 group :development, :test do
