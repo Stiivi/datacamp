@@ -365,7 +365,7 @@ DEPENDENCIES
   rails_best_practices
   rb-fsevent!
   recaptcha!
-  riddle (>= 1.5.10)
+  riddle
   roadie
   rollbar
   rspec-rails
@@ -374,7 +374,7 @@ DEPENDENCIES
   sequel
   spawn
   therubyracer
-  thinking-sphinx (~> 3.1.0)
+  thinking-sphinx (>= 2.0.2)
   tlsmail
   typhoeus
   uglifier (>= 1.0.3)
