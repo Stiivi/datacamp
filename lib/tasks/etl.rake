@@ -195,11 +195,11 @@ namespace :etl do
                 bulletin_id,
                 procurement_id,
                 customer_ico,
-                rcust.name customer_company_name,
+                ifnull(rcust.name, customer_name) as customer_company_name,
                 substring_index(rcust.address, ',', 1) as customer_company_address,
                 substring(substring_index(rcust.address, ',', -1), 9) as customer_company_town,
                 supplier_ico,
-                rsupp.name supplier_company_name,
+                ifnull(rsupp.name, supplier_name) as supplier_company_name,
                 rsupp.region supplier_region,
                 substring_index(rsupp.address, ',', 1) as supplier_company_address,
                 substring(substring_index(rsupp.address, ',', -1), 9) as supplier_company_town,
@@ -225,14 +225,15 @@ namespace :etl do
             LEFT JOIN #{staging_schema}.#{regis_table} rsupp ON rsupp.ico = supplier_ico
             WHERE m.etl_loaded_date IS NULL"
 
+    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
+
+    last_updated_at = dataset_model.order(:updated_at).last
+
     Staging::StagingRecord.connection.execute(load)
     Staging::StaProcurement.update_all :etl_loaded_date => Time.now
 
-
-    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
-
-    records_with_error = dataset_model.where("#{dataset_table}.customer_company_name IS NULL OR #{dataset_table}.supplier_company_name IS NULL AND #{dataset_table}.note IS NULL").select(:_record_id)
-    records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL").select(:_record_id)
+    records_with_error = dataset_model.where("(#{dataset_table}.customer_company_name IS NULL OR #{dataset_table}.supplier_company_name IS NULL) AND #{dataset_table}.note IS NULL AND #{dataset_table}.updated_at > ?", last_updated_at).select(:_record_id)
+    records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL AND #{dataset_table}.updated_at > ?", last_updated_at).select(:_record_id)
 
     EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present
 
