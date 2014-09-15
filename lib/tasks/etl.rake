@@ -227,7 +227,7 @@ namespace :etl do
 
     dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
 
-    last_updated_at = dataset_model.order(:updated_at).last
+    last_updated_at = dataset_model.order(:updated_at).last.updated_at
 
     Staging::StagingRecord.connection.execute(load)
     Staging::StaProcurement.update_all :etl_loaded_date => Time.now
