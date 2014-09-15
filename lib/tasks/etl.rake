@@ -227,7 +227,7 @@ namespace :etl do
 
     dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
 
-    last_updated_at = dataset_model.order(:updated_at).last.updated_at
+    last_updated_at = DatasetDescription.find_by_identifier('procurements').data_updated_at
 
     Staging::StagingRecord.connection.execute(load)
     Staging::StaProcurement.update_all :etl_loaded_date => Time.now
@@ -235,7 +235,7 @@ namespace :etl do
     records_with_error = dataset_model.where("(#{dataset_table}.customer_company_name IS NULL OR #{dataset_table}.supplier_company_name IS NULL) AND #{dataset_table}.note IS NULL AND #{dataset_table}.updated_at > ?", last_updated_at).select(:_record_id)
     records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL AND #{dataset_table}.updated_at > ?", last_updated_at).select(:_record_id)
 
-    EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present
+    EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present?
 
     DatasetDescription.find_by_identifier('procurements').update_attribute(:data_updated_at, Time.zone.now)
   end
