@@ -1,12 +1,15 @@
 namespace :etl do
 
   # Foundations
+
   desc 'Download foundations'
   task :foundation_extraction => :environment do
     Dataset::DsFoundation.update_all(record_status: 'suspended')
     Delayed::Job.enqueue Etl::FoundationPageExtraction.new
     Etl::NotarExtraction.update_last_run_time
   end
+
+  # VVO
 
   task :vvo_extraction => :environment do
     config = EtlConfiguration.find_by_name('vvo_extraction')
@@ -19,6 +22,20 @@ namespace :etl do
   task vvo_update_old_source_urls: :environment do
     Etl::VvoExtraction.update_old_source_urls
   end
+
+  desc 'Download bulletins in current year'
+  task vvo_current_bulletins_extraction: :environment do
+    Etl::VvoBulletinExtraction.extract_all_bulletins(Date.today.year)
+  end
+
+  desc 'Download old bulletins in years and parse missed documents'
+  task vvo_old_bulletins_extraction: :environment do
+    [2009, 2010, 2011, 2012, 2013, 2014].each do |year|
+      Etl::VvoBulletinExtraction.extract_all_bulletins(year)
+    end
+  end
+
+  # Regis
 
   task :regis_extraction => :environment do
     config = EtlConfiguration.find_by_name('regis_extraction')

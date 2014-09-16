@@ -1,5 +1,5 @@
 module Etl
-  class Extraction < Struct.new(:start_id, :batch_limit, :id)
+  class Extraction < Struct.new(:start_id, :batch_limit, :id, :single_extraction)
 
     def download(id)
       Nokogiri::HTML(Typhoeus::Request.get(document_url(id)).body.encode('utf-8', 'cp1250'))
@@ -19,6 +19,7 @@ module Etl
     end
 
     def after(job)
+      return if single_extraction
       if id == (start_id + batch_limit)
         if config.last_processed_id > start_id
           ((id+1)..(id+1+config.batch_limit)).each do |i|

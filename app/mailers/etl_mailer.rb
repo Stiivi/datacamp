@@ -7,6 +7,12 @@ class EtlMailer < ActionMailer::Base
     mail(:to => Datacamp::Application.config.admin_emails, :subject => "Vysledok automatickeho behu ETL.")
   end
 
+  def vvo_parser_problem(document_url, error_type)
+    @error_type = error_type
+    @document_url = document_url
+    mail(:to => Datacamp::Application.config.admin_emails, :subject => "VVO parser problem.")
+  end
+
   def notari_status
     @last_run_time = EtlConfiguration.find_by_name('notary_extraction').last_run_time || Time.now
     @updated_record_ids = Dataset::DcUpdate.where(updatable_type: 'Kernel::DsNotary').where('updated_at > ?', @last_run_time).map(&:updatable_id).uniq

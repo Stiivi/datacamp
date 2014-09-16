@@ -30,6 +30,12 @@ every 1.day, :at => '2:30 am' do
   rake "etl:vvo_loading"
 end
 
+# Vvo check - extract bulletins in current year
+every 30.days, :at => '2:00' do
+  rake 'etl:vvo_current_bulletins_extraction'
+end
+
+
 every 1.day, :at => '4:30 am' do
   rake "db:export"
 end
