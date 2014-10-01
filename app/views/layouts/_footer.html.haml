@@ -10,27 +10,3 @@
   = link_to_page "about_organisation"
   \/
   = link_to_page "contact"
-
-- if Rails.env.production?
-  :javascript
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', "#{Datacamp::Config.get('google_analytics_code')}"]);
-    _gaq.push(['_trackPageview']);
-    GATracker.gather_data();
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-    $(function() {
-      GATracker.setup_callbacks();
-    });
-
-    var _mfq = _mfq || [];
-    (function() {
-    var mf = document.createElement("script"); mf.type = "text/javascript"; mf.async = true;
-    mf.src = "//cdn.mouseflow.com/projects/0118edd1-a561-49d7-b386-55d0caf894ee.js";
-    document.getElementsByTagName("head")[0].appendChild(mf);
-    })();
