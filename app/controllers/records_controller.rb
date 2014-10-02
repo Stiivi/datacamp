@@ -141,12 +141,27 @@ class RecordsController < ApplicationController
       @record = @dataset_class.new
     end
     @quality_status = @record.quality_status_messages
+
+    if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
+      flash[:notice] = 'Dataset is hidden'
+      redirect_to datasets_path
+    end
+
+    unless @record.active? || (logged_in? && current_user.has_privilege?(:view_hidden_records))
+      flash[:notice] = 'Record is hidden'
+      redirect_to dataset_path(@dataset_description)
+    end
   end
   
   def related_records_and_fields(dataset_description, record)
     @dataset_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^dc_/ }.map do |reflection|
       dd = DatasetDescription.find_by_identifier(reflection.name.to_s.gsub(/#{Dataset::Base::prefix}|_morphed/,'').pluralize)
-      [ [record.send(reflection.name)].flatten.compact,
+      if logged_in? && current_user.has_privilege?(:view_hidden_records)
+        records = record.send(reflection.name)
+      else
+        records = record.send(reflection.name).active
+      end
+      [ [records].flatten.compact,
         dd.visible_fields_in_relation,
         reflection.name,
         dd,

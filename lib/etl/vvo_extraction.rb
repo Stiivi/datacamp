@@ -41,7 +41,6 @@ module Etl
       elsif document.xpath("//div[@class='oznamenie']/./h2[@class='document_number_and_code'][1]").inner_text.match(/V\w+$/)
         :problem_1
       elsif document.xpath("//div[@class='oznamenie']").any?
-        debugger
         :other
       else
         nil
