@@ -57,15 +57,18 @@ every 25.days, at: '1:00 am' do
 end
 
 every 25.days, at: '3:00 am' do
+  rake 'etl:notari_activate'
+end
+
+every 25.days, at: '3:30 am' do
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
-  rake 'etl:notari_activate'
 end
 
 every 25.days do
   rake 'etl:otvorenezmluvy_extraction'
 end
 
-every 30.days, at: '1:30' do
+every 30.days, at: '1:30 am' do
   rake 'etl:foundation_extraction'
 end
