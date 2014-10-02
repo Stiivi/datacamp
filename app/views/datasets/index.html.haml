@@ -2,9 +2,9 @@
   =t "global.datasets"
   - params[:show_bad_quality] = 'true' if params[:show_bad_quality].blank? && current_user.present? && current_user.show_bad_quality_datasets?
   - if params[:show_bad_quality] == 'true'
-    = link_to t('.show_good_quality'), datasets_path(show_bad_quality: 'false'), class: 'view_wrong_dataset'
+    = link_to t('.show_good_quality'), datasets_path(show_bad_quality: 'false'), class: 'view_wrong_dataset', onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-pekne-datasety', '1']);"
   - else
-    = link_to t('.show_bad_quality'), datasets_path(show_bad_quality: 'true'), class: 'view_wrong_dataset'
+    = link_to t('.show_bad_quality'), datasets_path(show_bad_quality: 'true'), class: 'view_wrong_dataset', onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-vsetky-datasety', '1']);"
 
 - @dataset_categories.each do |dataset_category|
   #dataset_category_container
