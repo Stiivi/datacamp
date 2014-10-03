@@ -25,6 +25,7 @@ public/system/*
 db/sphinx/*
 .idea/*
 
+.ruby-version
 .DS_Store
 rerun.txt
 
