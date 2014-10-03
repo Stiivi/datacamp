@@ -42,7 +42,9 @@ class Etl::MzvsrContractExtraction
       result[:place]    = tables[1].css('tr')[1].css('td').text.strip.presence
       result[:signed_on] = Date.parse(tables[1].css('tr')[2].css('td').text) rescue nil
       result[:valid_from] = Date.parse(tables[1].css('tr')[3].css('td').text) rescue nil
-      result[:law_index] = tables[1].css('tr')[4].css('td').text.strip.presence.first(255)
+      law_index = tables[1].css('tr')[4].css('td').text.strip.presence
+      law_index = law_index.first(255) if law_index
+      result[:law_index] = law_index
       result[:type] = tables[1].css('tr')[5].css('td').text.strip.gsub(/-/, '').presence
       result[:administrator] = tables[1].css('tr')[7].css('td').text.strip.presence
       result[:protocol_number] = tables[1].css('tr')[8].css('td').text.strip.presence
