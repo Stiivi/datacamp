@@ -87,7 +87,10 @@ end
 
 group :development, :test do
   gem 'cucumber-rails', require: false
-  gem 'rspec-rails'
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-its'
+  gem 'rspec-rails', '~> 2.14'
   gem 'mocha'
   gem 'capybara'
   gem 'poltergeist'

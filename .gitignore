@@ -29,4 +29,3 @@ db/sphinx/*
 rerun.txt
 
 .sass-cache
-.ruby-version

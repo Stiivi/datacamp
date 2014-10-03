@@ -1,0 +1,344 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: http://www.mzv.sk:80/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&TG=BlankMaster&URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&OpenDocument=Y&LANG=SK&PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=1000000
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      date: 
+      - Wed, 10 Sep 2014 12:35:23 GMT
+      server: 
+      - Lotus-Domino
+      content-type: 
+      - text/html;charset=UTF-8
+      transfer-encoding: 
+      - chunked
+    body: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n\
+      <html lang=\"SK\">\n\
+      <head>\n\
+      <link rel=\"shortcut icon\" href=\"/favicon.ico\">\n\
+      <meta http-equiv=\"Content-type\" content=\"text/html;charset=utf-8\">\n\
+      <meta http-equiv=\"Content-Language\" content=\"SK\">\n\
+      <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/App/WCM/main.nsf/vw_ByID/ID_656ACBB9CE4F51CBC1257625004F3442_SK/$File/Layout_Screen.css\">\n\
+      <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/App/WCM/main.nsf/vw_ByID/ID_576E0E3120D9F828C12576770048AFB1_SK/$File/Layout_Print.css\">\n\
+      <link rel=\"stylesheet\" type=\"text/css\" href=\"/App/WCM/main.nsf/vw_ByID/ID_BAA289113D5A18B3C1257625004F2167_SK/$File/Content.css\">\n\
+      <link rel=\"stylesheet\" type=\"text/css\" href=\"/App/WCM/main.nsf/vw_ByID/ID_0F6B8E77630DBE23C12576380050DA20_SK/$File/menu_Politika.css\">\n\
+      <link rel=\"stylesheet\" type=\"text/css\" href=\"/App/WCM/main.nsf/lightbox.css\">\n\
+      <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS\" href=\"/sk/aktuality/rss\">\n\
+      <title>V\xC5\xA1etky zmluvy | Medzin\xC3\xA1rodn\xC3\xA9 zmluvy | Zahrani\xC4\x8Dn\xC3\xA1 politika | Ministerstvo zahrani\xC4\x8Dn\xC3\xBDch vec\xC3\xAD a eur\xC3\xB3pskych z\xC3\xA1le\xC5\xBEitost\xC3\xAD Slovenskej republiky</title>\n\
+      <meta http-equiv=\"X-Frame-Options\" content=\"DENY\">\n\
+      <script type=\"text/javascript\" src=\"/App/WCM/main.nsf/vw_ByID/ID_B4C2B590D6C5C7ABC12576310040FCBC_SK/$File/Basic.js\"></script>\n\
+      <script type=\"text/javascript\" src=\"/App/WCM/main.nsf/prototype.js\"></script>\n\
+      <script type=\"text/javascript\" src=\"/App/WCM/main.nsf/builder.js\"></script>\n\
+      <script type=\"text/javascript\" src=\"/App/WCM/main.nsf/effects.js\"></script>\n\
+      <script type=\"text/javascript\" src=\"/App/WCM/main.nsf/lightbox.js\"></script>\n\n\
+      </head>\n\
+      <body >\n\n\
+      <style>\n\
+      #middle, #middle2, #l  {border: 0;}\n\
+      .liMenuOut, .liMenuActive {border: 0;}\n\
+      #wrapper {border: 0;}\n\
+      #left {margin-top: 20px;}\n\
+      #content2, #mainContent {margin-right: 0;}\n\
+      #content, #content2 {margin-bottom: 10px;}\n\
+      .menu1 ul li {margin-left: 0.0833em;}\n\
+      .menu1 ul li:hover ul li:hover ul {left: -200px;}\n\
+      .menu1 ul li:hover ul, .menu1 ul li:hover ul li a.hide, .menu1 ul li:hover ul li:hover a.hide, .menu1 ul li:hover ul li a {width: 181px; left: -2px;}\n\
+      .menu2 ul li:hover ul li:hover ul {left: 249px;}\n\
+      .menu2 ul li:hover ul, .menu2 ul li:hover ul li a.hide, .menu2 ul li:hover ul li:hover a.hide, .menu2 ul li:hover ul li a {width: 230px;}\n\
+      .menu5 ul li:hover ul li:hover ul {left: 188px;}\n\
+      .menu5 ul li:hover ul, .menu5 ul li:hover ul li a.hide, .menu5 ul li:hover ul li:hover a.hide, .menu5 ul li:hover ul li a {width: 169px;}\n\
+      .menu1 ul li a:hover, .menu2 ul li a:hover, .menu3 ul li a:hover, .menu4 ul li a:hover, .menu5 ul li a:hover, .menu6 ul li a:hover {text-decoration: underline;}\n\
+      DIV#labelToolCountryByContinent DIV#labelToolCountryByContinentMainBoxRight, DIV#labelToolCountryByContinent DIV#labelToolCountryByContinentMainBoxLeft {border: 0;}\n\
+      .submenu {border: 0; margin-bottom: 10px;}\n\
+      .homenews, .homenewslink, .homenewslink2 {margin-top: 7px;}\n\
+      </style>\n\
+      <a name=\"TopPage\"></a><div id=\"txtNavigation\"><a href=\"#PageContent\" title=\"Presko\xC4\x8Di\xC5\xA5 navig\xC3\xA1ciu\">Presko\xC4\x8Di\xC5\xA5 navig\xC3\xA1ciu</a></div><script type=\"text/javascript\">\n\
+      var gaJsHost = ((\"https:\" == document.location.protocol) ? \"https://ssl.\" : \"http://www.\");\n\
+      document.write(unescape(\"%3Cscript src='\" + gaJsHost + \"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E\"));\n\
+      </script>\n\
+      <script type=\"text/javascript\">\n\
+      try {\n\
+      var pageTracker = _gat._getTracker(\"UA-11731567-1\");\n\
+      } catch(err) {}</script><div id=\"wrapper\">\n\
+      \t<div id=\"inner2\">\n\
+      \t\t<div id=\"middle2\" class=\"clearfix\">\n\
+      \t\t\t<div id=\"content\">\n\
+      \t\t\t\t<div id=\"header\">\n\
+      \t\t\t\t\t\n\n\
+      <div id=\"headerTop\" class=\"clearfix\">\n\
+      \t<div id=\"headerTopLeft\"><h1>\n\
+      \t\t<a href=\"/sk/uvod\"  title=\"Ministerstvo zahrani\xC4\x8Dn\xC3\xBDch vec\xC3\xAD a eur\xC3\xB3pskych z\xC3\xA1le\xC5\xBEitost\xC3\xAD - na \xC3\xBAvodn\xC3\xBA str\xC3\xA1nku\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_6A63E142928AA4ACC125762A004CB046_SK/$File/WEB_znak_NEW.jpg?OpenElement\" border=\"0\" alt=\"Ministerstvo zahrani\xC4\x8Dn\xC3\xBDch vec\xC3\xAD SR\"></a>\n\
+      \t</h1></div>\n\
+      \t<div id=\"headerTopRight\">\n\
+      \t\t<div class=\"headerTopRightUp\"><a href=\"/sk/uvod\"  title=\"Na \xC3\xBAvodn\xC3\xBA str\xC3\xA1nku\">\xC3\x9Avod</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"/en/home\"  title=\"English version\">English</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"/sk/uvod&amp;TV=Y\"  title=\"Textov\xC3\xA1 verzia\"><b>TEXTOV\xC3\x81 VERZIA</b></a>&nbsp;&nbsp;<a class=\"aktualityLink\" href=\"/sk/aktuality/prehlad_aktuality\"  title=\"Aktuality\">Aktuality</a>&nbsp;&nbsp;<a href=\"/sk/kontakt/prehlad_kontakt\"  title=\"Kontakt\">Kontakt</a></div>\n\
+      \t\t<div class=\"headerTopRightMiddle\">\n\
+      <form method=\"post\" action=\"/App/WCM/main.nsf/a37f71253ac57f2cc1257589003f33fc?CreateDocument\" name=\"_frm_Search\">\n\
+      <input name=\"fldSRC\" value=\"\" class=\"searchInput\" style=\"width: 150px;\">&nbsp;<button type=\"submit\" class=\"searchButton\" id=\"find\" title=\"H\xC4\xBEadaj\" style=\"width: 70px;\">H\xC4\xBEadaj</button><br>\n\
+      <!-- hide the domino generated submit button>-->\n\
+      <input name=\"SaveOptions\" type=\"hidden\" value=\"0\">\n\
+      <input name=\"fldLANG\" type=\"hidden\" value=\"SK\">\n\
+      <input name=\"tmpBase\" type=\"hidden\" value=\"/sk/ministerstvo/vysledok_vyhladavania\"></form>\n\
+      \t\t</div>\n\
+      \t\t<div class=\"headerTopRightDown\">&nbsp;</div>\n\
+      \t</div>\n\
+      </div>\n\
+      <div id=\"headerBottom\" class=\"clearfix\">\n\
+      \t\n\n\
+      <div class=\"menu3\">\n\
+      <ul>\n\
+      <li><a class=\"hide\" href=\"/sk/ministerstvo/prehlad_ministerstvo\" title=\"Ministerstvo\" accesskey=\"m\" style=\"width: 134px;\"><strong>M</strong>INISTERSTVO</a>\n\
+      <!--[if lte IE 6]>\n\
+      <a href=\"/sk/ministerstvo/prehlad_ministerstvo\" title=\"Ministerstvo\" accesskey=\"m\" style=\"width: 134px;\"><strong>M</strong>INISTERSTVO\n\
+      <table><tr><td>\n\
+      <![endif]-->\n\
+      <!--[if lte IE 6]>\n\
+      </td></tr></table>\n\
+      </a>\n\
+      <![endif]-->\n\
+      </li>\n\
+      </ul>\n\
+      </div>\n\
+      <! ----->\n\
+      <div class=\"menu2\">\n\
+      <ul>\n\
+      <li><a class=\"hide\" href=\"/sk/cestovanie_a_konzularne_info/prehlad_cestovanie_a_konzularne_info\" title=\"Cestovanie a konzul\xC3\xA1rne info\" accesskey=\"c\" style=\"width: 249px;\"><strong>C</strong>ESTOVANIE A KONZUL\xC3\x81RNE INFO</a>\n\
+      </li>\n\
+      </ul>\n\
+      </div>\n\
+      <! ----->\n\
+      <div class=\"menu4\">\n\
+      <ul>\n\
+      <li><a class=\"hide\" href=\"/sk/zahranicna__politika/prehlad_zahranicna_politika\" title=\"Zahrani\xC4\x8Dn\xC3\xA1 politika\" accesskey=\"z\" style=\"width: 181px;\"><strong>Z</strong>AHRANI\xC4\x8CN\xC3\x81 POLITIKA</a>\n\
+      </li>\n\
+      </ul>\n\
+      </div>\n\
+      <! ----->\n\
+      <div class=\"menu5\">\n\
+      <ul>\n\
+      <li><a class=\"hide\" href=\"/sk/europske_zalezitosti/prehlad_europske_zalezitosti\" title=\"Eur\xC3\xB3pske z\xC3\xA1le\xC5\xBEitosti\" accesskey=\"u\" style=\"width: 188px;\">E<strong>U</strong>R\xC3\x93PSKE Z\xC3\x81LE\xC5\xBDITOSTI</a>\n\
+      </li>\n\
+      </ul>\n\
+      </div>\n\
+      <! ----->\n\
+      <div class=\"menu1\">\n\
+      <ul>\n\
+      <li><a class=\"hide\" href=\"/sk/podnikajme_v_zahranici/prehlad_podnikajme_v_zahranici\" title=\"Podnikajme v zahrani\xC4\x8D\xC3\xAD\" accesskey=\"p\" style=\"width: 200px;\"><strong>P</strong>ODNIKAJME V ZAHRANI\xC4\x8C\xC3\x8D</a>\n\
+      </li>\n\
+      </ul>\n\
+      </div>\n\n\
+      </div>\n\n\
+      \t\t\t\t</div>\n\
+      \t\t\t\t<div id=\"left\">\n\
+      \t\t\t\t <!-- Menu start -->\n\
+      <!-- Oblas\xC5\xA5: Zahrani\xC4\x8Dn\xC3\xA1 politika -->\n\
+      <!-- Jazyk: SK -->\n\
+      <div id=\"cont\">\n\
+      <ul><li id=\"menuprehlad_zahranicna_politika\" class=\"liMenuOut\"><a id=\"menulinkprehlad_zahranicna_politika\" href=\"/sk/zahranicna__politika/prehlad_zahranicna_politika\" title=\"Preh\xC4\xBEad\">Preh\xC4\xBEad</a></li></ul>\n\
+      <ul><li id=\"menudokumenty_k_zahranicnej_politike\" class=\"liMenuOut\"><a id=\"menulinkdokumenty_k_zahranicnej_politike\" href=\"/sk/zahranicna__politika/dokumenty_k_zahranicnej_politike\" title=\"Dokumenty k zahrani\xC4\x8Dnej politike\">Dokumenty k zahrani\xC4\x8Dnej politike</a></li></ul>\n\
+      <ul><li id=\"menukalendar_podujati_k_zahranicnej_politike-kalendar_podujati_k_zahranicnej_politike_novy\" class=\"liMenuOut\"><a id=\"menulinkkalendar_podujati_k_zahranicnej_politike-kalendar_podujati_k_zahranicnej_politike_novy\" href=\"/sk/zahranicna__politika/kalendar_podujati_k_zahranicnej_politike-kalendar_podujati_k_zahranicnej_politike_novy\" title=\"Kalend\xC3\xA1r podujat\xC3\xAD k zahrani\xC4\x8Dnej politike\">Kalend\xC3\xA1r podujat\xC3\xAD k zahrani\xC4\x8Dnej politike</a></li></ul>\n\
+      <ul><li id=\"menubezpecnostna_politika\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subbezpecnostna_politika','menubezpecnostna_politika');\" title=\"Bezpe\xC4\x8Dnostn\xC3\xA1 politika\">Bezpe\xC4\x8Dnostn\xC3\xA1 politika</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subbezpecnostna_politika\" style=\"display:block;\"><ul><li id=\"lisublinkbezpecnostna_politika-uvod\" class=\"liSubOut\"><a id=\"sublinkbezpecnostna_politika-uvod\" href=\"/sk/zahranicna__politika/bezpecnostna_politika-uvod\" title=\"\xC3\x9Avod\">\xC3\x9Avod</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-o_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-o_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-o_nato\" title=\"Slovensko a NATO\">Slovensko a NATO</a></li>\n\
+      <li id=\"lisublinkbezpecnostna_politika-rt_slovensko_a_spolocna_bezpecnostna_a_obranna_politika_eu\" class=\"liSubOut\"><a id=\"sublinkbezpecnostna_politika-rt_slovensko_a_spolocna_bezpecnostna_a_obranna_politika_eu\" href=\"/sk/zahranicna__politika/bezpecnostna_politika-rt_slovensko_a_spolocna_bezpecnostna_a_obranna_politika_eu\" title=\"Slovensko a Spolo\xC4\x8Dn\xC3\xA1 bezpe\xC4\x8Dnostn\xC3\xA1 a obrann\xC3\xA1 politika E\xC3\x9A\">Slovensko a Spolo\xC4\x8Dn\xC3\xA1 bezpe\xC4\x8Dnostn\xC3\xA1 a obrann\xC3\xA1 politika E\xC3\x9A</a></li>\n\
+      <li id=\"lisublinkbezpecnostna_politika-kontrola_zbrojenia\" class=\"liSubOut\"><a id=\"sublinkbezpecnostna_politika-kontrola_zbrojenia\" href=\"/sk/zahranicna__politika/bezpecnostna_politika-kontrola_zbrojenia\" title=\"Kontrola zbrojenia\">Kontrola zbrojenia</a></li>\n\
+      <li id=\"lisublinkbezpecnostna_politika-slovensko_v_ramci_boja_proti_terorizmu\" class=\"liSubOut\"><a id=\"sublinkbezpecnostna_politika-slovensko_v_ramci_boja_proti_terorizmu\" href=\"/sk/zahranicna__politika/bezpecnostna_politika-slovensko_v_ramci_boja_proti_terorizmu\" title=\"Slovensko v r\xC3\xA1mci boja proti terorizmu\">Slovensko v r\xC3\xA1mci boja proti terorizmu</a></li>\n\
+      <li id=\"lisublinkbezpecnostna_politika-rt_civilny_krizovy_manazment\" class=\"liSubOut\"><a id=\"sublinkbezpecnostna_politika-rt_civilny_krizovy_manazment\" href=\"/sk/zahranicna__politika/bezpecnostna_politika-rt_civilny_krizovy_manazment\" title=\"Civiln\xC3\xBD kr\xC3\xADzov\xC3\xBD mana\xC5\xBEment a vysielanie civiln\xC3\xBDch expertov do aktiv\xC3\xADt kr\xC3\xADzov\xC3\xA9ho mana\xC5\xBEmentu v zahrani\xC4\x8D\xC3\xAD\">Civiln\xC3\xBD kr\xC3\xADzov\xC3\xBD mana\xC5\xBEment a vysielanie civiln\xC3\xBDch expertov do aktiv\xC3\xADt kr\xC3\xADzov\xC3\xA9ho mana\xC5\xBEmentu v zahrani\xC4\x8D\xC3\xAD</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuoficialna_rozvojova_pomoc\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('suboficialna_rozvojova_pomoc','menuoficialna_rozvojova_pomoc');\" title=\"Ofici\xC3\xA1lna rozvojov\xC3\xA1 pomoc\">Ofici\xC3\xA1lna rozvojov\xC3\xA1 pomoc</span></li></ul>\n\
+      <div class=\"submenu\" id=\"suboficialna_rozvojova_pomoc\" style=\"display:block;\"><ul><li id=\"lisublinkoficialna_rozvojova_pomoc-aktuality\" class=\"liSubOut\"><a id=\"sublinkoficialna_rozvojova_pomoc-aktuality\" href=\"/sk/zahranicna__politika/oficialna_rozvojova_pomoc-aktuality\" title=\"Aktuality\">Aktuality</a></li>\n\
+      <li id=\"lisublinkoficialna_rozvojova_pomoc-slovenska_rozvojova_pomoc\" class=\"liSubOut\"><a id=\"sublinkoficialna_rozvojova_pomoc-slovenska_rozvojova_pomoc\" href=\"/sk/zahranicna__politika/oficialna_rozvojova_pomoc-slovenska_rozvojova_pomoc\" title=\"Slovensk\xC3\xA1 rozvojov\xC3\xA1 pomoc\">Slovensk\xC3\xA1 rozvojov\xC3\xA1 pomoc</a></li>\n\
+      <li id=\"lisublinkoficialna_rozvojova_pomoc-rozvojova_politika_eu\" class=\"liSubOut\"><a id=\"sublinkoficialna_rozvojova_pomoc-rozvojova_politika_eu\" href=\"/sk/zahranicna__politika/oficialna_rozvojova_pomoc-rozvojova_politika_eu\" title=\"Rozvojov\xC3\xA1 politika E\xC3\x9A\">Rozvojov\xC3\xA1 politika E\xC3\x9A</a></li>\n\
+      <li id=\"lisublinkoficialna_rozvojova_pomoc-partneri\" class=\"liSubOut\"><a id=\"sublinkoficialna_rozvojova_pomoc-partneri\" href=\"/sk/zahranicna__politika/oficialna_rozvojova_pomoc-partneri\" title=\"Partneri\">Partneri</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuludske_prava\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subludske_prava','menuludske_prava');\" title=\"\xC4\xBDudsk\xC3\xA9 pr\xC3\xA1va\">\xC4\xBDudsk\xC3\xA9 pr\xC3\xA1va</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subludske_prava\" style=\"display:block;\"><ul><li id=\"lisublinkludske_prava-ludske_prava__aktualne_spravy\" class=\"liSubOut\"><a id=\"sublinkludske_prava-ludske_prava__aktualne_spravy\" href=\"/sk/zahranicna__politika/ludske_prava-ludske_prava__aktualne_spravy\" title=\"Aktu\xC3\xA1lne spr\xC3\xA1vy\">Aktu\xC3\xA1lne spr\xC3\xA1vy</a></li>\n\
+      <li id=\"lisublinkludske_prava-odbor_ludskych_prav_a_rady_europy\" class=\"liSubOut\"><a id=\"sublinkludske_prava-odbor_ludskych_prav_a_rady_europy\" href=\"/sk/zahranicna__politika/ludske_prava-odbor_ludskych_prav_a_rady_europy\" title=\"Odbor \xC4\xBEudsk\xC3\xBDch pr\xC3\xA1v\">Odbor \xC4\xBEudsk\xC3\xBDch pr\xC3\xA1v</a></li>\n\
+      <li id=\"lisublinkludske_prava-ludske_prava_ocami_deti\" class=\"liSubOut\"><a id=\"sublinkludske_prava-ludske_prava_ocami_deti\" href=\"/sk/zahranicna__politika/ludske_prava-ludske_prava_ocami_deti\" title=\"\xC4\xBDudsk\xC3\xA9 pr\xC3\xA1va o\xC4\x8Dami det\xC3\xAD\">\xC4\xBDudsk\xC3\xA9 pr\xC3\xA1va o\xC4\x8Dami det\xC3\xAD</a></li>\n\
+      <li id=\"lisublinkludske_prava-kam_sa_obratit_v_pripade_porusenia_ludskych_prav\" class=\"liSubOut\"><a id=\"sublinkludske_prava-kam_sa_obratit_v_pripade_porusenia_ludskych_prav\" href=\"/sk/zahranicna__politika/ludske_prava-kam_sa_obratit_v_pripade_porusenia_ludskych_prav\" title=\"Kam sa obr\xC3\xA1ti\xC5\xA5 v pr\xC3\xADpade poru\xC5\xA1enia \xC4\xBEudsk\xC3\xBDch pr\xC3\xA1v\">Kam sa obr\xC3\xA1ti\xC5\xA5 v pr\xC3\xADpade poru\xC5\xA1enia \xC4\xBEudsk\xC3\xBDch pr\xC3\xA1v</a></li>\n\
+      <li id=\"lisublinkludske_prava-dolezite_dokumenty_a_ludskopravne_organy\" class=\"liSubOut\"><a id=\"sublinkludske_prava-dolezite_dokumenty_a_ludskopravne_organy\" href=\"/sk/zahranicna__politika/ludske_prava-dolezite_dokumenty_a_ludskopravne_organy\" title=\"D\xC3\xB4le\xC5\xBEit\xC3\xA9 dokumenty a \xC4\xBEudskopr\xC3\xA1vne org\xC3\xA1ny\">D\xC3\xB4le\xC5\xBEit\xC3\xA9 dokumenty a \xC4\xBEudskopr\xC3\xA1vne org\xC3\xA1ny</a></li>\n\
+      <li id=\"lisublinkludske_prava-implementacne_spravy_k_ludskopravnym_dohovorom\" class=\"liSubOut\"><a id=\"sublinkludske_prava-implementacne_spravy_k_ludskopravnym_dohovorom\" href=\"/sk/zahranicna__politika/ludske_prava-implementacne_spravy_k_ludskopravnym_dohovorom\" title=\"Implementa\xC4\x8Dn\xC3\xA9 spr\xC3\xA1vy k \xC4\xBEudskopr\xC3\xA1vnym dohovorom\">Implementa\xC4\x8Dn\xC3\xA9 spr\xC3\xA1vy k \xC4\xBEudskopr\xC3\xA1vnym dohovorom</a></li>\n\
+      <li id=\"lisublinkludske_prava-narodnostne_mensiny_a_ochrana_mensinovych_jazykov\" class=\"liSubOut\"><a id=\"sublinkludske_prava-narodnostne_mensiny_a_ochrana_mensinovych_jazykov\" href=\"/sk/zahranicna__politika/ludske_prava-narodnostne_mensiny_a_ochrana_mensinovych_jazykov\" title=\"N\xC3\xA1rodnostn\xC3\xA9 men\xC5\xA1iny a ochrana men\xC5\xA1inov\xC3\xBDch jazykov\">N\xC3\xA1rodnostn\xC3\xA9 men\xC5\xA1iny a ochrana men\xC5\xA1inov\xC3\xBDch jazykov</a></li>\n\
+      <li id=\"lisublinkludske_prava-pracovna_skupina_pre_medzinarodnu_spolupracu_v_oblasti_vzdelavania_zachovania_pamiatky_a_vyskumu_holokaustu__itf\" class=\"liSubOut\"><a id=\"sublinkludske_prava-pracovna_skupina_pre_medzinarodnu_spolupracu_v_oblasti_vzdelavania_zachovania_pamiatky_a_vyskumu_holokaustu__itf\" href=\"/sk/zahranicna__politika/ludske_prava-pracovna_skupina_pre_medzinarodnu_spolupracu_v_oblasti_vzdelavania_zachovania_pamiatky_a_vyskumu_holokaustu__itf\" title=\"Pracovn\xC3\xA1 skupina pre medzin\xC3\xA1rodn\xC3\xBA spolupr\xC3\xA1cu v oblasti vzdel\xC3\xA1vania, zachovania pamiatky a v\xC3\xBDskumu holokaustu - ITF\">Pracovn\xC3\xA1 skupina pre medzin\xC3\xA1rodn\xC3\xBA spolupr\xC3\xA1cu v oblasti vzdel\xC3\xA1vania, zachovania pamiatky a v\xC3\xBDskumu holokaustu - ITF</a></li>\n\
+      <li id=\"lisublinkludske_prava-rada_europy\" class=\"liSubOut\"><a id=\"sublinkludske_prava-rada_europy\" href=\"/sk/zahranicna__politika/ludske_prava-rada_europy\" title=\"Rada Eur\xC3\xB3py\">Rada Eur\xC3\xB3py</a></li>\n\
+      <li id=\"lisublinkludske_prava-rada_osn_pre_ludske_prava\" class=\"liSubOut\"><a id=\"sublinkludske_prava-rada_osn_pre_ludske_prava\" href=\"/sk/zahranicna__politika/ludske_prava-rada_osn_pre_ludske_prava\" title=\"Rada OSN pre \xC4\xBEudsk\xC3\xA9 pr\xC3\xA1va\">Rada OSN pre \xC4\xBEudsk\xC3\xA9 pr\xC3\xA1va</a></li>\n\
+      <li id=\"lisublinkludske_prava-obse\" class=\"liSubOut\"><a id=\"sublinkludske_prava-obse\" href=\"/sk/zahranicna__politika/ludske_prava-obse\" title=\"OBSE\">OBSE</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menumedzinarodne_pravo\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('submedzinarodne_pravo','menumedzinarodne_pravo');\" title=\"Medzin\xC3\xA1rodn\xC3\xA9 pr\xC3\xA1vo\">Medzin\xC3\xA1rodn\xC3\xA9 pr\xC3\xA1vo</span></li></ul>\n\
+      <div class=\"submenu\" id=\"submedzinarodne_pravo\" style=\"display:block;\"><ul><li id=\"lisublinkmedzinarodne_pravo-vybor_pre_medzinarodne_humanitarne_pravo\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_pravo-vybor_pre_medzinarodne_humanitarne_pravo\" href=\"/sk/zahranicna__politika/medzinarodne_pravo-vybor_pre_medzinarodne_humanitarne_pravo\" title=\"V\xC3\xBDbor pre medzin\xC3\xA1rodn\xC3\xA9 humanit\xC3\xA1rne pr\xC3\xA1vo\">V\xC3\xBDbor pre medzin\xC3\xA1rodn\xC3\xA9 humanit\xC3\xA1rne pr\xC3\xA1vo</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_pravo-statut_a_zoznam_clenov\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_pravo-statut_a_zoznam_clenov\" href=\"/sk/zahranicna__politika/medzinarodne_pravo-statut_a_zoznam_clenov\" title=\"\xC5\xA0tat\xC3\xBAt a zoznam \xC4\x8Dlenov\">\xC5\xA0tat\xC3\xBAt a zoznam \xC4\x8Dlenov</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menumedzinarodne_zmluvy\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('submedzinarodne_zmluvy','menumedzinarodne_zmluvy');\" title=\"Medzin\xC3\xA1rodn\xC3\xA9 zmluvy\">Medzin\xC3\xA1rodn\xC3\xA9 zmluvy</span></li></ul>\n\
+      <div class=\"submenu\" id=\"submedzinarodne_zmluvy\" style=\"display:block;\"><ul><li id=\"lisublinkmedzinarodne_zmluvy-vsetky_zmluvy\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-vsetky_zmluvy\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-vsetky_zmluvy\" title=\"V\xC5\xA1etky zmluvy\">V\xC5\xA1etky zmluvy</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-zoznam_zmluv_podla_statov\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-zoznam_zmluv_podla_statov\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-zoznam_zmluv_podla_statov\" title=\"Zoznam zml\xC3\xBAv pod\xC4\xBEa \xC5\xA1t\xC3\xA1tov\">Zoznam zml\xC3\xBAv pod\xC4\xBEa \xC5\xA1t\xC3\xA1tov</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-zoznam_podla_medzinarodnych_organizacii\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-zoznam_podla_medzinarodnych_organizacii\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-zoznam_podla_medzinarodnych_organizacii\" title=\"Zoznam pod\xC4\xBEa medzin\xC3\xA1rodn\xC3\xBDch organiz\xC3\xA1ci\xC3\xAD\">Zoznam pod\xC4\xBEa medzin\xC3\xA1rodn\xC3\xBDch organiz\xC3\xA1ci\xC3\xAD</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-zmluvy_podla_rokov\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-zmluvy_podla_rokov\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-zmluvy_podla_rokov\" title=\"Zmluvy pod\xC4\xBEa rokov\">Zmluvy pod\xC4\xBEa rokov</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-zmluvy_podla_predmetu\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-zmluvy_podla_predmetu\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-zmluvy_podla_predmetu\" title=\"Zmluvy pod\xC4\xBEa predmetu\">Zmluvy pod\xC4\xBEa predmetu</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-dvojstranne_medzinarodne_zmluvy\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-dvojstranne_medzinarodne_zmluvy\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-dvojstranne_medzinarodne_zmluvy\" title=\"Dvojstrann\xC3\xA9 medzin\xC3\xA1rodn\xC3\xA9 zmluvy\">Dvojstrann\xC3\xA9 medzin\xC3\xA1rodn\xC3\xA9 zmluvy</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-mnohostranne_medzinarodne_zmluvy\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-mnohostranne_medzinarodne_zmluvy\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-mnohostranne_medzinarodne_zmluvy\" title=\"Mnohostrann\xC3\xA9 medzin\xC3\xA1rodn\xC3\xA9 zmluvy\">Mnohostrann\xC3\xA9 medzin\xC3\xA1rodn\xC3\xA9 zmluvy</a></li>\n\
+      <li id=\"lisublinkmedzinarodne_zmluvy-rozsirene_vyhladavanie\" class=\"liSubOut\"><a id=\"sublinkmedzinarodne_zmluvy-rozsirene_vyhladavanie\" href=\"/sk/zahranicna__politika/medzinarodne_zmluvy-rozsirene_vyhladavanie\" title=\"Roz\xC5\xA1\xC3\xADren\xC3\xA9 vyh\xC4\xBEad\xC3\xA1vanie\">Roz\xC5\xA1\xC3\xADren\xC3\xA9 vyh\xC4\xBEad\xC3\xA1vanie</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuslovensko_v_osn\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subslovensko_v_osn','menuslovensko_v_osn');\" title=\"Slovensko v OSN\">Slovensko v OSN</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subslovensko_v_osn\" style=\"display:block;\"><ul><li id=\"lisublinkslovensko_v_osn-aktualne_spravy_sr_a_osn\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-aktualne_spravy_sr_a_osn\" href=\"/sk/zahranicna__politika/slovensko_v_osn-aktualne_spravy_sr_a_osn\" title=\"Aktu\xC3\xA1lne spr\xC3\xA1vy\">Aktu\xC3\xA1lne spr\xC3\xA1vy</a></li>\n\
+      <li id=\"lisublinkslovensko_v_osn-uvod_k_osn\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-uvod_k_osn\" href=\"/sk/zahranicna__politika/slovensko_v_osn-uvod_k_osn\" title=\"\xC3\x9Avod\">\xC3\x9Avod</a></li>\n\
+      <li id=\"lisublinkslovensko_v_osn-sr_v_osn\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-sr_v_osn\" href=\"/sk/zahranicna__politika/slovensko_v_osn-sr_v_osn\" title=\"SR v OSN\">SR v OSN</a></li>\n\
+      <li id=\"lisublinkslovensko_v_osn-slovensko_v_unesco\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-slovensko_v_unesco\" href=\"/sk/zahranicna__politika/slovensko_v_osn-slovensko_v_unesco\" title=\"Slovensko v UNESCO\">Slovensko v UNESCO</a></li>\n\
+      <li id=\"lisublinkslovensko_v_osn-specializovane_a_odborne_organizacie_systemu_osn_a_mimo_neho\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-specializovane_a_odborne_organizacie_systemu_osn_a_mimo_neho\" href=\"/sk/zahranicna__politika/slovensko_v_osn-specializovane_a_odborne_organizacie_systemu_osn_a_mimo_neho\" title=\"\xC5\xA0pecializovan\xC3\xA9 a odborn\xC3\xA9 organiz\xC3\xA1cie syst\xC3\xA9mu OSN a mimo neho\">\xC5\xA0pecializovan\xC3\xA9 a odborn\xC3\xA9 organiz\xC3\xA1cie syst\xC3\xA9mu OSN a mimo neho</a></li>\n\
+      <li id=\"lisublinkslovensko_v_osn-narodne_skusky_osn\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-narodne_skusky_osn\" href=\"/sk/zahranicna__politika/slovensko_v_osn-narodne_skusky_osn\" title=\"N\xC3\xA1rodn\xC3\xA9 sk\xC3\xBA\xC5\xA1ky OSN\">N\xC3\xA1rodn\xC3\xA9 sk\xC3\xBA\xC5\xA1ky OSN</a></li>\n\
+      <li id=\"lisublinkslovensko_v_osn-priority_sr_na_68_zasadnuti_valneho_zhromazdenia_osn\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_osn-priority_sr_na_68_zasadnuti_valneho_zhromazdenia_osn\" href=\"/sk/zahranicna__politika/slovensko_v_osn-priority_sr_na_68_zasadnuti_valneho_zhromazdenia_osn\" title=\"Priority SR na 68. zasadnut\xC3\xAD Valn\xC3\xA9ho zhroma\xC5\xBEdenia OSN\">Priority SR na 68. zasadnut\xC3\xAD Valn\xC3\xA9ho zhroma\xC5\xBEdenia OSN</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuslovensko_v_unesco\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subslovensko_v_unesco','menuslovensko_v_unesco');\" title=\"Slovensko v UNESCO\">Slovensko v UNESCO</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subslovensko_v_unesco\" style=\"display:block;\"><ul><li id=\"lisublinkslovensko_v_unesco-skolstvo\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_unesco-skolstvo\" href=\"/sk/zahranicna__politika/slovensko_v_unesco-skolstvo\" title=\"\xC5\xA0kolstvo\">\xC5\xA0kolstvo</a></li>\n\
+      <li id=\"lisublinkslovensko_v_unesco-kultura\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_unesco-kultura\" href=\"/sk/zahranicna__politika/slovensko_v_unesco-kultura\" title=\"Kult\xC3\xBAra\">Kult\xC3\xBAra</a></li>\n\
+      <li id=\"lisublinkslovensko_v_unesco-veda\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_unesco-veda\" href=\"/sk/zahranicna__politika/slovensko_v_unesco-veda\" title=\"Veda\">Veda</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuslovensko_v_nato\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subslovensko_v_nato','menuslovensko_v_nato');\" title=\"Slovensko v NATO\">Slovensko v NATO</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subslovensko_v_nato\" style=\"display:block;\"><ul><li id=\"lisublinkslovensko_v_nato-o_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-o_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-o_nato\" title=\"O NATO\">O NATO</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-cesta_slovenska_do_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-cesta_slovenska_do_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-cesta_slovenska_do_nato\" title=\"Cesta Slovenska do NATO\">Cesta Slovenska do NATO</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-co_sme_ziskali_vstupom_do_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-co_sme_ziskali_vstupom_do_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-co_sme_ziskali_vstupom_do_nato\" title=\"\xC4\x8Co sme z\xC3\xADskali vstupom do NATO?\">\xC4\x8Co sme z\xC3\xADskali vstupom do NATO?</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-slovensko_v_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-slovensko_v_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-slovensko_v_nato\" title=\"Slovensko v NATO\">Slovensko v NATO</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-ucast_slovenska_v_mierovych_operaciach_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-ucast_slovenska_v_mierovych_operaciach_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-ucast_slovenska_v_mierovych_operaciach_nato\" title=\"\xC3\x9A\xC4\x8Das\xC5\xA5 Slovenska v mierov\xC3\xBDch oper\xC3\xA1ci\xC3\xA1ch NATO\">\xC3\x9A\xC4\x8Das\xC5\xA5 Slovenska v mierov\xC3\xBDch oper\xC3\xA1ci\xC3\xA1ch NATO</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-spolupraca_nato_s_partnerskymi_krajinami\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-spolupraca_nato_s_partnerskymi_krajinami\" href=\"/sk/zahranicna__politika/slovensko_v_nato-spolupraca_nato_s_partnerskymi_krajinami\" title=\"Spolupr\xC3\xA1ca NATO s partnersk\xC3\xBDmi krajinami\">Spolupr\xC3\xA1ca NATO s partnersk\xC3\xBDmi krajinami</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-slovensko_a_nato\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-slovensko_a_nato\" href=\"/sk/zahranicna__politika/slovensko_v_nato-slovensko_a_nato\" title=\"Aktu\xC3\xA1lne spr\xC3\xA1vy\">Aktu\xC3\xA1lne spr\xC3\xA1vy</a></li>\n\
+      <li id=\"lisublinkslovensko_v_nato-stala_delegacia_sr_pri_nato_v_bruseli\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_nato-stala_delegacia_sr_pri_nato_v_bruseli\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/ID_CACD708CB9D56CF2C125763500336AEF_SK&amp;OpenDocument=Y&amp;LANG=SK&amp;MENU=slovenske_zastupitelstva-vsetky_zastupitelstva&amp;TG=BlankMaster&amp;URL=/App/QMSOrgDirSk.nsf/(vw_ByID)/C1257031003758C6C125703100376D5D\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/www.mzv.sk/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/ID_CACD708CB9D56CF2C125763500336AEF_SK&amp;OpenDocument=Y&amp;LANG=SK&amp;MENU=slovenske_zastupitelstva-vsetky_zastupitelstva&amp;TG=BlankMaster&amp;URL=/App/QMSOrgDirSk.nsf/(vw_ByID)/C1257031003758C6C125703100376D5D');\" title=\"St\xC3\xA1la deleg\xC3\xA1cia SR pri NATO v Bruseli\">St\xC3\xA1la deleg\xC3\xA1cia SR pri NATO v Bruseli</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuslovensko_v_obse\" class=\"liMenuOut\"><a id=\"menulinkslovensko_v_obse\" href=\"/sk/zahranicna__politika/slovensko_v_obse\" title=\"Slovensko v OBSE\">Slovensko v OBSE</a></li></ul>\n\
+      <ul><li id=\"menuludske_prava-rada_europy\" class=\"liMenuOut\"><a id=\"menulinkludske_prava-rada_europy\" href=\"/sk/zahranicna__politika/ludske_prava-rada_europy\" title=\"Slovensko v Rade Eur\xC3\xB3py\">Slovensko v Rade Eur\xC3\xB3py</a></li></ul>\n\
+      <ul><li id=\"menuslovensko_v_oecd\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subslovensko_v_oecd','menuslovensko_v_oecd');\" title=\"Slovensko v OECD\">Slovensko v OECD</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subslovensko_v_oecd\" style=\"display:block;\"><ul><li id=\"lisublinkslovensko_v_oecd-aktualne_spravy_sr_v_oecd\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-aktualne_spravy_sr_v_oecd\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-aktualne_spravy_sr_v_oecd\" title=\"Aktu\xC3\xA1lne spr\xC3\xA1vy SR v OECD\">Aktu\xC3\xA1lne spr\xC3\xA1vy SR v OECD</a></li>\n\
+      <li id=\"lisublinkslovensko_v_oecd-oecd_v_skratke\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-oecd_v_skratke\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-oecd_v_skratke\" title=\"OECD v skratke\">OECD v skratke</a></li>\n\
+      <li id=\"lisublinkslovensko_v_oecd-clenstvo_sr_v_oecd\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-clenstvo_sr_v_oecd\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-clenstvo_sr_v_oecd\" title=\"\xC4\x8Clenstvo SR v OECD\">\xC4\x8Clenstvo SR v OECD</a></li>\n\
+      <li id=\"lisublinkslovensko_v_oecd-spolocne_projekty_slovenska_a_oecd\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-spolocne_projekty_slovenska_a_oecd\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-spolocne_projekty_slovenska_a_oecd\" title=\"Spolo\xC4\x8Dn\xC3\xA9 projekty Slovenska a OECD\">Spolo\xC4\x8Dn\xC3\xA9 projekty Slovenska a OECD</a></li>\n\
+      <li id=\"lisublinkslovensko_v_oecd-vybrane_publikacie_oecd\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-vybrane_publikacie_oecd\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-vybrane_publikacie_oecd\" title=\"Vybran\xC3\xA9 publik\xC3\xA1cie OECD\">Vybran\xC3\xA9 publik\xC3\xA1cie OECD</a></li>\n\
+      <li id=\"lisublinkslovensko_v_oecd-dokumenty\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-dokumenty\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-dokumenty\" title=\"Dokumenty\">Dokumenty</a></li>\n\
+      <li id=\"lisublinkslovensko_v_oecd-linky\" class=\"liSubOut\"><a id=\"sublinkslovensko_v_oecd-linky\" href=\"/sk/zahranicna__politika/slovensko_v_oecd-linky\" title=\"Linky\">Linky</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuslovensko_a_v4\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subslovensko_a_v4','menuslovensko_a_v4');\" title=\"Slovensko a V4\">Slovensko a V4</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subslovensko_a_v4\" style=\"display:block;\"><ul><li id=\"lisublinkslovensko_a_v4-slovenske_predsednictvo_v4\" class=\"liSubOut\"><a id=\"sublinkslovensko_a_v4-slovenske_predsednictvo_v4\" href=\"/sk/zahranicna__politika/slovensko_a_v4-slovenske_predsednictvo_v4\" title=\"Slovensk\xC3\xA9 predsedn\xC3\xADctvo V4\">Slovensk\xC3\xA9 predsedn\xC3\xADctvo V4</a></li>\n\
+      <li id=\"lisublinkslovensko_a_v4-slovensko_a_v4\" class=\"liSubOut\"><a id=\"sublinkslovensko_a_v4-slovensko_a_v4\" href=\"/sk/zahranicna__politika/slovensko_a_v4-slovensko_a_v4\" title=\"Aktu\xC3\xA1lne spr\xC3\xA1vy\">Aktu\xC3\xA1lne spr\xC3\xA1vy</a></li>\n\
+      <li id=\"lisublinkslovensko_a_v4-vysehradska_skupina\" class=\"liSubOut\"><a id=\"sublinkslovensko_a_v4-vysehradska_skupina\" href=\"/sk/zahranicna__politika/slovensko_a_v4-vysehradska_skupina\" title=\"Vy\xC5\xA1ehradsk\xC3\xA1 skupina\">Vy\xC5\xA1ehradsk\xC3\xA1 skupina</a></li>\n\
+      <li id=\"lisublinkslovensko_a_v4-medzinarodny_vysehradsky_fond\" class=\"liSubOut\"><a id=\"sublinkslovensko_a_v4-medzinarodny_vysehradsky_fond\" href=\"/sk/zahranicna__politika/slovensko_a_v4-medzinarodny_vysehradsky_fond\" title=\"Medzin\xC3\xA1rodn\xC3\xBD vy\xC5\xA1ehradsk\xC3\xBD fond\">Medzin\xC3\xA1rodn\xC3\xBD vy\xC5\xA1ehradsk\xC3\xBD fond</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuregionalna_spolupraca\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subregionalna_spolupraca','menuregionalna_spolupraca');\" title=\"Region\xC3\xA1lna spolupr\xC3\xA1ca\">Region\xC3\xA1lna spolupr\xC3\xA1ca</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subregionalna_spolupraca\" style=\"display:block;\"><ul><li id=\"lisublinkregionalna_spolupraca-stredoeuropska_iniciativa\" class=\"liSubOut\"><a id=\"sublinkregionalna_spolupraca-stredoeuropska_iniciativa\" href=\"/sk/zahranicna__politika/regionalna_spolupraca-stredoeuropska_iniciativa\" title=\"Stredoeur\xC3\xB3pska iniciat\xC3\xADva\">Stredoeur\xC3\xB3pska iniciat\xC3\xADva</a></li>\n\
+      <li id=\"lisublinkregionalna_spolupraca-slovenskoceske_diskusne_forum\" class=\"liSubOut\"><a id=\"sublinkregionalna_spolupraca-slovenskoceske_diskusne_forum\" href=\"/sk/zahranicna__politika/regionalna_spolupraca-slovenskoceske_diskusne_forum\" title=\"Slovensko-\xC4\x8Desk\xC3\xA9 diskusn\xC3\xA9 f\xC3\xB3rum\">Slovensko-\xC4\x8Desk\xC3\xA9 diskusn\xC3\xA9 f\xC3\xB3rum</a></li>\n\
+      <li id=\"lisublinkregionalna_spolupraca-slovenskopolske_diskusne_forum\" class=\"liSubOut\"><a id=\"sublinkregionalna_spolupraca-slovenskopolske_diskusne_forum\" href=\"/sk/zahranicna__politika/regionalna_spolupraca-slovenskopolske_diskusne_forum\" title=\"Slovensko-po\xC4\xBEsk\xC3\xA9 diskusn\xC3\xA9 f\xC3\xB3rum\">Slovensko-po\xC4\xBEsk\xC3\xA9 diskusn\xC3\xA9 f\xC3\xB3rum</a></li>\n\
+      <li id=\"lisublinkregionalna_spolupraca-rt_slovenskonemecka_reflexna_skupina\" class=\"liSubOut\"><a id=\"sublinkregionalna_spolupraca-rt_slovenskonemecka_reflexna_skupina\" href=\"/sk/zahranicna__politika/regionalna_spolupraca-rt_slovenskonemecka_reflexna_skupina\" title=\"Slovensko-nemeck\xC3\xA1 reflexn\xC3\xA1 skupina\">Slovensko-nemeck\xC3\xA1 reflexn\xC3\xA1 skupina</a></li>\n\
+      <li id=\"lisublinkregionalna_spolupraca-slovenskomadarske_diskusne_forum\" class=\"liSubOut\"><a id=\"sublinkregionalna_spolupraca-slovenskomadarske_diskusne_forum\" href=\"/sk/zahranicna__politika/regionalna_spolupraca-slovenskomadarske_diskusne_forum\" title=\"Slovensko-ma\xC4\x8Farsk\xC3\xA9 diskusn\xC3\xA9 f\xC3\xB3rum\">Slovensko-ma\xC4\x8Farsk\xC3\xA9 diskusn\xC3\xA9 f\xC3\xB3rum</a></li>\n\
+      </ul></div>\n\
+      <ul><li id=\"menuprehlad_medzinarodnych_organizacii_a_zoskupeni\" class=\"liMenuOut\"><a id=\"menulinkprehlad_medzinarodnych_organizacii_a_zoskupeni\" href=\"/sk/zahranicna__politika/prehlad_medzinarodnych_organizacii_a_zoskupeni\" title=\"Preh\xC4\xBEad medzin\xC3\xA1rodn\xC3\xBDch organiz\xC3\xA1ci\xC3\xAD a zoskupen\xC3\xAD\">Preh\xC4\xBEad medzin\xC3\xA1rodn\xC3\xBDch organiz\xC3\xA1ci\xC3\xAD a zoskupen\xC3\xAD</a></li></ul>\n\
+      <ul><li id=\"menubikomunitny_dialog\" class=\"liMenuActive\"><span onClick=\"SwitchMenu('subbikomunitny_dialog','menubikomunitny_dialog');\" title=\"Bikomunitn\xC3\xBD dial\xC3\xB3g\">Bikomunitn\xC3\xBD dial\xC3\xB3g</span></li></ul>\n\
+      <div class=\"submenu\" id=\"subbikomunitny_dialog\" style=\"display:block;\"><ul><li id=\"lisublinkbikomunitny_dialog-bikomunitny_dialog_na_cypre\" class=\"liSubOut\"><a id=\"sublinkbikomunitny_dialog-bikomunitny_dialog_na_cypre\" href=\"/sk/zahranicna__politika/bikomunitny_dialog-bikomunitny_dialog_na_cypre\" title=\"Bikomunitn\xC3\xBD dial\xC3\xB3g na Cypre\">Bikomunitn\xC3\xBD dial\xC3\xB3g na Cypre</a></li>\n\
+      <li id=\"lisublinkbikomunitny_dialog-obrazova_cast_z_rokovani_a_z_konkretnych_aktivit\" class=\"liSubOut\"><a id=\"sublinkbikomunitny_dialog-obrazova_cast_z_rokovani_a_z_konkretnych_aktivit\" href=\"/sk/zahranicna__politika/bikomunitny_dialog-obrazova_cast_z_rokovani_a_z_konkretnych_aktivit\" title=\"Obrazov\xC3\xA1 \xC4\x8Das\xC5\xA5 z rokovan\xC3\xAD a z konkr\xC3\xA9tnych aktiv\xC3\xADt\">Obrazov\xC3\xA1 \xC4\x8Das\xC5\xA5 z rokovan\xC3\xAD a z konkr\xC3\xA9tnych aktiv\xC3\xADt</a></li>\n\
+      </ul></div>\n\
+      </div>\n\
+      <!-- Menu end -->\n\
+      \t\t\t\t<script type=\"text/javascript\">\n\
+      \tCollapseMenu();\n\
+      \tSelectMenu();\n\
+      </script>\n\
+      \t\t\t\t<br><DIV id=\"labelToolCountryByContinent\" style=\"padding-left: 0.2em;\">\n\
+      <FORM name=\"_frm_WWW_GetCountryByContinent\" action=\"/App/WCM/main.nsf/frm_WWW_GetCountryByContinent?CreateDocument\" method=\"post\">\n\
+      \t<DIV id=\"labelToolCountryByContinentMainBoxLeft\">\n\
+      \t\t<DIV style=\"top: 40px;\">\n\
+      \t\t<SELECT name=\"fldContinentTool\" id=\"fldSearchCountryByContinent\">\n\
+      \t\t<OPTION SELECTED >Vyberte svetadiel</OPTION><OPTION>Afrika</OPTION><OPTION>Amerika</OPTION><OPTION>\xC3\x81zia</OPTION><OPTION>Austr\xC3\xA1lia</OPTION><OPTION>Eur\xC3\xB3pa</OPTION>\n\
+      \t\t</SELECT><BUTTON type=\"submit\" id=\"btContryByContinent\" title=\"Zobrazi\xC5\xA5\">Zobrazi\xC5\xA5</BUTTON>\n\
+      \t\t</DIV>\n\
+      \t</DIV>\n\
+      </FORM>\n\
+      </DIV><br>\n\
+      <!-- hide the domino generated submit button -->\n\
+      \t\t\t\t</div>\n\
+      \t\t\t\t<div id=\"content2\"><a name=\"PageContent\"></a>\n\
+      \t\t\t\t\t\n\n\
+      <div id=\"pageTitle\" class=\"divMainTitle\" style=\"background-image: url(/App/WCM/main.nsf/vw_ByID/ID_CBD8133233D1ABDDC125762B003B2362_SK/$File/page_title_background.gif); background-repeat: repeat-y;\"><h2>V\xC5\xA1etky zmluvy</h2></div><div id=\"mainContent\">\n\
+      <div style=\"text-align: justify;\">\n\
+      <p><span class=\"document\"><img src=\"/App/wcm/media.nsf/icon_pdf.gif?OpenImageResource\" border=\"0\" alt=\"pdf\">&nbsp;<a href=\"/App/wcm/media.nsf/vw_ByID/ID_D884B02298DE67EBC12576810032AA84_SK/$File/pravidla_pre_uzatvaranie_medzinarodnych_zmluv.pdf\" title=\"Pravidl\xC3\xA1 pre uzatv\xC3\xA1ranie medzin\xC3\xA1rodn\xC3\xBDch zml\xC3\xBAv a zmluvn\xC3\xBA prax\">Pravidl\xC3\xA1 pre uzatv\xC3\xA1ranie medzin\xC3\xA1rodn\xC3\xBDch zml\xC3\xBAv a zmluvn\xC3\xBA prax</a>&nbsp;&nbsp;(pdf; 269,36 kB)</span><br>\n\
+      <br>\n\
+      <span class=\"document\"><img src=\"/App/wcm/media.nsf/icon_pdf.gif?OpenImageResource\" border=\"0\" alt=\"pdf\">&nbsp;<a href=\"/App/wcm/media.nsf/vw_ByID/ID_43D09204896B2EAEC12576810032EBDF_SK/$File/metodicky_pokyn.pdf\" title=\"Metodick\xC3\xBD pokyn na vykonanie Pravidiel pre uzatv\xC3\xA1ranie medzin\xC3\xA1rodn\xC3\xBDch zml\xC3\xBAv\">Metodick\xC3\xBD pokyn na vykonanie Pravidiel pre uzatv\xC3\xA1ranie medzin\xC3\xA1rodn\xC3\xBDch zml\xC3\xBAv</a>&nbsp;&nbsp;(pdf; 274,61 kB)</span><br>\n\
+      <br>\n\
+      <h3>Inform\xC3\xA1cie uveden\xC3\xA9 v tomto zozname medzin\xC3\xA1rodn\xC3\xBDch zml\xC3\xBAv maj\xC3\xBA len informat\xC3\xADvny charakter a nie s\xC3\xBA pou\xC5\xBEite\xC4\xBEn\xC3\xA9 pre pr\xC3\xA1vne \xC3\xBAkony !</h3><br>\n\
+      Texty uveden\xC3\xBDch medzin\xC3\xA1rodn\xC3\xBDch zml\xC3\xBAv s\xC3\xBA publikovan\xC3\xA9 v <a href=\"http://www.zbierka.sk/\"  target=\"_blank\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/www.zbierka.sk/');\" title=\"Elektronick\xC3\xA1 Zbierka z\xC3\xA1konov [nov\xC3\xA9 okno]\">Elektronickej Zbierke z\xC3\xA1konov</a>.<br>\n\
+      <br>\n\
+      <div class=\"paging\"><ul><li class=\"count\">Zmluvy:&nbsp;<b>19999981 - 20000000</b></li><li>Cho\xC4\x8F na stranu:&nbsp;&nbsp;&nbsp;</li><li class=\"list\"><A class=\"\" title=\"173\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=173\">173</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"174\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=174\">174</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"175\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=175\">175</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"176\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=176\">176</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"177\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=177\">177</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"178\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=178\">178</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"179\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=179\">179</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"180\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=180\">180</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"181\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=181\">181</A>\r\n\
+      </li></ul></div><div id=\"newsWrapperMain\"><table class=\"tableRT2\"><tr><th width=\"150\">D\xC3\xA1tum podpisu /<br>D\xC3\xA1tum nadobudnutia platnosti zmluvy</th><th>\xC3\x9Apln\xC3\xBD n\xC3\xA1zov zmluvy v slovenskom jazyku</th></tr></table></div><div class=\"paging\"><ul><li class=\"count\">Zmluvy:&nbsp;<b>19999981 - 20000000</b></li><li>Cho\xC4\x8F na stranu:&nbsp;&nbsp;&nbsp;</li><li class=\"list\"><A class=\"\" title=\"173\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=173\">173</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"174\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=174\">174</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"175\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=175\">175</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"176\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=176\">176</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"177\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=177\">177</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"178\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=178\">178</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"179\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=179\">179</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"180\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=180\">180</A>\r\n\
+      &nbsp;&nbsp;<A class=\"\" title=\"181\" href=\"/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&amp;TG=BlankMaster&amp;URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&amp;OpenDocument=Y&amp;LANG=SK&amp;PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=181\">181</A>\r\n\
+      </li></ul></div></div><br>\n\n\n\
+      <table width=\"100%\" id=\"pageNavigation\" style=\"float:left;\"><tr><td style=\"height: 60px;\"><table width=\"100%\"  style=\"border: 0; padding: 0; border:0;\"> \n  <tr>\n    <td style=\"background-image: url(/App/WCM/main.nsf/vw_ByID/ID_15860EC01AE88867C1257059003DF037_SK/$File/line_bkg.gif); background-repeat: repeat-x;\">&nbsp;</td>\n    <td width=\"24\" align=\"center\" valign=\"middle\"><a href=\"javascript:history.go(-1)\" style=\"cursor: pointer; cursor: hand;\" title=\"Sp\xC3\xA4\xC5\xA5\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_15F6356238238A09C1257059004AAA3C_SK/$File/navig_back_gray.gif\" name=\"back\" width=\"24\" height=\"20\" border=\"0\" alt=\"Sp\xC3\xA4\xC5\xA5\"></a></td>\n    <td width=\"6\" style=\"background-image: url(/App/WCM/main.nsf/vw_ByID/ID_15860EC01AE88867C1257059003DF037_SK/$File/line_bkg.gif); background-repeat: repeat-x;\">&nbsp;</td>\n    <td width=\"24\" align=\"center\" valign=\"middle\"><a href=\"#TopPage\" style=\"cursor: pointer; cursor: hand;\" title=\"Hore\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_4C86D14B83D97A67C1257068002C5F13_SK/$File/navig_toptop_gray.gif\" name=\"top\" width=\"24\" height=\"20\" border=\"0\" alt=\"Hore\"></a></td>\n    <td width=\"20\" height=\"20\" style=\"background-image: url(/App/WCM/main.nsf/vw_ByID/ID_15860EC01AE88867C1257059003DF037_SK/$File/line_bkg.gif); background-repeat: repeat-x;\">&nbsp;</td>\n  </tr>\n\
+      </table></td></tr></table>\n\
+      </div>\n\n\
+      \t\t\t\t</div>\n\
+      \t\t\t</div>\n\
+      \t\t</div>\n\
+      \t</div>\n\
+      \t<div id=\"l\"></div>\n\
+      \t<div id=\"m2\"></div>\n\
+      </div>\n\
+      <div id=\"footer\">\n\n\
+      <div style=\"text-align: left;\"><script type=\"text/javascript\">\n\
+      var el = document.getElementById('pageNavigation');\n\
+      var URL = location.href.substring(location.href.lastIndexOf('/')+1);\n\
+      if(URL == 'prehlad_ministerstvo' || URL == 'prehlad_aktuality' || URL == 'prehlad_cestovanie_a_konzularne_info' || URL == 'prehlad_zahranicna_politika' || URL == 'prehlad_podnikajme_v_zahranici' || URL == 'prehlad_kontakt' || URL == 'prehlad_europske_zalezitosti') el.style.display='none';\n\
+      </script>\n\
+      <table class=\"TableRT3\" width=\"100%\" border=\"1\">\n\
+      <tr valign=\"top\"><td width=\"100%\"><table><tr>\n\
+      <td class=\"tdLinks\">\n\
+      <div style=\"text-align: left;\">\n\
+      <table class=\"TableLinks\" border=\"1\">\n\
+      <tr valign=\"top\"><td width=\"33%\" width=\"416\">\n\
+      <p><a href=\"/sk/kontakt/prehlad_kontakt\"  title=\"Kontakt\">Kontakt</a></td><td width=\"25%\" width=\"416\"><a href=\"/sk/ministerstvo/slovenske_zastupitelstva-vsetky_zastupitelstva\"  title=\"Zastupite\xC4\xBEsk\xC3\xA9 \xC3\xBArady\">Zastupite\xC4\xBEsk\xC3\xA9 \xC3\xBArady</a></td><td width=\"40%\" width=\"416\"><a href=\"/sk/sluzby_obcanom/informacie_o_webovom_sidle\"  title=\"Inform\xC3\xA1cie o web s\xC3\xADdle\">Inform\xC3\xA1cie o web s\xC3\xADdle</a></td></tr>\n\n\
+      <tr valign=\"top\"><td width=\"416\"><a href=\"/sk/ministerstvo/kontakt_a_ako_nas_najdete\"  title=\"\xC3\x9Aradn\xC3\xA9 hodiny pre verejnos\xC5\xA5\">\xC3\x9Aradn\xC3\xA9 hodiny pre verejnos\xC5\xA5</a></td><td width=\"416\"><a href=\"/sk/cestovanie_a_konzularne_info/honorarne_konzulaty\"  title=\"Honor\xC3\xA1rne konzul\xC3\xA1ty\">Honor\xC3\xA1rne konzul\xC3\xA1ty</a></td><td width=\"416\"><a href=\"\"  title=\"\xC4\x8Casopis Zahrani\xC4\x8Dn\xC3\xA1 politika\">\xC4\x8Casopis Zahrani\xC4\x8Dn\xC3\xA1 politika</a></td></tr>\n\n\
+      <tr valign=\"top\"><td width=\"416\"><a href=\"/sk/ministerstvo/telefonny_zoznam_riadiacich_pracovnikov_podla_abecedy\"  title=\"Telef\xC3\xB3nny zoznam riadiacich prac.\">Telef\xC3\xB3nny zoznam riadiacich prac.</a></td><td width=\"416\"><a href=\"/sk/cestovanie_a_konzularne_info/cestovne_doklady_a_viza-viza_pre_cudzincov_na_vstup_do_slovenskej_republiky\"  title=\"V\xC3\xADza\">V\xC3\xADza</a></td><td width=\"416\"><a  href=\"/sk/aktuality/casopis_svet_a_my\" title=\"\xC4\x8Casopis Svet a my\">\xC4\x8Casopis Svet a my</a></td></tr>\n\n\
+      <tr valign=\"top\"><td width=\"416\"><a href=\"/sk/kontakt/informacie_pre_media-tlacovy_odbor\"  title=\"Tla\xC4\x8Dov\xC3\xBD odbor\">Tla\xC4\x8Dov\xC3\xBD odbor</a></td><td width=\"416\"><img width=\"1\" height=\"1\" src=\"/icons/ecblank.gif\" border=\"0\" alt=\"\"></td><td width=\"416\"><img width=\"1\" height=\"1\" src=\"/icons/ecblank.gif\" border=\"0\" alt=\"\"></td></tr>\n\
+      </table>\n\
+      </div></td>\n\
+      <td class=\"tdSmallLinks\">\n\
+      <div style=\"text-align: left;\">\n\
+      <table width=\"24\" border=\"1\">\n\
+      <tr valign=\"top\"><td style=\"margin: 0; padding: 0;\" width=\"24\" width=\"1249\">\n\
+      <p><a href=\"http://www.facebook.com/#!/mzv.sk\"  target=\"_blank\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/www.facebook.com/#!/mzv.sk');\" title=\"Ministerstvo je aj na FACEBOOK-u [nov\xC3\xA9 okno]\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_021BF05AA82ED411C1257B18004F7998_SK/$File/facebook_logo.jpg?OpenElement\" border=\"0\" alt=\"\"></a></td></tr>\n\n\
+      <tr valign=\"top\"><td style=\"margin: 0; padding: 0; padding-top: 4px; padding-bottom: 4px;\" width=\"1249\"><a href=\"/sk/aktuality/rss\"  title=\"RSS\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_3E0B17C1A456EBA6C1257B180050210C_SK/$File/rss_logo.jpg?OpenElement\" border=\"0\" alt=\"\"></a></td></tr>\n\n\
+      <tr valign=\"top\"><td style=\"margin: 0; padding: 0;\" width=\"1249\"><a href=\"http://www.youtube.com/user/mzvsr\"  target=\"_blank\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/www.youtube.com/user/mzvsr');\" title=\"YouTube [nov\xC3\xA9 okno]\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_A11F12596717F327C1257B18005027D2_SK/$File/youtube_logo.jpg?OpenElement\" border=\"0\" alt=\"\"></a></td></tr>\n\
+      </table>\n\
+      </div>\n\
+      <p></td>\n\
+      </tr></table></td></tr>\n\
+      </table>\n\
+      </div>\n\
+      \t\n\n\
+      <div id=\"footerTopLeft\">\n\
+      \t\n\n\
+      <div class=\"footerText\"><table><tr><td>SR je \xC4\x8Dlenom</td><td><a href=\"http://europa.eu/\"  target=\"_blank\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/europa.eu/');\" title=\"Webov\xC3\xA1 str\xC3\xA1nka E\xC3\x9A [nov\xC3\xA9 okno]\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_2F4CEBD742E2A211C1257654004DC0DA_SK/$File/EU_flag.gif?OpenElement\" border=\"0\" alt=\"EU\"></a></td><td><a href=\"http://www.nato.int\"  target=\"_blank\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/www.nato.int');\" title=\"Webov\xC3\xA1 str\xC3\xA1nka NATO [nov\xC3\xA9 okno]\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_A89C76B0610B940AC1257654004DE578_SK/$File/NATO_flag.gif?OpenElement\" border=\"0\" alt=\"NATO\"></a></td><td><a href=\"http://unic.un.org/\"  target=\"_blank\" onClick=\"javascript: pageTracker._trackPageview('/outgoing/unic.un.org/');\" title=\"Webov\xC3\xA1 str\xC3\xA1nka OSN [nov\xC3\xA9 okno]\"><img src=\"/App/WCM/main.nsf/vw_ByID/ID_6F77B216F8663B0CC125772A00289CE0_SK/$File/OSN_flag.gif?OpenElement\" border=\"0\" alt=\"\"></a></td></tr></table></div>\n\n\
+      </div>\n\
+      <div id=\"footertop\">\n\
+      \t\n\n\
+      <span class=\"footerSpan\" style=\"line-height: 1.4; margin-top: 11px; position: absolute;\"><a  href=\"/sk/sluzby_obcanom/informacie_o_webovom_sidle\" title=\"Spr\xC3\xA1vca obsahu a technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE\">Spr\xC3\xA1vca obsahu a technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE</a> \xC2\xA9 Ministerstvo zahrani\xC4\x8Dn\xC3\xBDch vec\xC3\xAD a eur\xC3\xB3pskych z\xC3\xA1le\xC5\xBEitost\xC3\xAD Slovenskej republiky </span>\n\n\
+      </div>\n\
+      <div id=\"footerbottom\" style=\"background-image: url(/App/WCM/main.nsf/vw_ByID/ID_D436C58594F3FFC9C125762A0049C125_SK/$File/WEB_Paticka_NEW_blank.png); background-repeat: no-repeat;\"></div>\n\n\
+      </div><script type=\"text/javascript\">\n\
+      pageTracker._trackPageview();\n\
+      </script>\n\
+      </body>\n\
+      </html>\r\n"
+    http_version: "1.1"
