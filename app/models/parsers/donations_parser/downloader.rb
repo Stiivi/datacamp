@@ -16,7 +16,8 @@ module Parsers
 
         Parser.parse(html, @year)
         download_paths = parser.download_path || []
-        download_paths << Parser.parse_location(@year)
+        download_path = Parser.parse_location(@year)
+        download_paths << download_path unless download_paths.include? download_path
 
         parser.update_attribute(:status, EtlConfiguration::STATUS_ENUM[2])
         parser.update_attribute(:download_path, download_paths)

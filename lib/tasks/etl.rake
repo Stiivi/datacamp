@@ -1,12 +1,15 @@
 namespace :etl do
 
   # Foundations
+
   desc 'Download foundations'
   task :foundation_extraction => :environment do
     Dataset::DsFoundation.update_all(record_status: 'suspended')
     Delayed::Job.enqueue Etl::FoundationPageExtraction.new
     Etl::NotarExtraction.update_last_run_time
   end
+
+  # VVO
 
   task :vvo_extraction => :environment do
     config = EtlConfiguration.find_by_name('vvo_extraction')
@@ -19,6 +22,20 @@ namespace :etl do
   task vvo_update_old_source_urls: :environment do
     Etl::VvoExtraction.update_old_source_urls
   end
+
+  desc 'Download bulletins in current year'
+  task vvo_current_bulletins_extraction: :environment do
+    Etl::VvoBulletinExtraction.extract_all_bulletins(Date.today.year)
+  end
+
+  desc 'Download old bulletins in years and parse missed documents'
+  task vvo_old_bulletins_extraction: :environment do
+    [2009, 2010, 2011, 2012, 2013, 2014].each do |year|
+      Etl::VvoBulletinExtraction.extract_all_bulletins(year)
+    end
+  end
+
+  # Regis
 
   task :regis_extraction => :environment do
     config = EtlConfiguration.find_by_name('regis_extraction')
@@ -201,11 +218,11 @@ namespace :etl do
                 bulletin_id,
                 procurement_id,
                 customer_ico,
-                rcust.name customer_company_name,
+                ifnull(rcust.name, customer_name) as customer_company_name,
                 substring_index(rcust.address, ',', 1) as customer_company_address,
                 substring(substring_index(rcust.address, ',', -1), 9) as customer_company_town,
                 supplier_ico,
-                rsupp.name supplier_company_name,
+                ifnull(rsupp.name, supplier_name) as supplier_company_name,
                 rsupp.region supplier_region,
                 substring_index(rsupp.address, ',', 1) as supplier_company_address,
                 substring(substring_index(rsupp.address, ',', -1), 9) as supplier_company_town,
@@ -231,16 +248,17 @@ namespace :etl do
             LEFT JOIN #{staging_schema}.#{regis_table} rsupp ON rsupp.ico = supplier_ico
             WHERE m.etl_loaded_date IS NULL"
 
+    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
+
+    last_updated_at = dataset_model.order(:updated_at).last.updated_at
+
     Staging::StagingRecord.connection.execute(load)
     Staging::StaProcurement.update_all :etl_loaded_date => Time.now
 
+    records_with_error = dataset_model.where("(#{dataset_table}.customer_company_name IS NULL OR #{dataset_table}.supplier_company_name IS NULL) AND #{dataset_table}.note IS NULL AND #{dataset_table}.updated_at > ?", last_updated_at).select(:_record_id)
+    records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL AND #{dataset_table}.updated_at > ?", last_updated_at).select(:_record_id)
 
-    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
-
-    records_with_error = dataset_model.where("#{dataset_table}.customer_company_name IS NULL OR #{dataset_table}.supplier_company_name IS NULL AND #{dataset_table}.note IS NULL").select(:_record_id)
-    records_with_note = dataset_model.where("#{dataset_table}.note IS NOT NULL").select(:_record_id)
-
-    EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present
+    EtlMailer.vvo_loading_status(records_with_error, records_with_note).deliver if records_with_error.present? || records_with_note.present?
 
     DatasetDescription.find_by_identifier('procurements').update_attribute(:data_updated_at, Time.zone.now)
   end

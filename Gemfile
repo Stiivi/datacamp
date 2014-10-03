@@ -30,7 +30,7 @@ gem 'will_paginate'
 #gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 gem 'delayed_job'
 gem 'nokogiri'
-gem 'riddle'
+gem 'riddle', '>= 1.3.3'
 gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
@@ -44,6 +44,7 @@ gem 'unicorn'
 gem 'rack-rewrite'
 
 gem 'tlsmail'
+gem 'roadie'
 
 # gem 'test-unit'
 
@@ -81,6 +82,7 @@ group :development do
   gem 'capistrano', '~> 2'
   gem 'capistrano-ext'
   gem 'rvm'
+  gem 'letter_opener'
 end
 
 group :development, :test do

@@ -20,6 +20,10 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   #   table_name
   # end
 
+  def active?
+    record_status.nil? || ['suspended', 'deleted'].exclude?(record_status)
+  end
+
   def to_param
     _record_id.to_s
   end

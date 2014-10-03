@@ -19,7 +19,7 @@
     = render "layouts/search_processing"
 
     #main
-      = render 'layouts/feedback_banner'
+      -#= render 'layouts/feedback_banner'
       = render 'layouts/menutop'
 
       #logo
@@ -43,3 +43,5 @@
           = render "searches/predicates_form", predicates: @search_predicates
 
       = render 'layouts/footer'
+
+    = render 'layouts/scripts'

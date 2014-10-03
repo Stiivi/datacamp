@@ -30,6 +30,12 @@ every 1.day, :at => '2:30 am' do
   rake "etl:vvo_loading"
 end
 
+# Vvo check - extract bulletins in current year
+every 30.days, :at => '2:00' do
+  rake 'etl:vvo_current_bulletins_extraction'
+end
+
+
 every 1.day, :at => '4:30 am' do
   rake "db:export"
 end
@@ -42,7 +48,7 @@ every 1.week do
   rake "users:cleanup_sessions"
 end
 
-every 25.days do
+every 25.days, at: '1:00 am' do
   rake 'etl:executor_extraction'
   rake 'etl:lawyer_extraction'
   rake 'etl:lawyer_partnership_extraction'
@@ -50,17 +56,20 @@ every 25.days do
   rake 'etl:notari_extraction'
 end
 
-every 26.days do
+every 25.days, at: '3:00 am' do
+  rake 'etl:notari_activate'
+end
+
+every 25.days, at: '3:30 am' do
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
-  rake 'etl:notari_activate'
 end
 
 every 25.days do
   rake 'etl:otvorenezmluvy_extraction'
 end
 
-every 30.days, :at => '1:30' do
+every 30.days, at: '1:30 am' do
   rake 'etl:foundation_extraction'
 end
 
