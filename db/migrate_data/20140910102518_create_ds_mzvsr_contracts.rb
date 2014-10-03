@@ -15,7 +15,7 @@ class CreateDsMzvsrContracts < ActiveRecord::Migration
       t.string  :protocol_number
     end
 
-    add_index :ds_mzvsr_contracts, :title_sk
+    add_index :ds_mzvsr_contracts, :title_sk, length: { :title_sk => 255 }
   end
 
   def self.down

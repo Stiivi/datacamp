@@ -74,5 +74,5 @@ every 30.days, at: '1:30 am' do
 end
 
 every 30.days, :at => '1:50' do
-  rake 'etl:mzvsr_extraction'
+  rake 'etl:mzvsr_contracts_extraction'
 end
