@@ -14,7 +14,7 @@ class Etl::MzvsrContractExtraction
   end
 
   def parse
-    @attributes ||= parser.parse(content).merge(uri: uri)
+    @attributes ||= parser.parse(content).merge(uri: uri, record_status: 'published')
   end
 
   def save

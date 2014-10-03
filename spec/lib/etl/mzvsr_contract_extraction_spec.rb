@@ -42,7 +42,8 @@ describe Etl::MzvsrContractExtraction do
           type: nil,
           priority: true,
           administrator: 'Ministerstvo dopravy, pôšt a telekomunikácií',
-          protocol_number: 'MBZ'
+          protocol_number: 'MBZ',
+          record_status: 'published'
         )
       end
     end
@@ -50,7 +51,7 @@ describe Etl::MzvsrContractExtraction do
 
   describe '#perform' do
     before :each do
-      Dataset::Base.new('mzvsr_contracts')
+      initialize_datasets(['mzvsr_contracts'], [])
 
       Dataset::DsMzvsrContract.delete_all # TODO: use DatabaseCleaner?
     end
@@ -66,7 +67,6 @@ describe Etl::MzvsrContractExtraction do
         end
       end
     end
-
     it 'updates existing contracts' do
       VCR.use_cassette('mzvsr_contract') do
         extractor.perform
