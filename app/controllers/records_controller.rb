@@ -144,7 +144,7 @@ class RecordsController < ApplicationController
 
     if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
       flash[:notice] = 'Dataset is hidden'
-      redirect_to datasets_path
+      redirect_to datasets_path and return
     end
 
     unless @record.active? || (logged_in? && current_user.has_privilege?(:view_hidden_records))
