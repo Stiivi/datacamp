@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140902075302) do
+ActiveRecord::Schema.define(:version => 20141008061510) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -430,6 +430,8 @@ ActiveRecord::Schema.define(:version => 20140902075302) do
     t.datetime "updated_at"
     t.string   "remote_ip"
   end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
 
   create_table "sharing_services", :force => true do |t|
     t.string   "title"

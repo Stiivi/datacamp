@@ -7,10 +7,14 @@ class Session < ActiveRecord::Base
   has_many :searches
   
   cattr_accessor :current_session
-  
+
   def self.new_from_session(session, request)
-    self.current_session = self.find_or_create_by_session_id(session[:session_id])
-    
+    begin
+      self.current_session = self.find_or_create_by_session_id(session[:session_id])
+    rescue
+      self.current_session = self.create(session_id: session[:session_id])
+    end
+
     if session[:user_id] && !current_session.user_id && session[:user_id] != current_session.user_id
       current_session.user_id = session[:user_id]
       current_session.save
