@@ -65,6 +65,9 @@ class DatasetsController < ApplicationController
     
     # Add pagination stuff to those options
     paginate_options = {max_matches: 10_000}
+    if params[:page]
+      params[:page] = nil if params[:page].blank?
+    end
     paginate_options[:page] = params[:page] if params[:page]#? params[:page] : nil
     paginate_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
     # paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]

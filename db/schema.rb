@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141013173622) do
+ActiveRecord::Schema.define(:version => 20141013195535) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -362,6 +362,8 @@ ActiveRecord::Schema.define(:version => 20141013173622) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "pages", ["page_name"], :name => "index_pages_on_page_name"
 
   create_table "quality_statuses", :force => true do |t|
     t.string   "name"
