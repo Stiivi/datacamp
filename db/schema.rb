@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141013172354) do
+ActiveRecord::Schema.define(:version => 20141013173622) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -354,6 +354,8 @@ ActiveRecord::Schema.define(:version => 20141013172354) do
     t.datetime "updated_at"
     t.text     "block"
   end
+
+  add_index "page_translations", ["page_id"], :name => "index_page_translations_on_page_id"
 
   create_table "pages", :force => true do |t|
     t.string   "page_name"
