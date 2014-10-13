@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141008061510) do
+ActiveRecord::Schema.define(:version => 20141013172354) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -133,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20141008061510) do
     t.integer  "count_negative_ratings"
   end
 
+  add_index "comments", ["is_suspended", "dataset_description_id", "record_id"], :name => "index_comments_on_is_suspend_and_dataset_description_and_record"
+
   create_table "data_formats", :force => true do |t|
     t.string   "name"
     t.string   "value"
@@ -183,6 +185,8 @@ ActiveRecord::Schema.define(:version => 20141008061510) do
     t.text     "perex"
   end
 
+  add_index "dataset_description_translations", ["dataset_description_id"], :name => "index_dataset_description_translations_on_dataset_description_id"
+
   create_table "dataset_descriptions", :force => true do |t|
     t.string   "identifier"
     t.datetime "created_at"
@@ -205,6 +209,8 @@ ActiveRecord::Schema.define(:version => 20141008061510) do
     t.boolean  "bad_quality",                     :default => false, :null => false
     t.datetime "data_updated_at"
   end
+
+  add_index "dataset_descriptions", ["is_active"], :name => "index_dataset_descriptions_on_is_active"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

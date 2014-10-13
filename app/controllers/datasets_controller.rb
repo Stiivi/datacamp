@@ -71,6 +71,13 @@ class DatasetsController < ApplicationController
     
     # @records = create_query_from_params(@dataset_class).paginate(paginate_options)
 
+    # check if sort is valid
+    if params[:sort]
+      if @dataset_class.columns.map(&:name).exclude? params[:sort]
+        redirect_to dataset_path(@dataset_description) and return
+      end
+    end
+
     if params[:sort]
       paginate_options[:order] = params[:sort].to_sym
       paginate_options[:sort_mode] = params[:dir] ? params[:dir].to_sym : :asc

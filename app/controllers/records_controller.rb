@@ -26,7 +26,11 @@ class RecordsController < ApplicationController
   
   privilege_required :edit_record, :only => [:edit, :update, :update_status,:delete_relationship,:add_relationship]
   privilege_required :create_record, :only => [:new, :create]
-  
+
+  def index
+    redirect_to dataset_path(@dataset_description)
+  end
+
   def show
     expires_in 5.minutes if current_user.blank?
 

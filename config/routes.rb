@@ -40,7 +40,7 @@ Datacamp::Application.routes.draw do
 
 
     # Settings frontend
-    resources :pages do
+    resources :pages, except: [:index] do
       resources :blocks
     end
 
@@ -101,6 +101,7 @@ Datacamp::Application.routes.draw do
       member do
         get :sitemap
         put :batch_edit
+        match ':everyone' => 'datasets#show'
       end
       get :search, :on => :collection
       resources :records do
@@ -155,6 +156,7 @@ Datacamp::Application.routes.draw do
   root :to => 'main#index'
   
   match ':controller(/:action(/:id(.:format)))'
+  match '*path' => redirect('/')
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
