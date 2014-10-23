@@ -24,7 +24,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     record_status.nil? || ['suspended', 'deleted'].exclude?(record_status)
   end
 
-  IDENTIFIERS = [:name, :title, :original_name, :title_sk, :_record_id]
+  IDENTIFIERS = [:name, :title, :original_name, :title_sk, :procurement_subject, :_record_id]
 
   def identifier
     IDENTIFIERS.each do |attribute|
