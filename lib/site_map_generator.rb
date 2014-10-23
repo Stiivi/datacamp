@@ -4,7 +4,7 @@ class SiteMapGenerator
 
   LOCALES = {sk: '', en: 'en'}
   ROOT_URL = 'http://datanest.fair-play.sk'
-  LIMIT_URLS = 500
+  LIMIT_URLS = 50000
   PER_PAGE = 10
 
   # first run generator
