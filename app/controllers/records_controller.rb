@@ -46,7 +46,7 @@ class RecordsController < ApplicationController
     load_comments
     
     @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
-    
+
     respond_to do |wants|
       wants.html
       wants.xml { render :xml => @record }
@@ -155,6 +155,8 @@ class RecordsController < ApplicationController
       flash[:notice] = 'Record is hidden'
       redirect_to dataset_path(@dataset_description)
     end
+
+    @title = "#{@record.identifier} - #{@dataset_description.title}"
   end
   
   def related_records_and_fields(dataset_description, record)

@@ -7,18 +7,18 @@ module ApplicationHelper
     what = "<span>%s</span>" % what
     link_to what.html_safe, where, options
   end
-  
+
   def has_privilege?(priv)
     logged_in? && current_user.has_privilege?(priv)
   end
-  
+
   def add_translations_to_array(array, key = "global")
-    array.map{|item|[t("#{key}.#{item}"), item]}
+    array.map { |item| [t("#{key}.#{item}"), item] }
   end
-  
+
   def link_to_add_fields(name, f, association)
     new_object = f.object.class.reflect_on_association(association).klass.new
-    
+
     fields = f.fields_for association, new_object, :child_index => "new_#{association}" do |builder|
       render(partial: association.to_s.singularize + "_fields", locals: {f: builder, index: 0})
     end
@@ -32,4 +32,13 @@ module ApplicationHelper
   def clear_textile(text)
     strip_tags(RedCloth.new(text || '').to_html)
   end
+
+  def page_title(title = nil)
+    if title
+      "#{title} | #{SystemVariable.get("site_name", "Datacamp")}"
+    else
+      SystemVariable.get "site_name", "Datacamp"
+    end
+  end
+
 end

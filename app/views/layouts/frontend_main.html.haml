@@ -4,8 +4,7 @@
     %meta{ charset: 'utf-8' }
     = render 'layouts/facebook_meta' if @dataset_description.present?
     = raw SystemVariable.get("meta_information")
-    %title= SystemVariable.get "site_name", "Datacamp"
-
+    %title= page_title(@title)
     = csrf_meta_tag unless response.cache_control[:public]
 
     = stylesheet_link_tag 'application'

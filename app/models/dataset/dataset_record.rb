@@ -24,6 +24,17 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     record_status.nil? || ['suspended', 'deleted'].exclude?(record_status)
   end
 
+  IDENTIFIERS = [:name, :title, :original_name, :title_sk, :_record_id]
+
+  def identifier
+    IDENTIFIERS.each do |attribute|
+      if self.attributes.include? attribute.to_s
+        return self.attributes[attribute.to_s]
+      end
+    end
+    nil
+  end
+
   def to_param
     _record_id.to_s
   end

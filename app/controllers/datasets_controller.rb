@@ -44,6 +44,7 @@ class DatasetsController < ApplicationController
     @field_descriptions  = @dataset_description.visible_field_descriptions
     @dataset             = @dataset_description.dataset
     @dataset_class       = @dataset.dataset_record_class
+    @title               = @dataset_description.title
 
     unless @dataset_class.table_exists?
       logger.error "Dataset table doesn't exist for #{@dataset_description.title} (#{@dataset_class.table_name})"
