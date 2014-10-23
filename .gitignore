@@ -22,6 +22,8 @@ index/*.rb
 searchd.log
 dumps/*
 public/system/*
+public/sitemap.xml
+public/sitemaps/*
 db/sphinx/*
 .idea/*
 
