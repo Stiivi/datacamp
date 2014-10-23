@@ -28,10 +28,10 @@ describe Etl::ExekutorExtraction do
         extractor = Etl::ExekutorExtraction.new
         document = extractor.download
         executors = extractor.digest(document)
-        executors.length.should == 299
-        executors.first.should == {:name=>"JUDr. Ádám Atila", :street => 'Čajakova 5', :zip => '040 01', :city => 'Košice', :telephone=>"+421 55/6424552", :fax=>"+421 55/6424552", :email=>"atila.adam@ske.sk"}
-        executors.last.should == {:name=>"JUDr. Žužová Lucia", :street => 'ul.Okružná 5', :zip => '071 01', :city => 'Michalovce', :telephone=>"056 6882891,-2", :fax=>"056 6882893", :email=>"lucia.zuzova@ske.sk"}
-        executors[282].should == {:name=>"JUDr. Vančík Emil", :street=>"Rákocziho 12", :zip=>"940 01", :city=>"Nové Zámky", :telephone=>"035/6401 729", :fax=>"035/6401 729", :email=>"evancik.exekutor@gmail.com"}
+        executors.length.should == 339
+        executors.first.should == {:name=>"JUDr. Ádám Atila", :street => 'Čajakova 5', :zip => '04001', :city => 'Košice', :telephone=>"+421 55/6424552", :fax=>"+421 55/6424552", :email=>"atila.adam@ske.sk"}
+        executors.last.should == {:name=>"JUDr. Žabková Žofia", :street => 'Námestie Matice Slovenskej 6', :zip => '96501', :city => 'Žiar nad Hronom', :telephone=>"0948/011 261", :fax=>"-", :email=>"zofia.zabkova@ske.sk"}
+        executors[282].should == {:name=>"JUDr. Stodolová Soňa", :street=>"Kmeťková 25", :zip=>"94901", :city=>"Nitra", :telephone=>"037 6514444", :fax=>"037 6514444", :email=>"sona.stodolova@ske.sk"}
       end
     end
     

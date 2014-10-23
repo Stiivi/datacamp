@@ -73,15 +73,15 @@ every 30.days, at: '1:30 am' do
   rake 'etl:foundation_extraction'
 end
 
-every 30.days, :at => '1:50' do
+every 30.days, :at => '1:50 am' do
   rake 'etl:mzvsr_contracts_extraction'
 end
 
 # generate sitemap fiels
-every 1.month, :at => '4:00' do
+every 1.month, :at => '4:00 am' do
   rake 'sitemap:generate_all_files'
 end
 
-every 1.month, :at => '5:00' do
+every 1.month, :at => '5:00 am' do
   rake 'sitemap:create_site_map'
 end

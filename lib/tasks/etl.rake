@@ -6,7 +6,7 @@ namespace :etl do
   task :foundation_extraction => :environment do
     Dataset::DsFoundation.update_all(record_status: 'suspended')
     Delayed::Job.enqueue Etl::FoundationPageExtraction.new
-    Etl::NotarExtraction.update_last_run_time
+    Etl::FoundationExtraction.update_last_run_time
   end
 
   # VVO
