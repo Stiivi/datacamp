@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class SiteMapGenerator
 
   LOCALES = {sk: '', en: 'en'}
@@ -7,7 +8,7 @@ class SiteMapGenerator
   PER_PAGE = 10
 
   # first run generator
-  def self.generate_all_locales
+  def self.generate_all_files
     Dir.mkdir(sitemaps_dir) unless File.exists?(sitemaps_dir)
     LOCALES.each_pair do |locale, locale_path|
       generator = Generator.new(locale, locale_path)
