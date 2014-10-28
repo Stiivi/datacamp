@@ -4,4 +4,6 @@
 # User-Agent: *
 # Disallow: /
 
+Sitemap: /sitemap.xml
+
 User-Agent: *
