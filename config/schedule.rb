@@ -60,7 +60,7 @@ every 25.days, at: '3:00 am' do
   rake 'etl:notari_activate'
 end
 
-every 25.days, at: '3:30 am' do
+every 25.days, at: '5:00 am' do # this must start after finished ^^
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
 end
