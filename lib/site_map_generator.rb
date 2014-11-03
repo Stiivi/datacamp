@@ -9,7 +9,8 @@ class SiteMapGenerator
 
   # first run generator
   def self.generate_all_files
-    Dir.mkdir(sitemaps_dir) unless File.exists?(sitemaps_dir)
+    Dir.rmdir(sitemaps_dir) unless File.exists?(sitemaps_dir)
+    FileUtils.rm_rf Dir.glob("#{sitemaps_dir}/*") if File.exists?(sitemaps_dir)
     LOCALES.each_pair do |locale, locale_path|
       generator = Generator.new(locale, locale_path)
       generator.delay.generate
@@ -35,18 +36,18 @@ class SiteMapGenerator
 
   private
 
-    def self.find_site_maps_files
-      file_path = Rails.root.join 'public', 'sitemaps', '*.txt'
-      Dir.glob(file_path)
-    end
+  def self.find_site_maps_files
+    file_path = Rails.root.join 'public', 'sitemaps', '*.txt'
+    Dir.glob(file_path)
+  end
 
-    def self.site_map_file
-      Rails.root.join 'public', 'sitemap.xml'
-    end
+  def self.site_map_file
+    Rails.root.join 'public', 'sitemap.xml'
+  end
 
-    def self.sitemaps_dir
-      Rails.root.join 'public', 'sitemaps'
-    end
+  def self.sitemaps_dir
+    Rails.root.join 'public', 'sitemaps'
+  end
 
   class Generator
 
@@ -203,7 +204,7 @@ class SiteMapGenerator
       f.write "\n"
     end
 
-    def  init_site_map_file(file)
+    def init_site_map_file(file)
       File.open(site_map_urls_file(file), 'wb:UTF-8')
     end
 
