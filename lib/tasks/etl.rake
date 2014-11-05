@@ -23,6 +23,18 @@ namespace :etl do
     Etl::VvoExtraction.update_old_source_urls
   end
 
+  # Before run, you must download all to local file
+  # http://www.uvo.gov.sk/evestnik/-/vestnik/searchResult?amp;_evestnik_WAR_eVestnikPortlets_cur=1&amp;_evestnik_WAR_eVestnikPortlets_delta=20&amp;_evestnik_WAR_eVestnikPortlets_keywords=&amp;_evestnik_WAR_eVestnikPortlets_advancedSearch=false&amp;_evestnik_WAR_eVestnikPortlets_andOperator=true&amp;_evestnik_WAR_eVestnikPortlets_resetCur=false&_evestnik_WAR_eVestnikPortlets_perPage=500000
+  # open: http://www.uvo.gov.sk/evestnik/-/vestnik/searchResult
+  # in right Click: <currrent_year>
+  # in right Click: 'Oznámenia o výsledku verejného obstarávania'
+  # save to development - vvo - <currrent_year>
+
+  desc 'Check vvo'
+  task vvo_checker: :environment do
+    Etl::VvoChecker.check_all
+  end
+
   desc 'Download bulletins in current year'
   task vvo_current_bulletins_extraction: :environment do
     Etl::VvoBulletinExtraction.extract_all_bulletins(Date.today.year)
