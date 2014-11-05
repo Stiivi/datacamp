@@ -8,8 +8,9 @@ module Etl
       diff = 0
       last_year_missed = []
       (2009..current_year).each do |year|
-        missed, in_addition = check_for_year(year)
+        missed, in_addition, total_vvo, total_dataset  = check_for_year(year)
         puts "Year #{year}"
+        puts "VVO: #{total_vvo} / Dataset: #{total_dataset}"
         puts "Missed (#{missed.count}): #{missed.inspect}"
         puts "In addition (#{in_addition.count}): #{in_addition.inspect}"
         puts "Missed from #{year-1} is in #{year}" if last_year_missed - in_addition == []
@@ -41,7 +42,7 @@ module Etl
       all_in_dataset = Staging::StaProcurement.select(:document_id).where(year: year).group(:document_id).count.keys
       missed = document_ids - exist_in_dataset
       in_addition = all_in_dataset - document_ids
-      return missed, in_addition
+      return missed, in_addition, document_ids.count, all_in_dataset.count
     end
 
   end
