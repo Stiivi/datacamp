@@ -37,7 +37,7 @@ every 30.days, :at => '2:00' do
 end
 
 every 30.days, :at => '6:00' do
-  rake 'etl:vvo_bulletin_status'
+  rake 'etl:vvo_bulletin_report'
 end
 
 # Lawyers, notari

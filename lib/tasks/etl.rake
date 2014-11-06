@@ -5,7 +5,7 @@ namespace :etl do
   desc 'sends a delayed job notification email'
   task delayed_job_notification: :environment do
     failed_jobs = Delayed::Job.where('last_error is not null')
-    running_jobs = Delayed::Job.first(10)
+    running_jobs = Delayed::Job.all
     if failed_jobs.present? || running_jobs.present?
       EtlMailer.delayed_job_notification(failed_jobs, running_jobs).deliver
     end
@@ -52,7 +52,7 @@ namespace :etl do
   end
 
   desc 'Send email with report from last bulletin extraction'
-  task vvo_bulletin_status: :environment do
+  task vvo_bulletin_report: :environment do
     EtlMailer.vvo_status(Etl::VvoBulletinExtraction.config.last_run_report).deliver
     Etl::VvoBulletinExtraction.update_last_run_time
   end
