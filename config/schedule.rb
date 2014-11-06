@@ -13,7 +13,7 @@ every 1.week do
 end
 
 every 1.day, at: '7:00 am' do
-  rake "users:delayed_job_notification"
+  rake "etl:delayed_job_notification"
 end
 
 # Regis, vvo
