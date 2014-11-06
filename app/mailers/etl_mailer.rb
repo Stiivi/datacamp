@@ -7,10 +7,9 @@ class EtlMailer < ActionMailer::Base
     mail(:to => Datacamp::Application.config.admin_emails, :subject => "Vysledok automatickeho behu ETL.")
   end
 
-  def vvo_parser_problem(document_url, error_type)
-    @error_type = error_type
-    @document_url = document_url
-    mail(:to => Datacamp::Application.config.admin_emails, :subject => "VVO parser problem.")
+  def vvo_status(report)
+    @report = report || EtlConfiguration::VVO_REPORT_SCHEMA
+    mail(:to => Datacamp::Application.config.admin_emails, :subject => "VVO bulettin report.")
   end
 
   def notari_status
@@ -62,8 +61,9 @@ class EtlMailer < ActionMailer::Base
     mail(to: Datacamp::Application.config.admin_emails, subject: "Koncipienti parser problem.")
   end
 
-  def delayed_job_notification(failed_jobs)
+  def delayed_job_notification(failed_jobs, running_jobs)
     @failed_jobs = failed_jobs
-    mail(to: Datacamp::Application.config.admin_emails, subject: "Parser crashed.") 
+    @running_jobs = running_jobs
+    mail(to: Datacamp::Application.config.admin_emails, subject: "Worker problem.")
   end
 end

@@ -1,40 +1,4 @@
-# Use this file to easily define all of your cron jobs.
-#
-# It's helpful, but not entirely necessary to understand cron before proceeding.
-# http://en.wikipedia.org/wiki/Cron
-
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
-# Learn more: http://github.com/javan/whenever
-
-every 1.day, :at => '1:30 am' do
-  rake "etl:regis_extraction"
-  rake "etl:regis_update"
-  rake "etl:vvo_extraction"
-end
-
-every 1.day, :at => '2:30 am' do
-  rake "etl:regis_loading"
-  rake "etl:vvo_loading"
-end
-
-# Vvo check - extract bulletins in current year
-every 30.days, :at => '2:00' do
-  rake 'etl:vvo_current_bulletins_extraction'
-end
-
+# system
 
 every 1.day, :at => '4:30 am' do
   rake "db:export"
@@ -47,6 +11,36 @@ end
 every 1.week do
   rake "users:cleanup_sessions"
 end
+
+every 1.day, at: '7:00 am' do
+  rake "users:delayed_job_notification"
+end
+
+# Regis, vvo
+
+every 1.day, :at => '1:30 am' do
+  rake "etl:regis_extraction"
+  rake "etl:regis_update"
+  rake "etl:vvo_extraction"
+end
+
+# Regis, vvo
+
+every 1.day, :at => '2:30 am' do
+  rake "etl:regis_loading"
+  rake "etl:vvo_loading"
+end
+
+# Vvo check - extract bulletins in current year
+every 30.days, :at => '2:00' do
+  rake 'etl:vvo_current_bulletins_extraction'
+end
+
+every 30.days, :at => '6:00' do
+  rake 'etl:vvo_bulletin_status'
+end
+
+# Lawyers, notari
 
 every 25.days, at: '1:00 am' do
   rake 'etl:executor_extraction'
@@ -65,19 +59,26 @@ every 25.days, at: '5:00 am' do # this must start after finished ^^
   rake 'etl:lawyer_lists'
 end
 
+# Otvorene zmluvy
+
 every 25.days do
   rake 'etl:otvorenezmluvy_extraction'
 end
 
+# Foundation
+
 every 30.days, at: '1:30 am' do
   rake 'etl:foundation_extraction'
 end
+
+# MZVSR
 
 every 30.days, :at => '1:50 am' do
   rake 'etl:mzvsr_contracts_extraction'
 end
 
 # generate sitemap fiels
+
 every 1.month, :at => '4:00 am' do
   rake 'sitemap:generate_all_files'
 end

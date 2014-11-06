@@ -1,7 +1,10 @@
 # -*- encoding : utf-8 -*-
 class EtlConfiguration < ActiveRecord::Base
   serialize :download_path, Array
+  serialize :last_run_report
+
   STATUS_ENUM = [:ready, :in_progress, :done, :failed]
+
   def status
     attr = read_attribute(:status)
     if attr.respond_to?(:to_sym)
@@ -10,8 +13,9 @@ class EtlConfiguration < ActiveRecord::Base
       attr
     end
   end
+
   validates :name, presence: true, uniqueness: true
-  validates_inclusion_of :status, in: STATUS_ENUM, if: lambda {|o| o.status.present?}
+  validates_inclusion_of :status, in: STATUS_ENUM, if: lambda { |o| o.status.present? }
 
   def valid_for_parsing?(settings)
     if name == 'donations_parser' && settings.present?
@@ -28,4 +32,24 @@ class EtlConfiguration < ActiveRecord::Base
   def self.parsers
     where(parser: true)
   end
+
+  # reports
+
+  VVO_REPORT_SCHEMA = {download_bulletins: nil, download_bulletin: {}, download_procurement: {not_acceptable: {}, empty_suppliers: {}, processed: {}, missed: {}}}
+
+  def clear_report!
+    self.last_run_report = {}
+    case name
+      when 'vvo_extraction'
+        self.last_run_report = VVO_REPORT_SCHEMA
+      else
+    end
+    save
+  end
+
+  def update_report!(key, attributes)
+    self.last_run_report[key] = attributes
+    save
+  end
+
 end
