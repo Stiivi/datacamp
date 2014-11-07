@@ -11,6 +11,8 @@ belongs_to :search_query
     :is_set, :is_not_set],
   :integer => [:greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal, 
     :is_set, :is_not_set],
+  :decimal => [:greater, :less, :greater_or_equal, :less_or_equal, :equal, :not_equal,
+               :is_set, :is_not_set],
   :string => [:contains, :begins_with, :ends_with, :does_not_contain, :matches, 
     :is_set, :is_not_set]
 }
