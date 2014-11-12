@@ -32,17 +32,21 @@ every 1.day, :at => '2:30 am' do
 end
 
 # Vvo check - extract bulletins in current year
-every 30.days, :at => '2:00' do
+every 1.month, :at => 'January 1th 2:00 am' do
   rake 'etl:vvo_current_bulletins_extraction'
 end
 
-every 30.days, :at => '6:00' do
+every '0 2 15 1 *' do
+  rake 'etl:vvo_last_bulletins_extraction'
+end
+
+every 1.month, :at => 'January 1th 6:00 am' do
   rake 'etl:vvo_bulletin_report'
 end
 
 # Lawyers, notari
 
-every 25.days, at: '1:00 am' do
+every 1.month, at: 'January 1th 1:00 am' do
   rake 'etl:executor_extraction'
   rake 'etl:lawyer_extraction'
   rake 'etl:lawyer_partnership_extraction'
@@ -50,39 +54,39 @@ every 25.days, at: '1:00 am' do
   rake 'etl:notari_extraction'
 end
 
-every 25.days, at: '3:00 am' do
+every 1.month, at: 'January 1th 3:00 am' do
   rake 'etl:notari_activate'
 end
 
-every 25.days, at: '5:00 am' do # this must start after finished ^^
+every 1.month, at: 'January 1th 5:00 am' do # this must start after finished ^^
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
 end
 
 # Otvorene zmluvy
 
-every 25.days do
+every 1.month, at: 'January 1th 5:00 am' do
   rake 'etl:otvorenezmluvy_extraction'
 end
 
 # Foundation
 
-every 30.days, at: '1:30 am' do
+every 1.month, at: 'January 1th 1:30 am' do
   rake 'etl:foundation_extraction'
 end
 
 # MZVSR
 
-every 30.days, :at => '1:50 am' do
+every 1.month, :at => 'January 1th 1:30 am' do
   rake 'etl:mzvsr_contracts_extraction'
 end
 
 # generate sitemap fiels
 
-every 1.month, :at => '4:00 am' do
+every 1.month, :at => 'January 1th 4:00 am' do
   rake 'sitemap:generate_all_files'
 end
 
-every 1.month, :at => '5:00 am' do
+every 1.month, :at => 'January 1th 5:00 am' do
   rake 'sitemap:create_site_map'
 end

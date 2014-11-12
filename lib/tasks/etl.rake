@@ -63,6 +63,12 @@ namespace :etl do
     Etl::VvoBulletinExtraction.extract_all_bulletins(Date.today.year)
   end
 
+  desc 'Download bulletins in last year'
+  task vvo_last_bulletins_extraction: :environment do
+    Etl::VvoBulletinExtraction.clear_report # clear report in config
+    Etl::VvoBulletinExtraction.extract_all_bulletins(1.year.ago.year)
+  end
+
   desc 'Download old bulletins in years and parse missed documents'
   task vvo_old_bulletins_extraction: :environment do
     [2009, 2010, 2011, 2012, 2013, 2014].each do |year|
