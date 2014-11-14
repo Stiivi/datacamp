@@ -6,6 +6,8 @@ class Page < ActiveRecord::Base
 
   has_many :blocks
 
+  validates :page_name, presence: true, allow_blank: false
+
   def html_body
     RedCloth.new(self.body || "").to_html
   end
