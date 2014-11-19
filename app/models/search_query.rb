@@ -154,6 +154,7 @@ end
 
 def self.parse_string(query_string)
 	return [] unless query_string
+  query_string = query_string.gsub("\"","")
 	tokens = Shellwords.shellwords(query_string)
 	return tokens
 end
