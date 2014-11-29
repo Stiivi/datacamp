@@ -160,11 +160,11 @@ class DatasetsController < ApplicationController
       begin
         @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true))
       rescue ThinkingSphinx::SphinxError
-        @sphinx_single_negative_search = true
-        @records = @dataset_class.search("", paginate_options)
+        redirect_to root_path
+        return
       rescue
-        @sphinx_single_negative_search = true
-        @records = @dataset_class.search("", paginate_options)
+        redirect_to root_path
+        return
       end
     end
 
