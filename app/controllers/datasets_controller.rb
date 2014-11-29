@@ -160,10 +160,10 @@ class DatasetsController < ApplicationController
       begin
         @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true))
       rescue ThinkingSphinx::SphinxError
-        redirect_to root_path
+        redirect_to dataset_path(@dataset_description)
         return
       rescue
-        redirect_to root_path
+        redirect_to dataset_path(@dataset_description)
         return
       end
     end
