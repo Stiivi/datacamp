@@ -23,7 +23,12 @@ class ApplicationController < ActionController::Base
     if params[:search_id].present?
       @search_predicates = Search.find_by_id(params[:search_id]).query.predicates
     elsif params[:controller] == 'searches' && params[:id].present?
-      @search_predicates = Search.find_by_id(params[:id]).query.predicates
+      search = Search.find_by_id(params[:id])
+      if search
+        @search_predicates = search.query.predicates
+      else
+        redirect_to root_path
+      end
     end
   end
 

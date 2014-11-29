@@ -162,6 +162,9 @@ class DatasetsController < ApplicationController
       rescue ThinkingSphinx::SphinxError
         @sphinx_single_negative_search = true
         @records = @dataset_class.search("", paginate_options)
+      rescue
+        @sphinx_single_negative_search = true
+        @records = @dataset_class.search("", paginate_options)
       end
     end
 
