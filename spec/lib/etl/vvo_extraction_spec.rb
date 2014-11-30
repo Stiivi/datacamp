@@ -45,6 +45,8 @@ describe Etl::VvoExtraction do
   
   it 'should save extracted information to the database' do
     VCR.use_cassette('vvo_185504') do
+      config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 2669, :batch_limit => 5)
+      config.clear_report!
       document = @extractor.download(185504)
       procurement_hash = @extractor.digest(document)
       @extractor.save(procurement_hash)
@@ -71,6 +73,8 @@ describe Etl::VvoExtraction do
   
   it 'should not save the same thing twice into the database' do
     VCR.use_cassette('vvo_185504') do
+      config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 185503, :batch_limit => 5)
+      config.clear_report!
       document = @extractor.download(185504)
       procurement_hash = @extractor.digest(document)
       @extractor.save(procurement_hash) and @extractor.save(procurement_hash)
@@ -81,6 +85,7 @@ describe Etl::VvoExtraction do
   it 'should have a perform method that downloads, parses and saves to the db' do
     VCR.use_cassette('vvo_185504') do
       config = EtlConfiguration.create(:name => 'vvo_extraction', :last_processed_id => 185503, :batch_limit => 5)
+      config.clear_report!
       @extractor = Etl::VvoExtraction.new(1, 2,185504)
       @extractor.perform
       Staging::StaProcurement.count.should == 1
