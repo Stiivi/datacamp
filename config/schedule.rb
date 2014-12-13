@@ -12,7 +12,7 @@ every 1.week do
   rake "users:cleanup_sessions"
 end
 
-every 1.day, at: '7:00 am' do
+every 1.day, at: '9:00 am' do
   rake "etl:delayed_job_notification"
 end
 
@@ -48,17 +48,20 @@ end
 
 every 1.month, at: 'January 1th 1:00 am' do
   rake 'etl:executor_extraction'
+  rake 'etl:notari_extraction'
+end
+
+every 1.month, at: 'January 2th 1:00 am' do
   rake 'etl:lawyer_extraction'
   rake 'etl:lawyer_partnership_extraction'
   rake 'etl:lawyer_associate_extraction'
-  rake 'etl:notari_extraction'
 end
 
 every 1.month, at: 'January 1th 3:00 am' do
   rake 'etl:notari_activate'
 end
 
-every 1.month, at: 'January 1th 5:00 am' do # this must start after finished ^^
+every 1.month, at: 'January 2th 7:00 am' do # this must start after finished ^^
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
 end
