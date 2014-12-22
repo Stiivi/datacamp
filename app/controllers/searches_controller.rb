@@ -54,6 +54,7 @@ class SearchesController < ApplicationController
       dds.where(:is_active => true).each do |dataset_description|
         begin
         dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5
+        dataset_results = dataset_results.select{|r| r.record_status == DatastoreManager.record_statuses[2]}
         @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description=>dataset_results}) if dataset_results.present?
         rescue
         end
