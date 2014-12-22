@@ -158,7 +158,7 @@ class DatasetsController < ApplicationController
       end
     else
       begin
-        @records = @dataset_class.where(record_status: DatastoreManager.record_statuses[2]).search(sphinx_search, paginate_options.merge(populate: true))
+        @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true, :conditions => {record_status: DatastoreManager.record_statuses[2]}))
       rescue ThinkingSphinx::SphinxError
         redirect_to dataset_path(@dataset_description)
         return
