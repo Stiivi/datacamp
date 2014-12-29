@@ -28,7 +28,7 @@ module Etl
       css_links.each do |css_link|
         valid_link = css_link.inner_text.match(/(\d*)(\ )(\-)(\ )(...)(\ )(\:)(\ )(\D*)/u)
 
-        if valid_link && (valid_link[5].start_with?('V') || valid_link[5].start_with?('IP') || valid_link[5].start_with?('IZ'))
+        if valid_link && (valid_link[5].start_with?('ID') )
           href = css_link.attributes['href'].text
           document_id = href.match(/(\D*)(\/)(\d*)(\D*)/u)[3].to_i
           document_ids << document_id
