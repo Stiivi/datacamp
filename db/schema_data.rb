@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140910102518) do
+ActiveRecord::Schema.define(:version => 20150113151826) do
 
   create_table "dc_relations", :primary_key => "_record_id", :force => true do |t|
     t.integer "relatable_left_id"
@@ -227,18 +227,27 @@ ActiveRecord::Schema.define(:version => 20140910102518) do
   add_index "ds_lawyers", ["sak_id"], :name => "index_ds_lawyers_on_sak_id"
 
   create_table "ds_mzvsr_contracts", :primary_key => "_record_id", :force => true do |t|
-    t.string  "uri",             :limit => 1024, :null => false
-    t.string  "title_sk",        :limit => 2048, :null => false
-    t.string  "title_en",        :limit => 2048
-    t.string  "administrator"
-    t.string  "place"
-    t.string  "type"
-    t.string  "country"
-    t.date    "signed_on"
-    t.date    "valid_from"
-    t.string  "law_index"
-    t.boolean "priority"
-    t.string  "protocol_number"
+    t.string   "uri",             :limit => 1024, :null => false
+    t.string   "title_sk",        :limit => 2048, :null => false
+    t.string   "title_en",        :limit => 2048
+    t.string   "administrator"
+    t.string   "place"
+    t.string   "type"
+    t.string   "country"
+    t.date     "signed_on"
+    t.date     "valid_from"
+    t.string   "law_index"
+    t.boolean  "priority"
+    t.string   "protocol_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.string   "record_status"
+    t.string   "quality_status"
+    t.integer  "batch_id"
+    t.date     "validity_date"
+    t.boolean  "is_hidden"
   end
 
   add_index "ds_mzvsr_contracts", ["title_sk"], :name => "index_ds_mzvsr_contracts_on_title_sk", :length => {"title_sk"=>255}
@@ -353,6 +362,87 @@ ActiveRecord::Schema.define(:version => 20140910102518) do
     t.date     "validity_date"
     t.boolean  "is_hidden"
   end
+
+  create_table "ds_procurement_v2_notices", :primary_key => "_record_id", :force => true do |t|
+    t.integer "document_id",                         :null => false
+    t.string  "document_url",                        :null => false
+    t.string  "procurement_code",                    :null => false
+    t.integer "bulletin_code",                       :null => false
+    t.integer "year",                                :null => false
+    t.string  "procurement_type",                    :null => false
+    t.date    "published_on",                        :null => false
+    t.string  "customer_name"
+    t.string  "customer_organisation_code"
+    t.integer "customer_organisation_id"
+    t.string  "customer_regis_name"
+    t.string  "customer_address"
+    t.string  "customer_place"
+    t.string  "customer_zip"
+    t.string  "customer_country"
+    t.string  "customer_contact_persons"
+    t.string  "customer_phone"
+    t.string  "customer_mobile"
+    t.string  "customer_email"
+    t.string  "customer_fax"
+    t.string  "customer_type"
+    t.boolean "customer_purchase_for_others"
+    t.text    "customer_main_activity"
+    t.text    "project_name"
+    t.string  "project_type"
+    t.string  "project_category"
+    t.text    "place_of_performance"
+    t.string  "nuts_code"
+    t.text    "project_description"
+    t.boolean "general_contract"
+    t.text    "dictionary_main_subjects"
+    t.text    "dictionary_additional_subjects"
+    t.boolean "gpa_agreement"
+    t.string  "procedure_type"
+    t.text    "procedure_offers_criteria"
+    t.boolean "procedure_use_auction"
+    t.string  "previous_notification1_number"
+    t.date    "previous_notification1_published_on"
+    t.string  "previous_notification2_number"
+    t.date    "previous_notification2_published_on"
+    t.string  "previous_notification3_number"
+    t.date    "previous_notification3_published_on"
+    t.text    "contract_name"
+    t.date    "contract_date"
+    t.integer "offers_total_count"
+    t.integer "offers_online_count"
+    t.integer "offers_excluded_count"
+    t.integer "supplier_index"
+    t.string  "supplier_name"
+    t.string  "supplier_organisation_code"
+    t.integer "supplier_organisation_id"
+    t.string  "supplier_regis_name"
+    t.string  "supplier_address"
+    t.string  "supplier_place"
+    t.string  "supplier_zip"
+    t.string  "supplier_country"
+    t.string  "supplier_phone"
+    t.string  "supplier_mobile"
+    t.string  "supplier_email"
+    t.string  "supplier_fax"
+    t.string  "procurement_currency"
+    t.float   "final_price"
+    t.boolean "final_price_range"
+    t.float   "final_price_min"
+    t.float   "final_price_max"
+    t.boolean "final_price_vat_included"
+    t.float   "final_price_vat_rate"
+    t.float   "draft_price"
+    t.boolean "draft_price_vat_included"
+    t.float   "draft_price_vat_rate"
+    t.boolean "procurement_subcontracted"
+    t.boolean "procurement_euro_found"
+    t.text    "evaluation_committee"
+  end
+
+  add_index "ds_procurement_v2_notices", ["customer_organisation_id"], :name => "index_ds_procurement_v2_notices_on_customer_organisation_id"
+  add_index "ds_procurement_v2_notices", ["document_id", "supplier_index"], :name => "index_ds_procurement_v2_notices_on_document_id_and_supplier"
+  add_index "ds_procurement_v2_notices", ["document_id"], :name => "index_ds_procurement_v2_notices_on_document_id"
+  add_index "ds_procurement_v2_notices", ["supplier_organisation_id"], :name => "index_ds_procurement_v2_notices_on_supplier_organisation_id"
 
   create_table "ds_relation_testings", :primary_key => "_record_id", :force => true do |t|
     t.string   "created_by"

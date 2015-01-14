@@ -20,6 +20,11 @@ EtlConfiguration.find_or_create_by_name('mzvsr_contracts_extraction')
 
 # Initialize datasets and relations
 
+# Organisations for ETL
+
+Dataset::Utils.initialize_dataset('organisations', true)
+Dataset::Utils.initialize_dataset('procurement_v2_notices', true)
+
 # Foundations for ETL
 
 foundations_dataset = Dataset::Utils.initialize_dataset('foundations', true)

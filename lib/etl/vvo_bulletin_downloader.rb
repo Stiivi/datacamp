@@ -22,18 +22,38 @@ module Etl
       @document ||= download
     end
 
+    # Oznámenia o výsledku verejného obstarávania
+    # V = 21751
+
+    # Informácie o uzavretí zmluvy
+    # IP = 2937
+
+    # Informácia o plnení zmluvy (5885)
+    # IZ = 3888
+    # ID = 1997
+
+    # 30573
+
     def perform
       document_ids = []
       css_links = document.css('#layout-column_column-2 .portlet-body a')
+
+      any_valid_link = false
       css_links.each do |css_link|
         valid_link = css_link.inner_text.match(/(\d*)(\ )(\-)(\ )(...)(\ )(\:)(\ )(\D*)/u)
 
-        if valid_link && (valid_link[5].start_with?('ID') )
+        any_valid_link = true if valid_link
+
+        if valid_link && (valid_link[5].start_with?('V') || valid_link[5].start_with?('IP') || valid_link[5].start_with?('IZ') || valid_link[5].start_with?('ID'))
           href = css_link.attributes['href'].text
           document_id = href.match(/(\D*)(\/)(\d*)(\D*)/u)[3].to_i
           document_ids << document_id
         end
 
+      end
+
+      unless any_valid_link
+        Delayed::Job.enqueue Etl::VvoBulletinDownloader.new(document_url)
       end
 
       document_ids.each do |document_id|
@@ -46,9 +66,21 @@ module Etl
 
     # ----
 
+    MIN_SIZE = 1000.0
+
     def self.download_document(id)
       url = "http://www.uvo.gov.sk/sk/evestnik/-/vestnik/#{id}"
+
+      file_path = get_path("vvo/procurements/#{id}.html")
+      return if File.exist?(file_path) && File.size(file_path) > MIN_SIZE
+
       html = Typhoeus::Request.get(url).body
+
+      if html.size < 1000
+        Etl::VvoBulletinDownloader.delay.download_document(id)
+        return
+      end
+
       save("vvo/procurements/#{id}.html", html)
     end
 
