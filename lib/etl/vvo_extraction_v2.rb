@@ -787,7 +787,7 @@ module Etl
 
                   # add non empty to array
                   if supplier_hash.any?
-                    suppliers << supplier_hash
+                    suppliers << supplier_hash if supplier_hash[:supplier_name]
                     supplier_hash = {}
                   end
 
@@ -894,8 +894,10 @@ module Etl
                   supplier_hash[:procurement_subcontracted] = !subcontracted.match(/Nie/)
                 end
               end
+              # add non empty to array
               if supplier_hash.any?
-                suppliers << supplier_hash
+                suppliers << supplier_hash if supplier_hash[:supplier_name]
+                supplier_hash = {}
               end
             end
           end
@@ -913,8 +915,11 @@ module Etl
                 header_text = tr.xpath(".//td[2]//span[@class='nazov']").inner_text.strip
 
                 if tr.xpath(".//span[@class='podnazov']") && tr.xpath(".//span[@class='podnazov']").inner_text.match(/(Z|z)mluva k časti/)
-                  suppliers << supplier_hash unless supplier_hash.empty?
-                  supplier_hash = {}
+                  # add non empty to array
+                  if supplier_hash.any?
+                    suppliers << supplier_hash if supplier_hash[:supplier_name]
+                    supplier_hash = {}
+                  end
 
                   contract_name_element = next_element(tr)
                   if contract_name_element.xpath(".//span[@class='nazov']").inner_text.match(/Názov/) || contract_name_element.xpath(".//span[@class='podnazov']").inner_text.match(/Názov/)
@@ -1010,7 +1015,11 @@ module Etl
 
                 end
               end
-              suppliers << supplier_hash unless supplier_hash.empty?
+              # add non empty to array
+              if supplier_hash.any?
+                suppliers << supplier_hash if supplier_hash[:supplier_name]
+                supplier_hash = {}
+              end
             end
           end
         else
@@ -1141,7 +1150,7 @@ module Etl
             digest_attributes.each do |attribute|
               attribute_value = procurement_hash[attribute]
               # shorten attribute before save
-              attribute_value = attribute_value.first(255) if shorten_attributes.include?(attribute)
+              attribute_value = attribute_value.first(255) if attribute_value && shorten_attributes.include?(attribute)
               procurement_object[attribute] = attribute_value
             end
             procurement_object.document_url = document_url
@@ -1251,7 +1260,7 @@ module Etl
     end
 
     def parse_committee(str, match_keyword = false)
-      patterns = [/(.*)Komisia na vyhodnocovanie ponúk:(.*)/, /(.*)Zoznam členov komisie, ktorí vyhodnocovali ponuky:(.*)/, /(.*)Ponuku hodnotila komisia v zložení:(.*)/, /(.*)Členovia komisie, ktorí vyhodnocovali ponuky:(.*)/, /(.*)Členovia komisie na vyhodnotenie ponúk s právom vyhodnocovať ponuky:(.*)/, /(.*)Na rokovacie konanie bez zverejnenia bola zriadená komisia v zložení(.*):(.*)/, /(.*)Komisia pracovala v tomto zložení(.*):(.*)/, /(.*)Členmi(.*)hodnotiacej komisie boli(.*):(.*)/, /(.*)komisia:(.*)/]
+      patterns = [/(.*)Komisia na vyhodnocovanie ponúk:(.*)/, /(.*)Zoznam členov komisie, ktorí vyhodnocovali ponuky:(.*)/, /(.*)Ponuku hodnotila komisia v zložení:(.*)/, /(.*)Členovia komisie, ktorí vyhodnocovali ponuky:(.*)/, /(.*)Členovia komisie na vyhodnotenie ponúk s právom vyhodnocovať ponuky:(.*)/, /(.*)Na rokovacie konanie bez zverejnenia bola zriadená komisia v zložení(.*):(.*)/, /(.*)Komisia pracovala v tomto zložení(.*):(.*)/, /(.*)Členmi(.*)hodnotiacej komisie boli(.*):(.*)/, /(.*)komisia:(.*)/, /(.*)ktorí vyhodnocovali ponuky:(.*)/]
       patterns.each do |pattern|
         matches = str.match(pattern)
         if matches
@@ -1259,7 +1268,7 @@ module Etl
         end
       end
       if match_keyword
-        str ? (str.match(/komisia/) || str.match(/komisie/)) : nil
+        (str.match(/komisia/) || str.match(/komisie/)) ? str : nil
       else
         str
       end
