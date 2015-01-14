@@ -11,7 +11,7 @@ module Etl
     # notice_result
     # contract_info
     def self.parse_all_downloaded_documents_for_type(dataset_type)
-      ids = Dir.glob('data/development/vvo/procurements/*/*.html').map { |n| File.basename(n, ".html").to_i }
+      ids = Dir.glob("data/#{Rails.env}/vvo/procurements/*/*.html").map { |n| File.basename(n, ".html").to_i }
       ids.each_with_index do |document_id, index|
         ext = Etl::VvoExtractionV2.new(document_id)
         if ext.dataset_type == dataset_type
@@ -29,7 +29,7 @@ module Etl
     end
 
     def self.save_all_downloaded_documents
-      ids = Dir.glob('data/development/vvo/procurements/*/*.html').map { |n| File.basename(n, ".html").to_i }
+      ids = Dir.glob("data/#{Rails.env}/vvo/procurements/*/*.html").map { |n| File.basename(n, ".html").to_i }
       puts "Downloaded documents: #{ids.count}"
       ids.each do |document_id|
         Delayed::Job.enqueue Etl::VvoExtractionV2.new(document_id)
