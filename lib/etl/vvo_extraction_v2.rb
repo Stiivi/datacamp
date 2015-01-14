@@ -50,9 +50,10 @@ module Etl
     end
 
     def document
+      return @document if @document
       html = download
       html.gsub!("&nbsp;", " ")
-      @document ||= Nokogiri::HTML(html).xpath("//div[@class='oznamenie']")
+      @document = Nokogiri::HTML(html).xpath("//div[@class='oznamenie']")
     end
 
     def download
