@@ -1128,6 +1128,7 @@ module Etl
 
       case dataset_type
         when :notice
+          shorten_attributes = [:supplier_name, :customer_name]
           procurement_digest[:suppliers].each_with_index do |supplier_hash, supplier_index|
             procurement_hash = procurement_digest.dup
             procurement_hash.delete(:suppliers)
@@ -1137,7 +1138,10 @@ module Etl
             procurement_object = Dataset::DsProcurementV2Notice.find_or_initialize_by_document_id_and_supplier_index(document_id, supplier_index)
 
             digest_attributes.each do |attribute|
-              procurement_object[attribute] = procurement_hash[attribute]
+              attribute_value = procurement_hash[attribute]
+              # shorten attribute before save
+              attribute_value = attribute_value.first(255) if shorten_attributes.include?(attribute)
+              procurement_object[attribute] = attribute_value
             end
             procurement_object.document_url = document_url
 
