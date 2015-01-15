@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150113151826) do
+ActiveRecord::Schema.define(:version => 20150115104528) do
 
   create_table "dc_relations", :primary_key => "_record_id", :force => true do |t|
     t.integer "relatable_left_id"
@@ -443,6 +443,56 @@ ActiveRecord::Schema.define(:version => 20150113151826) do
   add_index "ds_procurement_v2_notices", ["document_id", "supplier_index"], :name => "index_ds_procurement_v2_notices_on_document_id_and_supplier"
   add_index "ds_procurement_v2_notices", ["document_id"], :name => "index_ds_procurement_v2_notices_on_document_id"
   add_index "ds_procurement_v2_notices", ["supplier_organisation_id"], :name => "index_ds_procurement_v2_notices_on_supplier_organisation_id"
+
+  create_table "ds_procurement_v2_performances", :primary_key => "_record_id", :force => true do |t|
+    t.integer "document_id",                   :null => false
+    t.string  "document_url",                  :null => false
+    t.string  "procurement_code",              :null => false
+    t.integer "bulletin_code",                 :null => false
+    t.integer "year",                          :null => false
+    t.string  "procurement_type",              :null => false
+    t.date    "published_on",                  :null => false
+    t.string  "project_type"
+    t.string  "customer_name"
+    t.string  "customer_organisation_code"
+    t.integer "customer_organisation_id"
+    t.string  "customer_regis_name"
+    t.string  "customer_address"
+    t.string  "customer_place"
+    t.string  "customer_zip"
+    t.string  "customer_country"
+    t.string  "customer_contact_persons"
+    t.string  "customer_phone"
+    t.string  "customer_mobile"
+    t.string  "customer_email"
+    t.string  "customer_fax"
+    t.text    "contract_name"
+    t.date    "contract_date"
+    t.boolean "subject_delivered"
+    t.text    "subcontract_name"
+    t.date    "subcontract_date"
+    t.text    "subcontract_reason"
+    t.string  "procurement_currency"
+    t.float   "final_price"
+    t.boolean "final_price_vat_included"
+    t.float   "final_price_vat_rate"
+    t.float   "draft_price"
+    t.boolean "draft_price_vat_included"
+    t.float   "draft_price_vat_rate"
+    t.text    "price_difference_reason"
+    t.date    "start_on"
+    t.date    "end_on"
+    t.integer "duration"
+    t.string  "duration_unit"
+    t.text    "duration_difference_reason"
+    t.string  "eu_notification_number"
+    t.date    "eu_notification_published_on"
+    t.string  "vvo_notification_number"
+    t.date    "vvo_notification_published_on"
+  end
+
+  add_index "ds_procurement_v2_performances", ["customer_organisation_id"], :name => "index_ds_procurement_v2_performances_on_customer_organisation_id"
+  add_index "ds_procurement_v2_performances", ["document_id"], :name => "index_ds_procurement_v2_performances_on_document_id"
 
   create_table "ds_relation_testings", :primary_key => "_record_id", :force => true do |t|
     t.string   "created_by"

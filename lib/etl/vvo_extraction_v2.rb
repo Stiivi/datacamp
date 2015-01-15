@@ -28,11 +28,14 @@ module Etl
       nil
     end
 
-    def self.save_all_downloaded_documents
+    def self.save_all_downloaded_documents_for_type(dataset_type)
       ids = Dir.glob("data/#{Rails.env}/vvo/procurements/*/*.html").map { |n| File.basename(n, ".html").to_i }
       puts "Downloaded documents: #{ids.count}"
       ids.each do |document_id|
-        Delayed::Job.enqueue Etl::VvoExtractionV2.new(document_id)
+        ext_temp = Etl::VvoExtractionV2.new(document_id)
+        if ext_temp.dataset_type == dataset_type
+          Delayed::Job.enqueue Etl::VvoExtractionV2.new(document_id)
+        end
       end
       nil
     end
@@ -1028,8 +1031,176 @@ module Etl
       {:suppliers => suppliers}
     end
 
+    # Performance information
+    # Only for performace
+    def performance_information
+      performance_information_hash = {}
+
+      case document_format
+        when :format1
+          document.xpath("//fieldset[@class='fieldset']/legend").each do |element|
+            if element.inner_text.match(/ODDIEL\s+V\W/)
+              performance_information_element = element.next_sibling.next_sibling
+              performance_information_element.xpath(".//span[@class='code']").each do |code|
+                code_text = code.inner_text.strip
+                header_text = code.parent.xpath(".//span[@class='title']").inner_text
+
+                if code_text.match(/V\.*.*?[^\d]1.1[^\d]$/) && header_text.match(/Názov a označenie zmluvy/)
+                  contract_name_element = next_element(code.parent)
+                  performance_information_hash[:contract_name] = contract_name_element.inner_text.strip
+
+                elsif code_text.match(/V\.*.*?[^\d]1.2[^\d]$/) && header_text.match(/Dátum uzatvorenia zmluvy/)
+                  subject_delivered_element = next_element(code.parent)
+                  performance_information_hash[:contract_date] = parse_date(subject_delivered_element.inner_text)
+
+                elsif code_text.match(/V\.*.*?[^\d]2.1[^\d]$/) && header_text.match(/Názov a označenie dodatku k zmluve/)
+                  subcontract_element = next_element(code.parent)
+                  performance_information_hash[:subcontract_name] = subcontract_element.inner_text.strip
+
+                elsif code_text.match(/V\.*.*?[^\d]2.2[^\d]$/) && header_text.match(/Dátum uzatvorenia dodatku k zmluve/)
+                  subcontract_element = next_element(code.parent)
+                  performance_information_hash[:subcontract_date] = parse_date(subcontract_element.inner_text.strip)
+
+                elsif code_text.match(/V\.*.*?[^\d]2.3[^\d]$/) && header_text.match(/Dôvod uzatvorenia dodatku k zmluve/)
+                  subcontract_element = next_element(code.parent)
+                  performance_information_hash[:subcontract_reason] = subcontract_element.inner_text.strip
+
+                elsif code_text.match(/V\.*.*?[^\d]3.1[^\d]$/) && header_text.match(/ukončené dodaním predmetu zmluvy/)
+                  subject_delivered_element = next_element(code.parent)
+                  performance_information_hash[:subject_delivered] = !subject_delivered_element.inner_text.match(/Nie/)
+
+                elsif code_text.match(/V\.*.*?[^\d]3.2[^\d]$/) && header_text.match(/Pôvodná zmluvná cena/)
+                  price_element = code.parent
+                  begin
+                    if price_element.inner_text.strip.match(/Pôvodná zmluvná cena/)
+                      price_value_element = next_price_value_element(price_element)
+                      if price_value_element
+                        price_hash = parse_price1(price_value_element)
+                        performance_information_hash[:procurement_currency] = price_hash[:currency]
+                        performance_information_hash[:draft_price] = price_hash[:price]
+                        performance_information_hash[:draft_price_vat_included] = price_hash[:price_vat_included]
+                        performance_information_hash[:draft_price_vat_rate] = price_hash[:price_vat_rate]
+                      end
+                    elsif price_element.inner_text.strip.match(/Skutočne zaplatená cena/)
+                      price_value_element = next_price_value_element(price_element)
+                      if price_value_element
+                        price_hash = parse_price1(price_value_element)
+                        performance_information_hash[:procurement_currency] = price_hash[:currency]
+                        performance_information_hash[:final_price] = price_hash[:price]
+                        performance_information_hash[:final_price_vat_included] = price_hash[:price_vat_included]
+                        performance_information_hash[:final_price_vat_rate] = price_hash[:price_vat_rate]
+                      end
+                    elsif price_element.inner_text.strip.match(/Odôvodnenie rozdielu/)
+                      performance_information_hash[:price_difference_reason] = price_element.xpath(".//span[2]").inner_text
+                    end
+
+                    price_element = next_element(price_element)
+                  end while price_element && price_element.xpath(".//span[@class='code']").inner_text.blank?
+
+                elsif code_text.match(/V\.*.*?[^\d]3.3[^\d]$/) && header_text.match(/Trvanie zmluvy/)
+                  duration_element = next_element(code.parent)
+                  while duration_element && duration_element.xpath(".//span[@class='code']").inner_text.blank?
+                    if duration_element.inner_text.match(/Trvanie/)
+                      performance_information_hash[:duration_unit] = duration_element.xpath(".//span[1]").inner_text.strip
+                    elsif duration_element.inner_text.match(/Hodnota/)
+                      performance_information_hash[:duration] = duration_element.xpath(".//span[1]").inner_text.to_i
+                    elsif duration_element.inner_text.strip.match(/Odôvodnenie rozdielu/)
+                      performance_information_hash[:duration_difference_reason] = duration_element.xpath(".//span[2]").inner_text.strip
+                    elsif duration_element.inner_text.match(/Začiatok/)
+                      performance_information_hash[:start_on] = parse_date(duration_element.xpath(".//span[1]").inner_text.strip)
+                    elsif duration_element.inner_text.match(/Ukončenie/)
+                      performance_information_hash[:end_on] = parse_date(duration_element.xpath(".//span[1]").inner_text.strip)
+                    end
+                    duration_element = next_element(duration_element)
+                  end
+
+                end
+              end
+            end
+          end
+        when :format2
+          document.xpath("//table[@class='mainTable']//td[@class='cast']").each do |element|
+            if element.inner_text.match(/ODDIEL\s+V\W/)
+              element.xpath(".//table")[0].xpath(".//tr").each do |tr|
+                code_text = tr.xpath(".//td[@class='kod']").inner_text.strip
+                header_text = tr.xpath(".//td[2]//span[@class='nazov']").inner_text.strip
+
+                if code_text.match(/V\.*.*?[^\d]1.1[^\d]$/) && header_text.match(/Názov a označenie zmluvy/)
+                  performance_information_hash[:contract_name] = strip_last_point(tr.xpath(".//span[@class='hodnota']").inner_text.strip)
+
+                elsif code_text.match(/V\.*.*?[^\d]1.2[^\d]$/) && header_text.match(/Dátum uzatvorenia zmluvy/)
+                  performance_information_hash[:contract_date] = parse_date(tr.xpath(".//span[@class='hodnota']").inner_text.strip)
+
+                elsif code_text.match(/V\.*.*?[^\d]2.1[^\d]$/) && header_text.match(/Názov a označenie dodatku k zmluve/)
+                  performance_information_hash[:subcontract_name] = strip_last_point(tr.xpath(".//span[@class='hodnota']").inner_text)
+
+                elsif code_text.match(/V\.*.*?[^\d]2.2[^\d]$/) && header_text.match(/Dátum uzatvorenia dodatku k zmluve/)
+                  performance_information_hash[:subcontract_date] = parse_date(tr.xpath(".//span[@class='hodnota']").inner_text.strip)
+
+                elsif code_text.match(/V\.*.*?[^\d]2.3[^\d]$/) && header_text.match(/Dôvod uzatvorenia dodatku k zmluve/)
+                  performance_information_hash[:subcontract_reason] = strip_last_point(tr.xpath(".//span[@class='hodnota']").inner_text.strip)
+
+                elsif code_text.match(/V\.*.*?[^\d]3.1[^\d]$/) && header_text.match(/ukončené dodaním predmetu zmluvy/)
+                  performance_information_hash[:subject_delivered] = !tr.xpath(".//span[@class='hodnota']").inner_text.match(/Nie/)
+
+                elsif code_text.match(/V\.*.*?[^\d]3.2[^\d]$/) && header_text.match(/Pôvodná zmluvná cena/)
+                  price_element = tr
+                  begin
+                    if price_element.inner_text.strip.match(/Pôvodná zmluvná cena/)
+                      price_value_element = next_price_value_element(price_element)
+                      if price_value_element
+                        price_hash = parse_price2(price_value_element)
+                        performance_information_hash[:procurement_currency] = price_hash[:currency]
+                        performance_information_hash[:draft_price] = price_hash[:price]
+                        performance_information_hash[:draft_price_vat_included] = price_hash[:price_vat_included]
+                        performance_information_hash[:draft_price_vat_rate] = price_hash[:price_vat_rate]
+                      end
+                    elsif price_element.inner_text.strip.match(/Skutočne zaplatená cena/)
+                      price_value_element = next_price_value_element(price_element)
+                      if price_value_element
+                        price_hash = parse_price2(price_value_element)
+                        performance_information_hash[:procurement_currency] = price_hash[:currency]
+                        performance_information_hash[:final_price] = price_hash[:price]
+                        performance_information_hash[:final_price_vat_included] = price_hash[:price_vat_included]
+                        performance_information_hash[:final_price_vat_rate] = price_hash[:price_vat_rate]
+                      end
+                    elsif price_element.inner_text.strip.match(/Odôvodnenie rozdielu/)
+                      performance_information_hash[:price_difference_reason] = strip_last_point(price_element.xpath(".//span[@class='hodnota']").inner_text.strip)
+                    end
+
+                    price_element = next_element(price_element)
+                  end while price_element && price_element.xpath(".//td[@class='kod']").inner_text.blank?
+
+                elsif code_text.match(/V\.*.*?[^\d]3.3[^\d]$/) && header_text.match(/Trvanie zmluvy/)
+                  duration_element = next_element(tr)
+                  while duration_element && duration_element.xpath(".//td[@class='kod']").inner_text.blank?
+                    if duration_element.xpath(".//span[@class='podnazov']").inner_text.match(/Trvanie/)
+                      duration_unit = strip_last_point(duration_element.xpath(".//span[@class='hodnota']").inner_text.strip)
+                      performance_information_hash[:duration_unit] = duration_unit if duration_unit != "v intervale"
+                    elsif duration_element.xpath(".//span[@class='podnazov']").inner_text.match(/Hodnota/)
+                      performance_information_hash[:duration] = duration_element.xpath(".//span[@class='hodnota']").inner_text.to_i
+                    elsif duration_element.xpath(".//span[@class='podnazov']").inner_text.strip.match(/Odôvodnenie rozdielu/)
+                      performance_information_hash[:duration_difference_reason] = strip_last_point(duration_element.xpath(".//span[@class='hodnota']").inner_text.strip)
+                    elsif duration_element.xpath(".//span[@class='podnazov']").inner_text.match(/Začiatok/)
+                      performance_information_hash[:start_on] = parse_date(duration_element.xpath(".//span[@class='hodnota']").inner_text.strip)
+                    elsif duration_element.xpath(".//span[@class='podnazov']").inner_text.match(/Ukončenie/)
+                      performance_information_hash[:end_on] = parse_date(duration_element.xpath(".//span[@class='hodnota']").inner_text.strip)
+                    end
+                    duration_element = next_element(duration_element)
+                  end
+                end
+
+              end
+            end
+          end
+
+        else
+
+      end
+      performance_information_hash
+    end
+
     # Additional information
-    # Only for notice_result
 
     def additional_information
       additional_information_hash = {}
@@ -1050,6 +1221,34 @@ module Etl
                   end
                 elsif code_text.match(/VI\.*.*?[^\d]2[^\d]$/) && (header_text.match(/DOPLŇUJÚCE INFORMÁCIE/) ||header_text.match(/Ďalšie informácie/))
                   additional_information_hash[:evaluation_committee] = parse_committee(next_element(code.parent).inner_text.strip)
+
+                elsif code_text.match(/VI\.*.*?[^\d]1.2[^\d]$/) && header_text.match(/Zverejnené oznámenie/)
+                  notification_element = next_element(code.parent)
+                  eu_number = eu_published_on = vvo_number = vvo_published_on = nil
+                  while notification_element && notification_element.xpath(".//span[@class='code']").inner_text.blank?
+                    if notification_element.inner_text.match(/Číslo oznámenia v(.*)EÚ/)
+                      if notification_element.xpath(".//span")
+                        eu_number = notification_element.xpath(".//span").inner_text.strip
+                        date_element = notification_element.xpath(".//span").first.next_sibling
+                        if date_element
+                          eu_published_on = parse_date(date_element.inner_text.strip.gsub("z: ", ""))
+                        end
+                      end
+                    elsif notification_element.inner_text.match(/Číslo oznámenia vo VVO/)
+                      matches = notification_element.inner_text.match(/(.*)VVO:(.*) z (.*)/)
+                      if matches && matches.size == 4
+                        vvo_number = matches[2].strip
+                        vvo_published_on = parse_date(matches[3].strip)
+                      end
+                    end
+                    notification_element = next_element(notification_element)
+                  end
+                  vvo_number = normalize_notification_number(vvo_number)
+                  eu_number = normalize_notification_number(eu_number)
+                  additional_information_hash[:eu_notification_number] = eu_number
+                  additional_information_hash[:eu_notification_published_on] = eu_published_on
+                  additional_information_hash[:vvo_notification_number] = vvo_number
+                  additional_information_hash[:vvo_notification_published_on] = vvo_published_on
                 end
 
               end
@@ -1068,6 +1267,32 @@ module Etl
                 elsif code_text.match(/VI\.*.*?[^\d]2[^\d]$/) && (header_text.match(/ĎALŠIE INFORMÁCIE/) || header_text.match(/DOPLŇUJÚCE INFORMÁCIE/) ||header_text.match(/Ďalšie informácie/))
                   evaluation_committee = parse_committee(tr.xpath(".//span[@class='hodnota']").inner_text.strip, true)
                   additional_information_hash[:evaluation_committee] = evaluation_committee if evaluation_committee
+
+                elsif code_text.match(/VI\.*.*?[^\d]1.2[^\d]$/) && header_text.match(/Zverejnené oznámenie o výsledku verejného obstarávania/)
+                  notification_element = next_element(tr)
+                  eu_number = eu_published_on = vvo_number = vvo_published_on = nil
+                  while notification_element && notification_element.xpath(".//td[@class='kod']").inner_text.blank?
+                    if notification_element.inner_text.match(/Číslo oznámenia v(.*)EÚ/)
+                      matches = notification_element.xpath(".//span[@class='hodnota']").inner_text.match(/(.*) z (.*)/)
+                      if matches && matches.size == 3
+                        eu_number = matches[1].strip
+                        eu_published_on = parse_date(matches[2].strip)
+                      end
+                    elsif notification_element.inner_text.match(/Číslo oznámenia vo VVO/)
+                      matches = notification_element.xpath(".//span[@class='hodnota']").inner_text.match(/(.*) z (.*)/)
+                      if matches && matches.size == 3
+                        vvo_number = matches[1].strip
+                        vvo_published_on = parse_date(matches[2].strip)
+                      end
+                    end
+                    notification_element = next_element(notification_element)
+                  end
+                  vvo_number = normalize_notification_number(vvo_number)
+                  eu_number = normalize_notification_number(eu_number)
+                  additional_information_hash[:eu_notification_number] = eu_number
+                  additional_information_hash[:eu_notification_published_on] = eu_published_on
+                  additional_information_hash[:vvo_notification_number] = vvo_number
+                  additional_information_hash[:vvo_notification_published_on] = vvo_published_on
                 end
 
               end
@@ -1089,7 +1314,7 @@ module Etl
         when :notice
           hashes += [procedure_information, suppliers_information, additional_information]
         when :performance
-          # TODO
+          hashes += [performance_information, additional_information]
         else
           hashes = []
       end
@@ -1126,7 +1351,21 @@ module Etl
               :procurement_euro_found, :evaluation_committee
           ]
         when :performance
-          # TODO
+          [
+              # Basic information
+              :procurement_code, :bulletin_code, :year, :procurement_type, :published_on, :project_type,
+              # Customer information
+              :customer_name, :customer_organisation_code, :customer_address, :customer_place, :customer_zip, :customer_country,
+              :customer_contact_persons, :customer_phone, :customer_mobile, :customer_email, :customer_fax,
+              # Performance information
+              :contract_name, :contract_date, :subject_delivered,
+              :subcontract_name, :subcontract_date, :subcontract_reason,
+              :procurement_currency, :final_price, :final_price_vat_included, :final_price_vat_rate, :price_difference_reason,
+              :draft_price, :draft_price_vat_included, :draft_price_vat_rate,
+              :start_on, :end_on, :duration, :duration_unit, :duration_difference_reason,
+              # Additional information
+              :eu_notification_number, :eu_notification_published_on, :vvo_notification_number, :vvo_notification_published_on,
+          ]
         else
           []
       end
@@ -1136,6 +1375,7 @@ module Etl
 
       procurement_digest = digest
 
+      # TODO refactor
       case dataset_type
         when :notice
           shorten_attributes = [:supplier_name, :customer_name]
@@ -1173,7 +1413,29 @@ module Etl
           end
 
         when :performance
-          # TODO
+          shorten_attributes = [:customer_name]
+          procurement_hash = procurement_digest
+
+          # Initialize object
+          procurement_object = Dataset::DsProcurementV2Performance.find_or_initialize_by_document_id(document_id)
+
+          digest_attributes.each do |attribute|
+            attribute_value = procurement_hash[attribute]
+            # shorten attribute before save
+            attribute_value = attribute_value.first(255) if attribute_value && shorten_attributes.include?(attribute)
+            procurement_object[attribute] = attribute_value
+          end
+          procurement_object.document_url = document_url
+
+          # Map customer to regis
+          customer_regis_organisation = find_regis_organisation(procurement_hash[:customer_organisation_code])
+          if customer_regis_organisation
+            procurement_object.customer_organisation_id = customer_regis_organisation.id
+            procurement_object.customer_regis_name = customer_regis_organisation.name
+          end
+
+          procurement_object.save
+
         else
       end
 
@@ -1209,14 +1471,23 @@ module Etl
         price_hash[:price_max] = parse_float(price_element.xpath(".//span[2]").inner_text.strip)
         price_hash[:currency] = parse_currency(price_element.xpath(".//span[3]").inner_text.strip)
       end
+      if price_element.inner_text.match(/s DPH/)
+        price_hash[:price_vat_included] = true
+      elsif price_element.inner_text.match(/bez DPH/)
+        price_hash[:price_vat_included] = false
+        vat_rate_element = next_element(price_element)
+        if vat_rate_element.inner_text.match(/Sadzba DPH/)
+          price_hash[:price_vat_rate] = parse_float(vat_rate_element.xpath(".//span").inner_text.strip)
+        end
+      end
       vat_element = next_element(price_element)
-      if vat_element.inner_text.match(/Mena/)
+      if vat_element && vat_element.inner_text.match(/Mena/)
         price_hash[:currency] = parse_currency(vat_element.xpath(".//span").inner_text.strip)
         vat_element = next_element(vat_element)
       end
-      if vat_element.inner_text.match(/Bez DPH/)
+      if vat_element && vat_element.inner_text.match(/Bez DPH/)
         price_hash[:price_vat_included] = false
-      elsif vat_element.inner_text.match(/Vrátane DPH/)
+      elsif vat_element && vat_element.inner_text.match(/Vrátane DPH/)
         price_hash[:price_vat_included] = true
         vat_rate_element = next_element(vat_element)
         if vat_rate_element.inner_text.match(/Sadzba DPH/)
@@ -1242,14 +1513,23 @@ module Etl
         price_hash[:price_max] = parse_float(price_elements[1].inner_text.strip)
         price_hash[:currency] = parse_currency(price_elements[2].inner_text.strip)
       end
+      if price_element.inner_text.match(/s DPH/)
+        price_hash[:price_vat_included] = true
+      elsif price_element.inner_text.match(/bez DPH/)
+        price_hash[:price_vat_included] = false
+        vat_rate_element = next_element(vat_element)
+        if vat_rate_element.inner_text.match(/Sadzba DPH/)
+          price_hash[:price_vat_rate] = parse_float(vat_rate_element.xpath(".//span").last.inner_text.strip)
+        end
+      end
       vat_element = next_element(price_element)
-      if vat_element.inner_text.match(/Mena/) #todo
+      if vat_element && vat_element.inner_text.match(/Mena/)
         price_hash[:currency] = parse_currency(vat_element.xpath(".//span[@class='hodnota']").inner_text.strip)
         vat_element = next_element(vat_element)
       end
-      if vat_element.inner_text.match(/Bez DPH/)
+      if vat_element && vat_element.inner_text.match(/Bez DPH/)
         price_hash[:price_vat_included] = false
-      elsif vat_element.inner_text.match(/Vrátane DPH/)
+      elsif vat_element && vat_element.inner_text.match(/Vrátane DPH/)
         price_hash[:price_vat_included] = true
         vat_rate_element = next_element(vat_element)
         if vat_rate_element.inner_text.match(/Sadzba DPH/)
@@ -1272,6 +1552,14 @@ module Etl
       else
         str
       end
+    end
+
+    def normalize_notification_number(number)
+      return nil unless number
+      number.gsub!(" číslo", "")
+      number.gsub!(": ", "") if number.start_with?(": ")
+      return nil unless number.match(/\d/)
+      number
     end
 
   end

@@ -23,9 +23,13 @@ describe Etl::VvoExtractionV2 do
           notice: [:supplier_name, :supplier_organisation_code, :supplier_address, :supplier_place, :supplier_zip, :supplier_country],
           performance: []
       },
+      performance_information: {
+          notice: [],
+          performance: [:contract_name, :contract_date, :subject_delivered, :procurement_currency, :draft_price, :draft_price_vat_included, :final_price, :final_price_vat_included]
+      },
       additional_information: {
-          notice: [:procurement_euro_found, :evaluation_committee],
-          performance: []
+          notice: [],
+          performance: [:eu_notification_number, :eu_notification_published_on, :vvo_notification_number, :vvo_notification_published_on]
       }
   }
   allowed_nil_attributes_in_documents = {
@@ -1081,6 +1085,183 @@ describe Etl::VvoExtractionV2 do
     end
   end
 
+  # performance_information
+  describe '#performance_information' do
+
+    # Format 1
+    it 'should get performance information from a document - 186086 - format1' do
+      VCR.use_cassette('vvo_186086') do
+        extractor = Etl::VvoExtractionV2.new(186086)
+        extractor.performance_information.should == {
+            contract_name: "Pranie prádla - Zmluva o dielo - 953/2011 (1007)",
+            contract_date: Date.new(2011, 10, 21),
+            subject_delivered: true,
+            procurement_currency: 'EUR',
+            draft_price: 345525.0,
+            draft_price_vat_included: true,
+            draft_price_vat_rate: nil,
+            final_price: 341820.82,
+            final_price_vat_included: true,
+            final_price_vat_rate: nil,
+            price_difference_reason: 'Množstvá v zmluve boli predpokladané , rozdiel vznikol menším počtom požiadaviek z kliník a oddelení na pranie prádla.',
+            duration: 12,
+            duration_unit: 'v mesiacoch'
+        }
+      end
+    end
+    it 'should get performance information from a document - 185481 - format1' do
+      VCR.use_cassette('vvo_185481') do
+        extractor = Etl::VvoExtractionV2.new(185481)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should == 'Prístrojová technika pre monitorovanie vitálnych funkcií pre laboratórnu a klinickú prax. Kúpna zmluva JLFUK MT 83-OVO/2011, evidovaná v CRZ úradu vlády pod č. II/135/12/RUK'
+        performance_information[:contract_date].should == Date.new(2012, 8, 24)
+        performance_information[:subject_delivered].should == true
+        performance_information[:procurement_currency].should == "EUR"
+        performance_information[:draft_price].should == 68336.4
+        performance_information[:draft_price_vat_included].should == true
+        performance_information[:draft_price_vat_rate].should be_nil
+        performance_information[:final_price].should == 68336.4
+        performance_information[:final_price_vat_included].should == true
+        performance_information[:final_price_vat_rate].should be_nil
+        performance_information[:price_difference_reason].should be_nil
+        performance_information[:duration].should == 120
+        performance_information[:duration_unit].should == 'v dňoch'
+        performance_information[:duration_difference_reason].should == 'účinnosť zmluvy od 6.9.2012. Plnenie zmluvy v lehote na realizáciu'
+      end
+    end
+    it 'should get performance information from a document - 188964 - format1' do
+      VCR.use_cassette('vvo_188964') do
+        extractor = Etl::VvoExtractionV2.new(188964)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should == 'Dodávka inžiniersko-projektových výkonov a zhotovenie stavby na riadenie letovej prevádzky vrátane financovania - zhotovenie stavby na kľúč podľa špecifikácie obstarávateľa. Zmluva č. LPS SR š.p. PRAV/89/2008.'
+        performance_information[:contract_date].should == Date.new(2008, 6, 26)
+        performance_information[:subject_delivered].should == true
+        performance_information[:procurement_currency].should == "EUR"
+        performance_information[:draft_price].should == 35549916.74
+        performance_information[:draft_price_vat_included].should == true
+        performance_information[:draft_price_vat_rate].should be_nil
+        performance_information[:final_price].should == 35848655.53
+        performance_information[:final_price_vat_included].should == true
+        performance_information[:final_price_vat_rate].should be_nil
+        performance_information[:price_difference_reason].should_not be_nil
+        performance_information[:duration].should == 48
+        performance_information[:duration_unit].should == 'v mesiacoch'
+        performance_information[:duration_difference_reason].should_not be_nil
+      end
+    end
+
+    # Format 2
+
+    it 'should get performance information from a document - 121904 - format2' do
+      VCR.use_cassette('vvo_121904') do
+        extractor = Etl::VvoExtractionV2.new(121904)
+        extractor.performance_information.should == {
+            contract_name: "Rekonštrukcia ciest a mostov v správe Správy ciest Košického samosprávneho kraja, zmluva o dielo č. 7/TV/2008: Rekonštrukcia nadjazdu Dobrá 553035-3",
+            contract_date: Date.new(2008, 5, 5),
+            subject_delivered: true,
+            procurement_currency: 'EUR',
+            draft_price: 553008.64,
+            draft_price_vat_included: true,
+            draft_price_vat_rate: nil,
+            final_price: 553008.64,
+            final_price_vat_included: true,
+            final_price_vat_rate: nil,
+            duration: 5,
+            duration_unit: 'v mesiacoch'
+        }
+      end
+    end
+    it 'should get performance information from a document - 121895 - format2' do
+      VCR.use_cassette('vvo_121895') do
+        extractor = Etl::VvoExtractionV2.new(121895)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should == 'Notebooky a príslušenstvo, rámcová dohoda č. SE-275-84/OVO-2006'
+        performance_information[:contract_date].should == Date.new(2007, 1, 31)
+        performance_information[:subject_delivered].should == true
+        performance_information[:procurement_currency].should == "EUR"
+        performance_information[:draft_price].should == 4883366.0
+        performance_information[:draft_price_vat_included].should == true
+        performance_information[:draft_price_vat_rate].should be_nil
+        performance_information[:final_price].should == 5811206.0
+        performance_information[:final_price_vat_included].should == true
+        performance_information[:final_price_vat_rate].should be_nil
+        performance_information[:price_difference_reason].should == 'Na základe predložených požiadaviek útvarov MV SR a rozpočtových organizácií MV SR vznikla v priebehu trvania rámcovej dohody zvýšená potreba nákupu notebookov oproti plánovanému počtu'
+        performance_information[:duration].should be_nil
+        performance_information[:start_on].should == Date.new(2007,1,31)
+        performance_information[:end_on].should == Date.new(2008,12,31)
+        performance_information[:duration_unit].should be_nil
+        performance_information[:duration_difference_reason].should be_nil
+      end
+    end
+    it 'should get performance information from a document - 121896 - format2' do
+      VCR.use_cassette('vvo_121896') do
+        extractor = Etl::VvoExtractionV2.new(121896)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should == 'Vytvorenie databázového a aplikačného prostredia'
+        performance_information[:contract_date].should == Date.new(2008, 6, 26)
+        performance_information[:subject_delivered].should == true
+        performance_information[:procurement_currency].should == "EUR"
+        performance_information[:draft_price].should == 315302.99
+        performance_information[:draft_price_vat_included].should == true
+        performance_information[:draft_price_vat_rate].should be_nil
+        performance_information[:final_price].should == 315302.99
+        performance_information[:final_price_vat_included].should == true
+        performance_information[:final_price_vat_rate].should be_nil
+        performance_information[:price_difference_reason].should be_nil
+        performance_information[:duration].should == 6
+        performance_information[:duration_unit].should == 'v mesiacoch'
+        performance_information[:duration_difference_reason].should be_nil
+      end
+    end
+
+    # ID
+
+    it 'should get performance information from a document - 121996 - format2' do
+      VCR.use_cassette('vvo_121996') do
+        extractor = Etl::VvoExtractionV2.new(121996)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should == 'Dostavba budovy VÚSCH Košice, zmluva o dielo č. 16-ZoD-2007'
+        performance_information[:contract_date].should == Date.new(2007, 4, 30)
+        performance_information[:subcontract_name].should == 'Dodatok č. 3 k zmluve o dielo č. 16-ZoD-2007 na zhotovenie stavby'
+        performance_information[:subcontract_date].should == Date.new(2008, 12, 15)
+        performance_information[:subcontract_reason].should == 'Zmena rozsahu prác a súvisiacich dodávok a úprava nákladov rozpočtu'
+      end
+    end
+    it 'should get performance information from a document - 121987 - format2' do
+      VCR.use_cassette('vvo_121987') do
+        extractor = Etl::VvoExtractionV2.new(121987)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should_not be_nil
+        performance_information[:contract_date].should == Date.new(2007, 12, 27)
+        performance_information[:subcontract_name].should == 'Dodatok č. 1 k zmluve o dielo na poskytovanie autorizovaného pozáručného servisu na zariadenia IBM, uzatvorený v súlade s ustanovením článku 14 bodu 8.2. základnej zmluvy č. P-44-5553/2007'
+        performance_information[:subcontract_date].should == Date.new(2008, 12, 19)
+        performance_information[:subcontract_reason].should == 'Aktualizácia poskytovania autorizovaného pozáručného servisu na zariadenia IBM'
+      end
+    end
+    it 'should get performance information from a document - 122091 - format2' do
+      VCR.use_cassette('vvo_122091') do
+        extractor = Etl::VvoExtractionV2.new(122091)
+        performance_information = extractor.performance_information
+        performance_information[:contract_name].should == 'Špeciálny zdravotnícky materiál na angiografie a endovaskulárne intervencie, kúpna zmluva č. 542/2008'
+        performance_information[:contract_date].should == Date.new(2008, 9, 15)
+        performance_information[:subcontract_name].should == 'Dodatok č.1 ku kúpnej zmluve č. 542/2008'
+        performance_information[:subcontract_date].should == Date.new(2008, 12, 30)
+        performance_information[:subcontract_reason].should == 'Predmetom dodatku č.1 ku KZ je zmena vyjadrenia jednotkovej predajnej ceny z SKK na EUR (zmena zák. č. 659/2007 Z. z. o zavedení meny euro na území Slovenskej republiky)'
+      end
+    end
+
+
+    it 'parse performance information for all documents' do
+      all_document_types_and_formats.each do |document_id|
+        VCR.use_cassette("vvo_#{document_id}") do
+          extractor = Etl::VvoExtractionV2.new(document_id)
+          extractor.performance_information.should_not be_nil
+        end
+      end
+    end
+
+  end
+
   # additional_information
   describe '#additional_information' do
     # Format 1
@@ -1135,10 +1316,56 @@ describe Etl::VvoExtractionV2 do
       end
     end
 
+    it 'should get addition information from a document - 186086 - format1' do
+      VCR.use_cassette('vvo_186086') do
+        extractor = Etl::VvoExtractionV2.new(186086)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2011/S 212-345639"
+        additional_information[:eu_notification_published_on].should == Date.new(2011,11,4)
+        additional_information[:vvo_notification_number].should == "9212-VSS, VVO 216/2011"
+        additional_information[:vvo_notification_published_on].should == Date.new(2011,11,5)
+      end
+    end
+
     it 'should get addition information from a document - ??? - format1' do
       VCR.use_cassette('vvo_188666') do
         extractor = Etl::VvoExtractionV2.new(188666)
         extractor.additional_information[:procurement_euro_found].should == true
+      end
+    end
+
+    # IZ
+
+    it 'should get addition information from a document - 186086 - format1' do
+      VCR.use_cassette('vvo_186086') do
+        extractor = Etl::VvoExtractionV2.new(186086)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2011/S 212-345639"
+        additional_information[:eu_notification_published_on].should == Date.new(2011,11,4)
+        additional_information[:vvo_notification_number].should == "9212-VSS, VVO 216/2011"
+        additional_information[:vvo_notification_published_on].should == Date.new(2011,11,5)
+      end
+    end
+
+    it 'should get addition information from a document - 185481 - format1' do
+      VCR.use_cassette('vvo_185481') do
+        extractor = Etl::VvoExtractionV2.new(185481)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2012/S 195-320169"
+        additional_information[:eu_notification_published_on].should == Date.new(2012,10,10)
+        additional_information[:vvo_notification_number].should == "11837-VST, VVO 195/2012"
+        additional_information[:vvo_notification_published_on].should == Date.new(2012,10,9)
+      end
+    end
+
+    it 'should get addition information from a document - 185481 - format1' do
+      VCR.use_cassette('vvo_188964') do
+        extractor = Etl::VvoExtractionV2.new(188964)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2008/S 161-217497"
+        additional_information[:eu_notification_published_on].should == Date.new(2008,8,21)
+        additional_information[:vvo_notification_number].should == "3931-VUP, VVO 165/2008"
+        additional_information[:vvo_notification_published_on].should == Date.new(2008,8,25)
       end
     end
 
@@ -1170,14 +1397,58 @@ describe Etl::VvoExtractionV2 do
       end
     end
 
+    # IZ
+
+    it 'should get addition information from a document - 121904 - format2' do
+      VCR.use_cassette('vvo_121904') do
+        extractor = Etl::VvoExtractionV2.new(121904)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2008/S 103-137429"
+        additional_information[:eu_notification_published_on].should == Date.new(2008,5,29)
+        additional_information[:vvo_notification_number].should == "02521-VSP, VVO 109/2008"
+        additional_information[:vvo_notification_published_on].should == Date.new(2008,6,6)
+      end
+    end
+
+    it 'should get addition information from a document - 121895 - format2' do
+      VCR.use_cassette('vvo_121895') do
+        extractor = Etl::VvoExtractionV2.new(121895)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2007/S 023-026679"
+        additional_information[:eu_notification_published_on].should == Date.new(2007,2,2)
+        additional_information[:vvo_notification_number].should == "00718-VST, VVO 3/2007"
+        additional_information[:vvo_notification_published_on].should == Date.new(2007,1,5)
+      end
+    end
+
+    it 'should get addition information from a document - 121896 - format2' do
+      VCR.use_cassette('vvo_121896') do
+        extractor = Etl::VvoExtractionV2.new(121896)
+        additional_information = extractor.additional_information
+        additional_information[:eu_notification_number].should == "2008/S 129-171299"
+        additional_information[:eu_notification_published_on].should == Date.new(2008,7,5)
+        additional_information[:vvo_notification_number].should == "03002-VBS, VVO 132/2008"
+        additional_information[:vvo_notification_published_on].should == Date.new(2008,7,9)
+      end
+    end
+
+    # Tests in all documents formats for not nil and blank attributes
     all_document_types_and_formats.each do |document_id|
-      it "should get additional information for #{document_id} document" do
-        VCR.use_cassette("vvo_#{document_id}") do
-          extractor = Etl::VvoExtractionV2.new(document_id)
-          extractor.additional_information.should_not be_nil
+      VCR.use_cassette("vvo_#{document_id}") do
+        extractor = Etl::VvoExtractionV2.new(document_id)
+        additional_information = extractor.additional_information
+        dataset_type = extractor.dataset_type
+        required_attributes[:additional_information][dataset_type].each do |attribute|
+          # test when not in excluded nil attributes
+          if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
+            it "should have not nil attribute: #{attribute} in contract information for document #{document_id}" do
+              additional_information[attribute].should_not be_nil
+            end
+          end
         end
       end
     end
+
   end
 
   describe '#parse_address' do

@@ -24,6 +24,7 @@ EtlConfiguration.find_or_create_by_name('mzvsr_contracts_extraction')
 
 Dataset::Utils.initialize_dataset('organisations', true)
 Dataset::Utils.initialize_dataset('procurement_v2_notices', true)
+Dataset::Utils.initialize_dataset('procurement_v2_performances', true)
 
 # Foundations for ETL
 
