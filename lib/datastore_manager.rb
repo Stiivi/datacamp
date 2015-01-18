@@ -68,8 +68,9 @@ def establish_connection(connection_info)
             :user => connection_info["username"] || "root",
             :password => connection_info["password"],
             :host => connection_info["host"],
-            :encoding => 'utf8'
-            )
+            :encoding => 'utf8',
+            :max_connections => 5
+    )
 
     Sequel::MySQL.default_charset = 'utf8'
 

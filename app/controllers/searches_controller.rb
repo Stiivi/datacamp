@@ -64,10 +64,10 @@ class SearchesController < ApplicationController
   protected
 
     def create_predicates_from_hash(hash)
-      hash.collect do |predicate|
+      hash.collect { |predicate|
         if predicate[:operator].present? && predicate[:value].present?
           SearchPredicate.create({:scope => "record", :search_field => predicate[:field], :operator => predicate[:operator], :argument => predicate[:value]})
         end
-      end
+      }.select{|p| p.present? }
     end
 end
