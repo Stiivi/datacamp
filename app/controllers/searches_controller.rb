@@ -13,10 +13,15 @@ class SearchesController < ApplicationController
   def create
     search_params = params[:search] || {}
     if search_params[:predicates]
-      query = SearchQuery.query_with_predicates(create_predicates_from_hash(search_params[:predicates]), :scope=>"dataset", :object => search_params[:dataset])
+      puts create_predicates_from_hash(search_params[:predicates]).inspect
+      a = { scope: "dataset", object: search_params[:dataset] }
+      puts a.inspect
+
+      query = SearchQuery.query_with_predicates(create_predicates_from_hash(search_params[:predicates]), :scope => "dataset", :object => search_params[:dataset])
       search = Search.create(:query => query, :search_type => 'predicates', :session => @current_session)
+
       if search_params[:dataset].present?
-        redirect_to dataset_path(DatasetDescription.find_by_identifier(search.query.object), :search_id => search.id) 
+        redirect_to dataset_path(DatasetDescription.find_by_identifier(search.query.object), :search_id => search.id)
       else
         redirect_to search_path(search)
       end
@@ -47,14 +52,14 @@ class SearchesController < ApplicationController
     @results = {}
     DatasetCategory.all.each do |dataset_category|
       if params[:disabled_descriptions]
-        dds = dataset_category.dataset_descriptions.where('id NOT IN(?)', params[:disabled_descriptions]) 
+        dds = dataset_category.dataset_descriptions.where('id NOT IN(?)', params[:disabled_descriptions])
       else
         dds = dataset_category.dataset_descriptions
       end
       dds.where(:is_active => true).each do |dataset_description|
         begin
-        dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => {record_status: DatastoreManager.record_statuses[2]}
-        @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description=>dataset_results}) if dataset_results.present?
+          dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => {record_status: DatastoreManager.record_statuses[2]}
+          @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description => dataset_results}) if dataset_results.present?
         rescue
         end
       end
@@ -63,11 +68,11 @@ class SearchesController < ApplicationController
 
   protected
 
-    def create_predicates_from_hash(hash)
-      hash.collect { |predicate|
-        if predicate[:operator].present? && predicate[:value].present?
-          SearchPredicate.create({:scope => "record", :search_field => predicate[:field], :operator => predicate[:operator], :argument => predicate[:value]})
-        end
-      }.select{|p| p.present? }
-    end
+  def create_predicates_from_hash(hash)
+    hash.collect { |predicate|
+      if predicate[:operator].present? && predicate[:value].present?
+        SearchPredicate.create({:scope => "record", :search_field => predicate[:field], :operator => predicate[:operator], :argument => predicate[:value]})
+      end
+    }.select { |p| p.present? }
+  end
 end
