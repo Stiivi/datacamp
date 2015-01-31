@@ -63,6 +63,14 @@ namespace :etl do
     Etl::VvoCheckerV2.check_all
   end
 
+  desc 'VVO V2 - Download old bulletins in years and parse missed documents'
+  task vvo_v2_old_years_bulletins_extraction: :environment do
+    Etl::VvoBulletinExtractionV2.clear_report # clear report in config
+    [2009, 2010, 2011, 2012, 2013, 2014].each do |year|
+      Etl::VvoBulletinExtractionV2.extract_all_bulletins(year)
+    end
+  end
+
   # VVO
 
   desc 'VVO - Try extraction by ids - iterate by ids while ids its not acceptable'
