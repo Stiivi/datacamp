@@ -62,7 +62,7 @@ module Etl
           price_hash[:price_interval] = false
         elsif price_elements.size == 2
           price_hash[:price] = parse_float(price_elements[0].inner_text.strip)
-          price_hash[:currency] = parse_currency(price_elements[0].inner_text.strip)
+          price_hash[:currency] = parse_currency(price_elements[1].inner_text.strip)
           price_hash[:price_interval] = false
         elsif price_elements.size == 3
           price_hash[:price_range] = true
@@ -72,12 +72,12 @@ module Etl
         end
         if price_element.inner_text.match(/s DPH/)
           price_hash[:price_vat_included] = true
-        elsif price_element.inner_text.match(/bez DPH/)
-          price_hash[:price_vat_included] = false
-          vat_rate_element = next_element(vat_element)
+          vat_rate_element = next_element(price_element)
           if vat_rate_element.inner_text.match(/Sadzba DPH/)
             price_hash[:price_vat_rate] = parse_float(vat_rate_element.xpath(".//span").last.inner_text.strip)
           end
+        elsif price_element.inner_text.match(/bez DPH/)
+          price_hash[:price_vat_included] = false
         end
         vat_element = next_element(price_element)
         if vat_element && vat_element.inner_text.match(/Mena/)

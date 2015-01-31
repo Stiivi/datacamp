@@ -179,6 +179,15 @@ module Etl
                       supplier_hash[:contract_name] = strip_last_point(contract_name_element.xpath(".//span[@class='hodnota']").inner_text.strip)
                     end
 
+                  elsif code_text.blank? && tr.xpath(".//span[@class='podnazov']") && tr.xpath(".//span[@class='podnazov']").inner_text.match(/Názov/)
+                    # add non empty to array
+                    if supplier_hash.any?
+                      suppliers << supplier_hash if supplier_hash[:supplier_name]
+                      supplier_hash = {}
+                    end
+
+                    supplier_hash[:contract_name] = strip_last_point(tr.xpath(".//span[@class='hodnota']").inner_text.strip)
+
                   elsif code_text.match(/V\.*.*?[^\d]1[^\d]$/) && (header_text.match(/Dátum/) || header_text.match(/DÁTUM/))
                     contract_date_element = tr.xpath(".//span[@class='hodnota']")
                     supplier_hash[:contract_date] = parse_date(contract_date_element.inner_text.strip)
@@ -186,7 +195,10 @@ module Etl
                   elsif code_text.match(/V\.*.*?[^\d]2[^\d]$/) && (header_text.match(/Počet prijatých/) || header_text.match(/POČET PRIJATÝCH/))
                     supplier_hash[:offers_total_count] = tr.xpath(".//span[@class='hodnota']").inner_text.to_i
 
-                  elsif tr.inner_text.strip.match(/V(\.)(\d\.)?3(\D*)$/) && (header_text.match(/Názov/) || header_text.match(/NÁZOV/))
+                  elsif code_text.match(/V\.*.*?[^\d]1[^\d]$/) && header_text.match(/Počet uchádzačov/)
+                    supplier_hash[:offers_total_count] = tr.xpath(".//span[@class='hodnota']").inner_text.to_i
+
+                  elsif tr.inner_text.strip.match(/V(\.)(\d\.)?3(\D*)$/) && (header_text.match(/Názov/) || header_text.match(/NÁZOV/) || header_text.match(/Meno(.*)adresa(.*)víťaza/))
 
                     supplier_wrapper_element = next_element(tr)
                     supplier_information_element = supplier_wrapper_element.xpath(".//table[1]//td[@class='hodnota']")
@@ -230,12 +242,16 @@ module Etl
                     end
 
                     # prices
-                  elsif tr.inner_text.strip.match(/V(\.)(\d\.)?4(\D*)$/) && (header_text.match(/Informácie o hodnote/) || header_text.match(/INFORMÁCIE O HODNOTE/))
+                  elsif tr.inner_text.strip.match(/V(\.)(\d\.)?4(\D*)$/) && (header_text.match(/Informácie o hodnote/) || header_text.match(/INFORMÁCIE O HODNOTE/) || header_text.match(/HODNOTA OCENENÍ/))
                     price_element = next_element(tr)
 
                     while price_element && price_element.xpath(".//td[@class='kod']").inner_text.blank?
-                      if price_element.inner_text.strip.match(/konečná(.*)hodnota/)
-                        price_value_element = next_price_value_element(price_element)
+                      if price_element.inner_text.strip.match(/konečná(.*)hodnota/) || price_element.inner_text.strip.match(/Hodnota udelených ocenení/)
+                        if price_element.inner_text.strip.match(/Hodnota udelených ocenení/)
+                          price_value_element = price_element
+                        else
+                          price_value_element = next_price_value_element(price_element)
+                        end
                         if price_value_element
                           price_hash = parse_price2(price_value_element)
                           supplier_hash[:procurement_currency] = price_hash[:currency]

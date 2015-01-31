@@ -7,47 +7,30 @@ module Etl
     START_YEAR = 2009
 
     def self.check_all
-      diffs_by_year = {
-          notice: procurements_diffs(:notice),
-          performance: procurements_diffs(:performance),
-      }
+      diffs_by_year = {}
+      summary_diffs = {}
+      diffs_by_year[:notice], summary_diffs[:notice] = procurements_diffs(:notice)
+      diffs_by_year[:performance], summary_diffs[:performance] = procurements_diffs(:performance)
+
       diffs = {}
       [:notice, :performance].each do |dataset_type|
         diffs[dataset_type] = {}
-        [:real, :filter].each do |type|
-          diffs[dataset_type][type] = {
-              diffs_by_year: diffs_by_year[dataset_type][type],
-              summary_diff: summary_diff(diffs_by_year[dataset_type][type]),
-          }
-        end
+        diffs[dataset_type] = {
+            diffs_by_year: diffs_by_year[dataset_type],
+            summary_diff: summary_diffs[dataset_type]
+        }
       end
+
       EtlMailer.vvo_v2_checker_report(diffs).deliver
     end
 
-    def self.summary_diff(diffs_by_year)
-      summary_diff = {existing_count: 0,
-                      total_count: 0,
-                      diff: 0}
-      diffs_by_year.each_pair do |_, diff|
-        summary_diff[:existing_count] += diff[:existing_count]
-        summary_diff[:total_count] += diff[:total_count]
-        summary_diff[:diff] += diff[:diff]
-      end
-      summary_diff
-    end
-
     def self.procurements_diffs(dataset_type)
-      diffs = {filter: {}, real: {}}
+      diffs = {}
       dataset = Etl::VvoExtractionV2.dataset_table(dataset_type)
       last_year = Date.today.year
 
       all_procurements_by_year = {}
       (START_YEAR..last_year).each { |year| all_procurements_by_year[year] = [] }
-
-      (START_YEAR..last_year).each do |year|
-        procurements_in_year_by_filter = extract_procurements(dataset_type, year)
-        diffs[:filter][year] = procurements_diff_by_year(dataset, year, procurements_in_year_by_filter)
-      end
 
       # all procurements
       all_procurements = extract_procurements(dataset_type, nil)
@@ -56,10 +39,25 @@ module Etl
       end
 
       (START_YEAR..last_year).each do |year|
-        diffs[:real][year] = procurements_diff_by_year(dataset, year, all_procurements_by_year[year])
+        diffs[year] = procurements_diff_by_year(dataset, year, all_procurements_by_year[year])
       end
 
-      diffs
+      return diffs, summary_diff(dataset, all_procurements)
+    end
+
+    def self.summary_diff(dataset, procurements)
+      document_ids = procurements.map { |p| p[:document_id] }
+      exist_in_dataset = dataset.select(:document_id).where(document_id: document_ids).map(&:document_id).uniq
+      all_in_dataset = dataset.select(:document_id).group(:document_id).count.keys
+      missed = document_ids - exist_in_dataset
+      in_addition = all_in_dataset - document_ids
+      diff = in_addition.count - missed.count
+
+      {existing_count: all_in_dataset.count,
+       total_count: procurements.count,
+       missed: missed,
+       in_addition: in_addition,
+       diff: diff}
     end
 
     def self.procurements_diff_by_year(dataset, year, procurements_in_year)

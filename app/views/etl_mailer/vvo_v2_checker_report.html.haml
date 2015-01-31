@@ -6,29 +6,15 @@
 - content_for :email_preview do
   = "VVO V2 kontrola"
 
-%h3= "VVO V2 kontrola uplnosti dat"
+%h4= "VVO V2 kontrola uplnosti dat"
 
 %p= "Ahoj,"
 %p= "dnes prebehla kontrola, ci mame stiahnute vsetky data oproti UVO."
 
-%h4= 'Oznámenia o výsledku verejného obstarávania (V..) a Informácie o uzavretí zmluvy (IP.)'
-
-%h5= 'Podla VVO filtra'
-= render 'vvo_v2_checker_report_table', diffs: @diffs[:notice][:filter]
+%h5= 'Oznámenia o výsledku verejného obstarávania (V..) a Informácie o uzavretí zmluvy (IP.)'
+= render 'vvo_v2_checker_report_table', diffs: @diffs[:notice]
 
 %hr
 
-%h5= 'Podla VVO datumu'
-= render 'vvo_v2_checker_report_table', diffs: @diffs[:notice][:real]
-
-%hr
-
-%h4= 'Informácia o plnení zmluvy'
-
-%h5= 'Podla VVO filtra'
-= render 'vvo_v2_checker_report_table', diffs: @diffs[:performance][:filter]
-
-%hr
-
-%h5= 'Podla VVO datumu'
-= render 'vvo_v2_checker_report_table', diffs: @diffs[:performance][:real]
+%h5= 'Informácia o plnení zmluvy'
+= render 'vvo_v2_checker_report_table', diffs: @diffs[:performance]

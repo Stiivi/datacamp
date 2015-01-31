@@ -43,7 +43,7 @@ describe Etl::VvoExtractionV2 do
       general_contract: [122303, 238715, 238166, 237445, 226115, 202431, 198751, 198340, 188666, 188318, 187656, 187046, 186194, 186041, 185927, 185702, 185654, 185547, 185508, 185503, 185477],
       supplier_zip: [135172],
       supplier_place: [135172],
-      supplier_organisation_code: [135172]
+      supplier_organisation_code: [135172, 122303]
   }
   allowed_blank_attributes_in_documents = {
       customer_contact_persons: [121902]

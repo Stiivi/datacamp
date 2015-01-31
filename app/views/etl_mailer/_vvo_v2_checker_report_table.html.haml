@@ -33,3 +33,19 @@
   %br
   = 'Rozdiel:'
   %strong= diffs[:summary_diff][:diff]
+
+%hr
+
+%strong= "Navyse: (#{diffs[:summary_diff][:in_addition].size})"
+%p
+  - diffs[:summary_diff][:in_addition].first(100).each do |code|
+    = link_to code, "http://www.uvo.gov.sk/sk/evestnik/-/vestnik/#{code}", target: '_blank'
+  - if diffs[:summary_diff][:in_addition].size > 100
+    (zobrazuje sa prvych 100)
+
+%strong= "Chybajuce: (#{diffs[:summary_diff][:missed].size})"
+%p
+  - diffs[:summary_diff][:missed].first(100).each do |code|
+    = link_to code, "http://www.uvo.gov.sk/sk/evestnik/-/vestnik/#{code}", target: '_blank'
+  - if diffs[:summary_diff][:missed].size > 100
+    (zobrazuje sa prvych 100)
