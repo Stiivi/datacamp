@@ -1,0 +1,106 @@
+
+- content_for :email_preview do
+  = "VVO V2 bulletin download bol dokonceny."
+
+%h4= "VVO V2 bulletin download report"
+
+%p= "Ahoj,"
+%p= "dnes prebehla kontrola, ci mame stiahnute vsetky data do datasetu Vestnik verejneho obstaravania. Zistila nasledovne:"
+%ol
+  - if @report[:download_bulletins].present?
+    %li= "Pravdepodobne sa zmenila struktura zoznamu bulletinov na stranke VVO, na jeho URL (#{link_to(@report[:download_bulletins], @report[:download_bulletins], target: '_blank')}) sa nenasiel ziadny zoznam udajov. Je potrebne dat programatorovi skontrolovat, ci VVO nerobil zmeny na stranke.".html_safe
+  - else
+    %li= "Zoznam bulletinov ostal na stranke VVO tento mesiac v nezmenenej podobe, data parsujeme bez problemov."
+
+  - if @report[:download_bulletin].empty?
+    %li= "Zoznamy oznameni pre jednotlive bulletiny na stranke VVO ostali v nezmenenej podobe, data parsujeme bez problemov."
+  - else
+    %li
+      = "Pravdepodobne sa zmenila struktura zoznamu oznameni pre tieto bulletiny: ("
+      -  @report[:download_bulletin].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+      = ")."
+      = "V tychto bulletinoch sa nenasli ziadne oznamenia. Je potrebne dat programatorovi skontrolovat, kde je problem."
+
+%h5= "Stahovanie oznameni o vysledku (V.., IP.)"
+%ol
+  - if @report[:download_procurement_notice][:not_acceptable].empty? && @report[:download_procurement_notice][:empty_suppliers].empty?
+    %li= "Detaily jednotlivych oznameni ostali v doterajsej podobe, data parsujeme bez problemov."
+  - else
+    %li
+      - if @report[:download_procurement_notice][:not_acceptable].any?
+        = "Pravdepodobne sa zmenila struktura detailu pri tychto oznameniach: ("
+        - @report[:download_procurement_notice][:not_acceptable].each_pair do |code, url|
+          = link_to code, url, target: '_blank'
+        = ")."
+        = "Tieto detaily sa nepodarilo vyparsovat - neakceptovatelny typ struktury. Je potrebne dat programatorovi skontrolovat, kde je problem."
+      %br
+      - if @report[:download_procurement_notice][:empty_suppliers].any?
+        = "Pravdepodobne sa zmenila struktura detailu pri tychto oznameniach: ("
+        - @report[:download_procurement_notice][:empty_suppliers].each_pair do |code, url|
+          = link_to code, url, target: '_blank'
+        = ")."
+        = "Tieto detaily sa nepodarilo vyparsovat - nenaslo ziadnych dodavatelov. Je potrebne dat programatorovi skontrolovat, kde je problem."
+
+  %li
+    = "Kontrola presla vsetky oznamenia podla bulletinov a zistila, ze chybalo #{@report[:download_procurement_notice][:missed].count} zaznamov."
+
+    - if @report[:download_procurement_notice][:processed].any?
+      = "#{@report[:download_procurement_notice][:processed].count} bolo uspesne doplnenych na Datanest ("
+      - @report[:download_procurement_notice][:processed].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+      = ")."
+
+    %br
+    - if (@report[:download_procurement_notice][:empty_suppliers].count + @report[:download_procurement_notice][:not_acceptable].count) > 0
+      = "#{@report[:download_procurement_notice][:empty_suppliers].count + @report[:download_procurement_notice][:not_acceptable].count} sa nepodarilo stiahnut do Datanestu ("
+
+      - @report[:download_procurement_notice][:empty_suppliers].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+
+      - @report[:download_procurement_notice][:not_acceptable].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+
+      = ")."
+
+
+%h5= "Stahovanie oznameni o plneni zmluvy (IZ., ID.)"
+%ol
+  - if @report[:download_procurement_performance][:not_acceptable].empty? && @report[:download_procurement_performance][:empty_suppliers].empty?
+    %li= "Detaily jednotlivych oznameni ostali v doterajsej podobe, data parsujeme bez problemov."
+  - else
+    %li
+      - if @report[:download_procurement_performance][:not_acceptable].any?
+        = "Pravdepodobne sa zmenila struktura detailu pri tychto oznameniach: ("
+        - @report[:download_procurement_performance][:not_acceptable].each_pair do |code, url|
+          = link_to code, url, target: '_blank'
+        = ")."
+        = "Tieto detaily sa nepodarilo vyparsovat - neakceptovatelny typ struktury. Je potrebne dat programatorovi skontrolovat, kde je problem."
+      %br
+      - if @report[:download_procurement_performance][:empty_suppliers].any?
+        = "Pravdepodobne sa zmenila struktura detailu pri tychto oznameniach: ("
+        - @report[:download_procurement_performance][:empty_suppliers].each_pair do |code, url|
+          = link_to code, url, target: '_blank'
+        = ")."
+        = "Tieto detaily sa nepodarilo vyparsovat - nenaslo ziadnych dodavatelov. Je potrebne dat programatorovi skontrolovat, kde je problem."
+
+  %li
+    = "Kontrola presla vsetky oznamenia podla bulletinov a zistila, ze chybalo #{@report[:download_procurement_performance][:missed].count} zaznamov."
+
+    - if @report[:download_procurement_performance][:processed].any?
+      = "#{@report[:download_procurement_performance][:processed].count} bolo uspesne doplnenych na Datanest ("
+      - @report[:download_procurement_performance][:processed].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+      = ")."
+
+    %br
+    - if (@report[:download_procurement_performance][:empty_suppliers].count + @report[:download_procurement_performance][:not_acceptable].count) > 0
+      = "#{@report[:download_procurement_performance][:empty_suppliers].count + @report[:download_procurement_performance][:not_acceptable].count} sa nepodarilo stiahnut do Datanestu ("
+
+      - @report[:download_procurement_performance][:empty_suppliers].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+
+      - @report[:download_procurement_performance][:not_acceptable].each_pair do |code, url|
+        = link_to code, url, target: '_blank'
+
+      = ")."

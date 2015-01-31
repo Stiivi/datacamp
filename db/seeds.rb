@@ -17,6 +17,7 @@ EtlConfiguration.find_or_create_by_name('donations_parser', parser: true)
 EtlConfiguration.find_or_create_by_name('otvorenezmluvy_extraction', start_id: 201110)
 EtlConfiguration.find_or_create_by_name('foundation_extraction')
 EtlConfiguration.find_or_create_by_name('mzvsr_contracts_extraction')
+EtlConfiguration.find_or_create_by_name('vvo_extraction_v2', last_processed_id: 0)
 
 # Initialize datasets and relations
 

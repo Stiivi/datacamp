@@ -44,6 +44,28 @@ every 1.month, :at => 'January 1th 6:00 am' do
   rake 'etl:vvo_bulletin_report'
 end
 
+# Vvo V2
+
+every 1.day, at: '3:00 am' do
+  rake "etl:vvo_v2_new_current_bulletins_extraction"
+end
+
+every 1.month, :at => 'January 1th 2:00 am' do
+  rake 'etl:vvo_v2_current_year_bulletins_extraction'
+end
+
+every '0 2 15 1 *' do
+  rake 'etl:vvo_v2_last_year_bulletins_extraction'
+end
+
+every 1.month, :at => 'January 1th 8:00 am' do
+  rake 'etl:vvo_v2_last_bulletin_report'
+end
+
+every 3.month, :at => 'January 1th 8:00 am' do
+  rake 'etl:vvo_v2_checker'
+end
+
 # Lawyers, notari
 
 every 1.month, at: 'January 1th 1:00 am' do

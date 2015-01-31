@@ -115,6 +115,8 @@ GEM
       delayed_job
       rails
     diff-lcs (1.2.5)
+    domain_name (0.5.23)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (2.0.2)
@@ -139,6 +141,8 @@ GEM
     highline (1.6.20)
     hike (1.2.3)
     htmlentities (4.3.1)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.6.11)
     jquery-rails (1.0.12)
       railties (~> 3.0)
@@ -164,6 +168,15 @@ GEM
       skinny (>= 0.1.2)
       sqlite3-ruby
       thin
+    mechanize (2.7.2)
+      domain_name (~> 0.5, >= 0.5.1)
+      http-cookie (~> 1.0.0)
+      mime-types (~> 1.17, >= 1.17.2)
+      net-http-digest_auth (~> 1.1, >= 1.1.1)
+      net-http-persistent (~> 2.5, >= 2.5.2)
+      nokogiri (~> 1.4)
+      ntlm-http (~> 0.1, >= 0.1.1)
+      webrobots (>= 0.0.9, < 0.2)
     metaclass (0.0.2)
     method_source (0.8.1)
     mime-types (1.25.1)
@@ -172,6 +185,8 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.10.1)
     mysql2 (0.3.14)
+    net-http-digest_auth (1.4)
+    net-http-persistent (2.9.4)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -182,6 +197,7 @@ GEM
     newrelic_rpm (3.7.2.192)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    ntlm-http (0.1.1)
     paperclip (2.3.12)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -318,6 +334,9 @@ GEM
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.6)
     unicorn (4.8.2)
       kgio (~> 2.6)
       rack
@@ -325,6 +344,7 @@ GEM
     uniform_notifier (1.6.2)
     validation_reflection (1.0.0)
     vcr (1.10.3)
+    webrobots (0.1.1)
     websocket-driver (0.3.2)
     whenever (0.9.0)
       activesupport (>= 2.3.4)
@@ -359,6 +379,7 @@ DEPENDENCIES
   launchy
   letter_opener
   mailcatcher
+  mechanize
   mocha
   mysql2
   newrelic_rpm

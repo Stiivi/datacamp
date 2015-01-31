@@ -12,6 +12,16 @@ class EtlMailer < ActionMailer::Base
     mail(:to => Datacamp::Application.config.admin_emails, :subject => "VVO bulettin report.")
   end
 
+  def vvo_v2_status(report)
+    @report = report || EtlConfiguration::VVO_V2_REPORT_SCHEMA
+    mail(:to => Datacamp::Application.config.admin_emails, :subject => "VVO V2 bulettin report.")
+  end
+
+  def vvo_v2_checker_report(diffs)
+    @diffs = diffs
+    mail(:to => Datacamp::Application.config.admin_emails, :subject => "VVO V2 kontrola.")
+  end
+
   def notari_status
     @last_run_time = EtlConfiguration.find_by_name('notary_extraction').last_run_time || Time.now
     @updated_record_ids = Dataset::DcUpdate.where(updatable_type: 'Kernel::DsNotary').where('updated_at > ?', @last_run_time).map(&:updatable_id).uniq

@@ -31,9 +31,41 @@ namespace :etl do
     Etl::FoundationExtraction.update_last_run_time
   end
 
+  # VVO_V2
+
+  desc 'VVO V2 - Download new bulletins'
+  task vvo_v2_new_current_bulletins_extraction: :environment do
+    # Extract new bulletins by number in current year
+    # Update last_processed_id, last_run_time
+    Etl::VvoBulletinExtractionV2.extract_new_current_bulletins
+  end
+
+  desc 'VVO V2 - Download bulletins in current year'
+  task vvo_v2_current_year_bulletins_extraction: :environment do
+    Etl::VvoBulletinExtractionV2.clear_report # clear report in config
+    Etl::VvoBulletinExtractionV2.extract_all_bulletins(Date.today.year)
+  end
+
+  desc 'VVO V2 - Download bulletins in last year'
+  task vvo_v2_last_year_bulletins_extraction: :environment do
+    Etl::VvoBulletinExtractionV2.clear_report # clear report in config
+    Etl::VvoBulletinExtractionV2.extract_all_bulletins(1.year.ago.year)
+  end
+
+  desc 'VVO V2 - Send email with report from last bulletin extraction'
+  task vvo_v2_last_bulletin_report: :environment do
+    EtlMailer.vvo_v2_status(Etl::VvoBulletinExtractionV2.config.last_run_report).deliver
+    Etl::VvoBulletinExtractionV2.update_last_run_time
+  end
+
+  desc 'VVO V2 - Check vvo - compare from uvo'
+  task vvo_v2_checker: :environment do
+    Etl::VvoCheckerV2.check_all
+  end
+
   # VVO
 
-  desc 'Try extraction by ids - iterate by ids while ids its not acceptable'
+  desc 'VVO - Try extraction by ids - iterate by ids while ids its not acceptable'
   task :vvo_extraction => :environment do
     config = EtlConfiguration.find_by_name('vvo_extraction')
     end_id = config.start_id + config.batch_limit
@@ -46,30 +78,30 @@ namespace :etl do
     Etl::VvoExtraction.update_old_source_urls
   end
 
-  desc 'Check vvo - before run, you must download all to local file (<current_year>.html)'
+  desc 'VVO - Check vvo - before run, you must download all to local file (<current_year>.html)'
   task vvo_checker: :environment do
     Etl::VvoChecker.check_all
   end
 
-  desc 'Send email with report from last bulletin extraction'
+  desc 'VVO - Send email with report from last bulletin extraction'
   task vvo_bulletin_report: :environment do
     EtlMailer.vvo_status(Etl::VvoBulletinExtraction.config.last_run_report).deliver
     Etl::VvoBulletinExtraction.update_last_run_time
   end
 
-  desc 'Download bulletins in current year'
+  desc 'VVO - Download bulletins in current year'
   task vvo_current_bulletins_extraction: :environment do
     Etl::VvoBulletinExtraction.clear_report # clear report in config
     Etl::VvoBulletinExtraction.extract_all_bulletins(Date.today.year)
   end
 
-  desc 'Download bulletins in last year'
+  desc 'VVO - Download bulletins in last year'
   task vvo_last_bulletins_extraction: :environment do
     Etl::VvoBulletinExtraction.clear_report # clear report in config
     Etl::VvoBulletinExtraction.extract_all_bulletins(1.year.ago.year)
   end
 
-  desc 'Download old bulletins in years and parse missed documents'
+  desc 'VVO - Download old bulletins in years and parse missed documents'
   task vvo_old_bulletins_extraction: :environment do
     [2009, 2010, 2011, 2012, 2013, 2014].each do |year|
       Etl::VvoBulletinExtraction.extract_all_bulletins(year)
@@ -77,6 +109,7 @@ namespace :etl do
   end
 
 
+  # VVO -
   task :vvo_loading => :environment do
     source_table = 'sta_procurements'
     dataset_table = 'ds_procurements'

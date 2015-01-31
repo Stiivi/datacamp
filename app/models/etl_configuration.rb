@@ -35,13 +35,18 @@ class EtlConfiguration < ActiveRecord::Base
 
   # reports
 
-  VVO_REPORT_SCHEMA = {download_bulletins: nil, download_bulletin: {}, download_procurement: {not_acceptable: {}, empty_suppliers: {}, processed: {}, missed: {}}}
+  VVO_REPORT_SCHEMA =    {download_bulletins: nil, download_bulletin: {}, download_procurement: {not_acceptable: {}, empty_suppliers: {}, processed: {}, missed: {}}}
+
+  VVO_V2_REPORT_SCHEMA = {download_bulletins: nil, download_bulletin: {}, download_procurement_notice: {not_acceptable: {}, empty_suppliers: {}, processed: {}, missed: {}}, download_procurement_performance: {not_acceptable: {}, empty_suppliers: {}, processed: {}, missed: {}}}
+  VVO_V2_KEYS_BY_TYPES = {notice: :download_procurement_notice, performance: :download_procurement_performance}
 
   def clear_report!
     self.last_run_report = {}
     case name
       when 'vvo_extraction'
         self.last_run_report = VVO_REPORT_SCHEMA
+      when 'vvo_extraction_v2'
+        self.last_run_report = VVO_V2_REPORT_SCHEMA
       else
     end
     save

@@ -1,0 +1,35 @@
+- years = diffs[:diffs_by_year].keys.sort.reverse
+
+%table{border: 1, cellspacing: 0, cellpadding: 0}
+  %tr
+    %th= 'Rok'
+    %th= 'Datanest'
+    %th= 'VVO'
+    %th
+    %th= '+'
+    %th= '-'
+    %th
+    %th= 'Rozdiel'
+
+  - years.each do |year|
+    %tr
+      %td
+        %strong= year
+      %td= diffs[:diffs_by_year][year][:existing_count]
+      %td= diffs[:diffs_by_year][year][:total_count]
+      %td
+      %td= diffs[:diffs_by_year][year][:missed].count
+      %td= diffs[:diffs_by_year][year][:in_addition].count
+      %td
+      %td
+        %strong= diffs[:diffs_by_year][year][:diff]
+
+%p
+  = 'Celkovo v dataneste:'
+  %strong= diffs[:summary_diff][:existing_count]
+  %br
+  = 'Celkovo vo VVO:'
+  %strong= diffs[:summary_diff][:total_count]
+  %br
+  = 'Rozdiel:'
+  %strong= diffs[:summary_diff][:diff]
