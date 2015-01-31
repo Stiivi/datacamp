@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141105205443) do
+ActiveRecord::Schema.define(:version => 20150118141552) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20141105205443) do
     t.integer  "record_id"
     t.integer  "dataset_description_id"
     t.integer  "session_id"
-    t.string   "params"
+    t.text     "params"
     t.string   "url"
     t.string   "controller"
     t.string   "action"

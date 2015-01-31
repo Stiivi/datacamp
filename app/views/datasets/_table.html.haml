@@ -4,7 +4,7 @@
       %th{:class => field_description.identifier}
         %div{title: field_description.description, class: field_description.description.present? ? 'has-tip' : ''}= sort_link(field_description)
     %th{:class => "actions"} &nbsp;
-  
+
   - @records.each do |record|
     %tr{:class => cycle("odd", "even")}
       - @field_descriptions.each do |field_description|

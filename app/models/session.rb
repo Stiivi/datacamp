@@ -12,13 +12,18 @@ class Session < ActiveRecord::Base
     begin
       self.current_session = self.find_or_create_by_session_id(session[:session_id])
     rescue
-      self.current_session = self.create(session_id: session[:session_id])
+      begin
+        self.current_session = self.create(session_id: session[:session_id])
+      end
     end
+
+    return unless self.current_session
 
     if session[:user_id] && !current_session.user_id && session[:user_id] != current_session.user_id
       current_session.user_id = session[:user_id]
       current_session.save
     end
+
     if current_session.remote_ip != request.remote_ip
       current_session.remote_ip = request.remote_ip
       current_session.save

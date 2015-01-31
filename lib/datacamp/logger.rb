@@ -3,7 +3,7 @@ module Datacamp::Logger
   def log
     access = Access.new
     access.session = @current_session
-    access.params = params.to_yaml
+    access.params = params.to_yaml.force_encoding('UTF-8')
     access.controller = params[:controller]
     access.action = params[:action]
     access.url = request.url

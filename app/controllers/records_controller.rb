@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
     # Field descriptions
     if logged_in? && current_user.has_privilege?(:power_user)
-      @field_descriptions = @dataset_description.field_descriptions
+      @field_descriptions = @dataset_description.field_descriptions.includes(:data_format)
     else
       @field_descriptions = @dataset_description.visible_field_descriptions(:detail)
     end

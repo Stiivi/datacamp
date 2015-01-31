@@ -83,6 +83,8 @@ group :development do
   gem 'capistrano-ext'
   gem 'rvm'
   gem 'letter_opener'
+
+  gem "bullet"
 end
 
 group :development, :test do

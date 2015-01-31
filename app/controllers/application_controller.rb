@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_pages
-    @pages = Page.find :all
+    @pages = Page.includes(:translations).all
   end
 
   def add_javascript what

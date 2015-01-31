@@ -66,7 +66,7 @@ class DatasetDescription < ActiveRecord::Base
       result = @field_descriptions_cache[type]
     else
       # puts "using db for #{self.identifier} → #{type}"
-      @field_descriptions_cache[type] = field_descriptions.where(where => true).includes(:translations)
+      @field_descriptions_cache[type] = field_descriptions.includes(:translations, :data_format).where(where => true)
       @field_descriptions_cache[type].unshift FieldDescription.new(identifier: '_record_id') if type == :export
       result = @field_descriptions_cache[type]
     end

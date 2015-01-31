@@ -57,6 +57,9 @@ GEM
     addressable (2.2.8)
     arel (2.2.3)
     builder (3.0.4)
+    bullet (4.10.0)
+      activesupport
+      uniform_notifier (~> 1.6.0)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -319,6 +322,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.6.2)
     validation_reflection (1.0.0)
     vcr (1.10.3)
     websocket-driver (0.3.2)
@@ -335,6 +339,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   actionmailer_inline_css!
+  bullet
   capistrano (~> 2)
   capistrano-ext
   capybara

@@ -13,10 +13,6 @@ class SearchesController < ApplicationController
   def create
     search_params = params[:search] || {}
     if search_params[:predicates]
-      puts create_predicates_from_hash(search_params[:predicates]).inspect
-      a = { scope: "dataset", object: search_params[:dataset] }
-      puts a.inspect
-
       query = SearchQuery.query_with_predicates(create_predicates_from_hash(search_params[:predicates]), :scope => "dataset", :object => search_params[:dataset])
       search = Search.create(:query => query, :search_type => 'predicates', :session => @current_session)
 

@@ -41,7 +41,7 @@ class DatasetsController < ApplicationController
     expires_in 5.minutes, public: true if current_user.blank?
 
     @dataset_description = DatasetDescription.find_by_id!(params[:id])
-    @field_descriptions  = @dataset_description.visible_field_descriptions
+    @field_descriptions  = @dataset_description.visible_field_descriptions.includes(:data_format)
     @dataset             = @dataset_description.dataset
     @dataset_class       = @dataset.dataset_record_class
     @title               = @dataset_description.title

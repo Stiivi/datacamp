@@ -65,6 +65,8 @@ class FieldDescription < ActiveRecord::Base
     # If this field is not assigned to a dataset yet,
     # we can't find actual data type in dataset -- thus we
     # can only play with ours.
+    # TODO Change this - it call many many many N+1 queries
+    return if self.data_type # in production database, data_type_id IS NULL or 0
     return unless dataset_description
     manager = DatastoreManager.manager_with_default_connection
     @data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
