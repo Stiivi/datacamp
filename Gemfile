@@ -46,6 +46,7 @@ gem 'rack-rewrite'
 gem 'tlsmail'
 gem 'roadie'
 gem 'mechanize'
+gem 'thin'
 
 # gem 'test-unit'
 

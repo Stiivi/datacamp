@@ -16,13 +16,9 @@ class FieldDescription < ActiveRecord::Base
   #validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
   validates_numericality_of :min_width, if: lambda { min_width.present? }
 
-  after_save :update_data_type
+  after_save :update_in_database
   after_create :setup_in_database
-  after_find :find_data_type
-
-  # Accessors
-
-  attr_accessor :data_type
+  # after_find :update_data_type, if: lambda { data_type.nil? } # ak je data_type prazdny
 
   ###########################################################################
   # Default scope
@@ -46,6 +42,17 @@ class FieldDescription < ActiveRecord::Base
     dataset_description.dataset.has_column?(identifier)
   end
 
+  def update_data_type
+    # If this field is not assigned to a dataset yet,
+    # we can't find actual data type in dataset -- thus we
+    # can only play with ours.
+    return if data_type # in production database, data_type_id IS NULL or 0
+    return unless dataset_description
+    manager = DatastoreManager.manager_with_default_connection
+    # Update data type
+    update_attribute(:data_type, manager.dataset_field_type(dataset_description.identifier, self.identifier) )
+  end
+
   ###########################################################################
   # Private
   private
@@ -61,28 +68,16 @@ class FieldDescription < ActiveRecord::Base
     dataset.create_column_for_description(self)
   end
 
-  def find_data_type
-    # If this field is not assigned to a dataset yet,
-    # we can't find actual data type in dataset -- thus we
-    # can only play with ours.
-    # TODO Change this - it call many many many N+1 queries
-    return if self.data_type # in production database, data_type_id IS NULL or 0
-    return unless dataset_description
-    manager = DatastoreManager.manager_with_default_connection
-    @data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
-  end
-
-  def update_data_type
+  # Update data type in database
+  def update_in_database
     # Again -- no dataset assigned, no data types.
     return unless dataset_description
-    return unless @data_type
+    return unless data_type
     manager = DatastoreManager.manager_with_default_connection
     current_data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
-    unless @data_type.to_s == current_data_type.to_s
-      manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
-
-      # FIXME: this restarts the app server for the changes to take effect. It is dependent on how passenger works and should be generalized
-      system "touch #{Rails.root.join('tmp', 'restart.txt')}"
+    # Ulozi sa iba ked sa zmenil typ -> priamo sa to nastavi v databaze
+    unless data_type.to_s == current_data_type.to_s
+      manager.set_dataset_field_type(dataset_description.identifier, self.identifier, data_type)
     end
   end
 end

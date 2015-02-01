@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150118141552) do
+ActiveRecord::Schema.define(:version => 20150201151523) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -286,7 +286,7 @@ ActiveRecord::Schema.define(:version => 20150118141552) do
     t.integer "format_rule_id"
     t.boolean "importable",                    :default => false
     t.integer "importable_column"
-    t.integer "data_type_id"
+    t.string  "data_type"
     t.boolean "is_visible_in_listing",         :default => true
     t.boolean "is_derived"
     t.string  "derived_value"

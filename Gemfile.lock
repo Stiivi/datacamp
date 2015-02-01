@@ -404,6 +404,7 @@ DEPENDENCIES
   sequel
   spawn
   therubyracer
+  thin
   thinking-sphinx (>= 2.0.2)
   tlsmail
   typhoeus
