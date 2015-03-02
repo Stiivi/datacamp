@@ -83,7 +83,7 @@ every 1.month, at: 'January 1th 3:00 am' do
   rake 'etl:notari_activate'
 end
 
-every 1.month, at: 'January 2th 7:00 am' do # this must start after finished ^^
+every 1.month, at: 'January 2th 8:30 am' do # this must start after finished ^^
   rake 'etl:lawyer_associate_morph'
   rake 'etl:lawyer_lists'
 end
