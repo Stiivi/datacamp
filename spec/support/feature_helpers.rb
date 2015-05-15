@@ -1,6 +1,10 @@
 module PageHelpers
   def create_index_page
-    Page.create!(page_name: 'index')
+    home_page
+  end
+
+  def home_page
+    @home_page ||= Page.find_by_page_name('index') || Factory(:page, page_name: 'index')
   end
 end
 
