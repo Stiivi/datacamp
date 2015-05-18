@@ -1,3 +1,9 @@
 language: ruby
+cache: bundler
 rvm:
   - 1.9.3
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - mysql -e 'create database datanest_app_test'
+  - mysql -e 'create database datanest_data_test'
+  - mysql -e 'create database datanest_staging_test'
