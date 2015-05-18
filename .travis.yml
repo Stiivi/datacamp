@@ -7,7 +7,9 @@ before_script:
   - mysql -e 'create database datanest_app_test'
   - mysql -e 'create database datanest_data_test'
   - mysql -e 'create database datanest_staging_test'
-  - cp config/datacamp_config.travis.yml config/datacamp_config.yml
+  - cp config/secret_token.rb.example config/secret_token.rb
+  - cp config/site_keys.rb.example config/datacamp_config.yml
+  - cp config/datacamp_config.yml.example config/datacamp_config.yml
   - bundle exec rake db:schema:load
   - bundle exec rake db_staging:schema:load
   - bundle exec rake db_data:schema:load
