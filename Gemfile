@@ -105,3 +105,6 @@ group :development, :test do
   gem 'fakeweb'
   gem 'pry'
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
+
