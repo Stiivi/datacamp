@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'UserProfile' do
-  let(:user) { Factory(:user, name: 'test', password: 'secret') }
+  let(:user) { Factory(:user, login: 'test', password: 'secret') }
 
   it 'user is able to log it to their profile' do
     login_as(user)

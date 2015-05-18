@@ -11,7 +11,7 @@ end
 module LoginHelpers
   def login_as(user)
     visit new_session_path(locale: :en)
-    fill_in "Username", with: user.name
+    fill_in "Username", with: user.login
     fill_in "Password", with: user.password
     click_button "Submit"
   end
