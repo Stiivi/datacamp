@@ -104,5 +104,5 @@ group :development, :test do
   gem 'vcr'
   gem 'fakeweb'
   gem 'pry'
-  gem 'debugger'
+  # gem 'debugger'
 end
