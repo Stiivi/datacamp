@@ -28,6 +28,6 @@ GNU General Public License for more details.
 
 ## AUTHORS
 
-Michal Olah <olahmichal(at)gmail.com> - main application programming
-Stefan Urbanek <stefan@knowerce.sk> - architecture design, back-end programming
-Vojto Rinik <vojto@rinik.net> - application programming
+* Michal Olah <olahmichal(at)gmail.com> - main application programming
+* Stefan Urbanek <stefan@knowerce.sk> - architecture design, back-end programming
+* Vojto Rinik <vojto@rinik.net> - application programming
