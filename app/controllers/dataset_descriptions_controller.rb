@@ -124,7 +124,7 @@ class DatasetDescriptionsController < ApplicationController
     if params[:skip_validations]
       success = @dataset_description.save(:validate => false)
     else
-      @dataset_description.save
+      success = @dataset_description.save
     end
 
     respond_to do |format|

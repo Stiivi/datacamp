@@ -15,9 +15,9 @@ FactoryGirl.define do
   end
 
   factory :dataset_description do
-    identifier 'something'
     sk_title 'sk title'
     en_title 'sk title'
+    identifier { |dataset| dataset.sk_title.to_s.underscore }
     is_active true
     category
   end

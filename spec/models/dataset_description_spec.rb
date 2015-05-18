@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DatasetDescription do
   before :each do
-    @dataset_description = Factory(:dataset_description)
+    @dataset_description = Factory(:dataset_description, identifier: 'something')
   end
 
   it 'should fetch changes' do

@@ -25,5 +25,5 @@
           .fr
             =link_to image_tag('icons/edit.gif'), dataset_description_url(dataset_description)
             - if current_user.has_privilege?(:destroy_dataset)
-              =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :confirm => t("global.delete_confirmation"), :class => "delete", :method => 'delete')
+              =link_to("<span>#{t('global.delete')}</span>".html_safe, dataset_description_path(dataset_description), :title => t('global.delete'), :confirm => t("global.delete_confirmation"), :class => "delete", :method => 'delete')
           .clear
