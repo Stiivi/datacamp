@@ -17,7 +17,7 @@ script:
 - bundle exec rspec spec/
 
 addons:
-  codeclimate:
+  code_climate:
     repo_token:
       secure: Xk7kjiF7BcShFR0zsIAYTNVmY1l3KDineZhmSge11PBnxGdft48BBeziw+IKRgqX3ZTPw0yj95KJvAYRxpyZhSjKw9gFGCmKARtm7J2p1W2M8fy8FohAT77mi4Xnl/1Q3nPnbkUcYHv5wRgY8UrG2xXagCFoYJzf1W9x0JDwH5I=
 
