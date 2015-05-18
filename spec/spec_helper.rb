@@ -21,7 +21,7 @@ VCR.config do |c|
   c.default_cassette_options = { :record => :once }
 end
 
-FakeWeb.allow_net_connect = %r[^https?://codeclimate.com]
+FakeWeb.allow_net_connect = %r[^https?://codeclimate\.com/]
 
 RSpec.configure do |config|
 
@@ -49,3 +49,4 @@ RSpec.configure do |config|
 
   config.include(DatasetHelpers)
 end
+

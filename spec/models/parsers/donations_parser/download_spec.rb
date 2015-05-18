@@ -7,7 +7,6 @@ describe Parsers::DonationsParser::Downloader do
   let(:config) { stub(update_attribute: true, download_path: []) }
 
   it 'should download the proposal list' do
-    FakeWeb.allow_net_connect = false
     FakeWeb.register_uri(:post,
                          "https://registerkultury.gov.sk/granty2011/zobraz_ziadosti.php",
                          body: 'html')
