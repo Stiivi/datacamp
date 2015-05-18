@@ -3,6 +3,20 @@ require 'spec_helper'
 describe 'UserProfile' do
   let(:user) { Factory(:user, name: 'test', password: 'secret') }
 
+  it 'user is able to log it to their profile' do
+    login_as(user)
+
+    page.should have_content 'You was logged in successfuly'
+  end
+
+  it 'user is able to log out' do
+    login_as(user)
+
+    click_link 'Logout'
+
+    page.should have_content 'You have been logged out'
+  end
+
   it 'user can change information for his profile' do
     login_as(user)
 
