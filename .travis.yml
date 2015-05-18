@@ -7,3 +7,9 @@ before_script:
   - mysql -e 'create database datanest_app_test'
   - mysql -e 'create database datanest_data_test'
   - mysql -e 'create database datanest_staging_test'
+  - cp config/datacamp_config.travis.yml config/datacamp_config.yml
+  - rake db:schema:load
+  - rake db_staging:schema:load
+  - rake db_data:schema:load
+script:
+  - rspec spec/
