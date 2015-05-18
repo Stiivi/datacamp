@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/ambethia/recaptcha.git
+  revision: a9efec169a86299629cce7a414590d5055257086
+  specs:
+    recaptcha (0.3.2)
+      i18n
+
+GIT
   remote: git://github.com/ttilley/rb-fsevent.git
   revision: f36a8cd01b49a6ce2a26d9e1083b5f6e6722c470
   branch: pre-compiled-gem-one-off
@@ -14,13 +21,6 @@ GIT
       actionmailer (>= 3.0.0)
       nokogiri (>= 1.4.4)
       premailer (>= 1.7.1)
-
-GIT
-  remote: git://github.com/ambethia/recaptcha.git
-  revision: a9efec169a86299629cce7a414590d5055257086
-  specs:
-    recaptcha (0.3.2)
-      i18n
 
 GEM
   remote: http://rubygems.org/
@@ -86,7 +86,6 @@ GEM
       execjs
     coffee-script-source (1.6.3)
     colored (1.2)
-    columnize (0.8.9)
     css_parser (1.2.6)
       addressable
       rdoc
@@ -102,12 +101,6 @@ GEM
       nokogiri (>= 1.5.0)
     daemons (1.1.9)
     database_cleaner (0.6.7)
-    debugger (1.6.8)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.3.5)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.3.5)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
@@ -366,7 +359,6 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   cucumber-rails
   database_cleaner
-  debugger
   delayed_job
   delayed_job_admin
   factory_girl_rails (~> 1.2.0)
