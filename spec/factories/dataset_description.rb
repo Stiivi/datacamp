@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :dataset_description do
     sk_title 'sk title'
     en_title 'en title'
-    # need to pass en_title, just title will not work, don't know why
+    # FIXME: need to pass en_title when using factory, just title will not be used for identifier
     identifier { |dataset| dataset.title.to_s.parameterize.underscore  }
     is_active true
     category
