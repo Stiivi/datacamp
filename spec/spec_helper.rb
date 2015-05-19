@@ -21,7 +21,10 @@ VCR.config do |c|
   c.default_cassette_options = { :record => :once }
 end
 
-FakeWeb.allow_net_connect = %r[^https?://codeclimate\.com/]
+FakeWeb.allow_net_connect = %r[^https?://(codeclimate\.com/)|(127\.0\.0\.1)|(localhost)]
+
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 RSpec.configure do |config|
 
