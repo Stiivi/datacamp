@@ -65,12 +65,12 @@ describe 'DatasetDescriptions' do
     dataset_description = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
     visit edit_dataset_description_path(id: dataset_description, locale: :en)
 
-    fill_in 'dataset_description_sk_title', with: ''
+    fill_in 'dataset_description_en_title', with: ''
 
     click_button 'Save'
     page.should have_content 'can\'t be blank'
 
-    fill_in 'dataset_description_sk_title', with: 'court doctors'
+    fill_in 'dataset_description_en_title', with: 'court doctors'
     click_button 'Save'
 
     page.should have_content 'DatasetDescription was successfully updated'

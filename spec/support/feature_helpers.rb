@@ -12,7 +12,7 @@ module LoginHelpers
   def admin_user
     # CI may use multiple threads, and this could be a problem and some tests may fail, this avoid this problem
     @__admin_user ||= begin
-      user = User.find_by_name('admin_user')
+      user = User.find_by_login('admin_user')
       if user
         user.password = 'secret'
         user

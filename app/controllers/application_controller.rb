@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
+    # FIXME: we should use I18n.default_locale, don't we?
     I18n.locale = params[:locale] || :sk
    end
 
