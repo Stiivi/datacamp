@@ -8,9 +8,9 @@ describe 'DatasetDescriptions' do
   let!(:lists_category) { Factory(:dataset_category, title: 'lists') }
 
   it 'user can see dataset grouped by categories' do
-    Factory(:dataset_description, title: 'lawyers', is_active: true, category: lists_category)
-    Factory(:dataset_description, title: 'doctors', is_active: false, category: lists_category)
-    Factory(:dataset_description, title: 'set with no category', is_active: false, category: nil)
+    Factory(:dataset_description, en_title: 'lawyers', is_active: true, category: lists_category)
+    Factory(:dataset_description, en_title: 'doctors', is_active: false, category: lists_category)
+    Factory(:dataset_description, en_title: 'set with no category', is_active: false, category: nil)
 
     visit dataset_descriptions_path(locale: :en)
 
@@ -62,7 +62,7 @@ describe 'DatasetDescriptions' do
   end
 
   it 'user is able to edit dataset' do
-    dataset_description = Factory(:dataset_description, title: 'doctors', identifier: 'doctors', is_active: true, category: lists_category)
+    dataset_description = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
     visit edit_dataset_description_path(id: dataset_description, locale: :en)
 
     fill_in 'dataset_description_sk_title', with: ''
@@ -77,7 +77,7 @@ describe 'DatasetDescriptions' do
   end
 
   it 'user is able to destroy dataset' do
-    dataset_description = Factory(:dataset_description, title: 'doctors', identifier: 'doctors', is_active: true, category: lists_category)
+    dataset_description = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
 
     visit dataset_descriptions_path(locale: :en)
 
