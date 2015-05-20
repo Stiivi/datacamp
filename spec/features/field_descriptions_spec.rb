@@ -96,7 +96,6 @@ describe 'FieldDescriptions' do
     find("li#field_description_#{field.id} img.drag_arrow").drag_to(drop_place)
     timeout(10.seconds) do
       while all("li#field_description_category_#{category.id} li#field_description_#{field.id}").count == 0
-        puts 'sleeping'
         sleep(0.1)
       end
     end

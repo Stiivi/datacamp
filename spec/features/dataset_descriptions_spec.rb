@@ -6,6 +6,7 @@ describe 'DatasetDescriptions' do
   end
 
   let!(:lists_category) { Factory(:dataset_category, title: 'lists') }
+  let(:documents_category) { Factory(:dataset_category, title: 'documents') }
 
   it 'user can see dataset grouped by categories' do
     Factory(:dataset_description, en_title: 'lawyers', is_active: true, category: lists_category)
@@ -89,6 +90,25 @@ describe 'DatasetDescriptions' do
     does_not_have_datasets_in_category('doctors', lists_category)
   end
 
+  it 'user is able to change dataset ordering and move dataset to different category by sorting', js: true do
+    lawyers = Factory(:dataset_description, en_title: 'lawyers', is_active: true, category: documents_category)
+    doctors = Factory(:dataset_description, en_title: 'doctors', is_active: false, category: lists_category)
+    general = Factory(:dataset_description, en_title: 'general', is_active: false, category: nil)
+
+    visit dataset_descriptions_path(locale: :en)
+
+    has_datasets_in_category(['lawyers'], documents_category)
+
+    click_link 'Sort'
+    move_field_to_category(lawyers, lists_category)
+    move_field_to_category(general, lists_category)
+    click_link 'Finish sorting'
+
+    visit dataset_descriptions_path(locale: :en)
+
+    has_datasets_in_category(['lawyers', 'doctors', 'general'], lists_category)
+  end
+
   private
 
   def has_datasets_in_category(dataset_names, category)
@@ -100,6 +120,16 @@ describe 'DatasetDescriptions' do
   def does_not_have_datasets_in_category(dataset_names, category)
     within("li#dataset_category_#{category.id}") do
       page.should_not have_content *dataset_names
+    end
+  end
+
+  def move_field_to_category(dataset, category)
+    drop_place = find("li#dataset_category_#{category.id} ul li:first-child")
+    find("li#dataset_description_#{dataset.id} img.drag_arrow").drag_to(drop_place)
+    timeout(10.seconds) do
+      while all("li#dataset_category_#{category.id} li#dataset_description_#{dataset.id}").count == 0
+        sleep(0.1)
+      end
     end
   end
 end
