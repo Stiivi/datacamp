@@ -1,5 +1,10 @@
 FactoryGirl.define do
 
+  factory :field_description_category do
+    sk_title 'sk title'
+    en_title 'en title'
+  end
+
   factory :field_description do
     is_visible_in_listing true
     is_visible_in_detail true
