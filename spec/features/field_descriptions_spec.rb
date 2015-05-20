@@ -77,6 +77,7 @@ describe 'FieldDescriptions' do
     move_field_to_category(first_name_field, main_category)
     move_field_to_category(street_field, main_category)
     click_link 'Finish sorting'
+    sleep(0.5)
 
     visit dataset_description_path(id: dataset, locale: :en)
 

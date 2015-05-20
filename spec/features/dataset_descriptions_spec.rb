@@ -103,6 +103,7 @@ describe 'DatasetDescriptions' do
     move_field_to_category(lawyers, lists_category)
     move_field_to_category(general, lists_category)
     click_link 'Finish sorting'
+    sleep(0.5)
 
     visit dataset_descriptions_path(locale: :en)
 
