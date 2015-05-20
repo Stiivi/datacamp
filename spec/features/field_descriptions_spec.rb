@@ -94,7 +94,7 @@ describe 'FieldDescriptions' do
   def move_field_to_category(field, category)
     drop_place = find("li#field_description_category_#{category.id} ul li:first-child")
     find("li#field_description_#{field.id} img.drag_arrow").drag_to(drop_place)
-    sleep(0.5)
+    sleep(1)
   end
 
   def has_fields_in_category(field_names, category)
