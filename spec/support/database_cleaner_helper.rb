@@ -17,24 +17,38 @@ module DatabaseCleanerHelper
       :truncation
     end
   end
+
+  def self.connection_names
+    [
+        :test,
+        :test_data,
+        :test_staging,
+    ]
+  end
 end
 
 RSpec.configure do |config|
   config.include DatabaseCleanerHelper
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleanerHelper.connection_names.each do |connection|
+      DatabaseCleaner[:active_record, {connection: connection}].clean_with(:truncation)
+    end
   end
 
   config.after(:suite) do
   end
 
   config.before(:each) do
-    DatabaseCleaner.strategy = get_cleaner_strategy(example)
-    DatabaseCleaner.start
+    DatabaseCleanerHelper.connection_names.each do |connection|
+      DatabaseCleaner[:active_record, {connection: connection}].strategy = get_cleaner_strategy(example)
+      DatabaseCleaner[:active_record, {connection: connection}].start
+    end
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean
+    DatabaseCleanerHelper.connection_names.each do |connection|
+      DatabaseCleaner[:active_record, {connection: connection}].clean
+    end
   end
 end
