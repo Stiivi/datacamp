@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 
 describe 'Imports' do
@@ -5,6 +6,7 @@ describe 'Imports' do
     login_as(admin_user)
   end
 
+  # TODO: set up folder for uploading in test environment and clear this folder in each test
   after(:each) do
     Dir.glob("#{Rails.root}/files/*_example.csv").each do |filepath|
       File.delete(filepath)
@@ -31,7 +33,7 @@ describe 'Imports' do
 
     click_link 'Go to dataset'
 
-    page.should have_content 'jan', 'velky', 'matus', 'maly', 'dominik', 'hello'
+    page.should have_content 'ján', 'veľký', 'matúš', 'malý', 'dominik', 'pekný'
 
     dataset.dataset_record_class.should have(3).records
   end
