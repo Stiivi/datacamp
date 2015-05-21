@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'spec_helper'
 
-describe 'Imports' do
+describe 'Imports', focus: true do
   before(:each) do
     login_as(admin_user)
   end
@@ -19,6 +19,8 @@ describe 'Imports' do
 
   before(:each) do
     # hotfix for travis CI, database cleaner not working?
+    puts "records in #{doctors_dataset.dataset_record_class.inspect}:"
+    puts doctors_dataset.dataset_record_class.all
     doctors_dataset.dataset_record_class.delete_all
   end
 
