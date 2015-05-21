@@ -201,7 +201,7 @@ describe Etl::FoundationExtraction do
     end
   end
 
-  describe '#save' do
+  describe '#save', slow_db: true do
 
     before(:each) do
       initialize_datasets( ['foundations', 'foundation_founders', 'foundation_trustees', 'foundation_liquidators'],

@@ -57,8 +57,8 @@ describe Etl::FoundationPageExtraction do
   describe '#perform' do
     it 'perform for accpeted page' do
       VCR.use_cassette('foundation_page_1') do
+        Delayed::Job.should_receive(:enqueue).exactly(20).times
         @extractor.perform
-        Delayed::Job.count.should == 20
       end
     end
   end
@@ -66,8 +66,8 @@ describe Etl::FoundationPageExtraction do
   describe '#after' do
     it 'perform for accpeted page' do
       VCR.use_cassette('foundation_page_1') do
+        Delayed::Job.should_receive(:enqueue).once
         @extractor.after(nil)
-        Delayed::Job.count.should == 1
       end
     end
   end

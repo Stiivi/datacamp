@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Etl::MzvsrContractsPageExtraction do
+describe Etl::MzvsrContractsPageExtraction, slow_db: true do
   let(:extractor) { described_class.new(1) }
 
   describe '#document_url' do
@@ -67,7 +67,8 @@ describe Etl::MzvsrContractsPageExtraction do
   describe '#perform' do
     it 'enqueues jobs for each links' do
       VCR.use_cassette('mzvsr_contracts_page_1') do
-        expect { extractor.perform }.to change { Delayed::Job.count }.by(20)
+        Delayed::Job.should_receive(:enqueue).exactly(20).times
+        extractor.perform
       end
     end
   end
@@ -75,7 +76,8 @@ describe Etl::MzvsrContractsPageExtraction do
   describe '#after' do
     it 'enqueues another page extraction' do
       VCR.use_cassette('mzvsr_contracts_page_1') do
-        expect { extractor.after(nil) }.to change { Delayed::Job.count }.by(1)
+        Delayed::Job.should_receive(:enqueue).once
+        extractor.after(nil)
       end
     end
   end
