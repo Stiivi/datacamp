@@ -31,24 +31,27 @@ RSpec.configure do |config|
   config.include DatabaseCleanerHelper
 
   config.before(:suite) do
-    DatabaseCleanerHelper.connection_names.each do |connection|
-      DatabaseCleaner[:active_record, {connection: connection}].clean_with(:truncation)
-    end
+    # set up multiple connection for cleaning
+    DatabaseCleaner[:active_record, {connection: :test}]
+    DatabaseCleaner[:active_record, {connection: :test_data}]
+    DatabaseCleaner[:active_record, {connection: :test_staging}]
+
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.after(:suite) do
   end
 
   config.before(:each) do
-    DatabaseCleanerHelper.connection_names.each do |connection|
-      DatabaseCleaner[:active_record, {connection: connection}].strategy = get_cleaner_strategy(example)
-      DatabaseCleaner[:active_record, {connection: connection}].start
+    strategy = get_cleaner_strategy(example)
+    DatabaseCleaner.strategy = strategy
+    if strategy == :truncation
+      DatabaseCleaner[:active_record, {connection: :test_data}].strategy = strategy, {cache_tables: false}
     end
+    DatabaseCleaner.start
   end
 
   config.after(:each) do
-    DatabaseCleanerHelper.connection_names.each do |connection|
-      DatabaseCleaner[:active_record, {connection: connection}].clean
-    end
+    DatabaseCleaner.clean
   end
 end

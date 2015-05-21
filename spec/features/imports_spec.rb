@@ -17,11 +17,6 @@ describe 'Imports' do
 
   let(:doctors_dataset) { Factory(:dataset_description, en_title: 'doctors', with_dataset: true) }
 
-  before(:each) do
-    # hotfix for travis CI, database cleaner not working?
-    doctors_dataset.dataset_record_class.delete_all
-  end
-
   it 'user is able to import csv file to prepared dataset' do
     prepare_name_fields(doctors_dataset)
 
