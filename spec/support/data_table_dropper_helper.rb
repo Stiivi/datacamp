@@ -30,4 +30,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DataTableDropperHelper.dropper.drop_new_tables
   end
+
 end
