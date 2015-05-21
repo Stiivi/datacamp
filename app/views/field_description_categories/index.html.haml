@@ -9,7 +9,7 @@
     %th
     
   - @categories.each do |category|
-    %tr
+    %tr{:id => dom_id(category)}
       %td= category.title
       %td= category.updated_at
       %td{:align => "right"}
@@ -19,4 +19,5 @@
             = link_to(image_tag('icons/trash.gif'),
                       field_description_category_path(category),
                       confirm: t("global.delete_confirmation"),
-                      method: :delete)
+                      method: :delete,
+                      title: t('global.delete'))
