@@ -28,6 +28,17 @@ module LoginHelpers
     fill_in "Password", with: user.password
     click_button "Submit"
   end
+
+  def generate_all_quality_status
+    [
+        'ok',
+        'duplicate',
+        'incomplete',
+        'doubtful',
+        'unclear',
+        'absent'
+    ].each { |name| QualityStatus.create!(name: name, image: name) }
+  end
 end
 
 RSpec.configure do |config|
