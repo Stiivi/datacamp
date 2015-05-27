@@ -6,7 +6,7 @@
     %th{:class => "actions"} &nbsp;
 
   - @records.each do |record|
-    %tr{:class => cycle("odd", "even")}
+    %tr{:id => dom_id(record), :class => cycle("odd", "even")}
       - @field_descriptions.each do |field_description|
         %td{style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""}
           - value = record.get_truncated_html_value(field_description)
@@ -15,4 +15,4 @@
           - else
             = value
       %td.actions
-        = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(@dataset, record, :page => params[:page]))
+        = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(@dataset, record, :page => params[:page]), :title => t("global.show"))
