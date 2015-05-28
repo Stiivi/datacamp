@@ -77,6 +77,24 @@ describe 'DatasetDescriptions' do
     page.should have_content 'DatasetDescription was successfully updated'
   end
 
+  it 'user is able to manage similar datasets', js: true do
+    nurses_dataset = Factory(:dataset_description, en_title: 'nurses', is_active: false, category: lists_category)
+    doctors_dataset = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
+
+    visit edit_dataset_description_path(id: doctors_dataset, locale: :en)
+
+    select 'nurses', from: 'asmSelect0'
+    click_button 'Save'
+
+    doctors_dataset.reload.similar_dataset_description_ids.should eq [nurses_dataset.id]
+
+    visit edit_dataset_description_path(id: doctors_dataset, locale: :en)
+    click_link 'remove'
+    click_button 'Save'
+
+    doctors_dataset.reload.similar_dataset_description_ids.should eq []
+  end
+
   it 'user is able to destroy dataset' do
     dataset_description = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
 

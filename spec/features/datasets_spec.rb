@@ -30,6 +30,15 @@ describe 'Datasets' do
       page.should_not have_content('schools')
     end
 
+    it 'is able to see similar dataset in dataset detail' do
+      quality_dataset.similar_dataset_descriptions << not_quality_dataset
+      quality_dataset.save!
+
+      visit dataset_path(id: quality_dataset, locale: :en)
+
+      page.should have_content 'students'
+    end
+
     it 'is able to see published records and visible columns in dataset' do
       Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
       Factory(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset, is_visible_in_detail: false)
