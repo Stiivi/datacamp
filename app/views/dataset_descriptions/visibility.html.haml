@@ -5,7 +5,7 @@
   = hidden_field_tag :return_to, "visibility"
   = hidden_field_tag :skip_validations, "1"
 
-  %p= f.submit t("global.save_changes")
+  %p.top_buttons= f.submit t("global.save_changes")
 
   %table
     %tr
@@ -33,4 +33,4 @@
           
   %br
   
-  %p= f.submit t("global.save_changes")
+  %p.bottom_buttons= f.submit t("global.save_changes")
