@@ -2,9 +2,6 @@ language: ruby
 cache: bundler
 rvm:
 - 1.9.3
-services:
-- mysql
-- sphinx
 before_script:
 - which searchd
 - find /usr/local -name '*searchd*'
@@ -20,6 +17,7 @@ before_script:
 - bundle exec rake db_staging:schema:load
 - bundle exec rake db_data:schema:load
 - bundle exec rake ts:config
+- cat /home/travis/build/fairplaysk/datacamp/config/test.sphinx.conf
 script:
 - bundle exec rspec spec/
 addons:

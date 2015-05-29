@@ -94,3 +94,4 @@ production:
 test:
   <<: *common
   port: 9314
+  bin_path: '/usr/local/sphinx-2.0.10/bin/'
