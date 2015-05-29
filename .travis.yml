@@ -4,7 +4,7 @@ rvm:
 - 1.9.3
 services:
 - mysql
-- sphinx
+- sphinx: '2.0.10'
 before_script:
 - cp config/database.travis.yml config/database.yml
 - mysql -e 'create database datanest_app_test'
