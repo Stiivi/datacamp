@@ -14,7 +14,13 @@ module Settings
     end
 
     def update
+      @comment = Comment.find_include_suspended(:id=>params[:id]).first
 
+      if @comment.update_attributes(params[:comment])
+        redirect_to settings_comments_path
+      else
+        render :action => "edit"
+      end
     end
 
     def destroy

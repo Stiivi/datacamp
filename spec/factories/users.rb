@@ -1,7 +1,7 @@
 FactoryGirl.define do
   
   factory :user do
-    login 'test'
+    sequence(:login) { |n| "test_#{n}" }
     name { |user| user.login }
     email { |user| "#{user.login.to_s.parameterize}@mail.com" }
     accepts_terms '1'

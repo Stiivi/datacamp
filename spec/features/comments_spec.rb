@@ -86,5 +86,23 @@ describe 'Comments' do
 
       page.should_not have_content comment.text
     end
+
+    it 'is able to see all comments' do
+      Factory(:comment, record_id: record._record_id, text: 'go home', is_suspended: true, user: Factory(:user, is_super_user: false), dataset_description: dataset)
+
+      visit settings_comments_path(locale: :en)
+
+      page.should have_content 'Good record'
+      page.should have_content 'go home'
+    end
+
+    it 'is able to update comment' do
+      visit edit_settings_comment_path(id: comment, locale: :en)
+
+      fill_in 'comment_text', with: 'edited text'
+      click_button 'Update Comment'
+
+      page.should have_content 'edited text'
+    end
   end
 end
