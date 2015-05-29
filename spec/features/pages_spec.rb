@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Pages' do
   it 'user can see a home page with news' do
-    home_page.update_attribute(:body, 'hello world!')
+    home_page.update_attributes(body: 'hello world!')
     Factory(:news, title: 'new dataset available', text: 'finance stuffs')
 
     visit root_path(locale: :en)

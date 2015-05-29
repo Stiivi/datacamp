@@ -8,5 +8,8 @@ describe 'Internationalizations' do
 
     click_link 'Slovensky'
     page.should have_content 'Domov'
+
+    click_link 'English'
+    page.should have_content 'Home'
   end
 end
