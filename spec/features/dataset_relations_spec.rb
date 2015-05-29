@@ -31,10 +31,9 @@ describe 'DatasetRelations' do
 
     Factory(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
     Factory(:field_description, dataset_description: schools, identifier: 'street', is_visible_in_relation: false)
-    school_record = schools.dataset_record_class.create!(name: 'Gramar', street: 'Bratislava')
+    school_record = schools.dataset_record_class.create!(name: 'Grammar', street: 'Bratislava')
 
-    students.relationship_dataset_descriptions << schools
-    students.save!
+    set_up_relation(students, schools)
 
     visit dataset_record_path(dataset_id: students, id: student_record, locale: :en)
 
@@ -42,30 +41,25 @@ describe 'DatasetRelations' do
     fill_in 'related_id', with: school_record._record_id.to_s
     click_button 'Save changes'
 
-    page.should have_content 'Gramar'
+    page.should have_content 'Grammar'
     page.should_not have_content 'Bratislava'
   end
 
   it 'is possible to see relation in both sides when relationship is bi-directional' do
-    students.relationship_dataset_descriptions << schools
-    students.save!
-    students.reload_dataset
-
-    schools.relationship_dataset_descriptions << students
-    schools.save!
-    schools.reload_dataset
+    set_up_relation(students, schools)
+    set_up_relation(schools, students)
 
     Factory(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
     Factory(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
 
     student_record = students.dataset_record_class.create!(name: 'Filip')
-    school_record = schools.dataset_record_class.create!(name: 'Gramar')
+    school_record = schools.dataset_record_class.create!(name: 'Grammar')
 
     student_record.ds_schools << school_record
     student_record.save!
 
     visit dataset_record_path(dataset_id: students, id: student_record, locale: :en)
-    page.should have_content 'Gramar'
+    page.should have_content 'Grammar'
 
     visit dataset_record_path(dataset_id: schools, id: school_record, locale: :en)
     page.should have_content 'Filip'

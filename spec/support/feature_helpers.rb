@@ -17,7 +17,7 @@ module LoginHelpers
         user.password = 'secret'
         user
       else
-        Factory(:user, login: 'admin_user', password: 'secret')
+        Factory(:user, login: 'admin_user', password: 'secret', api_access_level: Api::PREMIUM)
       end
     end
   end

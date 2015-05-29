@@ -11,19 +11,19 @@
                               api_key: @current_user.api_key.key, |
                               dataset_id: @dataset_description.id, |
                               format: :xml), |
-                      rel: 'download-relations', class: 'navigation js_download_relations', data:{ tracking_dataset_id: @dataset_description.identifier})
+                      rel: 'download-relations', id: 'dataset_relations_xml', class: 'navigation js_download_relations', data:{ tracking_dataset_id: @dataset_description.identifier})
         = link_to( t('dataset.changes_xml'), |
                       url_for( controller: :api, |
                               action: :dataset_changes, |
                               api_key:  @current_user.api_key.key, |
                               dataset_id: @dataset_description.id, |
                               format: :xml), |
-                      rel: 'download-changes', class: 'navigation js_download_changes', data:{ tracking_dataset_id: @dataset_description.identifier})
+                      rel: 'download-changes', id: 'dataset_changes_in_xml', class: 'navigation js_download_changes', data:{ tracking_dataset_id: @dataset_description.identifier})
         %a{href: url_for(:controller => :api, :action => :dataset_records,  |
                               :api_key => @current_user.api_key.key, |
                               :dataset_id => @dataset_description.id),
-           class: 'navigation js_download_csv', data:{ 'tracking-dataset-id' => @dataset_description.identifier}}= t("dataset.csv_export")
+           class: 'navigation js_download_csv', id: 'dataset_records_in_csv', data:{ 'tracking-dataset-id' => @dataset_description.identifier}}= t("dataset.csv_export")
         %a{href: url_for(:controller => :api, :action => :dataset_description,  |
                               :api_key => @current_user.api_key.key, |
                               :dataset_id => @dataset_description.id),
-           class: 'navigation js_download_description', data:{ 'tracking-dataset-id' => @dataset_description.identifier}}= t("dataset.description_xml")
+           id: 'dataset_description_in_xml', class: 'navigation js_download_description', data:{ 'tracking-dataset-id' => @dataset_description.identifier}}= t("dataset.description_xml")
