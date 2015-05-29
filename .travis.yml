@@ -10,6 +10,7 @@ before_script:
 - mysql -e 'create database datanest_app_test'
 - mysql -e 'create database datanest_data_test'
 - mysql -e 'create database datanest_staging_test'
+- searchd
 - cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
 - cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
 - cp config/datacamp_config.yml.example config/datacamp_config.yml
@@ -18,8 +19,6 @@ before_script:
 - bundle exec rake db_data:schema:load
 script:
 - bundle exec rspec spec/
-env:
-- DATABASE=mysql2 SPHINX_BIN=/usr/local/sphinx-2.0.10/bin/ SPHINX_VERSION=2.0.10
 addons:
   code_climate:
     repo_token:
