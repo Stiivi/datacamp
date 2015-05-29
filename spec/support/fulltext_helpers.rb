@@ -9,15 +9,15 @@ module FulltextHelpers
   end
 
   def start_search_engine
-    ThinkingSphinx::Test.start_with_autostop
+    puts ThinkingSphinx::Test.start_with_autostop
   end
 
   def stop_search_engine
-    ThinkingSphinx::Test.stop
+    puts ThinkingSphinx::Test.stop
   end
 
   def index_search_engine
-    ThinkingSphinx::Test.index
+    puts ThinkingSphinx::Test.index
     sleep(0.6)
   end
 end
