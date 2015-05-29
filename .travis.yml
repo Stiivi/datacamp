@@ -18,7 +18,8 @@ before_script:
 - bundle exec rake db_data:schema:load
 script:
 - bundle exec rspec spec/
-
+env:
+- DATABASE=mysql2 SPHINX_BIN=/usr/local/sphinx-2.0.10/bin/ SPHINX_VERSION=2.0.10
 addons:
   code_climate:
     repo_token:

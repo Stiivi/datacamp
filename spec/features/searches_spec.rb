@@ -17,7 +17,7 @@ describe 'Searches' do
     prepare_sphinx_search
   end
 
-  it 'user is able to use fulltext search on page' do
+  it 'user is able to use fulltext search on page', focus: true do
     visit root_path(locale: :en)
 
     fill_in 'query_string', with: 'Peter'
