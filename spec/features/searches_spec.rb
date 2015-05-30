@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Searches' do
+describe 'Searches', sphinx: true do
   let!(:list_category) { Factory(:category, title: 'educations') }
   let!(:student_dataset) { Factory(:dataset_description, en_title: 'students', is_active: true, with_dataset: true, category: list_category) }
   let!(:student_name_field) { Factory(:field_description, identifier: 'name', dataset_description: student_dataset) }
@@ -17,7 +17,7 @@ describe 'Searches' do
     prepare_sphinx_search
   end
 
-  it 'user is able to use fulltext search on page', focus: true do
+  it 'user is able to use fulltext search on page' do
     visit root_path(locale: :en)
 
     fill_in 'query_string', with: 'Peter'
