@@ -2,6 +2,7 @@ require 'thinking_sphinx/test'
 
 module FulltextHelpers
   def prepare_sphinx_search
+    FileUtils.mkdir_p 'db/sphinx/test'
     stop_search_engine
     SphinxDatasetIndexer.index_all_datasets
     start_search_engine
