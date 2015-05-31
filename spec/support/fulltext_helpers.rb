@@ -28,13 +28,13 @@ RSpec.configure do |config|
   config.include FulltextHelpers
 
   config.before(:each) do
-    if example.metadata[:sphinx]
+    if RSpec.current_example.metadata[:sphinx]
       FileUtils.mkdir_p 'db/sphinx/test'
     end
   end
 
   config.after(:each) do
-    if example.metadata[:sphinx]
+    if RSpec.current_example.metadata[:sphinx]
       stop_search_engine
       FileUtils.rm_rf 'db/sphinx/test'
       FileUtils.rm 'config/test.sphinx.conf'

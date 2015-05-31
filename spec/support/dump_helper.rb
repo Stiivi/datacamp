@@ -20,12 +20,12 @@ RSpec.configure do |config|
   config.include DumpHelper
 
   config.before(:each) do
-    if example.metadata[:use_dump]
+    if RSpec.current_example.metadata[:use_dump]
       create_dump_folder
     end
   end
 
   config.after(:each) do
-    drop_dump_folder if example.metadata[:use_dump]
+    drop_dump_folder if RSpec.current_example.metadata[:use_dump]
   end
 end

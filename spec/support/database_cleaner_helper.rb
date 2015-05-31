@@ -43,7 +43,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    strategy = get_cleaner_strategy(example)
+    strategy = get_cleaner_strategy(RSpec.current_example)
     DatabaseCleaner.strategy = strategy
     if strategy == :truncation
       DatabaseCleaner[:active_record, {connection: :test_data}].strategy = strategy, {cache_tables: false}
