@@ -16,7 +16,10 @@ module FulltextHelpers
   end
 
   def index_search_engine
-    ThinkingSphinx::Test.index
+    report = ThinkingSphinx::Test.index
+    if report =~ /error/i
+      puts report
+    end
     sleep(0.6)
   end
 end
