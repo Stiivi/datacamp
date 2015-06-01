@@ -65,7 +65,7 @@ def establish_connection(connection_info)
     @connection_info = connection_info
 
     @connection = Sequel.mysql2(connection_info["database"],
-            :user => connection_info["username"] || "root",
+            :username => connection_info["username"] || "root",
             :password => connection_info["password"],
             :host => connection_info["host"],
             :encoding => 'utf8',
