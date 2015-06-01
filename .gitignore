@@ -32,3 +32,5 @@ db/sphinx/*
 rerun.txt
 
 .sass-cache
+
+coverage

@@ -104,6 +104,7 @@ group :development, :test do
   gem 'vcr'
   gem 'fakeweb'
   gem 'pry'
+  gem 'simplecov', require: false
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

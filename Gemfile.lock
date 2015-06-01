@@ -402,6 +402,7 @@ DEPENDENCIES
   rvm
   sass-rails (~> 3.1.7)
   sequel
+  simplecov
   spawn
   therubyracer
   thin

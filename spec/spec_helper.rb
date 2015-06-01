@@ -1,4 +1,8 @@
 # -*- encoding : utf-8 -*-
+if ENV["COVERAGE"] == "1"
+  require 'simplecov'
+  SimpleCov.start 'rails'
+end
 
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
