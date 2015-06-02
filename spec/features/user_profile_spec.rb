@@ -1,9 +1,56 @@
 require 'spec_helper'
 
 describe 'UserProfile' do
-  let(:user) { Factory(:user, login: 'test', password: 'secret') }
+  let!(:user) { Factory(:user, login: 'test', password: 'secret', email: 'my@gmail.com') }
+
+  it 'user is able to register to the site' do
+    visit new_account_path(locale: :en)
+
+    click_button 'Sign up for account'
+    page.should have_content 'There were problems'
+
+    fill_in 'user_login', with: 'John'
+    fill_in 'user_email', with: 'john@gmail.com'
+    fill_in 'user_password', with: 'very_secret'
+    fill_in 'user_password_confirmation', with: 'very_secret'
+    check 'user_accepts_terms'
+
+    click_button 'Sign up for account'
+
+    page.should have_content 'Your account has been created'
+  end
 
   it 'user is able to log it to their profile' do
+    login_as(OpenStruct.new(login: 'test', password: 'incorrect'))
+    page.should have_content 'Username and/or password is incorrect'
+
+    login_as(user)
+    page.should have_content 'You was logged in successfuly'
+  end
+
+  it 'user is able to reset his password' do
+    visit forgot_account_path(locale: :en)
+
+    fill_in 'user_email', with: 'not_existing@email.com'
+    click_button 'Submit'
+
+    page.should have_content 'User not found'
+
+    fill_in 'user_email', with: 'my@gmail.com'
+    click_button 'Submit'
+
+    page.should have_content 'Email was sent'
+    last_email.should be
+    last_email.to.should include 'my@gmail.com'
+
+    visit restore_settings_user_path(id: user.reload.restoration_code, locale: :en)
+
+    fill_in 'user_password', with: 'my_new_password'
+    fill_in 'user_password_confirmation', with: 'my_new_password'
+    click_button 'Update User'
+
+    page.should have_content 'Password was changed'
+    user.password = 'my_new_password'
     login_as(user)
 
     page.should have_content 'You was logged in successfuly'
