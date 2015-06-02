@@ -50,6 +50,20 @@ module LoginHelpers
 
     AccessRole.create!(identifier: :user_manager, access_rights: rights)
   end
+
+  def generate_system_variables_sample
+    [
+        {:name => "theme",
+         :description => "Theme",
+         :value => "default"
+        },
+        {
+            :name => "site_name",
+            :description => "Site Name",
+            :value => "Datacamp Site"
+        },
+    ].map{ |attributes| SystemVariable.create!(attributes) }
+  end
 end
 
 RSpec.configure do |config|
