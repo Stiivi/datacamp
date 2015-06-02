@@ -39,6 +39,17 @@ module LoginHelpers
         'absent'
     ].each { |name| QualityStatus.create!(name: name, image: name) }
   end
+
+  def generate_sample_access_role_with_rights
+    rights = [
+        [:users, :manage_users],
+        [:users, :block_users],
+        [:users, :grant_rights],
+        [:users, :set_api_access]
+    ].map { |category, identifier| AccessRight.create!(identifier: identifier, category: category) }
+
+    AccessRole.create!(identifier: :user_manager, access_rights: rights)
+  end
 end
 
 RSpec.configure do |config|
