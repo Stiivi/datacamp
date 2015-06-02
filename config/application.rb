@@ -65,7 +65,7 @@ module Datacamp
     config.action_mailer.default_url_options = { host: 'datanest.fair-play.sk' }
 
     config.after_initialize do
-      SphinxDatasetIndexer.index_all_datasets
+      SphinxDatasetIndex.define_indices_for_all_datasets
     end
 
     config.admin_emails = ''

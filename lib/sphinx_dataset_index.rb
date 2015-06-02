@@ -1,11 +1,11 @@
-class SphinxDatasetIndexer
-  def self.index_all_datasets
+class SphinxDatasetIndex
+  def self.define_indices_for_all_datasets
     if DatasetDescription.table_exists?
-      DatasetDescription.all.each { |dataset_description| index_dataset(dataset_description) }
+      DatasetDescription.all.each { |dataset_description| define_index_for_dataset(dataset_description) }
     end
   end
 
-  def self.index_dataset(dataset_description)
+  def self.define_index_for_dataset(dataset_description)
     dataset_description.dataset.dataset_record_class.define_index do
       indexes :_record_id
       indexes :record_status

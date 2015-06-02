@@ -7,7 +7,7 @@ module FulltextHelpers
     FileUtils.mkdir_p 'db/sphinx/test'
 
     ThinkingSphinx::Test.init
-    SphinxDatasetIndexer.index_all_datasets
+    SphinxDatasetIndex.define_indices_for_all_datasets
     ThinkingSphinx::Test.start_with_autostop
   end
 end
