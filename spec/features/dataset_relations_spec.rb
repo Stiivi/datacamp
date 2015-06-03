@@ -64,4 +64,27 @@ describe 'DatasetRelations' do
     visit dataset_record_path(dataset_id: schools, id: school_record, locale: :en)
     page.should have_content 'Filip'
   end
+
+  it 'is possible to remove mapping from record', js: true do
+    set_up_relation(students, schools)
+    set_up_relation(schools, students)
+
+    Factory(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
+    Factory(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
+
+    student_record = students.dataset_record_class.create!(name: 'Filip')
+    school_record = schools.dataset_record_class.create!(name: 'Grammar')
+
+    student_record.ds_schools << school_record
+    student_record.save!
+
+    visit dataset_record_path(dataset_id: students, id: student_record, locale: :en)
+
+    within("#related_kernel_ds_school_#{school_record._record_id}") do
+      click_link 'Delete'
+    end
+
+    page.should have_content 'Relation deleted'
+    student_record.reload.ds_schools.should eq []
+  end
 end
