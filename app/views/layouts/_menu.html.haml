@@ -17,7 +17,7 @@
 
   = form_tag quick_searches_path, :class => "search" do
     = submit_tag '', id: "query_submit", class: 'search_button'
-    = link_to '', nil, class: 'button_disclosure js_advanced_search_toggle'
+    = link_to '', nil, id: 'advanced_search', class: 'button_disclosure js_advanced_search_toggle'
     = text_field_tag :query_string,
                      (@search.query_string if @search),
                      class: 'search',

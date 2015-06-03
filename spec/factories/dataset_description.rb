@@ -12,6 +12,7 @@ FactoryGirl.define do
     en_category 'en other'
     sk_title 'sk title'
     en_title 'en title'
+    data_type 'string'
   end
 
   factory :dataset_category, :aliases => [:category] do
