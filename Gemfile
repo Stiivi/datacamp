@@ -107,5 +107,9 @@ group :development, :test do
   gem 'simplecov', require: false
 end
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+group :test do
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'capybara-screenshot'
+end
+
 
