@@ -23,6 +23,8 @@ describe 'Searches', sphinx: true do
     fill_in 'query_string', with: 'Peter'
     click_button 'query_submit'
 
+    # binding.pry
+
     page.should have_content 'educations', 'Peter'
     page.should_not have_content 'Town at home'
 
