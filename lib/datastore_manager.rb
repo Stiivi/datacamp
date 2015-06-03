@@ -1,6 +1,3 @@
-# -*- encoding : utf-8 -*-
-require 'sequel'
-
 class DatastoreManager
 cattr_reader :available_data_types, :dataset_table_prefix, :id_column
 cattr_reader :record_metadata_columns
@@ -16,10 +13,10 @@ attr_accessor :schema
 @@record_metadata_columns = [
   [:created_at, :datetime],
   [:updated_at,:datetime],
-  [:created_by,:varchar],
-  [:updated_by,:varchar],
-  [:record_status,:varchar],
-  [:quality_status,:varchar],
+  [:created_by,:string],
+  [:updated_by,:string],
+  [:record_status,:string],
+  [:quality_status,:string],
   [:batch_id,:integer],
   [:validity_date,:date],
   [:is_hidden,:boolean]
@@ -29,100 +26,30 @@ attr_accessor :schema
 
 @@available_data_types = [:string, :integer, :date, :text, :decimal, :boolean]
 
-@@field_type_map = {
-    :string => :varchar,
-    :decimal => 'decimal(15,2)'
-  }
-
 def self.manager_with_default_connection
   unless @@instance
     @@instance = self.new
-    @@instance.establish_rails_default_connection
+    @@instance.establish_connection
   end
   @@instance
 end
 
-def establish_rails_default_connection
-  establish_rails_named_connection(Rails.env + "_data")
+def establish_connection
+  @connection = Dataset::DatasetRecord.connection
 end
 
-def establish_rails_named_connection(connection_name)
-  path = Pathname.new(Rails.root)
-  path = path + "config" + "database.yml"
-  yaml =  YAML.load_file(path)
-
-  connection_info = yaml[connection_name]
-  if connection_info
-    establish_connection(yaml[connection_name])
-  else
-    raise "No Rails database connection named #{connection_name}"
-  end
-end
-
-def establish_connection(connection_info)
-    # Create database connection
-
-    @connection_info = connection_info
-
-    @connection = Sequel.mysql2(connection_info["database"],
-            :username => connection_info["username"] || "root",
-            :password => connection_info["password"],
-            :host => connection_info["host"],
-            :encoding => 'utf8',
-            :max_connections => 5
-    )
-
-    Sequel::MySQL.default_charset = 'utf8'
-
-  if @connection.nil?
-    raise "Unable to establish database connection"
-  end
-
-  @schema = connection_info["schema"]
-end
-
-def extract_dataset_into_file(identifier, file, options = nil)
-  path = Pathname(file)
-  dirname = path.dirname
-
-  # Notes:
-  # * file will be overwritten
-
-  dirname.mkpath
-
-end
-
-def dataset_exists?(dataset)
-  return datasets.includes?(dataset)
-end
-
-
-def dataset_fields(dataset)
-  table = table_for_dataset(dataset)
-  metadata = @@record_metadata_columns.collect { |col| col[0]}
-  fields = @connection[table].columns
-  fields = fields - metadata
-  fields.delete(@@id_column)
-
-  return fields
-end
-
-def dataset_information(dataset)
-  info = {}
-
-  info[:count] = 9999
-end
-
+# returns specific columns for dataset table in format:
+#   [[:name, :string], [:address, :string]]
 def dataset_field_types(dataset)
   table = table_for_dataset(dataset)
-  schema = @connection.schema(table)
-  metadata = @@record_metadata_columns.collect { |col| col[0]}
 
-  schema = schema.select { | field |
-                not metadata.include?(field[0]) and
-                  field[0] != @@id_column  }
-  schema = schema.collect { |field| [field[0], field[1][:type]] }
-  return schema
+  table_columns = @connection.columns(table)
+
+  metadata_columns = @@record_metadata_columns.collect { |col| col[0] }
+  metadata_columns << @@id_column
+
+  custom_columns = table_columns.reject { |column| metadata_columns.include?(column.name.to_sym) }
+  custom_columns.map{ |column| [column.name.to_sym, column.type] }
 end
 
 def dataset_field_type(dataset, field)
@@ -133,21 +60,11 @@ end
 
 def add_dataset_field(dataset, field, type)
   table = table_for_dataset(dataset)
-  mapped_type = @@field_type_map[type.to_sym]
-
-  if mapped_type
-    type = mapped_type
-  end
   @connection.add_column(table, field, type)
 end
 
 def set_dataset_field_type(dataset, field, type)
   table = table_for_dataset(dataset)
-
-  mapped_type = @@field_type_map[type.to_sym]
-  if mapped_type
-    type = mapped_type
-  end
   @connection.set_column_type(table, field, type)
 end
 
@@ -159,25 +76,6 @@ end
 def remove_dataset_field(dataset, field)
   table = table_for_dataset(dataset)
   @connection.drop_column(table, field)
-end
-
-def datasets
-  # FIXME: Does not work on oracle
-  data = @connection[:information_schema__tables]
-  data = data.filter(:table_schema => @schema)
-
-  tables = Array.new
-  puts data.sql
-  data.all do |row|
-    tables << row[:TABLE_NAME]
-  end
-  tables = tables.select { |table| table =~ /^#{@@dataset_table_prefix}/ }
-  tables = tables.collect { |table| table.sub(/^#{@@dataset_table_prefix}/,"") }
-  return tables
-end
-
-def dataset_exists?(identifier)
-  return datasets.include?(identifier)
 end
 
 def create_dataset(identifier)
@@ -265,19 +163,7 @@ def fix_dataset_metadata(dataset)
 end
 
 def table_for_dataset(dataset)
-  # FIXME:
-  # return "#{@@schema}__#{@@dataset_table_prefix}#{dataset.to_s}".to_sym
-  return "#{@@dataset_table_prefix}#{dataset.to_s}".to_sym
+  "#{@@dataset_table_prefix}#{dataset.to_s}".to_sym
 end
-
-# def initialize_datastore
-
-# def create_metadata_for_dataset (dataset identifier)
-# def create_dataset_table_from_description
-# def create_description_form_table
-# def table_for_dataset
-# def initialize_dataset
-# def upgrade_dataset
-
 
 end

@@ -19,7 +19,6 @@ gem 'jquery-rails'
 
 gem 'haml-rails'
 gem "RedCloth", :require => "redcloth"
-gem "sequel"
 
 gem 'globalize3'
 gem 'paperclip'
