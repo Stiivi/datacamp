@@ -104,4 +104,12 @@ group :development, :test do
   gem 'vcr'
   gem 'fakeweb'
   gem 'pry'
+  gem 'simplecov', require: false
 end
+
+group :test do
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'capybara-screenshot'
+end
+
+

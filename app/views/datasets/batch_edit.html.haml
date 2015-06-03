@@ -22,10 +22,10 @@
       %th= t("batch_editing.attribute_value")
     - @field_descriptions.each do |fd|
       %tr
-        %td= check_box_tag "update_attribute[]", fd.identifier
+        %td= check_box_tag "update_attribute[]", fd.identifier, false, :id => "check_#{fd.identifier}"
         %td
           %b= fd.title
-        %td= text_field_tag "attribute_value[#{fd.identifier}]"
+        %td= text_field_tag "attribute_value[#{fd.identifier}]", nil, :id => "value_#{fd.identifier}"
     %tr
       %td
       %td

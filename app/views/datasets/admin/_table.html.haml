@@ -3,7 +3,7 @@
   %table{:class => "small #{@dataset_description.identifier}"}
     %tr.header
       %th.checkbox{:width => 15}
-        %a.tooltip{:name => t("dataset.click_to_select_all"), :href=>"#", :class => "select_all"} &nbsp;&times;
+        %a.tooltip{:name => t("dataset.click_to_select_all"), :href=>"#", :class => "select_all", :id => "select_all"} &nbsp;&times;
       %th.status{:width => 40}
       - @field_descriptions.each do |field_description|
         %th{:class => field_description.identifier}
@@ -17,7 +17,7 @@
     - @records.each do |record|
       %tr{:class => cycle("odd", "even")}
         %td.checkbox
-          = check_box_tag "record[]", record._record_id, false, :class => "record"
+          = check_box_tag "record[]", record._record_id, false, :class => "record", :id => dom_id(record, "check")
         %td.status
           = image_tag "icons/record_status/icon_#{record.record_status}.png", :alt => t("record_statuses.#{record.record_status}"), :class => "tooltip"
           = image_tag "icons/record_status/icon_#{record.quality_status}.png", :alt => t("quality_statuses.#{record.quality_status}"), :class => "tooltip"

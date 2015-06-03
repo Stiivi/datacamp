@@ -98,11 +98,6 @@ Datacamp::Application.routes.draw do
     end
 
     resources :datasets do
-      member do
-        get :sitemap
-        put :batch_edit
-        match ':everyone' => 'datasets#show'
-      end
       get :search, :on => :collection
       resources :records do
         get :fix, :update_status, :on => :member
@@ -110,6 +105,11 @@ Datacamp::Application.routes.draw do
           post :add_relationship
           delete :delete_relationship
         end
+      end
+      member do
+        get :sitemap
+        put :batch_edit
+        match ':everyone' => 'datasets#show'
       end
     end
 

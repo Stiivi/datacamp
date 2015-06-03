@@ -18,4 +18,8 @@ class SystemVariable < ActiveRecord::Base
     value = false if value == "0"
     value
   end
+
+  def self.reload_variables
+    @variables_cache = nil
+  end
 end

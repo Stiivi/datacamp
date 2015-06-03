@@ -4,7 +4,7 @@
 
 #data
 
-  .pagination.ajax.clearfix
+  .pagination.ajax.clearfix.top_pagination
     = render :partial => "pagination"
 
   #results
@@ -14,7 +14,7 @@
     - else
       = render :partial => "datasets/table"
 
-  .pagination.ajax
+  .pagination.ajax.bottom_pagination
     = render :partial => "pagination"
 
 #information

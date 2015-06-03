@@ -219,7 +219,7 @@ $.fn.editable = function(name, url){
   {
     input = this.siblings("input");
     $(this).text(input.val());
-    $.post(url, "_method=put&"+input.serialize(), "script");
+    $.post(url, "_method=put&"+input.serialize(), function() {}, "script");
     input.remove();
     this.show();
   }

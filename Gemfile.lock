@@ -74,9 +74,14 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-screenshot (1.0.9)
+      capybara (>= 1.0, < 3)
+      launchy
     chronic (0.10.2)
     cliver (0.3.2)
     cocaine (0.1.0)
+    codeclimate-test-reporter (0.4.7)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.0.9)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
@@ -100,7 +105,7 @@ GEM
       cucumber (>= 1.1.8)
       nokogiri (>= 1.5.0)
     daemons (1.1.9)
-    database_cleaner (0.6.7)
+    database_cleaner (1.4.1)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
@@ -108,6 +113,7 @@ GEM
       delayed_job
       rails
     diff-lcs (1.2.5)
+    docile (1.1.5)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
@@ -288,6 +294,11 @@ GEM
       tilt (~> 1.3.2)
     sequel (3.25.0)
     sexp_processor (4.1.5)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sinatra (1.2.8)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
@@ -322,7 +333,6 @@ GEM
       polyglot (>= 0.3.1)
     typhoeus (0.2.4)
       mime-types
-      mime-types
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -356,6 +366,8 @@ DEPENDENCIES
   capistrano (~> 2)
   capistrano-ext
   capybara
+  capybara-screenshot
+  codeclimate-test-reporter
   coffee-rails (~> 3.1.1)
   cucumber-rails
   database_cleaner
@@ -394,6 +406,7 @@ DEPENDENCIES
   rvm
   sass-rails (~> 3.1.7)
   sequel
+  simplecov
   spawn
   therubyracer
   thin

@@ -7,7 +7,7 @@
     = link_to t('.show_bad_quality'), datasets_path(show_bad_quality: 'true'), class: 'view_wrong_dataset', onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-vsetky-datasety', '1']);"
 
 - @dataset_categories.each do |dataset_category|
-  #dataset_category_container
+  %div{:id => "dataset_category_container", :class => "#{dom_id(dataset_category)}"}
     #dataset_category_head
       = link_to dataset_category ? dataset_category.title : t('global.other'),
                 "##{dataset_category ? dataset_category.title : t('global.other')}",

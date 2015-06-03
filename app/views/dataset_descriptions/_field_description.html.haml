@@ -11,6 +11,7 @@
     .fr= link_to(image_tag('icons/trash.gif'),
                       dataset_description_field_description_path(dataset_description, field_description),
                       method: 'delete',
-                      confirm: t("global.delete_confirmation"))
+                      confirm: t("global.delete_confirmation"),
+                      title: t("global.delete"))
     .clear
 

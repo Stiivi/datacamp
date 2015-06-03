@@ -11,7 +11,7 @@
     - @system_variables.each do |system_variable|
       %tr
         %td
-          %b= system_variable.name
+          = label_tag "system_variables[#{system_variable.id}][value]", system_variable.name
         %td
           %b= system_variable.description
         %td

@@ -4,7 +4,7 @@ $(document).ready(function(){
   $('#search_dataset').unbind("change").change(function(e) {
     $('#predicate_rows').html('');
 
-    $('#predicate_rows').load($('#predicate_rows').data('refresh-url') + '?identifier=' + $(this).val(), {}, function(){
+    $('#predicate_rows').load($('#predicate_rows').data('refresh-url') + '?identifier=' + $(this).val(), null, function(){
       init_search_form();
     });
   });
@@ -19,7 +19,7 @@ var init_search_form = function() {
   $(".search_row").each(function(){
     init_search($(this), false);
   });
-}
+};
 
 var init_search = function(row, reset){
 

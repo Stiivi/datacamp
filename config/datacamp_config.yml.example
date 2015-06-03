@@ -1,22 +1,37 @@
-###########################################################
-# Paths
+default: &default
 
-# Path where ETL creates raw dumps of dataset tables
-dataset_dump_path: /var/lib/datacamp/dumps
+  ###########################################################
+  # Paths
 
-# Keys
-captcha_private_key: XXX
-captcha_public_key: XXX
+  # Path where ETL creates raw dumps of dataset tables
+  dataset_dump_path: /var/lib/datacamp/dumps
 
-#sphinx
-sphinx_server: localhost
-sphinx_port: 9312
+  # Keys
+  captcha_private_key: XXX
+  captcha_public_key: XXX
 
-# google smtp
-gmail_user: 'gmail_user'
-gmail_password: 'gmail_password'
-gmail_domain: 'gmail_domain'
+  #sphinx
+  sphinx_server: localhost
+  sphinx_port: 9312
 
-google_analytics_code: 'XXX'
+  # google smtp
+  gmail_user: 'gmail_user'
+  gmail_password: 'gmail_password'
+  gmail_domain: 'gmail_domain'
 
-# canonical_url: 'datanest.fair-play.sk'
+  google_analytics_code: 'XXX'
+
+  # canonical_url: 'datanest.fair-play.sk'
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+
+staging:
+  <<: *default
+
+test:
+  <<: *default
+  dataset_dump_path: '<%= Rails.root.join('dumps-for-tests') %>' # we need absolute path, and this will work on travis ci

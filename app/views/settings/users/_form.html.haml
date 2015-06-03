@@ -22,7 +22,7 @@
       - if current_user.is_super_user
         = f.check_box :is_super_user, :label => t("users.super_user")
     
-      %li.clearfix
+      %li.clearfix.action_buttons
         %label
         = f.submit
   
@@ -34,9 +34,9 @@
         - AccessRole.all.each do |p|
           %tr
             %td{:width => 25}
-              = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p)
+              = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p), id: "user_access_role_ids_#{p.id}"
             %td
-              = label_tag "user[access_role_ids][]", t("access_roles.#{p.identifier}")
+              = label_tag "user_access_role_ids_#{p.id}", t("access_roles.#{p.identifier}")
             %td
               %small
                 = p.access_rights.collect{|r|t("access_rights.#{r.identifier}")}.join(", ")
@@ -47,11 +47,11 @@
         - AccessRight.all.each do |p|
           %tr
             %td{:width => 25}
-              = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p)
+              = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p), id: "user_access_right_ids_#{p.id}"
             %td{:width => 150}
               = t "access_right_categories.#{p.category}"
             %td
-              = label_tag "user[access_right_ids][]", t("access_rights.#{p.identifier}")
+              = label_tag "user_access_right_ids_#{p.id}", t("access_rights.#{p.identifier}")
     
       .clearfix
         = f.submit

@@ -49,6 +49,7 @@ module Datacamp
     config.i18n.enforce_available_locales = false # silence warning "[deprecated] I18n.enforce_available_locales will default to true in the future. If you really want to skip validation of your locale you can set I18n.enforce_available_locales = false to avoid this message."
     config.i18n.load_path = Dir[File.join(Rails.root, 'config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :sk
+    config.i18n.locale = config.i18n.default_locale # weird bug, but this fix the problem in test and production environment http://stackoverflow.com/questions/8478597/rails-3-set-i18n-locale-is-not-working
 
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
@@ -64,33 +65,7 @@ module Datacamp
     config.action_mailer.default_url_options = { host: 'datanest.fair-play.sk' }
 
     config.after_initialize do
-      DatasetDescription.all.each do |dataset_description|
-        dataset_description.dataset.dataset_record_class.define_index do
-          indexes :_record_id
-          indexes :record_status
-          indexes :quality_status
-          field_count = 0
-          dataset_description.visible_field_descriptions(:detail).each do |field|
-            if ![:integer, :date, :decimal].include?(field.data_type)
-              next if field_count > 28
-              field_count += 1
-              indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
-            else
-              if field.identifier.present?
-                has field.identifier.to_sym
-
-                if field.data_type == :decimal
-                  has field.identifier.to_sym, :as => "#{field.identifier}_sort", type: :float
-                else
-                  has field.identifier.to_sym, :as => "#{field.identifier}_sort"
-                end
-              end
-            end
-            has "#{field.identifier} IS NOT NULL", :type => :integer, :as => "#{field.identifier}_not_nil" if field.identifier.present?
-            has "#{field.identifier} IS NULL", :type => :integer, :as => "#{field.identifier}_nil" if field.identifier.present?
-          end
-        end
-      end if DatasetDescription.table_exists?
+      SphinxDatasetIndex.define_indices_for_all_datasets
     end
 
     config.admin_emails = ''

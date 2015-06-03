@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
     @report.comment = @comment
     @report.user_id = current_user.id
 
-    if request.method == :post
+    if request.post?
       @report.update_attributes params[:comment_report]
       @report.save
       redirect_to comment_return_path(@comment)

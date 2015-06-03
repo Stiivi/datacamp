@@ -133,6 +133,11 @@ class DatasetDescription < ActiveRecord::Base
     @dataset
   end
 
+  def reload_dataset
+    @dataset = nil
+    dataset
+  end
+
   def dataset_record_class
     self.dataset.dataset_record_class
   end

@@ -86,6 +86,12 @@ common: &common
 development:
   <<: *common
   port: 9312
+
 production:
   <<: *common
   port: 9313
+
+test:
+  <<: *common
+  port: 9314
+  bin_path: '/usr/local/sphinx-2.0.10/bin/'

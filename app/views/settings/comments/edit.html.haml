@@ -1,6 +1,9 @@
 %h1=t "global.comment"
 
 = form_for [:settings, @comment], :builder => ListFormBuilder do |f|
-  = f.select :user_id, User.all
+  = f.select :user_id, User.select("id, login").map{ |user| [user.login, user.id] }
   = f.text_area :text
   = f.check_box :is_suspended
+  .clearfix
+    %label
+    = f.submit
