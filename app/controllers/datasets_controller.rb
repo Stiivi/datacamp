@@ -46,6 +46,8 @@ class DatasetsController < ApplicationController
     @dataset_class       = @dataset.dataset_record_class
     @title               = @dataset_description.title
 
+    @sortable_columns = @dataset_class.columns.map(&:name)
+
     unless @dataset_class.table_exists?
       logger.error "Dataset table doesn't exist for #{@dataset_description.title} (#{@dataset_class.table_name})"
       flash[:error] = I18n.t("dataset.internal_dataset_error", :title => @dataset_description.title)
@@ -72,19 +74,17 @@ class DatasetsController < ApplicationController
     paginate_options[:page] = params[:page] if params[:page]#? params[:page] : nil
     paginate_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
     # paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]
-    
-    # @records = create_query_from_params(@dataset_class).paginate(paginate_options)
 
     # check if sort is valid
     if params[:sort]
-      if @dataset_class.columns.map(&:name).exclude? params[:sort]
+      if @sortable_columns.exclude? params[:sort]
         redirect_to dataset_path(@dataset_description) and return
       end
     end
 
     if params[:sort]
-      paginate_options[:order] = params[:sort].to_sym
-      paginate_options[:sort_mode] = params[:dir] ? params[:dir].to_sym : :asc
+      paginate_options[:order] = sanitize_sort_column(params[:sort], @sortable_columns).to_sym
+      paginate_options[:sort_mode] = sanitize_sort_direction(params[:dir]).to_sym
     end
     paginate_options[:conditions], paginate_options[:with], paginate_options[:without] = {},{},{}
     paginate_options[:sphinx_select] = "*"
@@ -113,13 +113,16 @@ class DatasetsController < ApplicationController
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
-      sort_direction = params[:dir] || "asc"
+      sort_direction = sanitize_sort_direction(params[:dir])
       if params[:sort] && params[:page]
         # This ugly thing is here because mysql is lame and doesn't use indexes when there is just an order and a limit on the select (pagination with ordering)...
         total_pages = @dataset_class.count.to_i
         page = params[:page].to_i
         per_page = paginate_options[:per_page].to_i
-        @records = @dataset_class.select('*').from("(SELECT `_record_id` from `#{@dataset_class.table_name}` ORDER BY `#{@dataset_class.table_name}`.`#{ActiveRecord::Base.sanitize(params[:sort]).gsub("'",'')}` #{ActiveRecord::Base.sanitize(sort_direction).gsub("'",'')} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN `#{@dataset_class.table_name}` `t` on `q`.`_record_id` = `t`.`_record_id`")
+
+        @records = @dataset_class.select('*').
+            from(prepare_subselect(@dataset_class.table_name, @sortable_columns, params, paginate_options)).
+            joins("JOIN `#{@dataset_class.table_name}` `t` on `q`.`_record_id` = `t`.`_record_id`")
         if !current_user || !current_user.has_privilege?(:power_user)
           @records = @records.where('t.record_status in (?)', [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]])
         elsif @filters
@@ -138,7 +141,7 @@ class DatasetsController < ApplicationController
         @records.define_singleton_method(:next_page) { page < total_pages ? (page + 1) : nil }
       else
         if params[:sort]
-          @dataset_class = @dataset_class.order("`#{params[:sort]}` #{sort_direction}")
+          @dataset_class = @dataset_class.order("`#{sanitize_sort_column(params[:sort], @sortable_columns)}` #{sort_direction}")
         else
           @dataset_class.order('created_at DESC, _record_id DESC')
         end
@@ -290,84 +293,7 @@ class DatasetsController < ApplicationController
   end
   
   protected
-  
-  def create_query_from_params(dataset_class)
-    ### Options for order
-    if params[:sort]
-      sort_direction = params[:dir] || "asc"
-      dataset_class = dataset_class.order("`#{params[:sort]}` #{sort_direction}").where("`#{params[:sort]}` IS NOT NULL")
-    end
-    
-    ### Options for search
-    unless params[:search_id].blank?
-      search_object = Search.find_by_id!(params[:search_id])
-      @search_predicates = search_object.query.predicates
-      search_query_id = search_object.query.id
-      dataset_class = dataset_class.
-            from("#{SearchResult.connection.current_database}.search_results").
-            joins("LEFT JOIN #{@dataset_class.table_name} ON search_results.record_id = #{@dataset_class.table_name}._record_id").
-            select("#{@dataset_class.table_name}.*").
-            where("search_results.search_query_id = #{@dataset_class.sanitize(search_query_id)}").
-            where("search_results.table_name = #{@dataset_class.sanitize(@dataset_description.identifier)}")
-    else
-      dataset_class = dataset_class.from @dataset_class.table_name
-    end
-    
-    ### Options for filter
-    if @filters
-      filters = @filters.find_all{|key,value|!value.blank?}
-      filters.each do |key, value|
-        dataset_class = dataset_class.where("#{key} = #{@dataset_class.sanitize(value)}")
-      end
-      # raise select_options.to_yaml
-    end
-    
-    dataset_class
-  end
-  
-  def create_options_for_select()
-    select_options = {}
-    select_options[:conditions] = []
-    
-    ### Options for order
-    if params[:sort]
-      sort_direction = params[:dir] || "asc"
-      select_options[:order] = "#{params[:sort]} #{sort_direction}"
-      select_options[:conditions] << "#{params[:sort]} IS NOT NULL"
-    end
-    
-    
-    ### Options for search
-    unless params[:search_id].blank?
-      search_object = Search.find_by_id!(params[:search_id])
-      @search_predicates = search_object.query.predicates
-      search_query_id = search_object.query.id
-      select_options[:from] = "#{SearchResult.connection.current_database}.search_results"
-      select_options[:joins] = "LEFT JOIN #{@dataset_class.table_name} ON search_results.record_id = #{@dataset_class.table_name}._record_id"
-      select_options[:select] = "#{@dataset_class.table_name}.*"
-      select_options[:conditions] << "search_results.search_query_id = #{@dataset_class.sanitize(search_query_id)}"
-      select_options[:conditions] << "search_results.table_name = #{@dataset_class.sanitize(@dataset_description.identifier)}"
-    else
-      select_options[:from] = @dataset_class.table_name
-    end
-    
-    ### Options for filter
-    if @filters
-      filters = @filters.find_all{|key,value|!value.blank?}
-      filters.each do |key, value|
-        select_options[:conditions] << "#{key} = #{@dataset_class.sanitize(value)}"
-      end
-      # raise select_options.to_yaml
-    end
-    
-    ### Filtering for those with insufficient privileges
-    unless has_privilege?(:view_hidden_records)
-      select_options[:finder] = 'active'
-    end
-    
-    select_options
-  end
-  
+
   # Creates SQL query from set of options for query.
   # If order is specified, it will create 2 queries and connect
   # them with union, to speed up sorting.
@@ -388,5 +314,25 @@ class DatasetsController < ApplicationController
   
   def has_filters?
     @filters && !@filters.empty?
+  end
+
+  def prepare_subselect(table_name, sortable_columns, params, paginate_options)
+    subselect_parameters = {
+        table_name: table_name,
+        sort_by: sanitize_sort_column(params[:sort], sortable_columns),
+        sort_direction: sanitize_sort_direction(params[:dir]),
+        offset: (params[:page].to_i-1) * paginate_options[:per_page].to_i,
+        limit: paginate_options[:per_page].to_i
+    }
+
+    "(SELECT `_record_id` from `%{table_name}` ORDER BY `%{table_name}`.`%{sort_by}` %{sort_direction} LIMIT %{offset}, %{limit}) q" % subselect_parameters
+  end
+
+  def sanitize_sort_column(column, available_columns)
+    available_columns.include?(column) ? column : "_record_id"
+  end
+
+  def sanitize_sort_direction(direction)
+    direction.to_s.downcase == "desc" ? "desc" : "asc"
   end
 end
