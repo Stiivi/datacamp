@@ -17,7 +17,7 @@ gem 'mysql2'
 
 gem 'jquery-rails'
 
-gem 'haml-rails'
+gem 'haml-rails', '~> 0.4.0' # version for rails 3
 gem "RedCloth", :require => "redcloth"
 
 gem 'globalize', '~> 3.1.0'

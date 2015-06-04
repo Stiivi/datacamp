@@ -131,12 +131,13 @@ GEM
       activemodel (>= 3.1.0, < 4.0.0)
       activerecord (>= 3.1.0, < 4.0.0)
     growl (1.0.3)
-    haml (3.1.7)
-    haml-rails (0.3.4)
-      actionpack (~> 3.0)
-      activesupport (~> 3.0)
-      haml (~> 3.0)
-      railties (~> 3.0)
+    haml (4.0.6)
+      tilt
+    haml-rails (0.4)
+      actionpack (>= 3.1, < 4.1)
+      activesupport (>= 3.1, < 4.1)
+      haml (>= 3.1, < 4.1)
+      railties (>= 3.1, < 4.1)
     highline (1.6.20)
     hike (1.2.3)
     htmlentities (4.3.1)
@@ -373,7 +374,7 @@ DEPENDENCIES
   gabba
   globalize (~> 3.1.0)
   growl
-  haml-rails
+  haml-rails (~> 0.4.0)
   jquery-rails
   launchy
   letter_opener
