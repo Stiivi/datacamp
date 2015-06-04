@@ -119,7 +119,7 @@ class DatasetsController < ApplicationController
         total_pages = @dataset_class.count.to_i
         page = params[:page].to_i
         per_page = paginate_options[:per_page].to_i
-        @records = @dataset_class.select('*').from("(SELECT _record_id from #{@dataset_class.table_name} ORDER BY #{@dataset_class.table_name}.#{ActiveRecord::Base.sanitize(params[:sort]).gsub("'",'')} #{ActiveRecord::Base.sanitize(sort_direction).gsub("'",'')} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN #{@dataset_class.table_name} t on q._record_id = t._record_id")
+        @records = @dataset_class.select('*').from("(SELECT `_record_id` from `#{@dataset_class.table_name}` ORDER BY `#{@dataset_class.table_name}`.`#{ActiveRecord::Base.sanitize(params[:sort]).gsub("'",'')}` #{ActiveRecord::Base.sanitize(sort_direction).gsub("'",'')} LIMIT #{(params[:page].to_i-1)*paginate_options[:per_page].to_i},#{paginate_options[:per_page].to_i}) q", ).joins("JOIN `#{@dataset_class.table_name}` `t` on `q`.`_record_id` = `t`.`_record_id`")
         if !current_user || !current_user.has_privilege?(:power_user)
           @records = @records.where('t.record_status in (?)', [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]])
         elsif @filters
@@ -138,7 +138,7 @@ class DatasetsController < ApplicationController
         @records.define_singleton_method(:next_page) { page < total_pages ? (page + 1) : nil }
       else
         if params[:sort]
-          @dataset_class = @dataset_class.order("#{params[:sort]} #{sort_direction}")
+          @dataset_class = @dataset_class.order("`#{params[:sort]}` #{sort_direction}")
         else
           @dataset_class.order('created_at DESC, _record_id DESC')
         end
@@ -295,7 +295,7 @@ class DatasetsController < ApplicationController
     ### Options for order
     if params[:sort]
       sort_direction = params[:dir] || "asc"
-      dataset_class = dataset_class.order("#{params[:sort]} #{sort_direction}").where("#{params[:sort]} IS NOT NULL")
+      dataset_class = dataset_class.order("`#{params[:sort]}` #{sort_direction}").where("`#{params[:sort]}` IS NOT NULL")
     end
     
     ### Options for search
