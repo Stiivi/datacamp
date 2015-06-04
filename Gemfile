@@ -46,6 +46,9 @@ gem 'roadie'
 gem 'mechanize'
 gem 'thin'
 
+# this gems should be removed in future
+gem 'dynamic_form'
+
 # gem 'test-unit'
 
 # Use unicorn as the web server

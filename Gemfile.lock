@@ -115,6 +115,7 @@ GEM
     docile (1.1.5)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     eventmachine (0.12.10)
     execjs (2.0.2)
@@ -367,6 +368,7 @@ DEPENDENCIES
   database_cleaner
   delayed_job
   delayed_job_admin
+  dynamic_form
   factory_girl_rails (~> 1.2.0)
   fakeweb
   gabba
