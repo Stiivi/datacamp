@@ -20,7 +20,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem "RedCloth", :require => "redcloth"
 
-gem 'globalize3'
+gem 'globalize', '~> 3.1.0'
 gem 'paperclip'
 gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
 gem 'spawn'
