@@ -5,7 +5,6 @@ require 'yaml'
 class SearchQuery < ActiveRecord::Base
 
 # Active Record stuff ...
-set_table_name :search_queries
 has_many :searches
 has_many :search_predicates
 has_many :predicates, :class_name => "SearchPredicate"

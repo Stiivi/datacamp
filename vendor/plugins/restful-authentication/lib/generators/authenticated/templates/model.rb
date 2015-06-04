@@ -10,7 +10,7 @@ class <%= class_name %> < ActiveRecord::Base
 <% elsif options.stateful? -%>
   include Authorization::StatefulRoles<% end %>
 <% unless options.skip_migration? -%>
-  set_table_name '<%= table_name %>'<% end %>
+  self.table_name = '<%= table_name %>'<% end %>
 
   validates :login, :presence   => true,
                     :uniqueness => true,

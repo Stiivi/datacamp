@@ -2,7 +2,6 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  set_primary_key :id
 
   include Api::Accessable
 

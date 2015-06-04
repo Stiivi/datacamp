@@ -84,8 +84,13 @@ private
     # You would also set the time zone for Rails time zone support here:
     # Time.zone = Person.current.time_zone
   end
-    
-protected
+
+  def index_page
+    @__index_page ||= Page.find_by_page_name("index")
+  end
+
+  protected
+
   def update_all_positions(model, ids)
     items = model.all
     items.each do |item|

@@ -199,7 +199,7 @@ namespace :etl do
 
     Dataset::DatasetRecord.skip_callback :update, :after, :after_update
     Dataset::TmpOrganisation = Class.new Dataset::DatasetRecord
-    Dataset::TmpOrganisation.set_table_name dataset_table
+    Dataset::TmpOrganisation.table_name = dataset_table
 
     append_new_records = "INSERT INTO #{dataset_schema}.#{dataset_table}
                          (doc_id, ico, name, legal_form, legal_form_code, date_start, date_end, address, region, activity1, activity1_code, activity2, activity2_code, account_sector, account_sector_code, ownership, ownership_code, size, size_code, source_url, created_at, updated_at, created_by, record_status, name_history)
