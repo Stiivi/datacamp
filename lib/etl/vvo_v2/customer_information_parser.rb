@@ -109,14 +109,14 @@ module Etl
                       activities = []
                       next_tr = tr.next_sibling
                       while next_tr && next_tr.xpath(".//td[@class='kod']").inner_text.blank?
-                        activities << next_tr.inner_text.strip
+                        activities << next_tr.inner_text.strip if next_tr.inner_text.strip.present?
                         next_tr = next_tr.next_sibling
                       end
                       content = activities.join(', ')
                     end
                     customer_information_hash[:customer_main_activity] = content if content.present? && customer_information_hash[:customer_main_activity].blank?
                   elsif header2.match(/Hlavný predmet alebo predmety činnosti/)
-                    activities = [tr.xpath(".//td[2]//table[1]").inner_text]
+                    activities = [tr.xpath(".//td[2]//table[1]").inner_text.strip]
                     next_tr = tr.next_sibling
                     while next_tr && (next_tr.inner_text.strip.match(/Verejný obstarávateľ nakupuje/).nil? && next_tr.xpath(".//td[@class='kod']").inner_text.blank?)
                       content = next_tr.inner_text.strip

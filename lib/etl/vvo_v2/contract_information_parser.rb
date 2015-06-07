@@ -234,7 +234,7 @@ module Etl
                   elsif (code_text.match(/^II.1.5/) || code_text.match(/^II.1.3/)) && (header_text.match(/Spoločný slovník obstarávania/) || header_text.match(/CPV/))
                     tr_subjects = tr
                     if tr_subjects.xpath(".//td[2]//span[@class='hodnota']").empty?
-                      tr_subjects = tr.next
+                      tr_subjects = tr.next_element
                     end
                     subjects = tr_subjects.xpath(".//td[2]//span[@class='hodnota']")
                     dictionary_main_subjects = subjects[2].inner_text.strip
