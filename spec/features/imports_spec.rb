@@ -28,7 +28,7 @@ describe 'Imports' do
 
     click_link 'Go to dataset'
 
-    page.should have_content 'ján', 'veľký', 'matúš', 'malý', 'dominik', 'pekný'
+    page_should_have_content_with 'ján', 'veľký', 'matúš', 'malý', 'dominik', 'pekný'
 
     doctors_dataset.dataset_record_class.should have(3).records
   end
@@ -56,7 +56,7 @@ describe 'Imports' do
 
     click_link 'Go to dataset'
 
-    page.should have_content 'jozef', 'zelený'
+    page_should_have_content_with 'jozef', 'zelený'
 
     doctors_dataset.dataset_record_class.should have(1).records
   end

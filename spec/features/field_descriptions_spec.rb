@@ -104,7 +104,7 @@ describe 'FieldDescriptions' do
 
   def has_fields_in_category(field_names, category)
     within("li#field_description_category_#{category.id}") do
-      page.should have_content *field_names
+      page_should_have_content_with *field_names
     end
   end
 end

@@ -66,9 +66,24 @@ module LoginHelpers
   end
 end
 
+module ExpectationHelpers
+  def page_should_have_content_with(*names)
+    Array.wrap(names).each do |name|
+      page.should have_content name
+    end
+  end
+
+  def page_should_not_have_content_with(*names)
+    Array.wrap(names).each do |name|
+      page.should_not have_content name
+    end
+  end
+end
+
 RSpec.configure do |config|
   config.include PageHelpers
   config.include LoginHelpers
+  config.include ExpectationHelpers
 
   config.before(:each) do
     if RSpec.current_example.metadata[:type] == :feature

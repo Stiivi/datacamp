@@ -30,7 +30,7 @@ describe 'Api' do
       click_link 'dataset_description_in_xml'
 
       content_type.should be_xml
-      page.should have_text 'students', 'name'
+      page_should_have_content_with 'students', 'name'
     end
 
     it 'is able to download dataset relations xml' do
@@ -43,7 +43,7 @@ describe 'Api' do
 
       click_link 'dataset_relations_xml'
       content_type.should be_xml
-      page.should have_text 'Kernel::DsStudent', 'Kernel::DsSchool'
+      page_should_have_content_with 'Kernel::DsStudent', 'Kernel::DsSchool'
     end
 
     it 'is able to download changes in records' do
@@ -53,7 +53,7 @@ describe 'Api' do
 
       click_link 'dataset_changes_in_xml'
       content_type.should be_xml
-      page.should have_text 'Peter', 'Daniel'
+      page_should_have_content_with 'Peter', 'Daniel'
     end
 
     it 'is able to regenerate api key' do

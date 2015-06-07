@@ -23,13 +23,13 @@ describe 'Searches', sphinx: true do
     fill_in 'query_string', with: 'Peter'
     click_button 'query_submit'
 
-    page.should have_content 'educations', 'Peter'
+    page_should_have_content_with 'educations', 'Peter'
     page.should_not have_content 'Town at home'
 
     click_link 'More results'
 
     page.should have_content 'Peter'
-    page.should_not have_content 'Lukas', 'Tom'
+    page_should_not_have_content_with 'Lukas', 'Tom'
   end
 
   it 'user is able to use advanced search on page', js: true do

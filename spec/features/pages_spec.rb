@@ -7,17 +7,15 @@ describe 'Pages' do
 
     visit root_path(locale: :en)
 
-    page.should have_content 'hello world!'
-    page.should have_content 'new dataset available', 'finance stuffs'
+    page_should_have_content_with 'hello world!', 'new dataset available', 'finance stuffs'
   end
 
   it 'user can see other requested page' do
     about_us = Factory(:page, title: 'About us', body: 'AFP is a good organization')
-    Factory(:block, title: 'applications based on us', page: about_us, is_enabled: true)
 
     visit page_path(id: about_us, locale: :en)
 
-    page.should have_content 'AFP is a good organization', 'applications based on us'
+    page.should have_content 'AFP is a good organization'
   end
 
   context 'admin section' do

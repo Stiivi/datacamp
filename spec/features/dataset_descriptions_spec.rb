@@ -149,13 +149,13 @@ describe 'DatasetDescriptions' do
 
   def has_datasets_in_category(dataset_names, category)
     within("li#dataset_category_#{category.id}") do
-      page.should have_content *dataset_names
+      page_should_have_content_with *dataset_names
     end
   end
 
   def does_not_have_datasets_in_category(dataset_names, category)
     within("li#dataset_category_#{category.id}") do
-      page.should_not have_content *dataset_names
+      page_should_not_have_content_with *dataset_names
     end
   end
 
