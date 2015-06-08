@@ -21,7 +21,9 @@ FactoryGirl.define do
   end
 
   factory :dataset_description do
-    with_dataset { false }.ignore
+    ignore do
+      with_dataset { false }
+    end
 
     sk_title 'sk title'
     en_title 'en title'

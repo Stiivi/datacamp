@@ -100,7 +100,7 @@ group :development, :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'launchy'    # So you can do Then show me the page
-  gem "factory_girl_rails", "~> 1.2.0"
+  gem "factory_girl_rails", "~> 1.7.0"
   gem 'vcr', '~> 2.9.0'
   gem 'fakeweb'
   gem 'pry'
