@@ -342,7 +342,7 @@ GEM
       rack
       raindrops (~> 0.7)
     uniform_notifier (1.6.2)
-    vcr (1.11.3)
+    vcr (2.9.3)
     webrobots (0.1.1)
     websocket-driver (0.3.2)
     whenever (0.9.4)
@@ -409,6 +409,6 @@ DEPENDENCIES
   typhoeus (~> 0.3.3)
   uglifier (>= 1.0.3)
   unicorn
-  vcr (~> 1.11.0)
+  vcr (~> 2.9.0)
   whenever
   will_paginate

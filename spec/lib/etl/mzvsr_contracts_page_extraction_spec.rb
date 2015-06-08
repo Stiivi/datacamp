@@ -41,10 +41,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
       it 'returns true' do
         VCR.use_cassette('mzvsr_contracts_malformed_page') do
           extractor.download
-
-          VCR.use_cassette('mzvsr_contracts_valid_page') do
-            expect(extractor.is_acceptable?).to be_true
-          end
+          expect(extractor.is_acceptable?).to be_true
         end
       end
     end
@@ -55,10 +52,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
       it 'returns false' do
         VCR.use_cassette('mzvsr_contracts_page_1000000') do
           extractor.download
-
-          VCR.use_cassette('mzvsr_contracts_page_1000001') do
-            expect(extractor.is_acceptable?).to be_false
-          end
+          expect(extractor.is_acceptable?).to be_false
         end
       end
     end

@@ -19,9 +19,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 # Can be removed when the issue is resolved https://github.com/myronmarston/vcr/issues/74
 VCR::YAML = ::YAML
 
-VCR.config do |c|
+VCR.configure do |c|
   c.cassette_library_dir = "#{Rails.root}/spec/fixtures/vcr_cassettes"
-  c.stub_with :typhoeus
+  c.hook_into :typhoeus
   c.default_cassette_options = { :record => :once }
 end
 

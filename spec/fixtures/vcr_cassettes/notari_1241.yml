@@ -1,197 +1,204 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: http://www.notar.sk:80/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady/Not%C3%A1rske%C3%BAradydetail.aspx?id=1241
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady/Not%C3%A1rske%C3%BAradydetail.aspx?id=1241
     body: 
-    headers: 
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      cache-control: 
+      Cache-Control: 
       - private
-      content-type: 
+      Content-Type: 
       - text/html; charset=utf-8
-      server: 
+      Server: 
       - Microsoft-IIS/7.5
-      set-cookie: 
+      Set-Cookie: 
       - .ASPXANONYMOUS=aRs3mZuvzAEkAAAAZGJjYzA1NjQtMTQ5Yi00ZmQxLTgxZWQtYmQ5OWQ4MmZhMzk50; expires=Wed, 30-Nov-2011 20:06:51 GMT; path=/; HttpOnly
       - .ASPXANONYMOUS=aRs3mZuvzAEkAAAAZGJjYzA1NjQtMTQ5Yi00ZmQxLTgxZWQtYmQ5OWQ4MmZhMzk50; expires=Wed, 30-Nov-2011 20:06:51 GMT; path=/; HttpOnly
       - language=sk-SK; path=/; HttpOnly
-      x-aspnet-version: 
+      X-Aspnet-Version: 
       - 4.0.30319
-      x-powered-by: 
+      X-Powered-By: 
       - ASP.NET
-      date: 
+      Date: 
       - Thu, 22 Sep 2011 09:26:55 GMT
-      content-length: 
+      Content-Length: 
       - "30922"
-    body: "\r\n\
-      <script type=\"text/javascript\">\r\n\
-      <!--\r\n\
-      if (screen.width <= 699 && location.href == \"http://www.notar.sk/\") \r\n\
-      {\r\n\
-      document.location = \"mobil.htm\";\r\n\
-      }\r\n\
-      //-->\r\n\
-      </script>\r\n\
-      \r\n\
-      \r\n\
-      <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n\
-      <html xml:lang=\"sk-SK\" lang=\"sk-SK\" xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\
-      <head id=\"Head\">\r\n\
-      <!--**********************************************************************************-->\r\n\
-      <!-- DotNetNuke\xEF\xBF\xBD - http://www.dotnetnuke.com                                          -->\r\n\
-      <!-- Copyright (c) 2002-2010                                                          -->\r\n\
-      <!-- by DotNetNuke Corporation                                                        -->\r\n\
-      <!--**********************************************************************************-->\r\n\
-      <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" /><meta content=\"text/javascript\" http-equiv=\"Content-Script-Type\" /><meta content=\"text/css\" http-equiv=\"Content-Style-Type\" /><meta id=\"MetaDescription\" name=\"DESCRIPTION\" content=\"V\xC5\xA1eobecn\xC3\xA9 inform\xC3\xA1cie o NK SR\" /><meta id=\"MetaKeywords\" name=\"KEYWORDS\" content=\"Not\xC3\xA1rska komora, Not\xC3\xA1r, Not\xC3\xA1rsky, not\xC3\xA1rska z\xC3\xA1pisnica, centr\xC3\xA1lne registre, poberatelia 2% dane, NK SR, osved\xC4\x8Den\xC3\xBD podpis,DotNetNuke,DNN\" /><meta id=\"MetaCopyright\" name=\"COPYRIGHT\" content=\"Copyright 2011 Not\xC3\xA1rska komora Slovenskej republiky\" /><meta id=\"MetaGenerator\" name=\"GENERATOR\" content=\"DotNetNuke \" /><meta id=\"MetaAuthor\" name=\"AUTHOR\" content=\"Not\xC3\xA1rska komora Slovenskej republiky\" /><meta name=\"RESOURCE-TYPE\" content=\"DOCUMENT\" /><meta name=\"DISTRIBUTION\" content=\"GLOBAL\" /><meta id=\"MetaRobots\" name=\"ROBOTS\" content=\"INDEX, FOLLOW\" /><meta name=\"REVISIT-AFTER\" content=\"1 DAYS\" /><meta name=\"RATING\" content=\"GENERAL\" /><meta http-equiv=\"PAGE-ENTER\" content=\"RevealTrans(Duration=0,Transition=1)\" /><style id=\"StylePlaceholder\" type=\"text/css\"></style><link id=\"APortals__default_\" rel=\"stylesheet\" type=\"text/css\" href=\"/Portals/_default/default.css\" /><link id=\"APortals__default_Skins_notarska_komora_2_\" rel=\"stylesheet\" type=\"text/css\" href=\"/Portals/_default/Skins/notarska komora_2/skin.css\" /><link id=\"APortals_0_\" rel=\"stylesheet\" type=\"text/css\" href=\"/Portals/0/portal.css\" /><script type=\"text/javascript\" src=\"/Resources/Shared/Scripts/jquery/jquery.min.js\" ></script><link href=\"/Portals/_default/Skins/_default/WebControlSkin/Default/TabStrip.Default.css\" rel=\"stylesheet\" type=\"text/css\" /><title>\r\n\
-      \tNot\xC3\xA1rske \xC3\xBArady detail\r\n\
-      </title></head>\r\n\
-      <body id=\"Body\">\r\n    <form method=\"post\" action=\"/&#218;vod/Not&#225;rskecentr&#225;lneregistre/Not&#225;rske&#250;rady/Not&#225;rske&#250;radydetail.aspx?id=1241\" id=\"Form\" enctype=\"multipart/form-data\">\r\n\
-      <input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"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\" />\r\n\
-      \r\n\
-      \r\n\
-      <script src=\"/js/dnncore.js\" type=\"text/javascript\"></script>\r\n\
-      <script type=\"text/javascript\">\r\n\
-      //<![CDATA[\r\n\
-      var __cultureInfo = {\"name\":\"sk-SK\",\"numberFormat\":{\"CurrencyDecimalDigits\":2,\"CurrencyDecimalSeparator\":\",\",\"IsReadOnly\":false,\"CurrencyGroupSizes\":[3],\"NumberGroupSizes\":[3],\"PercentGroupSizes\":[3],\"CurrencyGroupSeparator\":\"\xC2\xA0\",\"CurrencySymbol\":\"\xE2\x82\xAC\",\"NaNSymbol\":\"Nie je \xC4\x8D\xC3\xADslo\",\"CurrencyNegativePattern\":8,\"NumberNegativePattern\":1,\"PercentPositivePattern\":1,\"PercentNegativePattern\":1,\"NegativeInfinitySymbol\":\"-nekone\xC4\x8Dno\",\"NegativeSign\":\"-\",\"NumberDecimalDigits\":2,\"NumberDecimalSeparator\":\",\",\"NumberGroupSeparator\":\"\xC2\xA0\",\"CurrencyPositivePattern\":3,\"PositiveInfinitySymbol\":\"+nekone\xC4\x8Dno\",\"PositiveSign\":\"+\",\"PercentDecimalDigits\":2,\"PercentDecimalSeparator\":\",\",\"PercentGroupSeparator\":\"\xC2\xA0\",\"PercentSymbol\":\"%\",\"PerMilleSymbol\":\"\xE2\x80\xB0\",\"NativeDigits\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"DigitSubstitution\":1},\"dateTimeFormat\":{\"AMDesignator\":\"\",\"Calendar\":{\"MinSupportedDateTime\":\"\\/Date(-62135596800000)\\/\",\"MaxSupportedDateTime\":\"\\/Date(253402297199999)\\/\",\"AlgorithmType\":1,\"CalendarType\":1,\"Eras\":[1],\"TwoDigitYearMax\":2029,\"IsReadOnly\":false},\"DateSeparator\":\". \",\"FirstDayOfWeek\":1,\"CalendarWeekRule\":0,\"FullDateTimePattern\":\"d. MMMM yyyy H:mm:ss\",\"LongDatePattern\":\"d. MMMM yyyy\",\"LongTimePattern\":\"H:mm:ss\",\"MonthDayPattern\":\"dd MMMM\",\"PMDesignator\":\"\",\"RFC1123Pattern\":\"ddd, dd MMM yyyy HH\\u0027:\\u0027mm\\u0027:\\u0027ss \\u0027GMT\\u0027\",\"ShortDatePattern\":\"d. M. yyyy\",\"ShortTimePattern\":\"H:mm\",\"SortableDateTimePattern\":\"yyyy\\u0027-\\u0027MM\\u0027-\\u0027dd\\u0027T\\u0027HH\\u0027:\\u0027mm\\u0027:\\u0027ss\",\"TimeSeparator\":\":\",\"UniversalSortableDateTimePattern\":\"yyyy\\u0027-\\u0027MM\\u0027-\\u0027dd HH\\u0027:\\u0027mm\\u0027:\\u0027ss\\u0027Z\\u0027\",\"YearMonthPattern\":\"MMMM yyyy\",\"AbbreviatedDayNames\":[\"ne\",\"po\",\"ut\",\"st\",\"\xC5\xA1t\",\"pi\",\"so\"],\"ShortestDayNames\":[\"ne\",\"po\",\"ut\",\"st\",\"\xC5\xA1t\",\"pi\",\"so\"],\"DayNames\":[\"nede\xC4\xBEa\",\"pondelok\",\"utorok\",\"streda\",\"\xC5\xA1tvrtok\",\"piatok\",\"sobota\"],\"AbbreviatedMonthNames\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"\"],\"MonthNames\":[\"janu\xC3\xA1r\",\"febru\xC3\xA1r\",\"marec\",\"apr\xC3\xADl\",\"m\xC3\xA1j\",\"j\xC3\xBAn\",\"j\xC3\xBAl\",\"august\",\"september\",\"okt\xC3\xB3ber\",\"november\",\"december\",\"\"],\"IsReadOnly\":false,\"NativeCalendarName\":\"gregori\xC3\xA1nsky kalend\xC3\xA1r\",\"AbbreviatedMonthGenitiveNames\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"\"],\"MonthGenitiveNames\":[\"janu\xC3\xA1ra\",\"febru\xC3\xA1ra\",\"marca\",\"apr\xC3\xADla\",\"m\xC3\xA1ja\",\"j\xC3\xBAna\",\"j\xC3\xBAla\",\"augusta\",\"septembra\",\"okt\xC3\xB3bra\",\"novembra\",\"decembra\",\"\"]},\"eras\":[1,\"n. l.\",null,0]};//]]>\r\n\
-      </script>\r\n\
-      \r\n\
-      <script src=\"/ScriptResource.axd?d=g-1lq302GLMB4rL93Uc9C0cngnqcwx1OIHhAXXjEgUWNjwUGF-ImgBB4q5YwA5nvVtIWZKv6gJMVmzu2X9myPb7vX19hI3BosyNfFwy3fNSxttR2f1bDo1p0B8lcj575qtWSfraVTEALW6BNeBovJJGEK8Q1&amp;t=2610f696\" type=\"text/javascript\"></script>\r\n\
-      <input type=\"hidden\" name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\" value=\"\" />\r\n\
-      \r\n\
-      \r\n        \r\n        \r\n\
-      \r\n\
-      <script type=\"text/javascript\">\r\n    \r\n    \r\n\
-      \tvar headID = document.getElementsByTagName(\"head\")[0];         \r\n\
-      \tvar newScript = document.createElement('script');\r\n\
-      \tnewScript.type = 'text/javascript';\r\n\
-      \tnewScript.src = '/Portals/_default/Skins/notarska komora_2//js/gog.js';\r\n\
-      \theadID.appendChild(newScript);\r\n    </script>\r\n\
-      \r\n\
-      <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n\
-      \r\n\
-      <table width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"bg1\">\r\n  <tr>\r\n    <td width=\"100%\" height=\"100%\" align=\"center\" valign=\"top\"><table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"skinlayout1\">      \r\n      <tr>\r\n        <td align=\"left\" valign=\"top\" width=\"100%\" height=\"100%\">\r\n\
-      <body id=\"body\" class=\"subpage\">\r\n\
-      <div id=\"s_wrap_main\">\r\n    <div id=\"s_wrap_sub\">\r\n\
-      \r\n\
-      \t<div id=\"page-holder\">\r\n\
-      \t\t<div id=\"top\">\r\n\
-      \t\t\t<div id=\"logo\">\r\n                <a id=\"dnn_dnnLOGO_hypLogo\" title=\"Not\xC3\xA1rska komora Slovenskej republiky\" href=\"http://www.notar.sk/%c3%9avod.aspx\"><img id=\"dnn_dnnLOGO_imgLogo\" src=\"/Portals/0/nk_logo.png\" alt=\"Not\xC3\xA1rska komora Slovenskej republiky\" border=\"0\" /></a>\r\n            </div>\r\n\
-      \r\n\
-      \t\t\t<div class=\"lam0h\">\r\n\
-      \t\t\t\t<ul id=\"lang-bar\">\r\n\
-      \t\t\t\t\t<li class=\"select_lang_icon\">Jazyky:</li>\r\n                    <span id=\"lang\">\r\n                        <li class=\"hover\">\r\n                            <a href=\"/\">SK</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/en\">EN</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/de\">DE</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/fr\">FR</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/hu\">HU</a>\r\n                        </li>\r\n                    </span>\r\n\
-      \t\t\t\t</ul>\r\n\
-      \t\t\t\t\r\n\
-      \t\t\t\t<ul id=\"menu-0\">\r\n\
-      \t\t\t\t\t<li>\r\n\
-      \t\t\t\t\t\t<a href=\"http://www.notar.sk/zep/index.html\">Verejn\xC3\xA9 k\xC4\xBE\xC3\xBA\xC4\x8De not\xC3\xA1rov</a>\r\n\
-      \t\t\t\t\t</li>\r\n\
-      \t\t\t\t\t<li>\r\n\
-      \t\t\t\t\t\t<a id=\"dnn_dnnLOGIN_cmdLogin\" class=\"user\" href=\"javascript:__doPostBack(&#39;dnn$dnnLOGIN$cmdLogin&#39;,&#39;&#39;)\">Vstup pre not\xC3\xA1rov</a>                        \r\n\
-      \t\t\t\t\t</li>\r\n\
-      \t\t\t\t</ul>\r\n\
-      \t\t\t\t<div class=\"clear\"></div>\r\n\
-      \t\t\t</div>\r\n\
-      \t\t\t\r\n\
-      \t\t\t\r\n\
-      \t\t\t<div id=\"search-bar\">\r\n            \t<div class=\"search\">\r\n\
-      \t\t\t\t\t<span id=\"dnn_dnnSearch_ClassicSearch\">\r\n  \r\n  \r\n  <input name=\"dnn$dnnSearch$txtSearch\" type=\"text\" maxlength=\"255\" size=\"20\" id=\"dnn_dnnSearch_txtSearch\" class=\"NormalTextBox\" onkeydown=\"return __dnn_KeyDown(&#39;13&#39;, &#39;javascript:__doPostBack(%27dnn$dnnSearch$cmdSearch%27,%27%27)&#39;, event);\" />&nbsp;\r\n  <a id=\"dnn_dnnSearch_cmdSearch\" class=\"SearchControl\" href=\"javascript:__doPostBack(&#39;dnn$dnnSearch$cmdSearch&#39;,&#39;&#39;)\"><img src=\"/Portals/_default/Skins/notarska komora_2/images/search_button3.png\" border=\"0\" class=\"SearchControl\"></a>\r\n\
-      </span>\r\n\
-      \r\n\
-      \r\n\
-      \r\n                </div>\r\n\
-      \t\t\t</div>\r\n\
-      \t\t\t\r\n\
-      \t\t\t<div style=\"clear:both;\"></div>\r\n\
-      \t\t\t            \t\t\t\r\n\
-      \t\t\t<div id=\"menu-1\" class=\"smaller\">\r\n\
-      \t\t\t\t<div>\r\n\
-      \t<ul class=\"\" id=\"dnn_dnnNAV_ctldnnNAV\">\r\n\
-      \t\t<li id=\"dnn_dnnNAV_ctldnnNAVctr41\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora.aspx\"><span>Not\xC3\xA1rska komora</span><img src=\"/images/menu_down.gif\" /></a><ul id=\"dnn_dnnNAV_ctldnnNAVsub41\">\r\n\
-      \t\t\t<li id=\"dnn_dnnNAV_ctldnnNAVctr70\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Hist%c3%b3ria.aspx\"><span>Hist\xC3\xB3ria</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr71\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Org%c3%a1ny.aspx\"><span>Org\xC3\xA1ny</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr72\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/%c3%9akony.aspx\"><span>\xC3\x9Akony</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr73\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Poplatky.aspx\"><span>Poplatky</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr75\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Legislat%c3%adva.aspx\"><span>Legislat\xC3\xADva</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr76\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/V%c3%bdberov%c3%a9konania.aspx\"><span>V\xC3\xBDberov\xC3\xA9 konania</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr77\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Partneri.aspx\"><span>Partneri</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr724\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Vzdel%c3%a1vaciakomisia.aspx\"><span>Vzdel\xC3\xA1vacia komisia</span></a></li>\r\n\
-      \t\t</ul></li><li id=\"dnn_dnnNAV_ctldnnNAVctr64\"><a href=\"http://www.notar.sk/Novinky.aspx\"><span>Novinky</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr65\"><a href=\"http://www.notar.sk/Kontakty.aspx\"><span>Kontakty</span><img src=\"/images/menu_down.gif\" /></a><ul id=\"dnn_dnnNAV_ctldnnNAVsub65\">\r\n\
-      \t\t\t<li id=\"dnn_dnnNAV_ctldnnNAVctr339\"><a href=\"http://www.notar.sk/Kontakty/Not%c3%a1rske%c3%barady.aspx\"><span>Not\xC3\xA1rske \xC3\xBArady</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr340\"><a href=\"http://www.notar.sk/Kontakty/Zahrani%c4%8dn%c3%a9organiz%c3%a1cie.aspx\"><span>Zahrani\xC4\x8Dn\xC3\xA9 organiz\xC3\xA1cie</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr341\"><a href=\"http://www.notar.sk/Kontakty/Ostatn%c3%a9linky.aspx\"><span>Ostatn\xC3\xA9 linky</span></a></li>\r\n\
-      \t\t</ul></li>\r\n\
-      \t</ul>\r\n\
-      </div>\r\n\
-      \t\t\t</div>\r\n            \r\n            <div class=\"clear\"></div>\r\n            \r\n\
-      \t\t\t<table border=\"0px\" cellpadding=\"0px\" cellspacing=\"0px\">            \t\r\n                <tr>\r\n                \t<td id=\"dnn_TopPane\" valign=\"top\" class=\"TopPane\" width=\"960px\" height=\"250px\">                    \r\n                    <div class=\"DnnModule DnnModule-DNN_HTML DnnModule-718\"><a name=\"718\"></a><div id=\"dnn_ctr718_ContentPane\"><!-- Start_Module_718 --><div id=\"dnn_ctr718_ModuleContent\" class=\"ModDNNHTMLC\">\r\n\
-      \t<div id=\"dnn_ctr718_HtmlModule_lblContent\" class=\"Normal\">\r\n\
-      \t<img alt=\"\" width=\"960\" height=\"250\" src=\"/Portals/0/Resources/TopImages/top_img_7.jpg\" />\r\n\
-      </div>\r\n\
-      \r\n\
-      </div><!-- End_Module_718 --></div>\r\n\
-      </div></td>\r\n\
-      \r\n                </tr>\r\n            </table>\t\r\n\
-      \t\t\t\r\n\
-      \t\t</div>\r\n\
-      \t\t\r\n\
-      \t\t<div id=\"content-holder\">\r\n        \t <div class=\"bread\">\r\n                <ul id=\"location-bar\">\r\n                    <li class=\"first\">Pr\xC3\xA1ve sa nach\xC3\xA1dzate</li>\r\n                    <li >\r\n                        <span id=\"dnn_dnnBREADCRUMB_lblBreadCrumb\"><a href=\"http://www.notar.sk/\xC3\x9Avod.aspx\" class=\"Breadcrumb\">\xC3\x9Avod</a></li><li class=\"bread_bg2\"><a href=\"http://www.notar.sk/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre.aspx\" class=\"Breadcrumb\">Not\xC3\xA1rske centr\xC3\xA1lne registre</a></li><li class=\"bread_bg2\"><a href=\"http://www.notar.sk/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre/Not\xC3\xA1rske\xC3\xBArady.aspx\" class=\"Breadcrumb\">Not\xC3\xA1rske \xC3\xBArady</a></li><li class=\"bread_bg2\"><a href=\"http://www.notar.sk/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre/Not\xC3\xA1rske\xC3\xBArady/Not\xC3\xA1rske\xC3\xBAradydetail.aspx\" class=\"Breadcrumb\">Not\xC3\xA1rske \xC3\xBArady detail</a></span>\r\n\
-      \r\n                    </li>\r\n                </ul>\r\n            </div>\r\n\
-      \t\t\t<div id=\"content\">\r\n\
-      \t\t\t\t<table width=\"660px\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\r\n                    <tr>\r\n                        <td id=\"dnn_ContentPane\" valign=\"top\" class=\"ContentPane\">\r\n                        <div class=\"DnnModule DnnModule-LabeSimpleWrapper DnnModule-730\"><a name=\"730\"></a><div id=\"dnn_ctr730_ContentPane\"><!-- Start_Module_730 --><div id=\"dnn_ctr730_ModuleContent\" class=\"ModLabeSimpleWrapperC\">\r\n\
-      \t\r\n\
-      \r\n\
-      <link rel=\"stylesheet\" href=\"/NIS/Resources/StyleSheets/style.css\" type=\"text/css\" />\r\n\
-      \r\n <div class=\"header1\">    \r\n        <span id=\"dnn_ctr730_ViewSimpleWrapper_SimpleWrapperControl_730_Nazov\">Inform\xC3\xA1cie o not\xC3\xA1rskom \xC3\xBArade</span>\r\n    </div>\r\n    <br />\r\n    <br />\r\n\
-      \t<p class=\"Message\">\r\n        <div class='TableFontItem'><table class='NuDetailTable'><tr><td class='DrazbyLabelItem180'><b> N\xC3\xA1zov N\xC3\x9A:</b></td><td class='DrazbyControlItem460'> not\xC3\xA1rky M\xC3\xA1rie Kvasnovskej </td></tr><tr><td class='DrazbyLabelItem180'><b> Forma:</b></td><td class='DrazbyControlItem460'> Not\xC3\xA1rsky \xC3\xBArad </td></tr><tr><td class='DrazbyLabelItem180'><b> Ulica:</b></td><td class='DrazbyControlItem460'> J\xC3\xB3kaiho \xC4\x8D. 16 </td></tr><tr><td class='DrazbyLabelItem180'><b> Mesto:</b></td><td class='DrazbyControlItem460'> Kom\xC3\xA1rno </td></tr><tr><td class='DrazbyLabelItem180'><b> PS\xC4\x8C:</b></td><td class='DrazbyControlItem460'> 945 01 </td></tr><tr><td class='DrazbyLabelItem180'><b> Pracovn\xC3\xADci:</b></td><td class='DrazbyControlItem460'> <div class='TableFontItem'><table class='NuDetailTable'><TR><TD class='NuDetailMeno' ><B>Meno</B></TD><TD class='NuDetailDatum'><B>D\xC3\xA1tum za\xC4\x8Datia</B></TD><TD class='NuDetailDatum'><B>D\xC3\xA1tum ukon\xC4\x8Denia</B></TD><TD class='NuDetailJazyky'><B>Jazyky</B></TD></TR><TR><TD class='NuDetailMeno'>Mgr. M\xC3\xA1ria Kvasnovsk\xC3\xA1  (Not\xC3\xA1r)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Rusk\xC3\xBD jazyk (RU), Slovensk\xC3\xBD jazyk (SK)</TD></TR><TR><TD class='NuDetailMeno'>JUDr. M\xC3\xA1ria J\xC3\xB3ba  (Kandid\xC3\xA1t)  </TD><TD class='NuDetailDatumValue'>25. 10. 2006</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Nemeck\xC3\xBD jazyk (DE), Anglick\xC3\xBD jazyk (UK)</TD></TR><TR><TD class='NuDetailMeno'> So\xC5\x88a Gy\xC3\xB6rgyov\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Nemeck\xC3\xBD jazyk (DE)</TD></TR><TR><TD class='NuDetailMeno'> Nora Ke\xC5\xA1iarov\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Anglick\xC3\xBD jazyk (UK), \xC4\x8Cesk\xC3\xBD jazyk (CZ)</TD></TR><TR><TD class='NuDetailMeno'> Marl\xC3\xA9ne Strehovsk\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Nemeck\xC3\xBD jazyk (DE)</TD></TR><TR><TD class='NuDetailMeno'> Csilla Uzs\xC3\xA1kov\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Nemeck\xC3\xBD jazyk (DE), Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU)</TD></TR><TR><TD class='NuDetailMeno'> So\xC5\x88a Gy\xC3\xB6rgyov\xC3\xA1  (B\xC3\xBDval\xC3\xBD zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU)</TD></TR><TR><TD class='NuDetailMeno'> Nora Ke\xC5\xA1iarov\xC3\xA1  (B\xC3\xBDval\xC3\xBD zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU)</TD></TR></table></div> </td></tr><tr><td class='DrazbyLabelItem180'><b> \xC3\x9Aradn\xC3\xA9 hodiny:</b></td><td class='DrazbyControlItem460'> <div class='TableFontItem'><table class='NuDetailTable'><tr><td class='DrazbyControlItem80'><b>De\xC5\x88</b></td><td class='DrazbyControlItem60'><b>Od</b></td><td class='DrazbyControlItem60'><b>Do</b></td><td class='DrazbyControlItem60'><b>Od</b></td><td class='DrazbyControlItem60'><b>Do</b></td><td class='DrazbyControlItemPoznamka' colspan='2'><b>Pozn\xC3\xA1mka</b></td></tr><TR><TD class='DrazbyControlItem80'>Pondelok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'>pred\xC4\xBA\xC5\xBEen\xC3\xBD str\xC3\xA1nkov\xC3\xBD de\xC5\x88</TD></TR><TR><TD class='DrazbyControlItem80'>Utorok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR><TR><TD class='DrazbyControlItem80'>Streda</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR><TR><TD class='DrazbyControlItem80'>\xC5\xA0tvrtok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR><TR><TD class='DrazbyControlItem80'>Piatok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR></table></div> </td></tr></table></div>\r\n    </p>\r\n\
-      \t <br />\r\n         <a href=\"http://www.notar.sk/Default.aspx?tabid=278&id=1241&mid=730&SkinSrc=%5bG%5dSkins%2f_default%2fNo+Skin&ContainerSrc=%5bG%5dContainers%2f_default%2fNo+Container\" id=\"dnn_ctr730_ViewSimpleWrapper_SimpleWrapperControl_730_print\" class=\"Print PrintHidden\" title=\"Print\" target=\"_blank\">\r\n                <img id=\"dnn_ctr730_ViewSimpleWrapper_SimpleWrapperControl_730_image\" alt=\"print\" src=\"/NIS/Resources/images/print_symbol.gif\" />\r\n         </a>   \r\n         \t <br />\r\n\
-      \t\r\n\
-      </div><!-- End_Module_730 --></div>\r\n\
-      </div></td>\r\n\
-      \r\n                    </tr>\r\n                </table>\r\n\
-      \t\t\t\t\r\n\
-      \t\t\t</div>\r\n\
-      \t\t\t\r\n\
-      \t\t\t<div id=\"footers\">\r\n\
-      \t\t\t\t<div id=\"footer\">\r\n\
-      \t\t\t\t\t<ul>\r\n\
-      \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod.aspx\">\xC3\x9Avodn\xC3\xA1 str\xC3\xA1nka</a></li>\r\n\
-      \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Dedi\xC4\x8Dstv\xC3\xA1.aspx\">Dedi\xC4\x8Dtsv\xC3\xA1</a></li>\r\n\
-      \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Majetokb\xC3\xBDvaniearodina.aspx\">Majetok, b\xC3\xBDvanie a rodina</a></li>\r\n\
-      \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Podnikanieaobchodn\xC3\xA9pr\xC3\xA1vo.aspx\">Podnikanie a obchodn\xC3\xA9 pr\xC3\xA1vo</a></li>\r\n\
-      \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre.aspx\">Not\xC3\xA1rske centr\xC3\xA1lne registre</a></li>\r\n\
-      \t\t\t\t\t\t<li class=\"last\"><a href=\"/Kontakty.aspx\">Kontakty</a></li>\r\n\
-      \t\t\t\t\t</ul>\r\n                    <div id=\"copy\">\r\n                        \r\n                            <span class=\"text\">\r\n                                <span id=\"dnn_dnnCOPYRIGHT_lblCopyright\" class=\"SkinObject\">Copyright 2011 Not\xC3\xA1rska komora Slovenskej republiky</span>\r\n\
-      \r\n                            </span>\r\n                            <span class=\"text\">\r\n                                V\xC5\xA1etky pr\xC3\xA1va vyhraden\xC3\xA9 \r\n                            </span>\r\n                            <span class=\"text\">\r\n                                Pr\xC3\xA1vne inform\xC3\xA1cie\r\n                            </span>\r\n                        \r\n                    </div>\r\n\
-      \t\t\t\t</div>\r\n\
-      \t\t\t\t<div id=\"footer-right\">\r\n\
-      \t\t\t\t\t<p>Online rie\xC5\xA1enie: <a href=\"http://www.seesame.com\">SEESAME Communication Experts</a> | <a href=\"http://www.q7.sk\">Q7 Digital Media</a> | <br /> <a href=\"http://www.siemens-it-solutions.sk/\" style=\"padding:0px\">Siemens IT Solutions</a></p>\r\n\
-      \t\t\t\t</div>\r\n\
-      \t\t\t</div>\r\n\
-      \t\t</div>\t\t\r\n\
-      \t</div>\r\n\
-      </div>\r\n\
-      </div> \r\n\
-      </body>\r\n\
-      </td>\r\n\
-      </tr>\r\n    </table></td>\r\n  </tr>\r\n\
-      </table>\r\n\
-      \r\n\
-      <script type=\"text/javascript\">\r\n\
-      <!--\r\n\
-      var el = document.getElementById(\"dnn_dnnSearch_txtSearch\");\r\n\
-      \r\n\
-      var helpText = \"Vyh\xC4\xBEada\xC5\xA5 na str\xC3\xA1nke...\";\r\n\
-      el.value = helpText;\r\n\
-      el.onfocus = function() {if (this.value == helpText) { el.value = \"\";}};\r\n\
-      el.onblur = function() {if (this.value == \"\") { el.value = helpText;}}\r\n\
-      -->\r\n\
-      </script>\r\n\
-      \r\n\
-      <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/jquery-1.4.2.min.js\"></script>\r\n\
-      <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/pngfix.js\"></script>\r\n\
-      <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/script.js\"></script>\r\n\
-      <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/script2.js\"></script>\r\n\
-      \r\n        <input name=\"ScrollTop\" type=\"hidden\" id=\"ScrollTop\" />\r\n        <input name=\"__dnnVariable\" type=\"hidden\" id=\"__dnnVariable\" />\r\n        \r\n    \r\n\
-      <script type=\"text/javascript\" src=\"/Resources/Shared/scripts/initWidgets.js\" ></script></form>\r\n\
-      </body>\r\n\
-      </html>\r\n\
-      \r\n\
-      \r\n"
+    body: 
+      encoding: UTF-8
+      string: "\r\n\
+        <script type=\"text/javascript\">\r\n\
+        <!--\r\n\
+        if (screen.width <= 699 && location.href == \"http://www.notar.sk/\") \r\n\
+        {\r\n\
+        document.location = \"mobil.htm\";\r\n\
+        }\r\n\
+        //-->\r\n\
+        </script>\r\n\
+        \r\n\
+        \r\n\
+        <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n\
+        <html xml:lang=\"sk-SK\" lang=\"sk-SK\" xmlns=\"http://www.w3.org/1999/xhtml\">\r\n\
+        <head id=\"Head\">\r\n\
+        <!--**********************************************************************************-->\r\n\
+        <!-- DotNetNuke\xEF\xBF\xBD - http://www.dotnetnuke.com                                          -->\r\n\
+        <!-- Copyright (c) 2002-2010                                                          -->\r\n\
+        <!-- by DotNetNuke Corporation                                                        -->\r\n\
+        <!--**********************************************************************************-->\r\n\
+        <meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\" /><meta content=\"text/javascript\" http-equiv=\"Content-Script-Type\" /><meta content=\"text/css\" http-equiv=\"Content-Style-Type\" /><meta id=\"MetaDescription\" name=\"DESCRIPTION\" content=\"V\xC5\xA1eobecn\xC3\xA9 inform\xC3\xA1cie o NK SR\" /><meta id=\"MetaKeywords\" name=\"KEYWORDS\" content=\"Not\xC3\xA1rska komora, Not\xC3\xA1r, Not\xC3\xA1rsky, not\xC3\xA1rska z\xC3\xA1pisnica, centr\xC3\xA1lne registre, poberatelia 2% dane, NK SR, osved\xC4\x8Den\xC3\xBD podpis,DotNetNuke,DNN\" /><meta id=\"MetaCopyright\" name=\"COPYRIGHT\" content=\"Copyright 2011 Not\xC3\xA1rska komora Slovenskej republiky\" /><meta id=\"MetaGenerator\" name=\"GENERATOR\" content=\"DotNetNuke \" /><meta id=\"MetaAuthor\" name=\"AUTHOR\" content=\"Not\xC3\xA1rska komora Slovenskej republiky\" /><meta name=\"RESOURCE-TYPE\" content=\"DOCUMENT\" /><meta name=\"DISTRIBUTION\" content=\"GLOBAL\" /><meta id=\"MetaRobots\" name=\"ROBOTS\" content=\"INDEX, FOLLOW\" /><meta name=\"REVISIT-AFTER\" content=\"1 DAYS\" /><meta name=\"RATING\" content=\"GENERAL\" /><meta http-equiv=\"PAGE-ENTER\" content=\"RevealTrans(Duration=0,Transition=1)\" /><style id=\"StylePlaceholder\" type=\"text/css\"></style><link id=\"APortals__default_\" rel=\"stylesheet\" type=\"text/css\" href=\"/Portals/_default/default.css\" /><link id=\"APortals__default_Skins_notarska_komora_2_\" rel=\"stylesheet\" type=\"text/css\" href=\"/Portals/_default/Skins/notarska komora_2/skin.css\" /><link id=\"APortals_0_\" rel=\"stylesheet\" type=\"text/css\" href=\"/Portals/0/portal.css\" /><script type=\"text/javascript\" src=\"/Resources/Shared/Scripts/jquery/jquery.min.js\" ></script><link href=\"/Portals/_default/Skins/_default/WebControlSkin/Default/TabStrip.Default.css\" rel=\"stylesheet\" type=\"text/css\" /><title>\r\n\
+        \tNot\xC3\xA1rske \xC3\xBArady detail\r\n\
+        </title></head>\r\n\
+        <body id=\"Body\">\r\n    <form method=\"post\" action=\"/&#218;vod/Not&#225;rskecentr&#225;lneregistre/Not&#225;rske&#250;rady/Not&#225;rske&#250;radydetail.aspx?id=1241\" id=\"Form\" enctype=\"multipart/form-data\">\r\n\
+        <input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"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\" />\r\n\
+        \r\n\
+        \r\n\
+        <script src=\"/js/dnncore.js\" type=\"text/javascript\"></script>\r\n\
+        <script type=\"text/javascript\">\r\n\
+        //<![CDATA[\r\n\
+        var __cultureInfo = {\"name\":\"sk-SK\",\"numberFormat\":{\"CurrencyDecimalDigits\":2,\"CurrencyDecimalSeparator\":\",\",\"IsReadOnly\":false,\"CurrencyGroupSizes\":[3],\"NumberGroupSizes\":[3],\"PercentGroupSizes\":[3],\"CurrencyGroupSeparator\":\"\xC2\xA0\",\"CurrencySymbol\":\"\xE2\x82\xAC\",\"NaNSymbol\":\"Nie je \xC4\x8D\xC3\xADslo\",\"CurrencyNegativePattern\":8,\"NumberNegativePattern\":1,\"PercentPositivePattern\":1,\"PercentNegativePattern\":1,\"NegativeInfinitySymbol\":\"-nekone\xC4\x8Dno\",\"NegativeSign\":\"-\",\"NumberDecimalDigits\":2,\"NumberDecimalSeparator\":\",\",\"NumberGroupSeparator\":\"\xC2\xA0\",\"CurrencyPositivePattern\":3,\"PositiveInfinitySymbol\":\"+nekone\xC4\x8Dno\",\"PositiveSign\":\"+\",\"PercentDecimalDigits\":2,\"PercentDecimalSeparator\":\",\",\"PercentGroupSeparator\":\"\xC2\xA0\",\"PercentSymbol\":\"%\",\"PerMilleSymbol\":\"\xE2\x80\xB0\",\"NativeDigits\":[\"0\",\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\"],\"DigitSubstitution\":1},\"dateTimeFormat\":{\"AMDesignator\":\"\",\"Calendar\":{\"MinSupportedDateTime\":\"\\/Date(-62135596800000)\\/\",\"MaxSupportedDateTime\":\"\\/Date(253402297199999)\\/\",\"AlgorithmType\":1,\"CalendarType\":1,\"Eras\":[1],\"TwoDigitYearMax\":2029,\"IsReadOnly\":false},\"DateSeparator\":\". \",\"FirstDayOfWeek\":1,\"CalendarWeekRule\":0,\"FullDateTimePattern\":\"d. MMMM yyyy H:mm:ss\",\"LongDatePattern\":\"d. MMMM yyyy\",\"LongTimePattern\":\"H:mm:ss\",\"MonthDayPattern\":\"dd MMMM\",\"PMDesignator\":\"\",\"RFC1123Pattern\":\"ddd, dd MMM yyyy HH\\u0027:\\u0027mm\\u0027:\\u0027ss \\u0027GMT\\u0027\",\"ShortDatePattern\":\"d. M. yyyy\",\"ShortTimePattern\":\"H:mm\",\"SortableDateTimePattern\":\"yyyy\\u0027-\\u0027MM\\u0027-\\u0027dd\\u0027T\\u0027HH\\u0027:\\u0027mm\\u0027:\\u0027ss\",\"TimeSeparator\":\":\",\"UniversalSortableDateTimePattern\":\"yyyy\\u0027-\\u0027MM\\u0027-\\u0027dd HH\\u0027:\\u0027mm\\u0027:\\u0027ss\\u0027Z\\u0027\",\"YearMonthPattern\":\"MMMM yyyy\",\"AbbreviatedDayNames\":[\"ne\",\"po\",\"ut\",\"st\",\"\xC5\xA1t\",\"pi\",\"so\"],\"ShortestDayNames\":[\"ne\",\"po\",\"ut\",\"st\",\"\xC5\xA1t\",\"pi\",\"so\"],\"DayNames\":[\"nede\xC4\xBEa\",\"pondelok\",\"utorok\",\"streda\",\"\xC5\xA1tvrtok\",\"piatok\",\"sobota\"],\"AbbreviatedMonthNames\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"\"],\"MonthNames\":[\"janu\xC3\xA1r\",\"febru\xC3\xA1r\",\"marec\",\"apr\xC3\xADl\",\"m\xC3\xA1j\",\"j\xC3\xBAn\",\"j\xC3\xBAl\",\"august\",\"september\",\"okt\xC3\xB3ber\",\"november\",\"december\",\"\"],\"IsReadOnly\":false,\"NativeCalendarName\":\"gregori\xC3\xA1nsky kalend\xC3\xA1r\",\"AbbreviatedMonthGenitiveNames\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"\"],\"MonthGenitiveNames\":[\"janu\xC3\xA1ra\",\"febru\xC3\xA1ra\",\"marca\",\"apr\xC3\xADla\",\"m\xC3\xA1ja\",\"j\xC3\xBAna\",\"j\xC3\xBAla\",\"augusta\",\"septembra\",\"okt\xC3\xB3bra\",\"novembra\",\"decembra\",\"\"]},\"eras\":[1,\"n. l.\",null,0]};//]]>\r\n\
+        </script>\r\n\
+        \r\n\
+        <script src=\"/ScriptResource.axd?d=g-1lq302GLMB4rL93Uc9C0cngnqcwx1OIHhAXXjEgUWNjwUGF-ImgBB4q5YwA5nvVtIWZKv6gJMVmzu2X9myPb7vX19hI3BosyNfFwy3fNSxttR2f1bDo1p0B8lcj575qtWSfraVTEALW6BNeBovJJGEK8Q1&amp;t=2610f696\" type=\"text/javascript\"></script>\r\n\
+        <input type=\"hidden\" name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\" value=\"\" />\r\n\
+        \r\n\
+        \r\n        \r\n        \r\n\
+        \r\n\
+        <script type=\"text/javascript\">\r\n    \r\n    \r\n\
+        \tvar headID = document.getElementsByTagName(\"head\")[0];         \r\n\
+        \tvar newScript = document.createElement('script');\r\n\
+        \tnewScript.type = 'text/javascript';\r\n\
+        \tnewScript.src = '/Portals/_default/Skins/notarska komora_2//js/gog.js';\r\n\
+        \theadID.appendChild(newScript);\r\n    </script>\r\n\
+        \r\n\
+        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n\
+        \r\n\
+        <table width=\"100%\" height=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"bg1\">\r\n  <tr>\r\n    <td width=\"100%\" height=\"100%\" align=\"center\" valign=\"top\"><table width=\"100%\" height=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" class=\"skinlayout1\">      \r\n      <tr>\r\n        <td align=\"left\" valign=\"top\" width=\"100%\" height=\"100%\">\r\n\
+        <body id=\"body\" class=\"subpage\">\r\n\
+        <div id=\"s_wrap_main\">\r\n    <div id=\"s_wrap_sub\">\r\n\
+        \r\n\
+        \t<div id=\"page-holder\">\r\n\
+        \t\t<div id=\"top\">\r\n\
+        \t\t\t<div id=\"logo\">\r\n                <a id=\"dnn_dnnLOGO_hypLogo\" title=\"Not\xC3\xA1rska komora Slovenskej republiky\" href=\"http://www.notar.sk/%c3%9avod.aspx\"><img id=\"dnn_dnnLOGO_imgLogo\" src=\"/Portals/0/nk_logo.png\" alt=\"Not\xC3\xA1rska komora Slovenskej republiky\" border=\"0\" /></a>\r\n            </div>\r\n\
+        \r\n\
+        \t\t\t<div class=\"lam0h\">\r\n\
+        \t\t\t\t<ul id=\"lang-bar\">\r\n\
+        \t\t\t\t\t<li class=\"select_lang_icon\">Jazyky:</li>\r\n                    <span id=\"lang\">\r\n                        <li class=\"hover\">\r\n                            <a href=\"/\">SK</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/en\">EN</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/de\">DE</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/fr\">FR</a>\r\n                        </li>\r\n                        <li class=\"hover\">\r\n                            <a href=\"/hu\">HU</a>\r\n                        </li>\r\n                    </span>\r\n\
+        \t\t\t\t</ul>\r\n\
+        \t\t\t\t\r\n\
+        \t\t\t\t<ul id=\"menu-0\">\r\n\
+        \t\t\t\t\t<li>\r\n\
+        \t\t\t\t\t\t<a href=\"http://www.notar.sk/zep/index.html\">Verejn\xC3\xA9 k\xC4\xBE\xC3\xBA\xC4\x8De not\xC3\xA1rov</a>\r\n\
+        \t\t\t\t\t</li>\r\n\
+        \t\t\t\t\t<li>\r\n\
+        \t\t\t\t\t\t<a id=\"dnn_dnnLOGIN_cmdLogin\" class=\"user\" href=\"javascript:__doPostBack(&#39;dnn$dnnLOGIN$cmdLogin&#39;,&#39;&#39;)\">Vstup pre not\xC3\xA1rov</a>                        \r\n\
+        \t\t\t\t\t</li>\r\n\
+        \t\t\t\t</ul>\r\n\
+        \t\t\t\t<div class=\"clear\"></div>\r\n\
+        \t\t\t</div>\r\n\
+        \t\t\t\r\n\
+        \t\t\t\r\n\
+        \t\t\t<div id=\"search-bar\">\r\n            \t<div class=\"search\">\r\n\
+        \t\t\t\t\t<span id=\"dnn_dnnSearch_ClassicSearch\">\r\n  \r\n  \r\n  <input name=\"dnn$dnnSearch$txtSearch\" type=\"text\" maxlength=\"255\" size=\"20\" id=\"dnn_dnnSearch_txtSearch\" class=\"NormalTextBox\" onkeydown=\"return __dnn_KeyDown(&#39;13&#39;, &#39;javascript:__doPostBack(%27dnn$dnnSearch$cmdSearch%27,%27%27)&#39;, event);\" />&nbsp;\r\n  <a id=\"dnn_dnnSearch_cmdSearch\" class=\"SearchControl\" href=\"javascript:__doPostBack(&#39;dnn$dnnSearch$cmdSearch&#39;,&#39;&#39;)\"><img src=\"/Portals/_default/Skins/notarska komora_2/images/search_button3.png\" border=\"0\" class=\"SearchControl\"></a>\r\n\
+        </span>\r\n\
+        \r\n\
+        \r\n\
+        \r\n                </div>\r\n\
+        \t\t\t</div>\r\n\
+        \t\t\t\r\n\
+        \t\t\t<div style=\"clear:both;\"></div>\r\n\
+        \t\t\t            \t\t\t\r\n\
+        \t\t\t<div id=\"menu-1\" class=\"smaller\">\r\n\
+        \t\t\t\t<div>\r\n\
+        \t<ul class=\"\" id=\"dnn_dnnNAV_ctldnnNAV\">\r\n\
+        \t\t<li id=\"dnn_dnnNAV_ctldnnNAVctr41\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora.aspx\"><span>Not\xC3\xA1rska komora</span><img src=\"/images/menu_down.gif\" /></a><ul id=\"dnn_dnnNAV_ctldnnNAVsub41\">\r\n\
+        \t\t\t<li id=\"dnn_dnnNAV_ctldnnNAVctr70\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Hist%c3%b3ria.aspx\"><span>Hist\xC3\xB3ria</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr71\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Org%c3%a1ny.aspx\"><span>Org\xC3\xA1ny</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr72\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/%c3%9akony.aspx\"><span>\xC3\x9Akony</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr73\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Poplatky.aspx\"><span>Poplatky</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr75\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Legislat%c3%adva.aspx\"><span>Legislat\xC3\xADva</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr76\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/V%c3%bdberov%c3%a9konania.aspx\"><span>V\xC3\xBDberov\xC3\xA9 konania</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr77\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Partneri.aspx\"><span>Partneri</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr724\"><a href=\"http://www.notar.sk/Not%c3%a1rskakomora/Vzdel%c3%a1vaciakomisia.aspx\"><span>Vzdel\xC3\xA1vacia komisia</span></a></li>\r\n\
+        \t\t</ul></li><li id=\"dnn_dnnNAV_ctldnnNAVctr64\"><a href=\"http://www.notar.sk/Novinky.aspx\"><span>Novinky</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr65\"><a href=\"http://www.notar.sk/Kontakty.aspx\"><span>Kontakty</span><img src=\"/images/menu_down.gif\" /></a><ul id=\"dnn_dnnNAV_ctldnnNAVsub65\">\r\n\
+        \t\t\t<li id=\"dnn_dnnNAV_ctldnnNAVctr339\"><a href=\"http://www.notar.sk/Kontakty/Not%c3%a1rske%c3%barady.aspx\"><span>Not\xC3\xA1rske \xC3\xBArady</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr340\"><a href=\"http://www.notar.sk/Kontakty/Zahrani%c4%8dn%c3%a9organiz%c3%a1cie.aspx\"><span>Zahrani\xC4\x8Dn\xC3\xA9 organiz\xC3\xA1cie</span></a></li><li id=\"dnn_dnnNAV_ctldnnNAVctr341\"><a href=\"http://www.notar.sk/Kontakty/Ostatn%c3%a9linky.aspx\"><span>Ostatn\xC3\xA9 linky</span></a></li>\r\n\
+        \t\t</ul></li>\r\n\
+        \t</ul>\r\n\
+        </div>\r\n\
+        \t\t\t</div>\r\n            \r\n            <div class=\"clear\"></div>\r\n            \r\n\
+        \t\t\t<table border=\"0px\" cellpadding=\"0px\" cellspacing=\"0px\">            \t\r\n                <tr>\r\n                \t<td id=\"dnn_TopPane\" valign=\"top\" class=\"TopPane\" width=\"960px\" height=\"250px\">                    \r\n                    <div class=\"DnnModule DnnModule-DNN_HTML DnnModule-718\"><a name=\"718\"></a><div id=\"dnn_ctr718_ContentPane\"><!-- Start_Module_718 --><div id=\"dnn_ctr718_ModuleContent\" class=\"ModDNNHTMLC\">\r\n\
+        \t<div id=\"dnn_ctr718_HtmlModule_lblContent\" class=\"Normal\">\r\n\
+        \t<img alt=\"\" width=\"960\" height=\"250\" src=\"/Portals/0/Resources/TopImages/top_img_7.jpg\" />\r\n\
+        </div>\r\n\
+        \r\n\
+        </div><!-- End_Module_718 --></div>\r\n\
+        </div></td>\r\n\
+        \r\n                </tr>\r\n            </table>\t\r\n\
+        \t\t\t\r\n\
+        \t\t</div>\r\n\
+        \t\t\r\n\
+        \t\t<div id=\"content-holder\">\r\n        \t <div class=\"bread\">\r\n                <ul id=\"location-bar\">\r\n                    <li class=\"first\">Pr\xC3\xA1ve sa nach\xC3\xA1dzate</li>\r\n                    <li >\r\n                        <span id=\"dnn_dnnBREADCRUMB_lblBreadCrumb\"><a href=\"http://www.notar.sk/\xC3\x9Avod.aspx\" class=\"Breadcrumb\">\xC3\x9Avod</a></li><li class=\"bread_bg2\"><a href=\"http://www.notar.sk/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre.aspx\" class=\"Breadcrumb\">Not\xC3\xA1rske centr\xC3\xA1lne registre</a></li><li class=\"bread_bg2\"><a href=\"http://www.notar.sk/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre/Not\xC3\xA1rske\xC3\xBArady.aspx\" class=\"Breadcrumb\">Not\xC3\xA1rske \xC3\xBArady</a></li><li class=\"bread_bg2\"><a href=\"http://www.notar.sk/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre/Not\xC3\xA1rske\xC3\xBArady/Not\xC3\xA1rske\xC3\xBAradydetail.aspx\" class=\"Breadcrumb\">Not\xC3\xA1rske \xC3\xBArady detail</a></span>\r\n\
+        \r\n                    </li>\r\n                </ul>\r\n            </div>\r\n\
+        \t\t\t<div id=\"content\">\r\n\
+        \t\t\t\t<table width=\"660px\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\r\n                    <tr>\r\n                        <td id=\"dnn_ContentPane\" valign=\"top\" class=\"ContentPane\">\r\n                        <div class=\"DnnModule DnnModule-LabeSimpleWrapper DnnModule-730\"><a name=\"730\"></a><div id=\"dnn_ctr730_ContentPane\"><!-- Start_Module_730 --><div id=\"dnn_ctr730_ModuleContent\" class=\"ModLabeSimpleWrapperC\">\r\n\
+        \t\r\n\
+        \r\n\
+        <link rel=\"stylesheet\" href=\"/NIS/Resources/StyleSheets/style.css\" type=\"text/css\" />\r\n\
+        \r\n <div class=\"header1\">    \r\n        <span id=\"dnn_ctr730_ViewSimpleWrapper_SimpleWrapperControl_730_Nazov\">Inform\xC3\xA1cie o not\xC3\xA1rskom \xC3\xBArade</span>\r\n    </div>\r\n    <br />\r\n    <br />\r\n\
+        \t<p class=\"Message\">\r\n        <div class='TableFontItem'><table class='NuDetailTable'><tr><td class='DrazbyLabelItem180'><b> N\xC3\xA1zov N\xC3\x9A:</b></td><td class='DrazbyControlItem460'> not\xC3\xA1rky M\xC3\xA1rie Kvasnovskej </td></tr><tr><td class='DrazbyLabelItem180'><b> Forma:</b></td><td class='DrazbyControlItem460'> Not\xC3\xA1rsky \xC3\xBArad </td></tr><tr><td class='DrazbyLabelItem180'><b> Ulica:</b></td><td class='DrazbyControlItem460'> J\xC3\xB3kaiho \xC4\x8D. 16 </td></tr><tr><td class='DrazbyLabelItem180'><b> Mesto:</b></td><td class='DrazbyControlItem460'> Kom\xC3\xA1rno </td></tr><tr><td class='DrazbyLabelItem180'><b> PS\xC4\x8C:</b></td><td class='DrazbyControlItem460'> 945 01 </td></tr><tr><td class='DrazbyLabelItem180'><b> Pracovn\xC3\xADci:</b></td><td class='DrazbyControlItem460'> <div class='TableFontItem'><table class='NuDetailTable'><TR><TD class='NuDetailMeno' ><B>Meno</B></TD><TD class='NuDetailDatum'><B>D\xC3\xA1tum za\xC4\x8Datia</B></TD><TD class='NuDetailDatum'><B>D\xC3\xA1tum ukon\xC4\x8Denia</B></TD><TD class='NuDetailJazyky'><B>Jazyky</B></TD></TR><TR><TD class='NuDetailMeno'>Mgr. M\xC3\xA1ria Kvasnovsk\xC3\xA1  (Not\xC3\xA1r)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Rusk\xC3\xBD jazyk (RU), Slovensk\xC3\xBD jazyk (SK)</TD></TR><TR><TD class='NuDetailMeno'>JUDr. M\xC3\xA1ria J\xC3\xB3ba  (Kandid\xC3\xA1t)  </TD><TD class='NuDetailDatumValue'>25. 10. 2006</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Nemeck\xC3\xBD jazyk (DE), Anglick\xC3\xBD jazyk (UK)</TD></TR><TR><TD class='NuDetailMeno'> So\xC5\x88a Gy\xC3\xB6rgyov\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Nemeck\xC3\xBD jazyk (DE)</TD></TR><TR><TD class='NuDetailMeno'> Nora Ke\xC5\xA1iarov\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Anglick\xC3\xBD jazyk (UK), \xC4\x8Cesk\xC3\xBD jazyk (CZ)</TD></TR><TR><TD class='NuDetailMeno'> Marl\xC3\xA9ne Strehovsk\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU), Nemeck\xC3\xBD jazyk (DE)</TD></TR><TR><TD class='NuDetailMeno'> Csilla Uzs\xC3\xA1kov\xC3\xA1  (Zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'></TD><TD class='NuDetailJazyky'>Nemeck\xC3\xBD jazyk (DE), Slovensk\xC3\xBD jazyk (SK), Ma\xC4\x8Farsk\xC3\xBD jazyk (HU)</TD></TR><TR><TD class='NuDetailMeno'> So\xC5\x88a Gy\xC3\xB6rgyov\xC3\xA1  (B\xC3\xBDval\xC3\xBD zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU)</TD></TR><TR><TD class='NuDetailMeno'> Nora Ke\xC5\xA1iarov\xC3\xA1  (B\xC3\xBDval\xC3\xBD zamestnanec)  </TD><TD class='NuDetailDatumValue'>27. 9. 2002</TD><TD class='NuDetailDatumValue'>19. 12. 2002</TD><TD class='NuDetailJazyky'>Ma\xC4\x8Farsk\xC3\xBD jazyk (HU)</TD></TR></table></div> </td></tr><tr><td class='DrazbyLabelItem180'><b> \xC3\x9Aradn\xC3\xA9 hodiny:</b></td><td class='DrazbyControlItem460'> <div class='TableFontItem'><table class='NuDetailTable'><tr><td class='DrazbyControlItem80'><b>De\xC5\x88</b></td><td class='DrazbyControlItem60'><b>Od</b></td><td class='DrazbyControlItem60'><b>Do</b></td><td class='DrazbyControlItem60'><b>Od</b></td><td class='DrazbyControlItem60'><b>Do</b></td><td class='DrazbyControlItemPoznamka' colspan='2'><b>Pozn\xC3\xA1mka</b></td></tr><TR><TD class='DrazbyControlItem80'>Pondelok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'>pred\xC4\xBA\xC5\xBEen\xC3\xBD str\xC3\xA1nkov\xC3\xBD de\xC5\x88</TD></TR><TR><TD class='DrazbyControlItem80'>Utorok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR><TR><TD class='DrazbyControlItem80'>Streda</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR><TR><TD class='DrazbyControlItem80'>\xC5\xA0tvrtok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR><TR><TD class='DrazbyControlItem80'>Piatok</TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItem60'></TD><TD  class='DrazbyControlItemPoznamka' colspan='2'></TD></TR></table></div> </td></tr></table></div>\r\n    </p>\r\n\
+        \t <br />\r\n         <a href=\"http://www.notar.sk/Default.aspx?tabid=278&id=1241&mid=730&SkinSrc=%5bG%5dSkins%2f_default%2fNo+Skin&ContainerSrc=%5bG%5dContainers%2f_default%2fNo+Container\" id=\"dnn_ctr730_ViewSimpleWrapper_SimpleWrapperControl_730_print\" class=\"Print PrintHidden\" title=\"Print\" target=\"_blank\">\r\n                <img id=\"dnn_ctr730_ViewSimpleWrapper_SimpleWrapperControl_730_image\" alt=\"print\" src=\"/NIS/Resources/images/print_symbol.gif\" />\r\n         </a>   \r\n         \t <br />\r\n\
+        \t\r\n\
+        </div><!-- End_Module_730 --></div>\r\n\
+        </div></td>\r\n\
+        \r\n                    </tr>\r\n                </table>\r\n\
+        \t\t\t\t\r\n\
+        \t\t\t</div>\r\n\
+        \t\t\t\r\n\
+        \t\t\t<div id=\"footers\">\r\n\
+        \t\t\t\t<div id=\"footer\">\r\n\
+        \t\t\t\t\t<ul>\r\n\
+        \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod.aspx\">\xC3\x9Avodn\xC3\xA1 str\xC3\xA1nka</a></li>\r\n\
+        \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Dedi\xC4\x8Dstv\xC3\xA1.aspx\">Dedi\xC4\x8Dtsv\xC3\xA1</a></li>\r\n\
+        \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Majetokb\xC3\xBDvaniearodina.aspx\">Majetok, b\xC3\xBDvanie a rodina</a></li>\r\n\
+        \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Podnikanieaobchodn\xC3\xA9pr\xC3\xA1vo.aspx\">Podnikanie a obchodn\xC3\xA9 pr\xC3\xA1vo</a></li>\r\n\
+        \t\t\t\t\t\t<li><a href=\"/\xC3\x9Avod/Not\xC3\xA1rskecentr\xC3\xA1lneregistre.aspx\">Not\xC3\xA1rske centr\xC3\xA1lne registre</a></li>\r\n\
+        \t\t\t\t\t\t<li class=\"last\"><a href=\"/Kontakty.aspx\">Kontakty</a></li>\r\n\
+        \t\t\t\t\t</ul>\r\n                    <div id=\"copy\">\r\n                        \r\n                            <span class=\"text\">\r\n                                <span id=\"dnn_dnnCOPYRIGHT_lblCopyright\" class=\"SkinObject\">Copyright 2011 Not\xC3\xA1rska komora Slovenskej republiky</span>\r\n\
+        \r\n                            </span>\r\n                            <span class=\"text\">\r\n                                V\xC5\xA1etky pr\xC3\xA1va vyhraden\xC3\xA9 \r\n                            </span>\r\n                            <span class=\"text\">\r\n                                Pr\xC3\xA1vne inform\xC3\xA1cie\r\n                            </span>\r\n                        \r\n                    </div>\r\n\
+        \t\t\t\t</div>\r\n\
+        \t\t\t\t<div id=\"footer-right\">\r\n\
+        \t\t\t\t\t<p>Online rie\xC5\xA1enie: <a href=\"http://www.seesame.com\">SEESAME Communication Experts</a> | <a href=\"http://www.q7.sk\">Q7 Digital Media</a> | <br /> <a href=\"http://www.siemens-it-solutions.sk/\" style=\"padding:0px\">Siemens IT Solutions</a></p>\r\n\
+        \t\t\t\t</div>\r\n\
+        \t\t\t</div>\r\n\
+        \t\t</div>\t\t\r\n\
+        \t</div>\r\n\
+        </div>\r\n\
+        </div> \r\n\
+        </body>\r\n\
+        </td>\r\n\
+        </tr>\r\n    </table></td>\r\n  </tr>\r\n\
+        </table>\r\n\
+        \r\n\
+        <script type=\"text/javascript\">\r\n\
+        <!--\r\n\
+        var el = document.getElementById(\"dnn_dnnSearch_txtSearch\");\r\n\
+        \r\n\
+        var helpText = \"Vyh\xC4\xBEada\xC5\xA5 na str\xC3\xA1nke...\";\r\n\
+        el.value = helpText;\r\n\
+        el.onfocus = function() {if (this.value == helpText) { el.value = \"\";}};\r\n\
+        el.onblur = function() {if (this.value == \"\") { el.value = helpText;}}\r\n\
+        -->\r\n\
+        </script>\r\n\
+        \r\n\
+        <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/jquery-1.4.2.min.js\"></script>\r\n\
+        <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/pngfix.js\"></script>\r\n\
+        <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/script.js\"></script>\r\n\
+        <script type=\"text/javascript\" src=\"/Portals/_default/Skins/notarska komora_2//js/script2.js\"></script>\r\n\
+        \r\n        <input name=\"ScrollTop\" type=\"hidden\" id=\"ScrollTop\" />\r\n        <input name=\"__dnnVariable\" type=\"hidden\" id=\"__dnnVariable\" />\r\n        \r\n    \r\n\
+        <script type=\"text/javascript\" src=\"/Resources/Shared/scripts/initWidgets.js\" ></script></form>\r\n\
+        </body>\r\n\
+        </html>\r\n\
+        \r\n\
+        \r\n"
     http_version: "1.1"
+  recorded_at: Mon, 08 Jun 2015 11:31:30 GMT
+recorded_with: VCR 2.9.3
