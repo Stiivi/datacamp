@@ -46,7 +46,7 @@ module Etl
 
       def next_element(element)
         element = element.next_sibling
-        if element && element.inner_text.strip.blank?
+        while element && element.inner_text.strip.blank?
           element = element.next_sibling
         end
         element
@@ -107,11 +107,11 @@ module Etl
       end
 
       def parse_zip(str)
-        str.gsub(" ","").strip
+        str.gsub(" ", "").strip
       end
 
       def mostly_numbers?(str)
-        str.chars.select{|ch| ch.match(/\d/)}.count > (str.size / 2)
+        str.chars.select { |ch| ch.match(/\d/) }.count > (str.size / 2)
       end
 
     end
