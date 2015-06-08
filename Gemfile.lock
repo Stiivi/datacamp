@@ -328,7 +328,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    typhoeus (0.2.4)
+    typhoeus (0.3.3)
       mime-types
     tzinfo (0.3.44)
     uglifier (2.4.0)
@@ -406,7 +406,7 @@ DEPENDENCIES
   therubyracer
   thin
   thinking-sphinx (>= 2.0.2)
-  typhoeus
+  typhoeus (~> 0.3.3)
   uglifier (>= 1.0.3)
   unicorn
   vcr (~> 1.11.0)

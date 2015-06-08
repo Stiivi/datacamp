@@ -29,7 +29,7 @@ gem 'will_paginate'
 gem 'delayed_job'
 gem 'nokogiri'
 gem 'riddle', '>= 1.3.3'
-gem 'typhoeus'
+gem 'typhoeus', '~> 0.3.3'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'
