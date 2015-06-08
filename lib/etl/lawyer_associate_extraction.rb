@@ -12,10 +12,10 @@ module Etl
 
     def download
       if @parent_url.present? && @cookie.present? && @reset_url
-        Typhoeus::Request.get(@reset_url, headers: {'Cookie' => @cookie}, disable_ssl_peer_verification: true)
-        Typhoeus::Request.get(@parent_url, headers: {'Cookie' => @cookie}, disable_ssl_peer_verification: true)
+        Typhoeus::Request.get(@reset_url, headers: {'Cookie' => @cookie}, ssl_verifypeer: false)
+        Typhoeus::Request.get(@parent_url, headers: {'Cookie' => @cookie}, ssl_verifypeer: false)
       end
-      Nokogiri::HTML( Typhoeus::Request.get(@url, headers: {'Cookie' => @cookie}, disable_ssl_peer_verification: true).body )
+      Nokogiri::HTML( Typhoeus::Request.get(@url, headers: {'Cookie' => @cookie}, ssl_verifypeer: false).body )
     end
 
     def is_acceptable?(document)

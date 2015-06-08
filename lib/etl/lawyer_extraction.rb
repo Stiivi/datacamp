@@ -21,10 +21,10 @@ module Etl
 
     def download
       if @parent_url.present? && @cookie.present? && @reset_url
-        Typhoeus::Request.get(@reset_url, headers: {'Cookie' => @cookie}, disable_ssl_peer_verification: true)
-        Typhoeus::Request.get(@parent_url, headers: {'Cookie' => @cookie}, disable_ssl_peer_verification: true)
+        Typhoeus::Request.get(@reset_url, headers: {'Cookie' => @cookie}, ssl_verifypeer: false)
+        Typhoeus::Request.get(@parent_url, headers: {'Cookie' => @cookie}, ssl_verifypeer: false)
       end
-      Nokogiri::HTML( Typhoeus::Request.get(@url, headers: {'Cookie' => @cookie}, disable_ssl_peer_verification: true).body )
+      Nokogiri::HTML( Typhoeus::Request.get(@url, headers: {'Cookie' => @cookie}, ssl_verifypeer: false).body )
     end
 
     def digest(doc)
@@ -94,7 +94,7 @@ module Etl
       id = 0
       downloads = []
       begin
-        doc_data = Typhoeus::Request.get(@url + id.to_s, disable_ssl_peer_verification: true)
+        doc_data = Typhoeus::Request.get(@url + id.to_s, ssl_verifypeer: false)
         cookie = doc_data.headers_hash['Set-Cookie'].match(/[^ ;]*/)[0]
         doc = Nokogiri::HTML( doc_data.body )
         downloads << parse_for_links(doc, @reset_url, cookie, @url + id.to_s, @filter)
