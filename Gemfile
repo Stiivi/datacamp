@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.12'
+gem 'rails', '3.2.18'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.1.7'
-  gem 'coffee-rails', '~> 3.1.1'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier',     '>= 1.0.3'
 
   gem 'therubyracer'
@@ -17,14 +17,13 @@ gem 'mysql2'
 
 gem 'jquery-rails'
 
-gem 'haml-rails'
+gem 'haml-rails', '~> 0.4.0' # version for rails 3
 gem "RedCloth", :require => "redcloth"
 
-gem 'globalize3'
+gem 'globalize', '~> 3.1.0'
 gem 'paperclip'
 gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
 gem 'spawn'
-gem 'validation_reflection'
 gem 'will_paginate'
 #gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 gem 'delayed_job'
@@ -42,10 +41,12 @@ gem 'rollbar'
 gem 'unicorn'
 gem 'rack-rewrite'
 
-gem 'tlsmail'
 gem 'roadie'
 gem 'mechanize'
 gem 'thin'
+
+# this gems should be removed in future
+gem 'dynamic_form'
 
 # gem 'test-unit'
 

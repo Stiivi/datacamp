@@ -12,7 +12,7 @@ class TableDropper
   def drop_new_tables
     @connection.tables.each do |table_name|
       if @tables.exclude?(table_name)
-        # remove_model_class(table_name)
+        remove_model_class(table_name)
         @connection.drop_table(table_name)
       end
     end

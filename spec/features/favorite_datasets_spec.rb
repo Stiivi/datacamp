@@ -23,7 +23,9 @@ describe 'FavoriteDatasets' do
       click_link 'My Account'
       click_link 'Favorites'
 
-      page.should have_content 'my friend', 'students', record._record_id.to_s
+      within('#favorites') do
+        page_should_have_content_with 'my friend', 'students', record._record_id.to_s
+      end
     end
 
     it 'user is able to remove record from favorites' do
@@ -37,7 +39,9 @@ describe 'FavoriteDatasets' do
       click_link 'My Account'
       click_link 'Favorites'
 
-      page.should_not have_content 'check this one later', 'students'
+      within('#favorites') do
+        page_should_not_have_content_with 'check this one later', 'students'
+      end
     end
   end
 end

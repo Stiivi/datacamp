@@ -12,7 +12,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   attr_accessor :handling_user, :is_part_of_import
 
   # FIXME: add this to initialize method, use datasetore manager!
-  set_primary_key :_record_id
+  self.primary_key = '_record_id'
 
   scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
 
@@ -70,11 +70,11 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   end
 
   def record_status
-    super.blank? ? "absent" : super
+    read_attribute(:record_status).blank? ? "absent" : read_attribute(:record_status)
   end
 
   def quality_status
-    super.blank? ? "absent" : super
+    read_attribute(:quality_status).blank? ? "absent" : read_attribute(:quality_status)
   end
 
 
@@ -196,7 +196,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
         next if old_value == self[attribute]
         change_details << {changed_field: attribute, old_value: old_value, new_value: self[attribute]}
       end
-      Change.create(record_id: self.id, change_type: self.id_changed? ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description_id: (self.dataset.try(:description).try(:id) rescue nil), user: User.current, change_details: change_details)
+      Change.create(record_id: self.id, change_type: changed.include?(self.class.primary_key) ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description_id: (self.dataset.try(:description).try(:id) rescue nil), user: User.current, change_details: change_details)
     end
   end
 

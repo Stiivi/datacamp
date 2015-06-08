@@ -7,13 +7,13 @@ describe 'News' do
     it 'user can see news listing' do
       visit news_index_path(locale: :en)
 
-      page.should have_content 'new dataset available', 'finance stuffs'
+      page_should_have_content_with 'new dataset available', 'finance stuffs'
     end
 
     it 'user can see news detail' do
       visit news_path(id: dataset_news, locale: :en)
 
-      page.should have_content 'new dataset available', 'finance stuffs'
+      page_should_have_content_with 'new dataset available', 'finance stuffs'
     end
   end
 

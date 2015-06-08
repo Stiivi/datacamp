@@ -51,15 +51,15 @@ describe 'Datasets' do
 
       click_link 'doctors'
 
-      page.should have_content 'John', 'Smith'
-      page.should_not have_content 'Ann', 'Brutal', 'Young', 'From city'
+      page_should_have_content_with 'John', 'Smith'
+      page_should_not_have_content_with 'Ann', 'Brutal', 'Young', 'From city'
 
       within("#kernel_ds_doctor_#{record_1.id}") do
         click_link 'View'
       end
 
-      page.should have_content 'John', 'Smith', 'Young', 'Unclear'
-      page.should_not have_content 'Smith'
+      page_should_have_content_with 'John', 'Young', 'Unclear'
+      page_should_not_have_content_with 'Smith'
 
       # metadata
       page.should have_content 'published'
@@ -99,7 +99,7 @@ describe 'Datasets' do
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
-      page.should have_content 'John', 'Ann'
+      page_should_have_content_with 'John', 'Ann'
 
       within('.top_pagination') do
         select 'Loaded', from: 'filters_record_status'
@@ -206,7 +206,8 @@ describe 'Datasets' do
 
   def page_have_datasets_in_category(category, dateset_names)
     within(".dataset_category_#{category.id}") do
-      page.should have_content *dateset_names
+      page_should_have_content_with *dateset_names
     end
   end
+
 end

@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class FieldDescription < ActiveRecord::Base
-  set_primary_key :id
 
   belongs_to :dataset_description
   belongs_to :data_format

@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Page < ActiveRecord::Base
-  set_primary_key :id
+
   translates :body, :title, :block
   locale_accessor I18N_LOCALES
 

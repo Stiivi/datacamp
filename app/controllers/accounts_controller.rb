@@ -78,7 +78,7 @@ class AccountsController < ApplicationController
       self.current_user = @account
       UserMailer.registration_complete(@account).deliver
       flash[:user_registered] = true
-      redirect_to root_path(bust_cache: rand), notice: t("users.registration_complete")
+      redirect_to page_path(index_page, bust_cache: rand), notice: t("users.registration_complete")
     else
       render :action => "new"
     end
