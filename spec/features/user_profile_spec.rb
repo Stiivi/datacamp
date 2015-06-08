@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'UserProfile' do
-  let!(:user) { Factory(:user, login: 'test', password: 'secret', email: 'my@gmail.com') }
+  let!(:user) { FactoryGirl.create(:user, login: 'test', password: 'secret', email: 'my@gmail.com') }
 
   it 'user is able to register to the site' do
     visit new_account_path(locale: :en)

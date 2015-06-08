@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ImportFilesController do
   before :each do
-    session[:user_id] = Factory(:user).id
+    session[:user_id] = FactoryGirl.create(:user).id
   end
   
   def mock_import_file(stubs={})

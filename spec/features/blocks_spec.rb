@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Blocks' do
-  let!(:announcement_block) { Factory(:block, name: 'announcement') }
+  let!(:announcement_block) { FactoryGirl.create(:block, name: 'announcement') }
 
   before(:each) do
     login_as(admin_user)

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'News' do
   context 'frontend' do
-    let!(:dataset_news) { Factory(:news, title: 'new dataset available', text: 'finance stuffs') }
+    let!(:dataset_news) { FactoryGirl.create(:news, title: 'new dataset available', text: 'finance stuffs') }
 
     it 'user can see news listing' do
       visit news_index_path(locale: :en)
@@ -18,7 +18,7 @@ describe 'News' do
   end
 
   context 'admin section' do
-    let!(:dataset_news) { Factory(:news, title: 'update available', text: 'read more') }
+    let!(:dataset_news) { FactoryGirl.create(:news, title: 'update available', text: 'read more') }
 
     before(:each) do
       login_as(admin_user)

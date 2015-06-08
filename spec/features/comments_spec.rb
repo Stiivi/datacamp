@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'Comments' do
-  let!(:dataset) { Factory(:dataset_description, identifier: 'doctor', with_dataset: true) }
-  let!(:field) { Factory(:field_description, identifier: 'name', dataset_description: dataset) }
+  let!(:dataset) { FactoryGirl.create(:dataset_description, identifier: 'doctor', with_dataset: true) }
+  let!(:field) { FactoryGirl.create(:field_description, identifier: 'name', dataset_description: dataset) }
   let!(:record) { dataset.dataset_record_class.create!(name: 'John') }
-  let!(:user) { Factory(:user, is_super_user: false) }
-  let!(:comment)  { Factory(:comment, record_id: record._record_id, text: 'Good record!', user: user, dataset_description: dataset) }
+  let!(:user) { FactoryGirl.create(:user, is_super_user: false) }
+  let!(:comment)  { FactoryGirl.create(:comment, record_id: record._record_id, text: 'Good record!', user: user, dataset_description: dataset) }
 
   context 'anonymous user' do
     it 'is able to see comments in dataset row' do
@@ -17,7 +17,7 @@ describe 'Comments' do
   end
 
   context 'registred user' do
-    let(:adam_user) { Factory(:user, login: 'adam', password: 'very_secret', is_super_user: false) }
+    let(:adam_user) { FactoryGirl.create(:user, login: 'adam', password: 'very_secret', is_super_user: false) }
 
     before(:each) do
       login_as(adam_user)
@@ -88,7 +88,7 @@ describe 'Comments' do
     end
 
     it 'is able to see all comments' do
-      Factory(:comment, record_id: record._record_id, text: 'go home', is_suspended: true, user: Factory(:user, is_super_user: false), dataset_description: dataset)
+      FactoryGirl.create(:comment, record_id: record._record_id, text: 'go home', is_suspended: true, user: FactoryGirl.create(:user, is_super_user: false), dataset_description: dataset)
 
       visit settings_comments_path(locale: :en)
 

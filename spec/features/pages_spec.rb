@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Pages' do
   it 'user can see a home page with news' do
     home_page.update_attributes(body: 'hello world!')
-    Factory(:news, title: 'new dataset available', text: 'finance stuffs')
+    FactoryGirl.create(:news, title: 'new dataset available', text: 'finance stuffs')
 
     visit root_path(locale: :en)
 
@@ -11,7 +11,7 @@ describe 'Pages' do
   end
 
   it 'user can see other requested page' do
-    about_us = Factory(:page, title: 'About us', body: 'AFP is a good organization')
+    about_us = FactoryGirl.create(:page, title: 'About us', body: 'AFP is a good organization')
 
     visit page_path(id: about_us, locale: :en)
 
@@ -19,7 +19,7 @@ describe 'Pages' do
   end
 
   context 'admin section' do
-    let!(:about_us_page) { Factory(:page, en_title: 'About us', page_name: 'about_us') }
+    let!(:about_us_page) { FactoryGirl.create(:page, en_title: 'About us', page_name: 'about_us') }
 
     before(:each) do
       login_as(admin_user)

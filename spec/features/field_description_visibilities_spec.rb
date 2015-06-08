@@ -6,12 +6,12 @@ describe 'FieldDescriptionVisibilities' do
   end
 
   it 'uses is able to set up different visibilities for each filed description' do
-    dataset =  Factory(:dataset_description, en_title: 'doctors', with_dataset: true)
-    first_name_field = Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: dataset)
-    last_name_field = Factory(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: dataset)
-    school_field = Factory(:field_description, en_title: 'School', identifier: 'school', dataset_description: dataset)
-    home_field = Factory(:field_description, en_title: 'Home', identifier: 'home', dataset_description: dataset)
-    work_field = Factory(:field_description, en_title: 'Work', identifier: 'work', dataset_description: dataset)
+    dataset =  FactoryGirl.create(:dataset_description, en_title: 'doctors', with_dataset: true)
+    first_name_field = FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: dataset)
+    last_name_field = FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: dataset)
+    school_field = FactoryGirl.create(:field_description, en_title: 'School', identifier: 'school', dataset_description: dataset)
+    home_field = FactoryGirl.create(:field_description, en_title: 'Home', identifier: 'home', dataset_description: dataset)
+    work_field = FactoryGirl.create(:field_description, en_title: 'Work', identifier: 'work', dataset_description: dataset)
 
     visit visibility_dataset_description_path(id: dataset, locale: :en)
 

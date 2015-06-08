@@ -4,7 +4,7 @@ module PageHelpers
   end
 
   def home_page
-    @__home_page ||= Page.find_by_page_name('index') || Factory(:page, page_name: 'index')
+    @__home_page ||= Page.find_by_page_name('index') || FactoryGirl.create(:page, page_name: 'index')
   end
 end
 
@@ -17,7 +17,7 @@ module LoginHelpers
         user.password = 'secret'
         user
       else
-        Factory(:user, login: 'admin_user', password: 'secret', api_access_level: Api::PREMIUM)
+        FactoryGirl.create(:user, login: 'admin_user', password: 'secret', api_access_level: Api::PREMIUM)
       end
     end
   end

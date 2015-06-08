@@ -6,7 +6,7 @@ describe 'FieldDescriptionCategories' do
   end
 
   it 'user can see field description categories' do
-    Factory(:field_description_category, title: 'main attributes')
+    FactoryGirl.create(:field_description_category, title: 'main attributes')
 
     visit field_description_categories_path(locale: :en)
 
@@ -26,7 +26,7 @@ describe 'FieldDescriptionCategories' do
   end
 
   it 'user is able to edit category' do
-    category = Factory(:field_description_category, title: 'main attributes')
+    category = FactoryGirl.create(:field_description_category, title: 'main attributes')
 
     visit field_description_categories_path(locale: :en)
 
@@ -40,7 +40,7 @@ describe 'FieldDescriptionCategories' do
   end
 
   it 'user is able to delete category' do
-    category = Factory(:field_description_category, title: 'main attributes')
+    category = FactoryGirl.create(:field_description_category, title: 'main attributes')
 
     visit field_description_categories_path(locale: :en)
 

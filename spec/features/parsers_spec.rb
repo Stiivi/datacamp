@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe 'Parsers' do
-  let!(:donation_parser) { Factory(:donations_parser) }
+  let!(:donation_parser) { FactoryGirl.create(:donations_parser) }
 
   before(:each) do
     login_as(admin_user)

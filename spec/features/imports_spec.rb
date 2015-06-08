@@ -15,7 +15,7 @@ describe 'Imports' do
 
   let(:name_csv_file_path) { Rails.root.join('spec', 'files', 'names_example.csv') }
 
-  let(:doctors_dataset) { Factory(:dataset_description, en_title: 'doctors', with_dataset: true) }
+  let(:doctors_dataset) { FactoryGirl.create(:dataset_description, en_title: 'doctors', with_dataset: true) }
 
   it 'user is able to import csv file to prepared dataset' do
     prepare_name_fields(doctors_dataset)
@@ -64,8 +64,8 @@ describe 'Imports' do
   private
 
   def prepare_name_fields(dataset)
-    Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: dataset)
-    Factory(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: dataset)
+    FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: dataset)
+    FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: dataset)
   end
 
   def fill_in_import_file_to_dataset(dataset, file)

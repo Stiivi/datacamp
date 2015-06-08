@@ -5,8 +5,8 @@ describe 'Records' do
     login_as(admin_user)
   end
 
-  let!(:doctors_dataset) { Factory(:dataset_description, en_title: 'doctors', with_dataset: true) }
-  let!(:first_name_field) { Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: doctors_dataset) }
+  let!(:doctors_dataset) { FactoryGirl.create(:dataset_description, en_title: 'doctors', with_dataset: true) }
+  let!(:first_name_field) { FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: doctors_dataset) }
 
   it 'user is able to add new record' do
     visit new_dataset_record_path(dataset_id: doctors_dataset, locale: :en)

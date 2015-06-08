@@ -5,13 +5,13 @@ describe 'DatasetDescriptions' do
     login_as(admin_user)
   end
 
-  let!(:lists_category) { Factory(:dataset_category, title: 'lists') }
-  let(:documents_category) { Factory(:dataset_category, title: 'documents') }
+  let!(:lists_category) { FactoryGirl.create(:dataset_category, title: 'lists') }
+  let(:documents_category) { FactoryGirl.create(:dataset_category, title: 'documents') }
 
   it 'user can see dataset grouped by categories' do
-    Factory(:dataset_description, en_title: 'lawyers', is_active: true, category: lists_category)
-    Factory(:dataset_description, en_title: 'doctors', is_active: false, category: lists_category)
-    Factory(:dataset_description, en_title: 'set with no category', is_active: false, category: nil)
+    FactoryGirl.create(:dataset_description, en_title: 'lawyers', is_active: true, category: lists_category)
+    FactoryGirl.create(:dataset_description, en_title: 'doctors', is_active: false, category: lists_category)
+    FactoryGirl.create(:dataset_description, en_title: 'set with no category', is_active: false, category: nil)
 
     visit dataset_descriptions_path(locale: :en)
 
@@ -63,7 +63,7 @@ describe 'DatasetDescriptions' do
   end
 
   it 'user is able to edit dataset' do
-    dataset_description = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
+    dataset_description = FactoryGirl.create(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
     visit edit_dataset_description_path(id: dataset_description, locale: :en)
 
     fill_in 'dataset_description_en_title', with: ''
@@ -78,8 +78,8 @@ describe 'DatasetDescriptions' do
   end
 
   it 'user is able to manage similar datasets', js: true do
-    nurses_dataset = Factory(:dataset_description, en_title: 'nurses', is_active: false, category: lists_category)
-    doctors_dataset = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
+    nurses_dataset = FactoryGirl.create(:dataset_description, en_title: 'nurses', is_active: false, category: lists_category)
+    doctors_dataset = FactoryGirl.create(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
 
     visit edit_dataset_description_path(id: doctors_dataset, locale: :en)
 
@@ -96,7 +96,7 @@ describe 'DatasetDescriptions' do
   end
 
   it 'user is able to destroy dataset' do
-    dataset_description = Factory(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
+    dataset_description = FactoryGirl.create(:dataset_description, en_title: 'doctors', is_active: true, category: lists_category)
 
     visit dataset_descriptions_path(locale: :en)
 
@@ -109,9 +109,9 @@ describe 'DatasetDescriptions' do
   end
 
   it 'user is able to change dataset ordering and move dataset to different category by sorting', js: true do
-    lawyers = Factory(:dataset_description, en_title: 'lawyers', is_active: true, category: documents_category)
-    doctors = Factory(:dataset_description, en_title: 'doctors', is_active: false, category: lists_category)
-    general = Factory(:dataset_description, en_title: 'general', is_active: false, category: nil)
+    lawyers = FactoryGirl.create(:dataset_description, en_title: 'lawyers', is_active: true, category: documents_category)
+    doctors = FactoryGirl.create(:dataset_description, en_title: 'doctors', is_active: false, category: lists_category)
+    general = FactoryGirl.create(:dataset_description, en_title: 'general', is_active: false, category: nil)
 
     visit dataset_descriptions_path(locale: :en)
 

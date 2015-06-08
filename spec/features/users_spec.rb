@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe 'Users' do
-  let!(:miranda_user) { Factory(:user, login: 'miranda', is_super_user: false) }
+  let!(:miranda_user) { FactoryGirl.create(:user, login: 'miranda', is_super_user: false) }
 
   before(:each) do
     generate_sample_access_role_with_rights
