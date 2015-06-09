@@ -302,7 +302,6 @@ GEM
       eventmachine (~> 0.12)
       thin (~> 1.2)
     slop (3.4.4)
-    spawn (0.1.4)
     sprockets (2.2.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -399,7 +398,6 @@ DEPENDENCIES
   rvm
   sass-rails (~> 3.2.3)
   simplecov
-  spawn
   therubyracer
   thin
   thinking-sphinx (>= 2.0.2)

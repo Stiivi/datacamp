@@ -20,7 +20,6 @@ gem "RedCloth", :require => "redcloth"
 gem 'globalize', '~> 3.1.0'
 gem 'paperclip'
 gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
-gem 'spawn'
 gem 'will_paginate'
 gem 'delayed_job'
 gem 'nokogiri'
