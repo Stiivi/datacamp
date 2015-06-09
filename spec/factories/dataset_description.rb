@@ -21,7 +21,7 @@ FactoryGirl.define do
   end
 
   factory :dataset_description do
-    ignore do
+    transient do
       with_dataset false
     end
 
