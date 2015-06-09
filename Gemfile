@@ -51,7 +51,7 @@ group :developemnt, :macosx do
 end
 
 group :development do
-  gem "mailcatcher"
+  gem 'mailcatcher', '~> 0.5.0' # last supported rails 3 version
 
   gem 'rails_best_practices'
   # Deploy with Capistrano multistage
