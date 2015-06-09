@@ -10,9 +10,6 @@ group :assets do
   gem 'therubyracer'
 end
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'mysql2'
 
 gem 'jquery-rails'
@@ -25,7 +22,6 @@ gem 'paperclip'
 gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
 gem 'spawn'
 gem 'will_paginate'
-#gem 'restful-authentication', :git => 'git://github.com/Satish/restful-authentication.git', :branch => 'rails3'
 gem 'delayed_job'
 gem 'nokogiri'
 gem 'riddle', '>= 1.3.3'
@@ -47,27 +43,6 @@ gem 'thin'
 
 # this gems should be removed in future
 gem 'dynamic_form'
-
-# gem 'test-unit'
-
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# To use debugger
-# gem 'ruby-debug19'
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'sqlite3-ruby', :require => 'sqlite3'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
 
 # bundle with '--without macosx' if you are not not a good system :)
 group :developemnt, :macosx do
@@ -109,5 +84,3 @@ group :test do
   gem 'codeclimate-test-reporter', require: nil
   gem 'capybara-screenshot'
 end
-
-
