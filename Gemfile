@@ -94,7 +94,6 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
   gem 'rspec-collection_matchers'
   gem 'rspec-rails', '~> 2.14'
-  gem 'mocha'
   gem 'capybara'
   gem 'poltergeist'
   gem 'database_cleaner'
