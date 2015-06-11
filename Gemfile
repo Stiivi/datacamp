@@ -23,12 +23,11 @@ gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambeth
 gem 'will_paginate'
 gem 'delayed_job'
 gem 'nokogiri'
-gem 'riddle', '>= 1.3.3'
 gem 'typhoeus', '~> 0.5.0'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'
-gem 'thinking-sphinx', '>= 2.0.2', :require => 'thinking_sphinx'
+gem 'thinking-sphinx', '~> 2.0.2', :require => 'thinking_sphinx'
 gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git', ref: 'a9c939f94c424a0b9e3a92bb1b280141c87f6195'
 gem 'gabba'
 gem 'rollbar'
