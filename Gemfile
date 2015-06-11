@@ -57,7 +57,6 @@ group :development do
   # Deploy with Capistrano multistage
   gem 'capistrano', '~> 2'
   gem 'capistrano-ext'
-  gem 'rvm'
   gem 'letter_opener'
 
   gem "bullet"
