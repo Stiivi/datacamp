@@ -137,7 +137,7 @@ class User < ActiveRecord::Base
     else
       conditions[:record_id] = nil
     end
-    self.favorites.find(:first, :conditions => conditions)
+    self.favorites.where(conditions).first
   end
 
   # Bang version finds favorite or create a new one
@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
   # API Key
 
   def api_key
-    api_keys.find(:first, :conditions => {:is_valid => true})
+    api_keys.where(is_valid: true).first
   end
 
   def generate_api_key

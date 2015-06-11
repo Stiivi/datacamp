@@ -6,15 +6,15 @@ module Settings
     include CommentsHelper
 
     def index
-      @comments = Comment.find_include_suspended
+      @comments = Comment.within_all
     end
 
     def edit
-      @comment = Comment.find_include_suspended(:id=>params[:id]).first
+      @comment = Comment.within_all.find(params[:id])
     end
 
     def update
-      @comment = Comment.find_include_suspended(:id=>params[:id]).first
+      @comment = Comment.within_all.find(params[:id])
 
       if @comment.update_attributes(params[:comment])
         redirect_to settings_comments_path
