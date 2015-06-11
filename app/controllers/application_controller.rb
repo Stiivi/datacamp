@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   attr_accessor :javascripts
 
   include AuthenticatedSystem
-  include CaptchaHelper
   include Datacamp::Logger
 
   # Session initialization
@@ -87,6 +86,10 @@ private
 
   def index_page
     @__index_page ||= Page.find_by_page_name("index")
+  end
+
+  def verify_captcha_for(model)
+    verify_recaptcha(private_key: Datacamp::Config.get(:captcha_private_key), model: model)
   end
 
   protected

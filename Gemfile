@@ -19,7 +19,7 @@ gem "RedCloth", :require => "redcloth"
 
 gem 'globalize', '~> 3.1.0' # version for rails 3
 gem 'paperclip'
-gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
+gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate'
 gem 'delayed_job'
 gem 'nokogiri'
@@ -50,7 +50,7 @@ group :developemnt, :macosx do
 end
 
 group :development do
-  gem 'mailcatcher', '~> 0.5.0' # last supported rails 3 version
+  gem 'mailcatcher', '~> 0.5.0' # version for rails 3
 
   gem 'rails_best_practices'
   # Deploy with Capistrano multistage
