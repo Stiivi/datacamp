@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'haml-rails', '~> 0.4.0' # version for rails 3
 gem "RedCloth", :require => "redcloth"
 
-gem 'globalize', '~> 3.1.0'
+gem 'globalize', '~> 3.1.0' # version for rails 3
 gem 'paperclip'
 gem 'recaptcha', :require => "recaptcha/rails", :git => 'git://github.com/ambethia/recaptcha.git'
 gem 'will_paginate'
