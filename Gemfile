@@ -28,7 +28,7 @@ gem 'delayed_job_admin'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'
 gem 'thinking-sphinx'
-gem "actionmailer_inline_css", :git => 'https://github.com/ndbroadbent/actionmailer_inline_css.git', ref: 'a9c939f94c424a0b9e3a92bb1b280141c87f6195'
+gem 'actionmailer_inline_css'
 gem 'gabba'
 gem 'rollbar'
 
