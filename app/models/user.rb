@@ -115,10 +115,9 @@ class User < ActiveRecord::Base
   #############################################################################
   # Reload score
   def reload_score
-    # FIXME: Score counting algoritmus :)
-    self.class.find(:first, :select => "sum(comments.score)", :from => "comments", :conditions => {"comments.user_id" => self.id})
+    self.score = comments.map(&:score).sum
 
-    save
+    save!(validate: false)
   end
 
   #############################################################################
