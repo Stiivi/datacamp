@@ -59,7 +59,7 @@ group :development do
   gem 'capistrano-ext'
   gem 'letter_opener'
 
-  gem "bullet"
+  gem 'bullet'
 end
 
 group :development, :test do
