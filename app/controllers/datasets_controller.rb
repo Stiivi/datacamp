@@ -40,7 +40,7 @@ class DatasetsController < ApplicationController
   def show
     expires_in 5.minutes, public: true if current_user.blank?
 
-    @dataset_description = DatasetDescription.find_by_id!(params[:id])
+    @dataset_description = DatasetDescription.find(params[:id])
     @field_descriptions  = @dataset_description.visible_field_descriptions.includes(:data_format)
     @dataset             = @dataset_description.dataset
     @dataset_class       = @dataset.dataset_record_class
@@ -91,7 +91,7 @@ class DatasetsController < ApplicationController
     sphinx_search = ""
     paginate_options[:match_mode] = :extended
     unless params[:search_id].blank?
-      search_object = Search.find_by_id!(params[:search_id])
+      search_object = Search.find(params[:search_id])
       @search_predicates = search_object.query.predicates
       search_object.query.predicates.each do |predicate|
         field_description = FieldDescription.find_by_identifier(predicate.search_field)
@@ -239,7 +239,7 @@ class DatasetsController < ApplicationController
         sphinx_search = ""
         paginate_options[:match_mode] = :extended
         unless params[:search_id].blank?
-          search_object = Search.find_by_id!(params[:search_id])
+          search_object = Search.find(params[:search_id])
           @search_predicates = search_object.query.predicates
           search_object.query.predicates.each do |predicate|
             field_description = FieldDescription.find_by_identifier(predicate.search_field)

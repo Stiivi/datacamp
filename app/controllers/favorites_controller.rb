@@ -43,7 +43,7 @@ class FavoritesController < ApplicationController
   end
   
   def destroy
-    @favorite = Favorite.find_by_id!(params[:id])
+    @favorite = Favorite.find(params[:id])
     load_dataset
     @favorite.destroy
     

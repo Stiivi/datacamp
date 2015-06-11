@@ -1,6 +1,6 @@
 namespace :db do
   task :upgrade_datasets => :environment do
-    DatasetDescription.find(:all).each do |description|
+    DatasetDescription.all.each do |description|
       next unless description.dataset.table_exists?
       unless description.dataset.has_column? :batch_record_code
         puts "=> batch_record_code not found in table #{description.identifier}"

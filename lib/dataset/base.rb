@@ -100,7 +100,7 @@ class Dataset::Base
 
     # Add derived fields
     @derived_fields = Hash.new
-    @description.field_descriptions.find(:all, :conditions => { :is_derived => true }).each do |derived_field|
+    @description.field_descriptions.where(is_derived: true).each do |derived_field|
       @derived_fields[derived_field.identifier.to_sym] = derived_field.derived_value
     end
 

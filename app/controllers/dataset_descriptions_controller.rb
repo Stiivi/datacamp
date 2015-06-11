@@ -303,7 +303,7 @@ class DatasetDescriptionsController < ApplicationController
   protected
 
   def get_dataset_description
-    @dataset_description = DatasetDescription.find_by_id!(params[:id])
+    @dataset_description = DatasetDescription.find(params[:id])
   end
 
   def load_datasets

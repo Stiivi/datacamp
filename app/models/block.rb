@@ -15,7 +15,7 @@ class Block < ActiveRecord::Base
   end
   
   def self.find_by_block_name(name)
-    @blocks ||= Block.find :all
+    @blocks ||= Block.all
     @blocks.find_all{|block|block.name == name}.first
   end
 end

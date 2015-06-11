@@ -17,6 +17,6 @@ class Page < ActiveRecord::Base
   end
 
   def get_sorted_blocks
-    blocks.find :all, :order => "name"
+    blocks.order("name")
   end
 end

@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     if params[:parent_comment_id]
-      @parent_comment = Comment.find_by_id!(params[:parent_comment_id])
+      @parent_comment = Comment.within_all.find(params[:parent_comment_id])
       @comment.parent_comment_id = @parent_comment.id
       @comment.dataset_description_id = @parent_comment.dataset_description_id
       @comment.record_id = @parent_comment.record_id
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   end
 
   def rate
-    @comment = Comment.find_by_id!(params[:id])
+    @comment = Comment.within_all.find(params[:id])
     rating = @comment.comment_ratings.find_by_user_id(current_user.id)
     unless rating
       rating = CommentRating.new
@@ -44,7 +44,7 @@ class CommentsController < ApplicationController
   # Reporting
 
   def report
-    @comment = Comment.find_by_id!(params[:id])
+    @comment = Comment.within_all.find(params[:id])
     @report = @comment.comment_reports.new
     @report.comment = @comment
     @report.user_id = current_user.id

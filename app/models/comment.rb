@@ -12,13 +12,11 @@ class Comment < ActiveRecord::Base
   validates_presence_of :user, :dataset_description
 
   def self.find_include_suspended conditions=''
-    with_exclusive_scope() do
-      where(conditions)
-    end
+    unscoped.where(conditions)
   end
-  
-  def self.find_by_id! id
-    with_exclusive_scope { super(id) }
+
+  def self.within_all
+    unscoped
   end
   
   ##############################################################################
