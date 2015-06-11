@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/ttilley/rb-fsevent.git
-  revision: f36a8cd01b49a6ce2a26d9e1083b5f6e6722c470
-  branch: pre-compiled-gem-one-off
-  specs:
-    rb-fsevent (0.4.3.1pre1)
-
-GIT
   remote: https://github.com/ndbroadbent/actionmailer_inline_css.git
   revision: a9c939f94c424a0b9e3a92bb1b280141c87f6195
   ref: a9c939f94c424a0b9e3a92bb1b280141c87f6195
@@ -129,7 +122,6 @@ GEM
     globalize (3.1.0)
       activemodel (>= 3.1.0, < 4.0.0)
       activerecord (>= 3.1.0, < 4.0.0)
-    growl (1.0.3)
     haml (4.0.6)
       tilt
     haml-rails (0.4)
@@ -375,7 +367,6 @@ DEPENDENCIES
   fakeweb
   gabba
   globalize (~> 3.1.0)
-  growl
   haml-rails (~> 0.4.0)
   jquery-rails
   launchy
@@ -391,7 +382,6 @@ DEPENDENCIES
   rack-rewrite
   rails (= 3.2.18)
   rails_best_practices
-  rb-fsevent!
   recaptcha
   roadie (~> 2.4.0)
   rollbar

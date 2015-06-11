@@ -42,13 +42,6 @@ gem 'thin'
 # this gems should be removed in future
 gem 'dynamic_form'
 
-# bundle with '--without macosx' if you are not not a good system :)
-group :developemnt, :macosx do
-  # This branch is being used because of a problem with the gcc-only installer https://github.com/kennethreitz/osx-gcc-installer not being able to coompile it.
-  gem 'rb-fsevent', :git => 'git://github.com/ttilley/rb-fsevent.git', :branch => 'pre-compiled-gem-one-off', :require => :false
-  gem 'growl'
-end
-
 group :development do
   gem 'mailcatcher', '~> 0.5.0' # version for rails 3
 
@@ -69,7 +62,7 @@ group :development, :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'launchy'    # So you can do Then show me the page
+  gem 'launchy'
   gem 'factory_girl_rails'
   gem 'vcr'
   gem 'fakeweb'
