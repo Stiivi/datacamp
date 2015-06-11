@@ -35,7 +35,7 @@ gem 'rollbar'
 gem 'unicorn'
 gem 'rack-rewrite'
 
-gem 'roadie'
+gem 'roadie', '~> 2.4.0' # version for rails 3
 gem 'mechanize'
 gem 'thin'
 
