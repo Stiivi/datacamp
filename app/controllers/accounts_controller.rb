@@ -90,7 +90,7 @@ class AccountsController < ApplicationController
     @account = current_user
     @account.accepts_terms = '1'
     @comments = Comment.find_include_suspended(:user_id => current_user.id)
-    @favorites = @account.favorites || []
+    @favorites = @account.favorites.includes(:dataset_description, :record)
     # FIXME: This might get slow with many favorites. Favorites tab should be loaded
     # with Ajax after clicking it.
   end

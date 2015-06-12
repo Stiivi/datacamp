@@ -5,9 +5,9 @@
         .fl
           %div
             = link_to(image_tag("icons/trash.gif"), favorite_path(favorite), :method => "delete", :confirm => t("favorites.confirm_deletion"))
-            - if favorite.dataset_description && favorite.record_id
+            - if favorite.dataset_description && favorite.record
               Record
-              %strong= link_to(favorite.dataset_description.dataset_record_class.find_by_record_id(favorite.record_id)._record_id, dataset_record_path(favorite.dataset_description, favorite.record_id))
+              %strong= link_to(favorite.record_id, dataset_record_path(favorite.dataset_description, favorite.record_id))
               from dataset
               %strong= link_to(favorite.dataset_description.title, dataset_path(favorite.dataset_description))
             - elsif favorite.dataset_description
