@@ -2,7 +2,6 @@
 require 'digest/sha1'
 
 class User < ActiveRecord::Base
-  set_primary_key :id
 
   include Api::Accessable
 
@@ -116,10 +115,9 @@ class User < ActiveRecord::Base
   #############################################################################
   # Reload score
   def reload_score
-    # FIXME: Score counting algoritmus :)
-    self.class.find(:first, :select => "sum(comments.score)", :from => "comments", :conditions => {"comments.user_id" => self.id})
+    self.score = comments.map(&:score).sum
 
-    save
+    save!(validate: false)
   end
 
   #############################################################################
@@ -131,24 +129,15 @@ class User < ActiveRecord::Base
 
   # Favorite for finds favorite
   def favorite_for(dataset_description, record = nil)
-    conditions = {}
-    conditions[:dataset_description_id] = dataset_description.id
-    if record
-      conditions[:record_id] = record.id
-    else
-      conditions[:record_id] = nil
-    end
-    self.favorites.find(:first, :conditions => conditions)
+    favourite_scope = favorites.by_dataset_description(dataset_description)
+    favourite_scope = favourite_scope.by_record(record) if record
+    favourite_scope.first
   end
 
-  # Bang version finds favorite or create a new one
+  # Bang version finds favorite or initialize a new one
   def favorite_for!(dataset_description, record = nil)
     favorite = favorite_for(dataset_description, record)
-    favorite ||= Favorite.new(:user => self,
-                              :dataset_description => dataset_description,
-                              :record_id => (record ? record.id : nil)
-                             )
-    favorite
+    favorite || Favorite.new(user: self, dataset_description: dataset_description, record: record)
   end
 
   #############################################################################
@@ -169,7 +158,7 @@ class User < ActiveRecord::Base
   # API Key
 
   def api_key
-    api_keys.find(:first, :conditions => {:is_valid => true})
+    api_keys.where(is_valid: true).first
   end
 
   def generate_api_key

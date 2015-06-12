@@ -129,7 +129,7 @@ class FieldDescriptionsController < ApplicationController
   protected
 
   def get_dataset_description
-    @dataset_description = DatasetDescription.find_by_id!(params[:dataset_description_id])
+    @dataset_description = DatasetDescription.find(params[:dataset_description_id])
   end
 
   private

@@ -28,6 +28,6 @@ class ListFormBuilder < ActionView::Helpers::FormBuilder
   end
   
   def field_required?(field_name)
-    object.class.reflect_on_validations_for(field_name).map(&:macro).include?(:validates_presence_of)
+    object.class.validators_on(field_name).map(&:class).include?(ActiveModel::Validations::PresenceValidator)
   end
 end

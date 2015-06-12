@@ -141,9 +141,10 @@ module Etl
                   if code_text.match(/^II.1.1/) && header_text.match(/Názov/)
                     name_element = tr
                     if name_element.xpath(".//td[2]//span[@class='hodnota']").empty?
-                      name_element = tr.next
+                      name_element = tr.next_element
                     end
                     name_element = name_element.xpath(".//td[2]//span[@class='hodnota']")
+
                     contract_information_hash[:project_name] = strip_last_point(name_element.inner_text.strip)
 
                   elsif code_text.match(/^II.1.2/) && header_text.match(/Druh zákazky/)
@@ -184,6 +185,7 @@ module Etl
 
                       # Kategoria
                       tr_category_element = next_element(tr_type_element)
+
                       category_element = tr_category_element.xpath(".//span[@class='hodnota']")
                       category = category_element.inner_text.strip
                       contract_information_hash[:project_category] = strip_last_point(category)
@@ -216,7 +218,7 @@ module Etl
                   elsif code_text.match(/^II.1.3/) && header_text.match(/Oznámenie zahŕňa/)
                     tr_general_contract = tr
                     if tr_general_contract.xpath(".//td[2]//span[@class='hodnota']").empty?
-                      tr_general_contract = tr.next
+                      tr_general_contract = tr.next_element
                     end
                     general_contract_element = tr_general_contract.xpath(".//td[2]//span[@class='hodnota']")
                     general_contract = strip_last_point(general_contract_element.inner_text.strip)
@@ -226,7 +228,7 @@ module Etl
                     tr_project_description = tr
                     # TODO refactor - move to method
                     if tr_project_description.xpath(".//td[2]//span[@class='hodnota']").empty?
-                      tr_project_description = tr.next
+                      tr_project_description = tr.next_element
                     end
                     project_description_element = tr_project_description.xpath(".//td[2]//span[@class='hodnota']")
                     contract_information_hash[:project_description] = project_description_element.inner_text.strip
@@ -234,7 +236,7 @@ module Etl
                   elsif (code_text.match(/^II.1.5/) || code_text.match(/^II.1.3/)) && (header_text.match(/Spoločný slovník obstarávania/) || header_text.match(/CPV/))
                     tr_subjects = tr
                     if tr_subjects.xpath(".//td[2]//span[@class='hodnota']").empty?
-                      tr_subjects = tr.next
+                      tr_subjects = tr.next_element
                     end
                     subjects = tr_subjects.xpath(".//td[2]//span[@class='hodnota']")
                     dictionary_main_subjects = subjects[2].inner_text.strip
@@ -261,7 +263,7 @@ module Etl
                     # TODO move to method - as next_tr_content ??
                     tr_gpa_agreement = tr
                     if tr_gpa_agreement.xpath(".//td[2]//span[@class='hodnota']").empty?
-                      tr_gpa_agreement = tr.next
+                      tr_gpa_agreement = tr.next_element
                     end
                     gpa_agreement = tr_gpa_agreement.xpath(".//td[2]//span[@class='hodnota']").inner_text.strip
                     contract_information_hash[:gpa_agreement] = !gpa_agreement.match(/Nie/)

@@ -21,8 +21,8 @@ class BlocksController < ApplicationController
   def show
     begin
       @block = Block.find_by_block_name!(params[:id])
-    rescue Exception => e
-      @block = Block.find_by_id!(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @block = Block.find(params[:id])
     end
   end
 end

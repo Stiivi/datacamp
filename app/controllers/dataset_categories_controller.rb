@@ -51,7 +51,7 @@ class DatasetCategoriesController < ApplicationController
   end
   
   def edit
-    @category = DatasetCategory.find_by_id!(params[:id])
+    @category = DatasetCategory.find(params[:id])
     
     respond_to do |wants|
       wants.html
@@ -60,7 +60,7 @@ class DatasetCategoriesController < ApplicationController
   end
   
   def update
-    @category = DatasetCategory.find_by_id!(params[:id])
+    @category = DatasetCategory.find(params[:id])
     @category.update_attributes(params[:dataset_category])
     
     respond_to do |wants|
@@ -70,7 +70,7 @@ class DatasetCategoriesController < ApplicationController
   end
   
   def destroy
-    @category = DatasetCategory.find_by_id!(params[:id])
+    @category = DatasetCategory.find(params[:id])
     @category.destroy
     
     respond_to do |wants|

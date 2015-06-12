@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe 'Api' do
-  let!(:student_dataset) { Factory(:dataset_description, en_title: 'students', is_active: true, api_access_level: Api::REGULAR, with_dataset: true) }
-  let!(:student_name_field) { Factory(:field_description, identifier: 'name', dataset_description: student_dataset) }
+  let!(:student_dataset) { FactoryGirl.create(:dataset_description, en_title: 'students', is_active: true, api_access_level: Api::REGULAR, with_dataset: true) }
+  let!(:student_name_field) { FactoryGirl.create(:field_description, identifier: 'name', dataset_description: student_dataset) }
   let!(:peter_student_record) { student_dataset.dataset_record_class.create!(name: 'Peter', record_status: 'published') }
 
-  let!(:school_dataset) { Factory(:dataset_description, en_title: 'Schools', is_active: true, api_access_level: Api::REGULAR, with_dataset: true) }
-  let!(:school_name_field) { Factory(:field_description, identifier: 'name', dataset_description: school_dataset) }
+  let!(:school_dataset) { FactoryGirl.create(:dataset_description, en_title: 'Schools', is_active: true, api_access_level: Api::REGULAR, with_dataset: true) }
+  let!(:school_name_field) { FactoryGirl.create(:field_description, identifier: 'name', dataset_description: school_dataset) }
   let!(:grammar_school_record) { school_dataset.dataset_record_class.create!(name: 'Grammar', record_status: 'published') }
 
   context 'registered user' do
@@ -30,7 +30,7 @@ describe 'Api' do
       click_link 'dataset_description_in_xml'
 
       content_type.should be_xml
-      page.should have_text 'students', 'name'
+      page_should_have_content_with 'students', 'name'
     end
 
     it 'is able to download dataset relations xml' do
@@ -43,7 +43,7 @@ describe 'Api' do
 
       click_link 'dataset_relations_xml'
       content_type.should be_xml
-      page.should have_text 'Kernel::DsStudent', 'Kernel::DsSchool'
+      page_should_have_content_with 'Kernel::DsStudent', 'Kernel::DsSchool'
     end
 
     it 'is able to download changes in records' do
@@ -53,7 +53,7 @@ describe 'Api' do
 
       click_link 'dataset_changes_in_xml'
       content_type.should be_xml
-      page.should have_text 'Peter', 'Daniel'
+      page_should_have_content_with 'Peter', 'Daniel'
     end
 
     it 'is able to regenerate api key' do
@@ -67,9 +67,9 @@ describe 'Api' do
 
   context 'user with restricted api level' do
     before(:each) do
-      Factory(:user, api_access_level: Api::RESTRICTED)
+      FactoryGirl.create(:user, api_access_level: Api::RESTRICTED)
 
-      login_as(Factory(:user))
+      login_as(FactoryGirl.create(:user))
     end
 
     it 'is not able to download dataset records in csv', use_dump: true do

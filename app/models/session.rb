@@ -1,6 +1,5 @@
 # -*- encoding : utf-8 -*-
 class Session < ActiveRecord::Base
-  set_primary_key :id
 
   belongs_to :user
   has_many :accesses

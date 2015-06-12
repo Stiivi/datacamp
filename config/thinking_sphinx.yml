@@ -82,16 +82,16 @@ common: &common
     U+1EF4->y, U+1EF5->y, U+1EF6->y, U+1EF7->y, U+1EF8->y, U+1EF9->y"
 
   max_matches: 10000
+  mem_limit: 256M
 
 development:
   <<: *common
-  port: 9312
+  mysql41: 9322
 
 production:
   <<: *common
-  port: 9313
+  mysql41: 9313
 
 test:
   <<: *common
-  port: 9314
-  bin_path: '/usr/local/sphinx-2.0.10/bin/'
+  mysql41: 9314

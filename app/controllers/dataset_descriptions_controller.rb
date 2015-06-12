@@ -303,7 +303,7 @@ class DatasetDescriptionsController < ApplicationController
   protected
 
   def get_dataset_description
-    @dataset_description = DatasetDescription.find_by_id!(params[:id])
+    @dataset_description = DatasetDescription.find(params[:id])
   end
 
   def load_datasets
@@ -322,6 +322,7 @@ class DatasetDescriptionsController < ApplicationController
         category = DatasetCategory.find_or_create_by_title(params[:dataset_description][:category])
         category.save(validate: false)
         @dataset_description.category = category
+        params[:dataset_description].delete(:category_id)
       end
       params[:dataset_description].delete(:category)
     end

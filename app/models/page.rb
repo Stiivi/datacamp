@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Page < ActiveRecord::Base
-  set_primary_key :id
+
   translates :body, :title, :block
   locale_accessor I18N_LOCALES
 
@@ -17,6 +17,6 @@ class Page < ActiveRecord::Base
   end
 
   def get_sorted_blocks
-    blocks.find :all, :order => "name"
+    blocks.order("name")
   end
 end

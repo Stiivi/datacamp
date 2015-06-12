@@ -42,7 +42,7 @@ class SearchesController < ApplicationController
   end
 
   def show
-    @search = Search.find_by_id! params[:id]
+    @search = Search.find(params[:id])
     @disabled_descriptions = params[:disabled_descriptions]
 
     @results = {}

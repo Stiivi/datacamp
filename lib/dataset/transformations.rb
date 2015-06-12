@@ -81,7 +81,7 @@ module Dataset::Transformations
     if table_name =~ /^ds_/
       new_table_name = "#{table_name}".sub('ds_', '')
       @connection.rename_table table_name, new_table_name
-      dataset_record_class.set_table_name new_table_name
+      dataset_record_class.table_name = new_table_name
     end
 
     system_columns.each do |column, type|

@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   attr_accessor :javascripts
 
   include AuthenticatedSystem
-  include CaptchaHelper
   include Datacamp::Logger
 
   # Session initialization
@@ -84,8 +83,17 @@ private
     # You would also set the time zone for Rails time zone support here:
     # Time.zone = Person.current.time_zone
   end
-    
-protected
+
+  def index_page
+    @__index_page ||= Page.find_by_page_name("index")
+  end
+
+  def verify_captcha_for(model)
+    verify_recaptcha(private_key: Datacamp::Config.get(:captcha_private_key), model: model)
+  end
+
+  protected
+
   def update_all_positions(model, ids)
     items = model.all
     items.each do |item|

@@ -6,16 +6,16 @@ describe 'Activities' do
   end
 
   it 'user is able to see what changes happend in the system' do
-    Factory(:dataset_description, en_title: 'students', with_dataset: true)
+    FactoryGirl.create(:dataset_description, en_title: 'students', with_dataset: true)
 
     visit activities_path(locale: :en)
 
-    page.should have_content 'dataset_create', 'dataset_create'
+    page_should_have_content_with 'dataset_create', 'students'
 
     within("#change_#{Change.first.id}") do
       click_link 'View'
     end
 
-    page.should have_content 'dataset_create', 'dataset_create'
+    page_should_have_content_with 'dataset_create', 'students'
   end
 end

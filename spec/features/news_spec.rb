@@ -2,23 +2,23 @@ require 'spec_helper'
 
 describe 'News' do
   context 'frontend' do
-    let!(:dataset_news) { Factory(:news, title: 'new dataset available', text: 'finance stuffs') }
+    let!(:dataset_news) { FactoryGirl.create(:news, title: 'new dataset available', text: 'finance stuffs') }
 
     it 'user can see news listing' do
       visit news_index_path(locale: :en)
 
-      page.should have_content 'new dataset available', 'finance stuffs'
+      page_should_have_content_with 'new dataset available', 'finance stuffs'
     end
 
     it 'user can see news detail' do
       visit news_path(id: dataset_news, locale: :en)
 
-      page.should have_content 'new dataset available', 'finance stuffs'
+      page_should_have_content_with 'new dataset available', 'finance stuffs'
     end
   end
 
   context 'admin section' do
-    let!(:dataset_news) { Factory(:news, title: 'update available', text: 'read more') }
+    let!(:dataset_news) { FactoryGirl.create(:news, title: 'update available', text: 'read more') }
 
     before(:each) do
       login_as(admin_user)

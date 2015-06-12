@@ -21,7 +21,9 @@ FactoryGirl.define do
   end
 
   factory :dataset_description do
-    with_dataset { false }.ignore
+    transient do
+      with_dataset false
+    end
 
     sk_title 'sk title'
     en_title 'en title'
@@ -30,8 +32,8 @@ FactoryGirl.define do
     is_active true
     category
 
-    after_create do |dataset_description, proxy|
-      dataset_description.dataset.setup_table if proxy.with_dataset
+    after(:create) do |dataset_description, evaluator|
+      dataset_description.dataset.setup_table if evaluator.with_dataset
     end
   end
 

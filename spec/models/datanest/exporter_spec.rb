@@ -4,8 +4,11 @@ class DatasetDescription; end
 
 describe Datanest::Exporter do
 
-  its(:strategy) { should == :csv }
   let(:datasets) { [stub(identifier: 'hockey'), stub(identifier: 'soccer')] }
+
+  it 'has strategy default to csv' do
+    Datanest::Exporter.new.strategy.should eq :csv
+  end
 
   it 'takes an input strategy parameter' do
     subject = Datanest::Exporter.new(strategy: :xml)

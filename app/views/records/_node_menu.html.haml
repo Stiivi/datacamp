@@ -6,7 +6,7 @@
   %ul.tabs.small.clearfix.fr
     - if logged_in?
       = render :partial => "favorites/favorite_menu"
-    - if SharingService.all.count > 0
+    - if SharingService.count > 0
       %li.dropdown_trigger
         %a.share{:href => '#share'}
           Share

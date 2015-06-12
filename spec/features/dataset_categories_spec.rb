@@ -6,8 +6,8 @@ describe 'DatasetCategories' do
   end
 
   it 'user can see categories in dataset description screen' do
-    Factory(:category, title: 'documents')
-    Factory(:category, title: 'persons')
+    FactoryGirl.create(:category, title: 'documents')
+    FactoryGirl.create(:category, title: 'persons')
 
     visit dataset_descriptions_path(locale: :en)
 
@@ -17,8 +17,8 @@ describe 'DatasetCategories' do
 
   # not sure if this test is needed, but it is in the system, so I wrote a test for it
   it 'user can see categories in category listing' do
-    Factory(:category, title: 'documents')
-    Factory(:category, title: 'persons')
+    FactoryGirl.create(:category, title: 'documents')
+    FactoryGirl.create(:category, title: 'persons')
 
     visit categories_path(locale: :en)
 
@@ -51,7 +51,7 @@ describe 'DatasetCategories' do
   end
 
   it 'user is able to edit category' do
-    category = Factory(:category, title: 'documents')
+    category = FactoryGirl.create(:category, title: 'documents')
 
     visit edit_dataset_category_path(id: category, locale: :en)
 
@@ -63,7 +63,7 @@ describe 'DatasetCategories' do
   it 'user should see if he tries to update category to invalid'
 
   it 'user is able to inline edit category', js: true do
-    category = Factory(:category, title: 'documents')
+    category = FactoryGirl.create(:category, title: 'documents')
 
     visit dataset_descriptions_path(locale: :en)
 
@@ -80,7 +80,7 @@ describe 'DatasetCategories' do
   end
 
   it 'user is able to delete category' do
-    category = Factory(:category, title: 'documents')
+    category = FactoryGirl.create(:category, title: 'documents')
 
     visit dataset_descriptions_path(locale: :en)
 

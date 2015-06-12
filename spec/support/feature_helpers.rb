@@ -4,7 +4,7 @@ module PageHelpers
   end
 
   def home_page
-    @__home_page ||= Page.find_by_page_name('index') || Factory(:page, page_name: 'index')
+    @__home_page ||= Page.find_by_page_name('index') || FactoryGirl.create(:page, page_name: 'index')
   end
 end
 
@@ -17,7 +17,7 @@ module LoginHelpers
         user.password = 'secret'
         user
       else
-        Factory(:user, login: 'admin_user', password: 'secret', api_access_level: Api::PREMIUM)
+        FactoryGirl.create(:user, login: 'admin_user', password: 'secret', api_access_level: Api::PREMIUM)
       end
     end
   end
@@ -66,9 +66,24 @@ module LoginHelpers
   end
 end
 
+module ExpectationHelpers
+  def page_should_have_content_with(*names)
+    Array.wrap(names).each do |name|
+      page.should have_content name
+    end
+  end
+
+  def page_should_not_have_content_with(*names)
+    Array.wrap(names).each do |name|
+      page.should_not have_content name
+    end
+  end
+end
+
 RSpec.configure do |config|
   config.include PageHelpers
   config.include LoginHelpers
+  config.include ExpectationHelpers
 
   config.before(:each) do
     if RSpec.current_example.metadata[:type] == :feature

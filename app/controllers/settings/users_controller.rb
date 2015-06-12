@@ -21,7 +21,7 @@ module Settings
           @users = User.paginate paginate_options.merge(select_options)
         }
         wants.csv {
-          @users = User.find :all
+          @users = User.all
           render :text => collection_as_csv(@users, [:login, :name, :email])
         }
       end

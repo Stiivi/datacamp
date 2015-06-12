@@ -7,18 +7,16 @@ class Comment < ActiveRecord::Base
   has_many :comment_ratings
   has_many :comment_reports
   
-  default_scope :conditions => { :is_suspended => nil }
+  default_scope where(is_suspended: nil)
 
   validates_presence_of :user, :dataset_description
 
   def self.find_include_suspended conditions=''
-    with_exclusive_scope() do
-      where(conditions)
-    end
+    unscoped.where(conditions)
   end
-  
-  def self.find_by_id! id
-    with_exclusive_scope { super(id) }
+
+  def self.within_all
+    unscoped
   end
   
   ##############################################################################
@@ -58,8 +56,8 @@ class Comment < ActiveRecord::Base
   ##############################################################################
   # Score reloading
   def reload_score
-    self.count_positive_ratings = CommentRating.count :conditions => {:comment_id => self.id, :value => 1}
-    self.count_negative_ratings = CommentRating.count :conditions => {:comment_id => self.id, :value => -1}
+    self.count_positive_ratings = CommentRating.where(comment_id: id, value: 1).count
+    self.count_negative_ratings = CommentRating.where(comment_id: id, value: -1).count
     self.save
     # self.score = eval comment_ratings.collect{|rating|rating.value}.join("+")
   end

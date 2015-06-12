@@ -1,106 +1,113 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: http://www.ives.sk:80/registre/detailrnd.do?action=uplny&formular=&id=158309&locale=sk
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158309&locale=sk
     body: 
-    headers: 
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      encoding: US-ASCII
+      string: ""
+    headers: {}
+
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      date: 
+      Date: 
       - Mon, 21 Jul 2014 14:06:38 GMT
-      server: 
+      Server: 
       - Apache/2.2.22 (Debian)
-      set-cookie: 
+      Set-Cookie: 
       - JSESSIONID=63CD7DF8116F08094D32FF02C40B296C; Path=/
-      vary: 
+      Vary: 
       - Accept-Encoding
-      content-encoding: 
+      Content-Encoding: 
       - gzip
-      content-length: 
+      Content-Length: 
       - "2138"
-      content-type: 
+      Content-Type: 
       - text/html;charset=UTF-8
-    body: "\r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
-      \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
-      \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
-      \r\n\
-      \r\n \r\n \r\n \r\n\
-      \r\n\
-      \r\n\
-      <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
-      \r\n \r\n\
-      <!--\r\n\
-      <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-      -->\r\n\
-      <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-      </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\">\r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n  <h2>V\xC3\xBDpis z registra</h2>\r\n  <div class=\"nadpis3i\">Tento v\xC3\xBDpis m\xC3\xA1 len informat\xC3\xADvny charakter a nie je pou\xC5\xBEite\xC4\xBEn\xC3\xBD pre pr\xC3\xA1vne \xC3\xBAkony.</div>\r\n  <br>  \r\n\
-      \r\n   <table>\r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>Registra\xC4\x8Dn\xC3\xA9 \xC4\x8D\xC3\xADslo</b></td>\r\n      <td class=\"defTextTable\">203/Na-96/252</td>\r\n    </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>N\xC3\xA1zov nad\xC3\xA1cie</b></td>\r\n    <td class=\"defTextTable\" >iFo Nad\xC3\xA1cia mlad\xC3\xBDch /iFo youth foundation/ </td>\r\n  </tr>\r\n\
-      \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>S\xC3\xADdlo</b></td>\r\n    <td class=\"defTextTable\" >Dru\xC5\xBEstevn\xC3\xA1 2, 83110 Bratislava, Slovensk\xC3\xA1 republika</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>I\xC4\x8CO</b></td>\r\n    <td class=\"defTextTable\" >30843961</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vzniku</b></td>\r\n    <td class=\"defTextTable\" >27.08.1997</td>\r\n  </tr>\r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1pisu</b></td>\r\n    <td class=\"defTextTable\" >27.08.1997</td>\r\n  </tr>\r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vstupu do likvid\xC3\xA1cie </b></td>\r\n      <td class=\"defTextTable\" >20.03.2002</td>\r\n    </tr>\r\n   \r\n    \r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1niku </b></td>\r\n    <td class=\"defTextTable\" >10.04.2002</td>\r\n  </tr>\r\n  \r\n\
-      \r\n\
-      \r\n\
-      \r\n     <tr>\r\n       <td class=\"defTextTable\" style=\"width:200px;\"><b>Aktu\xC3\xA1lna hodnota nada\xC4\x8Dn\xC3\xA9ho imania</b></td>\r\n       <td class=\"defTextTable\" >&nbsp;&nbsp;</td>\r\n     </tr>\r\n\
-      \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\">&nbsp;</td>\r\n    <td class=\"defTextTable\" >&nbsp;</td>\r\n  </tr>\r\n  \r\n \r\n   <tr><td class=\"defTextTable\" valign=\"top\"><b>Zakladatelia </b></td>\r\n        \r\n        <td>\r\n           <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n   \r\n            \r\n             \r\n               <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Nad\xC3\xA1cia mlad\xC3\xBDch ifo\r\n                        <br/>Nejedl\xC3\xA9ho 31, 84102 Bratislava\r\n                        <br/>I\xC4\x8CO:&nbsp;\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\"  nowrap>&nbsp;\r\n                   \r\n                  </td>\r\n               </tr>  \r\n             \r\n         \r\n       \r\n    \r\n     </table>\r\n   </td>\r\n  </tr>\r\n\
-      \r\n\
-      \r\n <tr><td>&nbsp;</td></tr>\r\n \r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" valign=\"TOP\"><b>\xC5\xA0tatut\xC3\xA1rny organ:&nbsp;Spr\xC3\xA1vca</b></td>\r\n        \r\n       <td>   \r\n         <table cellpadding=\"0\" cellspacing=\"0\" width =\"100%\">\r\n                  \r\n                    <tr>  \r\n\
-      \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">Mgr. Jozef  Sabo\r\n                        <br/>Nezn\xC3\xA1me miesto ,  Nezn\xC3\xA1me miesto\r\n                        </td> \r\n\
-      \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">27.08.1997</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\"></td>                 \r\n                   </tr>     \r\n                 \r\n         </table>\r\n       </td>\r\n    </tr> \r\n    <tr><td>&nbsp;</td></tr>\r\n   \r\n        \r\n    <tr>\r\n      <td class=\"defTextTable\"  valign=\"TOP\"><b>\xC3\x9A\xC4\x8Del nad\xC3\xA1cie</b></td>\r\n      <td class=\"defTextTable\"  colspan=\"5\">\r\n    \r\n    </td></tr>\r\n \r\n  \r\n\
-      </table>\r\n  <p class=\"btnCenter\"><a href=\"javascript:history.go(-1)\">Sp\xC3\xA4\xC5\xA5</a></p>\r\n  \r\n\
-      </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C\">Hlavn\xC3\xBD zoznam</a>\r\n\
-      |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
-      |</div>\r\n\
-      \r\n\
-      \r\n\
-      <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
-      \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
-      \r\n\
-      \r\n\
-      \r\n\
-      \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
-      \r\n\
-      &nbsp;\r\n\
-      <hr>\r\n \r\n\
-      \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
-      </html>\r\n\
-      \r\n"
+    body: 
+      encoding: UTF-8
+      string: "\r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
+        \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
+        \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
+        \r\n\
+        \r\n \r\n \r\n \r\n\
+        \r\n\
+        \r\n\
+        <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
+        \r\n \r\n\
+        <!--\r\n\
+        <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
+        -->\r\n\
+        <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
+        </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\">\r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n  <h2>V\xC3\xBDpis z registra</h2>\r\n  <div class=\"nadpis3i\">Tento v\xC3\xBDpis m\xC3\xA1 len informat\xC3\xADvny charakter a nie je pou\xC5\xBEite\xC4\xBEn\xC3\xBD pre pr\xC3\xA1vne \xC3\xBAkony.</div>\r\n  <br>  \r\n\
+        \r\n   <table>\r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>Registra\xC4\x8Dn\xC3\xA9 \xC4\x8D\xC3\xADslo</b></td>\r\n      <td class=\"defTextTable\">203/Na-96/252</td>\r\n    </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>N\xC3\xA1zov nad\xC3\xA1cie</b></td>\r\n    <td class=\"defTextTable\" >iFo Nad\xC3\xA1cia mlad\xC3\xBDch /iFo youth foundation/ </td>\r\n  </tr>\r\n\
+        \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>S\xC3\xADdlo</b></td>\r\n    <td class=\"defTextTable\" >Dru\xC5\xBEstevn\xC3\xA1 2, 83110 Bratislava, Slovensk\xC3\xA1 republika</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>I\xC4\x8CO</b></td>\r\n    <td class=\"defTextTable\" >30843961</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vzniku</b></td>\r\n    <td class=\"defTextTable\" >27.08.1997</td>\r\n  </tr>\r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1pisu</b></td>\r\n    <td class=\"defTextTable\" >27.08.1997</td>\r\n  </tr>\r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vstupu do likvid\xC3\xA1cie </b></td>\r\n      <td class=\"defTextTable\" >20.03.2002</td>\r\n    </tr>\r\n   \r\n    \r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1niku </b></td>\r\n    <td class=\"defTextTable\" >10.04.2002</td>\r\n  </tr>\r\n  \r\n\
+        \r\n\
+        \r\n\
+        \r\n     <tr>\r\n       <td class=\"defTextTable\" style=\"width:200px;\"><b>Aktu\xC3\xA1lna hodnota nada\xC4\x8Dn\xC3\xA9ho imania</b></td>\r\n       <td class=\"defTextTable\" >&nbsp;&nbsp;</td>\r\n     </tr>\r\n\
+        \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\">&nbsp;</td>\r\n    <td class=\"defTextTable\" >&nbsp;</td>\r\n  </tr>\r\n  \r\n \r\n   <tr><td class=\"defTextTable\" valign=\"top\"><b>Zakladatelia </b></td>\r\n        \r\n        <td>\r\n           <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n   \r\n            \r\n             \r\n               <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Nad\xC3\xA1cia mlad\xC3\xBDch ifo\r\n                        <br/>Nejedl\xC3\xA9ho 31, 84102 Bratislava\r\n                        <br/>I\xC4\x8CO:&nbsp;\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\"  nowrap>&nbsp;\r\n                   \r\n                  </td>\r\n               </tr>  \r\n             \r\n         \r\n       \r\n    \r\n     </table>\r\n   </td>\r\n  </tr>\r\n\
+        \r\n\
+        \r\n <tr><td>&nbsp;</td></tr>\r\n \r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" valign=\"TOP\"><b>\xC5\xA0tatut\xC3\xA1rny organ:&nbsp;Spr\xC3\xA1vca</b></td>\r\n        \r\n       <td>   \r\n         <table cellpadding=\"0\" cellspacing=\"0\" width =\"100%\">\r\n                  \r\n                    <tr>  \r\n\
+        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">Mgr. Jozef  Sabo\r\n                        <br/>Nezn\xC3\xA1me miesto ,  Nezn\xC3\xA1me miesto\r\n                        </td> \r\n\
+        \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">27.08.1997</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\"></td>                 \r\n                   </tr>     \r\n                 \r\n         </table>\r\n       </td>\r\n    </tr> \r\n    <tr><td>&nbsp;</td></tr>\r\n   \r\n        \r\n    <tr>\r\n      <td class=\"defTextTable\"  valign=\"TOP\"><b>\xC3\x9A\xC4\x8Del nad\xC3\xA1cie</b></td>\r\n      <td class=\"defTextTable\"  colspan=\"5\">\r\n    \r\n    </td></tr>\r\n \r\n  \r\n\
+        </table>\r\n  <p class=\"btnCenter\"><a href=\"javascript:history.go(-1)\">Sp\xC3\xA4\xC5\xA5</a></p>\r\n  \r\n\
+        </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C\">Hlavn\xC3\xBD zoznam</a>\r\n\
+        |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
+        |</div>\r\n\
+        \r\n\
+        \r\n\
+        <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
+        \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=63CD7DF8116F08094D32FF02C40B296C?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
+        \r\n\
+        &nbsp;\r\n\
+        <hr>\r\n \r\n\
+        \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
+        </html>\r\n\
+        \r\n"
     http_version: "1.1"
+  recorded_at: Mon, 08 Jun 2015 11:31:30 GMT
+recorded_with: VCR 2.9.3

@@ -78,7 +78,7 @@ class AccountsController < ApplicationController
       self.current_user = @account
       UserMailer.registration_complete(@account).deliver
       flash[:user_registered] = true
-      redirect_to root_path(bust_cache: rand), notice: t("users.registration_complete")
+      redirect_to page_path(index_page, bust_cache: rand), notice: t("users.registration_complete")
     else
       render :action => "new"
     end
@@ -90,7 +90,7 @@ class AccountsController < ApplicationController
     @account = current_user
     @account.accepts_terms = '1'
     @comments = Comment.find_include_suspended(:user_id => current_user.id)
-    @favorites = @account.favorites || []
+    @favorites = @account.favorites.includes(:dataset_description, :record)
     # FIXME: This might get slow with many favorites. Favorites tab should be loaded
     # with Ajax after clicking it.
   end

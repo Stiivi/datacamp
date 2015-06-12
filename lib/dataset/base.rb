@@ -42,9 +42,11 @@ class Dataset::Base
     Kernel.const_set((@@prefix + @description.identifier).classify, Class.new(Dataset::DatasetRecord)) unless dataset_record_class
     dataset_record_class.dataset = self
     dataset_record_class.establish_connection Rails.env + "_data"
-    dataset_record_class.set_table_name @@prefix + @description.identifier
+    table_name = @@prefix + @description.identifier
+    dataset_record_class.table_name = table_name
 
-    dataset_record_class.write_inheritable_attribute(:reflections, {}) unless Rails.env.test?
+    # TODO: what is this doing ??
+    # dataset_record_class.write_inheritable_attribute(:reflections, {}) unless Rails.env.test?
     dataset_record_class.send(:has_many, :dc_updates, class_name: 'Dataset::DcUpdate', as: :updatable)
     if Relation.table_exists?
       @description.relations.each do |relation|
@@ -98,7 +100,7 @@ class Dataset::Base
 
     # Add derived fields
     @derived_fields = Hash.new
-    @description.field_descriptions.find(:all, :conditions => { :is_derived => true }).each do |derived_field|
+    @description.field_descriptions.where(is_derived: true).each do |derived_field|
       @derived_fields[derived_field.identifier.to_sym] = derived_field.derived_value
     end
 
@@ -124,7 +126,8 @@ class Dataset::Base
   end
 
   def table_exists?
-    dataset_record_class.table_exists?
+    # we cannot user dataset_record_class.table_exists? because it returns wrong results because of cache
+    dataset_record_class.connection.tables.include?(table_name)
   end
 
   def to_param

@@ -125,7 +125,6 @@ describe Etl::RegisExtraction do
         hash[:region].should == "Poltár"
         hash[:activity1].should == "55200"
         hash[:activity2].should == "55210"
-        hash[:account_sector].should == "14100"
         hash[:ownership].should == "2"
         hash[:size].should == "00"
         hash[:source_url].should == "http://www.statistics.sk/pls/wregis/detail?wxidorg=500000"
@@ -148,7 +147,6 @@ describe Etl::RegisExtraction do
         hash[:region].should == "Senica"
         hash[:activity1].should == "49410"
         hash[:activity2].should == "60240"
-        hash[:account_sector].should == "14100"
         hash[:ownership].should == "2"
         hash[:size].should == "  "
         hash[:source_url].should == "http://www.statistics.sk/pls/wregis/detail?wxidorg=102034"
@@ -170,14 +168,11 @@ describe Etl::RegisExtraction do
         hash[:region].should == "Banská Bystrica"
         hash[:activity1].should == "66220"
         hash[:activity2].should == "67200"
-        hash[:account_sector].should == "14100"
         hash[:ownership].should == "2"
         hash[:size].should == "  "
         hash[:source_url].should == "http://www.statistics.sk/pls/wregis/detail?wxidorg=1332604"
       end
     end
-
-
   end
 
 end

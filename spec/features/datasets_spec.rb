@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe 'Datasets' do
 
-  let(:lists_category) { Factory(:category, title: 'lists') }
+  let(:lists_category) { FactoryGirl.create(:category, title: 'lists') }
 
-  let!(:quality_dataset) { Factory(:dataset_description, en_title: 'doctors', category: lists_category, is_active: true, with_dataset: true, bad_quality: false) }
+  let!(:quality_dataset) { FactoryGirl.create(:dataset_description, en_title: 'doctors', category: lists_category, is_active: true, with_dataset: true, bad_quality: false) }
 
   context 'anonymous user' do
-    let!(:not_quality_dataset) { Factory(:dataset_description, en_title: 'students', category: lists_category, is_active: true, with_dataset: true, bad_quality: true) }
-    let!(:not_active_dataset) { Factory(:dataset_description, en_title: 'schools', category: lists_category, is_active: false, with_dataset: true, bad_quality: true) }
+    let!(:not_quality_dataset) { FactoryGirl.create(:dataset_description, en_title: 'students', category: lists_category, is_active: true, with_dataset: true, bad_quality: true) }
+    let!(:not_active_dataset) { FactoryGirl.create(:dataset_description, en_title: 'schools', category: lists_category, is_active: false, with_dataset: true, bad_quality: true) }
 
     it 'is able to all available datasets' do
       visit datasets_path(locale: :en)
@@ -40,9 +40,9 @@ describe 'Datasets' do
     end
 
     it 'is able to see published records and visible columns in dataset' do
-      Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
-      Factory(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset, is_visible_in_detail: false)
-      Factory(:field_description, en_title: 'Description', identifier: 'description', dataset_description: quality_dataset, is_visible_in_listing: false)
+      FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
+      FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset, is_visible_in_detail: false)
+      FactoryGirl.create(:field_description, en_title: 'Description', identifier: 'description', dataset_description: quality_dataset, is_visible_in_listing: false)
 
       record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', last_name: 'Smith', description: 'Young', record_status: 'published', quality_status: 'unclear')
       record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', last_name: 'Brutal', description: 'From city', record_status: 'loaded')
@@ -51,22 +51,22 @@ describe 'Datasets' do
 
       click_link 'doctors'
 
-      page.should have_content 'John', 'Smith'
-      page.should_not have_content 'Ann', 'Brutal', 'Young', 'From city'
+      page_should_have_content_with 'John', 'Smith'
+      page_should_not_have_content_with 'Ann', 'Brutal', 'Young', 'From city'
 
       within("#kernel_ds_doctor_#{record_1.id}") do
         click_link 'View'
       end
 
-      page.should have_content 'John', 'Smith', 'Young', 'Unclear'
-      page.should_not have_content 'Smith'
+      page_should_have_content_with 'John', 'Young', 'Unclear'
+      page_should_not_have_content_with 'Smith'
 
       # metadata
       page.should have_content 'published'
     end
 
     it 'is able to sort records by column' do
-      Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
+      FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
       record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published')
       record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'published')
@@ -92,14 +92,14 @@ describe 'Datasets' do
     end
 
     it 'is able to filder records', js: true do
-      Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
+      FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
       quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
       quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
-      page.should have_content 'John', 'Ann'
+      page_should_have_content_with 'John', 'Ann'
 
       within('.top_pagination') do
         select 'Loaded', from: 'filters_record_status'
@@ -123,7 +123,7 @@ describe 'Datasets' do
     end
 
     it 'is able to update record status and quality status for multiple rows at once', js: true do
-      Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
+      FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
       record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
       record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
@@ -168,8 +168,8 @@ describe 'Datasets' do
     end
 
     it 'is able to use batch update to set the same value for multiple records at once', js: true do
-      Factory(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
-      Factory(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset)
+      FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
+      FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset)
 
       record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', last_name: 'Smith')
       record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', last_name: 'Hamster')
@@ -206,7 +206,8 @@ describe 'Datasets' do
 
   def page_have_datasets_in_category(category, dateset_names)
     within(".dataset_category_#{category.id}") do
-      page.should have_content *dateset_names
+      page_should_have_content_with *dateset_names
     end
   end
+
 end

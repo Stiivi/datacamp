@@ -135,7 +135,7 @@ class RecordsController < ApplicationController
   
   protected
   def load_record
-    @dataset_description = DatasetDescription.find_by_id!(params[:dataset_id])
+    @dataset_description = DatasetDescription.find(params[:dataset_id])
     @dataset             = @dataset_description.dataset
     @dataset_class       = @dataset.dataset_record_class
 
