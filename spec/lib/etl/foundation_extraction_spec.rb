@@ -15,7 +15,7 @@ describe Etl::FoundationExtraction do
 
   describe '#download' do
     it 'return downloaded document' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         @extractor.download.should_not be_nil
       end
     end
@@ -23,11 +23,11 @@ describe Etl::FoundationExtraction do
 
   describe '#digest' do
     it 'return foundation hash - all attributes' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ives_id].should == 158823
-        digest[:name].should == 'NADÁCIA EQUUS ARABIUS v likvidácii'
+        digest[:name].should include('NADÁCIA EQUUS ARABIUS')
         digest[:identification_number].should == '30864399'
         digest[:registration_number].should == '203/Na-2002/839'
         digest[:address].should == 'Roľnícka 10, 83107 Bratislava, Slovenská republika'
@@ -44,7 +44,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - without date_end' do
       @extractor = Etl::FoundationExtraction.new(158264)
-      VCR.use_cassette('foundation_158264') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158264') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ives_id].should == 158264
@@ -54,7 +54,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - without date_liquidation' do
       @extractor = Etl::FoundationExtraction.new(158785)
-      VCR.use_cassette('foundation_158785') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158785') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:date_liquidation].should be_nil
@@ -64,7 +64,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - with other currency' do
       @extractor = Etl::FoundationExtraction.new(158785)
-      VCR.use_cassette('foundation_158785') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158785') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:assets_currency].should == 'EUR'
@@ -73,7 +73,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - with decimal assets' do
       @extractor = Etl::FoundationExtraction.new(158264)
-      VCR.use_cassette('foundation_158264') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158264') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:assets_value].should == 8692.69
@@ -82,7 +82,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - without assets' do
       @extractor = Etl::FoundationExtraction.new(158309)
-      VCR.use_cassette('foundation_158309') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158309') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:assets_value].should == nil
@@ -91,7 +91,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'return foundation hash - multiple founders' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_founders_attributes].count.should == 5
@@ -108,7 +108,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - founder with identification_number' do
       @extractor = Etl::FoundationExtraction.new(158264)
-      VCR.use_cassette('foundation_158264') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158264') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_founders_attributes].count.should == 1
@@ -125,7 +125,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - founder without contribution' do
       @extractor = Etl::FoundationExtraction.new(158309)
-      VCR.use_cassette('foundation_158309') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158309') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_founders_attributes].count.should == 1
@@ -137,7 +137,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'return foundation hash - with trustee' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_trustees_attributes].count.should == 1
@@ -152,7 +152,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - multiple trustees' do
       @extractor = Etl::FoundationExtraction.new(158785)
-      VCR.use_cassette('foundation_158785') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158785') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_trustees_attributes].count.should == 2
@@ -172,7 +172,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'return foundation hash - with liquidator' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_liquidators_attributes].count.should == 1
@@ -187,7 +187,7 @@ describe Etl::FoundationExtraction do
 
     it 'return foundation hash - with liquidator without liquidator_to' do
       @extractor = Etl::FoundationExtraction.new(158264)
-      VCR.use_cassette('foundation_158264') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158264') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         digest[:ds_foundation_liquidators_attributes].count.should == 1
@@ -214,7 +214,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'save all attributes' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         @extractor.save digest
@@ -223,7 +223,7 @@ describe Etl::FoundationExtraction do
         Dataset::DsFoundation.count.should == 1
         foundation = Dataset::DsFoundation.first
         foundation.ives_id.should == 158823
-        foundation.name.should == 'NADÁCIA EQUUS ARABIUS v likvidácii'
+        foundation.name.should include('NADÁCIA EQUUS ARABIUS')
         foundation.identification_number.should == '30864399'
         foundation.registration_number.should == '203/Na-2002/839'
         foundation.address.should == 'Roľnícka 10, 83107 Bratislava, Slovenská republika'
@@ -239,7 +239,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'save founders' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         @extractor.save digest
@@ -258,7 +258,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'save trustees' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         @extractor.save digest
@@ -276,7 +276,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'save liquidators' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         @extractor.save digest
@@ -294,7 +294,7 @@ describe Etl::FoundationExtraction do
     end
 
     it 'multiple save' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         doc = @extractor.download
         digest = @extractor.digest(doc)
         @extractor.save digest
@@ -313,7 +313,7 @@ describe Etl::FoundationExtraction do
 
   describe '#perform' do
     it 'download and save' do
-      VCR.use_cassette('foundation_158823') do
+      VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         @extractor.perform.should be_true
         Dataset::DsFoundation.count.should == 1
       end

@@ -15,7 +15,7 @@ describe Etl::MzvsrContractExtraction do
 
   describe '#download' do
     it 'downloads html of the document' do
-      VCR.use_cassette('mzvsr_contract') do
+      VCR.use_cassette('etl/mzvsr_contract_extraction/contract') do
         extractor.download
 
         expect(extractor.content).not_to be_nil
@@ -25,7 +25,7 @@ describe Etl::MzvsrContractExtraction do
 
   describe '#parse' do
     it 'parses downloaded document' do
-      VCR.use_cassette('mzvsr_contract') do
+      VCR.use_cassette('etl/mzvsr_contract_extraction/contract') do
         extractor.download
 
         extractor.parse
@@ -57,7 +57,7 @@ describe Etl::MzvsrContractExtraction do
     end
 
     it 'saves contract' do
-      VCR.use_cassette('mzvsr_contract') do
+      VCR.use_cassette('etl/mzvsr_contract_extraction/contract') do
         expect { extractor.perform }.to change(Dataset::DsMzvsrContract, :count).by(1)
 
         record = Dataset::DsMzvsrContract.last
@@ -68,7 +68,7 @@ describe Etl::MzvsrContractExtraction do
       end
     end
     it 'updates existing contracts' do
-      VCR.use_cassette('mzvsr_contract') do
+      VCR.use_cassette('etl/mzvsr_contract_extraction/contract') do
         extractor.perform
 
         extractor = Etl::MzvsrContractExtraction.new(uri)

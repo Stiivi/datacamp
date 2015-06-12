@@ -1,0 +1,27 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      User-Agent: 
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Cookie: 
+      - JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49
+  response: 
+    status: 
+      code: 0
+      message: 
+    headers: {}
+
+    body: 
+      encoding: US-ASCII
+      string: ""
+    http_version: 
+    adapter_metadata: 
+      effective_url: HTTP://blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event
+  recorded_at: Fri, 12 Jun 2015 14:36:52 GMT
+recorded_with: VCR 2.9.3

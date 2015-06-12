@@ -1,0 +1,116 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158785&locale=sk
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      User-Agent: 
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Fri, 12 Jun 2015 14:11:46 GMT
+      Server: 
+      - Apache/2.2.22 (Debian)
+      Set-Cookie: 
+      - JSESSIONID=86F86494B01D0176C81B3225EE75099B; Path=/
+      Vary: 
+      - Accept-Encoding
+      Transfer-Encoding: 
+      - chunked
+      Content-Type: 
+      - text/html;charset=UTF-8
+    body: 
+      encoding: ASCII-8BIT
+      string: "\r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
+        \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
+        \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
+        \r\n\
+        \r\n \r\n \r\n \r\n\
+        \r\n\
+        \r\n\
+        <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
+        \r\n \r\n\
+        <!--\r\n\
+        <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
+        -->\r\n\
+        <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
+        </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\">\r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n  <h2>V\xC3\xBDpis z registra</h2>\r\n  <div class=\"nadpis3i\">Tento v\xC3\xBDpis m\xC3\xA1 len informat\xC3\xADvny charakter a nie je pou\xC5\xBEite\xC4\xBEn\xC3\xBD pre pr\xC3\xA1vne \xC3\xBAkony.</div>\r\n  <br>  \r\n\
+        \r\n   <table>\r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>Registra\xC4\x8Dn\xC3\xA9 \xC4\x8D\xC3\xADslo</b></td>\r\n      <td class=\"defTextTable\">203/Na-2002/798</td>\r\n    </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>N\xC3\xA1zov nad\xC3\xA1cie</b></td>\r\n    <td class=\"defTextTable\" >&quot;Nad\xC3\xA1cia ACADEMIA NOVA&quot;</td>\r\n  </tr>\r\n\
+        \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>S\xC3\xADdlo</b></td>\r\n    <td class=\"defTextTable\" >Vent\xC3\xBArska 7, 81101 Bratislava - Star\xC3\xA9 Mesto, Slovensk\xC3\xA1 republika</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>I\xC4\x8CO</b></td>\r\n    <td class=\"defTextTable\" >31807682</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vzniku</b></td>\r\n    <td class=\"defTextTable\" >29.03.2005</td>\r\n  </tr>\r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1pisu</b></td>\r\n    <td class=\"defTextTable\" >29.03.2005</td>\r\n  </tr>\r\n  \r\n  \r\n    \r\n    \r\n  \r\n\
+        \r\n\
+        \r\n\
+        \r\n     <tr>\r\n       <td class=\"defTextTable\" style=\"width:200px;\"><b>Aktu\xC3\xA1lna hodnota nada\xC4\x8Dn\xC3\xA9ho imania</b></td>\r\n       <td class=\"defTextTable\" >&nbsp;7000 EUR   &nbsp;</td>\r\n     </tr>\r\n\
+        \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\">&nbsp;</td>\r\n    <td class=\"defTextTable\" >&nbsp;</td>\r\n  </tr>\r\n  \r\n \r\n   <tr><td class=\"defTextTable\" valign=\"top\"><b>Zakladatelia </b></td>\r\n        \r\n        <td>\r\n           <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n   \r\n          \r\n       \r\n       \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Ing. Slavom\xC3\xADr Hatina \r\n                        <br/>Strm\xC3\xBD vr\xC5\xA1ok 141, 84106 Bratislava\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;6638.78 EUR\r\n                   </td>  \r\n       </tr>  \r\n         \r\n    \r\n    \r\n     </table>\r\n   </td>\r\n  </tr>\r\n\
+        \r\n\
+        \r\n <tr><td>&nbsp;</td></tr>\r\n \r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" valign=\"TOP\"><b>\xC5\xA0tatut\xC3\xA1rny organ:&nbsp;Spr\xC3\xA1vca</b></td>\r\n        \r\n       <td>   \r\n         <table cellpadding=\"0\" cellspacing=\"0\" width =\"100%\">\r\n                  \r\n                    <tr>  \r\n\
+        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">doc. JUDr.  J\xC3\xBAlius Kov\xC3\xA1\xC4\x8D, CSc.\r\n                        <br/>H. Meli\xC4\x8Dkovej 14, 84105 Bratislava\r\n                        </td> \r\n\
+        \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">29.03.2005</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">11.01.2007</td>                 \r\n                   </tr>     \r\n                 \r\n                    <tr>  \r\n\
+        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">Ing. O\xC4\xBEga Ko\xC5\x88uchov\xC3\xA1\r\n                        <br/>Ondavsk\xC3\xA1 2, 82108 Bratislava\r\n                        </td> \r\n\
+        \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">11.01.2007</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\"></td>                 \r\n                   </tr>     \r\n                 \r\n         </table>\r\n       </td>\r\n    </tr> \r\n    <tr><td>&nbsp;</td></tr>\r\n   \r\n        \r\n    <tr>\r\n      <td class=\"defTextTable\"  valign=\"TOP\"><b>\xC3\x9A\xC4\x8Del nad\xC3\xA1cie</b></td>\r\n      <td class=\"defTextTable\"  colspan=\"5\">\r\n    \r\n      \r\n        <div>       \r\n          <span class=\"cell\">podporova\xC5\xA5 vzdel\xC3\xA1vacie a kult\xC3\xBArne aktivity, v\xC3\xBDskum a v\xC3\xBDvoj najm\xC3\xA4:\r</br>- v\xC5\xA1estrann\xC3\xBD rozvoj vysoko\xC5\xA1kolsk\xC3\xA9ho vzdel\xC3\xA1vania, vedeck\xC3\xA9ho b\xC3\xA1dania a medzin\xC3\xA1rodnej spolupr\xC3\xA1ce,\r</br>- systematick\xC3\xBD kvalifika\xC4\x8Dn\xC3\xBD rast vysoko\xC5\xA1kolsk\xC3\xBDch pedag\xC3\xB3gov a pracovn\xC3\xADkov,\r</br>- \xC5\xA1tudijn\xC3\xA9 a odborn\xC3\xA9 st\xC3\xA1\xC5\xBEe a pobyty doma i v zahrani\xC4\x8D\xC3\xAD,\r</br>- soci\xC3\xA1lnu stabiliz\xC3\xA1ciu \xC5\xA1tudentov i pedag\xC3\xB3gov poskytovan\xC3\xADm \xC5\xA1tipendi\xC3\xAD, p\xC3\xB4\xC5\xBEi\xC4\x8Diek a dlhodob\xC3\xBDch \xC3\xBAverov,\r</br>- nadv\xC3\xA4zovanie kontaktov s dom\xC3\xA1cimi i zahrani\xC4\x8Dn\xC3\xBDmi univerzitami a vedeck\xC3\xBDmi in\xC5\xA1tit\xC3\xBAciami,\r</br>- vytv\xC3\xA1ranie priestoru pre komunik\xC3\xA1ciu a spolupr\xC3\xA1cu medzi jednotliv\xC3\xBDmi zlo\xC5\xBEkami spolo\xC4\x8Densk\xC3\xA9ho, kult\xC3\xBArneho, vedeck\xC3\xA9ho a hospod\xC3\xA1rskeho diania,\r</br>- iniciat\xC3\xADvy posil\xC5\x88uj\xC3\xBAce princ\xC3\xADpy ob\xC4\x8Dianskej slobody a pr\xC3\xA1vneho \xC5\xA1t\xC3\xA1tu,\r</br>- vytv\xC3\xA1ranie informa\xC4\x8Dn\xC3\xBDch datab\xC3\xA1z, tvorbu analytick\xC3\xBDch \xC5\xA1t\xC3\xBAdi\xC3\xAD v oblasti vzdel\xC3\xA1vania a v\xC3\xBDskumu,\r</br>- projekty v oblasti fondov E\xC3\x9A za \xC3\xBA\xC4\x8Delom skvalitnenia \xC3\xBArovne vysoko\xC5\xA1kolsk\xC3\xA9ho vzdel\xC3\xA1vania a vedeck\xC3\xA9ho v\xC3\xBDskumu na univerzit\xC3\xA1ch,\r</br>- organizovanie kontaktn\xC3\xBDch stretnut\xC3\xAD, rokovan\xC3\xAD, konferenci\xC3\xAD a kongresov,\r</br>- vydavate\xC4\xBEsk\xC3\xBA aktivitu jednotliv\xC3\xBDch ed\xC3\xADci\xC3\xAD vysoko\xC5\xA1kolsk\xC3\xBDch u\xC4\x8Debn\xC3\xADc, pom\xC3\xB4cok, odborn\xC3\xBDch monografi\xC3\xAD a \xC4\x8Dasopisov,\r</br>- n\xC3\xA1kup zahrani\xC4\x8Dnej a dom\xC3\xA1cej odbornej literat\xC3\xBAry a \xC4\x8Dasopisov,\r</br>- investi\xC4\x8Dn\xC3\xA9 z\xC3\xA1mery v z\xC3\xA1ujme z\xC3\xADskania vhodn\xC3\xBDch priestorov pre zabezpe\xC4\x8Denie vysoko\xC5\xA1kolskej v\xC3\xBDu\xC4\x8Dby, vedeck\xC3\xA9ho b\xC3\xA1dania a intern\xC3\xA1tneho ubytovania \xC5\xA1tudentov,\r</br>- \xC5\xA1portov\xC3\xA9 a rekrea\xC4\x8Dn\xC3\xA9 aktivity \xC5\xA1tudentov a pedag\xC3\xB3gov vr\xC3\xA1tane ich \xC5\xA1portov\xC3\xBDch klubov,\r</br>- v\xC5\xA1estrann\xC3\xBD rozvoj kult\xC3\xBAry, ochranu kult\xC3\xBArnych hodn\xC3\xB4t,\r</br>- kult\xC3\xBArno-spolo\xC4\x8Densk\xC3\xA9 aktivity a prezent\xC3\xA1cie, usporad\xC3\xBAvanie konferenci\xC3\xAD a v\xC3\xBDstav,\r</br>- osoby a in\xC5\xA1tit\xC3\xBAcie, ktor\xC3\xA9 rozv\xC3\xADjaj\xC3\xBA alebo zabezpe\xC4\x8Duj\xC3\xBA kult\xC3\xBArne aktivity, a to investorskou, materi\xC3\xA1lnou, finan\xC4\x8Dnou, poradenskou a inou formou,\r</br>- rozvoj v oblasti zdravotn\xC3\xADctva a podpora investi\xC4\x8Dn\xC3\xBDch projektov za \xC3\xBA\xC4\x8Delom skvalitnenia  poskytovania zdravotnej starostlivosti,\r</br>- zdravotn\xC3\xBA starostlivos\xC5\xA5 a vzdel\xC3\xA1vanie hendikepovan\xC3\xBDch det\xC3\xAD a ml\xC3\xA1de\xC5\xBEe,\r</br>- vytv\xC3\xA1ranie priazniv\xC3\xBDch podmienok pre poskytovanie zdravotnej starostlivosti a ochrany zdravia pre zdrav\xC3\xBD sp\xC3\xB4sob \xC5\xBEivota pomocou finan\xC4\x8Dn\xC3\xBDch a in\xC3\xBDch invest\xC3\xADci\xC3\xAD,\r</br>- realiz\xC3\xA1ciu humanit\xC3\xA1rn\xC3\xBDch a charitat\xC3\xADvnych cie\xC4\xBEov,\r</br>- ochranu a tvorbu \xC5\xBEivotn\xC3\xA9ho prostredia,\r</br>- aktivity zameran\xC3\xA9 na pomoc zdravotne postihnut\xC3\xBDm ob\xC4\x8Danom a zdravotn\xC3\xADckym zariadeniam,\r</br>- zria\xC4\x8Fovanie a budovanie zdravotn\xC3\xADckych zariaden\xC3\xAD pre deti a dospel\xC3\xBDch a zariaden\xC3\xAD s charakterom poskytovania zdravotn\xC3\xADckej starostlivosti,\r</br>- vytv\xC3\xA1ranie podmienok pre vznik centier v\xC3\xBDskumu a v\xC3\xBDvoja, transferu nov\xC3\xBDch technol\xC3\xB3gi\xC3\xAD a inov\xC3\xA1ci\xC3\xAD zabezpe\xC4\x8Duj\xC3\xBAcich v\xC3\xBDvoj nov\xC3\xBDch v\xC3\xBDrobkov, technologick\xC3\xBDch procesov a sk\xC3\xBA\xC5\xA1obnej techniky,\r</br>- posilnenie projek\xC4\x8Dno-dod\xC3\xA1vate\xC4\xBEsk\xC3\xBDch, sk\xC3\xBA\xC5\xA1obn\xC3\xBDch a servisn\xC3\xBDch kapac\xC3\xADt pre obory automatiza\xC4\x8Dnej a robotickej techniky a komponentov pre ich stavbu,\r</br>v\xC3\xBDskum a v\xC3\xBDvoj v oblasti pr\xC3\xADrodn\xC3\xBDch a technick\xC3\xBDch vied, so zameran\xC3\xADm najm\xC3\xA4 na oblas\xC5\xA5 materi\xC3\xA1lov\xC3\xBDch technol\xC3\xB3gi\xC3\xAD a nanotechnol\xC3\xB3gi\xC3\xAD, optomechaniky a laserov\xC3\xBDch technol\xC3\xB3gi\xC3\xAD,\r</br>- v\xC3\xBDvoj prototypov a pilotn\xC3\xBDch projektov,\r</br>- sk\xC3\xBA\xC5\xA1obn\xC3\xBA v\xC3\xBDrobu a testovanie v\xC3\xBDrobkov, postupov a slu\xC5\xBEieb,\r</br>- proces zlep\xC5\xA1ovania kvality vzdel\xC3\xA1vac\xC3\xADch a tr\xC3\xA9ningov\xC3\xBDch programov v oblasti pr\xC3\xADrodn\xC3\xBDch a technick\xC3\xBDch vied,\r</br>- pr\xC3\xADprava a koordin\xC3\xA1cia spolo\xC4\x8Dn\xC3\xBDch v\xC3\xBDskumn\xC3\xBDch a rozvojov\xC3\xBDch projektov pre tuzemsk\xC3\xA9 a zahrani\xC4\x8Dn\xC3\xA9 grantov\xC3\xA9 programy, \xC5\xA1t\xC3\xA1tne a eur\xC3\xB3pske podporn\xC3\xA9 fondy,\r</br>- koordin\xC3\xA1cia spolo\xC4\x8Dn\xC3\xBDch aktiv\xC3\xADt v eur\xC3\xB3pskych technologick\xC3\xBDch platform\xC3\xA1ch pre ich vyu\xC5\xBEitie na rozvoj v\xC3\xBDskumu a v\xC3\xBDvoja  a na rozvoj podnikate\xC4\xBEsk\xC3\xA9ho prostredia formou spolupr\xC3\xA1ce so zahrani\xC4\x8Dn\xC3\xBDmi partnermi,\r</br>- vytv\xC3\xA1ranie platformy pre efekt\xC3\xADvnu spolupr\xC3\xA1cu medzi region\xC3\xA1lnymi in\xC5\xA1tit\xC3\xBAciami a podnikate\xC4\xBEsk\xC3\xBDmi a univerzitn\xC3\xBDmi pracoviskami v rozvoji inov\xC3\xA1ci\xC3\xAD a zamestnanosti.\r</br>\r</br>\r</br>\r</br></span>\r\n        </div>\r\n      \r\n    \r\n    </td></tr>\r\n \r\n  \r\n\
+        </table>\r\n  <p class=\"btnCenter\"><a href=\"javascript:history.go(-1)\">Sp\xC3\xA4\xC5\xA5</a></p>\r\n  \r\n\
+        </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=86F86494B01D0176C81B3225EE75099B\">Hlavn\xC3\xBD zoznam</a>\r\n\
+        |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
+        |</div>\r\n\
+        \r\n\
+        \r\n\
+        <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
+        \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
+        \r\n\
+        \r\n\
+        \r\n\
+        \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=86F86494B01D0176C81B3225EE75099B?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=86F86494B01D0176C81B3225EE75099B?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
+        \r\n\
+        &nbsp;\r\n\
+        <hr>\r\n \r\n\
+        \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
+        </html>\r\n\
+        \r\n"
+    http_version: "1.1"
+    adapter_metadata: 
+      effective_url: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158785&locale=sk
+  recorded_at: Fri, 12 Jun 2015 14:11:46 GMT
+recorded_with: VCR 2.9.3

@@ -15,7 +15,7 @@ describe Etl::FoundationPageExtraction do
 
   describe '#download' do
     it 'return downloaded document' do
-      VCR.use_cassette('foundation_page_1') do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         @extractor.download.should_not be_nil
       end
     end
@@ -23,7 +23,7 @@ describe Etl::FoundationPageExtraction do
 
   describe '#document' do
     it 'return document' do
-      VCR.use_cassette('foundation_page_1') do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         @extractor.document.should_not be_nil
       end
     end
@@ -31,13 +31,13 @@ describe Etl::FoundationPageExtraction do
 
   describe '#is_acceptable?' do
     it 'return true for accepted page' do
-       VCR.use_cassette('foundation_page_1') do
+       VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         @extractor.is_acceptable?.should be_true
       end
     end
     it 'return false for not accepted page' do
-      @extractor = Etl::FoundationPageExtraction.new(50)
-       VCR.use_cassette('foundation_page_50') do
+      @extractor = Etl::FoundationPageExtraction.new(99) # not existing page number
+       VCR.use_cassette('etl/foundation_page_extraction/page_99') do
         @extractor.is_acceptable?.should be_false
       end
     end
@@ -45,18 +45,18 @@ describe Etl::FoundationPageExtraction do
 
   describe '#get_downloads' do
     it 'return array of ids for accepted page' do
-      VCR.use_cassette('foundation_page_1') do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         downloads = @extractor.get_downloads
         downloads.size.should == 20
         downloads.first.should == 158785
-        downloads.last.should == 158264
+        downloads.last.should be > 158264
       end
     end
   end
 
   describe '#perform' do
     it 'perform for accpeted page' do
-      VCR.use_cassette('foundation_page_1') do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         Delayed::Job.should_receive(:enqueue).exactly(20).times
         @extractor.perform
       end
@@ -65,7 +65,7 @@ describe Etl::FoundationPageExtraction do
 
   describe '#after' do
     it 'perform for accpeted page' do
-      VCR.use_cassette('foundation_page_1') do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         Delayed::Job.should_receive(:enqueue).once
         @extractor.after(nil)
       end

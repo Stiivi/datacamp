@@ -11,7 +11,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
 
   describe '#download' do
     it 'returns downloaded document' do
-      VCR.use_cassette('mzvsr_contracts_page_1') do
+      VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1') do
         expect(extractor.download).not_to be_nil
       end
     end
@@ -19,7 +19,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
 
   describe '#document' do
     it 'returns parsed document' do
-      VCR.use_cassette('mzvsr_contracts_page_1') do
+      VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1') do
         expect(extractor.document).not_to be_nil
         expect(extractor.is_acceptable?).to be_true
       end
@@ -29,7 +29,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
   describe '#is_acceptable?' do
     context 'with valid page' do
       it 'returns true' do
-        VCR.use_cassette('mzvsr_contracts_page_1') do
+        VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1') do
           expect(extractor.is_acceptable?).to be_true
         end
       end
@@ -39,7 +39,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
       let(:extractor) { described_class.new(115) }
 
       it 'returns true' do
-        VCR.use_cassette('mzvsr_contracts_malformed_page') do
+        VCR.use_cassette('etl/mzvsr_contracts_page_extraction/malformed_page') do
           extractor.download
           expect(extractor.is_acceptable?).to be_true
         end
@@ -50,7 +50,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
       let(:extractor) { described_class.new(1000000) }
 
       it 'returns false' do
-        VCR.use_cassette('mzvsr_contracts_page_1000000') do
+        VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1000000') do
           extractor.download
           expect(extractor.is_acceptable?).to be_false
         end
@@ -60,7 +60,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
 
   describe '#perform' do
     it 'enqueues jobs for each links' do
-      VCR.use_cassette('mzvsr_contracts_page_1') do
+      VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1') do
         Delayed::Job.should_receive(:enqueue).exactly(20).times
         extractor.perform
       end
@@ -69,7 +69,7 @@ describe Etl::MzvsrContractsPageExtraction, slow_db: true do
 
   describe '#after' do
     it 'enqueues another page extraction' do
-      VCR.use_cassette('mzvsr_contracts_page_1') do
+      VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1') do
         Delayed::Job.should_receive(:enqueue).once
         extractor.after(nil)
       end

@@ -15,7 +15,7 @@ describe Etl::LawyerExtraction do
   end
   
   it 'should download a document' do
-    VCR.use_cassette('advokat_4690') do
+    VCR.use_cassette('etl/lawyer_extraction/advokat_4690') do
       @extractor.download.should_not be_nil
     end
   end
@@ -23,14 +23,14 @@ describe Etl::LawyerExtraction do
   describe 'parsing' do
     
     it 'should test and accept valid documents' do
-      VCR.use_cassette('advokat_4690') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_4690') do
         document = @extractor.download
         @extractor.is_acceptable?(document).should be_true
       end
     end
     
     it 'should test and not accept invalid documents' do
-      VCR.use_cassette('advokat_1') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_1') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/1/link/display/event")
         document = extractor.download
         extractor.is_acceptable?(document).should be_false
@@ -38,7 +38,7 @@ describe Etl::LawyerExtraction do
     end
     
     it 'should get information from a document' do
-      VCR.use_cassette('advokat_4690') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_4690') do
         document = @extractor.download
         lawyer = @extractor.digest(document)
         lawyer.should == {:original_name=>"ABELOVSKÁ Iveta JUDr.", :first_name=>"Iveta", :last_name=>"Abelovská", :middle_name=>nil, :title=>"JUDr.", :lawyer_type=>"Advokát", :street=>"Hlučínska 1", :city=>"BRATISLAVA 3", :zip=>"83103", :phone=>"02/44634927", :fax=>"02/44454498", :cell_phone=>"", :languages=>"rusky", :email=>"kancelaria@abelovskasulva.sk", :website=>nil, :url=>"https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4690/link/display/event", :sak_id=>4690, :is_part_of_import=>true}
@@ -46,7 +46,7 @@ describe Etl::LawyerExtraction do
     end
     
     it 'should get information from a document' do
-      VCR.use_cassette('advokat_295627') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_295627') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/295627/link/display/event")
         document = extractor.download
         lawyer = extractor.digest(document)
@@ -55,7 +55,7 @@ describe Etl::LawyerExtraction do
     end
     
     it 'should get information from a document' do
-      VCR.use_cassette('advokat_19288') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_19288') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/rows/19288/link/display/event", 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event', 'JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49', 'https://www.sak.sk/blox/cms/sk/sak/adv/stop/proxy/list/formular/picker/event/page/10')
         document = extractor.download
         lawyer = extractor.digest(document)
@@ -64,7 +64,7 @@ describe Etl::LawyerExtraction do
     end
     
     it 'should get information from a document' do
-      VCR.use_cassette('advokat_170603') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_170603') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/170603/link/display/event", 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event', 'JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/10')
         document = extractor.download
         lawyer = extractor.digest(document)
@@ -73,7 +73,7 @@ describe Etl::LawyerExtraction do
     end
     
     it 'should get information from a document' do
-      VCR.use_cassette('advokat_4515') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_4515') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/4515/link/display/event", 'blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event', 'JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/0')
         document = extractor.download
         lawyer = extractor.digest(document)
@@ -82,7 +82,7 @@ describe Etl::LawyerExtraction do
     end
     
     it 'should get information from a document and not trip up if the lawyer has no title' do
-      VCR.use_cassette('advokat_20576') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_20576') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/20576/link/display/event", 'blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event', 'JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/280')
         document = extractor.download
         lawyer = extractor.digest(document)
@@ -91,7 +91,7 @@ describe Etl::LawyerExtraction do
     end
 
     it 'should get information from a document' do
-      VCR.use_cassette('advokat_129463') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_129463') do
         extractor = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/129463/link/display/event", 'blox/cms/sk/sak/adv/vyhladanie/proxy/link/display/formular/button/close/event', 'JSESSIONID=821AEC404DE28C7C364C9EBFAE075F49', 'https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/picker/event/page/4190')
         document = extractor.download
         lawyer = extractor.digest(document)
@@ -103,7 +103,7 @@ describe Etl::LawyerExtraction do
       lawyer = stub(update_attributes!: true)
       Kernel::DsLawyer.should_receive(:find_or_initialize_by_sak_id).exactly(2).times.and_return(lawyer)
       
-      VCR.use_cassette('advokat_167897') do
+      VCR.use_cassette('etl/lawyer_extraction/advokat_167897') do
         extractor1 = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/vyhladanie/proxy/list/formular/rows/167897/link/display/event")
         extractor2 = Etl::LawyerExtraction.new("https://www.sak.sk/blox/cms/sk/sak/adv/exoffo/proxy/list/formular/rows/167897/link/display/event")
         extractor1.perform
@@ -117,7 +117,7 @@ describe Etl::LawyerExtraction do
     lawyer = stub(update_attributes!: true)
     Kernel::DsLawyer.should_receive(:find_or_initialize_by_sak_id).and_return(lawyer)
     
-    VCR.use_cassette('advokat_4690') do
+    VCR.use_cassette('etl/lawyer_extraction/advokat_4690') do
       @extractor.perform
     end
   end

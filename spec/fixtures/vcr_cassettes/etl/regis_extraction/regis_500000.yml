@@ -1,0 +1,150 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.statistics.sk/pls/wregis/detail?wxidorg=500000
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      User-Agent: 
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Fri, 12 Jun 2015 15:02:50 GMT
+      Server: 
+      - Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server
+      X-DB-Content-length: 
+      - "3786"
+      Transfer-Encoding: 
+      - chunked
+      Content-Type: 
+      - text/html; charset=WINDOWS-1250
+    body: 
+      encoding: ASCII-8BIT
+      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n\
+        <HTML>\n\
+        <HEAD>\n\
+        <TITLE>REGIS - Detail</TITLE>\n\
+        </HEAD>\n\
+        <BODY  bgcolor=\"#FFEFDF\" text=\"#800000\">\n\
+        <TABLE   cellSpacing=1 cellPadding=4 style=\"border-Color:#000000; width:100%\" border=1>\n\
+        <TBODY>\n\
+        <TR>\n\
+        <TD  style=\"vAlign:center\" bgColor=\"#7382A5\"><P ALIGN=\"center\"><FONT face=\"Times New Roman\" color=\"#ffffff\" size=\"4\"><I><B>\x8Atatistick\xFD register organiz\xE1ci\xED</B></I></FONT></TD>\n\
+        </TR>\n\
+        </TBODY>\n\
+        </TABLE>\n\
+        <script type=\"text/javascript\"> \r\n  function presmeruj(adresa) \r\n  {\r\n    location.href= adresa\r\n  };\r\n\
+        </SCRIPT>\n\
+        <FORM ACTION=\"/pls/wregis/dotaz\" METHOD=\"GET\">\n\
+        <DIV class=\"hlavicka\">\n\
+        </DIV>\n\
+        <DIV class=\"telo\">\n\
+        </DIV>\n\
+        <DIV class=\"poznamka\">\n\
+        <I>Tento v\xFDpis m\xE1 informat\xEDvny charakter. </I>\n\
+        </DIV>\n\
+        <H4 ALIGN=\"center\">Identifika\xE8n\xE9 \xFAdaje</H4>\n\
+        <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>I\xC8O:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B>34797564</B></TD>\n\
+        </TR>\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>Obchodn\xE9 meno:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B>J\xE1n Strme\xF2</B></TD>\n\
+        </TR>\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>Pr\xE1vna forma:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B>101 - Podnikate\xBE-fyzick\xE1 osoba-nezap\xEDsan\xFD v obchodnom registri</B></TD>\n\
+        </TR>\n\
+        </TABLE>\n\
+        <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
+        <TBODY>\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>D\xE1tum vzniku:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B>14.12.2000</B></TD>\n\
+        </TR>\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>D\xE1tum z\xE1niku:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B>25.11.2008</B></TD>\n\
+        </TR>\n\
+        </TBODY>\n\
+        </TABLE>\n\
+        <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
+        <TBODY>\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>Adresa s\xEDdla:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B>Utek\xE1\xE8 827/25, &nbsp;985 06 Utek\xE1\xE8</B></TD>\n\
+        </TR>\n\
+        <TR>\n\
+        <TD ALIGN=\"right\"  width=\"260\"><B>Okres:</B></TD>\n\
+        <TD  width=\"20\"> </TD>\n\
+        <TD ALIGN=\"left\"  width=\"400\"><B> Polt\xE1r</B></TD>\n\
+        </TR>\n\
+        </TBODY>\n\
+        </TABLE>\n\
+        <H4 ALIGN=\"center\">\x8Atatistick\xE9 charakteristiky</H4>\n\
+        <TABLE  ALIGN=\"center\"  class=\"tablist\" border=\"0\">\n\
+        <TBODY style=\"background-color:#DEB887\" >\n\
+        <TR>\n\
+        <TH>N\xE1zov \xE8\xEDseln\xEDka</TH>\n\
+        <TH>K\xF3d</TH>\n\
+        <TH>Text</TH>\n\
+        </TR>\n\
+        <TR  class=\"licha\">\n\
+        <TD ALIGN=\"left\"  width=\"260\"><A HREF=\"/pls/wregis/ciselniky?kc=0056\">Pr\xE1vna forma</A></TD>\n\
+        <TD  class=\"cislo\">101</TD>\n\
+        <TD>Podnikate\xBE-fyzick\xE1 osoba-nezap\xEDsan\xFD v obchodnom registri</TD>\n\
+        </TR>\n\
+        <TR  class=\"suda\">\n\
+        <TD><A HREF=\"/pls/wregis/ciselniky?kc=5205\">Predmet preva\x9Euj\xFAcej \xE8innosti (SK NACE)</A></TD>\n\
+        <TD  class=\"cislo\">55200</TD>\n\
+        <TD>Turistick\xE9 a\xA0in\xE9 kr\xE1tkodob\xE9 ubytovanie</TD>\n\
+        </TR>\n\
+        <TR  class=\"licha\">\n\
+        <TD><A HREF=\"/pls/wregis/ciselniky?kc=5502\">Predmet preva\x9Euj\xFAcej \xE8innosti (OKE\xC8)</A></TD>\n\
+        <TD  class=\"cislo\">55210</TD>\n\
+        <TD>Ml\xE1de\x9En\xEDcke ubytovne, turistick\xE9 noc\xBEah\xE1rne a horsk\xE9 chaty</TD>\n\
+        </TR>\n\
+        <TR  class=\"licha\">\n\
+        <TD><A HREF=\"/pls/wregis/ciselniky?kc=0036\">Druh vlastn\xEDctva</A></TD>\n\
+        <TD  class=\"cislo\">2</TD>\n\
+        <TD>S\xFAkromn\xE9 tuzemsk\xE9</TD>\n\
+        </TR>\n\
+        <TR  class=\"suda\">\n\
+        <TD><A HREF=\"/pls/wregis/ciselniky?kc=0073\">Kateg\xF3ria velkosti organiz\xE1cie</A></TD>\n\
+        <TD  class=\"cislo\">00</TD>\n\
+        <TD>nezisten\xFD po\xE8et zamestnacov</TD>\n\
+        </TR>\n\
+        </TBODY>\n\
+        </TABLE>\n\
+        <BR>\n\
+        <INPUT class=\"button\" type=\"button\" name=\"back\" value=\"N\xE1vrat\" onclick=\"history.back()\">\n\
+        <INPUT TYPE=\"submit\" VALUE=\"Nov\xE9 zadanie\"  class=\"button\">\n\
+        <INPUT TYPE=BUTTON VALUE=\"V\xFDpis\" onClick=\"presmeruj( '/pls/wregis/vypisregis?vypis_xidorg=500000');\">\n\
+        </FORM>\n\
+        <DIV class=\"paticka\">\n\
+        <BR>\n\
+        Vytvorenie str\xE1nky: 12.06.2015  17:02, platnos\x9D \xFAdajov k 11.06.2015\n\
+        <BR>\n\
+        &#169; A\x8AIS-REGIS 2.0  \x8Atatistick\xFD \xFArad Slovenskej republiky, 2005     \n\
+        </DIV>\n\
+        </BODY>\n\
+        </HTML>\n"
+    http_version: "1.1"
+    adapter_metadata: 
+      effective_url: http://www.statistics.sk/pls/wregis/detail?wxidorg=500000
+  recorded_at: Fri, 12 Jun 2015 15:02:53 GMT
+recorded_with: VCR 2.9.3
