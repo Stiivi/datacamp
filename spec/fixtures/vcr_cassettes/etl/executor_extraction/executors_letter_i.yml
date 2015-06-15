@@ -1,0 +1,349 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: http://www.ske.sk/zoznam-exekutorov/?f=I
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      User-Agent: 
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 15 Jun 2015 14:28:23 GMT
+      Server: 
+      - Apache
+      X-Powered-By: 
+      - PHP/5.2.17
+      X-Pingback: 
+      - http://www.ske.sk/xmlrpc.php
+      Link: 
+      - <http://www.ske.sk/?p=1660>; rel=shortlink
+      Transfer-Encoding: 
+      - chunked
+      Content-Type: 
+      - text/html; charset=UTF-8
+      X-Pad: 
+      - avoid browser bug
+    body: 
+      encoding: ASCII-8BIT
+      string: "<!DOCTYPE HTML>\n\
+        <!--[if lt IE 7 ]><html class=\"ie ie6\" lang=\"en\"> <![endif]-->\n\
+        <!--[if IE 7 ]><html class=\"ie ie7\" lang=\"en\"> <![endif]-->\n\
+        <!--[if IE 8 ]><html class=\"ie ie8\" lang=\"en\"> <![endif]-->\n\
+        <!--[if (gte IE 9)|!(IE)]><!-->\n\n\
+        <html lang=\"sk-SK\">\n\n\n\
+        <!--<![endif]-->\n\n\
+        <head>\n\
+        <!--[if IE]>\n    <script type=\"text/javascript\" src=\"http://www.ske.sk/wp-content/themes/ske/frontend/js/xcanvas.compiled.js\"></script>\n\
+        <![endif]--> \n\n\
+        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n\
+        <title>Slovensk\xC3\xA1 komora exek\xC3\xBAtorov  &raquo; Zoznam exek\xC3\xBAtorov</title>\n\
+        <meta charset=\"UTF-8\" />\n\
+        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">\n\
+        <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS kan\xC3\xA1l: Slovensk\xC3\xA1 komora exek\xC3\xBAtorov &raquo;\" href=\"http://www.ske.sk/feed/\" />\n\
+        <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS kan\xC3\xA1l koment\xC3\xA1rov webu Slovensk\xC3\xA1 komora exek\xC3\xBAtorov &raquo;\" href=\"http://www.ske.sk/comments/feed/\" />\n\
+        <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS kan\xC3\xA1l koment\xC3\xA1rov webu Slovensk\xC3\xA1 komora exek\xC3\xBAtorov &raquo; ku \xC4\x8Dl\xC3\xA1nku Zoznam exek\xC3\xBAtorov\" href=\"http://www.ske.sk/zoznam-exekutorov/feed/\" />\n\
+        \t<style type=\"text/css\">\r\n\
+        \t.wp-pagenavi{margin-left:auto !important; margin-right:auto; !important}\r\n\
+        \t</style>\r\n  <link rel='stylesheet' id='contact-form-7-css'  href='http://www.ske.sk/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.8.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='ls-google-fonts-css'  href='http://fonts.googleapis.com/css?family=Lato:100,300,regular,700,900|Open+Sans:300|Indie+Flower:regular|Oswald:300,regular,700&#038;subset=latin,latin-ext' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='cmm_style_sheet_1-css'  href='http://www.ske.sk/wp-content/plugins/mega-menu/css/megamenu.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='default-style-css'  href='http://www.ske.sk/wp-content/themes/ske/style.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='shortcode-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/shortcode.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='cp_default-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/cp_default.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='cp_mega_menu-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/mega_menu.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='cp-bootstrap-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/bootstrap.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='cp-fontAW-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/cp_font/css/font-awesome.css?ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='googleFonts-css'  href='http://fonts.googleapis.com/css?family=Ubuntu&#038;ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='googleFonts-heading-css'  href='http://fonts.googleapis.com/css?family=PT+Sans&#038;ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='menu-googleFonts-heading-css'  href='http://fonts.googleapis.com/css?family=PT+Sans+Caption&#038;ver=3.9.1' type='text/css' media='all' />\n\
+        <link rel='stylesheet' id='wp-pagenavi-style-css'  href='http://www.ske.sk/wp-content/plugins/wp-pagenavi-style/css/css3_black.css?ver=1.0' type='text/css' media='all' />\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/js/html5shive.js?ver=1.5.1'></script>\n\
+        <link rel=\"EditURI\" type=\"application/rsd+xml\" title=\"RSD\" href=\"http://www.ske.sk/xmlrpc.php?rsd\" />\n\
+        <link rel=\"wlwmanifest\" type=\"application/wlwmanifest+xml\" href=\"http://www.ske.sk/wp-includes/wlwmanifest.xml\" /> \n\
+        <meta name=\"generator\" content=\"WordPress 3.9.1\" />\n\
+        <link rel='canonical' href='http://www.ske.sk/zoznam-exekutorov/' />\n\
+        <link rel='shortlink' href='http://www.ske.sk/?p=1660' />\n\
+        <!-- <meta name=\"vfb\" version=\"2.8.1\" /> -->\n\
+        \t<style type=\"text/css\">\r\n\
+        \t .wp-pagenavi\r\n\
+        \t{\r\n\
+        \t\tfont-size:12px !important;\r\n\
+        \t}\r\n\
+        \t</style>\r\n\
+        \t\t\t<script type=\"text/javascript\">\r\n\
+        \t\tvar ajaxurl = 'http://www.ske.sk/wp-admin/admin-ajax.php';\r\n\
+        \t\t</script>\r\n\
+        \t</head>\n\n\
+        <body id=\"home\" class=\"page page-id-1660 page-parent page-template page-template-page-zoznam-php No\">\n\n\
+        <div class=\"wrapper\">\n  <!-- header -->\n\
+        \t<header id=\"header\">\n\
+        \t\t<section class=\"container\">\n\
+        \t\t\t<h1 id=\"logo\">\n\
+        \t\t\t  \t\t\t\t<a href=\"http://www.ske.sk\">\n\
+        \t\t\t\t\t<img class=\"logo_img\" width=\"279\" height=\"150\" src=\"http://www.ske.lici.sk/wp-content/uploads/2014/05/logo1.png\" alt=\"Slovensk\xC3\xA1 komora exek\xC3\xBAtorov\">\n\
+        \t\t\t\t</a>\n\
+        \t\t\t</h1>\n\
+        \t\t</section>\n\
+        \t\t<div class=\"nav-holder\">\n\
+        \t\t<div class=\"navbar navbar-inverse\">\n\
+        \t\t\n\
+        \t\t\t  <a style=\"float:right; font-size:15px; margin: 20px 40px 10px 0px;font-weight:bold; color:white;\" href=\"http://exnet.ske.sk/\" target=\"_blank\">ExNET</a>\n\
+        \t\t\n\
+        \t\t\t  </div>\n\
+        \t\t\t<section class=\"container\">\n\
+        \t\t\t  <nav id=\"nav\">\n\
+        \t\t\t\t<div class=\"navbar navbar-inverse\">\n\
+        \t\t\t\t  <div class=\"navbar-inner\">\n\
+        \t\t\t\t\t<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->\n\
+        \t\t\t\t\t<button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\"> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> </button>\n\
+        \t\t\t\t\t\t\n\
+        \t\t\t\t\t\t\t\t\t\t\t<div id=\"mymenu\" class=\"desktop_view nav-collapse collapse\">\n\
+        \t\t\t\t\t\t\t\t\t\t\t<ul id=\"menusection\" class=\"nav\"><li id=\"menu-item-1373\" class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1373\"><a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a></li>\n\
+        <li id=\"menu-item-1663\" class=\"menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1660 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1663\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a>\n\
+        <ul class=\"sub-menu\">\n\
+        \t<li id=\"menu-item-1705\" class=\"menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1660 current_page_item menu-item-1705\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a></li>\n\
+        \t<li id=\"menu-item-1709\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1709\"><a href=\"http://www.ske.sk/zoznam-exekutorov/neplatne-preukazy-a-odznaky/\">Neplatn\xC3\xA9 preukazy a odznaky</a></li>\n\
+        \t<li id=\"menu-item-1708\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1708\"><a href=\"http://www.ske.sk/zoznam-exekutorov/odvolani-sudni-exekutori/\">Odvolan\xC3\xAD s\xC3\xBAdni exek\xC3\xBAtori</a></li>\n\
+        \t<li id=\"menu-item-1707\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1707\"><a href=\"http://www.ske.sk/zoznam-exekutorov/pozastavenie-vykonu-exu/\">Pozastavenie v\xC3\xBDkonu Ex\xC3\x9A</a></li>\n\
+        \t<li id=\"menu-item-1706\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1706\"><a href=\"http://www.ske.sk/zoznam-exekutorov/zaniknute-exekutorske-urady/\">Zaniknut\xC3\xA9 exek\xC3\xBAtorsk\xC3\xA9 \xC3\xBArady</a></li>\n\
+        \t<li id=\"menu-item-1748\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1748\"><a href=\"http://www.ske.sk/zoznam-exekutorov/prerusenie-vykonu-funkcie-se/\">Preru\xC5\xA1enie v\xC3\xBDkonu funkcie SE</a></li>\n\
+        </ul>\n\
+        </li>\n\
+        <li id=\"menu-item-1369\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1369\"><a href=\"http://www.ske.sk/organy-komory/\">Org\xC3\xA1ny komory</a></li>\n\
+        <li id=\"menu-item-1370\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1370\"><a href=\"http://www.ske.sk/dokumenty/\">Dokumenty</a></li>\n\
+        <li id=\"menu-item-1372\" class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1372\"><a href=\"http://www.ske.sk/category/napisali-o-nas/\">Nap\xC3\xADsali o n\xC3\xA1s</a></li>\n\
+        <li id=\"menu-item-1371\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1371\"><a href=\"http://www.ske.sk/odborne-skusky/\">Odborn\xC3\xA9 sk\xC3\xBA\xC5\xA1ky</a></li>\n\
+        <li id=\"menu-item-1406\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1406\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a>\n\
+        <ul class=\"sub-menu\">\n\
+        \t<li id=\"menu-item-1719\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1719\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a></li>\n\
+        \t<li id=\"menu-item-1718\" class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1718\"><a target=\"_blank\" href=\"http://jaspi.justice.gov.sk/jaspiw1/jaspiw_mini_fr0.htm\">\xC3\x9Apln\xC3\xA9 znenia z\xC3\xA1konov</a></li>\n\
+        </ul>\n\
+        </li>\n\
+        <li id=\"menu-item-1925\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1925\"><a href=\"http://www.ske.sk/spravy-o-cinnosti-ske-a-se/\">Spr\xC3\xA1vy o \xC4\x8Dinnosti SKE a SE</a></li>\n\
+        <li id=\"menu-item-1868\" class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1868\"><a href=\"http://www.ske.sk/category/poradna/\">Porad\xC5\x88a</a></li>\n\
+        <li id=\"menu-item-1407\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1407\"><a href=\"http://www.ske.sk/kontakt/\">Kontakt</a></li>\n\
+        <li id=\"menu-item-1917\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1917\"><a href=\"http://www.ske.sk/zoznam-drazobnych-vyhlasok/\">Zoznam dra\xC5\xBEobn\xC3\xBDch vyhl\xC3\xA1\xC5\xA1ok</a></li>\n\
+        <li id=\"menu-item-1820\" class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1820\"><a href=\"http://cre.sk\">CRE</a></li>\n\
+        </ul>\t\t\t\t\t\t\t\t\t\t\t</div>\n\
+        \t\t\t\t\t\t\t\t\t\t\t\t\n\
+        \t\t\t\t\t\t\t\t\t\t\t<div id=\"mymenu\" class=\"device_view nav-collapse collapse\">\n\
+        \t\t\t\t\t\t\t\t\t\t\t<ul id=\"menusection\" class=\"nav\"><li class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1373\"><a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a></li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1660 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-1663\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a>\n\
+        <ul class=\"sub-menu\">\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-1660 current_page_item menu-item-1705\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a></li>\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1709\"><a href=\"http://www.ske.sk/zoznam-exekutorov/neplatne-preukazy-a-odznaky/\">Neplatn\xC3\xA9 preukazy a odznaky</a></li>\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1708\"><a href=\"http://www.ske.sk/zoznam-exekutorov/odvolani-sudni-exekutori/\">Odvolan\xC3\xAD s\xC3\xBAdni exek\xC3\xBAtori</a></li>\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1707\"><a href=\"http://www.ske.sk/zoznam-exekutorov/pozastavenie-vykonu-exu/\">Pozastavenie v\xC3\xBDkonu Ex\xC3\x9A</a></li>\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1706\"><a href=\"http://www.ske.sk/zoznam-exekutorov/zaniknute-exekutorske-urady/\">Zaniknut\xC3\xA9 exek\xC3\xBAtorsk\xC3\xA9 \xC3\xBArady</a></li>\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1748\"><a href=\"http://www.ske.sk/zoznam-exekutorov/prerusenie-vykonu-funkcie-se/\">Preru\xC5\xA1enie v\xC3\xBDkonu funkcie SE</a></li>\n\
+        </ul>\n\
+        </li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1369\"><a href=\"http://www.ske.sk/organy-komory/\">Org\xC3\xA1ny komory</a></li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1370\"><a href=\"http://www.ske.sk/dokumenty/\">Dokumenty</a></li>\n\
+        <li class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1372\"><a href=\"http://www.ske.sk/category/napisali-o-nas/\">Nap\xC3\xADsali o n\xC3\xA1s</a></li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1371\"><a href=\"http://www.ske.sk/odborne-skusky/\">Odborn\xC3\xA9 sk\xC3\xBA\xC5\xA1ky</a></li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1406\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a>\n\
+        <ul class=\"sub-menu\">\n\
+        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1719\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a></li>\n\
+        \t<li class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1718\"><a target=\"_blank\" href=\"http://jaspi.justice.gov.sk/jaspiw1/jaspiw_mini_fr0.htm\">\xC3\x9Apln\xC3\xA9 znenia z\xC3\xA1konov</a></li>\n\
+        </ul>\n\
+        </li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1925\"><a href=\"http://www.ske.sk/spravy-o-cinnosti-ske-a-se/\">Spr\xC3\xA1vy o \xC4\x8Dinnosti SKE a SE</a></li>\n\
+        <li class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1868\"><a href=\"http://www.ske.sk/category/poradna/\">Porad\xC5\x88a</a></li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1407\"><a href=\"http://www.ske.sk/kontakt/\">Kontakt</a></li>\n\
+        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1917\"><a href=\"http://www.ske.sk/zoznam-drazobnych-vyhlasok/\">Zoznam dra\xC5\xBEobn\xC3\xBDch vyhl\xC3\xA1\xC5\xA1ok</a></li>\n\
+        <li class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1820\"><a href=\"http://cre.sk\">CRE</a></li>\n\
+        </ul>\t\t\t\t\t\t\t\t\t\t\t</div>\n\
+        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!--/.nav-collapse -->\n\
+        \t\t\t\t  </div>\n\
+        \t\t\t\t  <!-- /.navbar-inner -->\n\
+        \t\t\t\t</div>\n\
+        \t\t\t\t<!-- /.navbar -->\n\
+        \t\t\t  </nav>\n\
+        \t\t\t  \n\
+        \t\t\t</section>\n\
+        \t\t</div>\n\
+        \t</header>\t\n  <!-- Content -->\n    \n\
+        \t<div class=\"b-none inner_content\">\n\
+        \t\t<div class=\"containerzoz\">\n\
+        \t\n <meta charset=\"utf-8\">\n\n\n\
+        \t<!--<link href=\"http://www.ske.sk/wp-content/themes/ske/zoznam/bootstrap.no-icons.min.css\" rel=\"stylesheet\"> \n\
+        \t<link href=\"http://www.ske.sk/wp-content/themes/ske/zoznam/style.css\" rel=\"stylesheet\"> -->\n    <h2>Zoznam exek\xC3\xBAtorov</h2>\n\n    <input type=\"search\" id=\"search-input\" class=\"light-table-filter\" data-table=\"order-table\" placeholder=\"H\xC4\xBEadaj: exek\xC3\xBAtora, koncipienta, mesto, kraj ...\" autofocus />\n\n    <br>\n\n\
+        \t<a style=\"display:inline-block;width:1em\" href=\"?f=A\">A</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC3\x81\">\xC3\x81</a> <a style=\"display:inline-block;width:1em\" href=\"?f=B\">B</a> <a style=\"display:inline-block;width:1em\" href=\"?f=C\">C</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC4\x8C\">\xC4\x8C</a> <a style=\"display:inline-block;width:1em\" href=\"?f=D\">D</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC4\x8E\">\xC4\x8E</a> <a style=\"display:inline-block;width:1em\" href=\"?f=E\">E</a> <a style=\"display:inline-block;width:1em\" href=\"?f=F\">F</a> <a style=\"display:inline-block;width:1em\" href=\"?f=G\">G</a> <a style=\"display:inline-block;width:1em\" href=\"?f=H\">H</a> <a style=\"display:inline-block;width:1em\" href=\"?f=I\">I</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC3\x8D\">\xC3\x8D</a> <a style=\"display:inline-block;width:1em\" href=\"?f=J\">J</a> <a style=\"display:inline-block;width:1em\" href=\"?f=K\">K</a> <a style=\"display:inline-block;width:1em\" href=\"?f=L\">L</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC4\xBD\">\xC4\xBD</a> <a style=\"display:inline-block;width:1em\" href=\"?f=M\">M</a> <a style=\"display:inline-block;width:1em\" href=\"?f=N\">N</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC5\x87\">\xC5\x87</a> <a style=\"display:inline-block;width:1em\" href=\"?f=O\">O</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC3\x93\">\xC3\x93</a> <a style=\"display:inline-block;width:1em\" href=\"?f=P\">P</a> <a style=\"display:inline-block;width:1em\" href=\"?f=R\">R</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC5\x94\">\xC5\x94</a> <a style=\"display:inline-block;width:1em\" href=\"?f=S\">S</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC5\xA0\">\xC5\xA0</a> <a style=\"display:inline-block;width:1em\" href=\"?f=T\">T</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC5\xA4\">\xC5\xA4</a> <a style=\"display:inline-block;width:1em\" href=\"?f=Q\">Q</a> <a style=\"display:inline-block;width:1em\" href=\"?f=U\">U</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC3\x9A\">\xC3\x9A</a> <a style=\"display:inline-block;width:1em\" href=\"?f=V\">V</a> <a style=\"display:inline-block;width:1em\" href=\"?f=W\">W</a> <a style=\"display:inline-block;width:1em\" href=\"?f=X\">X</a> <a style=\"display:inline-block;width:1em\" href=\"?f=Y\">Y</a> <a style=\"display:inline-block;width:1em\" href=\"?f=Z\">Z</a> <a style=\"display:inline-block;width:1em\" href=\"?f=\xC5\xBD\">\xC5\xBD</a> <br><br><p>Filtrovan\xC3\xA9 pod\xC4\xBEa I (<a href=\"/zoznam-exekutorov\">Vypn\xC3\xBA\xC5\xA5 filter</a>)</p>\n    <table id=\"executors\" class=\"order-table\">\n        <thead>\n            <tr class=\"listtr\">\n                <th>Meno</th>\n                <th>Detaily exek\xC3\xBAtora</th>\n                \n            </tr>\n        </thead>\n        <tbody>\n\n\n\n\
+        \t\n\
+        \t\t\t\n\
+        \t\n\
+        \t\n\
+        \t\t\t\t\t<tr class=\"listtr\">\n\
+        \t<td style=\"color:red\" class=\"listtd\">JUDr. Ingr Jozef </td>\n\
+        \t<td class=\"listtd\">\n\
+        \t\t<strong>Adresa: </strong>Matejkova 13, 84105 Bratislava<br /><strong>Tel.: </strong>02/65411505<br /><strong>Fax: </strong>02/65411505<br /><strong>E-mail: </strong>jozef.ingr@ske.sk\t\t<p><strong>\xC3\x9Aradn\xC3\xA9 hodiny:</strong></p>\n\
+        \t\t\t\t\t\t\t\t<p>\n\
+        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Pondelok</strong> 10:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>Utorok</strong> 10:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>Streda</strong> 10:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>\xC5\xA0tvrtok</strong> 10:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t</p>\n\
+        \t\t<p><strong>Bankov\xC3\xA9 spojenie:</strong>\n\
+        \t\t\t\t\t\t\t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 5050306975/0900 <strong>IBAN:</strong> SK09 0900 0000 0050 5030 6975<br />\n\
+        \t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 0011525427/0900 <strong>IBAN:</strong> SK28 0900 0000 0000 1152 5427<br />\n\
+        \t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 0011525400/0900 <strong>IBAN:</strong> SK78 0900 0000 0000 1152 5400<br />\n\
+        \t\t\t\t</p>\n\n\
+        \t\t\t\t\t\t<p><strong>Koncipienti:</strong><br>\n\
+        \t\t-\t\t\t\t</p>\n\
+        <!-- \n\
+        \t\t<p><strong>\xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 2629752727/1100 <strong>IBAN:</strong> SK18 1100 0000 0026 2975 2727<br /><strong>\xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 2629753279/1100 <strong>IBAN:</strong> SK52 1100 0000 0026 2975 3279<br /></p> -->\n\n\
+        \t\t<p><strong>Zastupuj\xC3\xBAci exek\xC3\xBAtor: </strong>JUDr. Farka\xC5\xA1ov\xC3\xA1 Andrea </p>\n    \t</td>\n\
+        </tr>\n\
+        \t\t\t\t\t<tr class=\"listtr\">\n\
+        \t<td style=\"color:red\" class=\"listtd\">JUDr. Ivan\xC4\x8D\xC3\xADk Jozef </td>\n\
+        \t<td class=\"listtd\">\n\
+        \t\t<strong>Adresa: </strong>V\xC3\xBDpalisko 2,  940 01 Nov\xC3\xA9 Z\xC3\xA1mky<br /><strong>Tel.: </strong>035/6401908<br /><strong>Fax: </strong>035/6401908<br /><strong>E-mail: </strong>jozef.ivancik@ske.sk\t\t<p><strong>\xC3\x9Aradn\xC3\xA9 hodiny:</strong></p>\n\
+        \t\t\t\t\t\t\t\t<p>\n\
+        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Pondelok</strong> 08:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>Utorok</strong> 08:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>Streda</strong> 08:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>\xC5\xA0tvrtok</strong> 08:00 - 12:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t, 13:00 - 15:00\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br>\t\t\t\t<strong>Piatok</strong> 08:00 - 12:00\t\t\t\t\t\t\t\t\t\t</p>\n\
+        \t\t<p><strong>Bankov\xC3\xA9 spojenie:</strong>\n\
+        \t\t\t\t\t\t\t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 240050816/0900 <strong>IBAN:</strong> SK 4509000000000240050816<br />\n\
+        \t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 34787403/0900 <strong>IBAN:</strong> SK 2709000000000034787403<br />\n\
+        \t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 243440510/0900 <strong>IBAN:</strong> SK 3809000000000243440510<br />\n\
+        \t\t\t\t\t\t    <strong> \xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 4210138604/3100 <strong>IBAN:</strong> SK 2231000000004210138604<br />\n\
+        \t\t\t\t</p>\n\n\
+        \t\t\t\t\t\t<p><strong>Koncipienti:</strong><br>\n\
+        \t\t-\t\t\t\t</p>\n\
+        <!-- \n\
+        \t\t<p><strong>\xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 2629752727/1100 <strong>IBAN:</strong> SK18 1100 0000 0026 2975 2727<br /><strong>\xC4\x8C\xC3\xADslo \xC3\xBA\xC4\x8Dtu:</strong> 2629753279/1100 <strong>IBAN:</strong> SK52 1100 0000 0026 2975 3279<br /></p> -->\n\n\
+        \t\t<p><strong>Zastupuj\xC3\xBAci exek\xC3\xBAtor: </strong>JUDr. Boncsekov\xC3\xA1 Beata </p>\n    \t</td>\n\
+        </tr>\n\
+        \t\n                   </tbody>\n        <tfoot class=\"total-row\">\n            <tr class=\"listtr\">\n                <td class=\"listtd\"></td>\n                <td class=\"listtd\"></td>\n                <td class=\"listtd\"></td>\n                <td class=\"listtd\"></td>\n            </tr>\n        </tfoot>\n    </table>\n\n\n\
+        </section>\n\n\
+        <script src=\"http://www.ske.sk/wp-content/themes/ske/js/jquery-1.8.3.js\"></script>\n\
+        <script src=\"http://www.ske.sk/wp-content/themes/ske/zoznam/light-table-filter.js\"></script>\n\
+        <script src=\"http://www.ske.sk/wp-content/themes/ske/js/hiltor.js\"></script>\n\
+        <script>\n\
+        $(document).ready(function() {\n\
+        \tLightTableFilter.init();\n\
+        });\n\
+        </script>\n\n\
+        <script type=\"text/javascript\">\n\n  var myHilitor2;\n\n\
+        String.prototype.isEmpty = function() {\n    return (this.length === 0 || !this.trim());\n\
+        };\n\n  document.addEventListener(\"DOMContentLoaded\", function() {\n    myHilitor2 = new Hilitor(\"executors\");\n    myHilitor2.setMatchType(\"open\");\n  }, false);\n\n  $('#search-input').keyup(function(event) {\n  \tif (! this.value.isEmpty() && this.value.length > 1){\n  \t\tmyHilitor2.apply(this.value);\n  \t}else{\n  \t\tmyHilitor2.remove();\n  \t}\n  });\n\n  // document.getElementById(\"search-input\").addEventListener(\"keyup\", function() {\n  //   myHilitor2.apply(this.value);\n  // }, false);\n\n\
+        </script>\n\n\
+        \t\t\n\
+        \t\t\n\
+        \t\t\n\
+        \t\t\n\
+        \t\t\n\
+        \t\t\n\
+        \t\t\n\
+        \t\t</div>\n\
+        \t</div>\n\
+        <div class=\"clear\"></div>\n\
+        <div style=\"display:none;\">\n\n\n\
+        \t<link href=\"http://www.ske.sk/wp-content/themes/ske/zoznam/style.css\" rel=\"stylesheet\"> \n\
+        </div>\n\
+        \r\n  <section class=\"footer-top\">\r\n    <section class=\"container\">\r\n      <section class=\"row-fluid\">\r\n          <div class=\"span4 widget_text\"><h2 class=\"heading\"><span>Porad\xC5\x88a pre ob\xC4\x8Danov</span></h2>\t\t\t<div class=\"textwidget\"><p>Bezplatn\xC3\xA9 osobn\xC3\xA9 konzult\xC3\xA1cie len pre ob\xC4\x8Danov v exek\xC3\xBAcii. Konzult\xC3\xA1cie nenahr\xC3\xA1dzaj\xC3\xBA poradenstvo poskytovan\xC3\xA9 advok\xC3\xA1tskymi kancel\xC3\xA1riami.</p><a href=\"mailto:poradna@ske.sk\" class=\"more-btn\">E-mail: poradna@ske.sk</a></div>\n\
+        \t\t</div><div class=\"span4 widget_archive\"><h2 class=\"heading\"><span>Arch\xC3\xADv pr\xC3\xADspevkov</span></h2>\t\t<select name=\"archive-dropdown\" onchange='document.location.href=this.options[this.selectedIndex].value;'>\n\
+        \t\t\t<option value=\"\">Vyberte mesiac</option>\n\n\
+        \t\t\t\t<option value='http://www.ske.sk/2015/05/'> m\xC3\xA1j 2015 </option>\n\
+        \t<option value='http://www.ske.sk/2015/04/'> apr\xC3\xADl 2015 </option>\n\
+        \t<option value='http://www.ske.sk/2015/03/'> marec 2015 </option>\n\
+        \t<option value='http://www.ske.sk/2015/02/'> febru\xC3\xA1r 2015 </option>\n\
+        \t<option value='http://www.ske.sk/2015/01/'> janu\xC3\xA1r 2015 </option>\n\
+        \t<option value='http://www.ske.sk/2014/12/'> december 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/10/'> okt\xC3\xB3ber 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/09/'> september 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/08/'> august 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/07/'> j\xC3\xBAl 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/06/'> j\xC3\xBAn 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/05/'> m\xC3\xA1j 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/04/'> apr\xC3\xADl 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/03/'> marec 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2014/02/'> febru\xC3\xA1r 2014 </option>\n\
+        \t<option value='http://www.ske.sk/2013/12/'> december 2013 </option>\n\
+        \t<option value='http://www.ske.sk/2013/11/'> november 2013 </option>\n\
+        \t<option value='http://www.ske.sk/2013/10/'> okt\xC3\xB3ber 2013 </option>\n\
+        \t<option value='http://www.ske.sk/2013/08/'> august 2013 </option>\n\
+        \t<option value='http://www.ske.sk/2013/02/'> febru\xC3\xA1r 2013 </option>\n\
+        \t\t</select>\n\
+        </div><div class=\"span4 widget_text\"><h2 class=\"heading\"><span>Kontakt</span></h2>\t\t\t<div class=\"textwidget\"><p><strong>Kancel\xC3\xA1ria Slovenskej komory exek\xC3\xBAtorov</strong><br />\n\
+        Ul. \xC5\xA0ustekova \xC4\x8D. 49<br />\n\
+        851 04 Bratislava<br />\n\
+        Tel:\t&nbsp;+421 2 6353 6746<br />\n\
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+421 2 6353 6744</p>\n\
+        <p><strong>Kontakt pre m\xC3\xA9di\xC3\xA1</strong><br />\n\
+        JUDr. Stanislava Koles\xC3\xA1rov\xC3\xA1<br />\n\
+        Tel: +421 918 941 035<br />\n\
+        E-mail: media@ske.sk</p>\n\
+        </div>\n\
+        \t\t</div>        </section>\r\n      </section>\r\n    </section> \r\n\
+        \r\n <!-- footer -->\r\n  <footer id=\"footer\">\r\n    <section class=\"container\">\r\n      <figure class=\"copy-right\">\r\n        <p>Copyright \xC2\xA9 2014 Slovensk\xC3\xA1 komora exek\xC3\xBAtorov</p><p style=\"float:right;\">This is the official website of the Chamber of judicial officers of the Slovak Republic</p>\r\n\
+        \t\t      </figure>\r\n\
+        \t  \r\n    </section>\r\n  </footer>\r\n\
+        \r\n\
+        </div>\r\n\
+        <style type=\"text/css\" media=\"screen\">\r\n\
+        \t\tbody{\r\n\
+        \t\t\tbackground: url(http://www.ske.sk/wp-content/themes/ske) repeat;\r\n\
+        \t\t}\t\r\n\
+        \t\t.inner-pages h2 .txt-left{\r\n\
+        \t\t\tbackground: url(http://www.ske.sk/wp-content/themes/ske) repeat;\r\n\
+        \t\t}\t\t\r\n\
+        \t\th1{\r\n\
+        \tfont-size:29px !important;\r\n\
+        \t}\r\n\
+        \t\t\th2{\r\n\
+        \tfont-size:26px !important;\r\n\
+        \t}\r\n\
+        \t\t\th3{\r\n\
+        \tfont-size:20px !important;\r\n\
+        \t}\r\n\
+        \t\t\th4{\r\n\
+        \tfont-size:13px !important;\r\n\
+        \t}\r\n\
+        \t\t\th5{\r\n\
+        \tfont-size:25px !important;\r\n\
+        \t}\r\n\
+        \t\t\th6{\r\n\
+        \tfont-size:16px !important;\r\n\
+        \t}\r\n\
+        \t\t\tbody{\r\n\
+        \tfont-size:14px !important;\r\n\
+        \t}\r\n\
+        \t\t\tbody{\r\n\
+        \t\tfont-family:\"Ubuntu\";\r\n\
+        \t}\r\n\
+        \tinput, button, select, textarea{\r\n\
+        \t\tfont-family:\"Ubuntu\";\r\n\
+        \t}\r\n\
+        \t.comment-reply-link, #submit_btn, .form-submit #submit, .send-btn{\r\n\
+        \t\tfont-family:\"Ubuntu\";\r\n\
+        \t}\r\n\
+        \t\t\th1, h2, h3, h4, h5, h6{\r\n\
+        \t\tfont-family:\"PT Sans\";\r\n\
+        \t}\r\n\
+        \t\t#nav{\r\n\
+        \t\tfont-family:\"PT Sans Caption\";\r\n\
+        \t}\r\n\
+        \t</style>\r\n\
+        \t<script type='text/javascript' src='http://www.ske.sk/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.50.0-2014.02.05'></script>\n\
+        <script type='text/javascript'>\n\
+        /* <![CDATA[ */\n\
+        var _wpcf7 = {\"loaderUrl\":\"http:\\/\\/www.ske.sk\\/wp-content\\/plugins\\/contact-form-7\\/images\\/ajax-loader.gif\",\"sending\":\"Posielam ...\"};\n\
+        /* ]]> */\n\
+        </script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.8.1'></script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-content/plugins/wp-retina-2x/js/retina.js?ver=1.1.0'></script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-includes/js/comment-reply.min.js?ver=3.9.1'></script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/js/bootstrap.js?ver=1.0'></script>\n\
+        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/js/frontend_scripts.js?ver=1.0'></script>\n  </body>\r\n\
+        </html>\r\n\
+        \r\n"
+    http_version: "1.1"
+    adapter_metadata: 
+      effective_url: http://www.ske.sk/zoznam-exekutorov/?f=I
+  recorded_at: Mon, 15 Jun 2015 14:28:24 GMT
+recorded_with: VCR 2.9.3
