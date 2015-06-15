@@ -1,11 +1,13 @@
 # -*- encoding : utf-8 -*-
+require 'etl/page_loader'
 
 module Etl
   class ExekutorExtraction
-    attr_reader :downloader, :document_url, :storage
+    attr_reader :page_loader, :document_url, :storage, :page_class
 
     def initialize(options = {})
-      @downloader = options.fetch(:downloader) { Etl::Executor::Downloader }
+      @page_loader = options.fetch(:page_loader) { Etl::PageLoader }
+      @page_class = options.fetch(:page_class) { Etl::ExekutorExtraction::ListingPage }
       @storage = options.fetch(:storage) { Kernel::DsExecutor }
       @document_url = options.fetch(:document_url) { "http://www.ske.sk/zoznam-exekutorov/" }
     end
@@ -32,21 +34,7 @@ module Etl
     end
 
     def page
-      @page ||= Etl::Executor::ListingPage.new(load_page)
-    end
-
-    private
-
-    def load_page
-      downloader.download(document_url)
-    end
-  end
-
-  module Executor
-    class Downloader
-      def self.download(url)
-        Nokogiri::HTML(Typhoeus::Request.get(url).body)
-      end
+      @page ||= page_loader.load_by_get(document_url, page_class)
     end
 
     class ListingPage

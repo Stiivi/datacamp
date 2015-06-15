@@ -33,30 +33,17 @@ describe Etl::ExekutorExtraction do
   end
 end
 
-describe Etl::Executor::Downloader do
-
-  describe '.download' do
-    it 'downloads given url to document' do
-      VCR.use_cassette('etl/executor_extraction/executors') do
-        document = Etl::Executor::Downloader.download('http://www.ske.sk/zoznam-exekutorov/')
-        document.should respond_to(:xpath)
-      end
-    end
-  end
-end
-
-describe Etl::Executor::ListingPage do
+describe Etl::ExekutorExtraction::ListingPage do
 
   describe '#executors' do
     it 'returns executors array of hashes' do
-      executors_document = VCR.use_cassette('etl/executor_extraction/executors') do
-         Etl::Executor::Downloader.download('http://www.ske.sk/zoznam-exekutorov/')
+      page = VCR.use_cassette('etl/executor_extraction/executors') do
+        Etl::PageLoader.load_by_get('http://www.ske.sk/zoznam-exekutorov/', Etl::ExekutorExtraction::ListingPage)
       end
 
-      executors = Etl::Executor::ListingPage.new(executors_document).executors
-      executors.length.should be > 300
+      page.executors.length.should be > 300
 
-      executor = executors.find{ |executor| executor[:name] == 'JUDr. Ingr Jozef' }
+      executor = page.executors.find{ |executor| executor[:name] == 'JUDr. Ingr Jozef' }
       executor.should == {
           name: 'JUDr. Ingr Jozef',
           street: 'Matejkova 13',
@@ -67,7 +54,7 @@ describe Etl::Executor::ListingPage do
           email: 'jozef.ingr@ske.sk',
       }
 
-      executors.each do |executor|
+      page.executors.each do |executor|
         executor[:name].should match_regex /^[\p{Letter}\. ,\(\)]+$/
         executor[:street].should match_regex /^[\p{Letter}\. ,0-9\\\/\-]+$/
         if executor[:zip]
@@ -82,18 +69,17 @@ describe Etl::Executor::ListingPage do
       end
 
       # WATCH OUT FOR !
-      executor = executors.find { |executor| executor[:name] == 'Mgr. Makita Ján' }
+      executor = page.executors.find { |executor| executor[:name] == 'Mgr. Makita Ján' }
       executor[:telephone].should eq '02 62525594, 95, 96'
       executor[:fax].should eq '-'
     end
 
     it 'returns empty array if page is not acceptable' do
-      executors_document = VCR.use_cassette('etl/executor_extraction/invalid_site') do
-        Etl::Executor::Downloader.download('http://www.ske.sk/category/aktuality/')
+      page = VCR.use_cassette('etl/executor_extraction/invalid_site') do
+        Etl::PageLoader.load_by_get('http://www.ske.sk/category/aktuality/', Etl::ExekutorExtraction::ListingPage)
       end
 
-      executors = Etl::Executor::ListingPage.new(executors_document).executors
-      executors.should eq []
+      page.executors.should eq []
     end
   end
 end
