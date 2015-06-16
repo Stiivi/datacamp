@@ -1,20 +1,17 @@
 # encoding: utf-8
+require 'etl/page_loader'
 
 class Etl::MzvsrContractExtraction
-  attr_reader   :uri, :content, :attributes
-  attr_accessor :parser, :downloader
+  attr_reader :uri, :attributes, :page_loader, :page_class
 
-  def initialize(uri)
+  def initialize(uri, params = {})
     @uri    = uri
-    @parser = Parser
-  end
-
-  def download
-    @content ||= Typhoeus::Request.get(uri).body
+    @page_loader = params.fetch(:page_loader) { Etl::PageLoader }
+    @page_class = params.fetch(:page_class) { Etl::MzvsrContractExtraction::ContractPage }
   end
 
   def parse
-    @attributes ||= parser.parse(content).merge(uri: uri, record_status: 'published')
+    @attributes ||= page.information.merge(uri: uri, record_status: 'published')
   end
 
   def save
@@ -24,15 +21,23 @@ class Etl::MzvsrContractExtraction
   end
 
   def perform
-    download
     parse
     save
   end
 
-  class Parser
-    def self.parse(html)
+  def page
+    @page ||= page_loader.load_by_get(uri, page_class)
+  end
+
+  class ContractPage
+    attr_reader :document
+
+    def initialize(document, params = {})
+      @document = document
+    end
+
+    def information
       result   = Hash.new
-      document = Nokogiri::HTML(html)
 
       tables = document.css('#mainContent table.ksSectionContext')
 
@@ -49,9 +54,9 @@ class Etl::MzvsrContractExtraction
       result[:administrator] = tables[1].css('tr')[7].css('td').text.strip.presence
       result[:protocol_number] = tables[1].css('tr')[8].css('td').text.strip.presence
       result[:priority] = case tables[1].css('tr')[6].css('td').text.strip
-                          when 'Áno' then true
-                          when 'Nie' then false
-                          else nil
+                            when 'Áno' then true
+                            when 'Nie' then false
+                            else nil
                           end
       result
     end
