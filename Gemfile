@@ -23,6 +23,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate'
 gem 'delayed_job'
 gem 'nokogiri'
+gem 'ethon', '0.5.11' # specific version because weird failing in typhoeus requests, remove this gem, when thyphoeus is updated, https://github.com/typhoeus/ethon/issues/51
 gem 'typhoeus', '~> 0.5.0'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
