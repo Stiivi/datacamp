@@ -40,8 +40,9 @@ module Etl
     class ListingPage
       attr_reader :document
 
-      def initialize(document)
+      def initialize(document, params = {})
         @document = document
+        @params = params
       end
 
       def executors_count
