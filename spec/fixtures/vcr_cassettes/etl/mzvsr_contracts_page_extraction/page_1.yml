@@ -15,7 +15,7 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Fri, 12 Jun 2015 14:45:09 GMT
+      - Tue, 16 Jun 2015 18:13:15 GMT
       Server: 
       - Lotus-Domino
       Content-Type: 
@@ -353,5 +353,5 @@ http_interactions:
     http_version: "1.1"
     adapter_metadata: 
       effective_url: http://www.mzv.sk/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&TG=BlankMaster&URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&OpenDocument=Y&LANG=SK&PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=1
-  recorded_at: Fri, 12 Jun 2015 14:46:13 GMT
+  recorded_at: Tue, 16 Jun 2015 18:14:21 GMT
 recorded_with: VCR 2.9.3

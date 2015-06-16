@@ -1,5 +1,14 @@
+require 'etl/page_loader'
 module Etl
-  class MzvsrContractsPageExtraction < Etl::PageExtraction
+  class MzvsrContractsPageExtraction
+    attr_reader :page_number, :page_loader, :page_class
+
+    def initialize(page_number=1, params = {})
+      @page_number = page_number
+      @page_loader = params.fetch(:page_loader) { Etl::PageLoader }
+      @page_class = params.fetch(:page_class) { Etl::MzvsrContractsPageExtraction::ContractListingPage }
+    end
+
     def base_url
       'http://www.mzv.sk'
     end
@@ -9,30 +18,45 @@ module Etl
     end
 
     def is_acceptable?
-      return true if document.css('#newsWrapperMain .tableRT2 tr td a').present?
+      return true if page.acceptable?
 
-      next_extractor = Etl::MzvsrContractsPageExtraction.new(page_number + 1)
-
-      next_extractor.download
-
-      return next_extractor.document.css('#newsWrapperMain .tableRT2 tr td a').present?
+      Etl::MzvsrContractsPageExtraction.new(page_number + 1).page.acceptable?
     end
 
-    def pages
-      uris = []
-
-      document.css('#newsWrapperMain .tableRT2 tr td a[title]').each do |link|
-        uris << "#{base_url}#{link['href']}"
-      end
-
-      uris
+    def page
+      @page ||= page_loader.load_by_get(document_url, page_class, base_url: base_url)
     end
 
     def perform
       if is_acceptable?
-        pages.each do |uri|
-          Delayed::Job.enqueue(Etl::MzvsrContractExtraction.new(uri))
+        page.detail_urls.each do |uri|
+          Delayed::Job.enqueue(self.class.new(uri))
         end
+      end
+    end
+
+    def after(job)
+      if is_acceptable?
+        Delayed::Job.enqueue self.class.new(page_number+1)
+      end
+    end
+
+    class ContractListingPage
+      attr_reader :document, :base_url
+
+      def initialize(document, params = {})
+        @document = document
+        @base_url = params.fetch(:base_url)
+      end
+
+      def detail_urls
+        document.css('#newsWrapperMain .tableRT2 tr td a[title]').map do |link|
+          "#{base_url}#{link['href']}"
+        end
+      end
+
+      def acceptable?
+        document.css('#newsWrapperMain .tableRT2 tr td a').present?
       end
     end
   end
