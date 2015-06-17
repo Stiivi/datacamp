@@ -183,27 +183,31 @@ module Etl
     end
 
     def self.download_first_page(event_validation, view_state)
-      Typhoeus::Request.post 'http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady.aspx', params: {
-        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$txtOtvoreneVCase' => '00:00',
-        '__EVENTTARGET' => 'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1',
-        '__EVENTARGUMENT' => 'Page$1',
-        '__VIEWSTATE' => view_state,
-        '__VIEWSTATEENCRYPTED' => '',
-        '__EVENTVALIDATION' => event_validation,
-        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$Vyhladaj.x' => '-750',
-        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$Vyhladaj.y' => '-763'
-      }
+      Typhoeus.post(
+          'http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady.aspx',
+          body: {
+              'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$txtOtvoreneVCase' => '00:00',
+              '__EVENTTARGET' => 'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1',
+              '__EVENTARGUMENT' => 'Page$1',
+              '__VIEWSTATE' => view_state.value,
+              '__VIEWSTATEENCRYPTED' => '',
+              '__EVENTVALIDATION' => event_validation.value,
+              'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$Vyhladaj.x' => '-750',
+              'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$Vyhladaj.y' => '-763'
+          })
     end
 
     def self.download_other_page(page, event_validation, view_state)
-      Typhoeus::Request.post 'http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady.aspx', params: {
-        'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$txtOtvoreneVCase' => '00:00',
-        '__EVENTTARGET' => 'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1',
-        '__EVENTARGUMENT' => "Page$#{page}",
-        '__VIEWSTATE' => view_state,
-        '__VIEWSTATEENCRYPTED' => '',
-        '__EVENTVALIDATION' => event_validation
-      }
+      Typhoeus.post(
+          'http://www.notar.sk/%C3%9Avod/Not%C3%A1rskecentr%C3%A1lneregistre/Not%C3%A1rske%C3%BArady.aspx',
+          body: {
+              'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$txtOtvoreneVCase' => '00:00',
+              '__EVENTTARGET' => 'dnn$ctr729$ViewSimpleWrapper$SimpleWrapperControl_729$DataGrid1',
+              '__EVENTARGUMENT' => "Page$#{page}",
+              '__VIEWSTATE' => view_state.value,
+              '__VIEWSTATEENCRYPTED' => '',
+              '__EVENTVALIDATION' => event_validation.value
+          })
     end
 
     def self.parse_for_ids(doc)

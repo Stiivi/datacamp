@@ -61,7 +61,7 @@ end
 describe Etl::MzvsrContractsPageExtraction::ContractListingPage do
 
   describe '#detail_urls' do
-    fit 'return detail_urls' do
+    it 'return detail_urls' do
       page = VCR.use_cassette('etl/mzvsr_contracts_page_extraction/page_1') do
         Etl::PageLoader.load_by_get(
             'http://www.mzv.sk/servlet/content?MT=/App/WCM/main.nsf/vw_ByID/zahranicna__politika&TG=BlankMaster&URL=/App/WCM/main.nsf/vw_ByID/medzinarodne_zmluvy-vsetky_zmluvy&OpenDocument=Y&LANG=SK&PAGE_MEDZINARODNEZMLUVY-ALL-DWMCEA-7XRF9N=1',
