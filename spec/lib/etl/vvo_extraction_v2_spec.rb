@@ -347,27 +347,27 @@ describe Etl::VvoExtractionV2 do
     end
 
     # Tests in all documents formats for not nil and blank attributes
-    # all_document_types_and_formats.each do |document_id|
-    #   VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
-    #     extractor = Etl::VvoExtractionV2.new(document_id)
-    #     customer_information = extractor.customer_information
-    #     dataset_type = extractor.dataset_type
-    #     required_attributes[:customer_information][dataset_type].each do |attribute|
-    #       # test when not in excluded nil attributes
-    #       if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
-    #         it "should have not nil attribute #{attribute} in customer information for document #{document_id}" do
-    #           customer_information[attribute].should_not be_nil
-    #         end
-    #         # test when check attribute and not in excluded blank attributes
-    #         if not_check_blank_attributes.exclude?(attribute) && (allowed_blank_attributes_in_documents.exclude?(attribute) || allowed_blank_attributes_in_documents[attribute].exclude?(document_id))
-    #           it "should have not blank attribute: #{attribute} in customer information for document #{document_id}" do
-    #             customer_information[attribute].should_not be_blank
-    #           end
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
+    all_document_types_and_formats.each do |document_id|
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
+        extractor = Etl::VvoExtractionV2.new(document_id)
+        customer_information = extractor.customer_information
+        dataset_type = extractor.dataset_type
+        required_attributes[:customer_information][dataset_type].each do |attribute|
+          # test when not in excluded nil attributes
+          if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
+            it "should have not nil attribute #{attribute} in customer information for document #{document_id}" do
+              customer_information[attribute].should_not be_nil
+            end
+            # test when check attribute and not in excluded blank attributes
+            if not_check_blank_attributes.exclude?(attribute) && (allowed_blank_attributes_in_documents.exclude?(attribute) || allowed_blank_attributes_in_documents[attribute].exclude?(document_id))
+              it "should have not blank attribute: #{attribute} in customer information for document #{document_id}" do
+                customer_information[attribute].should_not be_blank
+              end
+            end
+          end
+        end
+      end
+    end
   end
 
   # Contract information
@@ -593,27 +593,27 @@ describe Etl::VvoExtractionV2 do
     end
 
     # Tests in all documents formats for not nil and blank attributes
-    # all_document_types_and_formats.each do |document_id|
-    #   VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
-    #     extractor = Etl::VvoExtractionV2.new(document_id)
-    #     contract_information = extractor.contract_information
-    #     dataset_type = extractor.dataset_type
-    #     required_attributes[:contract_information][dataset_type].each do |attribute|
-    #       # test when not in excluded nil attributes
-    #       if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
-    #         it "should have not nil attribute: #{attribute} in contract information for document #{document_id}" do
-    #           contract_information[attribute].should_not be_nil
-    #         end
-    #         # test when checked attribute and not in excluded blank attributes
-    #         if not_check_blank_attributes.exclude?(attribute) && (allowed_blank_attributes_in_documents.exclude?(attribute) || allowed_blank_attributes_in_documents[attribute].exclude?(document_id))
-    #           it "should have not blank attribute: #{attribute} in contract information for document #{document_id}" do
-    #             contract_information[attribute].should_not be_blank
-    #           end
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
+    all_document_types_and_formats.each do |document_id|
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
+        extractor = Etl::VvoExtractionV2.new(document_id)
+        contract_information = extractor.contract_information
+        dataset_type = extractor.dataset_type
+        required_attributes[:contract_information][dataset_type].each do |attribute|
+          # test when not in excluded nil attributes
+          if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
+            it "should have not nil attribute: #{attribute} in contract information for document #{document_id}" do
+              contract_information[attribute].should_not be_nil
+            end
+            # test when checked attribute and not in excluded blank attributes
+            if not_check_blank_attributes.exclude?(attribute) && (allowed_blank_attributes_in_documents.exclude?(attribute) || allowed_blank_attributes_in_documents[attribute].exclude?(document_id))
+              it "should have not blank attribute: #{attribute} in contract information for document #{document_id}" do
+                contract_information[attribute].should_not be_blank
+              end
+            end
+          end
+        end
+      end
+    end
   end
 
   # Procedure information
@@ -1055,34 +1055,34 @@ describe Etl::VvoExtractionV2 do
       end
     end
 
-    # all_document_types_and_formats.each do |document_id|
-    #   VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
-    #     extractor = Etl::VvoExtractionV2.new(document_id)
-    #     suppliers_information = extractor.suppliers_information
-    #     dataset_type = extractor.dataset_type
-    #
-    #     it "should have not nil attribute suppliers in suppliers information for document #{document_id}" do
-    #       suppliers_information[:suppliers].should_not be_nil
-    #     end
-    #
-    #     suppliers_information[:suppliers].each do |supplier_information|
-    #       required_attributes[:supplier_information][dataset_type].each do |attribute|
-    #         # test when not in excluded nil attributes
-    #         if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
-    #           it "should have not nil attribute #{attribute} in customer information for document #{document_id}" do
-    #             supplier_information[attribute].should_not be_nil
-    #           end
-    #           # test when check attribute and not in excluded blank attributes
-    #           if not_check_blank_attributes.exclude?(attribute) && (allowed_blank_attributes_in_documents.exclude?(attribute) || allowed_blank_attributes_in_documents[attribute].exclude?(document_id))
-    #             it "should have not blank attribute: #{attribute} in customer information for document #{document_id}" do
-    #               supplier_information[attribute].should_not be_blank
-    #             end
-    #           end
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
+    all_document_types_and_formats.each do |document_id|
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
+        extractor = Etl::VvoExtractionV2.new(document_id)
+        suppliers_information = extractor.suppliers_information
+        dataset_type = extractor.dataset_type
+
+        it "should have not nil attribute suppliers in suppliers information for document #{document_id}" do
+          suppliers_information[:suppliers].should_not be_nil
+        end
+
+        suppliers_information[:suppliers].each do |supplier_information|
+          required_attributes[:supplier_information][dataset_type].each do |attribute|
+            # test when not in excluded nil attributes
+            if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
+              it "should have not nil attribute #{attribute} in customer information for document #{document_id}" do
+                supplier_information[attribute].should_not be_nil
+              end
+              # test when check attribute and not in excluded blank attributes
+              if not_check_blank_attributes.exclude?(attribute) && (allowed_blank_attributes_in_documents.exclude?(attribute) || allowed_blank_attributes_in_documents[attribute].exclude?(document_id))
+                it "should have not blank attribute: #{attribute} in customer information for document #{document_id}" do
+                  supplier_information[attribute].should_not be_blank
+                end
+              end
+            end
+          end
+        end
+      end
+    end
   end
 
   # performance_information
@@ -1433,21 +1433,21 @@ describe Etl::VvoExtractionV2 do
     end
 
     # Tests in all documents formats for not nil and blank attributes
-    # all_document_types_and_formats.each do |document_id|
-    #   VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
-    #     extractor = Etl::VvoExtractionV2.new(document_id)
-    #     additional_information = extractor.additional_information
-    #     dataset_type = extractor.dataset_type
-    #     required_attributes[:additional_information][dataset_type].each do |attribute|
-    #       # test when not in excluded nil attributes
-    #       if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
-    #         it "should have not nil attribute: #{attribute} in contract information for document #{document_id}" do
-    #           additional_information[attribute].should_not be_nil
-    #         end
-    #       end
-    #     end
-    #   end
-    # end
+    all_document_types_and_formats.each do |document_id|
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
+        extractor = Etl::VvoExtractionV2.new(document_id)
+        additional_information = extractor.additional_information
+        dataset_type = extractor.dataset_type
+        required_attributes[:additional_information][dataset_type].each do |attribute|
+          # test when not in excluded nil attributes
+          if allowed_nil_attributes_in_documents.exclude?(attribute) || allowed_nil_attributes_in_documents[attribute].exclude?(document_id)
+            it "should have not nil attribute: #{attribute} in contract information for document #{document_id}" do
+              additional_information[attribute].should_not be_nil
+            end
+          end
+        end
+      end
+    end
 
   end
 
