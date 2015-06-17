@@ -34,6 +34,7 @@ gem 'gabba'
 gem 'rollbar'
 
 gem 'unicorn'
+gem 'raindrops', '~> 0.13.0' # for unicorn, special version for ruby 2.2.2
 gem 'rack-rewrite'
 
 gem 'roadie', '~> 2.4.0' # version for rails 3
