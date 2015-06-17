@@ -22,7 +22,8 @@ gem 'globalize', '~> 3.1.0' # version for rails 3
 gem 'paperclip'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate'
-gem 'delayed_job'
+gem 'delayed_job_active_record'
+gem 'delayed_job', '~> 3.0.0' # version for rails 3
 gem 'nokogiri'
 gem 'typhoeus'
 gem 'delayed_job_admin'

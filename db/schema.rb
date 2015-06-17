@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150612095150) do
+ActiveRecord::Schema.define(:version => 20150617145045) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -223,6 +223,7 @@ ActiveRecord::Schema.define(:version => 20150612095150) do
     t.string   "locked_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "queue"
   end
 
   add_index "delayed_jobs", ["locked_by"], :name => "delayed_jobs_locked_by"
