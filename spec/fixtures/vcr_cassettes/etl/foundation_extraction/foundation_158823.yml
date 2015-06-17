@@ -1,115 +1,293 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158823&locale=sk
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      User-Agent: 
+      string: ''
+    headers:
+      User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Fri, 12 Jun 2015 14:11:46 GMT
-      Server: 
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:41 GMT
+      Server:
       - Apache/2.2.22 (Debian)
-      Set-Cookie: 
-      - JSESSIONID=1FC7EA8B2BEAA26E2B64BF35DF322D26; Path=/
-      Vary: 
+      Set-Cookie:
+      - JSESSIONID=05524B17FB2A8B5D4898AC2602748DC2; Path=/
+      Vary:
       - Accept-Encoding
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      Content-Type: 
+      Content-Type:
       - text/html;charset=UTF-8
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
-        \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
-        \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
-        \r\n\
-        \r\n \r\n \r\n \r\n\
-        \r\n\
-        \r\n\
-        <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
-        \r\n \r\n\
-        <!--\r\n\
-        <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-        -->\r\n\
-        <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-        </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\">\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n  <h2>V\xC3\xBDpis z registra</h2>\r\n  <div class=\"nadpis3i\">Tento v\xC3\xBDpis m\xC3\xA1 len informat\xC3\xADvny charakter a nie je pou\xC5\xBEite\xC4\xBEn\xC3\xBD pre pr\xC3\xA1vne \xC3\xBAkony.</div>\r\n  <br>  \r\n\
-        \r\n   <table>\r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>Registra\xC4\x8Dn\xC3\xA9 \xC4\x8D\xC3\xADslo</b></td>\r\n      <td class=\"defTextTable\">203/Na-2002/839</td>\r\n    </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>N\xC3\xA1zov nad\xC3\xA1cie</b></td>\r\n    <td class=\"defTextTable\" >&quot;NAD\xC3\x81CIA EQUUS ARABIUS&quot; </td>\r\n  </tr>\r\n\
-        \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>S\xC3\xADdlo</b></td>\r\n    <td class=\"defTextTable\" >Ro\xC4\xBEn\xC3\xADcka 10, 83107 Bratislava, Slovensk\xC3\xA1 republika</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>I\xC4\x8CO</b></td>\r\n    <td class=\"defTextTable\" >30864399</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vzniku</b></td>\r\n    <td class=\"defTextTable\" >31.05.2006</td>\r\n  </tr>\r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1pisu</b></td>\r\n    <td class=\"defTextTable\" >31.05.2006</td>\r\n  </tr>\r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vstupu do likvid\xC3\xA1cie </b></td>\r\n      <td class=\"defTextTable\" >15.12.2007</td>\r\n    </tr>\r\n   \r\n    \r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1niku </b></td>\r\n    <td class=\"defTextTable\" >14.04.2008</td>\r\n  </tr>\r\n  \r\n\
-        \r\n\
-        \r\n\
-        \r\n     <tr>\r\n       <td class=\"defTextTable\" style=\"width:200px;\"><b>Aktu\xC3\xA1lna hodnota nada\xC4\x8Dn\xC3\xA9ho imania</b></td>\r\n       <td class=\"defTextTable\" >&nbsp;200000 SKK   &nbsp;</td>\r\n     </tr>\r\n\
-        \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\">&nbsp;</td>\r\n    <td class=\"defTextTable\" >&nbsp;</td>\r\n  </tr>\r\n  \r\n \r\n   <tr><td class=\"defTextTable\" valign=\"top\"><b>Zakladatelia </b></td>\r\n        \r\n        <td>\r\n           <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n   \r\n          \r\n       \r\n       \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Ing. J\xC3\xA1n Lalik \r\n                        <br/>Brnianska 15, 81104 Bratislava\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;40000 SKK\r\n                   </td>  \r\n       </tr>  \r\n         \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Ing. Andrej Lipt\xC3\xA1k \r\n                        <br/>Ro\xC4\xBEn\xC3\xADcka 10, 83107 Bratislava\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;40000 SKK\r\n                   </td>  \r\n       </tr>  \r\n         \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Andrea Vl\xC4\x8Dkov\xC3\xA1 \r\n                        <br/>Mierov\xC3\xA1 1970/21-21, 02601 Doln\xC3\xBD Kub\xC3\xADn\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;40000 SKK\r\n                   </td>  \r\n       </tr>  \r\n         \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Monika Kornutov\xC3\xA1 \r\n                        <br/>Le\xC5\xA1tiny 43, 02701 Doln\xC3\xBD Kub\xC3\xADn\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;40000 SKK\r\n                   </td>  \r\n       </tr>  \r\n         \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Katar\xC3\xADna Lipt\xC3\xA1kov\xC3\xA1 \r\n                        <br/>Kapl\xC3\xADnska 10, 83106 Bratislava\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;40000 SKK\r\n                   </td>  \r\n       </tr>  \r\n         \r\n    \r\n    \r\n     </table>\r\n   </td>\r\n  </tr>\r\n\
-        \r\n\
-        \r\n <tr><td>&nbsp;</td></tr>\r\n \r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" valign=\"TOP\"><b>\xC5\xA0tatut\xC3\xA1rny organ:&nbsp;Spr\xC3\xA1vca</b></td>\r\n        \r\n       <td>   \r\n         <table cellpadding=\"0\" cellspacing=\"0\" width =\"100%\">\r\n                  \r\n                    <tr>  \r\n\
-        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">Katar\xC3\xADna Lipt\xC3\xA1kov\xC3\xA1\r\n                        <br/>Kapl\xC3\xADnska 10, 83106 Bratislava\r\n                        </td> \r\n\
-        \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">31.05.2006</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">15.12.2007</td>                 \r\n                   </tr>     \r\n                 \r\n         </table>\r\n       </td>\r\n    </tr> \r\n    <tr><td>&nbsp;</td></tr>\r\n   \r\n        \r\n    <tr>\r\n      <td class=\"defTextTable\"  valign=\"TOP\"><b>\xC3\x9A\xC4\x8Del nad\xC3\xA1cie</b></td>\r\n      <td class=\"defTextTable\"  colspan=\"5\">\r\n    \r\n      \r\n        <div>       \r\n          <span class=\"cell\">Podpora zdravia a lie\xC4\x8Dby det\xC3\xAD a ml\xC3\xA1de\xC5\xBEe  hippoterapiou, podpora jazdeck\xC3\xA9ho a dostihov\xC3\xA9ho \xC5\xA1portu, jazdeckej turistiky a \xC4\x8Fal\xC5\xA1\xC3\xADch oblast\xC3\xAD \xC5\xA1portov\xC3\xBDch, lie\xC4\x8Debn\xC3\xBDch s vyu\xC5\xBEit\xC3\xADm kon\xC3\xAD, podpora chovu arabsk\xC3\xBDch kon\xC3\xAD ako ohrozen\xC3\xA9ho druhu, propag\xC3\xA1cia a rozvoj chovu.\r</br></span>\r\n        </div>\r\n      \r\n    \r\n    </td></tr>\r\n \r\n  \r\n     <tr>\r\n        <td class=\"defTextTable\" valign =\"top\"><b>Likvid\xC3\xA1tori</b></td> \r\n        <td>\r\n           <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">  \r\n          \r\n        \r\n                \r\n                <tr>  \r\n                      \r\n                        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">Ing. Andrej Lipt\xC3\xA1k\r\n                        <br/>Ro\xC4\xBEn\xC3\xADcka 10, 83107 Bratislava\r\n                        </td> \r\n\
-        \r\n                        <td valign=\"top\" align =\"left\"  width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align =\"left\"  width =\"20%\" class=\"defTextTable\">15.12.2007</td>\r\n                        <td valign=\"top\" align =\"left\"  width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align =\"left\"  width =\"20%\" class=\"defTextTable\">14.04.2008</td>                 \r\n                </tr>     \r\n               \r\n          </table>\r\n        </td>\r\n      </tr>\r\n    \r\n\
-        </table>\r\n  <p class=\"btnCenter\"><a href=\"javascript:history.go(-1)\">Sp\xC3\xA4\xC5\xA5</a></p>\r\n  \r\n\
-        </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26\">Hlavn\xC3\xBD zoznam</a>\r\n\
-        |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
-        |</div>\r\n\
-        \r\n\
-        \r\n\
-        <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
-        \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=1FC7EA8B2BEAA26E2B64BF35DF322D26?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
-        \r\n\
-        &nbsp;\r\n\
-        <hr>\r\n \r\n\
-        \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
-        </html>\r\n\
-        \r\n"
-    http_version: "1.1"
-    adapter_metadata: 
+      string: !binary |-
+        DQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo8aHRtbCBsYW5nPSJlbiI+DQog
+        IDxoZWFkPg0KICAgIA0KICAgIDxsaW5rIHJlbD1zdHlsZXNoZWV0IHR5cGU9
+        InRleHQvY3NzIiBocmVmPSIuL3BhZ2VzL2luY2x1ZGVzL3N0eWxlLmNzcyI+
+        DQogICAgDQogICAgICANCiAgICANCiAgICANCiAgICA8VElUTEU+UmVnaXN0
+        ZXIgbmFkw6FjacOtIDwvVElUTEU+DQogICANCiAgICA8c2NyaXB0IFRZUEU9
+        InRleHQvamF2YXNjcmlwdCIgc3JjPSIuL3BhZ2VzL2luY2x1ZGVzL2Z1bmN0
+        aW9ucy5qcyIgPjwvc2NyaXB0Pg0KICA8L2hlYWQ+DQogIA0KICA8Qk9EWT4N
+        CiAgPCEtLSAgLy8gIE5FTUFaQVQgLSBrb250cm9sYSBmdW5rY25vc3RpIHJl
+        Z2lzdHJvdg0KICA8aDE+UmVnaXN0cmUgYSBldmlkZW5jaWU8L2gxPg0KICAt
+        LT4NCiAgDQogIDxicj4NCiAgICA8ZGl2IGNsYXNzPSJ0bXBEaXYiPg0KICAg
+        ICAgPGRpdiBpZD0ibGVmdCI+PGltZyBib3JkZXI9IjAiIHNyYz0iL3JlZ2lz
+        dHJlL3BhZ2VzL2ltYWdlcy9za196bmFrLmdpZiIgd2lkdGg9IjU4IiBoZWln
+        aHQ9IjcyIiBhbHQ9InpuYWsgU1IiPjwvZGl2Pg0KICAgICAgPGRpdiBpZD0i
+        cmlnaHQiPjxicj4NCiAgICAgIA0KICAgICAgICAgICA8YSBocmVmPSJsYW5n
+        LmRvP2xvY2FsZT1zayI+PGltZyBjbGFzcz0ibGFuZyIgc3JjPSIvcmVnaXN0
+        cmUvcGFnZXMvaW1hZ2VzL2xhbmdfc2sucG5nIiB0aXRsZT0iU0siPjwvYT4N
+        CiAgICAgICAgICAgPGJyPg0KCQkgICA8YSBocmVmPSJsYW5nLmRvP2xvY2Fs
+        ZT1lbiI+PGltZyBjbGFzcz0ibGFuZyIgc3JjPSIvcmVnaXN0cmUvcGFnZXMv
+        aW1hZ2VzL2xhbmdfZW4ucG5nIiB0aXRsZT0iRU4iPjwvYT4NCgkJICAgICAg
+        IDwhLS0gCQkgICAgICAgDQogICAgICAgICAgICAgIDxpbnB1dCB0eXBlPSJp
+        bWFnZSIgdmFsdWU9IlNLIiBzcmM9Ii9yZWdpc3RyZS9wYWdlcy9pbWFnZXMv
+        bGFuZ19zay5wbmciIHdpZHRoPSI0MCIgaGVpZ2h0PSIyMSIgYm9yZGVyPSIw
+        IiBhbHQ9IlNLIiBvbkNsaWNrPSJzZXRMYW5ndWFnZSgnc2snKSI+DQogICAg
+        ICAgICAgICAgIDxicj4NCiAgICAgICAgICAgICAgPGlucHV0IHR5cGU9Imlt
+        YWdlIiB2YWx1ZT0iRU4iIHNyYz0iL3JlZ2lzdHJlL3BhZ2VzL2ltYWdlcy9s
+        YW5nX2VuLnBuZyIgd2lkdGg9IjQwIiBoZWlnaHQ9IjIxIiBib3JkZXI9IjAi
+        IGFsdD0iRU4iIG9uQ2xpY2s9InNldExhbmd1YWdlKCdlbicpIj4NCiAgICAg
+        ICAgICAgICAtLT4NCiAgICAgICA8L2Rpdj4gICAgIA0KICAgICAgPGRpdiBp
+        ZD0ibWlkZGxlIj4NCiAgICAgIA0KICAgICAgDQogICAgICANCg0KDQogDQog
+        DQogDQoNCg0KPGgxPlJlZ2lzdGVyIG5hZMOhY2nDrSA8L2gxPg0KDQogDQo8
+        IS0tDQo8ZGl2IGNsYXNzPSJoTmFkcGlzM2kiPlNsdcW+YnUgemFiZXpwZcSN
+        dWplIE1pbmlzdGVyc3R2byB2bsO6dHJhIFNsb3ZlbnNrZWogcmVwdWJsaWt5
+        LCBzZWtjaWEgdmVyZWpuZWogc3Byw6F2eTxicj5EcmllxYhvdsOhIDIyLCA4
+        MjYgODYgQnJhdGlzbGF2YSAyOTwvZGl2PiANCi0tPg0KPGRpdiBjbGFzcz0i
+        aE5hZHBpczNpIj5aYWJlenBlxI11amUgTWluaXN0ZXJzdHZvIHZuw7p0cmEg
+        U2xvdmVuc2tlaiByZXB1Ymxpa3ksIHNla2NpYSB2ZXJlam5laiBzcHLDoXZ5
+        PGJyPkRyaWXFiG92w6EgMjIsIDgyNiA4NiBCcmF0aXNsYXZhIDI5PC9kaXY+
+        IA0KPC9kaXY+DQogICAgICA8ZGl2IGNsYXNzPSJjbGVhbmVyIj48L2Rpdj4N
+        CiAgICAgIDxocj4NCiAgICAgICZuYnNwOw0KICAgICAgPGRpdiBjbGFzcz0i
+        ZGl2Rm9ybSI+DQoNCg0KDQoNCg0KDQogIDxoMj5Ww71waXMgeiByZWdpc3Ry
+        YTwvaDI+DQogIDxkaXYgY2xhc3M9Im5hZHBpczNpIj5UZW50byB2w71waXMg
+        bcOhIGxlbiBpbmZvcm1hdMOtdm55IGNoYXJha3RlciBhIG5pZSBqZSBwb3XF
+        vml0ZcS+bsO9IHByZSBwcsOhdm5lIMO6a29ueS48L2Rpdj4NCiAgPGJyPiAg
+        DQoNCiAgIDx0YWJsZT4NCiAgICA8dHI+DQogICAgICA8dGQgY2xhc3M9ImRl
+        ZlRleHRUYWJsZSIgc3R5bGU9IndpZHRoOjIwMHB4OyI+PGI+UmVnaXN0cmHE
+        jW7DqSDEjcOtc2xvPC9iPjwvdGQ+DQogICAgICA8dGQgY2xhc3M9ImRlZlRl
+        eHRUYWJsZSI+MjAzL05hLTIwMDIvODM5PC90ZD4NCiAgICA8L3RyPg0KICAN
+        CiAgPHRyPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiBzdHlsZT0i
+        d2lkdGg6MjAwcHg7Ij48Yj5Ow6F6b3YgbmFkw6FjaWU8L2I+PC90ZD4NCiAg
+        ICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgPiZxdW90O05BRMOBQ0lBIEVR
+        VVVTIEFSQUJJVVMmcXVvdDsgPC90ZD4NCiAgPC90cj4NCg0KICAgPHRyPg0K
+        ICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiBzdHlsZT0id2lkdGg6MjAw
+        cHg7Ij48Yj5Tw61kbG88L2I+PC90ZD4NCiAgICA8dGQgY2xhc3M9ImRlZlRl
+        eHRUYWJsZSIgPlJvxL5uw61ja2EgMTAsIDgzMTA3IEJyYXRpc2xhdmEsIFNs
+        b3ZlbnNrw6EgcmVwdWJsaWthPC90ZD4NCiAgPC90cj4NCiAgDQogIDx0cj4N
+        CiAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgc3R5bGU9IndpZHRoOjIw
+        MHB4OyI+PGI+ScSMTzwvYj48L3RkPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4
+        dFRhYmxlIiA+MzA4NjQzOTk8L3RkPg0KICA8L3RyPg0KICANCiAgPHRyPg0K
+        ICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiBzdHlsZT0id2lkdGg6MjAw
+        cHg7Ij48Yj5Ew6F0dW0gdnpuaWt1PC9iPjwvdGQ+DQogICAgPHRkIGNsYXNz
+        PSJkZWZUZXh0VGFibGUiID4zMS4wNS4yMDA2PC90ZD4NCiAgPC90cj4NCiAg
+        DQogICA8dHI+DQogICAgPHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiIHN0eWxl
+        PSJ3aWR0aDoyMDBweDsiPjxiPkTDoXR1bSB6w6FwaXN1PC9iPjwvdGQ+DQog
+        ICAgPHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiID4zMS4wNS4yMDA2PC90ZD4N
+        CiAgPC90cj4NCiAgDQogIA0KICAgDQogICAgPHRyPg0KICAgICAgPHRkIGNs
+        YXNzPSJkZWZUZXh0VGFibGUiIHN0eWxlPSJ3aWR0aDoyMDBweDsiPjxiPkTD
+        oXR1bSB2c3R1cHUgZG8gbGlrdmlkw6FjaWUgPC9iPjwvdGQ+DQogICAgICA8
+        dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgPjE1LjEyLjIwMDc8L3RkPg0KICAg
+        IDwvdHI+DQogICANCiAgICANCiAgDQogICA8dHI+DQogICAgPHRkIGNsYXNz
+        PSJkZWZUZXh0VGFibGUiIHN0eWxlPSJ3aWR0aDoyMDBweDsiPjxiPkTDoXR1
+        bSB6w6FuaWt1IDwvYj48L3RkPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRh
+        YmxlIiA+MTQuMDQuMjAwODwvdGQ+DQogIDwvdHI+DQogIA0KDQoNCg0KICAg
+        ICA8dHI+DQogICAgICAgPHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiIHN0eWxl
+        PSJ3aWR0aDoyMDBweDsiPjxiPkFrdHXDoWxuYSBob2Rub3RhIG5hZGHEjW7D
+        qWhvIGltYW5pYTwvYj48L3RkPg0KICAgICAgIDx0ZCBjbGFzcz0iZGVmVGV4
+        dFRhYmxlIiA+Jm5ic3A7MjAwMDAwIFNLSyAgICZuYnNwOzwvdGQ+DQogICAg
+        IDwvdHI+DQoNCiAgPHRyPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxl
+        IiBzdHlsZT0id2lkdGg6MjAwcHg7Ij4mbmJzcDs8L3RkPg0KICAgIDx0ZCBj
+        bGFzcz0iZGVmVGV4dFRhYmxlIiA+Jm5ic3A7PC90ZD4NCiAgPC90cj4NCiAg
+        DQogDQogICA8dHI+PHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiIHZhbGlnbj0i
+        dG9wIj48Yj5aYWtsYWRhdGVsaWEgPC9iPjwvdGQ+DQogICAgICAgIA0KICAg
+        ICAgICA8dGQ+DQogICAgICAgICAgIDx0YWJsZSBjZWxscGFkZGluZz0iMCIg
+        Y2VsbHNwYWNpbmc9IjAiIHdpZHRoPSIxMDAlIj4NCiAgIA0KICAgICAgICAg
+        IA0KICAgICAgIA0KICAgICAgIA0KICAgICAgICAgPHRyPiANCiAgICAgICAg
+        ICAgICAgICAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgd2lkdGggPSI1
+        MCUiPg0KICAgICAgICAgICAgICAgICAgICAgICAgSW5nLiBKw6FuIExhbGlr
+        IA0KICAgICAgICAgICAgICAgICAgICAgICAgPGJyLz5Ccm5pYW5za2EgMTUs
+        IDgxMTA0IEJyYXRpc2xhdmENCiAgICAgICAgICAgICAgICAgICA8L3RkPiAg
+        DQogICAgICAgICAgICAgICAgICAgPHRkIHZhbGlnbj0idG9wIiBjbGFzcz0i
+        ZGVmVGV4dFRhYmxlIiBub3dyYXA+PGI+SG9kbm90YSBtYWpldGtvdsOpaG8g
+        dmtsYWR1IHByaSB6YWxvxb5lbsOtOjwvYj4NCiAgICAgICAgICAgICAgICAg
+        ICA8YnIvPlByZWRtZXQ6Jm5ic3A7UGXFiGHFvm7DqSBwcm9zdHJpZWRreTwv
+        dGQ+DQogICAgICAgICAgICAgICAgICAgPHRkIHZhbGlnbj0idG9wIiBhbGln
+        biA9ICJsZWZ0IiBjbGFzcz0iZGVmVGV4dFRhYmxlIiBub3dyYXA+Jm5ic3A7
+        NDAwMDAgU0tLDQogICAgICAgICAgICAgICAgICAgPC90ZD4gIA0KICAgICAg
+        IDwvdHI+ICANCiAgICAgICAgIA0KICAgICAgICAgPHRyPiANCiAgICAgICAg
+        ICAgICAgICAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgd2lkdGggPSI1
+        MCUiPg0KICAgICAgICAgICAgICAgICAgICAgICAgSW5nLiBBbmRyZWogTGlw
+        dMOhayANCiAgICAgICAgICAgICAgICAgICAgICAgIDxici8+Um/Evm7DrWNr
+        YSAxMCwgODMxMDcgQnJhdGlzbGF2YQ0KICAgICAgICAgICAgICAgICAgIDwv
+        dGQ+ICANCiAgICAgICAgICAgICAgICAgICA8dGQgdmFsaWduPSJ0b3AiIGNs
+        YXNzPSJkZWZUZXh0VGFibGUiIG5vd3JhcD48Yj5Ib2Rub3RhIG1hamV0a292
+        w6lobyB2a2xhZHUgcHJpIHphbG/FvmVuw606PC9iPg0KICAgICAgICAgICAg
+        ICAgICAgIDxici8+UHJlZG1ldDombmJzcDtQZcWIYcW+bsOpIHByb3N0cmll
+        ZGt5PC90ZD4NCiAgICAgICAgICAgICAgICAgICA8dGQgdmFsaWduPSJ0b3Ai
+        IGFsaWduID0gImxlZnQiIGNsYXNzPSJkZWZUZXh0VGFibGUiIG5vd3JhcD4m
+        bmJzcDs0MDAwMCBTS0sNCiAgICAgICAgICAgICAgICAgICA8L3RkPiAgDQog
+        ICAgICAgPC90cj4gIA0KICAgICAgICAgDQogICAgICAgICA8dHI+IA0KICAg
+        ICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiB3aWR0
+        aCA9IjUwJSI+DQogICAgICAgICAgICAgICAgICAgICAgICBBbmRyZWEgVmzE
+        jWtvdsOhIA0KICAgICAgICAgICAgICAgICAgICAgICAgPGJyLz5NaWVyb3bD
+        oSAxOTcwLzIxLTIxLCAwMjYwMSBEb2xuw70gS3Viw61uDQogICAgICAgICAg
+        ICAgICAgICAgPC90ZD4gIA0KICAgICAgICAgICAgICAgICAgIDx0ZCB2YWxp
+        Z249InRvcCIgY2xhc3M9ImRlZlRleHRUYWJsZSIgbm93cmFwPjxiPkhvZG5v
+        dGEgbWFqZXRrb3bDqWhvIHZrbGFkdSBwcmkgemFsb8W+ZW7DrTo8L2I+DQog
+        ICAgICAgICAgICAgICAgICAgPGJyLz5QcmVkbWV0OiZuYnNwO1BlxYhhxb5u
+        w6kgcHJvc3RyaWVka3k8L3RkPg0KICAgICAgICAgICAgICAgICAgIDx0ZCB2
+        YWxpZ249InRvcCIgYWxpZ24gPSAibGVmdCIgY2xhc3M9ImRlZlRleHRUYWJs
+        ZSIgbm93cmFwPiZuYnNwOzQwMDAwIFNLSw0KICAgICAgICAgICAgICAgICAg
+        IDwvdGQ+ICANCiAgICAgICA8L3RyPiAgDQogICAgICAgICANCiAgICAgICAg
+        IDx0cj4gDQogICAgICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJkZWZUZXh0
+        VGFibGUiIHdpZHRoID0iNTAlIj4NCiAgICAgICAgICAgICAgICAgICAgICAg
+        IE1vbmlrYSBLb3JudXRvdsOhIA0KICAgICAgICAgICAgICAgICAgICAgICAg
+        PGJyLz5MZcWhdGlueSA0MywgMDI3MDEgRG9sbsO9IEt1YsOtbg0KICAgICAg
+        ICAgICAgICAgICAgIDwvdGQ+ICANCiAgICAgICAgICAgICAgICAgICA8dGQg
+        dmFsaWduPSJ0b3AiIGNsYXNzPSJkZWZUZXh0VGFibGUiIG5vd3JhcD48Yj5I
+        b2Rub3RhIG1hamV0a292w6lobyB2a2xhZHUgcHJpIHphbG/FvmVuw606PC9i
+        Pg0KICAgICAgICAgICAgICAgICAgIDxici8+UHJlZG1ldDombmJzcDtQZcWI
+        YcW+bsOpIHByb3N0cmllZGt5PC90ZD4NCiAgICAgICAgICAgICAgICAgICA8
+        dGQgdmFsaWduPSJ0b3AiIGFsaWduID0gImxlZnQiIGNsYXNzPSJkZWZUZXh0
+        VGFibGUiIG5vd3JhcD4mbmJzcDs0MDAwMCBTS0sNCiAgICAgICAgICAgICAg
+        ICAgICA8L3RkPiAgDQogICAgICAgPC90cj4gIA0KICAgICAgICAgDQogICAg
+        ICAgICA8dHI+IA0KICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0iZGVm
+        VGV4dFRhYmxlIiB3aWR0aCA9IjUwJSI+DQogICAgICAgICAgICAgICAgICAg
+        ICAgICBLYXRhcsOtbmEgTGlwdMOha292w6EgDQogICAgICAgICAgICAgICAg
+        ICAgICAgICA8YnIvPkthcGzDrW5za2EgMTAsIDgzMTA2IEJyYXRpc2xhdmEN
+        CiAgICAgICAgICAgICAgICAgICA8L3RkPiAgDQogICAgICAgICAgICAgICAg
+        ICAgPHRkIHZhbGlnbj0idG9wIiBjbGFzcz0iZGVmVGV4dFRhYmxlIiBub3dy
+        YXA+PGI+SG9kbm90YSBtYWpldGtvdsOpaG8gdmtsYWR1IHByaSB6YWxvxb5l
+        bsOtOjwvYj4NCiAgICAgICAgICAgICAgICAgICA8YnIvPlByZWRtZXQ6Jm5i
+        c3A7UGXFiGHFvm7DqSBwcm9zdHJpZWRreTwvdGQ+DQogICAgICAgICAgICAg
+        ICAgICAgPHRkIHZhbGlnbj0idG9wIiBhbGlnbiA9ICJsZWZ0IiBjbGFzcz0i
+        ZGVmVGV4dFRhYmxlIiBub3dyYXA+Jm5ic3A7NDAwMDAgU0tLDQogICAgICAg
+        ICAgICAgICAgICAgPC90ZD4gIA0KICAgICAgIDwvdHI+ICANCiAgICAgICAg
+        IA0KICAgIA0KICAgIA0KICAgICA8L3RhYmxlPg0KICAgPC90ZD4NCiAgPC90
+        cj4NCg0KDQogPHRyPjx0ZD4mbmJzcDs8L3RkPjwvdHI+DQogDQogIA0KICAN
+        CiAgIA0KICAgIDx0cj4NCiAgICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxl
+        IiB2YWxpZ249IlRPUCI+PGI+xaB0YXR1dMOhcm55IG9yZ2FuOiZuYnNwO1Nw
+        csOhdmNhPC9iPjwvdGQ+DQogICAgICAgIA0KICAgICAgIDx0ZD4gICANCiAg
+        ICAgICAgIDx0YWJsZSBjZWxscGFkZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAi
+        IHdpZHRoID0iMTAwJSI+DQogICAgICAgICAgICAgICAgICANCiAgICAgICAg
+        ICAgICAgICAgICAgPHRyPiAgDQoNCiAgICAgICAgICAgICAgICAgICAgICAg
+        IDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiBhbGlnbiA9ImxlZnQiICB3aWR0
+        aCA9IjUwJSI+S2F0YXLDrW5hIExpcHTDoWtvdsOhDQogICAgICAgICAgICAg
+        ICAgICAgICAgICA8YnIvPkthcGzDrW5za2EgMTAsIDgzMTA2IEJyYXRpc2xh
+        dmENCiAgICAgICAgICAgICAgICAgICAgICAgIDwvdGQ+IA0KDQogICAgICAg
+        ICAgICAgICAgICAgICAgICA8dGQgdmFsaWduPSJ0b3AiIGFsaWduPSJsZWZ0
+        IiB3aWR0aCA9IjUlIiBjbGFzcz0iZGVmVGV4dFRhYmxlIj48Yj5PZDo8L2I+
+        PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCB2YWxpZ249InRv
+        cCIgYWxpZ249ImxlZnQiIHdpZHRoID0iMjAlIiBjbGFzcz0iZGVmVGV4dFRh
+        YmxlIj4zMS4wNS4yMDA2PC90ZD4NCiAgICAgICAgICAgICAgICAgICAgICAg
+        IDx0ZCB2YWxpZ249InRvcCIgYWxpZ249ImxlZnQiIHdpZHRoID0iNSUiIGNs
+        YXNzPSJkZWZUZXh0VGFibGUiPjxiPkRvOjwvYj48L3RkPg0KICAgICAgICAg
+        ICAgICAgICAgICAgICAgPHRkIHZhbGlnbj0idG9wIiBhbGlnbj0ibGVmdCIg
+        d2lkdGggPSIyMCUiIGNsYXNzPSJkZWZUZXh0VGFibGUiPjE1LjEyLjIwMDc8
+        L3RkPiAgICAgICAgICAgICAgICAgDQogICAgICAgICAgICAgICAgICAgPC90
+        cj4gICAgIA0KICAgICAgICAgICAgICAgICANCiAgICAgICAgIDwvdGFibGU+
+        DQogICAgICAgPC90ZD4NCiAgICA8L3RyPiANCiAgICA8dHI+PHRkPiZuYnNw
+        OzwvdGQ+PC90cj4NCiAgIA0KICAgICAgICANCiAgICA8dHI+DQogICAgICA8
+        dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgIHZhbGlnbj0iVE9QIj48Yj7DmsSN
+        ZWwgbmFkw6FjaWU8L2I+PC90ZD4NCiAgICAgIDx0ZCBjbGFzcz0iZGVmVGV4
+        dFRhYmxlIiAgY29sc3Bhbj0iNSI+DQogICAgDQogICAgICANCiAgICAgICAg
+        PGRpdj4gICAgICAgDQogICAgICAgICAgPHNwYW4gY2xhc3M9ImNlbGwiPlBv
+        ZHBvcmEgemRyYXZpYSBhIGxpZcSNYnkgZGV0w60gYSBtbMOhZGXFvmUgIGhp
+        cHBvdGVyYXBpb3UsIHBvZHBvcmEgamF6ZGVja8OpaG8gYSBkb3N0aWhvdsOp
+        aG8gxaFwb3J0dSwgamF6ZGVja2VqIHR1cmlzdGlreSBhIMSPYWzFocOtY2gg
+        b2JsYXN0w60gxaFwb3J0b3bDvWNoLCBsaWXEjWVibsO9Y2ggcyB2eXXFvml0
+        w61tIGtvbsOtLCBwb2Rwb3JhIGNob3Z1IGFyYWJza8O9Y2gga29uw60gYWtv
+        IG9ocm96ZW7DqWhvIGRydWh1LCBwcm9wYWfDoWNpYSBhIHJvenZvaiBjaG92
+        dS4NPC9icj48L3NwYW4+DQogICAgICAgIDwvZGl2Pg0KICAgICAgDQogICAg
+        DQogICAgPC90ZD48L3RyPg0KIA0KICANCiAgICAgPHRyPg0KICAgICAgICA8
+        dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgdmFsaWduID0idG9wIj48Yj5MaWt2
+        aWTDoXRvcmk8L2I+PC90ZD4gDQogICAgICAgIDx0ZD4NCiAgICAgICAgICAg
+        PHRhYmxlIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMCIgd2lkdGg9
+        IjEwMCUiPiAgDQogICAgICAgICAgDQogICAgICAgIA0KICAgICAgICAgICAg
+        ICAgIA0KICAgICAgICAgICAgICAgIDx0cj4gIA0KICAgICAgICAgICAgICAg
+        ICAgICAgIA0KICAgICAgICAgICAgICAgICAgICAgICAgDQogICAgICAgICAg
+        ICAgICAgICAgICAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgYWxpZ24g
+        PSJsZWZ0IiAgd2lkdGggPSI1MCUiPkluZy4gQW5kcmVqIExpcHTDoWsNCiAg
+        ICAgICAgICAgICAgICAgICAgICAgIDxici8+Um/Evm7DrWNrYSAxMCwgODMx
+        MDcgQnJhdGlzbGF2YQ0KICAgICAgICAgICAgICAgICAgICAgICAgPC90ZD4g
+        DQoNCiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCB2YWxpZ249InRvcCIg
+        YWxpZ24gPSJsZWZ0IiAgd2lkdGggPSI1JSIgY2xhc3M9ImRlZlRleHRUYWJs
+        ZSI+PGI+T2Q6PC9iPjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICA8
+        dGQgdmFsaWduPSJ0b3AiIGFsaWduID0ibGVmdCIgIHdpZHRoID0iMjAlIiBj
+        bGFzcz0iZGVmVGV4dFRhYmxlIj4xNS4xMi4yMDA3PC90ZD4NCiAgICAgICAg
+        ICAgICAgICAgICAgICAgIDx0ZCB2YWxpZ249InRvcCIgYWxpZ24gPSJsZWZ0
+        IiAgd2lkdGggPSI1JSIgY2xhc3M9ImRlZlRleHRUYWJsZSI+PGI+RG86PC9i
+        PjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICA8dGQgdmFsaWduPSJ0
+        b3AiIGFsaWduID0ibGVmdCIgIHdpZHRoID0iMjAlIiBjbGFzcz0iZGVmVGV4
+        dFRhYmxlIj4xNC4wNC4yMDA4PC90ZD4gICAgICAgICAgICAgICAgIA0KICAg
+        ICAgICAgICAgICAgIDwvdHI+ICAgICANCiAgICAgICAgICAgICAgIA0KICAg
+        ICAgICAgIDwvdGFibGU+DQogICAgICAgIDwvdGQ+DQogICAgICA8L3RyPg0K
+        ICAgIA0KPC90YWJsZT4NCiAgPHAgY2xhc3M9ImJ0bkNlbnRlciI+PGEgaHJl
+        Zj0iamF2YXNjcmlwdDpoaXN0b3J5LmdvKC0xKSI+U3DDpMWlPC9hPjwvcD4N
+        CiAgDQo8L2Rpdj4NCiAgICAgICZuYnNwOw0KICAgICAgPGhyPg0KICAgICAg
+        IA0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCjxkaXYgY2xh
+        c3M9Im5hZHBpczMiPnwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvc3RhcnQu
+        ZG87anNlc3Npb25pZD0wNTUyNEIxN0ZCMkE4QjVENDg5OEFDMjYwMjc0OERD
+        MiI+SGxhdm7DvSB6b3puYW08L2E+DQp8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lz
+        dHJlL3N0YXJ0cm5kLmRvO2pzZXNzaW9uaWQ9MDU1MjRCMTdGQjJBOEI1RDQ4
+        OThBQzI2MDI3NDhEQzIiPsOadm9kPC9hPg0KICANCiAgICANCiAgICAgIHwm
+        bmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvem96bmFtcm5kLmRvO2pzZXNzaW9u
+        aWQ9MDU1MjRCMTdGQjJBOEI1RDQ4OThBQzI2MDI3NDhEQzI/YWN0aW9uPWF6
+        emEiPkFiZWNlZG7DvSB6b3puYW0gbmFkw6FjacOtIC0gYWt0dcOhbG55PC9h
+        Pg0KICAgIA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3pu
+        YW1ybmQuZG87anNlc3Npb25pZD0wNTUyNEIxN0ZCMkE4QjVENDg5OEFDMjYw
+        Mjc0OERDMj9hY3Rpb249YXp6dSI+QWJlY2VkbsO9IHpvem5hbSBuYWTDoWNp
+        w60gLSDDunBsbsO9PC9hPg0KICAgIA0KICANCnw8L2Rpdj4NCg0KDQo8c3Bh
+        biBjbGFzcz0ibmFkcGlzMyI+PGI+VnloxL5hZGHFpSBwb2TEvmE6PC9iPjwv
+        c3Bhbj4NCg0KICA8c3BhbiBjbGFzcz0ibmFkcGlzMyI+Jm5ic3A7DQogICAg
+        DQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5k
+        bztqc2Vzc2lvbmlkPTA1NTI0QjE3RkIyQThCNUQ0ODk4QUMyNjAyNzQ4REMy
+        P2FjdGlvbj1zaG93JmZvcm11bGFyPW5hem92Ij5Ow6F6dnU8L2E+DQogICAg
+        DQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5k
+        bztqc2Vzc2lvbmlkPTA1NTI0QjE3RkIyQThCNUQ0ODk4QUMyNjAyNzQ4REMy
+        P2FjdGlvbj1zaG93JmZvcm11bGFyPXNpZGxvIj5Tw61kbGE8L2E+DQogICAg
+        DQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5k
+        bztqc2Vzc2lvbmlkPTA1NTI0QjE3RkIyQThCNUQ0ODk4QUMyNjAyNzQ4REMy
+        P2FjdGlvbj1zaG93JmZvcm11bGFyPXByYXZvcyI+UHLDoXZuaWNrZWogb3Nv
+        Ynk8L2E+DQogICAgDQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJl
+        L2hsYWRhdHJuZC5kbztqc2Vzc2lvbmlkPTA1NTI0QjE3RkIyQThCNUQ0ODk4
+        QUMyNjAyNzQ4REMyP2FjdGlvbj1zaG93JmZvcm11bGFyPWZ5em9zIj5GeXpp
+        Y2tlaiBvc29ieTwvYT4NCiAgICANCiAgICAgIHwmbmJzcDs8YSBocmVmPSIv
+        cmVnaXN0cmUvaGxhZGF0cm5kLmRvO2pzZXNzaW9uaWQ9MDU1MjRCMTdGQjJB
+        OEI1RDQ4OThBQzI2MDI3NDhEQzI/YWN0aW9uPXNob3cmZm9ybXVsYXI9aWNv
+        Ij5JxIxPPC9hPg0KICAgIA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdp
+        c3RyZS9obGFkYXRybmQuZG87anNlc3Npb25pZD0wNTUyNEIxN0ZCMkE4QjVE
+        NDg5OEFDMjYwMjc0OERDMj9hY3Rpb249c2hvdyZmb3JtdWxhcj11Y2VsIj7D
+        msSNZWx1PC9hPg0KICAgIA0KICB8PC9zcGFuPg0KDQoNCg0KDQogIDxkaXYg
+        Y2xhc3M9Im5hZHBpczMiPiZuYnNwOw0KICAgIA0KICAgICAgfCZuYnNwOzxh
+        IGhyZWY9Ii9yZWdpc3RyZS9vcmVnaXN0cmkuZG87anNlc3Npb25pZD0wNTUy
+        NEIxN0ZCMkE4QjVENDg5OEFDMjYwMjc0OERDMj9yZWdpc3Rlcj1ybmQiPklu
+        Zm9ybcOhY2llIG8gcmVnaXN0csOhY2lpPC9hPg0KICAgIA0KICAgICAgfCZu
+        YnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS9uYXZvZC5kbztqc2Vzc2lvbmlkPTA1
+        NTI0QjE3RkIyQThCNUQ0ODk4QUMyNjAyNzQ4REMyP3JlZ2lzdGVyPXJuZCI+
+        TsOhdm9kIG5hIHBvdcW+w612YW5pZSByZWdpc3RyYTwvYT4NCiAgICANCiAg
+        fDwvZGl2Pg0KDQombmJzcDsNCjxocj4NCiANCg0KICAgICAgJm5ic3A7DQog
+        ICAgICA8ZGl2IGNsYXNzPSJkZWZUZXh0Q2VudGVyIj4NCiAgICAgIHwmbmJz
+        cDs8YSBocmVmPSJtYWlsdG86b3Z2cy5zdnNAbXZzci52cy5zayI+U3Byw6F2
+        Y2Egb2JzYWh1IChNViBTUik8L2E+Jm5ic3A7fA0KICAgICAgJm5ic3A7PGEg
+        aHJlZj0iaHR0cDovL3d3dy5pdmVzLnNrIiB0YXJnZXQ9Il9ibGFuayI+VGVj
+        aG5pY2vDvSBwcmV2w6FkemtvdmF0ZcS+IChJVmVTKTwvYT4mbmJzcDt8DQog
+        ICAgICAmbmJzcDs8YSBocmVmPSIuL3BhZ2VzL3Z5aGxhc2VuaWUuaHRtbCIg
+        dGFyZ2V0PSJfYmxhbmsiPlZ5aGzDoXNlbmllIG8gcHLDrXN0dXBub3N0aTwv
+        YT4mbmJzcDt8DQogICAgPC9kaXY+DQogICAgPC9kaXY+DQogIDwvQk9EWT4N
+        CiAgDQo8L2h0bWw+DQoNCg==
+    http_version: '1.1'
+    adapter_metadata:
       effective_url: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158823&locale=sk
-  recorded_at: Fri, 12 Jun 2015 14:11:46 GMT
+  recorded_at: Wed, 17 Jun 2015 13:46:41 GMT
 recorded_with: VCR 2.9.3

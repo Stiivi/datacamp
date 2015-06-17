@@ -1,29 +1,29 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: http://www.statistics.sk/pls/wregis/detail?wxidorg=0
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      User-Agent: 
+      string: ''
+    headers:
+      User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
-  response: 
-    status: 
+  response:
+    status:
       code: 404
       message: Not Found
-    headers: 
-      Date: 
-      - Fri, 12 Jun 2015 15:02:51 GMT
-      Server: 
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:58 GMT
+      Server:
       - Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      Content-Type: 
+      Content-Type:
       - text/html; charset=iso-8859-1
-    body: 
-      encoding: US-ASCII
+    body:
+      encoding: UTF-8
       string: |
         <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
         <HTML><HEAD>
@@ -34,9 +34,8 @@ http_interactions:
         <HR>
         <ADDRESS>Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server Server at www.statistics.sk Port 80</ADDRESS>
         </BODY></HTML>
-
-    http_version: "1.1"
-    adapter_metadata: 
+    http_version: '1.1'
+    adapter_metadata:
       effective_url: http://www.statistics.sk/pls/wregis/detail?wxidorg=0
-  recorded_at: Fri, 12 Jun 2015 15:02:54 GMT
+  recorded_at: Wed, 17 Jun 2015 13:47:00 GMT
 recorded_with: VCR 2.9.3
