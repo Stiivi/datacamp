@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+ruby '2.2.2'
 gem 'rails', '3.2.22'
 
 group :assets do
@@ -41,6 +42,7 @@ gem 'thin'
 
 # this gems should be removed in future
 gem 'dynamic_form'
+gem 'test-unit', '~> 3.0' # ruby 2.2.2 needs this for rails 3.2
 
 group :development do
   gem 'mailcatcher', '~> 0.5.0' # version for rails 3
