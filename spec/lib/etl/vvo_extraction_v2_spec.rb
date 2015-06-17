@@ -64,7 +64,7 @@ describe Etl::VvoExtractionV2 do
 
   describe '#download' do
     it 'should download a document' do
-      VCR.use_cassette('vvo_185508') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185508') do
         @extractor_example.download.should_not be_nil
       end
     end
@@ -78,13 +78,13 @@ describe Etl::VvoExtractionV2 do
 
   describe '#document_format' do
     it 'should return format1' do
-      VCR.use_cassette('vvo_185508') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185508') do
         @extractor_example.document_format.should == :format1
       end
     end
 
     it 'should return format2' do
-      VCR.use_cassette('vvo_121914') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121914') do
         @extractor_format2.document_format.should == :format2
       end
     end
@@ -93,13 +93,13 @@ describe Etl::VvoExtractionV2 do
   # Document type
   describe '#document_type' do
     it 'should return VSP from format2' do
-      VCR.use_cassette('vvo_185508') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185508') do
         @extractor_example.document_type.should == 'VSP'
       end
     end
 
     it 'should return VSP from format2' do
-      VCR.use_cassette('vvo_121914') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121914') do
         @extractor_format2.document_type.should == 'VSP'
       end
     end
@@ -108,13 +108,13 @@ describe Etl::VvoExtractionV2 do
   # Is acceptable
   describe '#is_acceptable?' do
     it 'should accept document with type VSP' do
-      VCR.use_cassette('vvo_185508') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185508') do
         @extractor_example.is_acceptable?.should be_true
       end
     end
 
     it 'should not accept document with type M' do
-      VCR.use_cassette('vvo_275792') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_275792') do
         extractor = Etl::VvoExtractionV2.new(275792)
         extractor.is_acceptable?.should be_false
       end
@@ -125,32 +125,32 @@ describe Etl::VvoExtractionV2 do
   # Basic information
   describe '#basic_information' do
     it 'should get basic information from a document - VSP - format1' do
-      VCR.use_cassette('vvo_185508') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185508') do
         extractor = Etl::VvoExtractionV2.new(185508)
         extractor.basic_information.should == {procurement_code: "12686 - VSP", bulletin_code: 204, year: 2012, procurement_type: 'VSP', published_on: Date.new(2012, 10, 24)}
       end
     end
     it 'should get basic information from a document - VSP - format2' do
-      VCR.use_cassette('vvo_121914') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121914') do
         extractor = Etl::VvoExtractionV2.new(121914)
         extractor.basic_information.should == {:procurement_code => "00009 - VSP", :bulletin_code => 2, :year => 2009, procurement_type: 'VSP', published_on: Date.new(2009, 1, 9)}
       end
     end
     it 'should get basic information from a document - VSS - format1' do
-      VCR.use_cassette('vvo_185480') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185480') do
         extractor = Etl::VvoExtractionV2.new(185480)
         extractor.basic_information.should == {:procurement_code => "12685 - VSS", :bulletin_code => 204, :year => 2012, procurement_type: 'VSS', published_on: Date.new(2012, 10, 24)}
       end
     end
     it 'should get basic information from a document - VST - format1' do
-      VCR.use_cassette('vvo_185477') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185477') do
         extractor = Etl::VvoExtractionV2.new(185477)
         extractor.basic_information[:procurement_type].should == 'VST'
       end
     end
     all_document_types_and_formats.each do |document_id|
       it "should get all basic information for document #{document_id}" do
-        VCR.use_cassette("vvo_#{document_id}") do
+        VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
           extractor = Etl::VvoExtractionV2.new(document_id)
           basic_information = extractor.basic_information
           required_attributes[:basic_information].each do |attribute|
@@ -165,7 +165,7 @@ describe Etl::VvoExtractionV2 do
   # header_procedure_and_project_information
   describe '#header_procedure_and_project_information' do
     it 'should get header_procedure_and_project information from a document - VDP - format1' do
-      VCR.use_cassette('vvo_198751') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_198751') do
         extractor = Etl::VvoExtractionV2.new(198751)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Súťažný dialóg",
@@ -174,7 +174,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - VDT - format1' do
-      VCR.use_cassette('vvo_198340') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_198340') do
         extractor = Etl::VvoExtractionV2.new(198340)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Súťažný dialóg",
@@ -183,7 +183,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - VUP - format1' do
-      VCR.use_cassette('vvo_186041') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_186041') do
         extractor = Etl::VvoExtractionV2.new(186041)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Užšia súťaž",
@@ -192,7 +192,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - VBS - format1' do
-      VCR.use_cassette('vvo_185654') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185654') do
         extractor = Etl::VvoExtractionV2.new(185654)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Rokovacie konanie bez zverejnenia",
@@ -201,7 +201,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - VSS - format1' do
-      VCR.use_cassette('vvo_185480') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185480') do
         extractor = Etl::VvoExtractionV2.new(185480)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Verejná súťaž",
@@ -210,31 +210,31 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - IZP - format1' do
-      VCR.use_cassette('vvo_188964') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_188964') do
         extractor = Etl::VvoExtractionV2.new(188964)
         extractor.header_procedure_and_project_information.should == {project_type: "Práce"}
       end
     end
     it 'should get header_procedure_and_project information from a document - IZS - format1' do
-      VCR.use_cassette('vvo_186086') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_186086') do
         extractor = Etl::VvoExtractionV2.new(186086)
         extractor.header_procedure_and_project_information.should == {project_type: "Služby"}
       end
     end
     it 'should get header_procedure_and_project information from a document - IZT - format1' do
-      VCR.use_cassette('vvo_185481') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185481') do
         extractor = Etl::VvoExtractionV2.new(185481)
         extractor.header_procedure_and_project_information.should == {project_type: "Tovary"}
       end
     end
     it 'should get empty header_procedure_and_project information from a document - VZT - format1' do
-      VCR.use_cassette('vvo_185619') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185619') do
         extractor = Etl::VvoExtractionV2.new(185619)
         extractor.header_procedure_and_project_information.should == {}
       end
     end
     it 'should get header_procedure_and_project information from a document - VST - format2' do
-      VCR.use_cassette('vvo_121935') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121935') do
         extractor = Etl::VvoExtractionV2.new(121935)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Verejná súťaž",
@@ -243,7 +243,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - VBP - format2' do
-      VCR.use_cassette('vvo_121966') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121966') do
         extractor = Etl::VvoExtractionV2.new(121966)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Rokovacie konanie bez zverejnenia",
@@ -252,13 +252,13 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get header_procedure_and_project information from a document - VZT - format2' do
-      VCR.use_cassette('vvo_121947') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121947') do
         extractor = Etl::VvoExtractionV2.new(121947)
         extractor.header_procedure_and_project_information.should == {project_type: "Tovary"}
       end
     end
     it 'should get header_procedure_and_project information from a document - VST - format2' do
-      VCR.use_cassette('vvo_121935') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121935') do
         extractor = Etl::VvoExtractionV2.new(121935)
         extractor.header_procedure_and_project_information.should == {
             procedure_type: "Verejná súťaž",
@@ -269,7 +269,7 @@ describe Etl::VvoExtractionV2 do
 
     all_document_types_and_formats.each do |document_id|
       it "should get header_procedure_and_project information for #{document_id} document" do
-        VCR.use_cassette("vvo_#{document_id}") do
+        VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
           extractor = Etl::VvoExtractionV2.new(document_id)
           extractor.header_procedure_and_project_information.should_not be_nil
         end
@@ -280,7 +280,7 @@ describe Etl::VvoExtractionV2 do
   # Customer information
   describe '#customer_information' do
     it 'should get customer information from a document - VZP - format1' do
-      VCR.use_cassette('vvo_185702') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185702') do
         extractor = Etl::VvoExtractionV2.new(185702)
         extractor.customer_information.should == {
             customer_name: 'Nitriansky samosprávny kraj',
@@ -300,7 +300,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get customer information from a document - VZP - format2' do
-      VCR.use_cassette('vvo_122391') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122391') do
         extractor = Etl::VvoExtractionV2.new(122391)
         extractor.customer_information.should == {
             customer_name: 'Mesto Žiar nad Hronom',
@@ -320,7 +320,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get customer information from a document - VSS - format1' do
-      VCR.use_cassette('vvo_266857') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_266857') do
         extractor = Etl::VvoExtractionV2.new(266857)
         customer_information = extractor.customer_information
         customer_information[:customer_organisation_code].should == '31819494'
@@ -330,14 +330,14 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get customer organisation_code from document' do
-      VCR.use_cassette('vvo_274037') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_274037') do
         extractor = Etl::VvoExtractionV2.new(274037)
         extractor.customer_information[:customer_organisation_code].should == '00165549'
       end
     end
 
     it 'should get customer information from a document - VSS' do
-      VCR.use_cassette('vvo_156855') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_156855') do
         extractor = Etl::VvoExtractionV2.new(156855)
         customer_information = extractor.customer_information
         customer_information[:customer_type].should == 'Ministerstvo alebo iný štátny orgán vrátane jeho regionálnych alebo miestnych útvarov'
@@ -348,7 +348,7 @@ describe Etl::VvoExtractionV2 do
 
     # Tests in all documents formats for not nil and blank attributes
     all_document_types_and_formats.each do |document_id|
-      VCR.use_cassette("vvo_#{document_id}") do
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
         extractor = Etl::VvoExtractionV2.new(document_id)
         customer_information = extractor.customer_information
         dataset_type = extractor.dataset_type
@@ -374,7 +374,7 @@ describe Etl::VvoExtractionV2 do
   describe '#contract_information' do
     # Format 1
     it 'should get contract information from a document - VZS - format1' do
-      VCR.use_cassette('vvo_185547') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185547') do
         extractor = Etl::VvoExtractionV2.new(185547)
         extractor.contract_information.should == {
             project_name: 'Zabezpečenie poskytovania stravovania pre zamestnancov colnej správy formou stravných poukážok',
@@ -389,7 +389,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get contract information from a document - IPS - format1' do
-      VCR.use_cassette('vvo_238166') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_238166') do
         extractor = Etl::VvoExtractionV2.new(238166)
         extractor.contract_information.should == {
             project_name: 'Oprava videogastroskopu PENTAX',
@@ -403,7 +403,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get contract information from a document - VZP - format1' do
-      VCR.use_cassette('vvo_185702') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185702') do
         extractor = Etl::VvoExtractionV2.new(185702)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Stavebné práce'
@@ -412,7 +412,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get contract information from a document - VUT - format1' do
-      VCR.use_cassette('vvo_185909') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185909') do
         extractor = Etl::VvoExtractionV2.new(185909)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Tovary'
@@ -423,7 +423,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get contract information from a document - VKS - format1' do
-      VCR.use_cassette('vvo_226115') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_226115') do
         extractor = Etl::VvoExtractionV2.new(226115)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Služby'
@@ -434,7 +434,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get contract information from a document - VKS - format1' do
-      VCR.use_cassette('vvo_237445') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_237445') do
         extractor = Etl::VvoExtractionV2.new(237445)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Práce'
@@ -442,7 +442,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get contract information from a document - VUS - format1' do
-      VCR.use_cassette('vvo_185503') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185503') do
         extractor = Etl::VvoExtractionV2.new(185503)
         contract_information = extractor.contract_information
         contract_information[:dictionary_main_subjects].should == '72222300-0'
@@ -452,7 +452,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get contract information from a document - VEP - format1' do
-      VCR.use_cassette('vvo_202431') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_202431') do
         extractor = Etl::VvoExtractionV2.new(202431)
         contract_information = extractor.contract_information
         contract_information[:gpa_agreement].should == false
@@ -460,7 +460,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get contract information from a document - VZT - format1' do
-      VCR.use_cassette('vvo_185619') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185619') do
         extractor = Etl::VvoExtractionV2.new(185619)
         contract_information = extractor.contract_information
         contract_information[:general_contract].should == true
@@ -468,7 +468,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get empty contract information from a document - IZP - format1' do
-      VCR.use_cassette('vvo_188964') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_188964') do
         extractor = Etl::VvoExtractionV2.new(188964)
         extractor.contract_information.should == {}
       end
@@ -477,7 +477,7 @@ describe Etl::VvoExtractionV2 do
     # Format 2
 
     it 'should get contract information from a document - VZS - format2' do
-      VCR.use_cassette('vvo_121973') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121973') do
         extractor = Etl::VvoExtractionV2.new(121973)
         extractor.contract_information.should == {
             project_name: 'Vyhotovovanie geodetických prác pre potreby RO SPF',
@@ -492,7 +492,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get customer information from a document - VUT - format2' do
-      VCR.use_cassette('vvo_122520') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122520') do
         extractor = Etl::VvoExtractionV2.new(122520)
         extractor.contract_information.should == {
             project_name: 'Kity, chemikálie a biologický materiál pre biologický výskum, zameraný na bunkovú biológiu a virológiu',
@@ -509,7 +509,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get customer information from a document - VNS - format2' do
-      VCR.use_cassette('vvo_121902') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121902') do
         extractor = Etl::VvoExtractionV2.new(121902)
         extractor.contract_information.should == {
             project_name: 'Obsluha tepelnotechnických zariadení',
@@ -525,7 +525,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get project type and category (contract information) from a document - VZT - format2' do
-      VCR.use_cassette('vvo_121947') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121947') do
         extractor = Etl::VvoExtractionV2.new(121947)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Tovary'
@@ -534,7 +534,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get project type and category (contract information) from a document - VZP - format2' do
-      VCR.use_cassette('vvo_122391') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122391') do
         extractor = Etl::VvoExtractionV2.new(122391)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Stavebné práce'
@@ -543,7 +543,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get project type and category (contract information) from a document - VSS - format2' do
-      VCR.use_cassette('vvo_121945') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121945') do
         extractor = Etl::VvoExtractionV2.new(121945)
         contract_information = extractor.contract_information
         contract_information[:project_type].should == 'Služby'
@@ -552,7 +552,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get subjects in contract information from a document - VZP - format2' do
-      VCR.use_cassette('vvo_122391') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122391') do
         extractor = Etl::VvoExtractionV2.new(122391)
         contract_information = extractor.contract_information
         contract_information[:dictionary_main_subjects].should == '45000000-7, IA13-5'
@@ -561,7 +561,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get subjects in contract information from a document - VBP - format2' do
-      VCR.use_cassette('vvo_121966') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121966') do
         extractor = Etl::VvoExtractionV2.new(121966)
         contract_information = extractor.contract_information
         contract_information[:dictionary_main_subjects].should == '71320000-7'
@@ -570,7 +570,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get gpa_agreement in contract information from a document - VSS - format2' do
-      VCR.use_cassette('vvo_121945') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121945') do
         extractor = Etl::VvoExtractionV2.new(121945)
         contract_information = extractor.contract_information
         contract_information[:gpa_agreement].should == false
@@ -578,7 +578,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get general_contract in contract information from a document - VZP - format2' do
-      VCR.use_cassette('vvo_122391') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122391') do
         extractor = Etl::VvoExtractionV2.new(122391)
         contract_information = extractor.contract_information
         contract_information[:general_contract].should == false
@@ -586,7 +586,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get empty contract information) from a document - IDP - format2' do
-      VCR.use_cassette('vvo_121996') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121996') do
         extractor = Etl::VvoExtractionV2.new(121996)
         extractor.contract_information.should == {}
       end
@@ -594,7 +594,7 @@ describe Etl::VvoExtractionV2 do
 
     # Tests in all documents formats for not nil and blank attributes
     all_document_types_and_formats.each do |document_id|
-      VCR.use_cassette("vvo_#{document_id}") do
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
         extractor = Etl::VvoExtractionV2.new(document_id)
         contract_information = extractor.contract_information
         dataset_type = extractor.dataset_type
@@ -620,7 +620,7 @@ describe Etl::VvoExtractionV2 do
   describe '#procedure_information' do
     # Format 1
     it 'should get procedure information from a document - VKS - format1' do
-      VCR.use_cassette('vvo_226115') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_226115') do
         extractor = Etl::VvoExtractionV2.new(226115)
         extractor.procedure_information.should == {
             procedure_type: 'Užšia súťaž',
@@ -636,7 +636,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VBP - format1' do
-      VCR.use_cassette('vvo_185927') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185927') do
         extractor = Etl::VvoExtractionV2.new(185927)
         extractor.procedure_information.should == {
             procedure_type: 'Rokovacie konanie bez výzvy na súťaž',
@@ -652,7 +652,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VZP - format1' do
-      VCR.use_cassette('vvo_185702') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185702') do
         extractor = Etl::VvoExtractionV2.new(185702)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should == '8168-MSP, VVO 135/2012'
@@ -660,7 +660,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VBS - format1' do
-      VCR.use_cassette('vvo_185654') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185654') do
         extractor = Etl::VvoExtractionV2.new(185654)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should_not be_nil
@@ -672,7 +672,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VDT - format1' do
-      VCR.use_cassette('vvo_198340') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_198340') do
         extractor = Etl::VvoExtractionV2.new(198340)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should_not be_nil
@@ -687,7 +687,7 @@ describe Etl::VvoExtractionV2 do
     # Format 2
 
     it 'should get procedure information from a document - VBP - format2' do
-      VCR.use_cassette('vvo_121966') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121966') do
         extractor = Etl::VvoExtractionV2.new(121966)
         extractor.procedure_information.should == {
             procedure_type: 'Rokovacie konanie bez zverejnenia',
@@ -703,7 +703,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VBS - format2' do
-      VCR.use_cassette('vvo_121898') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121898') do
         extractor = Etl::VvoExtractionV2.new(121898)
         extractor.procedure_information.should == {
             procedure_type: 'Rokovacie konanie bez zverejnenia',
@@ -719,7 +719,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VZT - format2' do
-      VCR.use_cassette('vvo_121947') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121947') do
         extractor = Etl::VvoExtractionV2.new(121947)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should == '01257-MST, VVO 50/2008'
@@ -727,14 +727,14 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VUT - format2' do
-      VCR.use_cassette('vvo_122520') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122520') do
         extractor = Etl::VvoExtractionV2.new(122520)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should == '2008/S 176-234429'
       end
     end
     it 'should get procedure information from a document - VZS - format2' do
-      VCR.use_cassette('vvo_121973') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121973') do
         extractor = Etl::VvoExtractionV2.new(121973)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should_not be_nil
@@ -746,7 +746,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get procedure information from a document - VBS - format2' do
-      VCR.use_cassette('vvo_121898') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121898') do
         extractor = Etl::VvoExtractionV2.new(121898)
         procedure_information = extractor.procedure_information
         procedure_information[:previous_notification1_number].should be_nil
@@ -759,7 +759,7 @@ describe Etl::VvoExtractionV2 do
     end
     all_document_types_and_formats.each do |document_id|
       it "should get procedure information for #{document_id} document" do
-        VCR.use_cassette("vvo_#{document_id}") do
+        VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
           extractor = Etl::VvoExtractionV2.new(document_id)
           extractor.procedure_information.should_not be_nil
         end
@@ -771,7 +771,7 @@ describe Etl::VvoExtractionV2 do
   describe '#suppliers_information' do
     # Format 1
     it 'should get supliers information from a document - VKS - format1' do
-      VCR.use_cassette('vvo_238715') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_238715') do
         extractor = Etl::VvoExtractionV2.new(238715)
         extractor.suppliers_information.should == {
             suppliers: [{
@@ -796,7 +796,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 191763 - format1' do
-      VCR.use_cassette('vvo_191763') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_191763') do
         extractor = Etl::VvoExtractionV2.new(191763)
         extractor.suppliers_information[:suppliers].count.should == 1
         supplier = extractor.suppliers_information[:suppliers].first
@@ -829,7 +829,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 185909 - format1' do
-      VCR.use_cassette('vvo_185909') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185909') do
         extractor = Etl::VvoExtractionV2.new(185909)
         extractor.suppliers_information[:suppliers].count.should == 1
         supplier = extractor.suppliers_information[:suppliers].first
@@ -855,7 +855,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 185892 - format1' do
-      VCR.use_cassette('vvo_185892') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185892') do
         extractor = Etl::VvoExtractionV2.new(185892)
         extractor.suppliers_information[:suppliers].count.should == 1
         supplier = extractor.suppliers_information[:suppliers].first
@@ -882,7 +882,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 186041 - format1' do
-      VCR.use_cassette('vvo_186041') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_186041') do
         extractor = Etl::VvoExtractionV2.new(186041)
         supplier = extractor.suppliers_information[:suppliers].first
         supplier[:procurement_currency].should == "EUR"
@@ -899,7 +899,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 238166 - format1' do
-      VCR.use_cassette('vvo_238166') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_238166') do
         extractor = Etl::VvoExtractionV2.new(238166)
         supplier = extractor.suppliers_information[:suppliers].first
         supplier[:offers_excluded_count].should == 0
@@ -911,7 +911,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 185892 - format1' do
-      VCR.use_cassette('vvo_188666') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_188666') do
         extractor = Etl::VvoExtractionV2.new(188666)
         extractor.suppliers_information[:suppliers].count.should == 3
         supplier1 = extractor.suppliers_information[:suppliers][0]
@@ -930,7 +930,7 @@ describe Etl::VvoExtractionV2 do
     # Format 2
 
     it 'should get supliers information from a document - 121966 - format2' do
-      VCR.use_cassette('vvo_121966') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121966') do
         extractor = Etl::VvoExtractionV2.new(121966)
         extractor.suppliers_information.should == {
             suppliers: [{
@@ -958,7 +958,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 122520 - format2' do
-      VCR.use_cassette('vvo_122520') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122520') do
         extractor = Etl::VvoExtractionV2.new(122520)
         extractor.suppliers_information[:suppliers].count.should == 1
         supplier = extractor.suppliers_information[:suppliers].first
@@ -987,7 +987,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get supliers information from a document - 121947 - format2' do
-      VCR.use_cassette('vvo_121947') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121947') do
         extractor = Etl::VvoExtractionV2.new(121947)
         extractor.suppliers_information[:suppliers].count.should == 1
         supplier = extractor.suppliers_information[:suppliers].first
@@ -1012,7 +1012,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get supliers information from a document - 123012 - format2' do
-      VCR.use_cassette('vvo_123012') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_123012') do
         extractor = Etl::VvoExtractionV2.new(123012)
         extractor.suppliers_information[:suppliers].count.should == 13
 
@@ -1036,7 +1036,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get supliers information from a document - 135172 - format1' do
-      VCR.use_cassette('vvo_135172') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_135172') do
         extractor = Etl::VvoExtractionV2.new(135172)
         extractor.suppliers_information[:suppliers].count.should == 2
         supplier1 = extractor.suppliers_information[:suppliers][0]
@@ -1056,7 +1056,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     all_document_types_and_formats.each do |document_id|
-      VCR.use_cassette("vvo_#{document_id}") do
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
         extractor = Etl::VvoExtractionV2.new(document_id)
         suppliers_information = extractor.suppliers_information
         dataset_type = extractor.dataset_type
@@ -1090,7 +1090,7 @@ describe Etl::VvoExtractionV2 do
 
     # Format 1
     it 'should get performance information from a document - 186086 - format1' do
-      VCR.use_cassette('vvo_186086') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_186086') do
         extractor = Etl::VvoExtractionV2.new(186086)
         extractor.performance_information.should == {
             contract_name: "Pranie prádla - Zmluva o dielo - 953/2011 (1007)",
@@ -1110,7 +1110,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get performance information from a document - 185481 - format1' do
-      VCR.use_cassette('vvo_185481') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185481') do
         extractor = Etl::VvoExtractionV2.new(185481)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should == 'Prístrojová technika pre monitorovanie vitálnych funkcií pre laboratórnu a klinickú prax. Kúpna zmluva JLFUK MT 83-OVO/2011, evidovaná v CRZ úradu vlády pod č. II/135/12/RUK'
@@ -1130,7 +1130,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get performance information from a document - 188964 - format1' do
-      VCR.use_cassette('vvo_188964') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_188964') do
         extractor = Etl::VvoExtractionV2.new(188964)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should == 'Dodávka inžiniersko-projektových výkonov a zhotovenie stavby na riadenie letovej prevádzky vrátane financovania - zhotovenie stavby na kľúč podľa špecifikácie obstarávateľa. Zmluva č. LPS SR š.p. PRAV/89/2008.'
@@ -1153,7 +1153,7 @@ describe Etl::VvoExtractionV2 do
     # Format 2
 
     it 'should get performance information from a document - 121904 - format2' do
-      VCR.use_cassette('vvo_121904') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121904') do
         extractor = Etl::VvoExtractionV2.new(121904)
         extractor.performance_information.should == {
             contract_name: "Rekonštrukcia ciest a mostov v správe Správy ciest Košického samosprávneho kraja, zmluva o dielo č. 7/TV/2008: Rekonštrukcia nadjazdu Dobrá 553035-3",
@@ -1172,7 +1172,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get performance information from a document - 121895 - format2' do
-      VCR.use_cassette('vvo_121895') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121895') do
         extractor = Etl::VvoExtractionV2.new(121895)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should == 'Notebooky a príslušenstvo, rámcová dohoda č. SE-275-84/OVO-2006'
@@ -1194,7 +1194,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get performance information from a document - 121896 - format2' do
-      VCR.use_cassette('vvo_121896') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121896') do
         extractor = Etl::VvoExtractionV2.new(121896)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should == 'Vytvorenie databázového a aplikačného prostredia'
@@ -1217,7 +1217,7 @@ describe Etl::VvoExtractionV2 do
     # ID
 
     it 'should get performance information from a document - 121996 - format2' do
-      VCR.use_cassette('vvo_121996') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121996') do
         extractor = Etl::VvoExtractionV2.new(121996)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should == 'Dostavba budovy VÚSCH Košice, zmluva o dielo č. 16-ZoD-2007'
@@ -1228,7 +1228,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get performance information from a document - 121987 - format2' do
-      VCR.use_cassette('vvo_121987') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121987') do
         extractor = Etl::VvoExtractionV2.new(121987)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should_not be_nil
@@ -1239,7 +1239,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get performance information from a document - 122091 - format2' do
-      VCR.use_cassette('vvo_122091') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122091') do
         extractor = Etl::VvoExtractionV2.new(122091)
         performance_information = extractor.performance_information
         performance_information[:contract_name].should == 'Špeciálny zdravotnícky materiál na angiografie a endovaskulárne intervencie, kúpna zmluva č. 542/2008'
@@ -1253,7 +1253,7 @@ describe Etl::VvoExtractionV2 do
 
     it 'parse performance information for all documents' do
       all_document_types_and_formats.each do |document_id|
-        VCR.use_cassette("vvo_#{document_id}") do
+        VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
           extractor = Etl::VvoExtractionV2.new(document_id)
           extractor.performance_information.should_not be_nil
         end
@@ -1266,7 +1266,7 @@ describe Etl::VvoExtractionV2 do
   describe '#additional_information' do
     # Format 1
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_238715') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_238715') do
         extractor = Etl::VvoExtractionV2.new(238715)
         extractor.additional_information.should == {
             procurement_euro_found: false
@@ -1274,7 +1274,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_185909') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185909') do
         extractor = Etl::VvoExtractionV2.new(185909)
         extractor.additional_information.should == {
             procurement_euro_found: false,
@@ -1283,7 +1283,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_191763') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_191763') do
         extractor = Etl::VvoExtractionV2.new(191763)
         extractor.additional_information.should == {
             procurement_euro_found: true,
@@ -1292,7 +1292,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_185892') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185892') do
         extractor = Etl::VvoExtractionV2.new(185892)
         extractor.additional_information.should == {
             procurement_euro_found: false,
@@ -1301,7 +1301,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_185927') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185927') do
         extractor = Etl::VvoExtractionV2.new(185927)
         extractor.additional_information.should == {
             procurement_euro_found: false,
@@ -1310,14 +1310,14 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_198751') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_198751') do
         extractor = Etl::VvoExtractionV2.new(198751)
         extractor.additional_information[:procurement_euro_found].should == true
       end
     end
 
     it 'should get addition information from a document - 186086 - format1' do
-      VCR.use_cassette('vvo_186086') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_186086') do
         extractor = Etl::VvoExtractionV2.new(186086)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2011/S 212-345639"
@@ -1328,7 +1328,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_188666') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_188666') do
         extractor = Etl::VvoExtractionV2.new(188666)
         extractor.additional_information[:procurement_euro_found].should == true
       end
@@ -1337,7 +1337,7 @@ describe Etl::VvoExtractionV2 do
     # IZ
 
     it 'should get addition information from a document - 186086 - format1' do
-      VCR.use_cassette('vvo_186086') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_186086') do
         extractor = Etl::VvoExtractionV2.new(186086)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2011/S 212-345639"
@@ -1348,7 +1348,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get addition information from a document - 185481 - format1' do
-      VCR.use_cassette('vvo_185481') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185481') do
         extractor = Etl::VvoExtractionV2.new(185481)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2012/S 195-320169"
@@ -1359,7 +1359,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get addition information from a document - 185481 - format1' do
-      VCR.use_cassette('vvo_188964') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_188964') do
         extractor = Etl::VvoExtractionV2.new(188964)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2008/S 161-217497"
@@ -1372,7 +1372,7 @@ describe Etl::VvoExtractionV2 do
     # Format 2
 
     it 'should get addition information from a document - 121966 - format2' do
-      VCR.use_cassette('vvo_121966') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121966') do
         extractor = Etl::VvoExtractionV2.new(121966)
         extractor.additional_information.should == {
             procurement_euro_found: false
@@ -1380,7 +1380,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - ??? - format1' do
-      VCR.use_cassette('vvo_185909') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_185909') do
         extractor = Etl::VvoExtractionV2.new(185909)
         extractor.additional_information.should == {
             procurement_euro_found: false,
@@ -1389,7 +1389,7 @@ describe Etl::VvoExtractionV2 do
       end
     end
     it 'should get addition information from a document - 122520 - format2' do
-      VCR.use_cassette('vvo_122520') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_122520') do
         extractor = Etl::VvoExtractionV2.new(122520)
         extractor.additional_information.should == {
             procurement_euro_found: true
@@ -1400,7 +1400,7 @@ describe Etl::VvoExtractionV2 do
     # IZ
 
     it 'should get addition information from a document - 121904 - format2' do
-      VCR.use_cassette('vvo_121904') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121904') do
         extractor = Etl::VvoExtractionV2.new(121904)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2008/S 103-137429"
@@ -1411,7 +1411,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get addition information from a document - 121895 - format2' do
-      VCR.use_cassette('vvo_121895') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121895') do
         extractor = Etl::VvoExtractionV2.new(121895)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2007/S 023-026679"
@@ -1422,7 +1422,7 @@ describe Etl::VvoExtractionV2 do
     end
 
     it 'should get addition information from a document - 121896 - format2' do
-      VCR.use_cassette('vvo_121896') do
+      VCR.use_cassette('etl/vvo_extraction_v2/vvo_121896') do
         extractor = Etl::VvoExtractionV2.new(121896)
         additional_information = extractor.additional_information
         additional_information[:eu_notification_number].should == "2008/S 129-171299"
@@ -1434,7 +1434,7 @@ describe Etl::VvoExtractionV2 do
 
     # Tests in all documents formats for not nil and blank attributes
     all_document_types_and_formats.each do |document_id|
-      VCR.use_cassette("vvo_#{document_id}") do
+      VCR.use_cassette("etl/vvo_extraction_v2/vvo_#{document_id}") do
         extractor = Etl::VvoExtractionV2.new(document_id)
         additional_information = extractor.additional_information
         dataset_type = extractor.dataset_type

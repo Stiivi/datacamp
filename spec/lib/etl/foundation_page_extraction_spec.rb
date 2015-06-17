@@ -1,75 +1,53 @@
 # -*- encoding : utf-8 -*-
 require 'spec_helper'
 
-describe Etl::FoundationPageExtraction do
+describe Etl::FoundationPageExtraction::FoundationListingPage do
+  describe '#foundation_ids' do
+    it 'returns array of foundation ids from page' do
+      page = VCR.use_cassette('etl/foundation_page_extraction/page_1') do
+        Etl::PageLoader.load_by_get("http://www.ives.sk/registre/zoznamrnd.do?action=azzu&cisloStrany=1&locale=sk", Etl::FoundationPageExtraction::FoundationListingPage)
+      end
 
-  before :each do
-    @extractor = Etl::FoundationPageExtraction.new(1)
+      page.foundation_ids.each do |foundation_id|
+        foundation_id.should be > 100_000
+        foundation_id.should be < 300_000
+      end
+    end
+
+    it 'returns empty array if there is no organization id on page' do
+      page = VCR.use_cassette('etl/foundation_page_extraction/page_99') do
+        Etl::PageLoader.load_by_get("http://www.ives.sk/registre/zoznamrnd.do?action=azzu&cisloStrany=99&locale=sk", Etl::FoundationPageExtraction::FoundationListingPage)
+      end
+
+      page.foundation_ids.should eq []
+    end
   end
+end
+
+describe Etl::FoundationPageExtraction do
+  subject { Etl::FoundationPageExtraction.new(1) }
 
   describe '#document_url' do
     it 'return a correctly formatted document url' do
-      @extractor.document_url.should == URI.encode("http://www.ives.sk/registre/zoznamrnd.do?action=azzu&cisloStrany=1&locale=sk")
-    end
-  end
-
-  describe '#download' do
-    it 'return downloaded document' do
-      VCR.use_cassette('foundation_page_1') do
-        @extractor.download.should_not be_nil
-      end
-    end
-  end
-
-  describe '#document' do
-    it 'return document' do
-      VCR.use_cassette('foundation_page_1') do
-        @extractor.document.should_not be_nil
-      end
-    end
-  end
-
-  describe '#is_acceptable?' do
-    it 'return true for accepted page' do
-       VCR.use_cassette('foundation_page_1') do
-        @extractor.is_acceptable?.should be_true
-      end
-    end
-    it 'return false for not accepted page' do
-      @extractor = Etl::FoundationPageExtraction.new(50)
-       VCR.use_cassette('foundation_page_50') do
-        @extractor.is_acceptable?.should be_false
-      end
-    end
-  end
-
-  describe '#get_downloads' do
-    it 'return array of ids for accepted page' do
-      VCR.use_cassette('foundation_page_1') do
-        downloads = @extractor.get_downloads
-        downloads.size.should == 20
-        downloads.first.should == 158785
-        downloads.last.should == 158264
-      end
+      subject.document_url.should == URI.encode("http://www.ives.sk/registre/zoznamrnd.do?action=azzu&cisloStrany=1&locale=sk")
     end
   end
 
   describe '#perform' do
-    it 'perform for accpeted page' do
-      VCR.use_cassette('foundation_page_1') do
+    it 'perform for accepted page' do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
         Delayed::Job.should_receive(:enqueue).exactly(20).times
-        @extractor.perform
+        subject.perform
       end
     end
   end
 
   describe '#after' do
-    it 'perform for accpeted page' do
-      VCR.use_cassette('foundation_page_1') do
-        Delayed::Job.should_receive(:enqueue).once
-        @extractor.after(nil)
+    it 'perform for accepted page' do
+      VCR.use_cassette('etl/foundation_page_extraction/page_1') do
+        Delayed::Job.should_receive(:enqueue).with(instance_of(described_class))
+        subject.after(nil)
       end
     end
   end
-
 end

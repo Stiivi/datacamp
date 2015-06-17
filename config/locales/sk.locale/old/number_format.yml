@@ -3,7 +3,7 @@ sk:
     currency:
       format:
         format: "%n %u"
-        unit: "Û"
+        unit: "â‚¬"
         precision: 2
         delimiter: " "
         separator: ","

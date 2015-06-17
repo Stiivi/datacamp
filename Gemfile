@@ -23,7 +23,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate'
 gem 'delayed_job'
 gem 'nokogiri'
-gem 'typhoeus', '~> 0.5.0'
+gem 'typhoeus'
 gem 'delayed_job_admin'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'

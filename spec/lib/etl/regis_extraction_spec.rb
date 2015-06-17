@@ -17,7 +17,7 @@ describe Etl::RegisExtraction do
   end
 
   it 'should download a document' do
-    VCR.use_cassette('regis_500000') do
+    VCR.use_cassette('etl/regis_extraction/regis_500000') do
       @extractor.download(500000).should_not be_nil
     end
   end
@@ -44,7 +44,7 @@ describe Etl::RegisExtraction do
   end
 
   it 'should save extracted information to the database' do
-    VCR.use_cassette('regis_500000') do
+    VCR.use_cassette('etl/regis_extraction/regis_500000') do
       document = @extractor.download(500000)
       organisation_hash = @extractor.digest(document)
       @extractor.save(organisation_hash)
@@ -70,7 +70,7 @@ describe Etl::RegisExtraction do
   end
 
   it 'should not save the same thing twice into the database' do
-    VCR.use_cassette('regis_500000') do
+    VCR.use_cassette('etl/regis_extraction/regis_500000') do
       document = @extractor.download(500000)
       organisation_hash = @extractor.digest(document)
       @extractor.save(organisation_hash) and @extractor.save(organisation_hash)
@@ -79,7 +79,7 @@ describe Etl::RegisExtraction do
   end
 
   it 'should have a perform method that downloads, parses and saves to the db' do
-    VCR.use_cassette('regis_500000') do
+    VCR.use_cassette('etl/regis_extraction/regis_500000') do
       config = EtlConfiguration.create(:name => 'regis_extraction', :last_processed_id => 499998, :batch_limit => 5)
       @extractor.perform
       Staging::StaRegisMain.count.should == 1
@@ -88,7 +88,7 @@ describe Etl::RegisExtraction do
   end
 
   it 'should update the last_processed_id only when something was processed' do
-    VCR.use_cassette('regis_0') do
+    VCR.use_cassette('etl/regis_extraction/regis_0') do
       config = EtlConfiguration.create(:name => 'regis_extraction', :last_processed_id => 499998, :batch_limit => 5)
       extractor = Etl::RegisExtraction.new(1, 2, 0)
       extractor.perform
@@ -98,21 +98,21 @@ describe Etl::RegisExtraction do
 
   describe 'parsing' do
     it 'should test and accept documents that have a something in a div with a class "telo"' do
-      VCR.use_cassette('regis_500000') do
+      VCR.use_cassette('etl/regis_extraction/regis_500000') do
         document = @extractor.download(500000)
         @extractor.is_acceptable?(document).should be_true
       end
     end
 
     it 'should test and not accept documents that do not have a V in the h2 header' do
-      VCR.use_cassette('regis_0') do
+      VCR.use_cassette('etl/regis_extraction/regis_0') do
         document = @extractor.download(0)
         @extractor.is_acceptable?(document).should be_false
       end
     end
 
     it 'should get information from a document' do
-      VCR.use_cassette('regis_500000') do
+      VCR.use_cassette('etl/regis_extraction/regis_500000') do
         document = @extractor.download(500000)
         hash = @extractor.digest(document)
         hash[:doc_id].should == 500000
@@ -133,7 +133,7 @@ describe Etl::RegisExtraction do
 
 
     it 'should get information from another document' do
-      VCR.use_cassette('regis_102034') do
+      VCR.use_cassette('etl/regis_extraction/regis_102034') do
         @extractor = Etl::RegisExtraction.new(1, 2, 102034)
         document = @extractor.download(102034)
         hash = @extractor.digest(document)
@@ -154,7 +154,7 @@ describe Etl::RegisExtraction do
     end
 
     it 'should get information from another document' do
-      VCR.use_cassette('regis_1332604') do
+      VCR.use_cassette('etl/regis_extraction/regis_1332604') do
         @extractor = Etl::RegisExtraction.new(1, 2, 1332604)
         document = @extractor.download(1332604)
         hash = @extractor.digest(document)
