@@ -51,19 +51,27 @@ class SearchesController < ApplicationController
     dds = dds.where('id NOT IN(?)', params[:disabled_descriptions]) if params[:disabled_descriptions]
     dds = dds.where(category_id: params[:category_id]) if params[:category_id] # TODO: test filter by category_id
 
-    @results = {}
+    searches = {}
+    batch = ThinkingSphinx::BatchedSearch.new
+
     dds.active.includes([
         :category,
         {:relations => :relationship_dataset_description},
         :derived_field_descriptions,
         {:field_descriptions_for_search => [:translations, :data_format] }]
     ).each do |dataset_description|
-      begin
-        dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => { record_status: DatastoreManager.record_statuses[2] }
+        search = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => { record_status: DatastoreManager.record_statuses[2] }
+        batch.searches += [search]
+        searches[dataset_description] = search
+    end
+
+    batch.populate
+
+    @results = {}
+    searches.each do |dataset_description, matches|
+      if matches.present?
         @results[dataset_description.category] ||= {}
-        @results[dataset_description.category][dataset_description] = dataset_results if dataset_results.present?
-      rescue
-        # TODO: why is this swallowing everything?
+        @results[dataset_description.category][dataset_description] = matches
       end
     end
   end
