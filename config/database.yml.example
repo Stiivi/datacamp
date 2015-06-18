@@ -16,27 +16,39 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: datanest_app
+  database: datanest_app_development
 
 development_data:
   <<: *defaults
-  database: datanest_data
+  database: datanest_data_development
 
 development_staging:
   <<: *defaults
-  database: datanest_staging
+  database: datanest_staging_development
+
+staging:
+  <<: *defaults
+  database: datanest_app_staging
+
+staging_data:
+  <<: *defaults
+  database: datanest_data_staging
+
+staging_staging:
+  <<: *defaults
+  database: datanest_staging_staging
 
 production:
   <<: *defaults
-  database: datanest_app
+  database: datanest_app_production
 
 production_data:
   <<: *defaults
-  database: datanest_data
+  database: datanest_data_production
 
 production_staging:
   <<: *defaults
-  database: datanest_staging
+  database: datanest_staging_production
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

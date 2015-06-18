@@ -88,6 +88,10 @@ development:
   <<: *common
   mysql41: 9322
 
+staging:
+  <<: *common
+  mysql41: 9332
+
 production:
   <<: *common
   mysql41: 9313
