@@ -1,6 +1,6 @@
+# -*- encoding : utf-8 -*-
 class Search < ActiveRecord::Base
-  set_table_name :searches
-  
+
   belongs_to :query, :class_name => "SearchQuery", :foreign_key => "search_query_id"
   belongs_to :session
   
@@ -11,7 +11,7 @@ class Search < ActiveRecord::Base
   end
   
   def result_count
-	query.results.count
+    query.results.count
   end
   
   def scope

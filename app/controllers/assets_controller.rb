@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Assets Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -80,7 +81,7 @@ class AssetsController < ApplicationController
   end
   
   def prepare_file
-    @asset = Asset.find_by_id!(params[:id])
+    @asset = Asset.find(params[:id])
     
     @importer = CsvImporter.new
     if @importer.load_file(@asset.file_path, @asset.col_separator || ",", @asset.contains_header)

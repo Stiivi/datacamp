@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 puts "=> Installing system variables and default values ..."
 
 system_variables = [
@@ -18,7 +19,7 @@ system_variables = [
   {
     :name => "login_required",
     :description => "Login required to use application",
-    :value => 1
+    :value => 0
   },
   {
     :name => "copyright_notice",
@@ -28,12 +29,17 @@ system_variables = [
   {
     :name => "private_mode",
     :description => "Users can't register, only subscribe for beta program.",
-    :value => 1
+    :value => 0
   },
   {
     :name => "registration_confirmation_required",
     :description => "Users need their accounts confirmed by admin before being able to use them.",
     :value => 0
+  },
+  {
+    :name => "meta_information",
+    :description => "Meta information that is inserted in the head portion of the webpage",
+    :value => nil
   }
 ]
 

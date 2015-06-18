@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class I18nFormBuilder
   
   def initialize(locale, form)

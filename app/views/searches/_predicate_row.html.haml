@@ -1,21 +1,24 @@
 - predicate ||= nil
-%li.search_row.clearfix
-  .fl
-    %select{:class => "search_field", :name => "search[predicates][][field]"}
-      %option{:value => "", :class => "string", :selected => (predicate == nil || predicate.field == nil)}= t("search.any_field")
-      - @dataset_description.field_descriptions.each do |fd|
-        %option{:value => fd.identifier, :class => fd.data_type, :selected => (predicate && predicate.field == fd.identifier ? "selected" : nil)}= fd
-  
-  .fl
-    %select{:class => "search_operator", :name => "search[predicates][][operator]"}
-      - SearchPredicate.datatype_operators.each do |type, operators|
-        %optgroup{:label => t("data_types.#{type}"), :class => type}
-          - operators.each do |operator|
-            %option{:value => operator, :selected => (predicate && predicate.operator == operator.to_s ? "selected" : nil)}= t("operators.#{operator}")
 
-  .fl
-    %input.inline{:class => "search_value", :name => "search[predicates][][value]", :value => (predicate ? predicate.argument : "")}
-  
-  .fr.buttons
-    %a{:href => "#", :class => "remove_row"}= image_tag "icons/minus.png"
-    %a{:href => "#", :class => "add_row"}= image_tag "icons/plus.png"
+%li
+  %select{class: "search_field", name: "search[predicates][][field]"}
+    %option{value: "", class: "string", selected: (predicate == nil || predicate.search_field == nil)}= t("search.any_field")
+    - if @dataset_description.present?
+      - @dataset_description.visible_field_descriptions(:detail).each do |fd|
+        %option{value: fd.identifier, class: fd.data_type, selected: (predicate && predicate.search_field == fd.identifier ? "selected" : nil)}= fd
+
+%li
+  %select{class: "search_operator", name: "search[predicates][][operator]"}
+    - SearchPredicate.datatype_operators.each do |type, operators|
+      %optgroup{label: t("data_types.#{type}"), class: type}
+        - operators.each do |operator|
+          %option{value: operator, selected: (predicate && predicate.operator == operator.to_s ? "selected" : nil)}= t("operators.#{operator}")
+
+%li
+  %input{class: "search_value", name: "search[predicates][][value]", value: (predicate ? predicate.argument : "")}
+
+%li.button
+  %a{:href => "#", :class => "add_row"}
+
+%li.button
+  %a{:href => "#", :class => "remove_row"}

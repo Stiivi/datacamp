@@ -1,0 +1,5 @@
+<div style="margin:-20px 160px 0px 20px;">
+ <div style="font-size:60px; font-weight:bold; line-height:65px;"><span style="color:#2BB673;">Track</span> the flow<br /> of public <span style="color:#2BB673;">money</span></div>
+
+ <div style="font-size:24px; font-weight:bold; line-height:30px; margin:30px 0px 0px 0px;">With your help we aim to survey information on money in politics, government procurement, subsidies, and other types of information on the management of Slovakia.</div>
+</div>

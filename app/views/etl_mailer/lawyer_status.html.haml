@@ -1,0 +1,30 @@
+- content_for :email_preview do
+  = "Download ds_lawyers bol dokonceny."
+
+%h4= 'Pravnici download report'
+%div
+  %strong= "Od posledného stiahnutia údajov #{l(@last_run_time)} bolo zmenenych #{@lawyer_updated_record_ids.count} a vytvorených #{@lawyer_created_record_ids.count} právnických záznamov."
+  %p
+    Zoznam zmenených právnických záznamov:
+    = @lawyer_updated_record_ids.join(', ')
+  %p
+    Zoznam vytvorených právnických záznamov:
+    = @lawyer_created_record_ids.join(', ')
+
+%div
+  %strong= "Od posledného stiahnutia údajov #{l(@last_run_time)} bolo zmenenych #{@associate_updated_record_ids.count} a vytvorených #{@associate_created_record_ids.count} koncipientských záznamov."
+  %p
+    Zoznam zmenených koncipientských záznamov:
+    = @associate_updated_record_ids.join(', ')
+  %p
+    Zoznam vytvorených koncipientských záznamov:
+    = @associate_created_record_ids.join(', ')
+
+%div
+  %strong= "Od posledného stiahnutia údajov #{l(@last_run_time)} bolo zmenenych #{@partnership_updated_record_ids.count} a vytvorených #{@partnership_created_record_ids.count} advokátskych spoločností."
+  %p
+    Zoznam zmenených koncipientských záznamov:
+    = @partnership_updated_record_ids.join(', ')
+  %p
+    Zoznam vytvorených koncipientských záznamov:
+    = @partnership_created_record_ids.join(', ')

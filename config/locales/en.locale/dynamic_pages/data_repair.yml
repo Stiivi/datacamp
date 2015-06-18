@@ -1,0 +1,12 @@
+en:
+  data_repairs:
+    form:
+      regis_table_name: 'Regis table'
+      regis_ico_column: 'Regis ico column'
+      regis_name_column: 'Regis name column'
+      regis_address_column: 'Regis address column'
+      
+      target_table_name: 'Target table'
+      target_ico_column: 'Target ico column'
+      target_company_name_column: 'Target name column'
+      target_company_address_column: 'Target address column'

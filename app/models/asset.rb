@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Asset < ActiveRecord::Base
   has_attached_file :path, :url => '/../files/:id_:filename'
   
@@ -10,6 +11,6 @@ class Asset < ActiveRecord::Base
   ###############################################################
   ## Loads associated file as instance of CsvFile class
   def file_path
-    File.join(RAILS_ROOT, 'files', "#{id}_#{path_file_name}")
+    File.join(Rails.root, 'files', "#{id}_#{path_file_name}")
   end
 end

@@ -1,0 +1,13 @@
+%table
+  %tr
+    - fields.each do |field|
+      %th= field.title
+    %th
+    %th
+  - records.each do |record|
+    %tr{:id => dom_id(record, 'related')}
+      - fields.each do |field|
+        %td= record[field.identifier]
+      %td= link_to image_tag('icons/show.png'), dataset_record_path(related_dataset_description, record)
+      - if current_user.present? && current_user.has_privilege?(:edit_record)
+        %td=link_to(image_tag('icons/trash.gif'), delete_relationship_dataset_record_path(@dataset_description, @record, related_id: record._record_id, reflection: reflection_name, related_dataset: related_dataset_description.id, macro: macro), :method => 'delete', :title => t('global.delete'), :confirm => t("global.delete_confirmation"))

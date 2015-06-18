@@ -1,2 +1,26 @@
 %h1= @page.title
-%p= @page.html_body
+#page_content{class: params[:id] == 'index' && @news.present? ? 'with_sidebar': ''}=raw @page.html_body
+
+- if params[:id] == 'index' && @news.present?
+  #newsfeed
+    %ul
+      %li=link_to t('.news_header'), news_index_path, class: 'headline'
+
+      = render partial: 'news/news_item', collection: @news
+
+.clearfix &nbsp;
+
+#blocks=raw @page.block
+-#- if @blocks.present?
+  %p
+    .blocks.container.prepend-top.append-bottom.prepend-1
+      %h1=t :blocks_heading
+      - @blocks.each do |block|
+        .span-7.prepend-top
+          - if block.url.present?
+            = link_to block.url do
+              = image_tag(block.image.url(:standard))
+              %h2= block.title
+          - else
+            %h2= block.title
+    = will_paginate @blocks, previous_label: '&lt;', next_label: '&gt;', page_links: false, id: 'block_pagination'

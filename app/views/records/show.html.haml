@@ -25,14 +25,39 @@
             %td.label
               - if @quality_status.find { |qs| qs.column_name == field_description.identifier }
                 = image_tag "icons/exclamation.png", :class => "quality_status"
-              = field_description.title
+              %div{title: field_description.description, class: field_description.description.present? ? 'has-tip' : ''}= field_description.title
             %td= @record.get_html_value(field_description)
+    - @related_records_and_fields.each do |records, fields, reflection_name, related_dataset_description, macro|
+      %br
+      - if related_dataset_description.present?
+        - if reflection_name.to_s.include?('morph')
+          - if records.present? || (current_user.present? && current_user.has_privilege?(:edit_record))
+            %h1{:style => 'margin-bottom: 0;'}= t(".morphed_#{@dataset_description.identifier}_#{related_dataset_description.identifier}", default: t('.record_history'))
+            = render partial: 'related_table', locals: {fields: fields, records: records, related_dataset_description: related_dataset_description, reflection_name: reflection_name, macro: macro}
+        - else
+          %h1{:style => 'margin-bottom: 0;'}= related_dataset_description.title
+          - if records.present?
+            = render partial: 'related_table', locals: {fields: fields, records: records, related_dataset_description: related_dataset_description, reflection_name: reflection_name, macro: macro}
+          - else
+            %p= t(".no_related_records_#{@dataset_description.identifier}_#{related_dataset_description.identifier}", default: t('.no_related_records'))
+        - if current_user.present? && current_user.has_privilege?(:edit_record)
+          .hidden
+            = form_tag add_relationship_dataset_record_path(@dataset_description, @record) do
+              = hidden_field_tag :related_dataset, related_dataset_description.id
+              = hidden_field_tag :reflection, reflection_name
+              %ul
+                %li.clearfix{style:'margin-bottom: 0; padding-bottom:0;'}
+                  = label_tag :related_id, 'related_id', style: 'width:80px;'
+                  = text_field_tag :related_id
+                %li{style: 'padding: 0;'}= submit_tag
+          = link_to 'Add', nil, class: 'prev_div_toggler'
+        %br
 
   = render :partial => 'node_menu'
-    
+
 #comments
   = render :partial => "datasets/comments"
-  
+
 #metadata
   = render :partial => "metadata"
-  
+

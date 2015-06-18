@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Datastore Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -23,7 +24,7 @@
 class DatastoreController < ApplicationController
 
 def initialize
-    @connection = DatasetRecord.connection
+    @connection = Dataset::DatasetRecord.connection
     @log = ApplicationLogger.new
 end
 
@@ -38,7 +39,7 @@ end
 
 def data_dictionary_check
 
-	dataset_descriptions = DatasetDescription.find(:all)
+	dataset_descriptions = DatasetDescription.all
 	
 	########################################################################################
 	# Find all dataset descriptions, check if they have corresponding tables

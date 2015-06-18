@@ -1,7 +1,8 @@
+# -*- encoding : utf-8 -*-
 module CommentsLoader
   def load_comments
     record_id = @record ? @record.id : nil
-    @comments            = @dataset_description.comments.find(:all, :conditions => {:record_id => record_id})
+    @comments            = @dataset_description.comments.where(record_id: record_id)
     
     # Need to do some grouping based on if comment is a response to other comment or not
     # Let's divide all comments into two kinds: Threads and Responses

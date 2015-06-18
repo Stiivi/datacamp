@@ -1,0 +1,14 @@
+.homepage {
+  margin-bottom: 50px; }
+  .homepage .right {
+    padding-left: 80px; }
+    .homepage .right.padded {
+      padding-top: 15px; }
+  .homepage ul li {
+    width: 235px;
+    float: left;
+    border: none; }
+    .homepage ul li.wide {
+      width: 500px; }
+    .homepage ul li a {
+      font-size: 16px; }

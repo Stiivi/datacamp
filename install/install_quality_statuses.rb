@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 if QualityStatus.count > 0
   raise RuntimeError, "Can't create quality statuses. The table already contains data."
 end

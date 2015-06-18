@@ -1,6 +1,6 @@
 %li.favorite_menu
   - if current_user && current_user.has_favorite?(@dataset_description, @record)
-    = link_to "Remove from favorites", destroy_favorite_path(@favorite), :class => "active fav ajax"
+    = link_to "Remove from favorites", favorite_path(@favorite), class: "active fav js_remove_from_favorites", method: :delete, remote: true
   - else
     %a.fav#add_to_favorites{:class => "ajax", :href => new_favorite_path({:dataset_description_id => @dataset_description.id, :record_id => @record ? @record.id : nil})}
       Add to favorites

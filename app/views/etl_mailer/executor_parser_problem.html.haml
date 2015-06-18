@@ -1,0 +1,12 @@
+- content_for :email_preview do
+  = "Pri stahovani exekutorov sa vyskytol problem."
+
+%h4= 'Exekutori download problem'
+%div
+  %strong= "Pri poslednom stiahnuti najskor neboli stiahnute vsetky udaje."
+  %p
+    Pocet zaznamov na stiahnutie:
+    = @to_parse_count
+  %p
+    Pocet aktivovanych zaznamov:
+    = @actual_count

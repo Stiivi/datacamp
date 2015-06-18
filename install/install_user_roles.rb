@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 ########################################################################
 # Installation of default privileges
 ########################################################################
@@ -26,7 +27,8 @@ rights = [ [:records, :edit_record],
            [:information, :search_in_hidden_fields],
            [:information, :search_in_hidden_records],
            [:information, :search_in_hidden_datasets],
-           [:system, :use_in_development]
+           [:system, :use_in_development],
+           [:system, :delayed_job_admin]
          ]
 
 rights.each do | right_info |
@@ -38,7 +40,7 @@ rights.each do | right_info |
         right.identifier = identifier
     end
     right.category = category
-    right.save(false)
+    right.save(validate: false)
 end
 
 ########################################################################
@@ -49,10 +51,10 @@ puts "=> Creating default roles ... "
 
 roles = {
         :user_manager => [:manage_users, :block_users, :grant_rights],
-        :datastore_manager => [:edit_dataset_description, 
+        :datastore_manager => [:edit_dataset_description,
                                 :create_dataset,
                                 :destroy_dataset],
-        :data_editor => [:edit_record, 
+        :data_editor => [:edit_record,
                                 :create_record,
                                 :edit_record_metadata,
                                 :edit_locked_record,
@@ -81,7 +83,7 @@ roles.keys.each do | role_name |
         role = AccessRole.new
         role.identifier = role_name
     end
-    
+
     puts "-> adding role #{role_name} with #{rights.count} rights"
     role_rights = []
 
@@ -92,7 +94,7 @@ roles.keys.each do | role_name |
     end
 
     role.access_rights = role_rights
-    role.save(false)
+    role.save(validate: false)
 end
 
 ########################################################################
@@ -107,7 +109,7 @@ if not User.find_by_login("admin")
     user.name = "Administrator"
     user.password = "admin"
     user.is_super_user = true
-    user.save(false)
+    user.save(validate: false)
 else
     puts "-> admin account already exists. If you want to reset the account, delete admin user from table and re-run this script"
 end

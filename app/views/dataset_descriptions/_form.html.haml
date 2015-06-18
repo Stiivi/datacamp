@@ -1,15 +1,16 @@
-- form_for(@dataset_description, :builder => ListFormBuilder) do |f|
+= form_for(@dataset_description, :builder => ListFormBuilder) do |f|
   = f.error_messages
-  
+
   %ul
     %li.clearfix.locale_switcher
       %label Language
-      = f.locale_switcher I18N_LOCALES         
+      = f.locale_switcher I18N_LOCALES
 
-    - f.locale_tabs I18N_LOCALES do |trans|
+    = f.locale_tabs I18N_LOCALES do |trans|
       = trans.text_field :title
-      = trans.text_field :description
-      
+      = trans.text_area :description
+      = trans.text_area :perex
+
     %li.clearfix
       .fl.clearfix
         = f.label :category_id
@@ -19,6 +20,10 @@
         or create new:
       .fl.clearfix
         = f.text_field :category, :inline => true, :value => ''
+
+    %li.clearfix
+      = f.label :data_updated_at
+      = f.datetime_select :data_updated_at, default: Time.zone.now
     = f.text_field :identifier
     = f.text_field :data_provider
     = f.text_field :update_frequency
@@ -28,9 +33,13 @@
     = f.text_field :collection_mode
     = f.text_field :data_source_type
     = f.text_field :default_import_format
+    = f.check_box :bad_quality
     = f.check_box :is_active
+    = f.check_box :can_be_disabled_in_quick_search
     = f.select :api_access_level, options_for_select(Api.access_levels.collect{|k,v|[I18n.t("api.levels.#{k}"), v]}, @dataset_description.api_access_level)
-        
+    = hidden_field_tag 'dataset_description[similar_dataset_description_ids][]', nil
+    = f.collection_select :similar_dataset_description_ids, DatasetDescription.where('id != ?', @dataset_description.id), :id, :title, {}, {multiple: true, class: 'asmselect'}
+
   %p
     = f.submit t("global.save")
     = f.submit t("global.save_and_create")
