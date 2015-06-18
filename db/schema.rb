@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150617145045) do
+ActiveRecord::Schema.define(:version => 20150618111810) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -32,20 +32,6 @@ ActiveRecord::Schema.define(:version => 20150617145045) do
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "accesses", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "record_id"
-    t.integer  "dataset_description_id"
-    t.integer  "session_id"
-    t.text     "params"
-    t.string   "url"
-    t.string   "controller"
-    t.string   "action"
-    t.string   "referrer"
-    t.string   "http_method"
   end
 
   create_table "api_keys", :force => true do |t|

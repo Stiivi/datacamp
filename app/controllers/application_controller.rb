@@ -6,12 +6,10 @@ class ApplicationController < ActionController::Base
   attr_accessor :javascripts
 
   include AuthenticatedSystem
-  include Datacamp::Logger
 
   # Session initialization
   before_filter :session_init
   before_filter :login_required
-  before_filter :log
   before_filter :set_locale
   before_filter :load_pages
   before_filter :init_menu
