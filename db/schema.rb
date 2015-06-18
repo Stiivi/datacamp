@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150618111810) do
+ActiveRecord::Schema.define(:version => 20150618112059) do
 
   create_table "access_rights", :force => true do |t|
     t.string   "identifier"
@@ -394,6 +394,8 @@ ActiveRecord::Schema.define(:version => 20150618111810) do
     t.string  "operator"
     t.string  "argument"
   end
+
+  add_index "search_predicates", ["search_query_id"], :name => "index_search_predicates_on_search_query_id"
 
   create_table "search_queries", :force => true do |t|
     t.text     "query_yaml"

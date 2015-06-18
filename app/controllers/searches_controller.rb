@@ -46,18 +46,24 @@ class SearchesController < ApplicationController
     @disabled_descriptions = params[:disabled_descriptions]
 
     @results = {}
-    DatasetCategory.all.each do |dataset_category|
-      if params[:disabled_descriptions]
-        dds = dataset_category.dataset_descriptions.where('id NOT IN(?)', params[:disabled_descriptions])
-      else
-        dds = dataset_category.dataset_descriptions
-      end
-      dds.where(:is_active => true).each do |dataset_description|
-        begin
-          dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => {record_status: DatastoreManager.record_statuses[2]}
-          @results[dataset_category] ||= {} and @results[dataset_category].merge!({dataset_description => dataset_results}) if dataset_results.present?
-        rescue
-        end
+    dds = DatasetDescription
+
+    dds = dds.where('id NOT IN(?)', params[:disabled_descriptions]) if params[:disabled_descriptions]
+    dds = dds.where(category_id: params[:category_id]) if params[:category_id] # TODO: test filter by category_id
+
+    @results = {}
+    dds.active.includes([
+        :category,
+        {:relations => :relationship_dataset_description},
+        :derived_field_descriptions,
+        {:field_descriptions_for_search => [:translations, :data_format] }]
+    ).each do |dataset_description|
+      begin
+        dataset_results = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => { record_status: DatastoreManager.record_statuses[2] }
+        @results[dataset_description.category] ||= {}
+        @results[dataset_description.category][dataset_description] = dataset_results if dataset_results.present?
+      rescue
+        # TODO: why is this swallowing everything?
       end
     end
   end

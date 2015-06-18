@@ -9,6 +9,9 @@ class DatasetDescription < ActiveRecord::Base
            source: :dataset_description_target
 
   has_many :field_descriptions, :include => :translations
+  has_many :field_descriptions_for_search, conditions: { is_visible_in_search: true }, class_name: 'FieldDescription'
+  has_many :derived_field_descriptions, conditions: { is_derived: true }, class_name: 'FieldDescription'
+
 
   has_many :category_assignments
   has_many :field_description_categories,
@@ -26,6 +29,7 @@ class DatasetDescription < ActiveRecord::Base
   after_save :log_changes
   before_destroy :log_destroy
 
+  scope :active, conditions: { is_active: true }
 
   default_scope includes(:translations)
 
