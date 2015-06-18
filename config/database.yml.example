@@ -32,7 +32,7 @@ staging:
 
 staging_data:
   <<: *defaults
-  database:datanest_data_staging
+  database: datanest_data_staging
 
 staging_staging:
   <<: *defaults
