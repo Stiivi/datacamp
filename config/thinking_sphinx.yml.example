@@ -87,7 +87,11 @@ common: &common
 
 development:
   <<: *common
-  mysql41: 9312
+  mysql41: 9311
+
+staging:
+  <<: *common
+  mysql41: 9311
 
 production:
   <<: *common

@@ -26,6 +26,18 @@ development_staging:
   <<: *defaults
   database: datanest_staging
 
+staging:
+  <<: *defaults
+  database: datanest_app
+
+staging_data:
+  <<: *defaults
+  database: datanest_data
+
+staging_staging:
+  <<: *defaults
+  database: datanest_staging
+
 production:
   <<: *defaults
   database: datanest_app
