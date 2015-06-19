@@ -1,150 +1,118 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: http://www.statistics.sk/pls/wregis/detail?wxidorg=102034
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      User-Agent: 
+      string: ''
+    headers:
+      User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Fri, 12 Jun 2015 15:03:06 GMT
-      Server: 
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:58 GMT
+      Server:
       - Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server
-      X-DB-Content-length: 
-      - "3736"
-      Transfer-Encoding: 
+      X-DB-Content-length:
+      - '3736'
+      Transfer-Encoding:
       - chunked
-      Content-Type: 
+      Content-Type:
       - text/html; charset=WINDOWS-1250
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n\
-        <HTML>\n\
-        <HEAD>\n\
-        <TITLE>REGIS - Detail</TITLE>\n\
-        </HEAD>\n\
-        <BODY  bgcolor=\"#FFEFDF\" text=\"#800000\">\n\
-        <TABLE   cellSpacing=1 cellPadding=4 style=\"border-Color:#000000; width:100%\" border=1>\n\
-        <TBODY>\n\
-        <TR>\n\
-        <TD  style=\"vAlign:center\" bgColor=\"#7382A5\"><P ALIGN=\"center\"><FONT face=\"Times New Roman\" color=\"#ffffff\" size=\"4\"><I><B>\x8Atatistick\xFD register organiz\xE1ci\xED</B></I></FONT></TD>\n\
-        </TR>\n\
-        </TBODY>\n\
-        </TABLE>\n\
-        <script type=\"text/javascript\"> \r\n  function presmeruj(adresa) \r\n  {\r\n    location.href= adresa\r\n  };\r\n\
-        </SCRIPT>\n\
-        <FORM ACTION=\"/pls/wregis/dotaz\" METHOD=\"GET\">\n\
-        <DIV class=\"hlavicka\">\n\
-        </DIV>\n\
-        <DIV class=\"telo\">\n\
-        </DIV>\n\
-        <DIV class=\"poznamka\">\n\
-        <I>Tento v\xFDpis m\xE1 informat\xEDvny charakter. </I>\n\
-        </DIV>\n\
-        <H4 ALIGN=\"center\">Identifika\xE8n\xE9 \xFAdaje</H4>\n\
-        <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>I\xC8O:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B>30090091</B></TD>\n\
-        </TR>\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>Obchodn\xE9 meno:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B>Jozef Sma\x9Eenka - Bit\xFAnok Doj\xE8</B></TD>\n\
-        </TR>\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>Pr\xE1vna forma:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B>101 - Podnikate\xBE-fyzick\xE1 osoba-nezap\xEDsan\xFD v obchodnom registri</B></TD>\n\
-        </TR>\n\
-        </TABLE>\n\
-        <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
-        <TBODY>\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>D\xE1tum vzniku:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B>22.07.1991</B></TD>\n\
-        </TR>\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>D\xE1tum z\xE1niku:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B>09.09.2013</B></TD>\n\
-        </TR>\n\
-        </TBODY>\n\
-        </TABLE>\n\
-        <TABLE  ALIGN=\"center\"  class=\"tabid\" cellspacing=\"0\" border=\"0\">\n\
-        <TBODY>\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>Adresa s\xEDdla:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B>Doj\xE8 447, &nbsp;906 02 Doj\xE8</B></TD>\n\
-        </TR>\n\
-        <TR>\n\
-        <TD ALIGN=\"right\"  width=\"260\"><B>Okres:</B></TD>\n\
-        <TD  width=\"20\"> </TD>\n\
-        <TD ALIGN=\"left\"  width=\"400\"><B> Senica</B></TD>\n\
-        </TR>\n\
-        </TBODY>\n\
-        </TABLE>\n\
-        <H4 ALIGN=\"center\">\x8Atatistick\xE9 charakteristiky</H4>\n\
-        <TABLE  ALIGN=\"center\"  class=\"tablist\" border=\"0\">\n\
-        <TBODY style=\"background-color:#DEB887\" >\n\
-        <TR>\n\
-        <TH>N\xE1zov \xE8\xEDseln\xEDka</TH>\n\
-        <TH>K\xF3d</TH>\n\
-        <TH>Text</TH>\n\
-        </TR>\n\
-        <TR  class=\"licha\">\n\
-        <TD ALIGN=\"left\"  width=\"260\"><A HREF=\"/pls/wregis/ciselniky?kc=0056\">Pr\xE1vna forma</A></TD>\n\
-        <TD  class=\"cislo\">101</TD>\n\
-        <TD>Podnikate\xBE-fyzick\xE1 osoba-nezap\xEDsan\xFD v obchodnom registri</TD>\n\
-        </TR>\n\
-        <TR  class=\"suda\">\n\
-        <TD><A HREF=\"/pls/wregis/ciselniky?kc=5205\">Predmet preva\x9Euj\xFAcej \xE8innosti (SK NACE)</A></TD>\n\
-        <TD  class=\"cislo\">49410</TD>\n\
-        <TD>N\xE1kladn\xE1 cestn\xE1 doprava</TD>\n\
-        </TR>\n\
-        <TR  class=\"licha\">\n\
-        <TD><A HREF=\"/pls/wregis/ciselniky?kc=5502\">Predmet preva\x9Euj\xFAcej \xE8innosti (OKE\xC8)</A></TD>\n\
-        <TD  class=\"cislo\">60240</TD>\n\
-        <TD>N\xE1kladn\xE1 cestn\xE1 doprava</TD>\n\
-        </TR>\n\
-        <TR  class=\"licha\">\n\
-        <TD><A HREF=\"/pls/wregis/ciselniky?kc=0036\">Druh vlastn\xEDctva</A></TD>\n\
-        <TD  class=\"cislo\">2</TD>\n\
-        <TD>S\xFAkromn\xE9 tuzemsk\xE9</TD>\n\
-        </TR>\n\
-        <TR  class=\"suda\">\n\
-        <TD><A HREF=\"/pls/wregis/ciselniky?kc=0073\">Kateg\xF3ria velkosti organiz\xE1cie</A></TD>\n\
-        <TD  class=\"cislo\">  </TD>\n\
-        <TD>0-2 zamestnanci</TD>\n\
-        </TR>\n\
-        </TBODY>\n\
-        </TABLE>\n\
-        <BR>\n\
-        <INPUT class=\"button\" type=\"button\" name=\"back\" value=\"N\xE1vrat\" onclick=\"history.back()\">\n\
-        <INPUT TYPE=\"submit\" VALUE=\"Nov\xE9 zadanie\"  class=\"button\">\n\
-        <INPUT TYPE=BUTTON VALUE=\"V\xFDpis\" onClick=\"presmeruj( '/pls/wregis/vypisregis?vypis_xidorg=102034');\">\n\
-        </FORM>\n\
-        <DIV class=\"paticka\">\n\
-        <BR>\n\
-        Vytvorenie str\xE1nky: 12.06.2015  17:03, platnos\x9D \xFAdajov k 11.06.2015\n\
-        <BR>\n\
-        &#169; A\x8AIS-REGIS 2.0  \x8Atatistick\xFD \xFArad Slovenskej republiky, 2005     \n\
-        </DIV>\n\
-        </BODY>\n\
-        </HTML>\n"
-    http_version: "1.1"
-    adapter_metadata: 
+      string: !binary |-
+        PCFET0NUWVBFIGh0bWwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMDEg
+        VHJhbnNpdGlvbmFsLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSL2h0bWw0
+        L2xvb3NlLmR0ZCI+CjxIVE1MPgo8SEVBRD4KPFRJVExFPlJFR0lTIC0gRGV0
+        YWlsPC9USVRMRT4KPC9IRUFEPgo8Qk9EWSAgYmdjb2xvcj0iI0ZGRUZERiIg
+        dGV4dD0iIzgwMDAwMCI+CjxUQUJMRSAgIGNlbGxTcGFjaW5nPTEgY2VsbFBh
+        ZGRpbmc9NCBzdHlsZT0iYm9yZGVyLUNvbG9yOiMwMDAwMDA7IHdpZHRoOjEw
+        MCUiIGJvcmRlcj0xPgo8VEJPRFk+CjxUUj4KPFREICBzdHlsZT0idkFsaWdu
+        OmNlbnRlciIgYmdDb2xvcj0iIzczODJBNSI+PFAgQUxJR049ImNlbnRlciI+
+        PEZPTlQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBjb2xvcj0iI2ZmZmZmZiIg
+        c2l6ZT0iNCI+PEk+PEI+inRhdGlzdGlja/0gcmVnaXN0ZXIgb3JnYW5peuFj
+        ae08L0I+PC9JPjwvRk9OVD48L1REPgo8L1RSPgo8L1RCT0RZPgo8L1RBQkxF
+        Pgo8c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlwdCI+IA0KICBmdW5jdGlv
+        biBwcmVzbWVydWooYWRyZXNhKSANCiAgew0KICAgIGxvY2F0aW9uLmhyZWY9
+        IGFkcmVzYQ0KICB9Ow0KPC9TQ1JJUFQ+CjxGT1JNIEFDVElPTj0iL3Bscy93
+        cmVnaXMvZG90YXoiIE1FVEhPRD0iR0VUIj4KPERJViBjbGFzcz0iaGxhdmlj
+        a2EiPgo8L0RJVj4KPERJViBjbGFzcz0idGVsbyI+CjwvRElWPgo8RElWIGNs
+        YXNzPSJwb3puYW1rYSI+CjxJPlRlbnRvIHb9cGlzIG3hIGluZm9ybWF07XZu
+        eSBjaGFyYWt0ZXIuIDwvST4KPC9ESVY+CjxINCBBTElHTj0iY2VudGVyIj5J
+        ZGVudGlmaWth6G7pIPpkYWplPC9IND4KPFRBQkxFICBBTElHTj0iY2VudGVy
+        IiAgY2xhc3M9InRhYmlkIiBjZWxsc3BhY2luZz0iMCIgYm9yZGVyPSIwIj4K
+        PFRSPgo8VEQgQUxJR049InJpZ2h0IiAgd2lkdGg9IjI2MCI+PEI+SchPOjwv
+        Qj48L1REPgo8VEQgIHdpZHRoPSIyMCI+IDwvVEQ+CjxURCBBTElHTj0ibGVm
+        dCIgIHdpZHRoPSI0MDAiPjxCPjMwMDkwMDkxPC9CPjwvVEQ+CjwvVFI+CjxU
+        Uj4KPFREIEFMSUdOPSJyaWdodCIgIHdpZHRoPSIyNjAiPjxCPk9iY2hvZG7p
+        IG1lbm86PC9CPjwvVEQ+CjxURCAgd2lkdGg9IjIwIj4gPC9URD4KPFREIEFM
+        SUdOPSJsZWZ0IiAgd2lkdGg9IjQwMCI+PEI+Sm96ZWYgU21hnmVua2EgLSBC
+        aXT6bm9rIERvaug8L0I+PC9URD4KPC9UUj4KPFRSPgo8VEQgQUxJR049InJp
+        Z2h0IiAgd2lkdGg9IjI2MCI+PEI+UHLhdm5hIGZvcm1hOjwvQj48L1REPgo8
+        VEQgIHdpZHRoPSIyMCI+IDwvVEQ+CjxURCBBTElHTj0ibGVmdCIgIHdpZHRo
+        PSI0MDAiPjxCPjEwMSAtIFBvZG5pa2F0Zb4tZnl6aWNr4SBvc29iYS1uZXph
+        cO1zYW79IHYgb2JjaG9kbm9tIHJlZ2lzdHJpPC9CPjwvVEQ+CjwvVFI+Cjwv
+        VEFCTEU+CjxUQUJMRSAgQUxJR049ImNlbnRlciIgIGNsYXNzPSJ0YWJpZCIg
+        Y2VsbHNwYWNpbmc9IjAiIGJvcmRlcj0iMCI+CjxUQk9EWT4KPFRSPgo8VEQg
+        QUxJR049InJpZ2h0IiAgd2lkdGg9IjI2MCI+PEI+ROF0dW0gdnpuaWt1Ojwv
+        Qj48L1REPgo8VEQgIHdpZHRoPSIyMCI+IDwvVEQ+CjxURCBBTElHTj0ibGVm
+        dCIgIHdpZHRoPSI0MDAiPjxCPjIyLjA3LjE5OTE8L0I+PC9URD4KPC9UUj4K
+        PFRSPgo8VEQgQUxJR049InJpZ2h0IiAgd2lkdGg9IjI2MCI+PEI+ROF0dW0g
+        euFuaWt1OjwvQj48L1REPgo8VEQgIHdpZHRoPSIyMCI+IDwvVEQ+CjxURCBB
+        TElHTj0ibGVmdCIgIHdpZHRoPSI0MDAiPjxCPjA5LjA5LjIwMTM8L0I+PC9U
+        RD4KPC9UUj4KPC9UQk9EWT4KPC9UQUJMRT4KPFRBQkxFICBBTElHTj0iY2Vu
+        dGVyIiAgY2xhc3M9InRhYmlkIiBjZWxsc3BhY2luZz0iMCIgYm9yZGVyPSIw
+        Ij4KPFRCT0RZPgo8VFI+CjxURCBBTElHTj0icmlnaHQiICB3aWR0aD0iMjYw
+        Ij48Qj5BZHJlc2Egc+1kbGE6PC9CPjwvVEQ+CjxURCAgd2lkdGg9IjIwIj4g
+        PC9URD4KPFREIEFMSUdOPSJsZWZ0IiAgd2lkdGg9IjQwMCI+PEI+RG9q6CA0
+        NDcsICZuYnNwOzkwNiAwMiBEb2roPC9CPjwvVEQ+CjwvVFI+CjxUUj4KPFRE
+        IEFMSUdOPSJyaWdodCIgIHdpZHRoPSIyNjAiPjxCPk9rcmVzOjwvQj48L1RE
+        Pgo8VEQgIHdpZHRoPSIyMCI+IDwvVEQ+CjxURCBBTElHTj0ibGVmdCIgIHdp
+        ZHRoPSI0MDAiPjxCPiBTZW5pY2E8L0I+PC9URD4KPC9UUj4KPC9UQk9EWT4K
+        PC9UQUJMRT4KPEg0IEFMSUdOPSJjZW50ZXIiPop0YXRpc3RpY2vpIGNoYXJh
+        a3RlcmlzdGlreTwvSDQ+CjxUQUJMRSAgQUxJR049ImNlbnRlciIgIGNsYXNz
+        PSJ0YWJsaXN0IiBib3JkZXI9IjAiPgo8VEJPRFkgc3R5bGU9ImJhY2tncm91
+        bmQtY29sb3I6I0RFQjg4NyIgPgo8VFI+CjxUSD5O4XpvdiDo7XNlbG7ta2E8
+        L1RIPgo8VEg+S/NkPC9USD4KPFRIPlRleHQ8L1RIPgo8L1RSPgo8VFIgIGNs
+        YXNzPSJsaWNoYSI+CjxURCBBTElHTj0ibGVmdCIgIHdpZHRoPSIyNjAiPjxB
+        IEhSRUY9Ii9wbHMvd3JlZ2lzL2Npc2VsbmlreT9rYz0wMDU2Ij5QcuF2bmEg
+        Zm9ybWE8L0E+PC9URD4KPFREICBjbGFzcz0iY2lzbG8iPjEwMTwvVEQ+CjxU
+        RD5Qb2RuaWthdGW+LWZ5emlja+Egb3NvYmEtbmV6YXDtc2Fu/SB2IG9iY2hv
+        ZG5vbSByZWdpc3RyaTwvVEQ+CjwvVFI+CjxUUiAgY2xhc3M9InN1ZGEiPgo8
+        VEQ+PEEgSFJFRj0iL3Bscy93cmVnaXMvY2lzZWxuaWt5P2tjPTUyMDUiPlBy
+        ZWRtZXQgcHJldmGedWr6Y2VqIOhpbm5vc3RpIChTSyBOQUNFKTwvQT48L1RE
+        Pgo8VEQgIGNsYXNzPSJjaXNsbyI+NDk0MTA8L1REPgo8VEQ+TuFrbGFkbuEg
+        Y2VzdG7hIGRvcHJhdmE8L1REPgo8L1RSPgo8VFIgIGNsYXNzPSJsaWNoYSI+
+        CjxURD48QSBIUkVGPSIvcGxzL3dyZWdpcy9jaXNlbG5pa3k/a2M9NTUwMiI+
+        UHJlZG1ldCBwcmV2YZ51avpjZWog6Glubm9zdGkgKE9LRcgpPC9BPjwvVEQ+
+        CjxURCAgY2xhc3M9ImNpc2xvIj42MDI0MDwvVEQ+CjxURD5O4WtsYWRu4SBj
+        ZXN0buEgZG9wcmF2YTwvVEQ+CjwvVFI+CjxUUiAgY2xhc3M9ImxpY2hhIj4K
+        PFREPjxBIEhSRUY9Ii9wbHMvd3JlZ2lzL2Npc2VsbmlreT9rYz0wMDM2Ij5E
+        cnVoIHZsYXN0bu1jdHZhPC9BPjwvVEQ+CjxURCAgY2xhc3M9ImNpc2xvIj4y
+        PC9URD4KPFREPlP6a3JvbW7pIHR1emVtc2vpPC9URD4KPC9UUj4KPFRSICBj
+        bGFzcz0ic3VkYSI+CjxURD48QSBIUkVGPSIvcGxzL3dyZWdpcy9jaXNlbG5p
+        a3k/a2M9MDA3MyI+S2F0ZWfzcmlhIHZlbGtvc3RpIG9yZ2FuaXrhY2llPC9B
+        PjwvVEQ+CjxURCAgY2xhc3M9ImNpc2xvIj4gIDwvVEQ+CjxURD4wLTIgemFt
+        ZXN0bmFuY2k8L1REPgo8L1RSPgo8L1RCT0RZPgo8L1RBQkxFPgo8QlI+CjxJ
+        TlBVVCBjbGFzcz0iYnV0dG9uIiB0eXBlPSJidXR0b24iIG5hbWU9ImJhY2si
+        IHZhbHVlPSJO4XZyYXQiIG9uY2xpY2s9Imhpc3RvcnkuYmFjaygpIj4KPElO
+        UFVUIFRZUEU9InN1Ym1pdCIgVkFMVUU9Ik5vdukgemFkYW5pZSIgIGNsYXNz
+        PSJidXR0b24iPgo8SU5QVVQgVFlQRT1CVVRUT04gVkFMVUU9Ilb9cGlzIiBv
+        bkNsaWNrPSJwcmVzbWVydWooICcvcGxzL3dyZWdpcy92eXBpc3JlZ2lzP3Z5
+        cGlzX3hpZG9yZz0xMDIwMzQnKTsiPgo8L0ZPUk0+CjxESVYgY2xhc3M9InBh
+        dGlja2EiPgo8QlI+ClZ5dHZvcmVuaWUgc3Ry4W5reTogMTcuMDYuMjAxNSAg
+        MTU6NDcsIHBsYXRub3OdIPpkYWpvdiBrIDE2LjA2LjIwMTUKPEJSPgomIzE2
+        OTsgQYpJUy1SRUdJUyAyLjAgIIp0YXRpc3RpY2v9IPpyYWQgU2xvdmVuc2tl
+        aiByZXB1Ymxpa3ksIDIwMDUgICAgIAo8L0RJVj4KPC9CT0RZPgo8L0hUTUw+
+        Cg==
+    http_version: '1.1'
+    adapter_metadata:
       effective_url: http://www.statistics.sk/pls/wregis/detail?wxidorg=102034
-  recorded_at: Fri, 12 Jun 2015 15:03:09 GMT
+  recorded_at: Wed, 17 Jun 2015 13:47:00 GMT
 recorded_with: VCR 2.9.3

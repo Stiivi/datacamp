@@ -1,348 +1,599 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: http://www.ske.sk/category/aktuality/
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      User-Agent: 
+      string: ''
+    headers:
+      User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Mon, 15 Jun 2015 14:35:06 GMT
-      Server: 
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:36 GMT
+      Server:
       - Apache
-      X-Powered-By: 
+      X-Powered-By:
       - PHP/5.2.17
-      X-Pingback: 
+      X-Pingback:
       - http://www.ske.sk/xmlrpc.php
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      Content-Type: 
+      Content-Type:
       - text/html; charset=UTF-8
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "<!DOCTYPE HTML>\n\
-        <!--[if lt IE 7 ]><html class=\"ie ie6\" lang=\"en\"> <![endif]-->\n\
-        <!--[if IE 7 ]><html class=\"ie ie7\" lang=\"en\"> <![endif]-->\n\
-        <!--[if IE 8 ]><html class=\"ie ie8\" lang=\"en\"> <![endif]-->\n\
-        <!--[if (gte IE 9)|!(IE)]><!-->\n\n\
-        <html lang=\"sk-SK\">\n\n\n\
-        <!--<![endif]-->\n\n\
-        <head>\n\
-        <!--[if IE]>\n    <script type=\"text/javascript\" src=\"http://www.ske.sk/wp-content/themes/ske/frontend/js/xcanvas.compiled.js\"></script>\n\
-        <![endif]--> \n\n\
-        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n\
-        <title>Slovensk\xC3\xA1 komora exek\xC3\xBAtorov  &raquo; Aktuality</title>\n\
-        <meta charset=\"UTF-8\" />\n\
-        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">\n\
-        <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS kan\xC3\xA1l: Slovensk\xC3\xA1 komora exek\xC3\xBAtorov &raquo;\" href=\"http://www.ske.sk/feed/\" />\n\
-        <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS kan\xC3\xA1l koment\xC3\xA1rov webu Slovensk\xC3\xA1 komora exek\xC3\xBAtorov &raquo;\" href=\"http://www.ske.sk/comments/feed/\" />\n\
-        <link rel=\"alternate\" type=\"application/rss+xml\" title=\"RSS kan\xC3\xA1l kateg\xC3\xB3rie Slovensk\xC3\xA1 komora exek\xC3\xBAtorov &raquo; Aktuality\" href=\"http://www.ske.sk/category/aktuality/feed/\" />\n\
-        \t<style type=\"text/css\">\r\n\
-        \t.wp-pagenavi{margin-left:auto !important; margin-right:auto; !important}\r\n\
-        \t</style>\r\n  <link rel='stylesheet' id='contact-form-7-css'  href='http://www.ske.sk/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=3.8.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='ls-google-fonts-css'  href='http://fonts.googleapis.com/css?family=Lato:100,300,regular,700,900|Open+Sans:300|Indie+Flower:regular|Oswald:300,regular,700&#038;subset=latin,latin-ext' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='cmm_style_sheet_1-css'  href='http://www.ske.sk/wp-content/plugins/mega-menu/css/megamenu.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='default-style-css'  href='http://www.ske.sk/wp-content/themes/ske/style.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='shortcode-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/shortcode.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='cp_default-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/cp_default.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='cp_mega_menu-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/mega_menu.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='cp-bootstrap-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/css/bootstrap.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='cp-fontAW-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/cp_font/css/font-awesome.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='cp-anything-slider-css'  href='http://www.ske.sk/wp-content/themes/ske/frontend/anythingslider/css/anythingslider.css?ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='googleFonts-css'  href='http://fonts.googleapis.com/css?family=Ubuntu&#038;ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='googleFonts-heading-css'  href='http://fonts.googleapis.com/css?family=PT+Sans&#038;ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='menu-googleFonts-heading-css'  href='http://fonts.googleapis.com/css?family=PT+Sans+Caption&#038;ver=3.9.1' type='text/css' media='all' />\n\
-        <link rel='stylesheet' id='wp-pagenavi-style-css'  href='http://www.ske.sk/wp-content/plugins/wp-pagenavi-style/css/css3_black.css?ver=1.0' type='text/css' media='all' />\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-includes/js/jquery/jquery.js?ver=1.11.0'></script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/js/html5shive.js?ver=1.5.1'></script>\n\
-        <link rel=\"EditURI\" type=\"application/rsd+xml\" title=\"RSD\" href=\"http://www.ske.sk/xmlrpc.php?rsd\" />\n\
-        <link rel=\"wlwmanifest\" type=\"application/wlwmanifest+xml\" href=\"http://www.ske.sk/wp-includes/wlwmanifest.xml\" /> \n\
-        <meta name=\"generator\" content=\"WordPress 3.9.1\" />\n\
-        <!-- <meta name=\"vfb\" version=\"2.8.1\" /> -->\n\
-        \t<style type=\"text/css\">\r\n\
-        \t .wp-pagenavi\r\n\
-        \t{\r\n\
-        \t\tfont-size:12px !important;\r\n\
-        \t}\r\n\
-        \t</style>\r\n\
-        \t\t\t<script type=\"text/javascript\">\r\n\
-        \t\tvar ajaxurl = 'http://www.ske.sk/wp-admin/admin-ajax.php';\r\n\
-        \t\t</script>\r\n\
-        \t</head>\n\n\
-        <body id=\"home\" class=\"archive category category-aktuality category-30\">\n\n\
-        <div class=\"wrapper\">\n  <!-- header -->\n\
-        \t<header id=\"header\">\n\
-        \t\t<section class=\"container\">\n\
-        \t\t\t<h1 id=\"logo\">\n\
-        \t\t\t  \t\t\t\t<a href=\"http://www.ske.sk\">\n\
-        \t\t\t\t\t<img class=\"logo_img\" width=\"279\" height=\"150\" src=\"http://www.ske.lici.sk/wp-content/uploads/2014/05/logo1.png\" alt=\"Slovensk\xC3\xA1 komora exek\xC3\xBAtorov\">\n\
-        \t\t\t\t</a>\n\
-        \t\t\t</h1>\n\
-        \t\t</section>\n\
-        \t\t<div class=\"nav-holder\">\n\
-        \t\t<div class=\"navbar navbar-inverse\">\n\
-        \t\t\n\
-        \t\t\t  <a style=\"float:right; font-size:15px; margin: 20px 40px 10px 0px;font-weight:bold; color:white;\" href=\"http://exnet.ske.sk/\" target=\"_blank\">ExNET</a>\n\
-        \t\t\n\
-        \t\t\t  </div>\n\
-        \t\t\t<section class=\"container\">\n\
-        \t\t\t  <nav id=\"nav\">\n\
-        \t\t\t\t<div class=\"navbar navbar-inverse\">\n\
-        \t\t\t\t  <div class=\"navbar-inner\">\n\
-        \t\t\t\t\t<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->\n\
-        \t\t\t\t\t<button type=\"button\" class=\"btn btn-navbar\" data-toggle=\"collapse\" data-target=\".nav-collapse\"> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> <span class=\"icon-bar\"></span> </button>\n\
-        \t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\t<div id=\"mymenu\" class=\"desktop_view nav-collapse collapse\">\n\
-        \t\t\t\t\t\t\t\t\t\t\t<ul id=\"menusection\" class=\"nav\"><li id=\"menu-item-1373\" class=\"menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-1373\"><a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a></li>\n\
-        <li id=\"menu-item-1663\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1663\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a>\n\
-        <ul class=\"sub-menu\">\n\
-        \t<li id=\"menu-item-1705\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1705\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a></li>\n\
-        \t<li id=\"menu-item-1709\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1709\"><a href=\"http://www.ske.sk/zoznam-exekutorov/neplatne-preukazy-a-odznaky/\">Neplatn\xC3\xA9 preukazy a odznaky</a></li>\n\
-        \t<li id=\"menu-item-1708\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1708\"><a href=\"http://www.ske.sk/zoznam-exekutorov/odvolani-sudni-exekutori/\">Odvolan\xC3\xAD s\xC3\xBAdni exek\xC3\xBAtori</a></li>\n\
-        \t<li id=\"menu-item-1707\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1707\"><a href=\"http://www.ske.sk/zoznam-exekutorov/pozastavenie-vykonu-exu/\">Pozastavenie v\xC3\xBDkonu Ex\xC3\x9A</a></li>\n\
-        \t<li id=\"menu-item-1706\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1706\"><a href=\"http://www.ske.sk/zoznam-exekutorov/zaniknute-exekutorske-urady/\">Zaniknut\xC3\xA9 exek\xC3\xBAtorsk\xC3\xA9 \xC3\xBArady</a></li>\n\
-        \t<li id=\"menu-item-1748\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1748\"><a href=\"http://www.ske.sk/zoznam-exekutorov/prerusenie-vykonu-funkcie-se/\">Preru\xC5\xA1enie v\xC3\xBDkonu funkcie SE</a></li>\n\
-        </ul>\n\
-        </li>\n\
-        <li id=\"menu-item-1369\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1369\"><a href=\"http://www.ske.sk/organy-komory/\">Org\xC3\xA1ny komory</a></li>\n\
-        <li id=\"menu-item-1370\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1370\"><a href=\"http://www.ske.sk/dokumenty/\">Dokumenty</a></li>\n\
-        <li id=\"menu-item-1372\" class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1372\"><a href=\"http://www.ske.sk/category/napisali-o-nas/\">Nap\xC3\xADsali o n\xC3\xA1s</a></li>\n\
-        <li id=\"menu-item-1371\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1371\"><a href=\"http://www.ske.sk/odborne-skusky/\">Odborn\xC3\xA9 sk\xC3\xBA\xC5\xA1ky</a></li>\n\
-        <li id=\"menu-item-1406\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1406\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a>\n\
-        <ul class=\"sub-menu\">\n\
-        \t<li id=\"menu-item-1719\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1719\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a></li>\n\
-        \t<li id=\"menu-item-1718\" class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1718\"><a target=\"_blank\" href=\"http://jaspi.justice.gov.sk/jaspiw1/jaspiw_mini_fr0.htm\">\xC3\x9Apln\xC3\xA9 znenia z\xC3\xA1konov</a></li>\n\
-        </ul>\n\
-        </li>\n\
-        <li id=\"menu-item-1925\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1925\"><a href=\"http://www.ske.sk/spravy-o-cinnosti-ske-a-se/\">Spr\xC3\xA1vy o \xC4\x8Dinnosti SKE a SE</a></li>\n\
-        <li id=\"menu-item-1868\" class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1868\"><a href=\"http://www.ske.sk/category/poradna/\">Porad\xC5\x88a</a></li>\n\
-        <li id=\"menu-item-1407\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1407\"><a href=\"http://www.ske.sk/kontakt/\">Kontakt</a></li>\n\
-        <li id=\"menu-item-1917\" class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1917\"><a href=\"http://www.ske.sk/zoznam-drazobnych-vyhlasok/\">Zoznam dra\xC5\xBEobn\xC3\xBDch vyhl\xC3\xA1\xC5\xA1ok</a></li>\n\
-        <li id=\"menu-item-1820\" class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1820\"><a href=\"http://cre.sk\">CRE</a></li>\n\
-        </ul>\t\t\t\t\t\t\t\t\t\t\t</div>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\t<div id=\"mymenu\" class=\"device_view nav-collapse collapse\">\n\
-        \t\t\t\t\t\t\t\t\t\t\t<ul id=\"menusection\" class=\"nav\"><li class=\"menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-1373\"><a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a></li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1663\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a>\n\
-        <ul class=\"sub-menu\">\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1705\"><a href=\"http://www.ske.sk/zoznam-exekutorov/\">Zoznam exek\xC3\xBAtorov</a></li>\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1709\"><a href=\"http://www.ske.sk/zoznam-exekutorov/neplatne-preukazy-a-odznaky/\">Neplatn\xC3\xA9 preukazy a odznaky</a></li>\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1708\"><a href=\"http://www.ske.sk/zoznam-exekutorov/odvolani-sudni-exekutori/\">Odvolan\xC3\xAD s\xC3\xBAdni exek\xC3\xBAtori</a></li>\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1707\"><a href=\"http://www.ske.sk/zoznam-exekutorov/pozastavenie-vykonu-exu/\">Pozastavenie v\xC3\xBDkonu Ex\xC3\x9A</a></li>\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1706\"><a href=\"http://www.ske.sk/zoznam-exekutorov/zaniknute-exekutorske-urady/\">Zaniknut\xC3\xA9 exek\xC3\xBAtorsk\xC3\xA9 \xC3\xBArady</a></li>\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1748\"><a href=\"http://www.ske.sk/zoznam-exekutorov/prerusenie-vykonu-funkcie-se/\">Preru\xC5\xA1enie v\xC3\xBDkonu funkcie SE</a></li>\n\
-        </ul>\n\
-        </li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1369\"><a href=\"http://www.ske.sk/organy-komory/\">Org\xC3\xA1ny komory</a></li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1370\"><a href=\"http://www.ske.sk/dokumenty/\">Dokumenty</a></li>\n\
-        <li class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1372\"><a href=\"http://www.ske.sk/category/napisali-o-nas/\">Nap\xC3\xADsali o n\xC3\xA1s</a></li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1371\"><a href=\"http://www.ske.sk/odborne-skusky/\">Odborn\xC3\xA9 sk\xC3\xBA\xC5\xA1ky</a></li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1406\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a>\n\
-        <ul class=\"sub-menu\">\n\
-        \t<li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1719\"><a href=\"http://www.ske.sk/podnety/\">Podnety</a></li>\n\
-        \t<li class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1718\"><a target=\"_blank\" href=\"http://jaspi.justice.gov.sk/jaspiw1/jaspiw_mini_fr0.htm\">\xC3\x9Apln\xC3\xA9 znenia z\xC3\xA1konov</a></li>\n\
-        </ul>\n\
-        </li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1925\"><a href=\"http://www.ske.sk/spravy-o-cinnosti-ske-a-se/\">Spr\xC3\xA1vy o \xC4\x8Dinnosti SKE a SE</a></li>\n\
-        <li class=\"menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1868\"><a href=\"http://www.ske.sk/category/poradna/\">Porad\xC5\x88a</a></li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1407\"><a href=\"http://www.ske.sk/kontakt/\">Kontakt</a></li>\n\
-        <li class=\"menu-item menu-item-type-post_type menu-item-object-page menu-item-1917\"><a href=\"http://www.ske.sk/zoznam-drazobnych-vyhlasok/\">Zoznam dra\xC5\xBEobn\xC3\xBDch vyhl\xC3\xA1\xC5\xA1ok</a></li>\n\
-        <li class=\"menu-item menu-item-type-custom menu-item-object-custom menu-item-1820\"><a href=\"http://cre.sk\">CRE</a></li>\n\
-        </ul>\t\t\t\t\t\t\t\t\t\t\t</div>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!--/.nav-collapse -->\n\
-        \t\t\t\t  </div>\n\
-        \t\t\t\t  <!-- /.navbar-inner -->\n\
-        \t\t\t\t</div>\n\
-        \t\t\t\t<!-- /.navbar -->\n\
-        \t\t\t  </nav>\n\
-        \t\t\t  \n\
-        \t\t\t</section>\n\
-        \t\t</div>\n\
-        \t</header><section id=\"\" class=\"content-holder1 inner-pages background_breadcrumbs\"><div class=\"container\"><ul class=\"breadcrumb\" id=\"breadcrumbs\"><li class=\"home_bread\"><a href=\"http://www.ske.sk\"><span class=\"font_bread\">&nbsp;<i class=\"icon-home\"></i></span></a> </li> <li class=\"current\">Pr\xC3\xADspevky v kateg\xC3\xB3rii: Aktuality</li></ul></div></section><div class=\"clear\"></div>\t<div class=\"content-holder1 inner-pages\">\n\
-        \t\t<div class=\"container\">\n\
-        \t\t\t\t<section id=\"blockContainer\" class=\"row-fluid\">\n\
-        \t\t\t\t\t\t\t\t\t\t<div id=\"post-\" class=\"span8\">\n\
-        \t\t\t\t\t\t<div class=\"post-1953 post type-post status-publish format-standard hentry category-aktuality\">\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h2 class=\"heading\"> Aktuality</h2><span class=\"border-line m-bottom\"></span>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<article class=\"blog_listing_wrapper Full-Image\">\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_title\"><h2 class=\"heading\"><a href=\"http://www.ske.sk/oznam-o-odcudzeni-uradnej-peciatky/\">Oznam o odcudzen\xC3\xAD \xC3\xBAradnej pe\xC4\x8Diatky <span class=\"date_month_post\"> \n\
-        \t\t\t\t\t\t\t\t\tM\xC3\xA1j 22, 2015 </span></a></h2></figure>\n\
-        \t\t\t\t\t\t\t\t\t<p class=\"margin-top-blog-listing\">Slovensk\xC3\xA1 komora obdr\xC5\xBEala d\xC5\x88a 24.04.2015 hl\xC3\xA1senie od s\xC3\xBAdneho exek\xC3\xBAtora JUDr. Ing. Karola Mihala, so s\xC3\xADdlom Exek\xC3\xBAtorsk\xC3\xA9ho \xC3\xBAradu v Ko\xC5\xA1iciach o odcudzen\xC3\xAD \xC3\xBAradnej pe\xC4\x8Diatky s \xC4\x8D\xC3\xADseln\xC3\xBDm ozna\xC4\x8Den\xC3\xADm \xC4\x8D. 6, ozna\xC4\x8Den\xC3\xBA menom: JUDr. Ing. Karol Mihal a slovn\xC3\xBDm spojen\xC3\xADm: s\xC3\xBAdny exek\xC3\xBAtor Ko\xC5\xA1ice 2, ktor\xC3\xA1 mu bola odcudzen\xC3\xA1 d\xC5\x88a 20.04.2015</p>\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_meta\"> \n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t<span class=\"font_aw small_size\"><i class=\"icon-reorder\"></i>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tKateg\xC3\xB3ria:  <a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a>   \n\
-        \t\t\t\t\t\t\t\t\t\t</span>\n\
-        \t\t\t\t\t\t\t\t\t</figure>\n\
-        \t\t\t\t\t\t\t\t</article>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<article class=\"blog_listing_wrapper Full-Image\">\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_title\"><h2 class=\"heading\"><a href=\"http://www.ske.sk/slovenska-komora-exekutorov-upozornuje-obcanov-na-podvodne-zneuzitie-identifikacnych-udajov-exekutorskych-uradov-2/\">Slovensk\xC3\xA1 komora exek\xC3\xBAtorov upozor\xC5\x88uje ob\xC4\x8Danov na podvodn\xC3\xA9 zneu\xC5\xBEitie identifika\xC4\x8Dn\xC3\xBDch \xC3\xBAdajov exek\xC3\xBAtorsk\xC3\xA9ho \xC3\xBAradu <span class=\"date_month_post\"> \n\
-        \t\t\t\t\t\t\t\t\tM\xC3\xA1j 15, 2015 </span></a></h2></figure>\n\
-        \t\t\t\t\t\t\t\t\t<p class=\"margin-top-blog-listing\">Slovensk\xC3\xA1 komora exek\xC3\xBAtorov (SKE) upozor\xC5\x88uje ob\xC4\x8Danov na v\xC3\xBDskyt falo\xC5\xA1n\xC3\xBDch exeku\xC4\x8Dn\xC3\xBDch pr\xC3\xADkazov exek\xC3\xBAtorsk\xC3\xA9ho \xC3\xBAradu Mgr. Marcela Zummerov\xC3\xA1, Exek\xC3\xBAtorsk\xC3\xBD \xC3\xBArad Michalovce, ul. Kpt. N\xC3\xA1lepku 22, 071 01 Michalovce. SKE odpor\xC3\xBA\xC4\x8Da ob\xC4\x8Danom aby v pr\xC3\xADpade pochybnost\xC3\xAD kontaktovali uveden\xC3\xBD exek\xC3\xBAtorsk\xC3\xBD \xC3\xBArad.</p>\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_meta\"> \n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t<span class=\"font_aw small_size\"><i class=\"icon-reorder\"></i>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tKateg\xC3\xB3ria:  <a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a>   \n\
-        \t\t\t\t\t\t\t\t\t\t</span>\n\
-        \t\t\t\t\t\t\t\t\t</figure>\n\
-        \t\t\t\t\t\t\t\t</article>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<article class=\"blog_listing_wrapper Full-Image\">\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_title\"><h2 class=\"heading\"><a href=\"http://www.ske.sk/slovenska-komora-exekutorov-upozornuje-obcanov-na-podvodne-zneuzitie-identifikacnych-udajov-exekutorskych-uradov/\">Slovensk\xC3\xA1 komora exek\xC3\xBAtorov upozor\xC5\x88uje ob\xC4\x8Danov na podvodn\xC3\xA9 zneu\xC5\xBEitie identifika\xC4\x8Dn\xC3\xBDch \xC3\xBAdajov exek\xC3\xBAtorsk\xC3\xBDch \xC3\xBAradov <span class=\"date_month_post\"> \n\
-        \t\t\t\t\t\t\t\t\tM\xC3\xA1j 1, 2015 </span></a></h2></figure>\n\
-        \t\t\t\t\t\t\t\t\t<p class=\"margin-top-blog-listing\">Slovensk\xC3\xA1 komora exek\xC3\xBAtorov (SKE) upozor\xC5\x88uje ob\xC4\x8Danov na v\xC3\xBDskyt falo\xC5\xA1n\xC3\xBDch exeku\xC4\x8Dn\xC3\xBDch pr\xC3\xADkazov exek\xC3\xBAtorsk\xC3\xBDch \xC3\xBAradov JUDr. Michala Ke\xC5\xA1e\xC4\xBEaka, Ex\xC3\x9A Spi\xC5\xA1sk\xC3\xA1 Nov\xC3\xA1 Ves, Mlynsk\xC3\xA1 2, 052 01 Spi\xC5\xA1sk\xC3\xA1 Nov\xC3\xA1 Ves a JUDr. Ladislava \xC4\x8Eor\xC4\x8Fovi\xC4\x8Da ml., Ex\xC3\x9A Tren\xC4\x8D\xC3\xADn, Mierov\xC3\xA9 n\xC3\xA1mestie 1, 911 01 Tren\xC4\x8D\xC3\xADn. SKE odpor\xC3\xBA\xC4\x8Da ob\xC4\x8Danom aby v pr\xC3\xADpade pochybnost\xC3\xAD kontaktovali uveden\xC3\xA9 exek\xC3\xBA</p>\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_meta\"> \n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t<span class=\"font_aw small_size\"><i class=\"icon-reorder\"></i>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tKateg\xC3\xB3ria:  <a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a>   \n\
-        \t\t\t\t\t\t\t\t\t\t</span>\n\
-        \t\t\t\t\t\t\t\t\t</figure>\n\
-        \t\t\t\t\t\t\t\t</article>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<article class=\"blog_listing_wrapper Full-Image\">\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_title\"><h2 class=\"heading\"><a href=\"http://www.ske.sk/vlani-pribudlo-vyse-pol-miliona-navrhov-na-exekuciu/\">Vlani pribudlo vy\xC5\xA1e pol mili\xC3\xB3na n\xC3\xA1vrhov na vykonanie exek\xC3\xBAcie <span class=\"date_month_post\"> \n\
-        \t\t\t\t\t\t\t\t\tApr 25, 2015 </span></a></h2></figure>\n\
-        \t\t\t\t\t\t\t\t\t<p class=\"margin-top-blog-listing\">Na Slovensku vlani pribudlo 527 071 n\xC3\xA1vrhov na vykonanie exek\xC3\xBAcie. Ukon\xC4\x8Dilo sa 81 758 exeku\xC4\x8Dn\xC3\xBDch konan\xC3\xAD, neuzavret\xC3\xBDch ost\xC3\xA1va 445 313. Vypl\xC3\xBDva to zo spr\xC3\xA1vy o \xC4\x8Dinnosti Slovenskej komory exek\xC3\xBAtorov, ktor\xC3\xBA komora predlo\xC5\xBEila ministerstvu spravodlivosti. &#8220;Za mimoriadne d\xC3\xB4le\xC5\xBEit\xC3\xA9 pova\xC5\xBEujem pokra\xC4\x8Dovanie v programe Bli\xC5\xBE\xC5\xA1ie k \xC4\xBEu\xC4\x8Fom, v r\xC3\xA1mci ktor\xC3\xA9ho sme </p>\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_meta\"> \n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t<span class=\"font_aw small_size\"><i class=\"icon-reorder\"></i>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tKateg\xC3\xB3ria:  <a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a>   \n\
-        \t\t\t\t\t\t\t\t\t\t</span>\n\
-        \t\t\t\t\t\t\t\t\t</figure>\n\
-        \t\t\t\t\t\t\t\t</article>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<article class=\"blog_listing_wrapper Full-Image\">\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_title\"><h2 class=\"heading\"><a href=\"http://www.ske.sk/slovenska-komora-exekutorov-zacala-publikovat-informacie-o-verejnych-drazbach/\">Slovensk\xC3\xA1 komora exek\xC3\xBAtorov za\xC4\x8Dala publikova\xC5\xA5 inform\xC3\xA1cie o verejn\xC3\xBDch dra\xC5\xBEb\xC3\xA1ch <span class=\"date_month_post\"> \n\
-        \t\t\t\t\t\t\t\t\tApr 20, 2015 </span></a></h2></figure>\n\
-        \t\t\t\t\t\t\t\t\t<p class=\"margin-top-blog-listing\">Slovensk\xC3\xA1 komora exek\xC3\xBAtorov za\xC4\x8Dala na svojej webovej str\xC3\xA1nke\xC2\xA0www.ske.sk\xC2\xA0zverej\xC5\x88ova\xC5\xA5 inform\xC3\xA1cie o verejn\xC3\xBDch dra\xC5\xBEb\xC3\xA1ch. &#8220;Zverej\xC5\x88ovanie inform\xC3\xA1ci\xC3\xAD o verejn\xC3\xBDch exeku\xC4\x8Dn\xC3\xBDch dra\xC5\xBEb\xC3\xA1ch vn\xC3\xADmame ako krok k vy\xC5\xA1\xC5\xA1ej transparentosti a \xC3\xBAstretovosti vo\xC4\x8Di ob\xC4\x8Danom. Dostupn\xC3\xA9 inform\xC3\xA1cie o konan\xC3\xAD dra\xC5\xBEby m\xC3\xB4\xC5\xBEu re\xC3\xA1lne vies\xC5\xA5 k vy\xC5\xA1\xC5\xA1iemu z\xC3\xA1ujmu o dra\xC5\xBEen\xC3\xBD majetok, a teda </p>\n\
-        \t\t\t\t\t\t\t\t\t<figure class=\"post_meta\"> \n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t<span class=\"font_aw small_size\"><i class=\"icon-reorder\"></i>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tKateg\xC3\xB3ria:  <a href=\"http://www.ske.sk/category/aktuality/\">Aktuality</a>   \n\
-        \t\t\t\t\t\t\t\t\t\t</span>\n\
-        \t\t\t\t\t\t\t\t\t</figure>\n\
-        \t\t\t\t\t\t\t\t</article>\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\
-        \t\t\t\t\t<nav id=\"nav-single\">\n                      <div class='wp-pagenavi'>\n\
-        <span class='pages'>Strana 1 z 8</span><span class='current'>1</span><a class=\"page larger\" href=\"http://www.ske.sk/category/aktuality/page/2/\">2</a><a class=\"page larger\" href=\"http://www.ske.sk/category/aktuality/page/3/\">3</a><a class=\"page larger\" href=\"http://www.ske.sk/category/aktuality/page/4/\">4</a><a class=\"page larger\" href=\"http://www.ske.sk/category/aktuality/page/5/\">5</a><span class='extend'>...</span><a class=\"nextpostslink\" href=\"http://www.ske.sk/category/aktuality/page/2/\">\xC2\xBB</a><a class=\"last\" href=\"http://www.ske.sk/category/aktuality/page/8/\">Posledn\xC3\xA1 \xC2\xBB</a>\n\
-        </div>                    </nav><!-- #nav-single -->\n\
-        \t\t\t\t\t</div>\n\
-        \t\t\t\t\t\n\
-        \t\t\t\t\t\t\t\t\t\t\t<div id=\"block_second_right\" class=\"span4 content_sidebar\">\n\
-        \t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n\
-        \t\t\t\t\t\t\t\t </section>\n\
-        \t\t</div>\n\
-        \t</div>\n\
-        \r\n  <section class=\"footer-top\">\r\n    <section class=\"container\">\r\n      <section class=\"row-fluid\">\r\n          <div class=\"span4 widget_text\"><h2 class=\"heading\"><span>Porad\xC5\x88a pre ob\xC4\x8Danov</span></h2>\t\t\t<div class=\"textwidget\"><p>Bezplatn\xC3\xA9 osobn\xC3\xA9 konzult\xC3\xA1cie len pre ob\xC4\x8Danov v exek\xC3\xBAcii. Konzult\xC3\xA1cie nenahr\xC3\xA1dzaj\xC3\xBA poradenstvo poskytovan\xC3\xA9 advok\xC3\xA1tskymi kancel\xC3\xA1riami.</p><a href=\"mailto:poradna@ske.sk\" class=\"more-btn\">E-mail: poradna@ske.sk</a></div>\n\
-        \t\t</div><div class=\"span4 widget_archive\"><h2 class=\"heading\"><span>Arch\xC3\xADv pr\xC3\xADspevkov</span></h2>\t\t<select name=\"archive-dropdown\" onchange='document.location.href=this.options[this.selectedIndex].value;'>\n\
-        \t\t\t<option value=\"\">Vyberte mesiac</option>\n\n\
-        \t\t\t\t<option value='http://www.ske.sk/2015/05/'> m\xC3\xA1j 2015 </option>\n\
-        \t<option value='http://www.ske.sk/2015/04/'> apr\xC3\xADl 2015 </option>\n\
-        \t<option value='http://www.ske.sk/2015/03/'> marec 2015 </option>\n\
-        \t<option value='http://www.ske.sk/2015/02/'> febru\xC3\xA1r 2015 </option>\n\
-        \t<option value='http://www.ske.sk/2015/01/'> janu\xC3\xA1r 2015 </option>\n\
-        \t<option value='http://www.ske.sk/2014/12/'> december 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/10/'> okt\xC3\xB3ber 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/09/'> september 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/08/'> august 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/07/'> j\xC3\xBAl 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/06/'> j\xC3\xBAn 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/05/'> m\xC3\xA1j 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/04/'> apr\xC3\xADl 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/03/'> marec 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2014/02/'> febru\xC3\xA1r 2014 </option>\n\
-        \t<option value='http://www.ske.sk/2013/12/'> december 2013 </option>\n\
-        \t<option value='http://www.ske.sk/2013/11/'> november 2013 </option>\n\
-        \t<option value='http://www.ske.sk/2013/10/'> okt\xC3\xB3ber 2013 </option>\n\
-        \t<option value='http://www.ske.sk/2013/08/'> august 2013 </option>\n\
-        \t<option value='http://www.ske.sk/2013/02/'> febru\xC3\xA1r 2013 </option>\n\
-        \t\t</select>\n\
-        </div><div class=\"span4 widget_text\"><h2 class=\"heading\"><span>Kontakt</span></h2>\t\t\t<div class=\"textwidget\"><p><strong>Kancel\xC3\xA1ria Slovenskej komory exek\xC3\xBAtorov</strong><br />\n\
-        Ul. \xC5\xA0ustekova \xC4\x8D. 49<br />\n\
-        851 04 Bratislava<br />\n\
-        Tel:\t&nbsp;+421 2 6353 6746<br />\n\
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+421 2 6353 6744</p>\n\
-        <p><strong>Kontakt pre m\xC3\xA9di\xC3\xA1</strong><br />\n\
-        JUDr. Stanislava Koles\xC3\xA1rov\xC3\xA1<br />\n\
-        Tel: +421 918 941 035<br />\n\
-        E-mail: media@ske.sk</p>\n\
-        </div>\n\
-        \t\t</div>        </section>\r\n      </section>\r\n    </section> \r\n\
-        \r\n <!-- footer -->\r\n  <footer id=\"footer\">\r\n    <section class=\"container\">\r\n      <figure class=\"copy-right\">\r\n        <p>Copyright \xC2\xA9 2014 Slovensk\xC3\xA1 komora exek\xC3\xBAtorov</p><p style=\"float:right;\">This is the official website of the Chamber of judicial officers of the Slovak Republic</p>\r\n\
-        \t\t      </figure>\r\n\
-        \t  \r\n    </section>\r\n  </footer>\r\n\
-        \r\n\
-        </div>\r\n\
-        <style type=\"text/css\" media=\"screen\">\r\n\
-        \t\tbody{\r\n\
-        \t\t\tbackground: url(http://www.ske.sk/wp-content/themes/ske) repeat;\r\n\
-        \t\t}\t\r\n\
-        \t\t.inner-pages h2 .txt-left{\r\n\
-        \t\t\tbackground: url(http://www.ske.sk/wp-content/themes/ske) repeat;\r\n\
-        \t\t}\t\t\r\n\
-        \t\th1{\r\n\
-        \tfont-size:29px !important;\r\n\
-        \t}\r\n\
-        \t\t\th2{\r\n\
-        \tfont-size:26px !important;\r\n\
-        \t}\r\n\
-        \t\t\th3{\r\n\
-        \tfont-size:20px !important;\r\n\
-        \t}\r\n\
-        \t\t\th4{\r\n\
-        \tfont-size:13px !important;\r\n\
-        \t}\r\n\
-        \t\t\th5{\r\n\
-        \tfont-size:25px !important;\r\n\
-        \t}\r\n\
-        \t\t\th6{\r\n\
-        \tfont-size:16px !important;\r\n\
-        \t}\r\n\
-        \t\t\tbody{\r\n\
-        \tfont-size:14px !important;\r\n\
-        \t}\r\n\
-        \t\t\tbody{\r\n\
-        \t\tfont-family:\"Ubuntu\";\r\n\
-        \t}\r\n\
-        \tinput, button, select, textarea{\r\n\
-        \t\tfont-family:\"Ubuntu\";\r\n\
-        \t}\r\n\
-        \t.comment-reply-link, #submit_btn, .form-submit #submit, .send-btn{\r\n\
-        \t\tfont-family:\"Ubuntu\";\r\n\
-        \t}\r\n\
-        \t\t\th1, h2, h3, h4, h5, h6{\r\n\
-        \t\tfont-family:\"PT Sans\";\r\n\
-        \t}\r\n\
-        \t\t#nav{\r\n\
-        \t\tfont-family:\"PT Sans Caption\";\r\n\
-        \t}\r\n\
-        \t</style>\r\n\
-        \t<script type='text/javascript' src='http://www.ske.sk/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.50.0-2014.02.05'></script>\n\
-        <script type='text/javascript'>\n\
-        /* <![CDATA[ */\n\
-        var _wpcf7 = {\"loaderUrl\":\"http:\\/\\/www.ske.sk\\/wp-content\\/plugins\\/contact-form-7\\/images\\/ajax-loader.gif\",\"sending\":\"Posielam ...\"};\n\
-        /* ]]> */\n\
-        </script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=3.8.1'></script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-content/plugins/wp-retina-2x/js/retina.js?ver=1.1.0'></script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/js/bootstrap.js?ver=1.0'></script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/js/frontend_scripts.js?ver=1.0'></script>\n\
-        <script type='text/javascript' src='http://www.ske.sk/wp-content/themes/ske/frontend/anythingslider/js/jquery.anythingslider.js?ver=1.0'></script>\n  </body>\r\n\
-        </html>\r\n\
-        \r\n"
-    http_version: "1.1"
-    adapter_metadata: 
+      string: !binary |-
+        PCFET0NUWVBFIEhUTUw+CjwhLS1baWYgbHQgSUUgNyBdPjxodG1sIGNsYXNz
+        PSJpZSBpZTYiIGxhbmc9ImVuIj4gPCFbZW5kaWZdLS0+CjwhLS1baWYgSUUg
+        NyBdPjxodG1sIGNsYXNzPSJpZSBpZTciIGxhbmc9ImVuIj4gPCFbZW5kaWZd
+        LS0+CjwhLS1baWYgSUUgOCBdPjxodG1sIGNsYXNzPSJpZSBpZTgiIGxhbmc9
+        ImVuIj4gPCFbZW5kaWZdLS0+CjwhLS1baWYgKGd0ZSBJRSA5KXwhKElFKV0+
+        PCEtLT4KCjxodG1sIGxhbmc9InNrLVNLIj4KCgo8IS0tPCFbZW5kaWZdLS0+
+        Cgo8aGVhZD4KPCEtLVtpZiBJRV0+CiAgICA8c2NyaXB0IHR5cGU9InRleHQv
+        amF2YXNjcmlwdCIgc3JjPSJodHRwOi8vd3d3LnNrZS5zay93cC1jb250ZW50
+        L3RoZW1lcy9za2UvZnJvbnRlbmQvanMveGNhbnZhcy5jb21waWxlZC5qcyI+
+        PC9zY3JpcHQ+CjwhW2VuZGlmXS0tPiAKCjxtZXRhIGh0dHAtZXF1aXY9IkNv
+        bnRlbnQtVHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04
+        IiAvPgo8dGl0bGU+U2xvdmVuc2vDoSBrb21vcmEgZXhla8O6dG9yb3YgICZy
+        YXF1bzsgQWt0dWFsaXR5PC90aXRsZT4KPG1ldGEgY2hhcnNldD0iVVRGLTgi
+        IC8+CjxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZp
+        Y2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MSwgbWF4aW11bS1zY2FsZT0xIj4K
+        PGxpbmsgcmVsPSJhbHRlcm5hdGUiIHR5cGU9ImFwcGxpY2F0aW9uL3Jzcyt4
+        bWwiIHRpdGxlPSJSU1Mga2Fuw6FsOiBTbG92ZW5za8OhIGtvbW9yYSBleGVr
+        w7p0b3JvdiAmcmFxdW87IiBocmVmPSJodHRwOi8vd3d3LnNrZS5zay9mZWVk
+        LyIgLz4KPGxpbmsgcmVsPSJhbHRlcm5hdGUiIHR5cGU9ImFwcGxpY2F0aW9u
+        L3Jzcyt4bWwiIHRpdGxlPSJSU1Mga2Fuw6FsIGtvbWVudMOhcm92IHdlYnUg
+        U2xvdmVuc2vDoSBrb21vcmEgZXhla8O6dG9yb3YgJnJhcXVvOyIgaHJlZj0i
+        aHR0cDovL3d3dy5za2Uuc2svY29tbWVudHMvZmVlZC8iIC8+CjxsaW5rIHJl
+        bD0iYWx0ZXJuYXRlIiB0eXBlPSJhcHBsaWNhdGlvbi9yc3MreG1sIiB0aXRs
+        ZT0iUlNTIGthbsOhbCBrYXRlZ8OzcmllIFNsb3ZlbnNrw6Ega29tb3JhIGV4
+        ZWvDunRvcm92ICZyYXF1bzsgQWt0dWFsaXR5IiBocmVmPSJodHRwOi8vd3d3
+        LnNrZS5zay9jYXRlZ29yeS9ha3R1YWxpdHkvZmVlZC8iIC8+Cgk8c3R5bGUg
+        dHlwZT0idGV4dC9jc3MiPg0KCS53cC1wYWdlbmF2aXttYXJnaW4tbGVmdDph
+        dXRvICFpbXBvcnRhbnQ7IG1hcmdpbi1yaWdodDphdXRvOyAhaW1wb3J0YW50
+        fQ0KCTwvc3R5bGU+DQogIDxsaW5rIHJlbD0nc3R5bGVzaGVldCcgaWQ9J2Nv
+        bnRhY3QtZm9ybS03LWNzcycgIGhyZWY9J2h0dHA6Ly93d3cuc2tlLnNrL3dw
+        LWNvbnRlbnQvcGx1Z2lucy9jb250YWN0LWZvcm0tNy9pbmNsdWRlcy9jc3Mv
+        c3R5bGVzLmNzcz92ZXI9My44LjEnIHR5cGU9J3RleHQvY3NzJyBtZWRpYT0n
+        YWxsJyAvPgo8bGluayByZWw9J3N0eWxlc2hlZXQnIGlkPSdscy1nb29nbGUt
+        Zm9udHMtY3NzJyAgaHJlZj0naHR0cDovL2ZvbnRzLmdvb2dsZWFwaXMuY29t
+        L2Nzcz9mYW1pbHk9TGF0bzoxMDAsMzAwLHJlZ3VsYXIsNzAwLDkwMHxPcGVu
+        K1NhbnM6MzAwfEluZGllK0Zsb3dlcjpyZWd1bGFyfE9zd2FsZDozMDAscmVn
+        dWxhciw3MDAmIzAzODtzdWJzZXQ9bGF0aW4sbGF0aW4tZXh0JyB0eXBlPSd0
+        ZXh0L2NzcycgbWVkaWE9J2FsbCcgLz4KPGxpbmsgcmVsPSdzdHlsZXNoZWV0
+        JyBpZD0nY21tX3N0eWxlX3NoZWV0XzEtY3NzJyAgaHJlZj0naHR0cDovL3d3
+        dy5za2Uuc2svd3AtY29udGVudC9wbHVnaW5zL21lZ2EtbWVudS9jc3MvbWVn
+        YW1lbnUuY3NzP3Zlcj0zLjkuMScgdHlwZT0ndGV4dC9jc3MnIG1lZGlhPSdh
+        bGwnIC8+CjxsaW5rIHJlbD0nc3R5bGVzaGVldCcgaWQ9J2RlZmF1bHQtc3R5
+        bGUtY3NzJyAgaHJlZj0naHR0cDovL3d3dy5za2Uuc2svd3AtY29udGVudC90
+        aGVtZXMvc2tlL3N0eWxlLmNzcz92ZXI9My45LjEnIHR5cGU9J3RleHQvY3Nz
+        JyBtZWRpYT0nYWxsJyAvPgo8bGluayByZWw9J3N0eWxlc2hlZXQnIGlkPSdz
+        aG9ydGNvZGUtY3NzJyAgaHJlZj0naHR0cDovL3d3dy5za2Uuc2svd3AtY29u
+        dGVudC90aGVtZXMvc2tlL2Zyb250ZW5kL2Nzcy9zaG9ydGNvZGUuY3NzP3Zl
+        cj0zLjkuMScgdHlwZT0ndGV4dC9jc3MnIG1lZGlhPSdhbGwnIC8+CjxsaW5r
+        IHJlbD0nc3R5bGVzaGVldCcgaWQ9J2NwX2RlZmF1bHQtY3NzJyAgaHJlZj0n
+        aHR0cDovL3d3dy5za2Uuc2svd3AtY29udGVudC90aGVtZXMvc2tlL2Zyb250
+        ZW5kL2Nzcy9jcF9kZWZhdWx0LmNzcz92ZXI9My45LjEnIHR5cGU9J3RleHQv
+        Y3NzJyBtZWRpYT0nYWxsJyAvPgo8bGluayByZWw9J3N0eWxlc2hlZXQnIGlk
+        PSdjcF9tZWdhX21lbnUtY3NzJyAgaHJlZj0naHR0cDovL3d3dy5za2Uuc2sv
+        d3AtY29udGVudC90aGVtZXMvc2tlL2Zyb250ZW5kL2Nzcy9tZWdhX21lbnUu
+        Y3NzP3Zlcj0zLjkuMScgdHlwZT0ndGV4dC9jc3MnIG1lZGlhPSdhbGwnIC8+
+        CjxsaW5rIHJlbD0nc3R5bGVzaGVldCcgaWQ9J2NwLWJvb3RzdHJhcC1jc3Mn
+        ICBocmVmPSdodHRwOi8vd3d3LnNrZS5zay93cC1jb250ZW50L3RoZW1lcy9z
+        a2UvZnJvbnRlbmQvY3NzL2Jvb3RzdHJhcC5jc3M/dmVyPTMuOS4xJyB0eXBl
+        PSd0ZXh0L2NzcycgbWVkaWE9J2FsbCcgLz4KPGxpbmsgcmVsPSdzdHlsZXNo
+        ZWV0JyBpZD0nY3AtZm9udEFXLWNzcycgIGhyZWY9J2h0dHA6Ly93d3cuc2tl
+        LnNrL3dwLWNvbnRlbnQvdGhlbWVzL3NrZS9mcm9udGVuZC9jcF9mb250L2Nz
+        cy9mb250LWF3ZXNvbWUuY3NzP3Zlcj0zLjkuMScgdHlwZT0ndGV4dC9jc3Mn
+        IG1lZGlhPSdhbGwnIC8+CjxsaW5rIHJlbD0nc3R5bGVzaGVldCcgaWQ9J2Nw
+        LWFueXRoaW5nLXNsaWRlci1jc3MnICBocmVmPSdodHRwOi8vd3d3LnNrZS5z
+        ay93cC1jb250ZW50L3RoZW1lcy9za2UvZnJvbnRlbmQvYW55dGhpbmdzbGlk
+        ZXIvY3NzL2FueXRoaW5nc2xpZGVyLmNzcz92ZXI9My45LjEnIHR5cGU9J3Rl
+        eHQvY3NzJyBtZWRpYT0nYWxsJyAvPgo8bGluayByZWw9J3N0eWxlc2hlZXQn
+        IGlkPSdnb29nbGVGb250cy1jc3MnICBocmVmPSdodHRwOi8vZm9udHMuZ29v
+        Z2xlYXBpcy5jb20vY3NzP2ZhbWlseT1VYnVudHUmIzAzODt2ZXI9My45LjEn
+        IHR5cGU9J3RleHQvY3NzJyBtZWRpYT0nYWxsJyAvPgo8bGluayByZWw9J3N0
+        eWxlc2hlZXQnIGlkPSdnb29nbGVGb250cy1oZWFkaW5nLWNzcycgIGhyZWY9
+        J2h0dHA6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PVBUK1Nh
+        bnMmIzAzODt2ZXI9My45LjEnIHR5cGU9J3RleHQvY3NzJyBtZWRpYT0nYWxs
+        JyAvPgo8bGluayByZWw9J3N0eWxlc2hlZXQnIGlkPSdtZW51LWdvb2dsZUZv
+        bnRzLWhlYWRpbmctY3NzJyAgaHJlZj0naHR0cDovL2ZvbnRzLmdvb2dsZWFw
+        aXMuY29tL2Nzcz9mYW1pbHk9UFQrU2FucytDYXB0aW9uJiMwMzg7dmVyPTMu
+        OS4xJyB0eXBlPSd0ZXh0L2NzcycgbWVkaWE9J2FsbCcgLz4KPGxpbmsgcmVs
+        PSdzdHlsZXNoZWV0JyBpZD0nd3AtcGFnZW5hdmktc3R5bGUtY3NzJyAgaHJl
+        Zj0naHR0cDovL3d3dy5za2Uuc2svd3AtY29udGVudC9wbHVnaW5zL3dwLXBh
+        Z2VuYXZpLXN0eWxlL2Nzcy9jc3MzX2JsYWNrLmNzcz92ZXI9MS4wJyB0eXBl
+        PSd0ZXh0L2NzcycgbWVkaWE9J2FsbCcgLz4KPHNjcmlwdCB0eXBlPSd0ZXh0
+        L2phdmFzY3JpcHQnIHNyYz0naHR0cDovL3d3dy5za2Uuc2svd3AtaW5jbHVk
+        ZXMvanMvanF1ZXJ5L2pxdWVyeS5qcz92ZXI9MS4xMS4wJz48L3NjcmlwdD4K
+        PHNjcmlwdCB0eXBlPSd0ZXh0L2phdmFzY3JpcHQnIHNyYz0naHR0cDovL3d3
+        dy5za2Uuc2svd3AtaW5jbHVkZXMvanMvanF1ZXJ5L2pxdWVyeS1taWdyYXRl
+        Lm1pbi5qcz92ZXI9MS4yLjEnPjwvc2NyaXB0Pgo8c2NyaXB0IHR5cGU9J3Rl
+        eHQvamF2YXNjcmlwdCcgc3JjPSdodHRwOi8vd3d3LnNrZS5zay93cC1jb250
+        ZW50L3RoZW1lcy9za2UvZnJvbnRlbmQvanMvaHRtbDVzaGl2ZS5qcz92ZXI9
+        MS41LjEnPjwvc2NyaXB0Pgo8bGluayByZWw9IkVkaXRVUkkiIHR5cGU9ImFw
+        cGxpY2F0aW9uL3JzZCt4bWwiIHRpdGxlPSJSU0QiIGhyZWY9Imh0dHA6Ly93
+        d3cuc2tlLnNrL3htbHJwYy5waHA/cnNkIiAvPgo8bGluayByZWw9Indsd21h
+        bmlmZXN0IiB0eXBlPSJhcHBsaWNhdGlvbi93bHdtYW5pZmVzdCt4bWwiIGhy
+        ZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3dwLWluY2x1ZGVzL3dsd21hbmlmZXN0
+        LnhtbCIgLz4gCjxtZXRhIG5hbWU9ImdlbmVyYXRvciIgY29udGVudD0iV29y
+        ZFByZXNzIDMuOS4xIiAvPgo8IS0tIDxtZXRhIG5hbWU9InZmYiIgdmVyc2lv
+        bj0iMi44LjEiIC8+IC0tPgoJPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkg
+        LndwLXBhZ2VuYXZpDQoJew0KCQlmb250LXNpemU6MTJweCAhaW1wb3J0YW50
+        Ow0KCX0NCgk8L3N0eWxlPg0KCQkJPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFz
+        Y3JpcHQiPg0KCQl2YXIgYWpheHVybCA9ICdodHRwOi8vd3d3LnNrZS5zay93
+        cC1hZG1pbi9hZG1pbi1hamF4LnBocCc7DQoJCTwvc2NyaXB0Pg0KCTwvaGVh
+        ZD4KCjxib2R5IGlkPSJob21lIiBjbGFzcz0iYXJjaGl2ZSBjYXRlZ29yeSBj
+        YXRlZ29yeS1ha3R1YWxpdHkgY2F0ZWdvcnktMzAiPgoKPGRpdiBjbGFzcz0i
+        d3JhcHBlciI+CiAgPCEtLSBoZWFkZXIgLS0+Cgk8aGVhZGVyIGlkPSJoZWFk
+        ZXIiPgoJCTxzZWN0aW9uIGNsYXNzPSJjb250YWluZXIiPgoJCQk8aDEgaWQ9
+        ImxvZ28iPgoJCQkgIAkJCQk8YSBocmVmPSJodHRwOi8vd3d3LnNrZS5zayI+
+        CgkJCQkJPGltZyBjbGFzcz0ibG9nb19pbWciIHdpZHRoPSIyNzkiIGhlaWdo
+        dD0iMTUwIiBzcmM9Imh0dHA6Ly93d3cuc2tlLmxpY2kuc2svd3AtY29udGVu
+        dC91cGxvYWRzLzIwMTQvMDUvbG9nbzEucG5nIiBhbHQ9IlNsb3ZlbnNrw6Eg
+        a29tb3JhIGV4ZWvDunRvcm92Ij4KCQkJCTwvYT4KCQkJPC9oMT4KCQk8L3Nl
+        Y3Rpb24+CgkJPGRpdiBjbGFzcz0ibmF2LWhvbGRlciI+CgkJPGRpdiBjbGFz
+        cz0ibmF2YmFyIG5hdmJhci1pbnZlcnNlIj4KCQkKCQkJICA8YSBzdHlsZT0i
+        ZmxvYXQ6cmlnaHQ7IGZvbnQtc2l6ZToxNXB4OyBtYXJnaW46IDIwcHggNDBw
+        eCAxMHB4IDBweDtmb250LXdlaWdodDpib2xkOyBjb2xvcjp3aGl0ZTsiIGhy
+        ZWY9Imh0dHA6Ly9leG5ldC5za2Uuc2svIiB0YXJnZXQ9Il9ibGFuayI+RXhO
+        RVQ8L2E+CgkJCgkJCSAgPC9kaXY+CgkJCTxzZWN0aW9uIGNsYXNzPSJjb250
+        YWluZXIiPgoJCQkgIDxuYXYgaWQ9Im5hdiI+CgkJCQk8ZGl2IGNsYXNzPSJu
+        YXZiYXIgbmF2YmFyLWludmVyc2UiPgoJCQkJICA8ZGl2IGNsYXNzPSJuYXZi
+        YXItaW5uZXIiPgoJCQkJCTwhLS0gUmVzcG9uc2l2ZSBOYXZiYXIgUGFydCAx
+        OiBCdXR0b24gZm9yIHRyaWdnZXJpbmcgcmVzcG9uc2l2ZSBuYXZiYXIgKG5v
+        dCBjb3ZlcmVkIGluIHR1dG9yaWFsKS4gSW5jbHVkZSByZXNwb25zaXZlIENT
+        UyB0byB1dGlsaXplLiAtLT4KCQkJCQk8YnV0dG9uIHR5cGU9ImJ1dHRvbiIg
+        Y2xhc3M9ImJ0biBidG4tbmF2YmFyIiBkYXRhLXRvZ2dsZT0iY29sbGFwc2Ui
+        IGRhdGEtdGFyZ2V0PSIubmF2LWNvbGxhcHNlIj4gPHNwYW4gY2xhc3M9Imlj
+        b24tYmFyIj48L3NwYW4+IDxzcGFuIGNsYXNzPSJpY29uLWJhciI+PC9zcGFu
+        PiA8c3BhbiBjbGFzcz0iaWNvbi1iYXIiPjwvc3Bhbj4gPC9idXR0b24+CgkJ
+        CQkJCQoJCQkJCQkJCQkJCTxkaXYgaWQ9Im15bWVudSIgY2xhc3M9ImRlc2t0
+        b3BfdmlldyBuYXYtY29sbGFwc2UgY29sbGFwc2UiPgoJCQkJCQkJCQkJCTx1
+        bCBpZD0ibWVudXNlY3Rpb24iIGNsYXNzPSJuYXYiPjxsaSBpZD0ibWVudS1p
+        dGVtLTEzNzMiIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5cGUtdGF4
+        b25vbXkgbWVudS1pdGVtLW9iamVjdC1jYXRlZ29yeSBjdXJyZW50LW1lbnUt
+        aXRlbSBtZW51LWl0ZW0tMTM3MyI+PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uu
+        c2svY2F0ZWdvcnkvYWt0dWFsaXR5LyI+QWt0dWFsaXR5PC9hPjwvbGk+Cjxs
+        aSBpZD0ibWVudS1pdGVtLTE2NjMiIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1p
+        dGVtLXR5cGUtcG9zdF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51
+        LWl0ZW0taGFzLWNoaWxkcmVuIG1lbnUtaXRlbS0xNjYzIj48YSBocmVmPSJo
+        dHRwOi8vd3d3LnNrZS5zay96b3puYW0tZXhla3V0b3Jvdi8iPlpvem5hbSBl
+        eGVrw7p0b3JvdjwvYT4KPHVsIGNsYXNzPSJzdWItbWVudSI+Cgk8bGkgaWQ9
+        Im1lbnUtaXRlbS0xNzA1IiBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10
+        eXBlLXBvc3RfdHlwZSBtZW51LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVt
+        LTE3MDUiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3pvem5hbS1leGVr
+        dXRvcm92LyI+Wm96bmFtIGV4ZWvDunRvcm92PC9hPjwvbGk+Cgk8bGkgaWQ9
+        Im1lbnUtaXRlbS0xNzA5IiBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10
+        eXBlLXBvc3RfdHlwZSBtZW51LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVt
+        LTE3MDkiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3pvem5hbS1leGVr
+        dXRvcm92L25lcGxhdG5lLXByZXVrYXp5LWEtb2R6bmFreS8iPk5lcGxhdG7D
+        qSBwcmV1a2F6eSBhIG9kem5ha3k8L2E+PC9saT4KCTxsaSBpZD0ibWVudS1p
+        dGVtLTE3MDgiIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5cGUtcG9z
+        dF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0ZW0tMTcwOCI+
+        PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2svem96bmFtLWV4ZWt1dG9yb3Yv
+        b2R2b2xhbmktc3VkbmktZXhla3V0b3JpLyI+T2R2b2xhbsOtIHPDumRuaSBl
+        eGVrw7p0b3JpPC9hPjwvbGk+Cgk8bGkgaWQ9Im1lbnUtaXRlbS0xNzA3IiBj
+        bGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLXBvc3RfdHlwZSBtZW51
+        LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVtLTE3MDciPjxhIGhyZWY9Imh0
+        dHA6Ly93d3cuc2tlLnNrL3pvem5hbS1leGVrdXRvcm92L3BvemFzdGF2ZW5p
+        ZS12eWtvbnUtZXh1LyI+UG96YXN0YXZlbmllIHbDvWtvbnUgRXjDmjwvYT48
+        L2xpPgoJPGxpIGlkPSJtZW51LWl0ZW0tMTcwNiIgY2xhc3M9Im1lbnUtaXRl
+        bSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1pdGVtLW9iamVjdC1w
+        YWdlIG1lbnUtaXRlbS0xNzA2Ij48YSBocmVmPSJodHRwOi8vd3d3LnNrZS5z
+        ay96b3puYW0tZXhla3V0b3Jvdi96YW5pa251dGUtZXhla3V0b3Jza2UtdXJh
+        ZHkvIj5aYW5pa251dMOpIGV4ZWvDunRvcnNrw6kgw7pyYWR5PC9hPjwvbGk+
+        Cgk8bGkgaWQ9Im1lbnUtaXRlbS0xNzQ4IiBjbGFzcz0ibWVudS1pdGVtIG1l
+        bnUtaXRlbS10eXBlLXBvc3RfdHlwZSBtZW51LWl0ZW0tb2JqZWN0LXBhZ2Ug
+        bWVudS1pdGVtLTE3NDgiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3pv
+        em5hbS1leGVrdXRvcm92L3ByZXJ1c2VuaWUtdnlrb251LWZ1bmtjaWUtc2Uv
+        Ij5QcmVydcWhZW5pZSB2w71rb251IGZ1bmtjaWUgU0U8L2E+PC9saT4KPC91
+        bD4KPC9saT4KPGxpIGlkPSJtZW51LWl0ZW0tMTM2OSIgY2xhc3M9Im1lbnUt
+        aXRlbSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1pdGVtLW9iamVj
+        dC1wYWdlIG1lbnUtaXRlbS0xMzY5Ij48YSBocmVmPSJodHRwOi8vd3d3LnNr
+        ZS5zay9vcmdhbnkta29tb3J5LyI+T3Jnw6FueSBrb21vcnk8L2E+PC9saT4K
+        PGxpIGlkPSJtZW51LWl0ZW0tMTM3MCIgY2xhc3M9Im1lbnUtaXRlbSBtZW51
+        LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1pdGVtLW9iamVjdC1wYWdlIG1l
+        bnUtaXRlbS0xMzcwIj48YSBocmVmPSJodHRwOi8vd3d3LnNrZS5zay9kb2t1
+        bWVudHkvIj5Eb2t1bWVudHk8L2E+PC9saT4KPGxpIGlkPSJtZW51LWl0ZW0t
+        MTM3MiIgY2xhc3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS10YXhvbm9t
+        eSBtZW51LWl0ZW0tb2JqZWN0LWNhdGVnb3J5IG1lbnUtaXRlbS0xMzcyIj48
+        YSBocmVmPSJodHRwOi8vd3d3LnNrZS5zay9jYXRlZ29yeS9uYXBpc2FsaS1v
+        LW5hcy8iPk5hcMOtc2FsaSBvIG7DoXM8L2E+PC9saT4KPGxpIGlkPSJtZW51
+        LWl0ZW0tMTM3MSIgY2xhc3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS1w
+        b3N0X3R5cGUgbWVudS1pdGVtLW9iamVjdC1wYWdlIG1lbnUtaXRlbS0xMzcx
+        Ij48YSBocmVmPSJodHRwOi8vd3d3LnNrZS5zay9vZGJvcm5lLXNrdXNreS8i
+        Pk9kYm9ybsOpIHNrw7rFoWt5PC9hPjwvbGk+CjxsaSBpZD0ibWVudS1pdGVt
+        LTE0MDYiIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5cGUtcG9zdF90
+        eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0ZW0taGFzLWNoaWxk
+        cmVuIG1lbnUtaXRlbS0xNDA2Ij48YSBocmVmPSJodHRwOi8vd3d3LnNrZS5z
+        ay9wb2RuZXR5LyI+UG9kbmV0eTwvYT4KPHVsIGNsYXNzPSJzdWItbWVudSI+
+        Cgk8bGkgaWQ9Im1lbnUtaXRlbS0xNzE5IiBjbGFzcz0ibWVudS1pdGVtIG1l
+        bnUtaXRlbS10eXBlLXBvc3RfdHlwZSBtZW51LWl0ZW0tb2JqZWN0LXBhZ2Ug
+        bWVudS1pdGVtLTE3MTkiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3Bv
+        ZG5ldHkvIj5Qb2RuZXR5PC9hPjwvbGk+Cgk8bGkgaWQ9Im1lbnUtaXRlbS0x
+        NzE4IiBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLWN1c3RvbSBt
+        ZW51LWl0ZW0tb2JqZWN0LWN1c3RvbSBtZW51LWl0ZW0tMTcxOCI+PGEgdGFy
+        Z2V0PSJfYmxhbmsiIGhyZWY9Imh0dHA6Ly9qYXNwaS5qdXN0aWNlLmdvdi5z
+        ay9qYXNwaXcxL2phc3Bpd19taW5pX2ZyMC5odG0iPsOacGxuw6kgem5lbmlh
+        IHrDoWtvbm92PC9hPjwvbGk+CjwvdWw+CjwvbGk+CjxsaSBpZD0ibWVudS1p
+        dGVtLTE5MjUiIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5cGUtcG9z
+        dF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0ZW0tMTkyNSI+
+        PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2svc3ByYXZ5LW8tY2lubm9zdGkt
+        c2tlLWEtc2UvIj5TcHLDoXZ5IG8gxI1pbm5vc3RpIFNLRSBhIFNFPC9hPjwv
+        bGk+CjxsaSBpZD0ibWVudS1pdGVtLTE4NjgiIGNsYXNzPSJtZW51LWl0ZW0g
+        bWVudS1pdGVtLXR5cGUtdGF4b25vbXkgbWVudS1pdGVtLW9iamVjdC1jYXRl
+        Z29yeSBtZW51LWl0ZW0tMTg2OCI+PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uu
+        c2svY2F0ZWdvcnkvcG9yYWRuYS8iPlBvcmFkxYhhPC9hPjwvbGk+CjxsaSBp
+        ZD0ibWVudS1pdGVtLTE0MDciIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVt
+        LXR5cGUtcG9zdF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0
+        ZW0tMTQwNyI+PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2sva29udGFrdC8i
+        PktvbnRha3Q8L2E+PC9saT4KPGxpIGlkPSJtZW51LWl0ZW0tMTkxNyIgY2xh
+        c3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1p
+        dGVtLW9iamVjdC1wYWdlIG1lbnUtaXRlbS0xOTE3Ij48YSBocmVmPSJodHRw
+        Oi8vd3d3LnNrZS5zay96b3puYW0tZHJhem9ibnljaC12eWhsYXNvay8iPlpv
+        em5hbSBkcmHFvm9ibsO9Y2ggdnlobMOhxaFvazwvYT48L2xpPgo8bGkgaWQ9
+        Im1lbnUtaXRlbS0xODIwIiBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10
+        eXBlLWN1c3RvbSBtZW51LWl0ZW0tb2JqZWN0LWN1c3RvbSBtZW51LWl0ZW0t
+        MTgyMCI+PGEgaHJlZj0iaHR0cDovL2NyZS5zayI+Q1JFPC9hPjwvbGk+Cjwv
+        dWw+CQkJCQkJCQkJCQk8L2Rpdj4KCQkJCQkJCQkJCQkJCgkJCQkJCQkJCQkJ
+        PGRpdiBpZD0ibXltZW51IiBjbGFzcz0iZGV2aWNlX3ZpZXcgbmF2LWNvbGxh
+        cHNlIGNvbGxhcHNlIj4KCQkJCQkJCQkJCQk8dWwgaWQ9Im1lbnVzZWN0aW9u
+        IiBjbGFzcz0ibmF2Ij48bGkgY2xhc3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0t
+        dHlwZS10YXhvbm9teSBtZW51LWl0ZW0tb2JqZWN0LWNhdGVnb3J5IGN1cnJl
+        bnQtbWVudS1pdGVtIG1lbnUtaXRlbS0xMzczIj48YSBocmVmPSJodHRwOi8v
+        d3d3LnNrZS5zay9jYXRlZ29yeS9ha3R1YWxpdHkvIj5Ba3R1YWxpdHk8L2E+
+        PC9saT4KPGxpIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5cGUtcG9z
+        dF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0ZW0taGFzLWNo
+        aWxkcmVuIG1lbnUtaXRlbS0xNjYzIj48YSBocmVmPSJodHRwOi8vd3d3LnNr
+        ZS5zay96b3puYW0tZXhla3V0b3Jvdi8iPlpvem5hbSBleGVrw7p0b3Jvdjwv
+        YT4KPHVsIGNsYXNzPSJzdWItbWVudSI+Cgk8bGkgY2xhc3M9Im1lbnUtaXRl
+        bSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1pdGVtLW9iamVjdC1w
+        YWdlIG1lbnUtaXRlbS0xNzA1Ij48YSBocmVmPSJodHRwOi8vd3d3LnNrZS5z
+        ay96b3puYW0tZXhla3V0b3Jvdi8iPlpvem5hbSBleGVrw7p0b3JvdjwvYT48
+        L2xpPgoJPGxpIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5cGUtcG9z
+        dF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0ZW0tMTcwOSI+
+        PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2svem96bmFtLWV4ZWt1dG9yb3Yv
+        bmVwbGF0bmUtcHJldWthenktYS1vZHpuYWt5LyI+TmVwbGF0bsOpIHByZXVr
+        YXp5IGEgb2R6bmFreTwvYT48L2xpPgoJPGxpIGNsYXNzPSJtZW51LWl0ZW0g
+        bWVudS1pdGVtLXR5cGUtcG9zdF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFn
+        ZSBtZW51LWl0ZW0tMTcwOCI+PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2sv
+        em96bmFtLWV4ZWt1dG9yb3Yvb2R2b2xhbmktc3VkbmktZXhla3V0b3JpLyI+
+        T2R2b2xhbsOtIHPDumRuaSBleGVrw7p0b3JpPC9hPjwvbGk+Cgk8bGkgY2xh
+        c3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1p
+        dGVtLW9iamVjdC1wYWdlIG1lbnUtaXRlbS0xNzA3Ij48YSBocmVmPSJodHRw
+        Oi8vd3d3LnNrZS5zay96b3puYW0tZXhla3V0b3Jvdi9wb3phc3RhdmVuaWUt
+        dnlrb251LWV4dS8iPlBvemFzdGF2ZW5pZSB2w71rb251IEV4w5o8L2E+PC9s
+        aT4KCTxsaSBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLXBvc3Rf
+        dHlwZSBtZW51LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVtLTE3MDYiPjxh
+        IGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3pvem5hbS1leGVrdXRvcm92L3ph
+        bmlrbnV0ZS1leGVrdXRvcnNrZS11cmFkeS8iPlphbmlrbnV0w6kgZXhla8O6
+        dG9yc2vDqSDDunJhZHk8L2E+PC9saT4KCTxsaSBjbGFzcz0ibWVudS1pdGVt
+        IG1lbnUtaXRlbS10eXBlLXBvc3RfdHlwZSBtZW51LWl0ZW0tb2JqZWN0LXBh
+        Z2UgbWVudS1pdGVtLTE3NDgiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNr
+        L3pvem5hbS1leGVrdXRvcm92L3ByZXJ1c2VuaWUtdnlrb251LWZ1bmtjaWUt
+        c2UvIj5QcmVydcWhZW5pZSB2w71rb251IGZ1bmtjaWUgU0U8L2E+PC9saT4K
+        PC91bD4KPC9saT4KPGxpIGNsYXNzPSJtZW51LWl0ZW0gbWVudS1pdGVtLXR5
+        cGUtcG9zdF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBtZW51LWl0ZW0t
+        MTM2OSI+PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2svb3JnYW55LWtvbW9y
+        eS8iPk9yZ8Ohbnkga29tb3J5PC9hPjwvbGk+CjxsaSBjbGFzcz0ibWVudS1p
+        dGVtIG1lbnUtaXRlbS10eXBlLXBvc3RfdHlwZSBtZW51LWl0ZW0tb2JqZWN0
+        LXBhZ2UgbWVudS1pdGVtLTEzNzAiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tl
+        LnNrL2Rva3VtZW50eS8iPkRva3VtZW50eTwvYT48L2xpPgo8bGkgY2xhc3M9
+        Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS10YXhvbm9teSBtZW51LWl0ZW0t
+        b2JqZWN0LWNhdGVnb3J5IG1lbnUtaXRlbS0xMzcyIj48YSBocmVmPSJodHRw
+        Oi8vd3d3LnNrZS5zay9jYXRlZ29yeS9uYXBpc2FsaS1vLW5hcy8iPk5hcMOt
+        c2FsaSBvIG7DoXM8L2E+PC9saT4KPGxpIGNsYXNzPSJtZW51LWl0ZW0gbWVu
+        dS1pdGVtLXR5cGUtcG9zdF90eXBlIG1lbnUtaXRlbS1vYmplY3QtcGFnZSBt
+        ZW51LWl0ZW0tMTM3MSI+PGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2svb2Ri
+        b3JuZS1za3Vza3kvIj5PZGJvcm7DqSBza8O6xaFreTwvYT48L2xpPgo8bGkg
+        Y2xhc3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVu
+        dS1pdGVtLW9iamVjdC1wYWdlIG1lbnUtaXRlbS1oYXMtY2hpbGRyZW4gbWVu
+        dS1pdGVtLTE0MDYiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3BvZG5l
+        dHkvIj5Qb2RuZXR5PC9hPgo8dWwgY2xhc3M9InN1Yi1tZW51Ij4KCTxsaSBj
+        bGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLXBvc3RfdHlwZSBtZW51
+        LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVtLTE3MTkiPjxhIGhyZWY9Imh0
+        dHA6Ly93d3cuc2tlLnNrL3BvZG5ldHkvIj5Qb2RuZXR5PC9hPjwvbGk+Cgk8
+        bGkgY2xhc3M9Im1lbnUtaXRlbSBtZW51LWl0ZW0tdHlwZS1jdXN0b20gbWVu
+        dS1pdGVtLW9iamVjdC1jdXN0b20gbWVudS1pdGVtLTE3MTgiPjxhIHRhcmdl
+        dD0iX2JsYW5rIiBocmVmPSJodHRwOi8vamFzcGkuanVzdGljZS5nb3Yuc2sv
+        amFzcGl3MS9qYXNwaXdfbWluaV9mcjAuaHRtIj7DmnBsbsOpIHpuZW5pYSB6
+        w6Frb25vdjwvYT48L2xpPgo8L3VsPgo8L2xpPgo8bGkgY2xhc3M9Im1lbnUt
+        aXRlbSBtZW51LWl0ZW0tdHlwZS1wb3N0X3R5cGUgbWVudS1pdGVtLW9iamVj
+        dC1wYWdlIG1lbnUtaXRlbS0xOTI1Ij48YSBocmVmPSJodHRwOi8vd3d3LnNr
+        ZS5zay9zcHJhdnktby1jaW5ub3N0aS1za2UtYS1zZS8iPlNwcsOhdnkgbyDE
+        jWlubm9zdGkgU0tFIGEgU0U8L2E+PC9saT4KPGxpIGNsYXNzPSJtZW51LWl0
+        ZW0gbWVudS1pdGVtLXR5cGUtdGF4b25vbXkgbWVudS1pdGVtLW9iamVjdC1j
+        YXRlZ29yeSBtZW51LWl0ZW0tMTg2OCI+PGEgaHJlZj0iaHR0cDovL3d3dy5z
+        a2Uuc2svY2F0ZWdvcnkvcG9yYWRuYS8iPlBvcmFkxYhhPC9hPjwvbGk+Cjxs
+        aSBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLXBvc3RfdHlwZSBt
+        ZW51LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVtLTE0MDciPjxhIGhyZWY9
+        Imh0dHA6Ly93d3cuc2tlLnNrL2tvbnRha3QvIj5Lb250YWt0PC9hPjwvbGk+
+        CjxsaSBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLXBvc3RfdHlw
+        ZSBtZW51LWl0ZW0tb2JqZWN0LXBhZ2UgbWVudS1pdGVtLTE5MTciPjxhIGhy
+        ZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3pvem5hbS1kcmF6b2JueWNoLXZ5aGxh
+        c29rLyI+Wm96bmFtIGRyYcW+b2Juw71jaCB2eWhsw6HFoW9rPC9hPjwvbGk+
+        CjxsaSBjbGFzcz0ibWVudS1pdGVtIG1lbnUtaXRlbS10eXBlLWN1c3RvbSBt
+        ZW51LWl0ZW0tb2JqZWN0LWN1c3RvbSBtZW51LWl0ZW0tMTgyMCI+PGEgaHJl
+        Zj0iaHR0cDovL2NyZS5zayI+Q1JFPC9hPjwvbGk+CjwvdWw+CQkJCQkJCQkJ
+        CQk8L2Rpdj4KCQkJCQkJCQkJCQkJCQkJPCEtLS8ubmF2LWNvbGxhcHNlIC0t
+        PgoJCQkJICA8L2Rpdj4KCQkJCSAgPCEtLSAvLm5hdmJhci1pbm5lciAtLT4K
+        CQkJCTwvZGl2PgoJCQkJPCEtLSAvLm5hdmJhciAtLT4KCQkJICA8L25hdj4K
+        CQkJICAKCQkJPC9zZWN0aW9uPgoJCTwvZGl2PgoJPC9oZWFkZXI+PHNlY3Rp
+        b24gaWQ9IiIgY2xhc3M9ImNvbnRlbnQtaG9sZGVyMSBpbm5lci1wYWdlcyBi
+        YWNrZ3JvdW5kX2JyZWFkY3J1bWJzIj48ZGl2IGNsYXNzPSJjb250YWluZXIi
+        Pjx1bCBjbGFzcz0iYnJlYWRjcnVtYiIgaWQ9ImJyZWFkY3J1bWJzIj48bGkg
+        Y2xhc3M9ImhvbWVfYnJlYWQiPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNr
+        Ij48c3BhbiBjbGFzcz0iZm9udF9icmVhZCI+Jm5ic3A7PGkgY2xhc3M9Imlj
+        b24taG9tZSI+PC9pPjwvc3Bhbj48L2E+IDwvbGk+IDxsaSBjbGFzcz0iY3Vy
+        cmVudCI+UHLDrXNwZXZreSB2IGthdGVnw7NyaWk6IEFrdHVhbGl0eTwvbGk+
+        PC91bD48L2Rpdj48L3NlY3Rpb24+PGRpdiBjbGFzcz0iY2xlYXIiPjwvZGl2
+        Pgk8ZGl2IGNsYXNzPSJjb250ZW50LWhvbGRlcjEgaW5uZXItcGFnZXMiPgoJ
+        CTxkaXYgY2xhc3M9ImNvbnRhaW5lciI+CgkJCQk8c2VjdGlvbiBpZD0iYmxv
+        Y2tDb250YWluZXIiIGNsYXNzPSJyb3ctZmx1aWQiPgoJCQkJCQkJCQkJPGRp
+        diBpZD0icG9zdC0iIGNsYXNzPSJzcGFuOCI+CgkJCQkJCTxkaXYgY2xhc3M9
+        InBvc3QtMTk1MyBwb3N0IHR5cGUtcG9zdCBzdGF0dXMtcHVibGlzaCBmb3Jt
+        YXQtc3RhbmRhcmQgaGVudHJ5IGNhdGVnb3J5LWFrdHVhbGl0eSI+CgkJCQkJ
+        CQkJCQkJCQkJCQk8aDIgY2xhc3M9ImhlYWRpbmciPiBBa3R1YWxpdHk8L2gy
+        PjxzcGFuIGNsYXNzPSJib3JkZXItbGluZSBtLWJvdHRvbSI+PC9zcGFuPgoJ
+        CQkJCQkJCQkJCQkJCQkJCQkJCQkJCTxhcnRpY2xlIGNsYXNzPSJibG9nX2xp
+        c3Rpbmdfd3JhcHBlciBGdWxsLUltYWdlIj4KCQkJCQkJCQkJPGZpZ3VyZSBj
+        bGFzcz0icG9zdF90aXRsZSI+PGgyIGNsYXNzPSJoZWFkaW5nIj48YSBocmVm
+        PSJodHRwOi8vd3d3LnNrZS5zay9vem5hbS1vLW9kY3VkemVuaS11cmFkbmVq
+        LXBlY2lhdGt5LyI+T3puYW0gbyBvZGN1ZHplbsOtIMO6cmFkbmVqIHBlxI1p
+        YXRreSA8c3BhbiBjbGFzcz0iZGF0ZV9tb250aF9wb3N0Ij4gCgkJCQkJCQkJ
+        CU3DoWogMjIsIDIwMTUgPC9zcGFuPjwvYT48L2gyPjwvZmlndXJlPgoJCQkJ
+        CQkJCQk8cCBjbGFzcz0ibWFyZ2luLXRvcC1ibG9nLWxpc3RpbmciPlNsb3Zl
+        bnNrw6Ega29tb3JhIG9iZHLFvmFsYSBkxYhhIDI0LjA0LjIwMTUgaGzDoXNl
+        bmllIG9kIHPDumRuZWhvIGV4ZWvDunRvcmEgSlVEci4gSW5nLiBLYXJvbGEg
+        TWloYWxhLCBzbyBzw61kbG9tIEV4ZWvDunRvcnNrw6lobyDDunJhZHUgdiBL
+        b8WhaWNpYWNoIG8gb2RjdWR6ZW7DrSDDunJhZG5laiBwZcSNaWF0a3kgcyDE
+        jcOtc2VsbsO9bSBvem5hxI1lbsOtbSDEjS4gNiwgb3puYcSNZW7DuiBtZW5v
+        bTogSlVEci4gSW5nLiBLYXJvbCBNaWhhbCBhIHNsb3Zuw71tIHNwb2plbsOt
+        bTogc8O6ZG55IGV4ZWvDunRvciBLb8WhaWNlIDIsIGt0b3LDoSBtdSBib2xh
+        IG9kY3VkemVuw6EgZMWIYSAyMC4wNC4yMDE1PC9wPgoJCQkJCQkJCQk8Zmln
+        dXJlIGNsYXNzPSJwb3N0X21ldGEiPiAKCQkJCQkJCQkJCQoJCQkJCQkJCQkJ
+        CgkJCQkJCQkJCQk8c3BhbiBjbGFzcz0iZm9udF9hdyBzbWFsbF9zaXplIj48
+        aSBjbGFzcz0iaWNvbi1yZW9yZGVyIj48L2k+CgkJCQkJCQkJCQkJCQkJCQkJ
+        CQkJCQlLYXRlZ8OzcmlhOiAgPGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2sv
+        Y2F0ZWdvcnkvYWt0dWFsaXR5LyI+QWt0dWFsaXR5PC9hPiAgIAoJCQkJCQkJ
+        CQkJPC9zcGFuPgoJCQkJCQkJCQk8L2ZpZ3VyZT4KCQkJCQkJCQk8L2FydGlj
+        bGU+CgkJCQkJCQkJCQkJCQkJCQk8YXJ0aWNsZSBjbGFzcz0iYmxvZ19saXN0
+        aW5nX3dyYXBwZXIgRnVsbC1JbWFnZSI+CgkJCQkJCQkJCTxmaWd1cmUgY2xh
+        c3M9InBvc3RfdGl0bGUiPjxoMiBjbGFzcz0iaGVhZGluZyI+PGEgaHJlZj0i
+        aHR0cDovL3d3dy5za2Uuc2svc2xvdmVuc2thLWtvbW9yYS1leGVrdXRvcm92
+        LXVwb3pvcm51amUtb2JjYW5vdi1uYS1wb2R2b2RuZS16bmV1eml0aWUtaWRl
+        bnRpZmlrYWNueWNoLXVkYWpvdi1leGVrdXRvcnNreWNoLXVyYWRvdi0yLyI+
+        U2xvdmVuc2vDoSBrb21vcmEgZXhla8O6dG9yb3YgdXBvem9yxYh1amUgb2LE
+        jWFub3YgbmEgcG9kdm9kbsOpIHpuZXXFvml0aWUgaWRlbnRpZmlrYcSNbsO9
+        Y2ggw7pkYWpvdiBleGVrw7p0b3Jza8OpaG8gw7pyYWR1IDxzcGFuIGNsYXNz
+        PSJkYXRlX21vbnRoX3Bvc3QiPiAKCQkJCQkJCQkJTcOhaiAxNSwgMjAxNSA8
+        L3NwYW4+PC9hPjwvaDI+PC9maWd1cmU+CgkJCQkJCQkJCTxwIGNsYXNzPSJt
+        YXJnaW4tdG9wLWJsb2ctbGlzdGluZyI+U2xvdmVuc2vDoSBrb21vcmEgZXhl
+        a8O6dG9yb3YgKFNLRSkgdXBvem9yxYh1amUgb2LEjWFub3YgbmEgdsO9c2t5
+        dCBmYWxvxaFuw71jaCBleGVrdcSNbsO9Y2ggcHLDrWthem92IGV4ZWvDunRv
+        cnNrw6lobyDDunJhZHUgTWdyLiBNYXJjZWxhIFp1bW1lcm92w6EsIEV4ZWvD
+        unRvcnNrw70gw7pyYWQgTWljaGFsb3ZjZSwgdWwuIEtwdC4gTsOhbGVwa3Ug
+        MjIsIDA3MSAwMSBNaWNoYWxvdmNlLiBTS0Ugb2Rwb3LDusSNYSBvYsSNYW5v
+        bSBhYnkgdiBwcsOtcGFkZSBwb2NoeWJub3N0w60ga29udGFrdG92YWxpIHV2
+        ZWRlbsO9IGV4ZWvDunRvcnNrw70gw7pyYWQuPC9wPgoJCQkJCQkJCQk8Zmln
+        dXJlIGNsYXNzPSJwb3N0X21ldGEiPiAKCQkJCQkJCQkJCQoJCQkJCQkJCQkJ
+        CgkJCQkJCQkJCQk8c3BhbiBjbGFzcz0iZm9udF9hdyBzbWFsbF9zaXplIj48
+        aSBjbGFzcz0iaWNvbi1yZW9yZGVyIj48L2k+CgkJCQkJCQkJCQkJCQkJCQkJ
+        CQkJCQlLYXRlZ8OzcmlhOiAgPGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2sv
+        Y2F0ZWdvcnkvYWt0dWFsaXR5LyI+QWt0dWFsaXR5PC9hPiAgIAoJCQkJCQkJ
+        CQkJPC9zcGFuPgoJCQkJCQkJCQk8L2ZpZ3VyZT4KCQkJCQkJCQk8L2FydGlj
+        bGU+CgkJCQkJCQkJCQkJCQkJCQk8YXJ0aWNsZSBjbGFzcz0iYmxvZ19saXN0
+        aW5nX3dyYXBwZXIgRnVsbC1JbWFnZSI+CgkJCQkJCQkJCTxmaWd1cmUgY2xh
+        c3M9InBvc3RfdGl0bGUiPjxoMiBjbGFzcz0iaGVhZGluZyI+PGEgaHJlZj0i
+        aHR0cDovL3d3dy5za2Uuc2svc2xvdmVuc2thLWtvbW9yYS1leGVrdXRvcm92
+        LXVwb3pvcm51amUtb2JjYW5vdi1uYS1wb2R2b2RuZS16bmV1eml0aWUtaWRl
+        bnRpZmlrYWNueWNoLXVkYWpvdi1leGVrdXRvcnNreWNoLXVyYWRvdi8iPlNs
+        b3ZlbnNrw6Ega29tb3JhIGV4ZWvDunRvcm92IHVwb3pvcsWIdWplIG9ixI1h
+        bm92IG5hIHBvZHZvZG7DqSB6bmV1xb5pdGllIGlkZW50aWZpa2HEjW7DvWNo
+        IMO6ZGFqb3YgZXhla8O6dG9yc2vDvWNoIMO6cmFkb3YgPHNwYW4gY2xhc3M9
+        ImRhdGVfbW9udGhfcG9zdCI+IAoJCQkJCQkJCQlNw6FqIDEsIDIwMTUgPC9z
+        cGFuPjwvYT48L2gyPjwvZmlndXJlPgoJCQkJCQkJCQk8cCBjbGFzcz0ibWFy
+        Z2luLXRvcC1ibG9nLWxpc3RpbmciPlNsb3ZlbnNrw6Ega29tb3JhIGV4ZWvD
+        unRvcm92IChTS0UpIHVwb3pvcsWIdWplIG9ixI1hbm92IG5hIHbDvXNreXQg
+        ZmFsb8WhbsO9Y2ggZXhla3XEjW7DvWNoIHByw61rYXpvdiBleGVrw7p0b3Jz
+        a8O9Y2ggw7pyYWRvdiBKVURyLiBNaWNoYWxhIEtlxaFlxL5ha2EsIEV4w5og
+        U3BpxaFza8OhIE5vdsOhIFZlcywgTWx5bnNrw6EgMiwgMDUyIDAxIFNwacWh
+        c2vDoSBOb3bDoSBWZXMgYSBKVURyLiBMYWRpc2xhdmEgxI5vcsSPb3ZpxI1h
+        IG1sLiwgRXjDmiBUcmVuxI3DrW4sIE1pZXJvdsOpIG7DoW1lc3RpZSAxLCA5
+        MTEgMDEgVHJlbsSNw61uLiBTS0Ugb2Rwb3LDusSNYSBvYsSNYW5vbSBhYnkg
+        diBwcsOtcGFkZSBwb2NoeWJub3N0w60ga29udGFrdG92YWxpIHV2ZWRlbsOp
+        IGV4ZWvDujwvcD4KCQkJCQkJCQkJPGZpZ3VyZSBjbGFzcz0icG9zdF9tZXRh
+        Ij4gCgkJCQkJCQkJCQkKCQkJCQkJCQkJCQoJCQkJCQkJCQkJPHNwYW4gY2xh
+        c3M9ImZvbnRfYXcgc21hbGxfc2l6ZSI+PGkgY2xhc3M9Imljb24tcmVvcmRl
+        ciI+PC9pPgoJCQkJCQkJCQkJCQkJCQkJCQkJCQkJS2F0ZWfDs3JpYTogIDxh
+        IGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL2NhdGVnb3J5L2FrdHVhbGl0eS8i
+        PkFrdHVhbGl0eTwvYT4gICAKCQkJCQkJCQkJCTwvc3Bhbj4KCQkJCQkJCQkJ
+        PC9maWd1cmU+CgkJCQkJCQkJPC9hcnRpY2xlPgoJCQkJCQkJCQkJCQkJCQkJ
+        PGFydGljbGUgY2xhc3M9ImJsb2dfbGlzdGluZ193cmFwcGVyIEZ1bGwtSW1h
+        Z2UiPgoJCQkJCQkJCQk8ZmlndXJlIGNsYXNzPSJwb3N0X3RpdGxlIj48aDIg
+        Y2xhc3M9ImhlYWRpbmciPjxhIGhyZWY9Imh0dHA6Ly93d3cuc2tlLnNrL3Zs
+        YW5pLXByaWJ1ZGxvLXZ5c2UtcG9sLW1pbGlvbmEtbmF2cmhvdi1uYS1leGVr
+        dWNpdS8iPlZsYW5pIHByaWJ1ZGxvIHZ5xaFlIHBvbCBtaWxpw7NuYSBuw6F2
+        cmhvdiBuYSB2eWtvbmFuaWUgZXhla8O6Y2llIDxzcGFuIGNsYXNzPSJkYXRl
+        X21vbnRoX3Bvc3QiPiAKCQkJCQkJCQkJQXByIDI1LCAyMDE1IDwvc3Bhbj48
+        L2E+PC9oMj48L2ZpZ3VyZT4KCQkJCQkJCQkJPHAgY2xhc3M9Im1hcmdpbi10
+        b3AtYmxvZy1saXN0aW5nIj5OYSBTbG92ZW5za3UgdmxhbmkgcHJpYnVkbG8g
+        NTI3IDA3MSBuw6F2cmhvdiBuYSB2eWtvbmFuaWUgZXhla8O6Y2llLiBVa29u
+        xI1pbG8gc2EgODEgNzU4IGV4ZWt1xI1uw71jaCBrb25hbsOtLCBuZXV6YXZy
+        ZXTDvWNoIG9zdMOhdmEgNDQ1IDMxMy4gVnlwbMO9dmEgdG8gem8gc3Byw6F2
+        eSBvIMSNaW5ub3N0aSBTbG92ZW5za2VqIGtvbW9yeSBleGVrw7p0b3Jvdiwg
+        a3RvcsO6IGtvbW9yYSBwcmVkbG/FvmlsYSBtaW5pc3RlcnN0dnUgc3ByYXZv
+        ZGxpdm9zdGkuICYjODIyMDtaYSBtaW1vcmlhZG5lIGTDtGxlxb5pdMOpIHBv
+        dmHFvnVqZW0gcG9rcmHEjW92YW5pZSB2IHByb2dyYW1lIEJsacW+xaFpZSBr
+        IMS+dcSPb20sIHYgcsOhbWNpIGt0b3LDqWhvIHNtZSA8L3A+CgkJCQkJCQkJ
+        CTxmaWd1cmUgY2xhc3M9InBvc3RfbWV0YSI+IAoJCQkJCQkJCQkJCgkJCQkJ
+        CQkJCQkKCQkJCQkJCQkJCTxzcGFuIGNsYXNzPSJmb250X2F3IHNtYWxsX3Np
+        emUiPjxpIGNsYXNzPSJpY29uLXJlb3JkZXIiPjwvaT4KCQkJCQkJCQkJCQkJ
+        CQkJCQkJCQkJCUthdGVnw7NyaWE6ICA8YSBocmVmPSJodHRwOi8vd3d3LnNr
+        ZS5zay9jYXRlZ29yeS9ha3R1YWxpdHkvIj5Ba3R1YWxpdHk8L2E+ICAgCgkJ
+        CQkJCQkJCQk8L3NwYW4+CgkJCQkJCQkJCTwvZmlndXJlPgoJCQkJCQkJCTwv
+        YXJ0aWNsZT4KCQkJCQkJCQkJCQkJCQkJCTxhcnRpY2xlIGNsYXNzPSJibG9n
+        X2xpc3Rpbmdfd3JhcHBlciBGdWxsLUltYWdlIj4KCQkJCQkJCQkJPGZpZ3Vy
+        ZSBjbGFzcz0icG9zdF90aXRsZSI+PGgyIGNsYXNzPSJoZWFkaW5nIj48YSBo
+        cmVmPSJodHRwOi8vd3d3LnNrZS5zay9zbG92ZW5za2Eta29tb3JhLWV4ZWt1
+        dG9yb3YtemFjYWxhLXB1Ymxpa292YXQtaW5mb3JtYWNpZS1vLXZlcmVqbnlj
+        aC1kcmF6YmFjaC8iPlNsb3ZlbnNrw6Ega29tb3JhIGV4ZWvDunRvcm92IHph
+        xI1hbGEgcHVibGlrb3ZhxaUgaW5mb3Jtw6FjaWUgbyB2ZXJlam7DvWNoIGRy
+        YcW+YsOhY2ggPHNwYW4gY2xhc3M9ImRhdGVfbW9udGhfcG9zdCI+IAoJCQkJ
+        CQkJCQlBcHIgMjAsIDIwMTUgPC9zcGFuPjwvYT48L2gyPjwvZmlndXJlPgoJ
+        CQkJCQkJCQk8cCBjbGFzcz0ibWFyZ2luLXRvcC1ibG9nLWxpc3RpbmciPlNs
+        b3ZlbnNrw6Ega29tb3JhIGV4ZWvDunRvcm92IHphxI1hbGEgbmEgc3ZvamVq
+        IHdlYm92ZWogc3Ryw6Fua2XCoHd3dy5za2Uuc2vCoHp2ZXJlasWIb3ZhxaUg
+        aW5mb3Jtw6FjaWUgbyB2ZXJlam7DvWNoIGRyYcW+YsOhY2guICYjODIyMDta
+        dmVyZWrFiG92YW5pZSBpbmZvcm3DoWNpw60gbyB2ZXJlam7DvWNoIGV4ZWt1
+        xI1uw71jaCBkcmHFvmLDoWNoIHZuw61tYW1lIGFrbyBrcm9rIGsgdnnFocWh
+        ZWogdHJhbnNwYXJlbnRvc3RpIGEgw7pzdHJldG92b3N0aSB2b8SNaSBvYsSN
+        YW5vbS4gRG9zdHVwbsOpIGluZm9ybcOhY2llIG8ga29uYW7DrSBkcmHFvmJ5
+        IG3DtMW+dSByZcOhbG5lIHZpZXPFpSBrIHZ5xaHFoWllbXUgesOhdWptdSBv
+        IGRyYcW+ZW7DvSBtYWpldG9rLCBhIHRlZGEgPC9wPgoJCQkJCQkJCQk8Zmln
+        dXJlIGNsYXNzPSJwb3N0X21ldGEiPiAKCQkJCQkJCQkJCQoJCQkJCQkJCQkJ
+        CgkJCQkJCQkJCQk8c3BhbiBjbGFzcz0iZm9udF9hdyBzbWFsbF9zaXplIj48
+        aSBjbGFzcz0iaWNvbi1yZW9yZGVyIj48L2k+CgkJCQkJCQkJCQkJCQkJCQkJ
+        CQkJCQlLYXRlZ8OzcmlhOiAgPGEgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2sv
+        Y2F0ZWdvcnkvYWt0dWFsaXR5LyI+QWt0dWFsaXR5PC9hPiAgIAoJCQkJCQkJ
+        CQkJPC9zcGFuPgoJCQkJCQkJCQk8L2ZpZ3VyZT4KCQkJCQkJCQk8L2FydGlj
+        bGU+CgkJCQkJCQkJCQkJCQkJPC9kaXY+CgkJCQkJPG5hdiBpZD0ibmF2LXNp
+        bmdsZSI+CiAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSd3cC1w
+        YWdlbmF2aSc+CjxzcGFuIGNsYXNzPSdwYWdlcyc+U3RyYW5hIDEgeiA4PC9z
+        cGFuPjxzcGFuIGNsYXNzPSdjdXJyZW50Jz4xPC9zcGFuPjxhIGNsYXNzPSJw
+        YWdlIGxhcmdlciIgaHJlZj0iaHR0cDovL3d3dy5za2Uuc2svY2F0ZWdvcnkv
+        YWt0dWFsaXR5L3BhZ2UvMi8iPjI8L2E+PGEgY2xhc3M9InBhZ2UgbGFyZ2Vy
+        IiBocmVmPSJodHRwOi8vd3d3LnNrZS5zay9jYXRlZ29yeS9ha3R1YWxpdHkv
+        cGFnZS8zLyI+MzwvYT48YSBjbGFzcz0icGFnZSBsYXJnZXIiIGhyZWY9Imh0
+        dHA6Ly93d3cuc2tlLnNrL2NhdGVnb3J5L2FrdHVhbGl0eS9wYWdlLzQvIj40
+        PC9hPjxhIGNsYXNzPSJwYWdlIGxhcmdlciIgaHJlZj0iaHR0cDovL3d3dy5z
+        a2Uuc2svY2F0ZWdvcnkvYWt0dWFsaXR5L3BhZ2UvNS8iPjU8L2E+PHNwYW4g
+        Y2xhc3M9J2V4dGVuZCc+Li4uPC9zcGFuPjxhIGNsYXNzPSJuZXh0cG9zdHNs
+        aW5rIiBocmVmPSJodHRwOi8vd3d3LnNrZS5zay9jYXRlZ29yeS9ha3R1YWxp
+        dHkvcGFnZS8yLyI+wrs8L2E+PGEgY2xhc3M9Imxhc3QiIGhyZWY9Imh0dHA6
+        Ly93d3cuc2tlLnNrL2NhdGVnb3J5L2FrdHVhbGl0eS9wYWdlLzgvIj5Qb3Ns
+        ZWRuw6Egwrs8L2E+CjwvZGl2PiAgICAgICAgICAgICAgICAgICAgPC9uYXY+
+        PCEtLSAjbmF2LXNpbmdsZSAtLT4KCQkJCQk8L2Rpdj4KCQkJCQkKCQkJCQkJ
+        CQkJCQk8ZGl2IGlkPSJibG9ja19zZWNvbmRfcmlnaHQiIGNsYXNzPSJzcGFu
+        NCBjb250ZW50X3NpZGViYXIiPgoJCQkJCQkJCQkJCQkJPC9kaXY+CgkJCQkJ
+        CQkJIDwvc2VjdGlvbj4KCQk8L2Rpdj4KCTwvZGl2PgoNCiAgPHNlY3Rpb24g
+        Y2xhc3M9ImZvb3Rlci10b3AiPg0KICAgIDxzZWN0aW9uIGNsYXNzPSJjb250
+        YWluZXIiPg0KICAgICAgPHNlY3Rpb24gY2xhc3M9InJvdy1mbHVpZCI+DQog
+        ICAgICAgICAgPGRpdiBjbGFzcz0ic3BhbjQgd2lkZ2V0X3RleHQiPjxoMiBj
+        bGFzcz0iaGVhZGluZyI+PHNwYW4+UG9yYWTFiGEgcHJlIG9ixI1hbm92PC9z
+        cGFuPjwvaDI+CQkJPGRpdiBjbGFzcz0idGV4dHdpZGdldCI+PHA+QmV6cGxh
+        dG7DqSBvc29ibsOpIGtvbnp1bHTDoWNpZSBsZW4gcHJlIG9ixI1hbm92IHYg
+        ZXhla8O6Y2lpLiBLb256dWx0w6FjaWUgbmVuYWhyw6FkemFqw7ogcG9yYWRl
+        bnN0dm8gcG9za3l0b3ZhbsOpIGFkdm9rw6F0c2t5bWkga2FuY2Vsw6FyaWFt
+        aS48L3A+PGEgaHJlZj0ibWFpbHRvOnBvcmFkbmFAc2tlLnNrIiBjbGFzcz0i
+        bW9yZS1idG4iPkUtbWFpbDogcG9yYWRuYUBza2Uuc2s8L2E+PC9kaXY+CgkJ
+        PC9kaXY+PGRpdiBjbGFzcz0ic3BhbjQgd2lkZ2V0X2FyY2hpdmUiPjxoMiBj
+        bGFzcz0iaGVhZGluZyI+PHNwYW4+QXJjaMOtdiBwcsOtc3Bldmtvdjwvc3Bh
+        bj48L2gyPgkJPHNlbGVjdCBuYW1lPSJhcmNoaXZlLWRyb3Bkb3duIiBvbmNo
+        YW5nZT0nZG9jdW1lbnQubG9jYXRpb24uaHJlZj10aGlzLm9wdGlvbnNbdGhp
+        cy5zZWxlY3RlZEluZGV4XS52YWx1ZTsnPgoJCQk8b3B0aW9uIHZhbHVlPSIi
+        PlZ5YmVydGUgbWVzaWFjPC9vcHRpb24+CgoJCQkJPG9wdGlvbiB2YWx1ZT0n
+        aHR0cDovL3d3dy5za2Uuc2svMjAxNS8wNS8nPiBtw6FqIDIwMTUgPC9vcHRp
+        b24+Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDE1LzA0
+        Lyc+IGFwcsOtbCAyMDE1IDwvb3B0aW9uPgoJPG9wdGlvbiB2YWx1ZT0naHR0
+        cDovL3d3dy5za2Uuc2svMjAxNS8wMy8nPiBtYXJlYyAyMDE1IDwvb3B0aW9u
+        PgoJPG9wdGlvbiB2YWx1ZT0naHR0cDovL3d3dy5za2Uuc2svMjAxNS8wMi8n
+        PiBmZWJydcOhciAyMDE1IDwvb3B0aW9uPgoJPG9wdGlvbiB2YWx1ZT0naHR0
+        cDovL3d3dy5za2Uuc2svMjAxNS8wMS8nPiBqYW51w6FyIDIwMTUgPC9vcHRp
+        b24+Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDE0LzEy
+        Lyc+IGRlY2VtYmVyIDIwMTQgPC9vcHRpb24+Cgk8b3B0aW9uIHZhbHVlPSdo
+        dHRwOi8vd3d3LnNrZS5zay8yMDE0LzEwLyc+IG9rdMOzYmVyIDIwMTQgPC9v
+        cHRpb24+Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDE0
+        LzA5Lyc+IHNlcHRlbWJlciAyMDE0IDwvb3B0aW9uPgoJPG9wdGlvbiB2YWx1
+        ZT0naHR0cDovL3d3dy5za2Uuc2svMjAxNC8wOC8nPiBhdWd1c3QgMjAxNCA8
+        L29wdGlvbj4KCTxvcHRpb24gdmFsdWU9J2h0dHA6Ly93d3cuc2tlLnNrLzIw
+        MTQvMDcvJz4gasO6bCAyMDE0IDwvb3B0aW9uPgoJPG9wdGlvbiB2YWx1ZT0n
+        aHR0cDovL3d3dy5za2Uuc2svMjAxNC8wNi8nPiBqw7puIDIwMTQgPC9vcHRp
+        b24+Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDE0LzA1
+        Lyc+IG3DoWogMjAxNCA8L29wdGlvbj4KCTxvcHRpb24gdmFsdWU9J2h0dHA6
+        Ly93d3cuc2tlLnNrLzIwMTQvMDQvJz4gYXByw61sIDIwMTQgPC9vcHRpb24+
+        Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDE0LzAzLyc+
+        IG1hcmVjIDIwMTQgPC9vcHRpb24+Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8v
+        d3d3LnNrZS5zay8yMDE0LzAyLyc+IGZlYnJ1w6FyIDIwMTQgPC9vcHRpb24+
+        Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDEzLzEyLyc+
+        IGRlY2VtYmVyIDIwMTMgPC9vcHRpb24+Cgk8b3B0aW9uIHZhbHVlPSdodHRw
+        Oi8vd3d3LnNrZS5zay8yMDEzLzExLyc+IG5vdmVtYmVyIDIwMTMgPC9vcHRp
+        b24+Cgk8b3B0aW9uIHZhbHVlPSdodHRwOi8vd3d3LnNrZS5zay8yMDEzLzEw
+        Lyc+IG9rdMOzYmVyIDIwMTMgPC9vcHRpb24+Cgk8b3B0aW9uIHZhbHVlPSdo
+        dHRwOi8vd3d3LnNrZS5zay8yMDEzLzA4Lyc+IGF1Z3VzdCAyMDEzIDwvb3B0
+        aW9uPgoJPG9wdGlvbiB2YWx1ZT0naHR0cDovL3d3dy5za2Uuc2svMjAxMy8w
+        Mi8nPiBmZWJydcOhciAyMDEzIDwvb3B0aW9uPgoJCTwvc2VsZWN0Pgo8L2Rp
+        dj48ZGl2IGNsYXNzPSJzcGFuNCB3aWRnZXRfdGV4dCI+PGgyIGNsYXNzPSJo
+        ZWFkaW5nIj48c3Bhbj5Lb250YWt0PC9zcGFuPjwvaDI+CQkJPGRpdiBjbGFz
+        cz0idGV4dHdpZGdldCI+PHA+PHN0cm9uZz5LYW5jZWzDoXJpYSBTbG92ZW5z
+        a2VqIGtvbW9yeSBleGVrw7p0b3Jvdjwvc3Ryb25nPjxiciAvPgpVbC4gxaB1
+        c3Rla292YSDEjS4gNDk8YnIgLz4KODUxIDA0IEJyYXRpc2xhdmE8YnIgLz4K
+        VGVsOgkmbmJzcDsrNDIxIDIgNjM1MyA2NzQ2PGJyIC8+CiZuYnNwOyZuYnNw
+        OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOys0MjEgMiA2
+        MzUzIDY3NDQ8L3A+CjxwPjxzdHJvbmc+S29udGFrdCBwcmUgbcOpZGnDoTwv
+        c3Ryb25nPjxiciAvPgpKVURyLiBTdGFuaXNsYXZhIEtvbGVzw6Fyb3bDoTxi
+        ciAvPgpUZWw6ICs0MjEgOTE4IDk0MSAwMzU8YnIgLz4KRS1tYWlsOiBtZWRp
+        YUBza2Uuc2s8L3A+CjwvZGl2PgoJCTwvZGl2PiAgICAgICAgPC9zZWN0aW9u
+        Pg0KICAgICAgPC9zZWN0aW9uPg0KICAgIDwvc2VjdGlvbj4gDQoNCiA8IS0t
+        IGZvb3RlciAtLT4NCiAgPGZvb3RlciBpZD0iZm9vdGVyIj4NCiAgICA8c2Vj
+        dGlvbiBjbGFzcz0iY29udGFpbmVyIj4NCiAgICAgIDxmaWd1cmUgY2xhc3M9
+        ImNvcHktcmlnaHQiPg0KICAgICAgICA8cD5Db3B5cmlnaHQgwqkgMjAxNCBT
+        bG92ZW5za8OhIGtvbW9yYSBleGVrw7p0b3JvdjwvcD48cCBzdHlsZT0iZmxv
+        YXQ6cmlnaHQ7Ij5UaGlzIGlzIHRoZSBvZmZpY2lhbCB3ZWJzaXRlIG9mIHRo
+        ZSBDaGFtYmVyIG9mIGp1ZGljaWFsIG9mZmljZXJzIG9mIHRoZSBTbG92YWsg
+        UmVwdWJsaWM8L3A+DQoJCSAgICAgIDwvZmlndXJlPg0KCSAgDQogICAgPC9z
+        ZWN0aW9uPg0KICA8L2Zvb3Rlcj4NCg0KPC9kaXY+DQo8c3R5bGUgdHlwZT0i
+        dGV4dC9jc3MiIG1lZGlhPSJzY3JlZW4iPg0KCQlib2R5ew0KCQkJYmFja2dy
+        b3VuZDogdXJsKGh0dHA6Ly93d3cuc2tlLnNrL3dwLWNvbnRlbnQvdGhlbWVz
+        L3NrZSkgcmVwZWF0Ow0KCQl9CQ0KCQkuaW5uZXItcGFnZXMgaDIgLnR4dC1s
+        ZWZ0ew0KCQkJYmFja2dyb3VuZDogdXJsKGh0dHA6Ly93d3cuc2tlLnNrL3dw
+        LWNvbnRlbnQvdGhlbWVzL3NrZSkgcmVwZWF0Ow0KCQl9CQkNCgkJaDF7DQoJ
+        Zm9udC1zaXplOjI5cHggIWltcG9ydGFudDsNCgl9DQoJCQloMnsNCglmb250
+        LXNpemU6MjZweCAhaW1wb3J0YW50Ow0KCX0NCgkJCWgzew0KCWZvbnQtc2l6
+        ZToyMHB4ICFpbXBvcnRhbnQ7DQoJfQ0KCQkJaDR7DQoJZm9udC1zaXplOjEz
+        cHggIWltcG9ydGFudDsNCgl9DQoJCQloNXsNCglmb250LXNpemU6MjVweCAh
+        aW1wb3J0YW50Ow0KCX0NCgkJCWg2ew0KCWZvbnQtc2l6ZToxNnB4ICFpbXBv
+        cnRhbnQ7DQoJfQ0KCQkJYm9keXsNCglmb250LXNpemU6MTRweCAhaW1wb3J0
+        YW50Ow0KCX0NCgkJCWJvZHl7DQoJCWZvbnQtZmFtaWx5OiJVYnVudHUiOw0K
+        CX0NCglpbnB1dCwgYnV0dG9uLCBzZWxlY3QsIHRleHRhcmVhew0KCQlmb250
+        LWZhbWlseToiVWJ1bnR1IjsNCgl9DQoJLmNvbW1lbnQtcmVwbHktbGluaywg
+        I3N1Ym1pdF9idG4sIC5mb3JtLXN1Ym1pdCAjc3VibWl0LCAuc2VuZC1idG57
+        DQoJCWZvbnQtZmFtaWx5OiJVYnVudHUiOw0KCX0NCgkJCWgxLCBoMiwgaDMs
+        IGg0LCBoNSwgaDZ7DQoJCWZvbnQtZmFtaWx5OiJQVCBTYW5zIjsNCgl9DQoJ
+        CSNuYXZ7DQoJCWZvbnQtZmFtaWx5OiJQVCBTYW5zIENhcHRpb24iOw0KCX0N
+        Cgk8L3N0eWxlPg0KCTxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0JyBz
+        cmM9J2h0dHA6Ly93d3cuc2tlLnNrL3dwLWNvbnRlbnQvcGx1Z2lucy9jb250
+        YWN0LWZvcm0tNy9pbmNsdWRlcy9qcy9qcXVlcnkuZm9ybS5taW4uanM/dmVy
+        PTMuNTAuMC0yMDE0LjAyLjA1Jz48L3NjcmlwdD4KPHNjcmlwdCB0eXBlPSd0
+        ZXh0L2phdmFzY3JpcHQnPgovKiA8IVtDREFUQVsgKi8KdmFyIF93cGNmNyA9
+        IHsibG9hZGVyVXJsIjoiaHR0cDpcL1wvd3d3LnNrZS5za1wvd3AtY29udGVu
+        dFwvcGx1Z2luc1wvY29udGFjdC1mb3JtLTdcL2ltYWdlc1wvYWpheC1sb2Fk
+        ZXIuZ2lmIiwic2VuZGluZyI6IlBvc2llbGFtIC4uLiJ9OwovKiBdXT4gKi8K
+        PC9zY3JpcHQ+CjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0JyBzcmM9
+        J2h0dHA6Ly93d3cuc2tlLnNrL3dwLWNvbnRlbnQvcGx1Z2lucy9jb250YWN0
+        LWZvcm0tNy9pbmNsdWRlcy9qcy9zY3JpcHRzLmpzP3Zlcj0zLjguMSc+PC9z
+        Y3JpcHQ+CjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0JyBzcmM9J2h0
+        dHA6Ly93d3cuc2tlLnNrL3dwLWNvbnRlbnQvcGx1Z2lucy93cC1yZXRpbmEt
+        MngvanMvcmV0aW5hLmpzP3Zlcj0xLjEuMCc+PC9zY3JpcHQ+CjxzY3JpcHQg
+        dHlwZT0ndGV4dC9qYXZhc2NyaXB0JyBzcmM9J2h0dHA6Ly93d3cuc2tlLnNr
+        L3dwLWNvbnRlbnQvdGhlbWVzL3NrZS9mcm9udGVuZC9qcy9ib290c3RyYXAu
+        anM/dmVyPTEuMCc+PC9zY3JpcHQ+CjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZh
+        c2NyaXB0JyBzcmM9J2h0dHA6Ly93d3cuc2tlLnNrL3dwLWNvbnRlbnQvdGhl
+        bWVzL3NrZS9mcm9udGVuZC9qcy9mcm9udGVuZF9zY3JpcHRzLmpzP3Zlcj0x
+        LjAnPjwvc2NyaXB0Pgo8c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCcg
+        c3JjPSdodHRwOi8vd3d3LnNrZS5zay93cC1jb250ZW50L3RoZW1lcy9za2Uv
+        ZnJvbnRlbmQvYW55dGhpbmdzbGlkZXIvanMvanF1ZXJ5LmFueXRoaW5nc2xp
+        ZGVyLmpzP3Zlcj0xLjAnPjwvc2NyaXB0PgogIDwvYm9keT4NCjwvaHRtbD4N
+        Cg0K
+    http_version: '1.1'
+    adapter_metadata:
       effective_url: http://www.ske.sk/category/aktuality/
-  recorded_at: Mon, 15 Jun 2015 14:35:06 GMT
+  recorded_at: Wed, 17 Jun 2015 13:46:37 GMT
 recorded_with: VCR 2.9.3

@@ -1,128 +1,202 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: http://www.ives.sk/registre/zoznamrnd.do?action=azzu&cisloStrany=99&locale=sk
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      User-Agent: 
+      string: ''
+    headers:
+      User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Fri, 12 Jun 2015 14:15:59 GMT
-      Server: 
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:47 GMT
+      Server:
       - Apache/2.2.22 (Debian)
-      Set-Cookie: 
-      - JSESSIONID=12BF15D18569F0A3C1D7CCE068A8EC39; Path=/
-      Vary: 
+      Set-Cookie:
+      - JSESSIONID=9F88F51FCE5D8A0024925EF20E5F9D11; Path=/
+      Vary:
       - Accept-Encoding
-      Content-Length: 
-      - "7426"
-      Content-Type: 
+      Content-Length:
+      - '7426'
+      Content-Type:
       - text/html;charset=UTF-8
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
-        \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
-        \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
-        \r\n\
-        \r\n \r\n \r\n \r\n\
-        \r\n\
-        \r\n\
-        <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
-        \r\n \r\n\
-        <!--\r\n\
-        <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-        -->\r\n\
-        <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-        </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\"> \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <h2>Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</h2>\r\n\
-        \r\n\
-        \r\n  <div class=\"znaky\">\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=0&amp;typ=U\">0-9</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=A&amp;typ=U\">A</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=B&amp;typ=U\">B</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=C&amp;typ=U\">C</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=D&amp;typ=U\">D</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=E&amp;typ=U\">E</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=F&amp;typ=U\">F</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=G&amp;typ=U\">G</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=H&amp;typ=U\">H</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=I&amp;typ=U\">I</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=J&amp;typ=U\">J</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=K&amp;typ=U\">K</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=L&amp;typ=U\">L</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=M&amp;typ=U\">M</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=N&amp;typ=U\">N</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=O&amp;typ=U\">O</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=P&amp;typ=U\">P</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=R&amp;typ=U\">R</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=S&amp;typ=U\">S</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=T&amp;typ=U\">T</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=U&amp;typ=U\">U</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=V&amp;typ=U\">V</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=Y&amp;typ=U\">Y</a>&nbsp;\r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=Z&amp;typ=U\">Z</a>&nbsp;    \r\n    |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azX&pa=>&amp;typ=U\">In\xC3\xA9</a>&nbsp;|\r\n  </div>\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <div class=\"msgerror\"></div>\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39\">Hlavn\xC3\xBD zoznam</a>\r\n\
-        |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
-        |</div>\r\n\
-        \r\n\
-        \r\n\
-        <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
-        \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=12BF15D18569F0A3C1D7CCE068A8EC39?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
-        \r\n\
-        &nbsp;\r\n\
-        <hr>\r\n \r\n\
-        \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
-        </html>\r\n\
-        \r\n"
-    http_version: "1.1"
-    adapter_metadata: 
+      string: !binary |-
+        DQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo8aHRtbCBsYW5nPSJlbiI+DQog
+        IDxoZWFkPg0KICAgIA0KICAgIDxsaW5rIHJlbD1zdHlsZXNoZWV0IHR5cGU9
+        InRleHQvY3NzIiBocmVmPSIuL3BhZ2VzL2luY2x1ZGVzL3N0eWxlLmNzcyI+
+        DQogICAgDQogICAgICANCiAgICANCiAgICANCiAgICA8VElUTEU+UmVnaXN0
+        ZXIgbmFkw6FjacOtIDwvVElUTEU+DQogICANCiAgICA8c2NyaXB0IFRZUEU9
+        InRleHQvamF2YXNjcmlwdCIgc3JjPSIuL3BhZ2VzL2luY2x1ZGVzL2Z1bmN0
+        aW9ucy5qcyIgPjwvc2NyaXB0Pg0KICA8L2hlYWQ+DQogIA0KICA8Qk9EWT4N
+        CiAgPCEtLSAgLy8gIE5FTUFaQVQgLSBrb250cm9sYSBmdW5rY25vc3RpIHJl
+        Z2lzdHJvdg0KICA8aDE+UmVnaXN0cmUgYSBldmlkZW5jaWU8L2gxPg0KICAt
+        LT4NCiAgDQogIDxicj4NCiAgICA8ZGl2IGNsYXNzPSJ0bXBEaXYiPg0KICAg
+        ICAgPGRpdiBpZD0ibGVmdCI+PGltZyBib3JkZXI9IjAiIHNyYz0iL3JlZ2lz
+        dHJlL3BhZ2VzL2ltYWdlcy9za196bmFrLmdpZiIgd2lkdGg9IjU4IiBoZWln
+        aHQ9IjcyIiBhbHQ9InpuYWsgU1IiPjwvZGl2Pg0KICAgICAgPGRpdiBpZD0i
+        cmlnaHQiPjxicj4NCiAgICAgIA0KICAgICAgICAgICA8YSBocmVmPSJsYW5n
+        LmRvP2xvY2FsZT1zayI+PGltZyBjbGFzcz0ibGFuZyIgc3JjPSIvcmVnaXN0
+        cmUvcGFnZXMvaW1hZ2VzL2xhbmdfc2sucG5nIiB0aXRsZT0iU0siPjwvYT4N
+        CiAgICAgICAgICAgPGJyPg0KCQkgICA8YSBocmVmPSJsYW5nLmRvP2xvY2Fs
+        ZT1lbiI+PGltZyBjbGFzcz0ibGFuZyIgc3JjPSIvcmVnaXN0cmUvcGFnZXMv
+        aW1hZ2VzL2xhbmdfZW4ucG5nIiB0aXRsZT0iRU4iPjwvYT4NCgkJICAgICAg
+        IDwhLS0gCQkgICAgICAgDQogICAgICAgICAgICAgIDxpbnB1dCB0eXBlPSJp
+        bWFnZSIgdmFsdWU9IlNLIiBzcmM9Ii9yZWdpc3RyZS9wYWdlcy9pbWFnZXMv
+        bGFuZ19zay5wbmciIHdpZHRoPSI0MCIgaGVpZ2h0PSIyMSIgYm9yZGVyPSIw
+        IiBhbHQ9IlNLIiBvbkNsaWNrPSJzZXRMYW5ndWFnZSgnc2snKSI+DQogICAg
+        ICAgICAgICAgIDxicj4NCiAgICAgICAgICAgICAgPGlucHV0IHR5cGU9Imlt
+        YWdlIiB2YWx1ZT0iRU4iIHNyYz0iL3JlZ2lzdHJlL3BhZ2VzL2ltYWdlcy9s
+        YW5nX2VuLnBuZyIgd2lkdGg9IjQwIiBoZWlnaHQ9IjIxIiBib3JkZXI9IjAi
+        IGFsdD0iRU4iIG9uQ2xpY2s9InNldExhbmd1YWdlKCdlbicpIj4NCiAgICAg
+        ICAgICAgICAtLT4NCiAgICAgICA8L2Rpdj4gICAgIA0KICAgICAgPGRpdiBp
+        ZD0ibWlkZGxlIj4NCiAgICAgIA0KICAgICAgDQogICAgICANCg0KDQogDQog
+        DQogDQoNCg0KPGgxPlJlZ2lzdGVyIG5hZMOhY2nDrSA8L2gxPg0KDQogDQo8
+        IS0tDQo8ZGl2IGNsYXNzPSJoTmFkcGlzM2kiPlNsdcW+YnUgemFiZXpwZcSN
+        dWplIE1pbmlzdGVyc3R2byB2bsO6dHJhIFNsb3ZlbnNrZWogcmVwdWJsaWt5
+        LCBzZWtjaWEgdmVyZWpuZWogc3Byw6F2eTxicj5EcmllxYhvdsOhIDIyLCA4
+        MjYgODYgQnJhdGlzbGF2YSAyOTwvZGl2PiANCi0tPg0KPGRpdiBjbGFzcz0i
+        aE5hZHBpczNpIj5aYWJlenBlxI11amUgTWluaXN0ZXJzdHZvIHZuw7p0cmEg
+        U2xvdmVuc2tlaiByZXB1Ymxpa3ksIHNla2NpYSB2ZXJlam5laiBzcHLDoXZ5
+        PGJyPkRyaWXFiG92w6EgMjIsIDgyNiA4NiBCcmF0aXNsYXZhIDI5PC9kaXY+
+        IA0KPC9kaXY+DQogICAgICA8ZGl2IGNsYXNzPSJjbGVhbmVyIj48L2Rpdj4N
+        CiAgICAgIDxocj4NCiAgICAgICZuYnNwOw0KICAgICAgPGRpdiBjbGFzcz0i
+        ZGl2Rm9ybSI+IA0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoN
+        Cg0KDQoNCg0KPGgyPkFiZWNlZG7DvSB6b3puYW0gbmFkw6FjacOtIC0gw7pw
+        bG7DvTwvaDI+DQoNCg0KICA8ZGl2IGNsYXNzPSJ6bmFreSI+DQogICAgfCZu
+        YnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25p
+        ZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249YXpY
+        JnBhPTAmYW1wO3R5cD1VIj4wLTk8L2E+Jm5ic3A7DQogICAgfCZuYnNwOzxh
+        IGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25pZD05Rjg4
+        RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249YXpYJnBhPUEm
+        YW1wO3R5cD1VIj5BPC9hPiZuYnNwOw0KICAgIHwmbmJzcDs8YSBocmVmPSIv
+        cmVnaXN0cmUvem96bmFtcm5kLmRvO2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVE
+        OEEwMDI0OTI1RUYyMEU1RjlEMTE/YWN0aW9uPWF6WCZwYT1CJmFtcDt0eXA9
+        VSI+QjwvYT4mbmJzcDsNCiAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJl
+        L3pvem5hbXJuZC5kbztqc2Vzc2lvbmlkPTlGODhGNTFGQ0U1RDhBMDAyNDky
+        NUVGMjBFNUY5RDExP2FjdGlvbj1helgmcGE9QyZhbXA7dHlwPVUiPkM8L2E+
+        Jm5ic3A7DQogICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3puYW1y
+        bmQuZG87anNlc3Npb25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVG
+        OUQxMT9hY3Rpb249YXpYJnBhPUQmYW1wO3R5cD1VIj5EPC9hPiZuYnNwOw0K
+        ICAgIHwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvem96bmFtcm5kLmRvO2pz
+        ZXNzaW9uaWQ9OUY4OEY1MUZDRTVEOEEwMDI0OTI1RUYyMEU1RjlEMTE/YWN0
+        aW9uPWF6WCZwYT1FJmFtcDt0eXA9VSI+RTwvYT4mbmJzcDsNCiAgICB8Jm5i
+        c3A7PGEgaHJlZj0iL3JlZ2lzdHJlL3pvem5hbXJuZC5kbztqc2Vzc2lvbmlk
+        PTlGODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2FjdGlvbj1helgm
+        cGE9RiZhbXA7dHlwPVUiPkY8L2E+Jm5ic3A7DQogICAgfCZuYnNwOzxhIGhy
+        ZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25pZD05Rjg4RjUx
+        RkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249YXpYJnBhPUcmYW1w
+        O3R5cD1VIj5HPC9hPiZuYnNwOw0KICAgIHwmbmJzcDs8YSBocmVmPSIvcmVn
+        aXN0cmUvem96bmFtcm5kLmRvO2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVEOEEw
+        MDI0OTI1RUYyMEU1RjlEMTE/YWN0aW9uPWF6WCZwYT1IJmFtcDt0eXA9VSI+
+        SDwvYT4mbmJzcDsNCiAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL3pv
+        em5hbXJuZC5kbztqc2Vzc2lvbmlkPTlGODhGNTFGQ0U1RDhBMDAyNDkyNUVG
+        MjBFNUY5RDExP2FjdGlvbj1helgmcGE9SSZhbXA7dHlwPVUiPkk8L2E+Jm5i
+        c3A7DQogICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQu
+        ZG87anNlc3Npb25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQx
+        MT9hY3Rpb249YXpYJnBhPUomYW1wO3R5cD1VIj5KPC9hPiZuYnNwOw0KICAg
+        IHwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvem96bmFtcm5kLmRvO2pzZXNz
+        aW9uaWQ9OUY4OEY1MUZDRTVEOEEwMDI0OTI1RUYyMEU1RjlEMTE/YWN0aW9u
+        PWF6WCZwYT1LJmFtcDt0eXA9VSI+SzwvYT4mbmJzcDsNCiAgICB8Jm5ic3A7
+        PGEgaHJlZj0iL3JlZ2lzdHJlL3pvem5hbXJuZC5kbztqc2Vzc2lvbmlkPTlG
+        ODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2FjdGlvbj1helgmcGE9
+        TCZhbXA7dHlwPVUiPkw8L2E+Jm5ic3A7DQogICAgfCZuYnNwOzxhIGhyZWY9
+        Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25pZD05Rjg4RjUxRkNF
+        NUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249YXpYJnBhPU0mYW1wO3R5
+        cD1VIj5NPC9hPiZuYnNwOw0KICAgIHwmbmJzcDs8YSBocmVmPSIvcmVnaXN0
+        cmUvem96bmFtcm5kLmRvO2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVEOEEwMDI0
+        OTI1RUYyMEU1RjlEMTE/YWN0aW9uPWF6WCZwYT1OJmFtcDt0eXA9VSI+Tjwv
+        YT4mbmJzcDsNCiAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL3pvem5h
+        bXJuZC5kbztqc2Vzc2lvbmlkPTlGODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBF
+        NUY5RDExP2FjdGlvbj1helgmcGE9TyZhbXA7dHlwPVUiPk88L2E+Jm5ic3A7
+        DQogICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87
+        anNlc3Npb25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9h
+        Y3Rpb249YXpYJnBhPVAmYW1wO3R5cD1VIj5QPC9hPiZuYnNwOw0KICAgIHwm
+        bmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvem96bmFtcm5kLmRvO2pzZXNzaW9u
+        aWQ9OUY4OEY1MUZDRTVEOEEwMDI0OTI1RUYyMEU1RjlEMTE/YWN0aW9uPWF6
+        WCZwYT1SJmFtcDt0eXA9VSI+UjwvYT4mbmJzcDsNCiAgICB8Jm5ic3A7PGEg
+        aHJlZj0iL3JlZ2lzdHJlL3pvem5hbXJuZC5kbztqc2Vzc2lvbmlkPTlGODhG
+        NTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2FjdGlvbj1helgmcGE9UyZh
+        bXA7dHlwPVUiPlM8L2E+Jm5ic3A7DQogICAgfCZuYnNwOzxhIGhyZWY9Ii9y
+        ZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25pZD05Rjg4RjUxRkNFNUQ4
+        QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249YXpYJnBhPVQmYW1wO3R5cD1V
+        Ij5UPC9hPiZuYnNwOw0KICAgIHwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUv
+        em96bmFtcm5kLmRvO2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVEOEEwMDI0OTI1
+        RUYyMEU1RjlEMTE/YWN0aW9uPWF6WCZwYT1VJmFtcDt0eXA9VSI+VTwvYT4m
+        bmJzcDsNCiAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL3pvem5hbXJu
+        ZC5kbztqc2Vzc2lvbmlkPTlGODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5
+        RDExP2FjdGlvbj1helgmcGE9ViZhbXA7dHlwPVUiPlY8L2E+Jm5ic3A7DQog
+        ICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNl
+        c3Npb25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rp
+        b249YXpYJnBhPVkmYW1wO3R5cD1VIj5ZPC9hPiZuYnNwOw0KICAgIHwmbmJz
+        cDs8YSBocmVmPSIvcmVnaXN0cmUvem96bmFtcm5kLmRvO2pzZXNzaW9uaWQ9
+        OUY4OEY1MUZDRTVEOEEwMDI0OTI1RUYyMEU1RjlEMTE/YWN0aW9uPWF6WCZw
+        YT1aJmFtcDt0eXA9VSI+WjwvYT4mbmJzcDsgICAgDQogICAgfCZuYnNwOzxh
+        IGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25pZD05Rjg4
+        RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249YXpYJnBhPT4m
+        YW1wO3R5cD1VIj5JbsOpPC9hPiZuYnNwO3wNCiAgPC9kaXY+DQoNCg0KDQo8
+        ZGl2IGNsYXNzPSJtc2dlcnJvciI+PC9kaXY+DQoNCg0KDQo8L2Rpdj4NCiAg
+        ICAgICZuYnNwOw0KICAgICAgPGhyPg0KICAgICAgIA0KDQoNCg0KDQoNCg0K
+        DQoNCg0KDQoNCg0KDQoNCg0KDQoNCjxkaXYgY2xhc3M9Im5hZHBpczMiPnwm
+        bmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvc3RhcnQuZG87anNlc3Npb25pZD05
+        Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMSI+SGxhdm7DvSB6b3pu
+        YW08L2E+DQp8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL3N0YXJ0cm5kLmRv
+        O2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVEOEEwMDI0OTI1RUYyMEU1RjlEMTEi
+        PsOadm9kPC9hPg0KICANCiAgICANCiAgICAgIHwmbmJzcDs8YSBocmVmPSIv
+        cmVnaXN0cmUvem96bmFtcm5kLmRvO2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVE
+        OEEwMDI0OTI1RUYyMEU1RjlEMTE/YWN0aW9uPWF6emEiPkFiZWNlZG7DvSB6
+        b3puYW0gbmFkw6FjacOtIC0gYWt0dcOhbG55PC9hPg0KICAgIA0KICAgICAg
+        fCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Np
+        b25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQxMT9hY3Rpb249
+        YXp6dSI+QWJlY2VkbsO9IHpvem5hbSBuYWTDoWNpw60gLSDDunBsbsO9PC9h
+        Pg0KICAgIA0KICANCnw8L2Rpdj4NCg0KDQo8c3BhbiBjbGFzcz0ibmFkcGlz
+        MyI+PGI+VnloxL5hZGHFpSBwb2TEvmE6PC9iPjwvc3Bhbj4NCg0KICA8c3Bh
+        biBjbGFzcz0ibmFkcGlzMyI+Jm5ic3A7DQogICAgDQogICAgICB8Jm5ic3A7
+        PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5kbztqc2Vzc2lvbmlkPTlG
+        ODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2FjdGlvbj1zaG93JmZv
+        cm11bGFyPW5hem92Ij5Ow6F6dnU8L2E+DQogICAgDQogICAgICB8Jm5ic3A7
+        PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5kbztqc2Vzc2lvbmlkPTlG
+        ODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2FjdGlvbj1zaG93JmZv
+        cm11bGFyPXNpZGxvIj5Tw61kbGE8L2E+DQogICAgDQogICAgICB8Jm5ic3A7
+        PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5kbztqc2Vzc2lvbmlkPTlG
+        ODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2FjdGlvbj1zaG93JmZv
+        cm11bGFyPXByYXZvcyI+UHLDoXZuaWNrZWogb3NvYnk8L2E+DQogICAgDQog
+        ICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5kbztq
+        c2Vzc2lvbmlkPTlGODhGNTFGQ0U1RDhBMDAyNDkyNUVGMjBFNUY5RDExP2Fj
+        dGlvbj1zaG93JmZvcm11bGFyPWZ5em9zIj5GeXppY2tlaiBvc29ieTwvYT4N
+        CiAgICANCiAgICAgIHwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvaGxhZGF0
+        cm5kLmRvO2pzZXNzaW9uaWQ9OUY4OEY1MUZDRTVEOEEwMDI0OTI1RUYyMEU1
+        RjlEMTE/YWN0aW9uPXNob3cmZm9ybXVsYXI9aWNvIj5JxIxPPC9hPg0KICAg
+        IA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS9obGFkYXRybmQu
+        ZG87anNlc3Npb25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5MjVFRjIwRTVGOUQx
+        MT9hY3Rpb249c2hvdyZmb3JtdWxhcj11Y2VsIj7DmsSNZWx1PC9hPg0KICAg
+        IA0KICB8PC9zcGFuPg0KDQoNCg0KDQogIDxkaXYgY2xhc3M9Im5hZHBpczMi
+        PiZuYnNwOw0KICAgIA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3Ry
+        ZS9vcmVnaXN0cmkuZG87anNlc3Npb25pZD05Rjg4RjUxRkNFNUQ4QTAwMjQ5
+        MjVFRjIwRTVGOUQxMT9yZWdpc3Rlcj1ybmQiPkluZm9ybcOhY2llIG8gcmVn
+        aXN0csOhY2lpPC9hPg0KICAgIA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9y
+        ZWdpc3RyZS9uYXZvZC5kbztqc2Vzc2lvbmlkPTlGODhGNTFGQ0U1RDhBMDAy
+        NDkyNUVGMjBFNUY5RDExP3JlZ2lzdGVyPXJuZCI+TsOhdm9kIG5hIHBvdcW+
+        w612YW5pZSByZWdpc3RyYTwvYT4NCiAgICANCiAgfDwvZGl2Pg0KDQombmJz
+        cDsNCjxocj4NCiANCg0KICAgICAgJm5ic3A7DQogICAgICA8ZGl2IGNsYXNz
+        PSJkZWZUZXh0Q2VudGVyIj4NCiAgICAgIHwmbmJzcDs8YSBocmVmPSJtYWls
+        dG86b3Z2cy5zdnNAbXZzci52cy5zayI+U3Byw6F2Y2Egb2JzYWh1IChNViBT
+        Uik8L2E+Jm5ic3A7fA0KICAgICAgJm5ic3A7PGEgaHJlZj0iaHR0cDovL3d3
+        dy5pdmVzLnNrIiB0YXJnZXQ9Il9ibGFuayI+VGVjaG5pY2vDvSBwcmV2w6Fk
+        emtvdmF0ZcS+IChJVmVTKTwvYT4mbmJzcDt8DQogICAgICAmbmJzcDs8YSBo
+        cmVmPSIuL3BhZ2VzL3Z5aGxhc2VuaWUuaHRtbCIgdGFyZ2V0PSJfYmxhbmsi
+        PlZ5aGzDoXNlbmllIG8gcHLDrXN0dXBub3N0aTwvYT4mbmJzcDt8DQogICAg
+        PC9kaXY+DQogICAgPC9kaXY+DQogIDwvQk9EWT4NCiAgDQo8L2h0bWw+DQoN
+        Cg==
+    http_version: '1.1'
+    adapter_metadata:
       effective_url: http://www.ives.sk/registre/zoznamrnd.do?action=azzu&cisloStrany=99&locale=sk
-  recorded_at: Fri, 12 Jun 2015 14:15:59 GMT
+  recorded_at: Wed, 17 Jun 2015 13:46:47 GMT
 recorded_with: VCR 2.9.3

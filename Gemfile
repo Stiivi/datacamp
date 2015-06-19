@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.21'
+ruby '2.2.2'
+gem 'rails', '3.2.22'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -21,6 +22,7 @@ gem 'globalize', '~> 3.1.0' # version for rails 3
 gem 'paperclip'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'will_paginate'
+gem 'delayed_job_active_record'
 gem 'delayed_job'
 gem 'nokogiri'
 gem 'typhoeus'
@@ -33,6 +35,7 @@ gem 'gabba'
 gem 'rollbar'
 
 gem 'unicorn'
+gem 'raindrops', '~> 0.13.0' # for unicorn, special version for ruby 2.2.2
 gem 'rack-rewrite'
 
 gem 'roadie', '~> 2.4.0' # version for rails 3
@@ -41,6 +44,7 @@ gem 'thin'
 
 # this gems should be removed in future
 gem 'dynamic_form'
+gem 'test-unit', '~> 3.0' # ruby 2.2.2 needs this for rails 3.2
 
 group :development do
   gem 'mailcatcher', '~> 0.5.0' # version for rails 3

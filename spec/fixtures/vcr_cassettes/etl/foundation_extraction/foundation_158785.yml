@@ -1,116 +1,315 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158785&locale=sk
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      User-Agent: 
+      string: ''
+    headers:
+      User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
-      - Fri, 12 Jun 2015 14:11:46 GMT
-      Server: 
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:47 GMT
+      Server:
       - Apache/2.2.22 (Debian)
-      Set-Cookie: 
-      - JSESSIONID=86F86494B01D0176C81B3225EE75099B; Path=/
-      Vary: 
+      Set-Cookie:
+      - JSESSIONID=7FBC234AA0A6D16CACC81CE4E994B24E; Path=/
+      Vary:
       - Accept-Encoding
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      Content-Type: 
+      Content-Type:
       - text/html;charset=UTF-8
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: "\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <html lang=\"en\">\r\n  <head>\r\n    \r\n    <link rel=stylesheet type=\"text/css\" href=\"./pages/includes/style.css\">\r\n    \r\n      \r\n    \r\n    \r\n    <TITLE>Register nad\xC3\xA1ci\xC3\xAD </TITLE>\r\n   \r\n    <script TYPE=\"text/javascript\" src=\"./pages/includes/functions.js\" ></script>\r\n  </head>\r\n  \r\n  <BODY>\r\n  <!--  //  NEMAZAT - kontrola funkcnosti registrov\r\n  <h1>Registre a evidencie</h1>\r\n  -->\r\n  \r\n  <br>\r\n    <div class=\"tmpDiv\">\r\n      <div id=\"left\"><img border=\"0\" src=\"/registre/pages/images/sk_znak.gif\" width=\"58\" height=\"72\" alt=\"znak SR\"></div>\r\n      <div id=\"right\"><br>\r\n      \r\n           <a href=\"lang.do?locale=sk\"><img class=\"lang\" src=\"/registre/pages/images/lang_sk.png\" title=\"SK\"></a>\r\n           <br>\r\n\
-        \t\t   <a href=\"lang.do?locale=en\"><img class=\"lang\" src=\"/registre/pages/images/lang_en.png\" title=\"EN\"></a>\r\n\
-        \t\t       <!-- \t\t       \r\n              <input type=\"image\" value=\"SK\" src=\"/registre/pages/images/lang_sk.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"SK\" onClick=\"setLanguage('sk')\">\r\n              <br>\r\n              <input type=\"image\" value=\"EN\" src=\"/registre/pages/images/lang_en.png\" width=\"40\" height=\"21\" border=\"0\" alt=\"EN\" onClick=\"setLanguage('en')\">\r\n             -->\r\n       </div>     \r\n      <div id=\"middle\">\r\n      \r\n      \r\n      \r\n\
-        \r\n\
-        \r\n \r\n \r\n \r\n\
-        \r\n\
-        \r\n\
-        <h1>Register nad\xC3\xA1ci\xC3\xAD </h1>\r\n\
-        \r\n \r\n\
-        <!--\r\n\
-        <div class=\"hNadpis3i\">Slu\xC5\xBEbu zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-        -->\r\n\
-        <div class=\"hNadpis3i\">Zabezpe\xC4\x8Duje Ministerstvo vn\xC3\xBAtra Slovenskej republiky, sekcia verejnej spr\xC3\xA1vy<br>Drie\xC5\x88ov\xC3\xA1 22, 826 86 Bratislava 29</div> \r\n\
-        </div>\r\n      <div class=\"cleaner\"></div>\r\n      <hr>\r\n      &nbsp;\r\n      <div class=\"divForm\">\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n  <h2>V\xC3\xBDpis z registra</h2>\r\n  <div class=\"nadpis3i\">Tento v\xC3\xBDpis m\xC3\xA1 len informat\xC3\xADvny charakter a nie je pou\xC5\xBEite\xC4\xBEn\xC3\xBD pre pr\xC3\xA1vne \xC3\xBAkony.</div>\r\n  <br>  \r\n\
-        \r\n   <table>\r\n    <tr>\r\n      <td class=\"defTextTable\" style=\"width:200px;\"><b>Registra\xC4\x8Dn\xC3\xA9 \xC4\x8D\xC3\xADslo</b></td>\r\n      <td class=\"defTextTable\">203/Na-2002/798</td>\r\n    </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>N\xC3\xA1zov nad\xC3\xA1cie</b></td>\r\n    <td class=\"defTextTable\" >&quot;Nad\xC3\xA1cia ACADEMIA NOVA&quot;</td>\r\n  </tr>\r\n\
-        \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>S\xC3\xADdlo</b></td>\r\n    <td class=\"defTextTable\" >Vent\xC3\xBArska 7, 81101 Bratislava - Star\xC3\xA9 Mesto, Slovensk\xC3\xA1 republika</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>I\xC4\x8CO</b></td>\r\n    <td class=\"defTextTable\" >31807682</td>\r\n  </tr>\r\n  \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum vzniku</b></td>\r\n    <td class=\"defTextTable\" >29.03.2005</td>\r\n  </tr>\r\n  \r\n   <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\"><b>D\xC3\xA1tum z\xC3\xA1pisu</b></td>\r\n    <td class=\"defTextTable\" >29.03.2005</td>\r\n  </tr>\r\n  \r\n  \r\n    \r\n    \r\n  \r\n\
-        \r\n\
-        \r\n\
-        \r\n     <tr>\r\n       <td class=\"defTextTable\" style=\"width:200px;\"><b>Aktu\xC3\xA1lna hodnota nada\xC4\x8Dn\xC3\xA9ho imania</b></td>\r\n       <td class=\"defTextTable\" >&nbsp;7000 EUR   &nbsp;</td>\r\n     </tr>\r\n\
-        \r\n  <tr>\r\n    <td class=\"defTextTable\" style=\"width:200px;\">&nbsp;</td>\r\n    <td class=\"defTextTable\" >&nbsp;</td>\r\n  </tr>\r\n  \r\n \r\n   <tr><td class=\"defTextTable\" valign=\"top\"><b>Zakladatelia </b></td>\r\n        \r\n        <td>\r\n           <table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n   \r\n          \r\n       \r\n       \r\n         <tr> \r\n                   <td class=\"defTextTable\" width =\"50%\">\r\n                        Ing. Slavom\xC3\xADr Hatina \r\n                        <br/>Strm\xC3\xBD vr\xC5\xA1ok 141, 84106 Bratislava\r\n                   </td>  \r\n                   <td valign=\"top\" class=\"defTextTable\" nowrap><b>Hodnota majetkov\xC3\xA9ho vkladu pri zalo\xC5\xBEen\xC3\xAD:</b>\r\n                   <br/>Predmet:&nbsp;Pe\xC5\x88a\xC5\xBEn\xC3\xA9 prostriedky</td>\r\n                   <td valign=\"top\" align = \"left\" class=\"defTextTable\" nowrap>&nbsp;6638.78 EUR\r\n                   </td>  \r\n       </tr>  \r\n         \r\n    \r\n    \r\n     </table>\r\n   </td>\r\n  </tr>\r\n\
-        \r\n\
-        \r\n <tr><td>&nbsp;</td></tr>\r\n \r\n  \r\n  \r\n   \r\n    <tr>\r\n      <td class=\"defTextTable\" valign=\"TOP\"><b>\xC5\xA0tatut\xC3\xA1rny organ:&nbsp;Spr\xC3\xA1vca</b></td>\r\n        \r\n       <td>   \r\n         <table cellpadding=\"0\" cellspacing=\"0\" width =\"100%\">\r\n                  \r\n                    <tr>  \r\n\
-        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">doc. JUDr.  J\xC3\xBAlius Kov\xC3\xA1\xC4\x8D, CSc.\r\n                        <br/>H. Meli\xC4\x8Dkovej 14, 84105 Bratislava\r\n                        </td> \r\n\
-        \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">29.03.2005</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">11.01.2007</td>                 \r\n                   </tr>     \r\n                 \r\n                    <tr>  \r\n\
-        \r\n                        <td class=\"defTextTable\" align =\"left\"  width =\"50%\">Ing. O\xC4\xBEga Ko\xC5\x88uchov\xC3\xA1\r\n                        <br/>Ondavsk\xC3\xA1 2, 82108 Bratislava\r\n                        </td> \r\n\
-        \r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Od:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\">11.01.2007</td>\r\n                        <td valign=\"top\" align=\"left\" width =\"5%\" class=\"defTextTable\"><b>Do:</b></td>\r\n                        <td valign=\"top\" align=\"left\" width =\"20%\" class=\"defTextTable\"></td>                 \r\n                   </tr>     \r\n                 \r\n         </table>\r\n       </td>\r\n    </tr> \r\n    <tr><td>&nbsp;</td></tr>\r\n   \r\n        \r\n    <tr>\r\n      <td class=\"defTextTable\"  valign=\"TOP\"><b>\xC3\x9A\xC4\x8Del nad\xC3\xA1cie</b></td>\r\n      <td class=\"defTextTable\"  colspan=\"5\">\r\n    \r\n      \r\n        <div>       \r\n          <span class=\"cell\">podporova\xC5\xA5 vzdel\xC3\xA1vacie a kult\xC3\xBArne aktivity, v\xC3\xBDskum a v\xC3\xBDvoj najm\xC3\xA4:\r</br>- v\xC5\xA1estrann\xC3\xBD rozvoj vysoko\xC5\xA1kolsk\xC3\xA9ho vzdel\xC3\xA1vania, vedeck\xC3\xA9ho b\xC3\xA1dania a medzin\xC3\xA1rodnej spolupr\xC3\xA1ce,\r</br>- systematick\xC3\xBD kvalifika\xC4\x8Dn\xC3\xBD rast vysoko\xC5\xA1kolsk\xC3\xBDch pedag\xC3\xB3gov a pracovn\xC3\xADkov,\r</br>- \xC5\xA1tudijn\xC3\xA9 a odborn\xC3\xA9 st\xC3\xA1\xC5\xBEe a pobyty doma i v zahrani\xC4\x8D\xC3\xAD,\r</br>- soci\xC3\xA1lnu stabiliz\xC3\xA1ciu \xC5\xA1tudentov i pedag\xC3\xB3gov poskytovan\xC3\xADm \xC5\xA1tipendi\xC3\xAD, p\xC3\xB4\xC5\xBEi\xC4\x8Diek a dlhodob\xC3\xBDch \xC3\xBAverov,\r</br>- nadv\xC3\xA4zovanie kontaktov s dom\xC3\xA1cimi i zahrani\xC4\x8Dn\xC3\xBDmi univerzitami a vedeck\xC3\xBDmi in\xC5\xA1tit\xC3\xBAciami,\r</br>- vytv\xC3\xA1ranie priestoru pre komunik\xC3\xA1ciu a spolupr\xC3\xA1cu medzi jednotliv\xC3\xBDmi zlo\xC5\xBEkami spolo\xC4\x8Densk\xC3\xA9ho, kult\xC3\xBArneho, vedeck\xC3\xA9ho a hospod\xC3\xA1rskeho diania,\r</br>- iniciat\xC3\xADvy posil\xC5\x88uj\xC3\xBAce princ\xC3\xADpy ob\xC4\x8Dianskej slobody a pr\xC3\xA1vneho \xC5\xA1t\xC3\xA1tu,\r</br>- vytv\xC3\xA1ranie informa\xC4\x8Dn\xC3\xBDch datab\xC3\xA1z, tvorbu analytick\xC3\xBDch \xC5\xA1t\xC3\xBAdi\xC3\xAD v oblasti vzdel\xC3\xA1vania a v\xC3\xBDskumu,\r</br>- projekty v oblasti fondov E\xC3\x9A za \xC3\xBA\xC4\x8Delom skvalitnenia \xC3\xBArovne vysoko\xC5\xA1kolsk\xC3\xA9ho vzdel\xC3\xA1vania a vedeck\xC3\xA9ho v\xC3\xBDskumu na univerzit\xC3\xA1ch,\r</br>- organizovanie kontaktn\xC3\xBDch stretnut\xC3\xAD, rokovan\xC3\xAD, konferenci\xC3\xAD a kongresov,\r</br>- vydavate\xC4\xBEsk\xC3\xBA aktivitu jednotliv\xC3\xBDch ed\xC3\xADci\xC3\xAD vysoko\xC5\xA1kolsk\xC3\xBDch u\xC4\x8Debn\xC3\xADc, pom\xC3\xB4cok, odborn\xC3\xBDch monografi\xC3\xAD a \xC4\x8Dasopisov,\r</br>- n\xC3\xA1kup zahrani\xC4\x8Dnej a dom\xC3\xA1cej odbornej literat\xC3\xBAry a \xC4\x8Dasopisov,\r</br>- investi\xC4\x8Dn\xC3\xA9 z\xC3\xA1mery v z\xC3\xA1ujme z\xC3\xADskania vhodn\xC3\xBDch priestorov pre zabezpe\xC4\x8Denie vysoko\xC5\xA1kolskej v\xC3\xBDu\xC4\x8Dby, vedeck\xC3\xA9ho b\xC3\xA1dania a intern\xC3\xA1tneho ubytovania \xC5\xA1tudentov,\r</br>- \xC5\xA1portov\xC3\xA9 a rekrea\xC4\x8Dn\xC3\xA9 aktivity \xC5\xA1tudentov a pedag\xC3\xB3gov vr\xC3\xA1tane ich \xC5\xA1portov\xC3\xBDch klubov,\r</br>- v\xC5\xA1estrann\xC3\xBD rozvoj kult\xC3\xBAry, ochranu kult\xC3\xBArnych hodn\xC3\xB4t,\r</br>- kult\xC3\xBArno-spolo\xC4\x8Densk\xC3\xA9 aktivity a prezent\xC3\xA1cie, usporad\xC3\xBAvanie konferenci\xC3\xAD a v\xC3\xBDstav,\r</br>- osoby a in\xC5\xA1tit\xC3\xBAcie, ktor\xC3\xA9 rozv\xC3\xADjaj\xC3\xBA alebo zabezpe\xC4\x8Duj\xC3\xBA kult\xC3\xBArne aktivity, a to investorskou, materi\xC3\xA1lnou, finan\xC4\x8Dnou, poradenskou a inou formou,\r</br>- rozvoj v oblasti zdravotn\xC3\xADctva a podpora investi\xC4\x8Dn\xC3\xBDch projektov za \xC3\xBA\xC4\x8Delom skvalitnenia  poskytovania zdravotnej starostlivosti,\r</br>- zdravotn\xC3\xBA starostlivos\xC5\xA5 a vzdel\xC3\xA1vanie hendikepovan\xC3\xBDch det\xC3\xAD a ml\xC3\xA1de\xC5\xBEe,\r</br>- vytv\xC3\xA1ranie priazniv\xC3\xBDch podmienok pre poskytovanie zdravotnej starostlivosti a ochrany zdravia pre zdrav\xC3\xBD sp\xC3\xB4sob \xC5\xBEivota pomocou finan\xC4\x8Dn\xC3\xBDch a in\xC3\xBDch invest\xC3\xADci\xC3\xAD,\r</br>- realiz\xC3\xA1ciu humanit\xC3\xA1rn\xC3\xBDch a charitat\xC3\xADvnych cie\xC4\xBEov,\r</br>- ochranu a tvorbu \xC5\xBEivotn\xC3\xA9ho prostredia,\r</br>- aktivity zameran\xC3\xA9 na pomoc zdravotne postihnut\xC3\xBDm ob\xC4\x8Danom a zdravotn\xC3\xADckym zariadeniam,\r</br>- zria\xC4\x8Fovanie a budovanie zdravotn\xC3\xADckych zariaden\xC3\xAD pre deti a dospel\xC3\xBDch a zariaden\xC3\xAD s charakterom poskytovania zdravotn\xC3\xADckej starostlivosti,\r</br>- vytv\xC3\xA1ranie podmienok pre vznik centier v\xC3\xBDskumu a v\xC3\xBDvoja, transferu nov\xC3\xBDch technol\xC3\xB3gi\xC3\xAD a inov\xC3\xA1ci\xC3\xAD zabezpe\xC4\x8Duj\xC3\xBAcich v\xC3\xBDvoj nov\xC3\xBDch v\xC3\xBDrobkov, technologick\xC3\xBDch procesov a sk\xC3\xBA\xC5\xA1obnej techniky,\r</br>- posilnenie projek\xC4\x8Dno-dod\xC3\xA1vate\xC4\xBEsk\xC3\xBDch, sk\xC3\xBA\xC5\xA1obn\xC3\xBDch a servisn\xC3\xBDch kapac\xC3\xADt pre obory automatiza\xC4\x8Dnej a robotickej techniky a komponentov pre ich stavbu,\r</br>v\xC3\xBDskum a v\xC3\xBDvoj v oblasti pr\xC3\xADrodn\xC3\xBDch a technick\xC3\xBDch vied, so zameran\xC3\xADm najm\xC3\xA4 na oblas\xC5\xA5 materi\xC3\xA1lov\xC3\xBDch technol\xC3\xB3gi\xC3\xAD a nanotechnol\xC3\xB3gi\xC3\xAD, optomechaniky a laserov\xC3\xBDch technol\xC3\xB3gi\xC3\xAD,\r</br>- v\xC3\xBDvoj prototypov a pilotn\xC3\xBDch projektov,\r</br>- sk\xC3\xBA\xC5\xA1obn\xC3\xBA v\xC3\xBDrobu a testovanie v\xC3\xBDrobkov, postupov a slu\xC5\xBEieb,\r</br>- proces zlep\xC5\xA1ovania kvality vzdel\xC3\xA1vac\xC3\xADch a tr\xC3\xA9ningov\xC3\xBDch programov v oblasti pr\xC3\xADrodn\xC3\xBDch a technick\xC3\xBDch vied,\r</br>- pr\xC3\xADprava a koordin\xC3\xA1cia spolo\xC4\x8Dn\xC3\xBDch v\xC3\xBDskumn\xC3\xBDch a rozvojov\xC3\xBDch projektov pre tuzemsk\xC3\xA9 a zahrani\xC4\x8Dn\xC3\xA9 grantov\xC3\xA9 programy, \xC5\xA1t\xC3\xA1tne a eur\xC3\xB3pske podporn\xC3\xA9 fondy,\r</br>- koordin\xC3\xA1cia spolo\xC4\x8Dn\xC3\xBDch aktiv\xC3\xADt v eur\xC3\xB3pskych technologick\xC3\xBDch platform\xC3\xA1ch pre ich vyu\xC5\xBEitie na rozvoj v\xC3\xBDskumu a v\xC3\xBDvoja  a na rozvoj podnikate\xC4\xBEsk\xC3\xA9ho prostredia formou spolupr\xC3\xA1ce so zahrani\xC4\x8Dn\xC3\xBDmi partnermi,\r</br>- vytv\xC3\xA1ranie platformy pre efekt\xC3\xADvnu spolupr\xC3\xA1cu medzi region\xC3\xA1lnymi in\xC5\xA1tit\xC3\xBAciami a podnikate\xC4\xBEsk\xC3\xBDmi a univerzitn\xC3\xBDmi pracoviskami v rozvoji inov\xC3\xA1ci\xC3\xAD a zamestnanosti.\r</br>\r</br>\r</br>\r</br></span>\r\n        </div>\r\n      \r\n    \r\n    </td></tr>\r\n \r\n  \r\n\
-        </table>\r\n  <p class=\"btnCenter\"><a href=\"javascript:history.go(-1)\">Sp\xC3\xA4\xC5\xA5</a></p>\r\n  \r\n\
-        </div>\r\n      &nbsp;\r\n      <hr>\r\n       \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        <div class=\"nadpis3\">|&nbsp;<a href=\"/registre/start.do;jsessionid=86F86494B01D0176C81B3225EE75099B\">Hlavn\xC3\xBD zoznam</a>\r\n\
-        |&nbsp;<a href=\"/registre/startrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B\">\xC3\x9Avod</a>\r\n  \r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=azza\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - aktu\xC3\xA1lny</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/zoznamrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=azzu\">Abecedn\xC3\xBD zoznam nad\xC3\xA1ci\xC3\xAD - \xC3\xBApln\xC3\xBD</a>\r\n    \r\n  \r\n\
-        |</div>\r\n\
-        \r\n\
-        \r\n\
-        <span class=\"nadpis3\"><b>Vyh\xC4\xBEada\xC5\xA5 pod\xC4\xBEa:</b></span>\r\n\
-        \r\n  <span class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=nazov\">N\xC3\xA1zvu</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=sidlo\">S\xC3\xADdla</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=pravos\">Pr\xC3\xA1vnickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=fyzos\">Fyzickej osoby</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=ico\">I\xC4\x8CO</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/hladatrnd.do;jsessionid=86F86494B01D0176C81B3225EE75099B?action=show&formular=ucel\">\xC3\x9A\xC4\x8Delu</a>\r\n    \r\n  |</span>\r\n\
-        \r\n\
-        \r\n\
-        \r\n\
-        \r\n  <div class=\"nadpis3\">&nbsp;\r\n    \r\n      |&nbsp;<a href=\"/registre/oregistri.do;jsessionid=86F86494B01D0176C81B3225EE75099B?register=rnd\">Inform\xC3\xA1cie o registr\xC3\xA1cii</a>\r\n    \r\n      |&nbsp;<a href=\"/registre/navod.do;jsessionid=86F86494B01D0176C81B3225EE75099B?register=rnd\">N\xC3\xA1vod na pou\xC5\xBE\xC3\xADvanie registra</a>\r\n    \r\n  |</div>\r\n\
-        \r\n\
-        &nbsp;\r\n\
-        <hr>\r\n \r\n\
-        \r\n      &nbsp;\r\n      <div class=\"defTextCenter\">\r\n      |&nbsp;<a href=\"mailto:ovvs.svs@mvsr.vs.sk\">Spr\xC3\xA1vca obsahu (MV SR)</a>&nbsp;|\r\n      &nbsp;<a href=\"http://www.ives.sk\" target=\"_blank\">Technick\xC3\xBD prev\xC3\xA1dzkovate\xC4\xBE (IVeS)</a>&nbsp;|\r\n      &nbsp;<a href=\"./pages/vyhlasenie.html\" target=\"_blank\">Vyhl\xC3\xA1senie o pr\xC3\xADstupnosti</a>&nbsp;|\r\n    </div>\r\n    </div>\r\n  </BODY>\r\n  \r\n\
-        </html>\r\n\
-        \r\n"
-    http_version: "1.1"
-    adapter_metadata: 
+      string: !binary |-
+        DQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo8aHRtbCBsYW5nPSJlbiI+DQog
+        IDxoZWFkPg0KICAgIA0KICAgIDxsaW5rIHJlbD1zdHlsZXNoZWV0IHR5cGU9
+        InRleHQvY3NzIiBocmVmPSIuL3BhZ2VzL2luY2x1ZGVzL3N0eWxlLmNzcyI+
+        DQogICAgDQogICAgICANCiAgICANCiAgICANCiAgICA8VElUTEU+UmVnaXN0
+        ZXIgbmFkw6FjacOtIDwvVElUTEU+DQogICANCiAgICA8c2NyaXB0IFRZUEU9
+        InRleHQvamF2YXNjcmlwdCIgc3JjPSIuL3BhZ2VzL2luY2x1ZGVzL2Z1bmN0
+        aW9ucy5qcyIgPjwvc2NyaXB0Pg0KICA8L2hlYWQ+DQogIA0KICA8Qk9EWT4N
+        CiAgPCEtLSAgLy8gIE5FTUFaQVQgLSBrb250cm9sYSBmdW5rY25vc3RpIHJl
+        Z2lzdHJvdg0KICA8aDE+UmVnaXN0cmUgYSBldmlkZW5jaWU8L2gxPg0KICAt
+        LT4NCiAgDQogIDxicj4NCiAgICA8ZGl2IGNsYXNzPSJ0bXBEaXYiPg0KICAg
+        ICAgPGRpdiBpZD0ibGVmdCI+PGltZyBib3JkZXI9IjAiIHNyYz0iL3JlZ2lz
+        dHJlL3BhZ2VzL2ltYWdlcy9za196bmFrLmdpZiIgd2lkdGg9IjU4IiBoZWln
+        aHQ9IjcyIiBhbHQ9InpuYWsgU1IiPjwvZGl2Pg0KICAgICAgPGRpdiBpZD0i
+        cmlnaHQiPjxicj4NCiAgICAgIA0KICAgICAgICAgICA8YSBocmVmPSJsYW5n
+        LmRvP2xvY2FsZT1zayI+PGltZyBjbGFzcz0ibGFuZyIgc3JjPSIvcmVnaXN0
+        cmUvcGFnZXMvaW1hZ2VzL2xhbmdfc2sucG5nIiB0aXRsZT0iU0siPjwvYT4N
+        CiAgICAgICAgICAgPGJyPg0KCQkgICA8YSBocmVmPSJsYW5nLmRvP2xvY2Fs
+        ZT1lbiI+PGltZyBjbGFzcz0ibGFuZyIgc3JjPSIvcmVnaXN0cmUvcGFnZXMv
+        aW1hZ2VzL2xhbmdfZW4ucG5nIiB0aXRsZT0iRU4iPjwvYT4NCgkJICAgICAg
+        IDwhLS0gCQkgICAgICAgDQogICAgICAgICAgICAgIDxpbnB1dCB0eXBlPSJp
+        bWFnZSIgdmFsdWU9IlNLIiBzcmM9Ii9yZWdpc3RyZS9wYWdlcy9pbWFnZXMv
+        bGFuZ19zay5wbmciIHdpZHRoPSI0MCIgaGVpZ2h0PSIyMSIgYm9yZGVyPSIw
+        IiBhbHQ9IlNLIiBvbkNsaWNrPSJzZXRMYW5ndWFnZSgnc2snKSI+DQogICAg
+        ICAgICAgICAgIDxicj4NCiAgICAgICAgICAgICAgPGlucHV0IHR5cGU9Imlt
+        YWdlIiB2YWx1ZT0iRU4iIHNyYz0iL3JlZ2lzdHJlL3BhZ2VzL2ltYWdlcy9s
+        YW5nX2VuLnBuZyIgd2lkdGg9IjQwIiBoZWlnaHQ9IjIxIiBib3JkZXI9IjAi
+        IGFsdD0iRU4iIG9uQ2xpY2s9InNldExhbmd1YWdlKCdlbicpIj4NCiAgICAg
+        ICAgICAgICAtLT4NCiAgICAgICA8L2Rpdj4gICAgIA0KICAgICAgPGRpdiBp
+        ZD0ibWlkZGxlIj4NCiAgICAgIA0KICAgICAgDQogICAgICANCg0KDQogDQog
+        DQogDQoNCg0KPGgxPlJlZ2lzdGVyIG5hZMOhY2nDrSA8L2gxPg0KDQogDQo8
+        IS0tDQo8ZGl2IGNsYXNzPSJoTmFkcGlzM2kiPlNsdcW+YnUgemFiZXpwZcSN
+        dWplIE1pbmlzdGVyc3R2byB2bsO6dHJhIFNsb3ZlbnNrZWogcmVwdWJsaWt5
+        LCBzZWtjaWEgdmVyZWpuZWogc3Byw6F2eTxicj5EcmllxYhvdsOhIDIyLCA4
+        MjYgODYgQnJhdGlzbGF2YSAyOTwvZGl2PiANCi0tPg0KPGRpdiBjbGFzcz0i
+        aE5hZHBpczNpIj5aYWJlenBlxI11amUgTWluaXN0ZXJzdHZvIHZuw7p0cmEg
+        U2xvdmVuc2tlaiByZXB1Ymxpa3ksIHNla2NpYSB2ZXJlam5laiBzcHLDoXZ5
+        PGJyPkRyaWXFiG92w6EgMjIsIDgyNiA4NiBCcmF0aXNsYXZhIDI5PC9kaXY+
+        IA0KPC9kaXY+DQogICAgICA8ZGl2IGNsYXNzPSJjbGVhbmVyIj48L2Rpdj4N
+        CiAgICAgIDxocj4NCiAgICAgICZuYnNwOw0KICAgICAgPGRpdiBjbGFzcz0i
+        ZGl2Rm9ybSI+DQoNCg0KDQoNCg0KDQogIDxoMj5Ww71waXMgeiByZWdpc3Ry
+        YTwvaDI+DQogIDxkaXYgY2xhc3M9Im5hZHBpczNpIj5UZW50byB2w71waXMg
+        bcOhIGxlbiBpbmZvcm1hdMOtdm55IGNoYXJha3RlciBhIG5pZSBqZSBwb3XF
+        vml0ZcS+bsO9IHByZSBwcsOhdm5lIMO6a29ueS48L2Rpdj4NCiAgPGJyPiAg
+        DQoNCiAgIDx0YWJsZT4NCiAgICA8dHI+DQogICAgICA8dGQgY2xhc3M9ImRl
+        ZlRleHRUYWJsZSIgc3R5bGU9IndpZHRoOjIwMHB4OyI+PGI+UmVnaXN0cmHE
+        jW7DqSDEjcOtc2xvPC9iPjwvdGQ+DQogICAgICA8dGQgY2xhc3M9ImRlZlRl
+        eHRUYWJsZSI+MjAzL05hLTIwMDIvNzk4PC90ZD4NCiAgICA8L3RyPg0KICAN
+        CiAgPHRyPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiBzdHlsZT0i
+        d2lkdGg6MjAwcHg7Ij48Yj5Ow6F6b3YgbmFkw6FjaWU8L2I+PC90ZD4NCiAg
+        ICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgPiZxdW90O05hZMOhY2lhIEFD
+        QURFTUlBIE5PVkEmcXVvdDs8L3RkPg0KICA8L3RyPg0KDQogICA8dHI+DQog
+        ICAgPHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiIHN0eWxlPSJ3aWR0aDoyMDBw
+        eDsiPjxiPlPDrWRsbzwvYj48L3RkPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4
+        dFRhYmxlIiA+VmVudMO6cnNrYSA3LCA4MTEwMSBCcmF0aXNsYXZhIC0gU3Rh
+        csOpIE1lc3RvLCBTbG92ZW5za8OhIHJlcHVibGlrYTwvdGQ+DQogIDwvdHI+
+        DQogIA0KICA8dHI+DQogICAgPHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiIHN0
+        eWxlPSJ3aWR0aDoyMDBweDsiPjxiPknEjE88L2I+PC90ZD4NCiAgICA8dGQg
+        Y2xhc3M9ImRlZlRleHRUYWJsZSIgPjMxODA3NjgyPC90ZD4NCiAgPC90cj4N
+        CiAgDQogIDx0cj4NCiAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgc3R5
+        bGU9IndpZHRoOjIwMHB4OyI+PGI+RMOhdHVtIHZ6bmlrdTwvYj48L3RkPg0K
+        ICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiA+MjkuMDMuMjAwNTwvdGQ+
+        DQogIDwvdHI+DQogIA0KICAgPHRyPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4
+        dFRhYmxlIiBzdHlsZT0id2lkdGg6MjAwcHg7Ij48Yj5Ew6F0dW0gesOhcGlz
+        dTwvYj48L3RkPg0KICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiA+Mjku
+        MDMuMjAwNTwvdGQ+DQogIDwvdHI+DQogIA0KICANCiAgICANCiAgICANCiAg
+        DQoNCg0KDQogICAgIDx0cj4NCiAgICAgICA8dGQgY2xhc3M9ImRlZlRleHRU
+        YWJsZSIgc3R5bGU9IndpZHRoOjIwMHB4OyI+PGI+QWt0dcOhbG5hIGhvZG5v
+        dGEgbmFkYcSNbsOpaG8gaW1hbmlhPC9iPjwvdGQ+DQogICAgICAgPHRkIGNs
+        YXNzPSJkZWZUZXh0VGFibGUiID4mbmJzcDs3MDAwIEVVUiAgICZuYnNwOzwv
+        dGQ+DQogICAgIDwvdHI+DQoNCiAgPHRyPg0KICAgIDx0ZCBjbGFzcz0iZGVm
+        VGV4dFRhYmxlIiBzdHlsZT0id2lkdGg6MjAwcHg7Ij4mbmJzcDs8L3RkPg0K
+        ICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiA+Jm5ic3A7PC90ZD4NCiAg
+        PC90cj4NCiAgDQogDQogICA8dHI+PHRkIGNsYXNzPSJkZWZUZXh0VGFibGUi
+        IHZhbGlnbj0idG9wIj48Yj5aYWtsYWRhdGVsaWEgPC9iPjwvdGQ+DQogICAg
+        ICAgIA0KICAgICAgICA8dGQ+DQogICAgICAgICAgIDx0YWJsZSBjZWxscGFk
+        ZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAiIHdpZHRoPSIxMDAlIj4NCiAgIA0K
+        ICAgICAgICAgIA0KICAgICAgIA0KICAgICAgIA0KICAgICAgICAgPHRyPiAN
+        CiAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIg
+        d2lkdGggPSI1MCUiPg0KICAgICAgICAgICAgICAgICAgICAgICAgSW5nLiBT
+        bGF2b23DrXIgSGF0aW5hIA0KICAgICAgICAgICAgICAgICAgICAgICAgPGJy
+        Lz5TdHJtw70gdnLFoW9rIDE0MSwgODQxMDYgQnJhdGlzbGF2YQ0KICAgICAg
+        ICAgICAgICAgICAgIDwvdGQ+ICANCiAgICAgICAgICAgICAgICAgICA8dGQg
+        dmFsaWduPSJ0b3AiIGNsYXNzPSJkZWZUZXh0VGFibGUiIG5vd3JhcD48Yj5I
+        b2Rub3RhIG1hamV0a292w6lobyB2a2xhZHUgcHJpIHphbG/FvmVuw606PC9i
+        Pg0KICAgICAgICAgICAgICAgICAgIDxici8+UHJlZG1ldDombmJzcDtQZcWI
+        YcW+bsOpIHByb3N0cmllZGt5PC90ZD4NCiAgICAgICAgICAgICAgICAgICA8
+        dGQgdmFsaWduPSJ0b3AiIGFsaWduID0gImxlZnQiIGNsYXNzPSJkZWZUZXh0
+        VGFibGUiIG5vd3JhcD4mbmJzcDs2NjM4Ljc4IEVVUg0KICAgICAgICAgICAg
+        ICAgICAgIDwvdGQ+ICANCiAgICAgICA8L3RyPiAgDQogICAgICAgICANCiAg
+        ICANCiAgICANCiAgICAgPC90YWJsZT4NCiAgIDwvdGQ+DQogIDwvdHI+DQoN
+        Cg0KIDx0cj48dGQ+Jm5ic3A7PC90ZD48L3RyPg0KIA0KICANCiAgDQogICAN
+        CiAgICA8dHI+DQogICAgICA8dGQgY2xhc3M9ImRlZlRleHRUYWJsZSIgdmFs
+        aWduPSJUT1AiPjxiPsWgdGF0dXTDoXJueSBvcmdhbjombmJzcDtTcHLDoXZj
+        YTwvYj48L3RkPg0KICAgICAgICANCiAgICAgICA8dGQ+ICAgDQogICAgICAg
+        ICA8dGFibGUgY2VsbHBhZGRpbmc9IjAiIGNlbGxzcGFjaW5nPSIwIiB3aWR0
+        aCA9IjEwMCUiPg0KICAgICAgICAgICAgICAgICAgDQogICAgICAgICAgICAg
+        ICAgICAgIDx0cj4gIA0KDQogICAgICAgICAgICAgICAgICAgICAgICA8dGQg
+        Y2xhc3M9ImRlZlRleHRUYWJsZSIgYWxpZ24gPSJsZWZ0IiAgd2lkdGggPSI1
+        MCUiPmRvYy4gSlVEci4gIErDumxpdXMgS292w6HEjSwgQ1NjLg0KICAgICAg
+        ICAgICAgICAgICAgICAgICAgPGJyLz5ILiBNZWxpxI1rb3ZlaiAxNCwgODQx
+        MDUgQnJhdGlzbGF2YQ0KICAgICAgICAgICAgICAgICAgICAgICAgPC90ZD4g
+        DQoNCiAgICAgICAgICAgICAgICAgICAgICAgIDx0ZCB2YWxpZ249InRvcCIg
+        YWxpZ249ImxlZnQiIHdpZHRoID0iNSUiIGNsYXNzPSJkZWZUZXh0VGFibGUi
+        PjxiPk9kOjwvYj48L3RkPg0KICAgICAgICAgICAgICAgICAgICAgICAgPHRk
+        IHZhbGlnbj0idG9wIiBhbGlnbj0ibGVmdCIgd2lkdGggPSIyMCUiIGNsYXNz
+        PSJkZWZUZXh0VGFibGUiPjI5LjAzLjIwMDU8L3RkPg0KICAgICAgICAgICAg
+        ICAgICAgICAgICAgPHRkIHZhbGlnbj0idG9wIiBhbGlnbj0ibGVmdCIgd2lk
+        dGggPSI1JSIgY2xhc3M9ImRlZlRleHRUYWJsZSI+PGI+RG86PC9iPjwvdGQ+
+        DQogICAgICAgICAgICAgICAgICAgICAgICA8dGQgdmFsaWduPSJ0b3AiIGFs
+        aWduPSJsZWZ0IiB3aWR0aCA9IjIwJSIgY2xhc3M9ImRlZlRleHRUYWJsZSI+
+        MTEuMDEuMjAwNzwvdGQ+ICAgICAgICAgICAgICAgICANCiAgICAgICAgICAg
+        ICAgICAgICA8L3RyPiAgICAgDQogICAgICAgICAgICAgICAgIA0KICAgICAg
+        ICAgICAgICAgICAgICA8dHI+ICANCg0KICAgICAgICAgICAgICAgICAgICAg
+        ICAgPHRkIGNsYXNzPSJkZWZUZXh0VGFibGUiIGFsaWduID0ibGVmdCIgIHdp
+        ZHRoID0iNTAlIj5JbmcuIE/EvmdhIEtvxYh1Y2hvdsOhDQogICAgICAgICAg
+        ICAgICAgICAgICAgICA8YnIvPk9uZGF2c2vDoSAyLCA4MjEwOCBCcmF0aXNs
+        YXZhDQogICAgICAgICAgICAgICAgICAgICAgICA8L3RkPiANCg0KICAgICAg
+        ICAgICAgICAgICAgICAgICAgPHRkIHZhbGlnbj0idG9wIiBhbGlnbj0ibGVm
+        dCIgd2lkdGggPSI1JSIgY2xhc3M9ImRlZlRleHRUYWJsZSI+PGI+T2Q6PC9i
+        PjwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAgICA8dGQgdmFsaWduPSJ0
+        b3AiIGFsaWduPSJsZWZ0IiB3aWR0aCA9IjIwJSIgY2xhc3M9ImRlZlRleHRU
+        YWJsZSI+MTEuMDEuMjAwNzwvdGQ+DQogICAgICAgICAgICAgICAgICAgICAg
+        ICA8dGQgdmFsaWduPSJ0b3AiIGFsaWduPSJsZWZ0IiB3aWR0aCA9IjUlIiBj
+        bGFzcz0iZGVmVGV4dFRhYmxlIj48Yj5Ebzo8L2I+PC90ZD4NCiAgICAgICAg
+        ICAgICAgICAgICAgICAgIDx0ZCB2YWxpZ249InRvcCIgYWxpZ249ImxlZnQi
+        IHdpZHRoID0iMjAlIiBjbGFzcz0iZGVmVGV4dFRhYmxlIj48L3RkPiAgICAg
+        ICAgICAgICAgICAgDQogICAgICAgICAgICAgICAgICAgPC90cj4gICAgIA0K
+        ICAgICAgICAgICAgICAgICANCiAgICAgICAgIDwvdGFibGU+DQogICAgICAg
+        PC90ZD4NCiAgICA8L3RyPiANCiAgICA8dHI+PHRkPiZuYnNwOzwvdGQ+PC90
+        cj4NCiAgIA0KICAgICAgICANCiAgICA8dHI+DQogICAgICA8dGQgY2xhc3M9
+        ImRlZlRleHRUYWJsZSIgIHZhbGlnbj0iVE9QIj48Yj7DmsSNZWwgbmFkw6Fj
+        aWU8L2I+PC90ZD4NCiAgICAgIDx0ZCBjbGFzcz0iZGVmVGV4dFRhYmxlIiAg
+        Y29sc3Bhbj0iNSI+DQogICAgDQogICAgICANCiAgICAgICAgPGRpdj4gICAg
+        ICAgDQogICAgICAgICAgPHNwYW4gY2xhc3M9ImNlbGwiPnBvZHBvcm92YcWl
+        IHZ6ZGVsw6F2YWNpZSBhIGt1bHTDunJuZSBha3Rpdml0eSwgdsO9c2t1bSBh
+        IHbDvXZvaiBuYWptw6Q6DTwvYnI+LSB2xaFlc3RyYW5uw70gcm96dm9qIHZ5
+        c29rb8Wha29sc2vDqWhvIHZ6ZGVsw6F2YW5pYSwgdmVkZWNrw6lobyBiw6Fk
+        YW5pYSBhIG1lZHppbsOhcm9kbmVqIHNwb2x1cHLDoWNlLA08L2JyPi0gc3lz
+        dGVtYXRpY2vDvSBrdmFsaWZpa2HEjW7DvSByYXN0IHZ5c29rb8Wha29sc2vD
+        vWNoIHBlZGFnw7Nnb3YgYSBwcmFjb3Zuw61rb3YsDTwvYnI+LSDFoXR1ZGlq
+        bsOpIGEgb2Rib3Juw6kgc3TDocW+ZSBhIHBvYnl0eSBkb21hIGkgdiB6YWhy
+        YW5pxI3DrSwNPC9icj4tIHNvY2nDoWxudSBzdGFiaWxpesOhY2l1IMWhdHVk
+        ZW50b3YgaSBwZWRhZ8OzZ292IHBvc2t5dG92YW7DrW0gxaF0aXBlbmRpw60s
+        IHDDtMW+acSNaWVrIGEgZGxob2RvYsO9Y2ggw7p2ZXJvdiwNPC9icj4tIG5h
+        ZHbDpHpvdmFuaWUga29udGFrdG92IHMgZG9tw6FjaW1pIGkgemFocmFuacSN
+        bsO9bWkgdW5pdmVyeml0YW1pIGEgdmVkZWNrw71taSBpbsWhdGl0w7pjaWFt
+        aSwNPC9icj4tIHZ5dHbDoXJhbmllIHByaWVzdG9ydSBwcmUga29tdW5pa8Oh
+        Y2l1IGEgc3BvbHVwcsOhY3UgbWVkemkgamVkbm90bGl2w71taSB6bG/Fvmth
+        bWkgc3BvbG/EjWVuc2vDqWhvLCBrdWx0w7pybmVobywgdmVkZWNrw6lobyBh
+        IGhvc3BvZMOhcnNrZWhvIGRpYW5pYSwNPC9icj4tIGluaWNpYXTDrXZ5IHBv
+        c2lsxYh1asO6Y2UgcHJpbmPDrXB5IG9ixI1pYW5za2VqIHNsb2JvZHkgYSBw
+        csOhdm5laG8gxaF0w6F0dSwNPC9icj4tIHZ5dHbDoXJhbmllIGluZm9ybWHE
+        jW7DvWNoIGRhdGFiw6F6LCB0dm9yYnUgYW5hbHl0aWNrw71jaCDFoXTDumRp
+        w60gdiBvYmxhc3RpIHZ6ZGVsw6F2YW5pYSBhIHbDvXNrdW11LA08L2JyPi0g
+        cHJvamVrdHkgdiBvYmxhc3RpIGZvbmRvdiBFw5ogemEgw7rEjWVsb20gc2t2
+        YWxpdG5lbmlhIMO6cm92bmUgdnlzb2tvxaFrb2xza8OpaG8gdnpkZWzDoXZh
+        bmlhIGEgdmVkZWNrw6lobyB2w71za3VtdSBuYSB1bml2ZXJ6aXTDoWNoLA08
+        L2JyPi0gb3JnYW5pem92YW5pZSBrb250YWt0bsO9Y2ggc3RyZXRudXTDrSwg
+        cm9rb3ZhbsOtLCBrb25mZXJlbmNpw60gYSBrb25ncmVzb3YsDTwvYnI+LSB2
+        eWRhdmF0ZcS+c2vDuiBha3Rpdml0dSBqZWRub3RsaXbDvWNoIGVkw61jacOt
+        IHZ5c29rb8Wha29sc2vDvWNoIHXEjWVibsOtYywgcG9tw7Rjb2ssIG9kYm9y
+        bsO9Y2ggbW9ub2dyYWZpw60gYSDEjWFzb3Bpc292LA08L2JyPi0gbsOha3Vw
+        IHphaHJhbmnEjW5laiBhIGRvbcOhY2VqIG9kYm9ybmVqIGxpdGVyYXTDunJ5
+        IGEgxI1hc29waXNvdiwNPC9icj4tIGludmVzdGnEjW7DqSB6w6FtZXJ5IHYg
+        esOhdWptZSB6w61za2FuaWEgdmhvZG7DvWNoIHByaWVzdG9yb3YgcHJlIHph
+        YmV6cGXEjWVuaWUgdnlzb2tvxaFrb2xza2VqIHbDvXXEjWJ5LCB2ZWRlY2vD
+        qWhvIGLDoWRhbmlhIGEgaW50ZXJuw6F0bmVobyB1Ynl0b3ZhbmlhIMWhdHVk
+        ZW50b3YsDTwvYnI+LSDFoXBvcnRvdsOpIGEgcmVrcmVhxI1uw6kgYWt0aXZp
+        dHkgxaF0dWRlbnRvdiBhIHBlZGFnw7Nnb3YgdnLDoXRhbmUgaWNoIMWhcG9y
+        dG92w71jaCBrbHVib3YsDTwvYnI+LSB2xaFlc3RyYW5uw70gcm96dm9qIGt1
+        bHTDunJ5LCBvY2hyYW51IGt1bHTDunJueWNoIGhvZG7DtHQsDTwvYnI+LSBr
+        dWx0w7pybm8tc3BvbG/EjWVuc2vDqSBha3Rpdml0eSBhIHByZXplbnTDoWNp
+        ZSwgdXNwb3JhZMO6dmFuaWUga29uZmVyZW5jacOtIGEgdsO9c3RhdiwNPC9i
+        cj4tIG9zb2J5IGEgaW7FoXRpdMO6Y2llLCBrdG9yw6kgcm96dsOtamFqw7og
+        YWxlYm8gemFiZXpwZcSNdWrDuiBrdWx0w7pybmUgYWt0aXZpdHksIGEgdG8g
+        aW52ZXN0b3Jza291LCBtYXRlcmnDoWxub3UsIGZpbmFuxI1ub3UsIHBvcmFk
+        ZW5za291IGEgaW5vdSBmb3Jtb3UsDTwvYnI+LSByb3p2b2ogdiBvYmxhc3Rp
+        IHpkcmF2b3Ruw61jdHZhIGEgcG9kcG9yYSBpbnZlc3RpxI1uw71jaCBwcm9q
+        ZWt0b3YgemEgw7rEjWVsb20gc2t2YWxpdG5lbmlhICBwb3NreXRvdmFuaWEg
+        emRyYXZvdG5laiBzdGFyb3N0bGl2b3N0aSwNPC9icj4tIHpkcmF2b3Ruw7og
+        c3Rhcm9zdGxpdm9zxaUgYSB2emRlbMOhdmFuaWUgaGVuZGlrZXBvdmFuw71j
+        aCBkZXTDrSBhIG1sw6FkZcW+ZSwNPC9icj4tIHZ5dHbDoXJhbmllIHByaWF6
+        bml2w71jaCBwb2RtaWVub2sgcHJlIHBvc2t5dG92YW5pZSB6ZHJhdm90bmVq
+        IHN0YXJvc3RsaXZvc3RpIGEgb2NocmFueSB6ZHJhdmlhIHByZSB6ZHJhdsO9
+        IHNww7Rzb2Igxb5pdm90YSBwb21vY291IGZpbmFuxI1uw71jaCBhIGluw71j
+        aCBpbnZlc3TDrWNpw60sDTwvYnI+LSByZWFsaXrDoWNpdSBodW1hbml0w6Fy
+        bsO9Y2ggYSBjaGFyaXRhdMOtdm55Y2ggY2llxL5vdiwNPC9icj4tIG9jaHJh
+        bnUgYSB0dm9yYnUgxb5pdm90bsOpaG8gcHJvc3RyZWRpYSwNPC9icj4tIGFr
+        dGl2aXR5IHphbWVyYW7DqSBuYSBwb21vYyB6ZHJhdm90bmUgcG9zdGlobnV0
+        w71tIG9ixI1hbm9tIGEgemRyYXZvdG7DrWNreW0gemFyaWFkZW5pYW0sDTwv
+        YnI+LSB6cmlhxI9vdmFuaWUgYSBidWRvdmFuaWUgemRyYXZvdG7DrWNreWNo
+        IHphcmlhZGVuw60gcHJlIGRldGkgYSBkb3NwZWzDvWNoIGEgemFyaWFkZW7D
+        rSBzIGNoYXJha3Rlcm9tIHBvc2t5dG92YW5pYSB6ZHJhdm90bsOtY2tlaiBz
+        dGFyb3N0bGl2b3N0aSwNPC9icj4tIHZ5dHbDoXJhbmllIHBvZG1pZW5vayBw
+        cmUgdnpuaWsgY2VudGllciB2w71za3VtdSBhIHbDvXZvamEsIHRyYW5zZmVy
+        dSBub3bDvWNoIHRlY2hub2zDs2dpw60gYSBpbm92w6FjacOtIHphYmV6cGXE
+        jXVqw7pjaWNoIHbDvXZvaiBub3bDvWNoIHbDvXJvYmtvdiwgdGVjaG5vbG9n
+        aWNrw71jaCBwcm9jZXNvdiBhIHNrw7rFoW9ibmVqIHRlY2huaWt5LA08L2Jy
+        Pi0gcG9zaWxuZW5pZSBwcm9qZWvEjW5vLWRvZMOhdmF0ZcS+c2vDvWNoLCBz
+        a8O6xaFvYm7DvWNoIGEgc2VydmlzbsO9Y2gga2FwYWPDrXQgcHJlIG9ib3J5
+        IGF1dG9tYXRpemHEjW5laiBhIHJvYm90aWNrZWogdGVjaG5pa3kgYSBrb21w
+        b25lbnRvdiBwcmUgaWNoIHN0YXZidSwNPC9icj52w71za3VtIGEgdsO9dm9q
+        IHYgb2JsYXN0aSBwcsOtcm9kbsO9Y2ggYSB0ZWNobmlja8O9Y2ggdmllZCwg
+        c28gemFtZXJhbsOtbSBuYWptw6QgbmEgb2JsYXPFpSBtYXRlcmnDoWxvdsO9
+        Y2ggdGVjaG5vbMOzZ2nDrSBhIG5hbm90ZWNobm9sw7NnacOtLCBvcHRvbWVj
+        aGFuaWt5IGEgbGFzZXJvdsO9Y2ggdGVjaG5vbMOzZ2nDrSwNPC9icj4tIHbD
+        vXZvaiBwcm90b3R5cG92IGEgcGlsb3Ruw71jaCBwcm9qZWt0b3YsDTwvYnI+
+        LSBza8O6xaFvYm7DuiB2w71yb2J1IGEgdGVzdG92YW5pZSB2w71yb2Jrb3Ys
+        IHBvc3R1cG92IGEgc2x1xb5pZWIsDTwvYnI+LSBwcm9jZXMgemxlcMWhb3Zh
+        bmlhIGt2YWxpdHkgdnpkZWzDoXZhY8OtY2ggYSB0csOpbmluZ292w71jaCBw
+        cm9ncmFtb3YgdiBvYmxhc3RpIHByw61yb2Ruw71jaCBhIHRlY2huaWNrw71j
+        aCB2aWVkLA08L2JyPi0gcHLDrXByYXZhIGEga29vcmRpbsOhY2lhIHNwb2xv
+        xI1uw71jaCB2w71za3VtbsO9Y2ggYSByb3p2b2pvdsO9Y2ggcHJvamVrdG92
+        IHByZSB0dXplbXNrw6kgYSB6YWhyYW5pxI1uw6kgZ3JhbnRvdsOpIHByb2dy
+        YW15LCDFoXTDoXRuZSBhIGV1csOzcHNrZSBwb2Rwb3Juw6kgZm9uZHksDTwv
+        YnI+LSBrb29yZGluw6FjaWEgc3BvbG/EjW7DvWNoIGFrdGl2w610IHYgZXVy
+        w7Nwc2t5Y2ggdGVjaG5vbG9naWNrw71jaCBwbGF0Zm9ybcOhY2ggcHJlIGlj
+        aCB2eXXFvml0aWUgbmEgcm96dm9qIHbDvXNrdW11IGEgdsO9dm9qYSAgYSBu
+        YSByb3p2b2ogcG9kbmlrYXRlxL5za8OpaG8gcHJvc3RyZWRpYSBmb3Jtb3Ug
+        c3BvbHVwcsOhY2Ugc28gemFocmFuacSNbsO9bWkgcGFydG5lcm1pLA08L2Jy
+        Pi0gdnl0dsOhcmFuaWUgcGxhdGZvcm15IHByZSBlZmVrdMOtdm51IHNwb2x1
+        cHLDoWN1IG1lZHppIHJlZ2lvbsOhbG55bWkgaW7FoXRpdMO6Y2lhbWkgYSBw
+        b2RuaWthdGXEvnNrw71taSBhIHVuaXZlcnppdG7DvW1pIHByYWNvdmlza2Ft
+        aSB2IHJvenZvamkgaW5vdsOhY2nDrSBhIHphbWVzdG5hbm9zdGkuDTwvYnI+
+        DTwvYnI+DTwvYnI+DTwvYnI+PC9zcGFuPg0KICAgICAgICA8L2Rpdj4NCiAg
+        ICAgIA0KICAgIA0KICAgIDwvdGQ+PC90cj4NCiANCiAgDQo8L3RhYmxlPg0K
+        ICA8cCBjbGFzcz0iYnRuQ2VudGVyIj48YSBocmVmPSJqYXZhc2NyaXB0Omhp
+        c3RvcnkuZ28oLTEpIj5TcMOkxaU8L2E+PC9wPg0KICANCjwvZGl2Pg0KICAg
+        ICAgJm5ic3A7DQogICAgICA8aHI+DQogICAgICAgDQoNCg0KDQoNCg0KDQoN
+        Cg0KDQoNCg0KDQoNCg0KDQoNCg0KPGRpdiBjbGFzcz0ibmFkcGlzMyI+fCZu
+        YnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS9zdGFydC5kbztqc2Vzc2lvbmlkPTdG
+        QkMyMzRBQTBBNkQxNkNBQ0M4MUNFNEU5OTRCMjRFIj5IbGF2bsO9IHpvem5h
+        bTwvYT4NCnwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvc3RhcnRybmQuZG87
+        anNlc3Npb25pZD03RkJDMjM0QUEwQTZEMTZDQUNDODFDRTRFOTk0QjI0RSI+
+        w5p2b2Q8L2E+DQogIA0KICAgIA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9y
+        ZWdpc3RyZS96b3puYW1ybmQuZG87anNlc3Npb25pZD03RkJDMjM0QUEwQTZE
+        MTZDQUNDODFDRTRFOTk0QjI0RT9hY3Rpb249YXp6YSI+QWJlY2VkbsO9IHpv
+        em5hbSBuYWTDoWNpw60gLSBha3R1w6Fsbnk8L2E+DQogICAgDQogICAgICB8
+        Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL3pvem5hbXJuZC5kbztqc2Vzc2lv
+        bmlkPTdGQkMyMzRBQTBBNkQxNkNBQ0M4MUNFNEU5OTRCMjRFP2FjdGlvbj1h
+        enp1Ij5BYmVjZWRuw70gem96bmFtIG5hZMOhY2nDrSAtIMO6cGxuw708L2E+
+        DQogICAgDQogIA0KfDwvZGl2Pg0KDQoNCjxzcGFuIGNsYXNzPSJuYWRwaXMz
+        Ij48Yj5WeWjEvmFkYcWlIHBvZMS+YTo8L2I+PC9zcGFuPg0KDQogIDxzcGFu
+        IGNsYXNzPSJuYWRwaXMzIj4mbmJzcDsNCiAgICANCiAgICAgIHwmbmJzcDs8
+        YSBocmVmPSIvcmVnaXN0cmUvaGxhZGF0cm5kLmRvO2pzZXNzaW9uaWQ9N0ZC
+        QzIzNEFBMEE2RDE2Q0FDQzgxQ0U0RTk5NEIyNEU/YWN0aW9uPXNob3cmZm9y
+        bXVsYXI9bmF6b3YiPk7DoXp2dTwvYT4NCiAgICANCiAgICAgIHwmbmJzcDs8
+        YSBocmVmPSIvcmVnaXN0cmUvaGxhZGF0cm5kLmRvO2pzZXNzaW9uaWQ9N0ZC
+        QzIzNEFBMEE2RDE2Q0FDQzgxQ0U0RTk5NEIyNEU/YWN0aW9uPXNob3cmZm9y
+        bXVsYXI9c2lkbG8iPlPDrWRsYTwvYT4NCiAgICANCiAgICAgIHwmbmJzcDs8
+        YSBocmVmPSIvcmVnaXN0cmUvaGxhZGF0cm5kLmRvO2pzZXNzaW9uaWQ9N0ZC
+        QzIzNEFBMEE2RDE2Q0FDQzgxQ0U0RTk5NEIyNEU/YWN0aW9uPXNob3cmZm9y
+        bXVsYXI9cHJhdm9zIj5QcsOhdm5pY2tlaiBvc29ieTwvYT4NCiAgICANCiAg
+        ICAgIHwmbmJzcDs8YSBocmVmPSIvcmVnaXN0cmUvaGxhZGF0cm5kLmRvO2pz
+        ZXNzaW9uaWQ9N0ZCQzIzNEFBMEE2RDE2Q0FDQzgxQ0U0RTk5NEIyNEU/YWN0
+        aW9uPXNob3cmZm9ybXVsYXI9Znl6b3MiPkZ5emlja2VqIG9zb2J5PC9hPg0K
+        ICAgIA0KICAgICAgfCZuYnNwOzxhIGhyZWY9Ii9yZWdpc3RyZS9obGFkYXRy
+        bmQuZG87anNlc3Npb25pZD03RkJDMjM0QUEwQTZEMTZDQUNDODFDRTRFOTk0
+        QjI0RT9hY3Rpb249c2hvdyZmb3JtdWxhcj1pY28iPknEjE88L2E+DQogICAg
+        DQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJlL2hsYWRhdHJuZC5k
+        bztqc2Vzc2lvbmlkPTdGQkMyMzRBQTBBNkQxNkNBQ0M4MUNFNEU5OTRCMjRF
+        P2FjdGlvbj1zaG93JmZvcm11bGFyPXVjZWwiPsOaxI1lbHU8L2E+DQogICAg
+        DQogIHw8L3NwYW4+DQoNCg0KDQoNCiAgPGRpdiBjbGFzcz0ibmFkcGlzMyI+
+        Jm5ic3A7DQogICAgDQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3JlZ2lzdHJl
+        L29yZWdpc3RyaS5kbztqc2Vzc2lvbmlkPTdGQkMyMzRBQTBBNkQxNkNBQ0M4
+        MUNFNEU5OTRCMjRFP3JlZ2lzdGVyPXJuZCI+SW5mb3Jtw6FjaWUgbyByZWdp
+        c3Ryw6FjaWk8L2E+DQogICAgDQogICAgICB8Jm5ic3A7PGEgaHJlZj0iL3Jl
+        Z2lzdHJlL25hdm9kLmRvO2pzZXNzaW9uaWQ9N0ZCQzIzNEFBMEE2RDE2Q0FD
+        QzgxQ0U0RTk5NEIyNEU/cmVnaXN0ZXI9cm5kIj5Ow6F2b2QgbmEgcG91xb7D
+        rXZhbmllIHJlZ2lzdHJhPC9hPg0KICAgIA0KICB8PC9kaXY+DQoNCiZuYnNw
+        Ow0KPGhyPg0KIA0KDQogICAgICAmbmJzcDsNCiAgICAgIDxkaXYgY2xhc3M9
+        ImRlZlRleHRDZW50ZXIiPg0KICAgICAgfCZuYnNwOzxhIGhyZWY9Im1haWx0
+        bzpvdnZzLnN2c0BtdnNyLnZzLnNrIj5TcHLDoXZjYSBvYnNhaHUgKE1WIFNS
+        KTwvYT4mbmJzcDt8DQogICAgICAmbmJzcDs8YSBocmVmPSJodHRwOi8vd3d3
+        Lml2ZXMuc2siIHRhcmdldD0iX2JsYW5rIj5UZWNobmlja8O9IHByZXbDoWR6
+        a292YXRlxL4gKElWZVMpPC9hPiZuYnNwO3wNCiAgICAgICZuYnNwOzxhIGhy
+        ZWY9Ii4vcGFnZXMvdnlobGFzZW5pZS5odG1sIiB0YXJnZXQ9Il9ibGFuayI+
+        VnlobMOhc2VuaWUgbyBwcsOtc3R1cG5vc3RpPC9hPiZuYnNwO3wNCiAgICA8
+        L2Rpdj4NCiAgICA8L2Rpdj4NCiAgPC9CT0RZPg0KICANCjwvaHRtbD4NCg0K
+    http_version: '1.1'
+    adapter_metadata:
       effective_url: http://www.ives.sk/registre/detailrnd.do?action=uplny&formular=&id=158785&locale=sk
-  recorded_at: Fri, 12 Jun 2015 14:11:46 GMT
+  recorded_at: Wed, 17 Jun 2015 13:46:47 GMT
 recorded_with: VCR 2.9.3
