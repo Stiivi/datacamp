@@ -60,7 +60,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'cucumber-rails', require: false
   gem 'rspec-activemodel-mocks'
   gem 'rspec-collection_matchers'
   gem 'rspec-rails', '~> 2.14'
