@@ -368,24 +368,6 @@ ActiveRecord::Schema.define(:version => 20150624212709) do
     t.boolean  "morph"
   end
 
-  create_table "relationship_description_translations", :force => true do |t|
-    t.integer  "relationship_description_id"
-    t.string   "locale"
-    t.string   "category"
-    t.text     "description"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "relationship_descriptions", :force => true do |t|
-    t.integer "dataset_description_id"
-    t.integer "target_dataset_description_id"
-    t.boolean "is_to_many"
-    t.string  "identifier"
-    t.integer "weight"
-  end
-
   create_table "search_predicates", :force => true do |t|
     t.integer "search_query_id"
     t.string  "scope"
