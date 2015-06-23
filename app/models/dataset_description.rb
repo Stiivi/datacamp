@@ -10,6 +10,7 @@ class DatasetDescription < ActiveRecord::Base
 
   has_many :field_descriptions, :include => :translations
   has_many :field_descriptions_for_search, conditions: { is_visible_in_search: true }, class_name: 'FieldDescription'
+  has_many :field_descriptions_for_detail, conditions: { is_visible_in_detail: true }, class_name: 'FieldDescription'
   has_many :derived_field_descriptions, conditions: { is_derived: true }, class_name: 'FieldDescription'
 
 

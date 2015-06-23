@@ -1,8 +1,6 @@
 class SphinxDatasetIndex
   def self.define_indices_for_all_datasets
-    if DatasetDescription.table_exists?
-      DatasetDescription.all.each { |dataset_description| define_index_for_dataset(dataset_description) }
-    end
+    DatasetDescription.find_each { |dataset_description| define_index_for_dataset(dataset_description) }
   end
 
   def self.define_index_for_dataset(dataset_description)
@@ -12,7 +10,7 @@ class SphinxDatasetIndex
       indexes :record_status
       indexes :quality_status
       field_count = 0
-      dataset_description.visible_field_descriptions(:detail).each do |field|
+      dataset_description.field_descriptions_for_detail.each do |field|
         if ![:integer, :date, :decimal].include?(field.data_type)
           next if field_count > 28
           field_count += 1

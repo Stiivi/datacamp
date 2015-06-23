@@ -58,6 +58,7 @@ class SearchesController < ApplicationController
         :category,
         {:relations => :relationship_dataset_description},
         :derived_field_descriptions,
+        :field_descriptions_for_detail,
         {:field_descriptions_for_search => [:translations, :data_format] }]
     ).each do |dataset_description|
         search = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => { record_status: DatastoreManager.record_statuses[2] }
