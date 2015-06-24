@@ -16,7 +16,6 @@ sk:
         data_source_type: Typ dátového zdroja
         default_import_format: Predvolený formát pre import
         active: Aktívne?
-        can_be_disabled_in_quick_search: Môže byť vypnutý pre rýchle vyhľadávanie?
       user:
         login: Login
         email: E-mail

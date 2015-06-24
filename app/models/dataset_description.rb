@@ -81,10 +81,6 @@ class DatasetDescription < ActiveRecord::Base
     result
   end
 
-  def self.disabled_in_quick_search
-    where(:can_be_disabled_in_quick_search => true)
-  end
-
   def all_field_descriptions
     field_descriptions.includes(:translations)
     field_descriptions.find_all{|fd|fd.exists_in_database?}
