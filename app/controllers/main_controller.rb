@@ -25,7 +25,7 @@ class MainController < ApplicationController
   before_filter :login_required, :except => [:index, :locale]
 
   def index
-    redirect_to page_path(index_page)
+    redirect_to page_path('index')
   end
 
   def locale
