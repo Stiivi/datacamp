@@ -43,12 +43,10 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
-    @disabled_descriptions = params[:disabled_descriptions]
 
     @results = {}
     dds = DatasetDescription
 
-    dds = dds.where('id NOT IN(?)', params[:disabled_descriptions]) if params[:disabled_descriptions]
     dds = dds.where(category_id: params[:category_id]) if params[:category_id] # TODO: test filter by category_id
 
     searches = {}
