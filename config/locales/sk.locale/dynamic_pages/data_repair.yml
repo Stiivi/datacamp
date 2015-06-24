@@ -1,0 +1,12 @@
+sk:
+  data_repairs:
+    form:
+      regis_table_name: 'Regis tabuľka'
+      regis_ico_column: 'Stĺpec IČO v regis tabuľke'
+      regis_name_column: 'Stĺpec Názov v regis tabuľke'
+      regis_address_column: 'Stĺpec Adresa v regis tabuľke'
+      
+      target_table_name: 'Cieľová tabuľka'
+      target_ico_column: 'Stĺpec IČO v cieľovej tabuľke'
+      target_company_name_column: 'Stĺpec Názov v cieľovej tabuľke'
+      target_company_address_column: 'Stĺpec Adresa v cieľovej tabuľke'

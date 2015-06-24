@@ -1,6 +1,6 @@
+# -*- encoding : utf-8 -*-
 class SearchResult < ActiveRecord::Base
-  set_table_name :search_results
-    
+
   belongs_to :query, :class_name => "SearchQuery", :foreign_key => "search_query_id"
   belongs_to :dataset_description, :foreign_key => "table_name", :primary_key => "identifier"
   belongs_to :record, :polymorphic => true, :foreign_key => "record_id", :primary_key => "_record_id", :foreign_type => "table_name", :extend => ( Module.new do

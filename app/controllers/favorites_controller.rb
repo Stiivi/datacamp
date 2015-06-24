@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Favorites Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -31,19 +32,21 @@ class FavoritesController < ApplicationController
   end
   
   def create
-    create_favorite
-    load_dataset
+    @dataset_description = DatasetDescription.find(params[:dataset_description_id])
+    @record = @dataset_description.dataset_record_class.find(params[:record_id])
+
+    @favorite = create_favorite(@dataset_description, @record)
     
     respond_to do |wants|
       wants.html { redirect_to request.referer }
       wants.js
     end
-    
   end
   
   def destroy
-    @favorite = Favorite.find_by_id!(params[:id])
-    load_dataset
+    @favorite = Favorite.find(params[:id])
+    @dataset_description = @favorite.dataset_description
+    @record = @favorite.record
     @favorite.destroy
     
     respond_to do |wants|
@@ -54,21 +57,13 @@ class FavoritesController < ApplicationController
   
   protected
   
-  def create_favorite
-    dataset_description_id = params[:dataset_description_id]
-    record_id = params[:record_id]
-    
-    @favorite = Favorite.new
-    @favorite.dataset_description_id = dataset_description_id
-    @favorite.record_id = record_id
-    @favorite.user_id = current_user.id
-    @favorite.note = params[:note]
-    
-    @favorite.save
-  end
-  
-  def load_dataset
-    @dataset_description = @favorite.dataset_description
-    @record = @dataset_description.dataset.dataset_record_class.find_by_record_id(@favorite.record_id) if @dataset_description
+  def create_favorite(dataset_description, record)
+    favorite = Favorite.new
+    favorite.dataset_description = dataset_description
+    favorite.record = record
+    favorite.user_id = current_user.id
+    favorite.note = params[:note]
+    favorite.save!
+    favorite
   end
 end

@@ -1,0 +1,16 @@
+sk:
+  settings:
+    news:
+      index:
+        header: 'Zoznam noviniek'
+        new: 'Nová novinka'
+        edit: 'Upraviť novinku'
+        title: 'Titul'
+        last_update: 'Posledná úprava'
+        published_title: 'Publikovná?'
+        published:
+          'true': 'Áno'
+          'false': 'Nie'
+
+      form:
+        published: 'Publikovaná'

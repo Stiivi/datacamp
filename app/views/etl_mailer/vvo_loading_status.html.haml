@@ -1,0 +1,11 @@
+- content_for :email_preview do
+  = "Pri kopirovani dat do tabulky ds_procurements nastali problemy."
+
+%h4= "Pri kopirovani dat do tabulky ds_procurements nastali problemy."
+%p
+  - if @records_with_error.present?
+    %strong= " #{@records_with_error.count} zaznam(ov) s nasledovnymi ID je nutne skontrolovat:"
+    = @records_with_error.map{|e| e._record_id }.join(', ')
+  - if @records_with_note.present?
+    %strong= " #{@records_with_note.count} zaznam(ov) s nasledovnymi ID ma pridanu poznamku a nie je nutne ich kontrolovat:"
+    = @records_with_note.map{|e| e._record_id }.join(', ')

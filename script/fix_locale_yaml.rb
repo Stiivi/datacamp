@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 #!/usr/bin/ruby
 # 
 # fix YAML of locale strings - convert to UTF8

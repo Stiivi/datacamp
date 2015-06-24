@@ -1,0 +1,93 @@
+sk:
+  global:
+    activities: 'Aktivita'
+    do_not_search: "Nevyhľadávať: %{name}"
+    active: Aktívne
+    add_to_favorites: "Pridať k obľúbeným"
+    add_to_favorites_hint: "Je táto stránka zaujimavá?"
+    advanced_search: "Pokročilé vyhľadávanie"
+    all: "- Všetko -"
+    back: Naspäť
+    blocks: Bloky
+    browse_dataset: "Prezerať súbor údajov"
+    categories: "Kategórie súborov"
+    field_description_categories: 'Kategórie popisov údajov'
+    cancel: Zrušiť
+    captcha: Kontrola
+    collapse: Zbaliť
+    collection_mode: "Spôsob zberu"
+    comment: Komentáre
+    comments: Komentáre
+    continue: Pokračovať
+    create: "Vytvoriť nové"
+    created_at: Vytvorené
+    data: Údaje
+    data_catalogue: "Katalóg údajov"
+    data_dictionary: "Slovník údajov"
+    dataset: "Súbor údajov"
+    dataset_descriptions: "Popisy súborov údajov"
+    datasets: "Súbory údajov"
+    delete: Vymazať
+    delete_confirmation: "Naozaj chcete vymazať túto položku?"
+    description: Popis
+    details: Detajly
+    discussion: Diskusia
+    edit: Upraviť
+    edit_description: "Upraviť informácie"
+    email_sent: "Email bol odoslaný."
+    empty: prázdne
+    favorites: Obľúbené
+    field: Položka
+    home: Domov
+    import: Import
+    inactive: Neaktívne
+    information: Informácie
+    is_favorite: "Vaše obľúbené."
+    language: Jazyk
+    load_error: "Nie je možné načítať %{what}"
+    login: Prihlásenie
+    logout: Odhlásenie
+    metadata: Metadata
+    moderation: Moderácia
+    move: presunúť
+    name: Meno
+    nevermind: odvolať
+    new_category: "Nová kategória"
+    next: Nasledujúce
+    note: Poznámka
+    other: Ostatné
+    pages: Stránky
+    previous: Predošlé
+    profile: Profil
+    ratings: Hodnotenia
+    record: Záznam
+    record_count: "Počet záznamov"
+    record_id: "ID záznamu"
+    record_preview: "Náhľad záznamu"
+    records_per_page: "Záznamov na stránku:"
+    remove_from_favorites: "Odstrániť z obľúbených"
+    remove_question: odstrániť?
+    revert: Obnoviť
+    save: Uložiť
+    save_and_create: "Uložiť a vytvoriť ďalšie"
+    save_changes: "Uložiť zmeny"
+    search: "Hľadať v databázach"
+    search_current: Vyhľadať
+    search_current_button: "Hľadať v tomto súbore údajov"
+    settings: Nastavenia
+    show: Zobraziť
+    show_all: "Zobraziť všetko"
+    source: Zdroj
+    status: Stav
+    submit: Odoslať
+    system_datastore_management: "System Datastore Management"
+    testing_get_informed: "Ak chcete vedieť, kedy bude portál verejný, <a href='%{url}'>registrujte sa tu</a>."
+    testing_notice: "Táto aplikácie je v súčasnosti v uzavretom kole testovania."
+    title: Nadpis
+    total_entries: "Spolu záznamov"
+    user: Používateľ
+    user_not_found: "Používateľ nenájdený"
+    users: Používatelia
+    value: Hodnota
+    parsers: 'Parsery'
+    copyright: "2009&ndash;2015 &copy; Aliancia Fair-Play Beta verzia 1.0"

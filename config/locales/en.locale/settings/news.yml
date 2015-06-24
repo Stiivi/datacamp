@@ -1,0 +1,16 @@
+en:
+  settings:
+    news:
+      index:
+        header: 'News lists'
+        new: 'New news item'
+        edit: 'Edit news item'
+        title: 'Title'
+        last_update: 'Last update'
+        published_title: 'Published?'
+        published:
+          'true': 'Yes'
+          'false': 'No'
+
+      form:
+        published: 'Published'

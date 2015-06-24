@@ -1,0 +1,20 @@
+sk:
+  pages:
+    show:
+      news_header: 'Novinky'
+    datanest_401:
+      notice: 'Bohužiaľ, na stiahnutie týchto dát nemáte dostatočné práva. Ak máte o prístup záujem, kontaktujte prosím administrátora na'
+    feedback_banner:
+      intro: 'Dobrý deň, chceli by sme vás veľmi pekne poprosiť o vyplnenie krátkeho dotazníka o vašich skúsenostiach s Datanestom. Spätná väzba nám pomôže do budúcna vylepšiť stránku.'
+      link: 'Dotazník nájdete tu.'
+      thanks: 'Ďakujeme!'
+      hide: 'Skryť túto správu'
+    cookie_banner:
+      intro: 'Aby Datanest.sk lepšie fungoval, využívame na ňom súbory cookie. Používaním tejto stránky súhlasíte s ich využitím.'
+      about: 'Čo sú cookies?'
+      hide: 'OK'
+    about_service: "O službe"
+    terms_of_service: "Podmienky používania"
+    copyright: "Autorské práva"
+    about_organisation: "O Aliancii Fair-play"
+    contact: "Kontakt"

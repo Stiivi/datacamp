@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module I18nAccessors
   def self.included(base)
     base.extend ActMethods
@@ -15,7 +16,7 @@ module I18nAccessors
         
         # Get translation object        
         define_method locale do
-          translations.find :first, :conditions => {:locale => locale}
+          translations.where(locale: locale).first
         end
         
         # Set translation object

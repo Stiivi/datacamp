@@ -1,0 +1,18 @@
+sk:
+  parsers:
+    index:
+      header: 'Zoznam parserov'
+      show: 'Detail'
+      download: 'Stiahnuť'
+      table:
+        name: 'Názov'
+        status: 'Stav'
+
+    donations_parser_form:
+      header: 'Parser kultúrnych dotácií'
+      label:
+        year: 'Rok'
+      submit: 'Spustiť'
+
+    run:
+      success: 'Parser sputený'

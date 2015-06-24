@@ -1,0 +1,14 @@
+= form_for @category, builder: ListFormBuilder do |f|
+  = f.error_messages
+
+  %ul
+    %li.clearfix.locale_switcher
+      %label Language
+      = f.locale_switcher I18N_LOCALES
+
+    = f.locale_tabs I18N_LOCALES do |trans|
+      = trans.text_field :title
+
+    %li
+      = f.submit t("global.save")
+      = link_to(t("global.cancel"), field_description_categories_path, class: 'cancel')

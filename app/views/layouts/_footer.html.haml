@@ -1,20 +1,12 @@
-.clearfix
-  .fl
-    %span= link_to_page "about_service"
-    %span= link_to_page "terms_of_service"
-    %span= link_to_page "about_organisation"
-  .fr
-    %span= SystemVariable.get("copyright_notice")
-    %span= link_to_page "copyright"
-    %span= link_to_page "contact"
-    
-:javascript
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-1568476-19']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+%footer
+  = raw t('global.copyright')
+  \/
+  = link_to t('pages.about_service'), page_path('about_service')
+  \/
+  = link_to t('pages.terms_of_service'), page_path('terms_of_service')
+  \/
+  = link_to t('pages.copyright'), page_path('copyright')
+  \/
+  = link_to t('pages.about_organisation'), page_path('about_organisation')
+  \/
+  = link_to  t('pages.contact'), page_path('contact')

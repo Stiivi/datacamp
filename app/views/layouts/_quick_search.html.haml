@@ -1,4 +1,4 @@
 - if params[:controller] != "main" && params[:controller] != "search"
   #quick_search
-    - form_tag quick_searches_path, :class => "search" do
+    = form_tag quick_searches_path, :class => "search" do
       = text_field_tag :query_string

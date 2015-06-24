@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ChangeImportFilesColumns < ActiveRecord::Migration
   def self.up
     remove_column :import_files, :imported

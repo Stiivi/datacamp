@@ -1,0 +1,79 @@
+= form_for [:settings, @user], :builder => ListFormBuilder do |f|
+  
+  .errors= f.error_messages
+  
+  %ul.tabs.clearfix.frontend
+    %li
+      %a{:href => "#basic"}= t("users.information")
+    - if current_user.has_right?(:grant_rights)
+      %li
+        %a{:href => "#access"}= t("users.access_rights")
+    %li
+      %a{:href => "#api"}= t("users.api_access")
+  
+  
+  #basic
+    %ul
+      = f.text_field :login
+      = f.text_field :name
+      = f.text_field :email
+      = f.password_field :password
+      = f.password_field :password_confirmation
+      - if current_user.is_super_user
+        = f.check_box :is_super_user, :label => t("users.super_user")
+    
+      %li.clearfix.action_buttons
+        %label
+        = f.submit
+  
+  - if current_user.has_right?(:grant_rights)
+    #access
+      %h2= t "users.roles"
+      = hidden_field_tag "user[access_role_ids][]", ""
+      %table
+        - AccessRole.all.each do |p|
+          %tr
+            %td{:width => 25}
+              = check_box_tag "user[access_role_ids][]", p.id, @user.access_roles.include?(p), id: "user_access_role_ids_#{p.id}"
+            %td
+              = label_tag "user_access_role_ids_#{p.id}", t("access_roles.#{p.identifier}")
+            %td
+              %small
+                = p.access_rights.collect{|r|t("access_rights.#{r.identifier}")}.join(", ")
+            
+      %h2 Rights
+      = hidden_field_tag "user[access_right_ids][]", ""
+      %table
+        - AccessRight.all.each do |p|
+          %tr
+            %td{:width => 25}
+              = check_box_tag "user[access_right_ids][]", p.id, @user.access_rights.include?(p), id: "user_access_right_ids_#{p.id}"
+            %td{:width => 150}
+              = t "access_right_categories.#{p.category}"
+            %td
+              = label_tag "user_access_right_ids_#{p.id}", t("access_rights.#{p.identifier}")
+    
+      .clearfix
+        = f.submit
+      
+  - if current_user.has_right?(:set_api_acess)
+    #api
+      %h2= t "users.api_access"
+      
+      %ul
+        = f.select :api_access_level, options_for_select(Api.access_levels.collect{|k,v|[I18n.t("api.levels.#{k}"), v]}, @user.api_access_level)
+        = f.submit
+        
+      %br
+
+      .clearfix
+        - if @user.api_key
+          %p
+            = t "users.current_api_key_for", :user => @user.login
+            %strong= @user.api_key.key
+        - else
+          %p= t "users.no_api_key_for", :user => @user.login
+
+        %br
+
+        = button_link_to t("users.create_api_key"), new_api_key_path(:user_id => @user.id)

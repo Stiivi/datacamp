@@ -1,0 +1,20 @@
+en:
+  pages:
+    show:
+      news_header: 'News'
+    datanest_401:
+      notice: 'You do not have sufficient privileges to perform this action. Please contact the administrator'
+    feedback_banner:
+      intro: 'Dobrý deň, chceli by sme vás veľmi pekne poprosiť o vyplnenie krátkeho dotazníka o vašich skúsenostiach s Datanestom. Spätná väzba nám pomôže do budúcna vylepšiť stránku.'
+      link: 'Dotazník nájdete tu.'
+      thanks: 'Ďakujeme!'
+      hide: 'Skryť túto správu'
+    cookie_banner:
+      intro: 'Aby Datanest.sk lepšie fungoval, využívame na ňom súbory cookie. Používaním tejto stránky súhlasíte s ich využitím.'
+      about: 'Čo sú cookies?'
+      hide: 'OK'
+    about_service: "About Service"
+    terms_of_service: "Terms of Service"
+    copyright: "Copyright"
+    about_organisation: "About Fair Play Alliance"
+    contact: "Contact"

@@ -1,0 +1,36 @@
+= form_for @data_repair, :builder => ListFormBuilder, :html => {:class => 'company_data_repair'} do |f|
+  -if @data_repair.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@data_repair.errors.count, "error")} prohibited this data_repair from being saved:"
+      %ul
+        - @data_repair.errors.full_messages.each do |msg|
+          %li= msg
+  .field{:data_update_columns => update_columns_data_repairs_path}
+    = f.label :regis_table_name, t('.regis_table_name')
+    = f.grouped_collection_select :regis_table_name, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
+  .field
+    = f.label :regis_ico_column, t('.regis_ico_column')
+    = f.collection_select :regis_ico_column, [], nil, nil, :inline => true
+  .field
+    = f.label :regis_name_column, t('.regis_name_column')
+    = f.collection_select :regis_name_column, [], nil, nil, :inline => true
+  .field
+    = f.label :regis_address_column, t('.regis_address_column')
+    = f.collection_select :regis_address_column, [], nil, nil, :inline => true
+  
+  %hr
+  
+  .field{:data_update_columns => update_columns_data_repairs_path}
+    = f.label :target_table_name, t('.target_table_name')
+    = f.grouped_collection_select :target_table_name, DatasetCategory.all, :dataset_descriptions, :title, :id, :title, :inline => true
+  .field
+    = f.label :target_ico_column, t('.target_ico_column')
+    = f.collection_select :target_ico_column, [], nil, nil, :inline => true
+  .field
+    = f.label :target_company_name_column, t('.target_company_name_column')
+    = f.collection_select :target_company_name_column, [], nil, nil, :inline => true
+  .field
+    = f.label :target_company_address_column, t('.target_company_address_column')
+    = f.collection_select :target_company_address_column, [], nil, nil, :inline => true
+  .actions
+    = submit_tag "Show matching items", :name => 'show_matching_items'

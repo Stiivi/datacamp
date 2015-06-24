@@ -1,35 +1,17 @@
-.node
-  .information
-    .clearfix
-      .fl.clearfix.buttons
-        .fl
-          = button_link_to(image_tag("back.png") + t("global.back"), dataset_descriptions_path)
-        .fl
-          %h1.main= @dataset_description.title
-      .fr.flags
-        - unless @dataset_description.is_active?
-          %span.error= t("global.inactive")
-        - else
-          %span.success
-            = link_to t("global.active"), dataset_path(@dataset_description)
-        - unless @dataset_description.dataset.table_exists?
-          %span.error= t("dataset.not_in_database")
-        - else
-          %span.success= t("dataset.in_database")
-        - unless @dataset_description.dataset.has_pk?
-          %span.error
-            = link_to t("dataset.no_pk"), add_primary_key_dataset_description_path(@dataset_description), :confirm => t("dataset.confirm_add_pk")
+#dataset_admin_submenu
+  %ul
+    %li= link_to t("global.back"), dataset_descriptions_path, class: 'back'
+    %li= link_to t("dataset.field_descriptions"), url_for(dataset_description_path(@dataset_description)), class: ('active' if params[:action]=="show")
+    %li= link_to t("global.information"), edit_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="edit")
+    %li= link_to t("dataset.visibility_settings"), visibility_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="visibility")
+    %li= link_to t("dataset.columns_for_import"), import_settings_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="import_settings")
+    - if @dataset_description.dataset.table_exists?
+      %li= link_to t("dataset.datastore_status"), datastore_status_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="datastore_status")
+    %li= link_to t("dataset.relations"), relations_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="relations"||params[:action]=="update_relations")
 
-    %p= @dataset_description.description
-  .menu.clearfix
-    %ul.tabs.clearfix.fl
-      %li{:class => params[:action]=="show" ? "active" : nil}
-        %a{:href => url_for(dataset_description_path(@dataset_description))}= t("dataset.field_descriptions")
-      %li{:class => params[:action]=="edit" ? "active" : nil}
-        %a{:href => edit_dataset_description_path(@dataset_description)}= t("global.information")
-      %li{:class => params[:action]=="visibility" ? "active" : nil}= link_to t("dataset.visibility_settings"), visibility_dataset_description_path(@dataset_description)
-      %li{:class => params[:action]=="import_settings" ? "active" : nil}
-        %a{:href => import_settings_dataset_description_path(@dataset_description)}= t("dataset.columns_for_import")
-      - if @dataset_description.dataset.table_exists?
-        %li{:class => params[:action]=="datastore_status" ? "active" : nil}
-          %a{:href => datastore_status_dataset_description_path(@dataset_description)}= t("dataset.datastore_status")
+  .flags_bar
+    .flag= @dataset_description.dataset.table_exists? ? t("dataset.in_database") : t("dataset.not_in_database")
+    .flag= @dataset_description.is_active? ? t("global.active") : t("global.inactive")
+  .info_container
+    %h2= @dataset_description.title
+    .perex= @dataset_description.description

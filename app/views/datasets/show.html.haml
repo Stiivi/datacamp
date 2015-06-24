@@ -1,41 +1,28 @@
-.node
-  .information
-    .clearfix
-      .fl
-        %h1.main= @dataset_description.title
-      .fr.actions
-        - if logged_in? && current_user.has_privilege?(:create_record)
-          = link_to t("dataset.create_record"), new_dataset_record_path(@dataset_description)
-        - if logged_in? && current_user.has_privilege?(:edit_dataset_description)
-          = link_to t("dataset.edit_description"), dataset_description_path(@dataset_description)
-        - if logged_in? && current_user.has_privilege?(:import_from_file)
-          = link_to t("global.import"), new_import_file_path(:dataset_description_id => @dataset_description.id)
-
-    / %p= t("dataset.short_summary", :count => @dataset_description.record_count, :provider => @dataset_description.data_provider)
-
-  = render :partial => 'node_menu'
-
+= render 'node_menu'
+= render 'datasets/admin/navigation'
+= render 'info_container'
 
 #data
-  
-  .pagination.ajax.clearfix
+
+  .pagination.ajax.clearfix.top_pagination
     = render :partial => "pagination"
-    
+
   #results
     = render :partial => "search_status"
     - if has_privilege?(:edit_record_metadata)
       = render :partial => "datasets/admin/table"
     - else
       = render :partial => "datasets/table"
-          
-  .pagination.ajax
+
+  .pagination.ajax.bottom_pagination
     = render :partial => "pagination"
-    
+
 #information
   = render :partial => "information"
-          
+
 #comments
   = render :partial => "comments"
-  
-#search
-  = render :partial => "search"
+
+.clearfix &nbsp;
+
+= render 'similar_datasets'

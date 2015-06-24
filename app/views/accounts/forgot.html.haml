@@ -1,6 +1,6 @@
 %h1= t("profile.create_new_password")
 
-- form_for User.new, :builder => ListFormBuilder, :url => forgot_account_path do |f|
+= form_for User.new, :builder => ListFormBuilder, :url => forgot_account_path do |f|
   %ul
     = f.text_field :email
     %li.clearfix

@@ -1,0 +1,20 @@
+:css
+  table td, table th {
+    padding: 5px;
+  }
+
+- content_for :email_preview do
+  = "VVO V2 kontrola"
+
+%h4= "VVO V2 kontrola uplnosti dat"
+
+%p= "Ahoj,"
+%p= "dnes prebehla kontrola, ci mame stiahnute vsetky data oproti UVO."
+
+%h5= 'Oznámenia o výsledku verejného obstarávania (V..) a Informácie o uzavretí zmluvy (IP.)'
+= render 'vvo_v2_checker_report_table', diffs: @diffs[:notice]
+
+%hr
+
+%h5= 'Informácia o plnení zmluvy'
+= render 'vvo_v2_checker_report_table', diffs: @diffs[:performance]

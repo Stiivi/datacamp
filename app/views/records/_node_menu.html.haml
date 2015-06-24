@@ -1,14 +1,12 @@
 .menu.clearfix
   %ul.tabs.clearfix.fl
-    %li
-      %a{:href => '#comments'}= t("global.comments")
-    %li
-      %a{:href => '#metadata'}= t("global.metadata")
-      
+    %li= link_to t("global.comments"), '#comments', class: 'js_dataset_record_comments_button', data:{ tracking_dataset_description_id: @dataset_description.identifier }
+    %li= link_to t("global.metadata"), '#metadata', class: 'js_dataset_record_metadata_button', data:{ tracking_dataset_description_id: @dataset_description.identifier }
+
   %ul.tabs.small.clearfix.fr
     - if logged_in?
       = render :partial => "favorites/favorite_menu"
-    - if SharingService.all.count > 0
+    - if SharingService.count > 0
       %li.dropdown_trigger
         %a.share{:href => '#share'}
           Share

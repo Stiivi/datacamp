@@ -1,11 +1,11 @@
 = render :partial => "header"
 
-- form_for @dataset_description do |f|
+= form_for @dataset_description do |f|
   
   = hidden_field_tag :return_to, "visibility"
   = hidden_field_tag :skip_validations, "1"
 
-  %p= f.submit t("global.save_changes")
+  %p.top_buttons= f.submit t("global.save_changes")
 
   %table
     %tr
@@ -18,16 +18,19 @@
         %a{:href => "#is_visible_in_detail", :class => "switch_visibility"}= t "dataset.is_visible_in_detail"
       %th
         %a{:href => "#is_visible_in_export", :class => "switch_visibility"}= t "dataset.is_visible_in_export"
+      %th
+        %a{:href => "#is_visible_in_relation", :class => "switch_visibility"}= t "dataset.is_visible_in_relation"
   
     - @dataset_description.field_descriptions.each do |description|
-      - f.fields_for :field_descriptions, description do |fields|
+      = f.fields_for :field_descriptions, description do |fields|
         %tr
           %td== #{description.title} (#{description.identifier})
           %td.is_visible_in_listing= fields.check_box :is_visible_in_listing
           %td.is_visible_in_search= fields.check_box :is_visible_in_search
           %td.is_visible_in_detail= fields.check_box :is_visible_in_detail
           %td.is_visible_in_export= fields.check_box :is_visible_in_export
+          %td.is_visible_in_relation= fields.check_box :is_visible_in_relation
           
   %br
   
-  %p= f.submit t("global.save_changes")
+  %p.bottom_buttons= f.submit t("global.save_changes")

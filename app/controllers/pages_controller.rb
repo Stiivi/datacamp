@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Pages Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -19,11 +20,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class PagesController < ApplicationController
-  def show
-    begin
-      @page = Page.find_by_page_name!(params[:id])
-    rescue Exception => e
-      @page = Page.find_by_id!(params[:id])
+  before_filter lambda {
+    if params[:bust_cache].blank? && current_user.blank?
+      expires_in 5.minutes, public: true
     end
+  }
+
+  def show
+    @page = Page.find_by_page_name(params[:id]) || Page.find(params[:id])
+    @news = News.published.limit(2) if params[:id] == 'index'
+    @blocks = @page.blocks.where(is_enabled: true).order(:name).paginate(
+      page: params[:page],
+      per_page: 9
+    )
   end
 end

@@ -1,0 +1,18 @@
+- content_for :email_preview do
+  = "Pri stahovani advokatskych spolocnosti sa vyskytol problem."
+
+%h4= 'Advokatske spolocenstva download problem'
+%div
+  %strong= "Pri poslednom stiahnuti najskor neboli stiahnute vsetky udaje."
+  %p
+    Zaznamy, ktore neboli stihanute:
+    %ul
+      - @activation_result.map do |result|
+        %li
+          = link_to 'Najprv klik sem', result.reset_url
+          |
+          = link_to 'Potom sem', result.parent_url
+          |
+          = link_to 'A nakoniec Potom sem', result.url
+
+

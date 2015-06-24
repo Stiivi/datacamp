@@ -1,0 +1,238 @@
+--- 
+sk: 
+  Domain: 
+    Key: sk
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message}"
+      messages: 
+        blank: "je potrebné vyplniť"
+        blank_i18n: "je potrebné vyplniť pre všetky preklady"
+      template: 
+        body: "Prosím pozrite si tieto chyby a opravte príslušné polia"
+        header: "Uloženiu zabránilo niekoľko chýb"
+  comments: 
+    foo: Anofff
+    neutral: Neutral
+    new: "Nový komentár"
+    ? "no"
+    : Nie
+    poor: Zlé
+    post: Komentár
+    record: "Záznam #%{id}"
+    reply: Odpovedať
+    replying_to: "Odpoveď na komentár #%{parent}"
+    report: Zažalovať
+    report_label: "Zažalovať komentár"
+    spam: Spam
+    staff: Elita
+    suspend: Pozdržať
+    suspended: "Komentár pozdržaný"
+    useful: Užitočný
+    violation: "Porušenie pravidiel"
+    was_useful: "Bol tento komentár užitočný?"
+    ? "yes"
+    : Ano
+  dataset: 
+    add_field_description: "Pridať popis položky"
+    columns_for_import: "Stĺpce pre import"
+    create_record: "Vytvoriť záznam"
+    create_table: "Vytvoriť tabuľku %{table}"
+    data_types: "Dátove typy"
+    dataset_choose: "Výber súboru údajov"
+    datastore_status: "Stav v databáze"
+    descriptions: "Popisy súborov údajov"
+    edit_description: "Upraviť popis"
+    field_descriptions: "Popisy položiek"
+    fields: Položky
+    import_button: "Inicializovať existujúcu tabuľku"
+    import_settings: "Nastavenia importu"
+    information: "Informácie o súbore údajov"
+    initialize: Inicializovať
+    initialize_from_table: "Inicializovať z tabuľky"
+    initialize_table: "Inicializovať tabuľku %{identifier}"
+    initialized_datasets: "Inicializovať súbor údajov"
+    is_to_many: "Je jeden-ku-viac"
+    is_visible_in_detail: "Zobraziť v detajloch"
+    is_visible_in_export: "Exportovať (API)"
+    is_visible_in_listing: "Zobraziť v zozname záznamov"
+    is_visible_in_search: "Zobraziť vo výsledoch vyhľadávania"
+    looking_for_table: "Hľadá sa tabuľka"
+    new_description: "Vytvoriť popis súboru údajov"
+    no_category: "Bez skupiny"
+    no_group: Ostatné
+    no_table_in_databaes: "V databáze nie je taká tabuľka, môžte ju vytvoriť."
+    other_columns: "Ostatné stĺpce"
+    relationship_descriptions: "Popisy vzťahov"
+    revert: Obnoviť
+    run_tests: "Spustiť testy"
+    save_and_create: "Uložiť a vytvoriť"
+    short_summary: "publikovaných záznamov: %{count}, poskytovateľ: %{provider}"
+    table_name: "Názov tabuľky"
+    title: Nadpis
+    type: Typ
+    uninitialized_datasets: "Neinicialozované súbory údajov"
+    visibility_settings: "Nastavenia zobrazenia"
+  date: 
+    abbr_day_names: 
+      - po
+      - ut
+      - st
+      - st
+      - pia
+      - so
+      - ne
+    abbr_month_names: 
+      - jan
+      - feb
+      - mar
+      - apr
+      - maj
+      - jun
+      - jul
+      - aug
+      - sep
+      - okt
+      - nov
+      - dec
+    day_names: 
+      - po
+      - ut
+      - st
+      - st
+      - pia
+      - so
+      - ne
+    month_names: 
+      - jan
+      - feb
+      - mar
+      - apr
+      - maj
+      - jun
+      - jul
+      - aug
+      - sep
+      - okt
+      - nov
+      - dec
+  favorites: 
+    confirm_deletion: "Naozaj chcete odstrániť túto obľúbenú položku?"
+    remove: (odstrániť)
+  global: 
+    add_to_favorites: "Pridať k obľúbeným"
+    add_to_favorites_hint: "Je táto stránka zaujimavá?"
+    advanced_search: "Pokročilé vyhľadávanie"
+    back: Naspäť
+    browse_dataset: "Prezerať súbor údajov"
+    cancel: Odvolať
+    collapse: Zbaliť
+    collection_mode: "Spôsob zberu"
+    comment: Komentáre
+    comments: Komentáre
+    continue: Pokračovať
+    create: "Vytvoriť nové"
+    data: Údaje
+    data_catalogue: "Katalóg údajov"
+    data_dictionary: "Slovník údajov"
+    datasets: "Súbory údajov"
+    delete: Vymazať
+    delete_confirmation: "Naozaj chcete vymazať túto položku?"
+    description: Popis
+    details: Detajly
+    discussion: Diskusia
+    edit: Upraviť
+    edit_description: "Upraviť informácie"
+    email_sent: "Email bol odoslaný."
+    empty: prázdne
+    favorites: Obľúbené
+    field: Položka
+    home: Domov
+    import: Import
+    information: Informácie
+    is_favorite: "Vaše obľúbené."
+    login: Prihlásenie
+    logout: Odhlásenie
+    metadata: Metadata
+    next: Nasledujúce
+    other: Ostatné
+    previous: Predošlé
+    profile: Profil
+    ratings: Hodnotenia
+    record: Záznam
+    record_count: "Počet záznamov"
+    record_id: "ID záznamu"
+    remove_from_favorites: "Odstrániť z obľúbených"
+    remove_question: odstrániť?
+    save: Uložiť
+    save_and_create: "Uložiť a vytvoriť ďalšie"
+    save_changes: "Uložiť zmeny"
+    search: "Hľadať v databázach"
+    show: Zobraziť
+    hide: Skryť
+    show_all: "Zobraziť všetko"
+    source: Zdroj
+    status: Stav
+    submit: Odoslať
+    testing_notice: "Táto aplikácie je v súčasnosti v uzavretom kole testovania."
+    title: Nadpis
+    total_entries: "Spolu záznamov"
+    users: Používatelia
+  import: 
+    column_separator: "Oddelovač stĺpca"
+  metadata: 
+    collection_mode: "Spôsob získavania"
+    created_on: "Vytvorené dňa"
+    data_provider: "Poskytovateľ údajov"
+    data_source_type: "Druh zdroja údajov"
+    granularity: Granularita
+    is_hidden: Skryté
+    keywords: "Kľúčové slová"
+    last_update_date: "Naposledy upravené"
+    quality_status: "Stav kvality"
+    status: Stav
+    unit_of_analysis: "Jednotka analýzy"
+    update_frequency: "Frekvencia obnovovania"
+    valid_from: "Platné od"
+  password_reset: 
+    restore_account: "Obnoviť účet"
+    subject: "Obnoviť váš účet"
+    title: "Obnoviť váš účet"
+  profile: 
+    create_new_password: "Vytvoriť nové heslo"
+    edit_my_profile: "Editovať môj profil"
+  rights: 
+    data_dictionary: "Slovník údajov"
+    data_editing: "Upravovanie údajov"
+    data_management: "Správa údajov"
+    user_management: "Správa používateľov"
+  search: 
+    categories: Kategórie
+    dataset_name: "Súbor údajov"
+    query_field: "Hľadať:"
+    results_count: "%{count} výsledkov pre '%{query_string}'"
+    search_action: Hľadať!
+    search_term: Výraz
+    searching_notice: "Prosíme o chvíľku strpenia, kým sa prehľadáva naša databáza"
+  session: 
+    login: Prihlásenie
+    lost_password_label: "Zabudli ste heslo?"
+    password: Heslo
+    submit: Odoslať
+    user_name: Používateľ
+  time: 
+    am: am
+    formats: 
+      default: "%d.%m.%Y"
+    pm: pm
+  users: 
+    my_account: "Moje konto"
+    user_not_found: "Používateľ nebol nájdený"
+  watchers: 
+    email: E-mail
+    organization: Organizácia
+    sign_up: "Registrovať sa pre oznámenie o novinkách."
+    signup: "Registrovať sa"
+    success: "Budeme vás včas informovať."
+    title: "Zoznam záujemcov."
