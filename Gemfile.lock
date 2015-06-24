@@ -339,7 +339,6 @@ DEPENDENCIES
   capybara-screenshot
   codeclimate-test-reporter
   coffee-rails (~> 3.2.1)
-  cucumber-rails
   daemons
   database_cleaner
   delayed_job
