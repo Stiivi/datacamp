@@ -40,7 +40,6 @@ gem 'rack-rewrite'
 
 gem 'roadie', '~> 2.4.0' # version for rails 3
 gem 'mechanize'
-gem 'thin'
 
 # this gems should be removed in future
 gem 'dynamic_form'
@@ -55,7 +54,8 @@ group :development do
   gem 'capistrano-ext'
   gem 'letter_opener'
 
-  gem 'bullet'
+  gem 'thin'
+  gem 'ruby-prof'
 end
 
 group :development, :test do

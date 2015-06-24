@@ -1,12 +1,12 @@
 %footer
-  = raw SystemVariable.get("copyright_notice")
+  = raw t('global.copyright')
   \/
-  = link_to_page "about_service"
+  = link_to t('pages.about_service'), page_path('about_service')
   \/
-  = link_to_page "terms_of_service"
+  = link_to t('pages.terms_of_service'), page_path('terms_of_service')
   \/
-  = link_to_page "copyright"
+  = link_to t('pages.copyright'), page_path('copyright')
   \/
-  = link_to_page "about_organisation"
+  = link_to t('pages.about_organisation'), page_path('about_organisation')
   \/
-  = link_to_page "contact"
+  = link_to  t('pages.contact'), page_path('contact')

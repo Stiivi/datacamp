@@ -1,5 +1,0 @@
-<div style="margin:-20px 140px 0px 20px;">
- <div style="font-size:60px; font-weight:bold; line-height:65px;"><span style="color:#2BB673;">Sledujte</span><br /> kadiaľ tečú<br /> verejné <span style="color:#2BB673;">peniaze</span></div>
-
- <div style="font-size:24px; font-weight:bold; line-height:32px; margin:30px 0px 0px 0px;">Spolu s vami mapujeme informácie o peniazoch v politike, verejných zákazkách, dotaciách a desiatkach ďalších informácií o spravovaní Slovenska.</div>
-</div>

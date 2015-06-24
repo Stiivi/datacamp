@@ -6,14 +6,11 @@ class ApplicationController < ActionController::Base
   attr_accessor :javascripts
 
   include AuthenticatedSystem
-  include Datacamp::Logger
 
   # Session initialization
   before_filter :session_init
   before_filter :login_required
-  before_filter :log
   before_filter :set_locale
-  before_filter :load_pages
   before_filter :init_menu
   before_filter :set_mailer
 
@@ -46,10 +43,6 @@ class ApplicationController < ActionController::Base
 
   def session_init
     @current_session = Session.new_from_session(session, request)
-  end
-
-  def load_pages
-    @pages = Page.includes(:translations).all
   end
 
   def add_javascript what

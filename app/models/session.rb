@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Session < ActiveRecord::Base
-
   belongs_to :user
-  has_many :accesses
   has_many :searches
   
   cattr_accessor :current_session

@@ -6,12 +6,12 @@
 %ul
 - @results.each do |dataset_category, result|
   %li{:class => (params[:category_id].to_i == dataset_category.id) ? "active": nil, :style => 'list-style:none;'}
-    %h2.bordered= link_to(dataset_category.title, "?category_id=#{dataset_category.id}")
+    %h2.bordered= link_to(dataset_category.title, category_id: dataset_category.id)
     - result.each do |dataset_description, result_records|
       %h2.clearfix.in_container
         .fl= dataset_description.title
       %table.frontend.small
-        - fds = dataset_description.visible_field_descriptions(:search, 5)
+        - fds = dataset_description.field_descriptions_for_search.first(5)
         %tr
           - fds.each do |field|
             %th= field.title
