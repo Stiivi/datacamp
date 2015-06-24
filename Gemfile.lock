@@ -36,9 +36,6 @@ GEM
     addressable (2.3.8)
     arel (3.0.3)
     builder (3.0.4)
-    bullet (4.14.7)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.9.0)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -180,7 +177,7 @@ GEM
     net-ssh (2.8.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
-    newrelic_rpm (3.7.2.192)
+    newrelic_rpm (3.12.0.288)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     ntlm-http (0.1.1)
@@ -270,6 +267,7 @@ GEM
       rspec-core (~> 2.99.0)
       rspec-expectations (~> 2.99.0)
       rspec-mocks (~> 2.99.0)
+    ruby-prof (0.15.8)
     ruby-progressbar (1.7.5)
     sass (3.4.14)
     sass-rails (3.2.6)
@@ -331,7 +329,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    uniform_notifier (1.9.0)
     vcr (2.9.3)
     webrobots (0.1.1)
     websocket-driver (0.5.4)
@@ -349,7 +346,6 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   actionmailer_inline_css
-  bullet
   capistrano (~> 2)
   capistrano-ext
   capybara
@@ -388,6 +384,7 @@ DEPENDENCIES
   rspec-activemodel-mocks
   rspec-collection_matchers
   rspec-rails (~> 2.14)
+  ruby-prof
   sass-rails (~> 3.2.3)
   simplecov
   test-unit (~> 3.0)
