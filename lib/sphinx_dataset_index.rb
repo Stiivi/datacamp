@@ -1,6 +1,8 @@
 class SphinxDatasetIndex
   def self.define_indices_for_all_datasets
-    DatasetDescription.find_each { |dataset_description| define_index_for_dataset(dataset_description) }
+    if DatasetDescription.table_exists?
+      DatasetDescription.find_each { |dataset_description| define_index_for_dataset(dataset_description) }
+    end
   end
 
   def self.define_index_for_dataset(dataset_description)
