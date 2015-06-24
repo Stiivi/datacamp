@@ -1,7 +1,7 @@
 %h1= @page.title
 #page_content{class: params[:id] == 'index' && @news.present? ? 'with_sidebar': ''}=raw @page.html_body
 
-- if params[:id] == 'index' && @news.present?
+- if @news.present?
   #newsfeed
     %ul
       %li=link_to t('.news_header'), news_index_path, class: 'headline'
