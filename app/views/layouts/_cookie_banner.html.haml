@@ -1,4 +1,4 @@
 #cookie_banner
     = t('pages.cookie_banner.intro')
-    = link_to_page 'cookies', t('pages.cookie_banner.about')
+    = link_to t('pages.cookie_banner.about'), page_path('cookies')
     = link_to t('pages.cookie_banner.hide'), '#', class: 'btn_hide'
