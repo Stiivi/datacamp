@@ -77,10 +77,6 @@ private
     # Time.zone = Person.current.time_zone
   end
 
-  def index_page
-    @__index_page ||= Page.find_by_page_name("index")
-  end
-
   def verify_captcha_for(model)
     verify_recaptcha(private_key: Datacamp::Config.get(:captcha_private_key), model: model)
   end
