@@ -113,12 +113,6 @@ Datacamp::Application.routes.draw do
       end
     end
 
-    resources :data_types
-
-    resources :dataset_tests do
-      get :run, :on => :member
-    end
-
     resources :dataset_descriptions do
       member do
         get :import_settings,

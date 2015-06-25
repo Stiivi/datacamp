@@ -4,7 +4,6 @@ namespace :db do
     files_to_load = [ "install.rb",
                       "install_user_roles.rb",
                       "install_pages.rb",
-                      "install_data_types.rb",
                       "install_system_variables.rb",
                       "install_data_formats.rb",
                       "install_quality_statuses.rb" ]
