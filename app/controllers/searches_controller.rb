@@ -35,10 +35,9 @@ class SearchesController < ApplicationController
   # Quick search using Sphinx. If Sphinx search engine couldn't be used
   # redirect to regular search.
   def quick
-    query = params[:query_string]
-    engine = SphinxSearchEngine.new
-    search = engine.create_search_with_string(query)
-    redirect_to search_path(search, :disabled_descriptions => params[:disabled_descriptions])
+    search = Search.build_from_query_string(params[:query_string])
+    search.save
+    redirect_to search
   end
 
   def show
