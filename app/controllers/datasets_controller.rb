@@ -17,7 +17,7 @@
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU Lesser General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetsController < ApplicationController
   include CommentsLoader
@@ -28,12 +28,14 @@ class DatasetsController < ApplicationController
   helper_method :has_filters?
   
   def index
-    expires_in 5.minutes, public: true if current_user.blank?
-    @all_dataset_descriptions = DatasetDescription.where(:is_active => true)
     @dataset_categories = DatasetCategory.order('dataset_categories.position, dataset_descriptions.position').includes(:dataset_descriptions => :translations).where("dataset_descriptions.is_active = 1")
+
     respond_to do |wants|
       wants.html
-      wants.xml { render :xml => @all_dataset_descriptions }
+      wants.xml do
+        @all_dataset_descriptions = DatasetDescription.active
+        render :xml => @all_dataset_descriptions
+      end
     end
   end
   

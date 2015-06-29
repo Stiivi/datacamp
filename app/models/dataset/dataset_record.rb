@@ -53,6 +53,11 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     construct_finder_sql(options)
   end
 
+  def self.find_by_record_ids(ids)
+    return [] if ids.empty?
+    where(_record_id: ids).all.index_by(&:_record_id).map { |id| records[id] }.compact
+  end
+
   # Convenience shortcut
   def self.find_by_record_id! *args
     find_by__record_id! *args
