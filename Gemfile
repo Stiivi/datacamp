@@ -42,6 +42,8 @@ gem 'rack-rewrite'
 gem 'roadie', '~> 2.4.0' # version for rails 3
 gem 'mechanize'
 
+gem 'hirb', require: false
+
 # this gems should be removed in future
 gem 'dynamic_form'
 gem 'test-unit', '~> 3.0' # ruby 2.2.2 needs this for rails 3.2

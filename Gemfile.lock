@@ -111,6 +111,7 @@ GEM
       railties (>= 3.1, < 4.1)
     highline (1.6.20)
     hike (1.2.3)
+    hirb (0.7.3)
     htmlentities (4.3.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -350,6 +351,7 @@ DEPENDENCIES
   gabba
   globalize (~> 3.1.0)
   haml-rails (~> 0.4.0)
+  hirb
   jquery-rails
   launchy
   letter_opener
