@@ -46,18 +46,4 @@ describe ImportFile do
     end
   end
   
-  describe 'import csv' do
-    it 'should import csv' do
-      column_mapping = {'0' => '1', '1' => '2'}
-      record_mock = mock(:record, _record_id: 1).as_null_object
-      csv_mock = mock(:csv).as_null_object
-      csv_mock.should_receive(:parse_all_lines).and_yield(["field1", "field2"])
-      record_mock.should_receive(:[]=).with('one', 'field1')
-      record_mock.should_receive(:[]=).with('two', 'field2')
-      record_mock.should_receive(:save)
-      @import_file.stub(csv_file: csv_mock, dataset_description_field_descriptions: [stub(id:1, identifier: 'one'), stub(id:2, identifier: 'two')], prepare_record: record_mock)
-      @import_file.import_into_dataset(column_mapping)
-    end
-  end
-  
 end

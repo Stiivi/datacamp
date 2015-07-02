@@ -16,8 +16,22 @@ class Change < ActiveRecord::Base
   
   BATCH_INSERT      = 'batch_insert'
   BATCH_UPDATE      = 'batch_update'
-  
-  
+
+  def self.store_batch_update(import_file, params)
+    create!(
+        change_type: Change::BATCH_INSERT,
+        user: params.fetch(:current_user),
+        change_details: {
+            update_conditions: {
+                _record_id: params.fetch(:saved_ids)
+            },
+            update_count: params.fetch(:count),
+            batch_file: import_file.path_file_name
+        },
+        dataset_description: import_file.dataset_description
+    )
+  end
+
   def dataset_description_identifier
     dataset_description.present? ? dataset_description.identifier : I18n.t('n_a')
   end
