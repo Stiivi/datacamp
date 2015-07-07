@@ -6,7 +6,7 @@ class SearchResult < ActiveRecord::Base
   belongs_to :record, :polymorphic => true, :foreign_key => "record_id", :primary_key => "_record_id", :foreign_type => "table_name", :extend => ( Module.new do
     def association_class
       begin
-        return Dataset::Base.new(@owner.table_name).dataset_record_class
+        return Dataset::Base.build_from_identifier(@owner.table_name).dataset_record_class
       rescue Exception => e
         return nil
       end

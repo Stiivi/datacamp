@@ -38,7 +38,7 @@ class FieldDescription < ActiveRecord::Base
   ###########################################################################
   # Dataset
   def exists_in_database?
-    dataset_description.dataset.has_column?(identifier)
+    dataset_description.transformer.has_column?(identifier)
   end
 
   def update_data_type
@@ -57,14 +57,11 @@ class FieldDescription < ActiveRecord::Base
   private
 
   def setup_in_database
-    # return false unless dataset_description
-    dataset = dataset_description.dataset
-
     return false unless identifier
-    return false unless dataset_description.dataset.table_exists?
-    return false if dataset.has_column?(identifier.to_s)
+    return false unless dataset_description.transformer.table_exists?
+    return false if dataset_description.transformer.has_column?(identifier.to_s)
 
-    dataset.create_column_for_description(self)
+    dataset_description.transformer.create_column_for_description(self)
   end
 
   # Update data type in database

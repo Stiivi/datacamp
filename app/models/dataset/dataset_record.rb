@@ -39,20 +39,6 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     _record_id.to_s
   end
 
-  # Converts Datacamp-specific options (NOT RAILS) into SQL.
-  # Datacamp-options are same as Rails options, except you can pass
-  # array of conditions (already sanitized and everything) and it will
-  # join it and send as a single condition.
-  def self.options_to_sql(options)
-    if options[:conditions] && (options[:conditions].size > 0)
-      joined_conditions = options[:conditions].collect.join(") AND (")
-      options[:conditions] = "(#{joined_conditions})"
-    else
-      options.delete(:conditions)
-    end
-    construct_finder_sql(options)
-  end
-
   # Convenience shortcut
   def self.find_by_record_id! *args
     find_by__record_id! *args
@@ -77,16 +63,6 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     read_attribute(:quality_status).blank? ? "absent" : read_attribute(:quality_status)
   end
 
-
-  ########################################################################################
-  # Method providing API for only those column we have marked as visible in export
-  def to_hash
-    fields_for_export = description.visible_field_descriptions(:export)
-    # Put data into an array
-    data_for_export = fields_for_export.collect{ |description| [description.identifier, self[description.identifier]] }
-    # Make hash from the array (we can only turn hash into xml)
-    return Hash[*data_for_export.flatten]
-  end
 
   def visible_fields
     fields_for_export = description.visible_field_descriptions(:export)
@@ -182,6 +158,10 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   def search_string_for_field_description(field_description)
     search_string = "column:%s %s" % [field_description.reference, get_value(field_description)]
+  end
+
+  def self.table_exists?
+    connection.tables.include?(table_name)
   end
 
   ########################################################################################

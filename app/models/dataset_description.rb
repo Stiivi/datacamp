@@ -130,7 +130,7 @@ class DatasetDescription < ActiveRecord::Base
   end
 
   def dataset
-    @dataset ||= Dataset::Base.new(self)
+    @dataset ||= Dataset::ModelBuilder.new(self).build
     @dataset
   end
 
@@ -140,7 +140,15 @@ class DatasetDescription < ActiveRecord::Base
   end
 
   def dataset_record_class
-    self.dataset.dataset_record_class
+    dataset.dataset_record_class
+  end
+
+  def transformer
+    @transformer ||= Dataset::TableTransformer.new(self)
+  end
+
+  def has_derived_fields?
+    derived_field_descriptions.exists?
   end
 
   ###########################################################################

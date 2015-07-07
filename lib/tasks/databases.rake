@@ -29,7 +29,7 @@ namespace :db_data do
 
   task initialize_datasets: :environment do
     ['lawyers', 'lawyer_associates', 'lawyer_partnerships'].each do |identifier|
-      dataset = Dataset::Base.new(identifier)
+      dataset = Dataset::Base.build_from_identifier(identifier)
       dataset.add_system_columns if dataset.description.new_record?
       if dataset.create_description!
         puts "Initializing #{identifier} successfull"

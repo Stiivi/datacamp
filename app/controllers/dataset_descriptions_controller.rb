@@ -91,7 +91,7 @@ class DatasetDescriptionsController < ApplicationController
 
     respond_to do |format|
       if @dataset_description.save
-        @dataset_description.dataset.setup_table
+        @dataset_description.transformer.setup_table
         flash[:notice] = I18n.t("dataset.created_message")
         format.html {
           return redirect_to(new_dataset_description_path) if params[:commit] == I18n.t("global.save_and_create")
@@ -170,7 +170,7 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def do_import
-    @dataset = Dataset::Base.new(params[:dataset])
+    @dataset = Dataset::Base.build_from_identifier(params[:dataset])
     if params[:revert]
       success = @dataset.revert!
     else
@@ -218,7 +218,7 @@ class DatasetDescriptionsController < ApplicationController
 
     @connection = Dataset::DatasetRecord.connection
     begin
-      table_desc = TableDescription.new(@connection, dd.dataset.table_name)
+      table_desc = TableDescription.new(@connection, dd.transformer.table_name)
     rescue Exception => e
       logger.error e.message
       return redirect_to dd

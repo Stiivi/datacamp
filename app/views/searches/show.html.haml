@@ -21,7 +21,7 @@
             -fds.each do |field|
               %td= result.get_html_value(field)
             %td.actions
-              = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(result.dataset.description, result, :page => params[:page]))
+              = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(result.dataset, result, :page => params[:page]))
       .fl= t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => (result_records.total_entries > 5 ? 5 : result_records.total_entries))
       .fr= button_link_to(t("search.more_results"), dataset_path(dataset_description, :search_id => @search.id), :class => "search_preloader")
       %br

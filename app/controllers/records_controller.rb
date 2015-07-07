@@ -42,7 +42,7 @@ class RecordsController < ApplicationController
     end
     
     @related_records_and_fields = related_records_and_fields(@dataset_description, @record)
-    
+
     load_comments
     
     @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
@@ -97,7 +97,7 @@ class RecordsController < ApplicationController
     @record.destroy
     redirect_to dataset_path(@dataset_description)
   end
-  
+
   def fix
     @record.quality_status = nil
     @record.save
@@ -127,7 +127,7 @@ class RecordsController < ApplicationController
     record = dataset_description.dataset.dataset_record_class.find(params[:id])
     related_dataset_class = DatasetDescription.find(params[:related_dataset]).dataset.dataset_record_class
     related_record = related_dataset_class.find_by_record_id(params[:related_id])
-    
+
     added = record.send(params[:reflection]) << related_record if related_record.present?
     notice = added ? t('relation.added') : t('relation.add_failed')
     redirect_to dataset_record_path(dataset_description, record), notice: notice

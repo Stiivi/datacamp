@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Dataset::Base
 
-  include Transformations
+  include ::Dataset::Transformations
 
   attr_reader :errors, :description, :derived_fields #:dataset_record_class, :derived_fields
   cattr_reader :system_columns, :prefix
@@ -24,16 +24,27 @@ class Dataset::Base
   ####################################################################################
   # Basic Initializer Method
 
-  def initialize(identifier)
-    if identifier.is_a? DatasetDescription
-      @description = identifier
-    else
-      @description = DatasetDescription.find_by_identifier(identifier.to_s)
-      unless @description
-        @description = DatasetDescription.new
-        @description.identifier = identifier
-      end
-    end
+  def self.build_from_dataset_description(dataset_description)
+    new(dataset_description)
+  end
+
+  def self.build_from_identifier(identifier)
+    new(DatasetDescription.new(identifier: identifier))
+  end
+
+  def self.build(dataset_description)
+    define_model_class
+    set_up_model
+    set_up_relations
+
+  end
+
+  class << self
+    private :new
+  end
+
+  def initialize(dataset_description)
+    @description = dataset_description
 
     # Initialize instance variables
     @errors = []
@@ -45,8 +56,6 @@ class Dataset::Base
     table_name = @@prefix + @description.identifier
     dataset_record_class.table_name = table_name
 
-    # TODO: what is this doing ??
-    # dataset_record_class.write_inheritable_attribute(:reflections, {}) unless Rails.env.test?
     dataset_record_class.send(:has_many, :dc_updates, class_name: 'Dataset::DcUpdate', as: :updatable)
     if Relation.table_exists?
       @description.relations.each do |relation|

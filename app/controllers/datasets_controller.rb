@@ -54,12 +54,6 @@ class DatasetsController < ApplicationController
       return redirect_to datasets_path
     end
 
-    unless @dataset.has_pk?
-      logger.error "Dataset is missing PK _record_id: #{@dataset_description.title} (#{@dataset_description.identifier})"
-      flash[:error] = I18n.t("dataset.internal_dataset_error", :title => @dataset_description.title)
-      return redirect_to datasets_path
-    end
-
     # Comments
     load_comments
     
@@ -293,15 +287,6 @@ class DatasetsController < ApplicationController
   end
   
   protected
-
-  # Creates SQL query from set of options for query.
-  # If order is specified, it will create 2 queries and connect
-  # them with union, to speed up sorting.
-  def create_query_from_options(options)
-    query = @dataset_class.options_to_sql(options)
-    
-    query
-  end
   
   def prepare_filters
     if params[:clear_filters]

@@ -5,7 +5,7 @@ class Dataset::Utils
   def self.initialize_dataset(dataset_name, debug_output=false)
     if Dataset::DatasetRecord.connection.table_exists?("ds_#{dataset_name}") && !DatasetDescription.find_by_identifier(dataset_name)
       puts "initializing #{dataset_name}"     if debug_output
-      dataset_base = Dataset::Base.new(dataset_name)
+      dataset_base = Dataset::Base.build_from_identifier(dataset_name)
       dataset_base.add_primary_key
       dataset_base.add_system_columns
       puts 'finished transormation'   if debug_output
@@ -19,8 +19,8 @@ class Dataset::Utils
 
   # Reload dataset
 
-  def self.reload_dataset(dataset)
-    Dataset::Base.new(dataset)
+  def self.reload_dataset(dataset_description)
+    Dataset::Base.build_from_dataset_description(dataset_description)
   end
 
   # Create relations

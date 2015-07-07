@@ -1,8 +1,8 @@
 .action_box.clearfix.notice
   .fl
-    %strong== #{t("dataset.looking_for_table")} <span class="highlight">#{@dataset_description.dataset.table_name}</span>.
+    %strong== #{t("dataset.looking_for_table")} <span class="highlight">#{@dataset_description.transformer.table_name}</span>.
     %br
     = t("dataset.no_table_in_database")
   .fr
     %a{:href => setup_dataset_dataset_description_path, :class => "button"}
-      %span= t("global.create", :table => @dataset_description.dataset.table_name)
+      %span= t("global.create", :table => @dataset_description.transformer.table_name)
