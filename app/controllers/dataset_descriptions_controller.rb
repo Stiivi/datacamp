@@ -171,11 +171,7 @@ class DatasetDescriptionsController < ApplicationController
 
   def do_import
     @dataset = Dataset::Base.build_from_identifier(params[:dataset])
-    if params[:revert]
-      success = @dataset.revert!
-    else
-      success = @dataset.transform! && @dataset.create_description!
-    end
+    success = @dataset.transform! && @dataset.create_description!
 
     if success
       redirect_to import_dataset_descriptions_path

@@ -32,13 +32,6 @@ class Dataset::Base
     new(DatasetDescription.new(identifier: identifier))
   end
 
-  def self.build(dataset_description)
-    define_model_class
-    set_up_model
-    set_up_relations
-
-  end
-
   class << self
     private :new
   end
@@ -145,6 +138,10 @@ class Dataset::Base
     description
   end
 
+  def dataset_description=(dataset_description)
+    @description = dataset_description
+  end
+
 
   ####################################################################################
   # "Finder" method - to retrieve all tables
@@ -176,5 +173,13 @@ class Dataset::Base
 
   def add_column name, type
     @connection.add_column table_name, name, type
+  end
+
+  def connection
+    @connection
+  end
+
+  def add_error(error)
+    @errors << error
   end
 end

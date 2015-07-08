@@ -8,7 +8,7 @@ class Dataset
       @errors = []
     end
 
-    def has_column? column
+    def has_column?(column)
       return false unless table_exists?
       @columns ||= @connection.columns table_name
       @columns.collect{|col|col.name}.include? column.to_s
@@ -32,6 +32,18 @@ class Dataset
 
     def dataset_description
       @description
+    end
+
+    def dataset_description=(dataset_description)
+      @description = dataset_description
+    end
+
+    def add_error(error)
+      @errors << error
+    end
+
+    def connection
+      @connection
     end
   end
 end
