@@ -4,7 +4,7 @@ describe 'FavoriteDatasets' do
   context 'logged in user' do
     let!(:students) { FactoryGirl.create(:dataset_description, en_title: 'students', with_dataset: true) }
     let!(:field_description) { FactoryGirl.create(:field_description, identifier: 'name', dataset_description: students) }
-    let!(:record) { students.dataset_record_class.create!(name: 'Filip Velky') }
+    let!(:record) { students.dataset_model.create!(name: 'Filip Velky') }
 
     before(:each) do
       login_as(admin_user)

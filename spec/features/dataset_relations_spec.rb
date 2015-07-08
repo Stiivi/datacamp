@@ -27,11 +27,11 @@ describe 'DatasetRelations' do
 
   it 'is possible to possible to map records from relation datasets', js: true do
     FactoryGirl.create(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
-    student_record = students.dataset_record_class.create!(name: 'Filip')
+    student_record = students.dataset_model.create!(name: 'Filip')
 
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'street', is_visible_in_relation: false)
-    school_record = schools.dataset_record_class.create!(name: 'Grammar', street: 'Bratislava')
+    school_record = schools.dataset_model.create!(name: 'Grammar', street: 'Bratislava')
 
     set_up_relation(students, schools)
 
@@ -52,8 +52,8 @@ describe 'DatasetRelations' do
     FactoryGirl.create(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
 
-    student_record = students.dataset_record_class.create!(name: 'Filip')
-    school_record = schools.dataset_record_class.create!(name: 'Grammar')
+    student_record = students.dataset_model.create!(name: 'Filip')
+    school_record = schools.dataset_model.create!(name: 'Grammar')
 
     student_record.ds_schools << school_record
     student_record.save!
@@ -72,8 +72,8 @@ describe 'DatasetRelations' do
     FactoryGirl.create(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
 
-    student_record = students.dataset_record_class.create!(name: 'Filip')
-    school_record = schools.dataset_record_class.create!(name: 'Grammar')
+    student_record = students.dataset_model.create!(name: 'Filip')
+    school_record = schools.dataset_model.create!(name: 'Grammar')
 
     student_record.ds_schools << school_record
     student_record.save!

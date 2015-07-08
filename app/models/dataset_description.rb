@@ -129,18 +129,13 @@ class DatasetDescription < ActiveRecord::Base
     return ! self.is_active
   end
 
-  def dataset
-    @dataset ||= Dataset::ModelBuilder.new(self).build
-    @dataset
+  def dataset_model
+    @dataset_model ||= Dataset::ModelBuilder.new(self).build
   end
 
-  def reload_dataset
-    @dataset = nil
-    dataset
-  end
-
-  def dataset_record_class
-    dataset.dataset_record_class
+  def reload_dataset_model
+    @dataset_model = nil
+    dataset_model
   end
 
   def transformer
@@ -156,8 +151,7 @@ class DatasetDescription < ActiveRecord::Base
 
   def record_count
     # FIXME: keep this information cached and retrieve it from cache
-    @record_count ||= dataset.dataset_record_class.where(record_status: :published).count
-    @record_count
+    @record_count ||= dataset_model.where(record_status: :published).count
   end
 
   def refresh_relation_keys
@@ -168,16 +162,15 @@ class DatasetDescription < ActiveRecord::Base
   end
 
   def fetch_changes
-    Dataset::DcUpdate.find_all_by_updatable_type(dataset_record_class.name)
+    Dataset::DcUpdate.find_all_by_updatable_type(dataset_model.name)
   end
 
   def fetch_relations
-    drc = dataset_record_class
-    Dataset::DcRelation.where('relatable_left_type = ? or relatable_right_type = ?', drc.name, drc.name)
+    Dataset::DcRelation.where('relatable_left_type = ? or relatable_right_type = ?', dataset_model.name, dataset_model.name)
   end
 
   def each_published_records
-    dataset_record_class.where(record_status: 'published').find_each do |record|
+    dataset_model.where(record_status: 'published').find_each do |record|
       yield record
     end
   end

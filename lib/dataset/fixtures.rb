@@ -26,10 +26,9 @@ module Dataset::Fixtures
       # We could also use some fields, hm?
       schools_desc.field_descriptions.create(:title => "Name", :identifier => "name")
       schools_desc.field_descriptions.create(:title => "City", :identifier => "city")
-      
-      schools_dataset = schools_desc.dataset
-      schools_dataset.setup_table
-      schools_peer = schools_dataset.dataset_record_class
+
+      schools_dataset.transformer.setup_table
+      schools_peer = schools_desc.dataset_model
       
       # OK, so now we have fields, let's load some data
       test_school = schools_peer.new(:name => "Test school", :city => "Test city")

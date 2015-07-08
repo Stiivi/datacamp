@@ -6,7 +6,7 @@ describe DatasetDescription do
   end
 
   it 'should fetch changes' do
-    @dataset_description.stub(:dataset_record_class).and_return(stub(name: 'name'))
+    @dataset_description.stub(:dataset_model).and_return(stub(name: 'name'))
     updates = [stub('update')]
     Dataset::DcUpdate.should_receive(:find_all_by_updatable_type).with('name').and_return(updates)
     @dataset_description.fetch_changes.should == updates

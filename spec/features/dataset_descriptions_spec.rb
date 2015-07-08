@@ -142,7 +142,7 @@ describe 'DatasetDescriptions' do
     page.should_not have_content 'dc_for_initializations'
 
     dataset = DatasetDescription.find_by_identifier!('dc_for_initializations')
-    dataset.dataset_record_class.should have(1).record
+    dataset.dataset_model.should have(1).record
   end
 
   private

@@ -4,7 +4,7 @@ class Dataset
 
     def initialize(dataset_description)
       @description = dataset_description
-      @connection = dataset_description.dataset_record_class.connection
+      @connection = dataset_description.dataset_model.connection
       @errors = []
     end
 
@@ -19,11 +19,11 @@ class Dataset
     end
 
     def table_exists?
-      @description.dataset_record_class.table_exists?
+      @description.dataset_model.table_exists?
     end
 
     def table_name
-      @description.dataset_record_class.table_name
+      @description.dataset_model.table_name
     end
 
     def system_columns

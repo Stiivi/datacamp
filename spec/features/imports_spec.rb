@@ -30,13 +30,13 @@ describe 'Imports' do
 
     page_should_have_content_with 'ján', 'veľký', 'matúš', 'malý', 'dominik', 'pekný'
 
-    doctors_dataset.dataset_record_class.should have(3).records
+    doctors_dataset.dataset_model.should have(3).records
   end
 
   it 'user is able to delete imported records from current import' do
     prepare_name_fields(doctors_dataset)
 
-    doctors_dataset.dataset_record_class.create!(record_status: 'new', first_name: 'jozef', last_name: 'zelený')
+    doctors_dataset.dataset_model.create!(record_status: 'new', first_name: 'jozef', last_name: 'zelený')
 
     fill_in_import_file_to_dataset(doctors_dataset, name_csv_file_path)
 
@@ -48,9 +48,9 @@ describe 'Imports' do
 
     page.should have_content 'loaded successfuly'
 
-    doctors_dataset.dataset_record_class.should have(4).records
+    doctors_dataset.dataset_model.should have(4).records
 
-    doctors_dataset.dataset_record_class.last.first_name.should eq 'pekný'
+    doctors_dataset.dataset_model.last.first_name.should eq 'pekný'
 
     click_link 'Delete imported records'
 
@@ -58,7 +58,7 @@ describe 'Imports' do
 
     page_should_have_content_with 'jozef', 'zelený'
 
-    doctors_dataset.dataset_record_class.should have(1).records
+    doctors_dataset.dataset_model.should have(1).records
   end
 
   private

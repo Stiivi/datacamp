@@ -42,7 +42,7 @@ describe CsvImport::Runner do
     CsvImport::Runner.new(
         csv_file(import_file),
         CsvImport::Record.new(
-            dataset_description.dataset_record_class,
+            dataset_description.dataset_model,
             CsvImport::Mapper.new(mapping, dataset_description.field_descriptions(true)),
             import_file
         ),
@@ -59,17 +59,17 @@ describe CsvImport::Runner do
 
       import_file.status.should eq 'success'
       import_file.count_of_imported_lines.should eq 3
-      dataset_description.dataset_record_class.count.should eq 3
+      dataset_description.dataset_model.count.should eq 3
 
-      dataset_description.dataset_record_class.all.each do |record|
+      dataset_description.dataset_model.all.each do |record|
         record.record_status.should eq 'new'
         record.batch_id.should eq import_file.id
       end
 
-      dataset_description.dataset_record_class.pluck(:first_name).should eq ['ján', 'matúš', 'dominik']
-      dataset_description.dataset_record_class.pluck(:last_name).should eq ['veľký', 'malý', 'pekný']
+      dataset_description.dataset_model.pluck(:first_name).should eq ['ján', 'matúš', 'dominik']
+      dataset_description.dataset_model.pluck(:last_name).should eq ['veľký', 'malý', 'pekný']
 
-      Change.last.change_details[:update_conditions][:_record_id].should eq dataset_description.dataset_record_class.pluck(:_record_id)
+      Change.last.change_details[:update_conditions][:_record_id].should eq dataset_description.dataset_model.pluck(:_record_id)
     end
 
     it 'should not fail when csv file is empty' do
@@ -85,7 +85,7 @@ describe CsvImport::Runner do
       runner(import_file, dataset_description, column_mapping, user).run
 
       import_file.status.should eq 'success'
-      dataset_description.dataset_record_class.count.should eq 3
+      dataset_description.dataset_model.count.should eq 3
     end
 
     it 'does not ignore invalid rows' do
@@ -93,14 +93,14 @@ describe CsvImport::Runner do
       runner(import_file, dataset_description, column_mapping, user).run
 
       import_file.status.should eq 'success'
-      dataset_description.dataset_record_class.count.should eq 4
+      dataset_description.dataset_model.count.should eq 4
     end
 
     it 'is possible to change mapping' do
       import_file = create_import_file(name_csv_file_path, dataset_description)
       runner(import_file, dataset_description, {'0' => last_name_column.id.to_s}, user).run
 
-      dataset_description.dataset_record_class.pluck(:last_name).should eq ['ján', 'matúš', 'dominik']
+      dataset_description.dataset_model.pluck(:last_name).should eq ['ján', 'matúš', 'dominik']
     end
   end
 end

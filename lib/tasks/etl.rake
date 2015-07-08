@@ -14,7 +14,7 @@ namespace :etl do
   desc 'This is needed to show records that have neglected to have a proper record_status after 6658fa9.'
   task :publish_records => :environment do
     DatasetDescription.all.each do |dataset_description|
-      dataset_model = dataset_description.dataset.dataset_record_class
+      dataset_model = dataset_description.dataset_model
       neglected_records_condition = "record_status IS NULL OR record_status = 'loaded' OR record_status = 'new'"
       neglected_records_count = dataset_model.where(neglected_records_condition).count
       dataset_model.where(neglected_records_condition).update_all(:record_status => 'published')
@@ -163,7 +163,7 @@ namespace :etl do
             LEFT JOIN #{staging_schema}.#{regis_table} rsupp ON rsupp.ico = supplier_ico
             WHERE m.etl_loaded_date IS NULL"
 
-    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
+    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset_model_class
 
     last_updated_at = dataset_model.order(:updated_at).last.updated_at
 

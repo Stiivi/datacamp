@@ -164,7 +164,7 @@ class ApiController < ApplicationController
   end
 
   def render_records_in_dataset(dataset, output)
-    dataset_class = dataset.dataset.dataset_record_class
+    dataset_class = dataset.dataset_model
     flush_counter = 0
 
     fields_for_export = dataset.visible_field_descriptions(:export)
@@ -192,7 +192,7 @@ class ApiController < ApplicationController
       return
     end
 
-    dataset_class = dataset_description.dataset.dataset_record_class
+    dataset_class = dataset_description.dataset_model
 
     # FIXME: use appropriate API key based filtering
     record = dataset_class.find_by__record_id(record_id)

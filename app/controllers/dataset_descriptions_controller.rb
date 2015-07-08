@@ -52,8 +52,7 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def show
-    @dataset = @dataset_description.dataset
-    if @dataset.dataset_record_class.table_exists?
+    if @dataset_description.dataset_model.table_exists?
       @field_descriptions = @dataset_description.field_descriptions
       @field_description_categories = @dataset_description.field_description_categories
       @other_field_descriptions = @dataset_description.field_descriptions.where('field_description_category_id IS NULL OR field_description_category_id = 0')
@@ -154,8 +153,7 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def add_primary_key
-    dataset = @dataset_description.dataset
-    dataset.add_primary_key
+    @dataset_description.transformer.add_primary_key
 
     redirect_to @dataset_description
   end
@@ -182,7 +180,7 @@ class DatasetDescriptionsController < ApplicationController
 
   def setup_dataset
     if request.method == :post
-      if @dataset_description.dataset.setup_table
+      if @dataset_description.transformer.setup_table
         flash[:notice] = "A new table #{@dataset_description.identifier} was created based on #{@dataset_description.title} description."
       else
         flash[:error] = I18n.t('dataset.cant_setup_dataset', :dataset => @dataset_description.title, :identifier => @dataset_description.identifier)

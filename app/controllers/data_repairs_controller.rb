@@ -15,7 +15,7 @@ class DataRepairsController < ApplicationController
       @data = []
     end if @data_repair.status == 'starting'
     if @data_repair.status == 'done'
-      model_class = DatasetDescription.find_by_identifier(@data_repair.target_table_name).dataset.dataset_record_class
+      model_class = DatasetDescription.find_by_identifier(@data_repair.target_table_name).dataset_model
       @data = model_class.select("#{model_class.table_name}.#{@data_repair.target_ico_column} as ico, #{model_class.table_name}.#{@data_repair.target_company_name_column} as company_name, #{model_class.table_name}.#{@data_repair.target_company_address_column} as company_address").where(:_record_id => @data_repair.record_ids) if @data_repair.status == 'done'
     end
     respond_with @data_repair
@@ -41,7 +41,7 @@ class DataRepairsController < ApplicationController
   end
   
   def update_columns
-    record_class = DatasetDescription.find_by_id(params[:id]).dataset.dataset_record_class
+    record_class = DatasetDescription.find_by_id(params[:id]).dataset_model
     render :json => record_class.columns.map(&:name).to_json, :layout => false
   end
   
@@ -67,8 +67,8 @@ class DataRepairsController < ApplicationController
   end
   
   def get_preview_data(data_repair)
-    regis_model = DatasetDescription.find_by_identifier(data_repair.regis_table_name).dataset.dataset_record_class
-    target_model = DatasetDescription.find_by_identifier(data_repair.target_table_name).dataset.dataset_record_class
+    regis_model = DatasetDescription.find_by_identifier(data_repair.regis_table_name).dataset_model
+    target_model = DatasetDescription.find_by_identifier(data_repair.target_table_name).dataset_model
     target_model.find_by_sql("SELECT #{target_model.table_name}._record_id as target_record_id,#{target_model.table_name}.#{data_repair.target_ico_column} as ico, #{target_model.table_name}.#{data_repair.target_company_name_column} as company_name, #{target_model.table_name}.#{data_repair.target_company_address_column} as company_address, #{regis_model.table_name}.#{data_repair.regis_ico_column} as matched_ico, #{regis_model.table_name}.#{data_repair.regis_name_column} as matched_company_name, #{regis_model.table_name}.#{data_repair.regis_address_column} as matched_company_address FROM #{target_model.table_name} JOIN #{regis_model.table_name} ON #{regis_model.table_name}.#{data_repair.regis_ico_column} = #{target_model.table_name}.#{data_repair.target_ico_column} WHERE #{target_model.table_name}.#{data_repair.target_company_name_column} IS NULL OR #{target_model.table_name}.#{data_repair.target_company_address_column} IS NULL")
   end
 end

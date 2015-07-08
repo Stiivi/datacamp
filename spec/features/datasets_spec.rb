@@ -44,8 +44,8 @@ describe 'Datasets' do
       FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset, is_visible_in_detail: false)
       FactoryGirl.create(:field_description, en_title: 'Description', identifier: 'description', dataset_description: quality_dataset, is_visible_in_listing: false)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', last_name: 'Smith', description: 'Young', record_status: 'published', quality_status: 'unclear')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', last_name: 'Brutal', description: 'From city', record_status: 'loaded')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', last_name: 'Smith', description: 'Young', record_status: 'published', quality_status: 'unclear')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', last_name: 'Brutal', description: 'From city', record_status: 'loaded')
 
       visit datasets_path(locale: :en)
 
@@ -68,8 +68,8 @@ describe 'Datasets' do
     it 'is able to sort records by column' do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'published')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', record_status: 'published')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', record_status: 'published')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
@@ -94,8 +94,8 @@ describe 'Datasets' do
     it 'is able to filder records', js: true do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
-      quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
-      quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
+      quality_dataset.dataset_model.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
+      quality_dataset.dataset_model.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
@@ -125,9 +125,9 @@ describe 'Datasets' do
     it 'is able to update record status and quality status for multiple rows at once', js: true do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
-      record_3 = quality_dataset.dataset_record_class.create!(first_name: 'Peter', record_status: 'new', quality_status: 'absent')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
+      record_3 = quality_dataset.dataset_model.create!(first_name: 'Peter', record_status: 'new', quality_status: 'absent')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
@@ -171,9 +171,9 @@ describe 'Datasets' do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
       FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', last_name: 'Smith')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', last_name: 'Hamster')
-      record_3 = quality_dataset.dataset_record_class.create!(first_name: 'Peter', last_name: 'House')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', last_name: 'Smith')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', last_name: 'Hamster')
+      record_3 = quality_dataset.dataset_model.create!(first_name: 'Peter', last_name: 'House')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 

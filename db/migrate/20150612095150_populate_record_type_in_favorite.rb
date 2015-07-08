@@ -13,7 +13,7 @@ class PopulateRecordTypeInFavorite < ActiveRecord::Migration
 
   def record_type_from_dataset(dataset_description)
     if dataset_description
-      klass = dataset_description.dataset_record_class
+      klass = dataset_description.dataset_model
       klass.to_s if klass
     end
   end

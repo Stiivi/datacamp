@@ -37,7 +37,7 @@ class Dataset
       set_up_model
       set_up_relation
 
-      self
+      model_class
     end
 
     def define_model_class
@@ -92,6 +92,5 @@ class Dataset
     def model_class
       @model_class ||= full_model_class_name(dataset_description).constantize
     end
-    alias_method :dataset_record_class, :model_class
   end
 end

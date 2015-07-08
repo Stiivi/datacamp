@@ -42,8 +42,7 @@ class DatasetsController < ApplicationController
 
     @dataset_description = DatasetDescription.find(params[:id])
     @field_descriptions  = @dataset_description.visible_field_descriptions.includes(:data_format)
-    @dataset             = @dataset_description.dataset
-    @dataset_class       = @dataset.dataset_record_class
+    @dataset_class       = @dataset_description.dataset_model
     @title               = @dataset_description.title
 
     @sortable_columns = @dataset_class.columns.map(&:name)
@@ -204,7 +203,7 @@ class DatasetsController < ApplicationController
   # Batch update
   def update
     @dataset_description  = DatasetDescription.find_by_id(params[:id])
-    @dataset_class        = @dataset_description.dataset.dataset_record_class
+    @dataset_class        = @dataset_description.dataset_model
 
     if params[:record].blank?
       flash[:error] = I18n.t("dataset.not_enough_records_selected")
@@ -277,7 +276,7 @@ class DatasetsController < ApplicationController
 
   def batch_edit
     @dataset_description = DatasetDescription.find_by_id(params[:id])
-    @dataset_class        = @dataset_description.dataset.dataset_record_class
+    @dataset_class        = @dataset_description.dataset_model
     @field_descriptions  = @dataset_description.visible_field_descriptions
   end
 

@@ -106,10 +106,10 @@ class RecordsController < ApplicationController
   
   def delete_relationship
     dataset_description = DatasetDescription.find(params[:dataset_id])
-    record = dataset_description.dataset.dataset_record_class.find_by_record_id(params[:id])
+    record = dataset_description.dataset_model.find_by_record_id(params[:id])
     if params[:macro] == 'has_many'
       related_dataset_description = DatasetDescription.find(params[:related_dataset])
-      related_record = related_dataset_description.dataset.dataset_record_class.find_by_record_id(params[:related_id])
+      related_record = related_dataset_description.dataset_model.find_by_record_id(params[:related_id])
       
       record.send(params[:reflection]).delete(related_record) rescue related_record.send("ds_#{dataset_description.identifier.singularize}=", nil)
       deleted = related_record.save
@@ -124,8 +124,8 @@ class RecordsController < ApplicationController
   
   def add_relationship
     dataset_description = DatasetDescription.find(params[:dataset_id])
-    record = dataset_description.dataset.dataset_record_class.find(params[:id])
-    related_dataset_class = DatasetDescription.find(params[:related_dataset]).dataset.dataset_record_class
+    record = dataset_description.dataset_model.find(params[:id])
+    related_dataset_class = DatasetDescription.find(params[:related_dataset]).dataset_model
     related_record = related_dataset_class.find_by_record_id(params[:related_id])
 
     added = record.send(params[:reflection]) << related_record if related_record.present?
@@ -136,8 +136,7 @@ class RecordsController < ApplicationController
   protected
   def load_record
     @dataset_description = DatasetDescription.find(params[:dataset_id])
-    @dataset             = @dataset_description.dataset
-    @dataset_class       = @dataset.dataset_record_class
+    @dataset_class       = @dataset_description.dataset_model
 
     if params[:id]
       @record = @dataset_class.find_by_record_id! params[:id]

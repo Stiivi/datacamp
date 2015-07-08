@@ -112,13 +112,12 @@ class SiteMapGenerator
 
     def generate_datasets
       DatasetDescription.where(is_active: true).each do |dataset_description|
-        dataset = dataset_description.dataset_record_class
-        delay.generate_dataset(dataset_description, dataset)
+        delay.generate_dataset(dataset_description, dataset_description.dataset_model)
       end
     end
 
-    def generate_dataset(dataset_description, dataset)
-      count_records = dataset.active.count
+    def generate_dataset(dataset_description, dataset_model)
+      count_records = dataset_model.active.count
       count_pages = (count_records / PER_PAGE) + (count_records % PER_PAGE == 0 ? 0 : 1)
       f_index = 1
       f = init_site_map_file(dataset_site_map_file(dataset_description, f_index))
@@ -136,22 +135,22 @@ class SiteMapGenerator
       end
       f.close
 
-      delay.generate_records(dataset_description, dataset)
+      delay.generate_records(dataset_description, dataset_model)
     end
 
-    def generate_records(dataset_description, dataset)
-      count_records = dataset.active.count
+    def generate_records(dataset_description, dataset_model)
+      count_records = dataset_model.active.count
       count_pages = (count_records / LIMIT_URLS) + (count_records % LIMIT_URLS == 0 ? 0 : 1)
       for index in 1..count_pages do
-        delay.create_dataset_records_file(dataset_description, dataset, index)
+        delay.create_dataset_records_file(dataset_description, dataset_model, index)
       end
     end
 
-    def create_dataset_records_file(dataset_description, dataset, index)
+    def create_dataset_records_file(dataset_description, dataset_model, index)
       f = init_site_map_file(dataset_records_site_map_file(dataset_description, index))
       limit = LIMIT_URLS
       offset = LIMIT_URLS * (index-1)
-      dataset.active.offset(offset).limit(limit).order(:_record_id).each do |record|
+      dataset_model.active.offset(offset).limit(limit).order(:_record_id).each do |record|
         add_url f, record_path(dataset_description, record)
       end
       f.close

@@ -29,7 +29,7 @@ class ImportFile < ActiveRecord::Base
     CsvImport::Runner.new(
         csv_file,
         CsvImport::Record.new(
-            dataset_description.dataset_record_class,
+            dataset_description.dataset_model,
             CsvImport::Mapper.new(column_mapping, dataset_description_field_descriptions),
             self
         ),
@@ -83,7 +83,7 @@ class ImportFile < ActiveRecord::Base
   end
 
   def delete_records!
-    dataset_description.dataset_record_class.where(batch_id: id).delete_all
+    dataset_description.dataset_model.where(batch_id: id).delete_all
     update_attribute(:status, 'deleted_records')
   end
 
