@@ -55,7 +55,8 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   def self.find_by_record_ids(ids)
     return [] if ids.empty?
-    where(_record_id: ids).all.index_by(&:_record_id).map { |id| records[id] }.compact
+    records = where(_record_id: ids).all.index_by(&:_record_id)
+    ids.map { |id| records[id] }.compact
   end
 
   # Convenience shortcut
