@@ -38,7 +38,7 @@ belongs_to :search_query
 	:within_last_months => "lm"	
 }
 
-def sphinx_condition(operand)
+def add_to_sphinx_search(operand, sphinx_search)
   options = {with: {}, without: {}}
   operand ||= "*"
   
@@ -49,7 +49,7 @@ def sphinx_condition(operand)
      options[:sphinx_search] = "@#{operand} !\"#{argument}\","
   when "begins_with"
     options[:sphinx_search] = "@#{operand} \"^#{argument}\","
-  when "ends_with"                     
+  when "ends_with"
     options[:sphinx_search] = "@#{operand} \"#{argument}$\","
   when "matches"
     options[:sphinx_search] = "@#{operand} \"^#{argument}$\","
@@ -84,7 +84,13 @@ def sphinx_condition(operand)
 	else
 		raise "Unknown search predicate operator #{operator}"
 	end
-	options
+
+	sphinx_search[:options][:sphinx_select] += options[:sphinx_select] if options[:sphinx_select]
+	sphinx_search[:query] += options[:sphinx_search] if options[:sphinx_search]
+	sphinx_search[:options][:with].merge!(options[:with])
+	sphinx_search[:options][:without].merge!(options[:without])
+
+	sphinx_search
 end
 
 def sql_condition_for_operand(operand)
