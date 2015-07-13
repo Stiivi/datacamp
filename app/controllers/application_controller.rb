@@ -90,4 +90,9 @@ private
       item.update_attribute(:position, new_index+1) if new_index
     end
   end
+
+  def render_404
+    @title = nil
+    render 'pages/datanest_404', status: 404
+  end
 end

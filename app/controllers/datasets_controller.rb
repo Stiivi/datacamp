@@ -17,34 +17,36 @@
 # GNU General Public License for more details.
 # 
 # You should have received a copy of the GNU Lesser General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetsController < ApplicationController
   include CommentsLoader
-  
+
   before_filter :prepare_filters, :only => [:show, :update]
   privilege_required :edit_record, :only => [:update]
-  
+
   helper_method :has_filters?
-  
+
   def index
-    expires_in 5.minutes, public: true if current_user.blank?
-    @all_dataset_descriptions = DatasetDescription.where(:is_active => true)
-    @dataset_categories = DatasetCategory.order('dataset_categories.position, dataset_descriptions.position').includes(:dataset_descriptions => :translations).where("dataset_descriptions.is_active = 1")
     respond_to do |wants|
-      wants.html
-      wants.xml { render :xml => @all_dataset_descriptions }
+      wants.html do
+        @dataset_categories = DatasetCategory.
+          order('dataset_categories.position, dataset_descriptions.position').
+          includes(:dataset_descriptions => :translations).
+          where('dataset_descriptions.is_active = 1')
+      end
+      wants.xml { render :xml => DatasetDescription.active }
     end
   end
-  
-  def show
-    expires_in 5.minutes, public: true if current_user.blank?
 
+  def show
     @dataset_description = DatasetDescription.find(params[:id])
     @field_descriptions  = @dataset_description.visible_field_descriptions.includes(:data_format)
     @dataset             = @dataset_description.dataset
     @dataset_class       = @dataset.dataset_record_class
     @title               = @dataset_description.title
+
+    render_404 and return unless @dataset_description.is_active? || has_privilege?(:view_hidden_records)
 
     @sortable_columns = @dataset_class.columns.map(&:name)
 
@@ -62,15 +64,13 @@ class DatasetsController < ApplicationController
 
     # Comments
     load_comments
-    
+
     # Favorite if there's one
     @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
-    
+
     # Add pagination stuff to those options
     paginate_options = {max_matches: 10_000}
-    if params[:page]
-      params[:page] = nil if params[:page].blank?
-    end
+    params[:page] = nil if params[:page].blank?
     paginate_options[:page] = params[:page] if params[:page]#? params[:page] : nil
     paginate_options[:per_page] = current_user ? current_user.records_per_page : RECORDS_PER_PAGE
     # paginate_options[:total_entries] = ((params[:page].to_i||1)+9) * paginate_options[:per_page]
@@ -90,19 +90,6 @@ class DatasetsController < ApplicationController
     paginate_options[:sphinx_select] = "*"
     sphinx_search = ""
     paginate_options[:match_mode] = :extended
-    unless params[:search_id].blank?
-      search_object = Search.find(params[:search_id])
-      @search_predicates = search_object.query.predicates
-      search_object.query.predicates.each do |predicate|
-        field_description = FieldDescription.find_by_identifier(predicate.search_field)
-        operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
-        condition = predicate.sphinx_condition(operand)
-        paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
-        sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
-        paginate_options[:with].merge!(condition[:with])
-        paginate_options[:without].merge!(condition[:without])
-      end
-    end
     if @filters
       paginate_options[:conditions] ||= {}
       filters = @filters.find_all{|key,value|!value.blank?}
@@ -160,51 +147,29 @@ class DatasetsController < ApplicationController
         @records = @dataset_class.paginate(:page => params[:page], :per_page => paginate_options[:per_page])
       end
     else
-      begin
-        @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true, :conditions => {record_status: DatastoreManager.record_statuses[2]}))
-      rescue ThinkingSphinx::SphinxError
-        redirect_to dataset_path(@dataset_description)
-        return
-      rescue
-        redirect_to dataset_path(@dataset_description)
-        return
-      end
+      show_search_results_for_dataset(paginate_options, sphinx_search)
     end
-
 
     respond_to do |wants|
-      wants.html { 
-        #check to see if user can view the records if the dataset is
-        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
-          flash[:notice] = 'Dataset is hidden'
-          redirect_to :action => 'index'
-        else
-          render :action => "show" 
-        end
-      }
-      wants.xml { 
-        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
-          render :xml => 'Dataset is hidden'
-        else
-          render :xml => @records 
-        end
-      }
-      wants.json { 
-        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
-          render :json => 'Dataset is hidden'
-        else
-          render :json => @records 
-        end
-      }
+      wants.html
+      wants.xml  { render :xml  => @records }
+      wants.json { render :json => @records }
       wants.js do
-        if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
-          return render :js => 'Dataset is hidden'
+        if current_user && current_user.has_privilege?(:power_user)
+          render :template => 'datasets/admin/show'
         else
-          return render :template => "datasets/admin/show" if current_user && current_user.has_privilege?(:power_user)
-          return render :action => "show"
+          render :action => 'show'
         end
       end
     end
+  end
+
+  def show_search_results_for_dataset(paginate_options, sphinx_search)
+    sphinx_search = {options: paginate_options, query: sphinx_search}
+    search = Search.find(params[:search_id])
+    sphinx_search = @dataset_description.build_sphinx_search(search, sphinx_search) # TODO: move to SearchEngine
+    sphinx_search[:options].merge!(populate: true, :conditions => { record_status: DatastoreManager.record_statuses[2]})
+    @records = @dataset_class.search(sphinx_search[:query], sphinx_search[:options])
   end
 
   # Batch update
@@ -214,7 +179,7 @@ class DatasetsController < ApplicationController
 
     if params[:record].blank?
       flash[:error] = I18n.t("dataset.not_enough_records_selected")
-      return redirect_to(dataset_path(@dataset_description)) 
+      return redirect_to(dataset_path(@dataset_description))
     end
 
     # Conditions for update
@@ -223,7 +188,7 @@ class DatasetsController < ApplicationController
     if params[:selection] == "selected"
       # The easier case. User used checkboxes to choose what
       # records they want to edit.
-       update_conditions[:_record_id] = params[:record].map{|r| r.to_i}
+       update_conditions[:_record_id] = params[:record].map(&:to_i)
        @count_updated = params[:record].count
     elsif params[:selection] == "all"
       if params[:search_id].present?
@@ -231,25 +196,7 @@ class DatasetsController < ApplicationController
         # We wanna get all the ids of matching records and
         # pass them to update statement.
 
-        # FIXME: duplicated what is in the show action. DRY it out a little!
-        paginate_options = {}
-        paginate_options[:conditions], paginate_options[:with], paginate_options[:without] = {},{},{}
-        paginate_options[:sphinx_select] = "*"
-        paginate_options[:per_page] = 10000
-        sphinx_search = ""
-        paginate_options[:match_mode] = :extended
-        unless params[:search_id].blank?
-          search_object = Search.find(params[:search_id])
-          @search_predicates = search_object.query.predicates
-          search_object.query.predicates.each do |predicate|
-            field_description = FieldDescription.find_by_identifier(predicate.search_field)
-            operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
-            condition = predicate.sphinx_condition(operand)
-            paginate_options[:sphinx_select] += condition.delete(:sphinx_select) if condition[:sphinx_select]
-            sphinx_search += condition.delete(:sphinx_search) if condition[:sphinx_search]
-            paginate_options.merge!(condition)
-          end
-        end
+        # FIXME: THIS IS A NO OP!?
       else
         # User has chosen to edit all records and to search is
         # specified. We just won't pass any options to update statement
@@ -287,11 +234,11 @@ class DatasetsController < ApplicationController
     @field_descriptions  = @dataset_description.visible_field_descriptions
   end
 
-  
+
   def sitemap
     # TODO implement .. somehow ..
   end
-  
+
   protected
 
   # Creates SQL query from set of options for query.
@@ -299,10 +246,10 @@ class DatasetsController < ApplicationController
   # them with union, to speed up sorting.
   def create_query_from_options(options)
     query = @dataset_class.options_to_sql(options)
-    
+
     query
   end
-  
+
   def prepare_filters
     if params[:clear_filters]
       @filters = {}
@@ -311,7 +258,7 @@ class DatasetsController < ApplicationController
     end
     session[:filters] = @filters
   end
-  
+
   def has_filters?
     @filters && !@filters.empty?
   end

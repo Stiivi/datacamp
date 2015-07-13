@@ -35,40 +35,30 @@ class SearchesController < ApplicationController
   # Quick search using Sphinx. If Sphinx search engine couldn't be used
   # redirect to regular search.
   def quick
-    query = params[:query_string]
-    engine = SphinxSearchEngine.new
-    search = engine.create_search_with_string(query)
-    redirect_to search_path(search, :disabled_descriptions => params[:disabled_descriptions])
+    search = Search.build_from_query_string(params[:query_string])
+    search.save
+    redirect_to search
   end
 
   def show
     @search = Search.find(params[:id])
-
-    @results = {}
     dds = DatasetDescription
 
     dds = dds.where(category_id: params[:category_id]) if params[:category_id] # TODO: test filter by category_id
 
-    searches = {}
-    batch = ThinkingSphinx::BatchedSearch.new
+    descriptions = dds.active
+    datasets = descriptions.map(&:dataset_record_class)
+    searches = SearchEngine.new.search(datasets, @search)
 
-    dds.active.includes([
+    @results = {}
+    descriptions.includes([
         :category,
         {:relations => :relationship_dataset_description},
         :derived_field_descriptions,
         :field_descriptions_for_detail,
         {:field_descriptions_for_search => [:translations, :data_format] }]
-    ).each do |dataset_description|
-        search = dataset_description.dataset.dataset_record_class.search @search.query_string, :limit => 5, :conditions => { record_status: DatastoreManager.record_statuses[2] }
-        batch.searches += [search]
-        searches[dataset_description] = search
-    end
-
-    batch.populate
-
-    @results = {}
-    searches.each do |dataset_description, matches|
-      if matches.present?
+    ).zip(searches).each do |dataset_description, matches|
+      if matches.any?
         @results[dataset_description.category] ||= {}
         @results[dataset_description.category][dataset_description] = matches
       end
