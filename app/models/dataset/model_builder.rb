@@ -36,6 +36,7 @@ class Dataset
       define_model_class
       set_up_model
       set_up_relation
+      set_up_derived_fields
 
       model_class
     end
@@ -87,6 +88,10 @@ class Dataset
           model_class.accepts_nested_attributes_for(reflection.name)
         end
       end
+    end
+
+    def set_up_derived_fields
+      model_class.derived_fields = dataset_description.derived_field_descriptions.map{ |field| [field.identifier, field.derived_value] }
     end
 
     def model_class

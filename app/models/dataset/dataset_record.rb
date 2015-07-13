@@ -7,18 +7,21 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   establish_connection Rails.env + "_data"
 
-  class_attribute :dataset
+  class_attribute :dataset, :derived_fields
 
   attr_accessor :handling_user, :is_part_of_import
 
   # FIXME: add this to initialize method, use datasetore manager!
   self.primary_key = '_record_id'
 
-  scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
+  def self.default_scope
+    if derived_fields.present?
+      select_columns = "`#{table_name}`.* , #{derived_fields.map{ |identifier, value| "#{value} as '#{identifier}'" }.join(",")}"
+      select(select_columns)
+    end
+  end
 
-  # def self.to_s
-  #   table_name
-  # end
+  scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
 
   def active?
     record_status.nil? || ['suspended', 'deleted'].exclude?(record_status)
@@ -47,7 +50,6 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   def self.find_by_record_id *args
     find_by__record_id *args
   end
-
 
   def quality_status_messages
     # QualityStatus.find :all, :conditions => { :table_name => @@dataset.description.identifier.to_s.sub("ds_", ""), :record_id => id }
@@ -161,6 +163,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   end
 
   def self.table_exists?
+    # not using cache
     connection.tables.include?(table_name)
   end
 

@@ -17,7 +17,6 @@ class FieldDescription < ActiveRecord::Base
 
   after_save :update_in_database
   after_create :setup_in_database
-  # after_find :update_data_type, if: lambda { data_type.nil? } # ak je data_type prazdny
 
   ###########################################################################
   # Default scope
