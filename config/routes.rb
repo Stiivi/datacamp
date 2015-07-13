@@ -119,11 +119,9 @@ Datacamp::Application.routes.draw do
             :setup_dataset,
             :visibility,
             :datastore_status,
-            :add_primary_key,
             :relations,
             :edit_field_description_categories
-        post :setup_dataset,
-             :set_visibility
+        post :setup_dataset
         put :update_relations,
             :update_field_description_categories
       end

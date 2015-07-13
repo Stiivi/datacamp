@@ -33,6 +33,7 @@ describe 'FieldDescriptions' do
 
     fill_in 'field_description_en_title', with: 'given name'
     fill_in 'field_description_identifier', with: 'first_name'
+    select 'Text', from: 'field_description_data_type'
     click_button 'Save'
 
     page.should have_content 'DatasetDescription was successfully updated'

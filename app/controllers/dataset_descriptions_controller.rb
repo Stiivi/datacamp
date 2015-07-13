@@ -26,8 +26,6 @@ class DatasetDescriptionsController < ApplicationController
                                                     :destroy,
                                                     :import_settings,
                                                     :setup_dataset,
-                                                    :set_visibility,
-                                                    :add_primary_key,
                                                     :relations,
                                                     :update_relations,
                                                     :edit_field_description_categories,
@@ -38,7 +36,7 @@ class DatasetDescriptionsController < ApplicationController
   privilege_required :create_dataset, :only => [:new, :create]
   privilege_required :destroy_dataset, :only => [:destroy]
 
-  protect_from_forgery :except => :set_visibility
+  protect_from_forgery
 
   def index
     @dataset_categories = DatasetCategory.order(:position).includes(:dataset_descriptions)
@@ -152,12 +150,6 @@ class DatasetDescriptionsController < ApplicationController
     end
   end
 
-  def add_primary_key
-    @dataset_description.transformer.add_primary_key
-
-    redirect_to @dataset_description
-  end
-
   def import_settings
     @all_field_descriptions = @dataset_description.field_descriptions.where(:importable => false).order('importable_column asc').select{|field|!field.is_derived}
     @importable_field_descriptions = @dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
@@ -190,25 +182,12 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def visibility
-    @dataset_description = DatasetDescription.find_by_id(params[:id])
-  end
-
-  def set_visibility
-    @dataset_description.field_descriptions.each do |fd|
-      if params[:field_description_visible][fd.id.to_s]
-        fd.is_visible_in_listing = true
-      else
-        fd.is_visible_in_listing = false
-      end
-      fd.save(false)
-    end
-
-    render :nothing => true
+    @dataset_description = DatasetDescription.find(params[:id])
   end
 
   def datastore_status
     # FIXME: use datastore manager (not yet implemented)
-    dd = DatasetDescription.find_by_id(params[:id])
+    dd = DatasetDescription.find(params[:id])
 
     @connection = Dataset::DatasetRecord.connection
     begin

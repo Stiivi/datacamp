@@ -40,17 +40,6 @@ class FieldDescription < ActiveRecord::Base
     dataset_description.transformer.has_column?(identifier)
   end
 
-  def update_data_type
-    # If this field is not assigned to a dataset yet,
-    # we can't find actual data type in dataset -- thus we
-    # can only play with ours.
-    return if data_type # in production database, data_type_id IS NULL or 0
-    return unless dataset_description
-    manager = DatastoreManager.manager_with_default_connection
-    # Update data type
-    update_attribute(:data_type, manager.dataset_field_type(dataset_description.identifier, self.identifier) )
-  end
-
   ###########################################################################
   # Private
   private

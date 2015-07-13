@@ -4,7 +4,6 @@ cattr_reader :record_metadata_columns
 cattr_reader :record_statuses
 
 attr_reader :connection
-attr_accessor :schema
 
 @@instance = nil
 @@dataset_table_prefix = "ds_"
@@ -65,7 +64,7 @@ end
 
 def set_dataset_field_type(dataset, field, type)
   table = table_for_dataset(dataset)
-  @connection.set_column_type(table, field, type)
+  @connection.change_column(table, field, type)
 end
 
 def table_for_dataset(dataset)
