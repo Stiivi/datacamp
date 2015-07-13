@@ -1,0 +1,27 @@
+#!/bin/sh
+
+set -e
+
+cp config/database.yml.example config/database.yml
+cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
+cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
+cp config/datacamp_config.yml.example config/datacamp_config.yml
+cp config/thinking_sphinx.yml.example config/thinking_sphinx.yml
+
+sudo apt-get install libsqlite3-dev libmysqlclient-dev
+bundle install
+
+rake db:create:all
+rake db:schema:load
+rake db_staging:schema:load
+rake db_data:schema:load
+
+rake db:migrate
+rake db_staging:migrate
+rake db_data:migrate
+
+rake db:bootstrap
+rake db:seed
+rake db_staging:seed
+
+sudo apt-get install sphinxsearch
