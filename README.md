@@ -15,7 +15,6 @@ in form of datasets.
 ````
 bin/setup
 foreman start
-rake ts:configure ts:start
 ````
 
 ## LICENSE

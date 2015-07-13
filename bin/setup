@@ -25,3 +25,5 @@ rake db:seed
 rake db_staging:seed
 
 sudo apt-get install sphinxsearch
+
+rake ts:configure
