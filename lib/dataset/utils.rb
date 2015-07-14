@@ -3,7 +3,7 @@ class Dataset::Utils
   # Initialize dataset if not exist
 
   def self.initialize_dataset(dataset_name, debug_output=false)
-    if Dataset::DatasetRecord.connection.table_exists?("ds_#{dataset_name}") && !DatasetDescription.where(identifier: dataset_name).exists?
+    unless DatasetDescription.where(identifier: dataset_name).exists?
       puts "initializing #{dataset_name}" if debug_output
       result = Dataset::TableToDataset.execute("ds_#{dataset_name}", dataset_name)
       if result.valid?

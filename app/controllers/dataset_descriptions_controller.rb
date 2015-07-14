@@ -30,7 +30,7 @@ class DatasetDescriptionsController < ApplicationController
                                                     :update_relations,
                                                     :edit_field_description_categories,
                                                     :update_field_description_categories]
-  before_filter :load_datasets, :only => [:import, :do_import]
+
 
   privilege_required :edit_dataset_description
   privilege_required :create_dataset, :only => [:new, :create]
@@ -155,20 +155,6 @@ class DatasetDescriptionsController < ApplicationController
     @importable_field_descriptions = @dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
   end
 
-  def import
-
-  end
-
-  def do_import
-    result = Dataset::TableToDataset.execute(params[:dataset])
-
-    if result.valid?
-      redirect_to import_dataset_descriptions_path
-    else
-      @errors = result.errors
-      render :action => "import"
-    end
-  end
 
   def setup_dataset
     if request.method == :post
@@ -189,7 +175,7 @@ class DatasetDescriptionsController < ApplicationController
     # FIXME: use datastore manager (not yet implemented)
     dd = DatasetDescription.find(params[:id])
 
-    @connection = Dataset::DatasetRecord.connection
+    @connection = Dataset::CONNECTION
     begin
       table_desc = TableDescription.new(@connection, dd.dataset_model.table_name)
     rescue Exception => e
@@ -276,11 +262,6 @@ class DatasetDescriptionsController < ApplicationController
 
   def get_dataset_description
     @dataset_description = DatasetDescription.find(params[:id])
-  end
-
-  def load_datasets
-    @dataset_description = DatasetDescription.new
-    @unbound_datasets = Dataset::UnboundDatasets.new.all
   end
 
   def init_menu

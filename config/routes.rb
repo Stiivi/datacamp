@@ -126,7 +126,6 @@ Datacamp::Application.routes.draw do
             :update_field_description_categories
       end
       collection do
-        get :import, :do_import
         post :update_positions
       end
       resources :field_descriptions do
@@ -137,6 +136,7 @@ Datacamp::Application.routes.draw do
         get :create_column, :on => :member
       end
     end
+    resources :dataset_initializations, only: [:index, :create]
     resources :categories, :controller => "dataset_categories"
     resources :dataset_categories
     resources :field_description_categories
