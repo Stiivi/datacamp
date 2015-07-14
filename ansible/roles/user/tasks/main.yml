@@ -1,0 +1,19 @@
+---
+- name: Create apps gorup
+  group: name=apps state=present
+
+- name: Create application user
+  user: name={{ app_user }} group=apps shell=/bin/bash state=present
+
+- name: Cleanup old keys
+  shell: rm -rf /tmp/*.authorized_keys
+
+- name: Copy the public keys from Github
+  delegate_to: 127.0.0.1
+  sudo: no
+  get_url: url=https://github.com/{{item}}.keys dest=/tmp/{{item}}.authorized_keys
+  with_items: "{{ github_ssh_keys }}"
+
+- name: Install those public keys
+  authorized_key: user={{ app_user }} key="{{ lookup('file', '/tmp/' + item + '.authorized_keys') }}"
+  with_items: "{{ github_ssh_keys }}"
