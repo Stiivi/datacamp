@@ -2,6 +2,7 @@
 db/*.sqlite3
 log/*
 tmp/*
+.vagrant
 
 files/*
 config/database.yml
