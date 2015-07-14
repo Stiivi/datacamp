@@ -67,4 +67,4 @@
   command: 'sudo -iu {{ app_user }} rbenv global {{ rubies.0 }}'
 
 - name: Install bundler
-  command: 'gem install bundler --no-ri --no-rdoc'
+  command: 'sudo -iu {{ app_user }} gem install bundler --no-ri --no-rdoc'
