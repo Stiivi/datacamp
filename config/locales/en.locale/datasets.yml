@@ -64,7 +64,6 @@ en:
     not_enough_records_selected: Select at least 1 record for batch edit.
     not_in_database: Not in database
     other_columns: Other columns
-    relationship_descriptions: Relationship descriptions
     revert: Revert
     run_tests: Run tests
     save_and_create: Save and create

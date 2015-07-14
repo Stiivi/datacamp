@@ -26,8 +26,6 @@ class DatasetDescriptionsController < ApplicationController
                                                     :destroy,
                                                     :import_settings,
                                                     :setup_dataset,
-                                                    :relations,
-                                                    :update_relations,
                                                     :edit_field_description_categories,
                                                     :update_field_description_categories]
 
@@ -213,26 +211,6 @@ class DatasetDescriptionsController < ApplicationController
   def update_positions
     update_all_positions(params[:dataset_category].keys, params[:dataset_description])
     render :nothing => true
-  end
-
-
-  def relations
-  end
-
-  def update_relations
-    if params[:save] && @dataset_description.update_attributes(params[:dataset_description])
-      redirect_to relations_dataset_description_path(@dataset_description), :notice => 'Relations successfully updated!'
-    elsif params[:add_relation]
-      @dataset_description.attributes = params[:dataset_description]
-      @dataset_description.relations.build
-      render 'relations'
-    elsif params[:remove_relation]
-      @dataset_description.attributes = params[:dataset_description]
-      @dataset_description.relations.delete(@dataset_description.relations.last)
-      render 'relations'
-    else
-      render 'relations', :notice => 'Please select all relevant fields!'
-    end
   end
 
   def edit_field_description_categories

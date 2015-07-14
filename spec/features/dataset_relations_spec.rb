@@ -8,9 +8,8 @@ describe 'DatasetRelations' do
   let!(:students) { FactoryGirl.create(:dataset_description, en_title: 'Students', with_dataset: true) }
   let!(:schools) { FactoryGirl.create(:dataset_description, en_title: 'Schools', with_dataset: true) }
 
-
   it 'is possible to manage relationship between dataset', js: true do
-    visit relations_dataset_description_path(id: students, locale: :en)
+    visit dataset_description_relations_path(dataset_description_id: students, locale: :en)
 
     click_button '+'
     select 'Schools'
@@ -18,7 +17,7 @@ describe 'DatasetRelations' do
 
     students.relations.should have(1).record
 
-    visit relations_dataset_description_path(id: students, locale: :en)
+    visit dataset_description_relations_path(dataset_description_id: students, locale: :en)
     click_button '-'
     click_button 'Save relations'
 

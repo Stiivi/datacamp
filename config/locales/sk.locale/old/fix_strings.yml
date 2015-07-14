@@ -64,7 +64,6 @@ sk:
     no_group: Ostatné
     no_table_in_databaes: "V databáze nie je taká tabuľka, môžte ju vytvoriť."
     other_columns: "Ostatné stĺpce"
-    relationship_descriptions: "Popisy vzťahov"
     revert: Obnoviť
     run_tests: "Spustiť testy"
     save_and_create: "Uložiť a vytvoriť"

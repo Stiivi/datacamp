@@ -1,10 +1,10 @@
 %div[@dataset_description]
 
-  = render :partial => "header"
+  = render :partial => "dataset_descriptions/header"
 
   %h2= t("dataset.relations")
   
-  = form_for([:update_relations, @dataset_description], :builder => ListFormBuilder) do |f|
+  = form_for(@dataset_description, url: dataset_description_relations_path(dataset_description_id: @dataset_description), method: :post, :builder => ListFormBuilder) do |f|
     = f.error_messages
     
     - index = 0

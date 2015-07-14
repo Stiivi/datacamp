@@ -1,9 +1,0 @@
-%li.clearfix[relationship_description]
-  .title
-    = link_to relationship_description.title, edit_dataset_description_relationship_description_path(dataset_description, relationship_description), :class => 'ajax'
-  .description
-    = relationship_description.description || 'n/a'
-  .is_to_many
-    = relationship_description.is_to_many
-  .actions
-    =link_to(image_tag('icons/trash.gif'), dataset_description_relationship_description_path(dataset_description, relationship_description), :method => 'delete', :confirm => t("global.delete_confirmation"))

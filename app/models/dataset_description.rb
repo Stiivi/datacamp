@@ -18,8 +18,7 @@ class DatasetDescription < ActiveRecord::Base
   has_many :field_description_categories,
             include: :translations,
             through: :category_assignments
-  # accepts_nested_attributes_for :field_descriptions
-  has_many :relationship_descriptions
+
   has_many :comments
   belongs_to :category, :class_name => "DatasetCategory"
 

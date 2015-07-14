@@ -119,11 +119,9 @@ Datacamp::Application.routes.draw do
             :setup_dataset,
             :visibility,
             :datastore_status,
-            :relations,
             :edit_field_description_categories
         post :setup_dataset
-        put :update_relations,
-            :update_field_description_categories
+        put :update_field_description_categories
       end
       collection do
         post :update_positions
@@ -135,6 +133,8 @@ Datacamp::Application.routes.draw do
         end
         get :create_column, :on => :member
       end
+
+      resources :relations
     end
     resources :dataset_initializations, only: [:index, :create]
     resources :categories, :controller => "dataset_categories"
