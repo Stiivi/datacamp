@@ -34,3 +34,6 @@ rerun.txt
 .sass-cache
 
 coverage
+
+docker-compose.yml
+volumes
