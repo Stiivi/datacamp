@@ -9,8 +9,13 @@ module Dataset
     end
 
     def build
-      define_model_class
-      set_up_model
+      unless model_defined?
+        define_model_class
+        set_up_connection
+        set_up_model
+      end
+
+      assign_dataset
       set_up_relation
       set_up_derived_fields
 
@@ -19,17 +24,24 @@ module Dataset
 
     private
 
+    def model_defined?
+      Kernel.const_defined?(model_class_name(dataset_description))
+    end
+
     def define_model_class
-      unless Kernel.const_defined?(model_class_name(dataset_description))
-        Kernel.const_set(model_class_name(dataset_description), Class.new(Dataset::DatasetRecord))
-      end
+      Kernel.const_set(model_class_name(dataset_description), Class.new(Dataset::DatasetRecord))
+    end
+
+    def set_up_connection
+      model_class.establish_connection "#{Rails.env}_data"
+    end
+
+    def assign_dataset
+      model_class.dataset = dataset_description
     end
 
     def set_up_model
-      model_class.dataset = dataset_description
-      model_class.establish_connection "#{Rails.env}_data"
       model_class.table_name = table_name(dataset_description)
-
       model_class.send(:has_many, :dc_updates, class_name: 'Dataset::DcUpdate', as: :updatable)
     end
 
