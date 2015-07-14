@@ -24,7 +24,7 @@
     - restart nginx
 
 - name: Create application configuration
-  copy: src=files/nginx-datanest.conf dest=/etc/nginx/sites-available/datanest
+  template: src=files/nginx-datanest.conf.j2 dest=/etc/nginx/sites-available/datanest
 
 - name: Enable application configuration
   file: src=/etc/nginx/sites-available/datanest dest=/etc/nginx/sites-enabled/datanest state=link

@@ -28,7 +28,7 @@ server {
   }
 
   location @app {
-    passenger_enabled on
-    rails_env {{ passenger_env }}
+    passenger_enabled on;
+    rails_env {{ passenger_env }};
   }
 }
