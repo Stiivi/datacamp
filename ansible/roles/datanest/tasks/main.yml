@@ -1,0 +1,7 @@
+---
+
+- name: Install required development packages
+  apt: name={{ item }} state=present
+  with_items:
+    - libsqlite3-dev
+    - libmysqlclient-dev
