@@ -1,7 +1,7 @@
 namespace :db do
   task :create_indexes => :environment do
     DatasetDescription.all.each do |dataset_description|
-      dataset = dataset_description.transformer.table_name
+      dataset = dataset_description.dataset_schema_manager.table_name
       dataset_description.field_descriptions.each do |field_description|
         field = field_description.identifier
         query = "create index #{field}_index ON #{dataset}(#{field})"

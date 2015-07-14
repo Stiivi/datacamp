@@ -5,12 +5,12 @@
     %li= link_to t("global.information"), edit_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="edit")
     %li= link_to t("dataset.visibility_settings"), visibility_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="visibility")
     %li= link_to t("dataset.columns_for_import"), import_settings_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="import_settings")
-    - if @dataset_description.transformer.table_exists?
+    - if @dataset_description.dataset_schema_manager.table_exists?
       %li= link_to t("dataset.datastore_status"), datastore_status_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="datastore_status")
     %li= link_to t("dataset.relations"), relations_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="relations"||params[:action]=="update_relations")
 
   .flags_bar
-    .flag= @dataset_description.transformer.table_exists? ? t("dataset.in_database") : t("dataset.not_in_database")
+    .flag= @dataset_description.dataset_schema_manager.table_exists? ? t("dataset.in_database") : t("dataset.not_in_database")
     .flag= @dataset_description.is_active? ? t("global.active") : t("global.inactive")
   .info_container
     %h2= @dataset_description.title

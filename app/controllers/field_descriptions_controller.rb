@@ -100,7 +100,8 @@ class FieldDescriptionsController < ApplicationController
 
   def create_for_column
     column = @dataset_description.dataset_model.columns.find { |c| c.name == params[:column] }
-    @dataset_description.transformer.create_description_for_column(column)
+    DescriptionCreator.create_description_for_column(@dataset_description, column)
+
     respond_to do |wants|
       wants.html do
         # FIXME: LOCALIZE: dataset.column_created_message
@@ -113,7 +114,8 @@ class FieldDescriptionsController < ApplicationController
 
   def create_column
     @field_description = @dataset_description.field_descriptions.find_by_identifier!(params[:id])
-    @dataset_description.transformer.create_column_for_description(@field_description)
+    @field_description.add_dataset_column
+
     respond_to do |wants|
       wants.html do
         # FIXME: LOCALIZE: dataset.column_created_message

@@ -36,7 +36,7 @@ describe 'Imports' do
   it 'user is able to delete imported records from current import' do
     prepare_name_fields(doctors_dataset)
 
-    doctors_dataset.dataset_model.create!(record_status: 'new', first_name: 'jozef', last_name: 'zelený')
+    doctors_dataset.dataset_model.create!(record_status: Dataset::RecordStatus.find(:new), first_name: 'jozef', last_name: 'zelený')
 
     fill_in_import_file_to_dataset(doctors_dataset, name_csv_file_path)
 

@@ -11,11 +11,11 @@ class Etl::MzvsrContractExtraction
   end
 
   def parse
-    @attributes ||= page.information.merge(uri: uri, record_status: 'published')
+    @attributes ||= page.information.merge(uri: uri, record_status: Dataset::RecordStatus.find(:published))
   end
 
   def save
-    contract = Dataset::DsMzvsrContract.find_or_initialize_by_uri(attributes[:uri])
+    contract = Kernel::DsMzvsrContract.find_or_initialize_by_uri(attributes[:uri])
 
     contract.update_attributes!(attributes)
   end

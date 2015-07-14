@@ -59,7 +59,7 @@ module Etl
     end
 
     def save(lawyer_associate_hash)
-      lawyer_associate = Dataset::DsLawyerAssociate.find_or_initialize_by_sak_id(lawyer_associate_hash[:sak_id])
+      lawyer_associate = Kernel::DsLawyerAssociate.find_or_initialize_by_sak_id(lawyer_associate_hash[:sak_id])
       lawyer_associate.update_attributes!(lawyer_associate_hash)
     end
 

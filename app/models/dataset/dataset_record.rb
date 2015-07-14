@@ -21,10 +21,10 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     end
   end
 
-  scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
+  scope :active, lambda { where("record_status IS NULL OR record_status NOT IN ('#{Dataset::RecordStatus.find(:suspended)}', '#{Dataset::RecordStatus.find(:deleted)}')") }
 
   def active?
-    record_status.nil? || ['suspended', 'deleted'].exclude?(record_status)
+    record_status.nil? || [Dataset::RecordStatus.find(:suspended), Dataset::RecordStatus.find(:deleted)].exclude?(record_status)
   end
 
   IDENTIFIERS = [:name, :title, :original_name, :title_sk, :procurement_subject, :_record_id]
@@ -58,11 +58,11 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   end
 
   def record_status
-    read_attribute(:record_status).blank? ? "absent" : read_attribute(:record_status)
+    read_attribute(:record_status).blank? ? Dataset::RecordStatus.find(:absent) : read_attribute(:record_status)
   end
 
   def quality_status
-    read_attribute(:quality_status).blank? ? "absent" : read_attribute(:quality_status)
+    read_attribute(:quality_status).blank? ? Dataset::RecordStatus.find(:absent) : read_attribute(:quality_status)
   end
 
 

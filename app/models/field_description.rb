@@ -15,8 +15,9 @@ class FieldDescription < ActiveRecord::Base
   #validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
   validates_numericality_of :min_width, if: lambda { min_width.present? }
 
-  after_save :update_in_database
-  after_create :setup_in_database
+  after_create :add_dataset_column
+  after_update :update_dataset_column
+  after_destroy :remove_dataset_column
 
   ###########################################################################
   # Default scope
@@ -34,34 +35,48 @@ class FieldDescription < ActiveRecord::Base
     title.blank? ? "n/a" : title
   end
 
+  def data_type_with_default
+    data_type || :string
+  end
+
   ###########################################################################
   # Dataset
   def exists_in_database?
-    dataset_description.transformer.has_column?(identifier)
+    dataset_column_exists?(identifier)
   end
 
-  ###########################################################################
-  # Private
+  def add_dataset_column
+    return unless dataset_table_exists?
+    return if dataset_column_exists?(identifier)
+
+    dataset_description.dataset_schema_manager.add_column(identifier, data_type_with_default)
+  end
+
   private
 
-  def setup_in_database
-    return false unless identifier
-    return false unless dataset_description.transformer.table_exists?
-    return false if dataset_description.transformer.has_column?(identifier.to_s)
+  def update_dataset_column
+    return unless dataset_table_exists?
 
-    dataset_description.transformer.create_column_for_description(self)
+    if identifier_changed? && identifier_was && identifier && dataset_column_exists?(identifier_was)
+      dataset_description.dataset_schema_manager.rename_column(identifier_was, identifier)
+    end
+    if data_type_changed? && identifier_was && identifier && dataset_column_exists?(identifier)
+      dataset_description.dataset_schema_manager.change_column_type(identifier, data_type)
+    end
   end
 
-  # Update data type in database
-  def update_in_database
-    # Again -- no dataset assigned, no data types.
-    return unless dataset_description
-    return unless data_type
-    manager = DatastoreManager.manager_with_default_connection
-    current_data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
-    # Ulozi sa iba ked sa zmenil typ -> priamo sa to nastavi v databaze
-    unless data_type.to_s == current_data_type.to_s
-      manager.set_dataset_field_type(dataset_description.identifier, self.identifier, data_type)
-    end
+  def remove_dataset_column
+    return unless dataset_table_exists?
+    return unless dataset_column_exists?(identifier)
+
+    dataset_description.dataset_schema_manager.remove_column(identifier)
+  end
+
+  def dataset_table_exists?
+    dataset_description && dataset_description.dataset_schema_manager.table_exists?
+  end
+
+  def dataset_column_exists?(column)
+    dataset_description && dataset_description.dataset_schema_manager.has_column?(column)
   end
 end

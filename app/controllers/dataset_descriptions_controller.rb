@@ -88,7 +88,7 @@ class DatasetDescriptionsController < ApplicationController
 
     respond_to do |format|
       if @dataset_description.save
-        @dataset_description.transformer.setup_table
+        @dataset_description.create_dataset_table
         flash[:notice] = I18n.t("dataset.created_message")
         format.html {
           return redirect_to(new_dataset_description_path) if params[:commit] == I18n.t("global.save_and_create")
@@ -160,19 +160,19 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def do_import
-    @dataset = Dataset::Base.build_from_identifier(params[:dataset])
-    success = @dataset.transform! && @dataset.create_description!
+    result = Dataset::TableToDataset.execute(params[:dataset])
 
-    if success
+    if result.valid?
       redirect_to import_dataset_descriptions_path
     else
+      @errors = result.errors
       render :action => "import"
     end
   end
 
   def setup_dataset
     if request.method == :post
-      if @dataset_description.transformer.setup_table
+      if @dataset_description.create_dataset_table
         flash[:notice] = "A new table #{@dataset_description.identifier} was created based on #{@dataset_description.title} description."
       else
         flash[:error] = I18n.t('dataset.cant_setup_dataset', :dataset => @dataset_description.title, :identifier => @dataset_description.identifier)
@@ -191,7 +191,7 @@ class DatasetDescriptionsController < ApplicationController
 
     @connection = Dataset::DatasetRecord.connection
     begin
-      table_desc = TableDescription.new(@connection, dd.transformer.table_name)
+      table_desc = TableDescription.new(@connection, dd.dataset_model.table_name)
     rescue Exception => e
       logger.error e.message
       return redirect_to dd
@@ -200,8 +200,7 @@ class DatasetDescriptionsController < ApplicationController
     column_names = table_desc.column_names
     field_names = dd.field_descriptions.collect { |fd| fd.identifier }
 
-    # FIXME: move system_columns to datastore manager (not yet implemented)
-    system_columns = Dataset::Base.system_columns
+    system_columns = Dataset::SYSTEM_COLUMNS.map(&:name)
 
     @missing_columns = Array.new
     @missing_descriptions = Array.new
@@ -281,7 +280,7 @@ class DatasetDescriptionsController < ApplicationController
 
   def load_datasets
     @dataset_description = DatasetDescription.new
-    @unbound_datasets = Dataset::Base.find_tables :prefix_not => "ds"
+    @unbound_datasets = Dataset::UnboundDatasets.new.all
   end
 
   def init_menu

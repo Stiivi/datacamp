@@ -138,8 +138,12 @@ class DatasetDescription < ActiveRecord::Base
     dataset_model
   end
 
-  def transformer
-    @transformer ||= Dataset::TableTransformer.new(self)
+  def dataset_schema_manager
+    Dataset::SchemaManager.new(Dataset::Naming.table_name(self))
+  end
+
+  def create_dataset_table
+    Dataset::TableCreator.new(self, dataset_schema_manager).create
   end
 
   def has_derived_fields?
@@ -151,7 +155,7 @@ class DatasetDescription < ActiveRecord::Base
 
   def record_count
     # FIXME: keep this information cached and retrieve it from cache
-    @record_count ||= dataset_model.where(record_status: :published).count
+    @record_count ||= dataset_model.where(record_status: Dataset::RecordStatus.find(:published)).count
   end
 
   def refresh_relation_keys
@@ -170,7 +174,7 @@ class DatasetDescription < ActiveRecord::Base
   end
 
   def each_published_records
-    dataset_model.where(record_status: 'published').find_each do |record|
+    dataset_model.where(record_status: Dataset::RecordStatus.find(:published)).find_each do |record|
       yield record
     end
   end

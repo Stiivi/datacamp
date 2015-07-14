@@ -25,21 +25,6 @@ namespace :db_data do
     ActiveRecord::Migrator.rollback('db/migrate_data/', step)
   end
 
-  # TODO dupliacate codes with seeds
-
-  task initialize_datasets: :environment do
-    ['lawyers', 'lawyer_associates', 'lawyer_partnerships'].each do |identifier|
-      dataset = Dataset::Base.build_from_identifier(identifier)
-      dataset.add_system_columns if dataset.description.new_record?
-      if dataset.create_description!
-        puts "Initializing #{identifier} successfull"
-      else
-        puts "Initializing #{identifier} unsuccessfull"
-      end
-      puts dataset.errors
-    end
-  end
-
   task initialize_relations: :environment do
     lawyers = DatasetDescription.find_by_identifier('lawyers')
     lawyer_associates = DatasetDescription.find_by_identifier('lawyer_associates')

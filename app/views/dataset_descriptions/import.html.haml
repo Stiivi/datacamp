@@ -3,8 +3,8 @@
 
 .content.clearfix
   .span-16
-    - if @dataset && @dataset.errors
-      - @dataset.errors.each do |error|
+    - if @errors
+      - @errors.each do |error|
         %p.error= error
   
     %h2= t "dataset.uninitialized_datasets"

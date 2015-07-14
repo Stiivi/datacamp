@@ -102,7 +102,7 @@ class DatasetsController < ApplicationController
       filters.each do |key, value|
         paginate_options[:conditions].merge!({key.to_sym => value})
       end
-      paginate_options[:conditions].merge!({:record_status => "#{DatastoreManager.record_statuses[2]}|#{DatastoreManager.record_statuses[5]}"}) unless current_user && current_user.has_privilege?(:power_user)
+      paginate_options[:conditions].merge!({:record_status => "#{Dataset::RecordStatus.find(:published)}|#{Dataset::RecordStatus.find(:morphed)}"}) unless current_user && current_user.has_privilege?(:power_user)
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
@@ -117,7 +117,7 @@ class DatasetsController < ApplicationController
             from(prepare_subselect(@dataset_class.table_name, @sortable_columns, params, paginate_options)).
             joins("JOIN `#{@dataset_class.table_name}` `t` on `q`.`_record_id` = `t`.`_record_id`")
         if !current_user || !current_user.has_privilege?(:power_user)
-          @records = @records.where('t.record_status in (?)', [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]])
+          @records = @records.where('t.record_status in (?)', [Dataset::RecordStatus.find(:published), Dataset::RecordStatus.find(:morphed)])
         elsif @filters
           @dataset_class = @dataset_class.where('t.record_status = ?', @filters['record_status']) if @filters['record_status'].present?
           if @filters['quality_status'].present?
@@ -139,7 +139,7 @@ class DatasetsController < ApplicationController
           @dataset_class.order('created_at DESC, _record_id DESC')
         end
         if !current_user || !current_user.has_privilege?(:power_user)
-          @dataset_class = @dataset_class.where(:record_status => DatastoreManager.record_statuses[2])
+          @dataset_class = @dataset_class.where(:record_status => Dataset::RecordStatus.find(:published))
         elsif @filters
           @dataset_class = @dataset_class.where(:record_status => @filters['record_status']) if @filters['record_status'].present?
           if @filters['quality_status'].present?
@@ -154,7 +154,7 @@ class DatasetsController < ApplicationController
       end
     else
       begin
-        @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true, :conditions => {record_status: DatastoreManager.record_statuses[2]}))
+        @records = @dataset_class.search(sphinx_search, paginate_options.merge(populate: true, :conditions => {record_status: Dataset::RecordStatus.find(:published)}))
       rescue ThinkingSphinx::SphinxError
         redirect_to dataset_path(@dataset_description)
         return

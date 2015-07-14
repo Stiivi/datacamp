@@ -160,7 +160,9 @@ class RecordsController < ApplicationController
   
   def related_records_and_fields(dataset_description, record)
     @dataset_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^dc_/ }.map do |reflection|
-      dd = DatasetDescription.find_by_identifier(reflection.name.to_s.gsub(/#{Dataset::Base::prefix}|_morphed/,'').pluralize)
+      dd = DatasetDescription.find_by_identifier(
+          Dataset::Naming.association_name_to_identifier(reflection.name)
+      )
       if logged_in? && current_user.has_privilege?(:view_hidden_records)
         records = record.send(reflection.name)
       else

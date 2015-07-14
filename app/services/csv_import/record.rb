@@ -14,7 +14,7 @@ module CsvImport
       model.create(
           attributes.merge(
               {
-                  record_status: 'new',
+                  record_status: Dataset::RecordStatus.find(:new),
                   is_part_of_import: true,
                   batch_id: import_file.id
               }

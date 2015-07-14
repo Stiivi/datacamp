@@ -67,9 +67,9 @@ module Etl
     def self.dataset_table(dataset_type)
       case dataset_type
         when :notice
-          Dataset::DsProcurementV2Notice
+          Kernel::DsProcurementV2Notice
         when :performance
-          Dataset::DsProcurementV2Performance
+          Kernel::DsProcurementV2Performance
         else
       end
     end
@@ -232,7 +232,7 @@ module Etl
             procurement_hash.merge!(supplier_hash)
 
             # Initialize object
-            procurement_object = Dataset::DsProcurementV2Notice.find_or_initialize_by_document_id_and_supplier_index(document_id, supplier_index)
+            procurement_object = Kernel::DsProcurementV2Notice.find_or_initialize_by_document_id_and_supplier_index(document_id, supplier_index)
 
             digest_attributes.each do |attribute|
               attribute_value = procurement_hash[attribute]
@@ -256,7 +256,7 @@ module Etl
               procurement_object.supplier_regis_name = supplier_regis_organisation.name
             end
 
-            procurement_object.record_status = 'published'
+            procurement_object.record_status = Dataset::RecordStatus.find(:published)
             procurement_object.save
           end
 
@@ -265,7 +265,7 @@ module Etl
           procurement_hash = procurement_digest
 
           # Initialize object
-          procurement_object = Dataset::DsProcurementV2Performance.find_or_initialize_by_document_id(document_id)
+          procurement_object = Kernel::DsProcurementV2Performance.find_or_initialize_by_document_id(document_id)
 
           digest_attributes.each do |attribute|
             attribute_value = procurement_hash[attribute]
@@ -282,7 +282,7 @@ module Etl
             procurement_object.customer_regis_name = customer_regis_organisation.name
           end
 
-          procurement_object.record_status = 'published'
+          procurement_object.record_status = Dataset::RecordStatus.find(:published)
           procurement_object.save
 
         else
@@ -307,7 +307,7 @@ module Etl
     private
 
     def find_regis_organisation(organisation_code)
-      Dataset::DsOrganisation.find_by_ico(organisation_code.to_i)
+      Kernel::DsOrganisation.find_by_ico(organisation_code.to_i)
     end
 
     def update_document_report(type)

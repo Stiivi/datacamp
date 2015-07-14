@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'etl/exekutor_extraction'
 
 describe Etl::ExekutorExtraction do
-  let!(:tony_executor) { Kernel::DsExecutor.create!(name: 'Tony', record_status: 'published') }
+  let!(:tony_executor) { Kernel::DsExecutor.create!(name: 'Tony', record_status: Dataset::RecordStatus.find(:published)) }
 
   describe '#perform' do
     it 'saves extracted executors to database and mark old records as suspended' do

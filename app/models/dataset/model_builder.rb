@@ -1,28 +1,4 @@
-class Dataset
-  module Naming
-    def model_class_name(dataset_description)
-      "#{prefix}#{dataset_description.identifier}".classify
-    end
-
-    def full_model_class_name(dataset_description)
-      "Kernel::#{model_class_name(dataset_description)}"
-    end
-
-    def table_name(dataset_description)
-      prefix + dataset_description.identifier
-    end
-
-    def prefix
-      DatastoreManager.dataset_table_prefix
-    end
-
-    def association_name(dataset_description, morphed = false)
-      suffix = morphed ? "_morphed" : ""
-
-      :"#{prefix}#{dataset_description.identifier.pluralize}#{suffix}"
-    end
-  end
-
+module Dataset
   class ModelBuilder
     include Naming
 
@@ -41,6 +17,8 @@ class Dataset
       model_class
     end
 
+    private
+
     def define_model_class
       unless Kernel.const_defined?(model_class_name(dataset_description))
         Kernel.const_set(model_class_name(dataset_description), Class.new(Dataset::DatasetRecord))
@@ -56,7 +34,7 @@ class Dataset
     end
 
     def set_up_relation
-      dataset_description.relations.each do |relation|
+      dataset_description.relations(true).each do |relation|
 
         left_association = (relation.relationship_dataset_description.identifier < dataset_description.identifier)
         if relation.respond_to?(:morph) && relation.morph?
@@ -91,7 +69,7 @@ class Dataset
     end
 
     def set_up_derived_fields
-      model_class.derived_fields = dataset_description.derived_field_descriptions.map{ |field| [field.identifier, field.derived_value] }
+      model_class.derived_fields = dataset_description.derived_field_descriptions(true).map{ |field| [field.identifier, field.derived_value] }
     end
 
     def model_class
