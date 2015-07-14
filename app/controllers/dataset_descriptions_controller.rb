@@ -169,45 +169,6 @@ class DatasetDescriptionsController < ApplicationController
     @dataset_description = DatasetDescription.find(params[:id])
   end
 
-  def datastore_status
-    # FIXME: use datastore manager (not yet implemented)
-    dd = DatasetDescription.find(params[:id])
-
-    @connection = Dataset::CONNECTION
-    begin
-      table_desc = TableDescription.new(@connection, dd.dataset_model.table_name)
-    rescue Exception => e
-      logger.error e.message
-      return redirect_to dd
-    end
-
-    column_names = table_desc.column_names
-    field_names = dd.field_descriptions.collect { |fd| fd.identifier }
-
-    system_columns = Dataset::SYSTEM_COLUMNS.map(&:name)
-
-    @missing_columns = Array.new
-    @missing_descriptions = Array.new
-    @table_name = dd.identifier
-
-    dd.field_descriptions.each do |fd|
-        # Check if exists
-        if not column_names.include?(fd.identifier)
-            @missing_columns.push(fd.identifier)
-        end
-    end
-
-    column_names.each do |column_name|
-        # Check if exists
-        if not field_names.include?(column_name) \
-                and not system_columns.include?(column_name.to_sym) \
-                and column_name != 'id'
-            @missing_descriptions.push(column_name)
-        end
-    end
-    @dataset_description = dd
-  end
-
   def update_positions
     update_all_positions(params[:dataset_category].keys, params[:dataset_description])
     render :nothing => true

@@ -98,34 +98,6 @@ class FieldDescriptionsController < ApplicationController
     render nothing: true
   end
 
-  def create_for_column
-    column = @dataset_description.dataset_model.columns.find { |c| c.name == params[:column] }
-    DescriptionCreator.create_description_for_column(@dataset_description, column)
-
-    respond_to do |wants|
-      wants.html do
-        # FIXME: LOCALIZE: dataset.column_created_message
-        flash[:notice] = "Created column #{column.name}"
-        redirect_to request.referer
-      end
-      wants.js
-    end
-  end
-
-  def create_column
-    @field_description = @dataset_description.field_descriptions.find_by_identifier!(params[:id])
-    @field_description.add_dataset_column
-
-    respond_to do |wants|
-      wants.html do
-        # FIXME: LOCALIZE: dataset.column_created_message
-        flash[:notice] = "Created column #{@field_description.identifier}"
-        redirect_to request.referer
-      end
-      wants.js
-    end
-  end
-
   protected
 
   def get_dataset_description

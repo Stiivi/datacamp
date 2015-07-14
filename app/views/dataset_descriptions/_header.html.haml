@@ -6,7 +6,7 @@
     %li= link_to t("dataset.visibility_settings"), visibility_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="visibility")
     %li= link_to t("dataset.columns_for_import"), import_settings_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="import_settings")
     - if @dataset_description.dataset_schema_manager.table_exists?
-      %li= link_to t("dataset.datastore_status"), datastore_status_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="datastore_status")
+      %li= link_to t("dataset.datastore_status"), dataset_description_datastore_states_path(dataset_description_id: @dataset_description), class: ('active' if params[:controller]=="datastore_states")
     %li= link_to t("dataset.relations"), dataset_description_relations_path(dataset_description_id: @dataset_description), class: ('active' if params[:controller]=="relations")
 
   .flags_bar
