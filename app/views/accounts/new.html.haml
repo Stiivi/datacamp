@@ -15,6 +15,6 @@
     %li.clearfix
       %label= t("global.captcha")
       .fl
-        = (recaptcha_tags :public_key => Datacamp::Config.get(:captcha_public_key)).html_safe
+        = (recaptcha_tags :public_key => ENV['DATANEST_CAPTCHA_PUBLIC_KEY']).html_safe
     
     = f.submit t("users.register")

@@ -95,6 +95,9 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     ethon (0.7.3)
@@ -359,6 +362,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_active_record
   delayed_job_admin
+  dotenv-rails
   dynamic_form
   factory_girl_rails
   fakeweb

@@ -48,10 +48,7 @@ Datacamp::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.middleware.use ::ExceptionNotifier,
-    :email_prefix => "ApplicationName-Errors: ",
-    :sender_address => %w{admin@datanest.sk},
-    :exception_recipients => %w{}
+  config.admin_emails = ENV['DATANEST_ADMIN_EMAILS'].split
 
   # Compress JavaScripts and CSS
   config.assets.compress = true

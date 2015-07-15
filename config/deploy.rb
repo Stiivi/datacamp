@@ -24,16 +24,10 @@ set :deploy_to, "/home/datanest2/deploy"
 # Default value for :pty is false
 # set :pty, true
 
-# Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/newrelic.yml', 'config/datacamp_config.yml', 'config/thinking_sphinx.yml', 'config/production.sphinx.conf', 'config/initializers/secret_token.rb', 'config/initializers/site_keys.rb', 'config/environments/production.rb', 'public/sitemap.xml')
+set :linked_files, fetch(:linked_files, []).push('public/sitemap.xml')
 
-# Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'files', 'dumps', 'db/sphinx', 'backup', 'data', 'public/sitemaps')
 
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
 set :keep_releases, 5
 
 set :ssh_options, {

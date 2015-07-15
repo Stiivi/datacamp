@@ -1,11 +1,11 @@
 require 'rollbar/rails'
 Rollbar.configure do |config|
-  config.access_token = Datacamp::Config.get('rollbar_access_token')
+  config.access_token = ENV['DATANEST_ROLLBAR_ACCESS_TOKEN']
 
   # Without configuration, Rollbar is enabled by in all environments. 
   # To disable in specific environments, set config.enabled=false.
   # Here we'll disable in 'test':
-  config.enabled = Datacamp::Config.get('rollbar_access_token').present?
+  config.enabled = ENV['DATANEST_ROLLBAR_ACCESS_TOKEN'].present?
 
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`,

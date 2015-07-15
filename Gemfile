@@ -78,6 +78,7 @@ group :development, :test do
   gem 'fakeweb'
   gem 'pry'
   gem 'simplecov', require: false
+  gem 'dotenv-rails'
 end
 
 group :test do

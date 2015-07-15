@@ -1,6 +1,6 @@
 module DumpHelper
   def dataset_dump_path
-    Datacamp::Config.get(:dataset_dump_path)
+    ENV['DATANEST_DUMP_PATH']
   end
 
   def create_dump_folder

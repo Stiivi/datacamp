@@ -217,7 +217,7 @@ class ApiController < ApplicationController
 
 private
   def track_download(action, dataset_identifier)
-    Gabba::Gabba.new(Datacamp::Config.get('google_analytics_code'), 'datanest.fair-play.sk').event('api-download', action, dataset_identifier)
+    Gabba::Gabba.new(ENV['DATANEST_GA_CODE'], 'datanest.fair-play.sk').event('api-download', action, dataset_identifier)
   rescue
     # :)
   end
@@ -245,7 +245,7 @@ private
   end
 
   def dataset_dump_path
-    Datacamp::Config.get(:dataset_dump_path, "#{Rails.root}/tmp")
+    ENV['DATANEST_DUMP_PATH'] || "#{Rails.root}/tmp"
   end
 
   def default_exception_handler
