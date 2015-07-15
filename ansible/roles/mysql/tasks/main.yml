@@ -21,7 +21,7 @@
   sudo_user: '{{ app_user }}'
   lineinfile:
     dest: ~/.profile
-    line: export MYSQL_{{ item | upper }}_PASSWORD="{{ lookup('file', '/tmp/' + item + '.mysqlpassword') }}"
+    line: export {{ item | upper }}_MYSQL_PASSWORD="{{ lookup('file', '/tmp/' + item + '.mysqlpassword') }}"
     state: present
   with_items: '{{ users }}'
   when: users|length > 0
