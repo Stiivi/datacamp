@@ -39,7 +39,6 @@ set :passenger_restart_with_touch, true
 set :delayed_job_bin_path, 'script'
 
 namespace :deploy do
-
   desc 'Deploy app for first time'
   task :cold do
     invoke 'deploy:starting'
@@ -99,6 +98,30 @@ namespace :deploy do
       within release_path do
         with rails_env: fetch(:rails_env) do
           run "rake db:dump"
+        end
+      end
+    end
+  end
+
+  task :import_dump do
+    dump = ENV['DUMP']
+    match = dump.match(/datanest_(.*?)_.*/)
+    raise "'#{dump}' does not seem like a datanest dump, expected 'datanest_$DB_*.sql' format" unless match
+    database = match[1]
+
+    if File.extname(dump) == ".sql"
+      puts "Compressing #{dump} for upload"
+      `gzip #{dump}`
+      dump = "#{dump}.gz"
+    end
+
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          upload! dump, "/tmp"
+          filename = File.basename(dump)
+          execute :gunzip, "/tmp/#{filename}"
+          execute :mysql, "-h $DATANEST_MYSQL_HOST -P $DATANEST_MYSQL_PORT -u $DATANEST_MYSQL_USER --password=$DATANEST_MYSQL_PASSWORD datanest_#{database}_#{fetch(:rails_env)} < /tmp/#{File.basename(filename, '.gz')}"
         end
       end
     end
