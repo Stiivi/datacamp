@@ -117,7 +117,6 @@ Datacamp::Application.routes.draw do
       member do
         get :import_settings,
             :setup_dataset,
-            :visibility,
             :edit_field_description_categories
         post :setup_dataset
         put :update_field_description_categories
@@ -136,6 +135,7 @@ Datacamp::Application.routes.draw do
         post :create_column_description
         post :create_table_column
       end
+      resource :field_visibilities, only: [:show, :update]
     end
     resources :dataset_initializations, only: [:index, :create]
     resources :categories, :controller => "dataset_categories"

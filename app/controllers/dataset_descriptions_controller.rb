@@ -29,7 +29,6 @@ class DatasetDescriptionsController < ApplicationController
                                                     :edit_field_description_categories,
                                                     :update_field_description_categories]
 
-
   privilege_required :edit_dataset_description
   privilege_required :create_dataset, :only => [:new, :create]
   privilege_required :destroy_dataset, :only => [:destroy]
@@ -153,7 +152,6 @@ class DatasetDescriptionsController < ApplicationController
     @importable_field_descriptions = @dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
   end
 
-
   def setup_dataset
     if request.method == :post
       if @dataset_description.create_dataset_table
@@ -163,10 +161,6 @@ class DatasetDescriptionsController < ApplicationController
       end
       redirect_to @dataset_description
     end
-  end
-
-  def visibility
-    @dataset_description = DatasetDescription.find(params[:id])
   end
 
   def update_positions
@@ -188,6 +182,7 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   private
+
   def update_all_positions(category_placement, description_placement)
     super(DatasetCategory, category_placement)
     items = DatasetDescription.all
