@@ -4,6 +4,8 @@ log/*
 tmp/*
 .vagrant
 
+.env.local
+
 files/*
 config/*sphinx.conf
 /update
