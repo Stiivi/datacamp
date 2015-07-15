@@ -1,5 +1,11 @@
 server {
-  server_name datanest.sk www.datanest.sk datanest.fair-play.sk;
+  server_name datanest.sk www.datanest.sk;
+  listen 80;
+  return 301 $scheme://datanest.fair-play.sk$request_uri;
+}
+
+server {
+  server_name localhost datanest.fair-play.sk;
   listen 80;
 
   root /home/{{ app_user }}/deploy/current/public;
