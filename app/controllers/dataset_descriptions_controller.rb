@@ -20,7 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class DatasetDescriptionsController < ApplicationController
-  before_filter :get_dataset_description, :only => [:show,
+  before_filter :dataset_description, :only => [:show,
                                                     :edit,
                                                     :update,
                                                     :destroy,
@@ -47,10 +47,10 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def show
-    if @dataset_description.dataset_model.table_exists?
-      @field_descriptions = @dataset_description.field_descriptions
-      @field_description_categories = @dataset_description.field_description_categories
-      @other_field_descriptions = @dataset_description.field_descriptions.where('field_description_category_id IS NULL OR field_description_category_id = 0')
+    if dataset_description.dataset_model.table_exists?
+      @field_descriptions = dataset_description.field_descriptions
+      @field_description_categories = dataset_description.field_description_categories
+      @other_field_descriptions = dataset_description.field_descriptions.where('field_description_category_id IS NULL OR field_description_category_id = 0')
     end
 
     respond_to do |format|
@@ -72,25 +72,19 @@ class DatasetDescriptionsController < ApplicationController
   def edit
     respond_to do |wants|
       wants.html
-      wants.js { render :action => "move" }
     end
   end
 
   def create
     @dataset_description = DatasetDescription.new
 
-    create_category_if_needed!
-
-    @dataset_description.attributes = params[:dataset_description]
+    @dataset_description.attributes = params_with_category
 
     respond_to do |format|
       if @dataset_description.save
         @dataset_description.create_dataset_table
         flash[:notice] = I18n.t("dataset.created_message")
-        format.html {
-          return redirect_to(new_dataset_description_path) if params[:commit] == I18n.t("global.save_and_create")
-          return redirect_to(@dataset_description) 
-        }
+        format.html { redirect_to new_or_detail_description_path }
         format.xml  { render :xml => @dataset_description, :status => :created, :location => @dataset_description }
         format.js
       else
@@ -102,64 +96,44 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def update
-    redirect_path = dataset_description_path(@dataset_description)
-    if params[:return_to]
-      begin
-        redirect_path = send "#{params[:return_to]}_dataset_description_path", @dataset_description
-      rescue
-        redirect_path = params[:return_to]
-      end
-    end
-
-    create_category_if_needed!
-
-    @dataset_description.attributes = params[:dataset_description]
-
-    if params[:skip_validations]
-      success = @dataset_description.save(:validate => false)
-    else
-      success = @dataset_description.save
-    end
+    dataset_description.attributes = params_with_category
 
     respond_to do |format|
-      if success
+      if dataset_description.save
         flash[:notice] = 'DatasetDescription was successfully updated.'
-        format.html {
-          return redirect_to(new_dataset_description_path) if params[:commit] == I18n.t("global.save_and_create")
-          return redirect_to(redirect_path)
-        }
+        format.html { redirect_to new_or_detail_description_path }
         format.xml  { head :ok }
         format.js
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @dataset_description.errors, :status => :unprocessable_dataset_description }
+        format.xml  { render :xml => dataset_description.errors, :status => :unprocessable_dataset_description }
         format.js
       end
     end
   end
 
   def destroy
-    @dataset_description.destroy
+    dataset_description.destroy
 
     respond_to do |format|
-      format.html { redirect_to(dataset_descriptions_url) }
+      format.html { redirect_to(dataset_descriptions_path) }
       format.xml  { head :ok }
     end
   end
 
   def import_settings
-    @all_field_descriptions = @dataset_description.field_descriptions.where(:importable => false).order('importable_column asc').select{|field|!field.is_derived}
-    @importable_field_descriptions = @dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
+    @all_field_descriptions = dataset_description.field_descriptions.where(:importable => false).order('importable_column asc').select{|field|!field.is_derived}
+    @importable_field_descriptions = dataset_description.field_descriptions.where(:importable => true).order('importable_column asc')
   end
 
   def setup_dataset
     if request.method == :post
-      if @dataset_description.create_dataset_table
+      if dataset_description.create_dataset_table
         flash[:notice] = "A new table #{@dataset_description.identifier} was created based on #{@dataset_description.title} description."
       else
         flash[:error] = I18n.t('dataset.cant_setup_dataset', :dataset => @dataset_description.title, :identifier => @dataset_description.identifier)
       end
-      redirect_to @dataset_description
+      redirect_to dataset_description
     end
   end
 
@@ -173,10 +147,10 @@ class DatasetDescriptionsController < ApplicationController
   end
 
   def update_field_description_categories
-    if @dataset_description.update_attributes(params[:dataset_description])
-      redirect_to @dataset_description, notice: 'success'
+    if dataset_description.update_attributes(params[:dataset_description])
+      redirect_to dataset_description, notice: 'success'
     else
-      @field_description_categories = @dataset_description.field_description_categories
+      @field_description_categories = dataset_description.field_description_categories
       render :edit_field_description_categories, notice: 'failure'
     end
   end
@@ -192,26 +166,28 @@ class DatasetDescriptionsController < ApplicationController
     end
   end
 
-  protected
-
-  def get_dataset_description
-    @dataset_description = DatasetDescription.find(params[:id])
+  def dataset_description
+    @dataset_description ||= DatasetDescription.find(params[:id])
   end
 
   def init_menu
-    @submenu_partial = "data_dictionary"
+    @submenu_partial = 'data_dictionary'
   end
 
-  def create_category_if_needed!
-    if params[:dataset_description][:category]
-      # Create a new category for this one
-      unless params[:dataset_description][:category].blank?
-        category = DatasetCategory.find_or_create_by_title(params[:dataset_description][:category])
-        category.save(validate: false)
-        @dataset_description.category = category
+  def params_with_category
+    category = DatasetCategoryPreparer.prepare(
+        params[:dataset_description].delete(:category),
         params[:dataset_description].delete(:category_id)
-      end
-      params[:dataset_description].delete(:category)
+    )
+
+    params[:dataset_description].merge(category_id: category.try(:id))
+  end
+
+  def new_or_detail_description_path
+    if params[:commit] == I18n.t("global.save_and_create")
+      new_dataset_description_path
+    else
+      dataset_description_path(@dataset_description)
     end
   end
 end
