@@ -30,23 +30,23 @@ foreman start
      check that skips loading the rest of the file in non-interactive session
      (that means both capistrano and passenger)
 
-````
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-export DATANEST_MYSQL_HOST=localhost
-export DATANEST_MYSQL_PORT=3306
-# [more exports ...]
-
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
-# [rest of the .bashrc]
-````
+      ````bash
+      # ~/.bashrc: executed by bash(1) for non-login shells.
+      # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+      # for examples
+      
+      export DATANEST_MYSQL_HOST=localhost
+      export DATANEST_MYSQL_PORT=3306
+      # [more exports ...]
+      
+      # If not running interactively, don't do anything
+      case $- in
+          *i*) ;;
+            *) return;;
+      esac
+      
+      # [rest of the .bashrc]
+      ````
 
 3. For the first time, run `cap production deploy:cold`. This will create
    databases and import schemas. This should only be called once and in the
