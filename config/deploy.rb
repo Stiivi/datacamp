@@ -76,7 +76,7 @@ namespace :deploy do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          run "rake index:index"
+          execute :rake, "index:index"
         end
       end
     end
@@ -86,8 +86,8 @@ namespace :deploy do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          run "rake index:update_config"
-          run "rake index:server"
+          execute :rake, "index:update_config"
+          execute :rake, "index:server"
         end
       end
     end
@@ -97,7 +97,7 @@ namespace :deploy do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          run "rake db:dump"
+          execute :rake,  "db:dump"
         end
       end
     end
