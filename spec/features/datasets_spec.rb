@@ -134,7 +134,7 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_3._record_id}"
       select 'Suspended', from: 'status'
-      sleep(0.5)
+      sleep(1)
 
       record_1.reload.record_status.should eq 'suspended'
       record_2.reload.record_status.should eq 'loaded'
@@ -143,7 +143,7 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_2._record_id}"
       select 'Duplicate', from: 'quality'
-      sleep(0.5)
+      sleep(1)
 
       record_1.reload.quality_status.should eq 'duplicate'
       record_2.reload.quality_status.should eq 'duplicate'
@@ -152,7 +152,7 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       select 'All filtered records', from: 'selection'
       select 'New', from: 'status'
-      sleep(0.5)
+      sleep(1)
 
       record_1.reload.record_status.should eq 'new'
       record_2.reload.record_status.should eq 'new'
@@ -160,7 +160,7 @@ describe 'Datasets' do
 
       click_link 'select_all'
       select 'OK', from: 'quality'
-      sleep(0.5)
+      sleep(1)
 
       record_1.reload.quality_status.should eq 'ok'
       record_2.reload.quality_status.should eq 'ok'
