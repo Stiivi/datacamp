@@ -133,6 +133,7 @@ describe 'Datasets' do
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_3._record_id}"
+      page.should have_select 'status'
       select 'Suspended', from: 'status'
 
       page.should have_xpath '//img[@alt="Suspended"]'
@@ -142,6 +143,7 @@ describe 'Datasets' do
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_2._record_id}"
+      page.should have_select 'quality'
       select 'Duplicate', from: 'quality'
 
       page.should have_xpath '//img[@alt="Duplicate"]'
@@ -151,6 +153,7 @@ describe 'Datasets' do
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       select 'All filtered records', from: 'selection'
+      page.should have_select 'status'
       select 'New', from: 'status'
 
       page.should have_xpath '//img[@alt="New"]'
@@ -159,6 +162,7 @@ describe 'Datasets' do
       record_3.reload.record_status.should eq 'new'
 
       click_link 'select_all'
+      page.should have_select 'quality'
       select 'OK', from: 'quality'
 
       page.should have_xpath '//img[@alt="OK"]'
