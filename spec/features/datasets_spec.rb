@@ -91,7 +91,7 @@ describe 'Datasets' do
       login_as(admin_user)
     end
 
-    it 'is able to filder records', js: true do
+    it 'is able to filter records', js: true do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
       quality_dataset.dataset_model.create!(first_name: 'John', record_status: Dataset::RecordStatus.find(:published), quality_status: 'unclear')
@@ -111,12 +111,12 @@ describe 'Datasets' do
       within('.top_pagination') do
         select '- All -', from: 'filters_record_status'
       end
-      sleep(0.5)
+      page.should have_content '(2)'
 
       within('.top_pagination') do
         select 'Unclear', from: 'filters_quality_status'
       end
-      sleep(0.5)
+      page.should have_content '(1)'
 
       page.should have_content 'John'
       page.should_not have_content 'Ann'
@@ -134,8 +134,8 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_3._record_id}"
       select 'Suspended', from: 'status'
-      sleep(1)
 
+      page.should have_xpath '//img[@alt="Suspended"]'
       record_1.reload.record_status.should eq 'suspended'
       record_2.reload.record_status.should eq 'loaded'
       record_3.reload.record_status.should eq 'suspended'
@@ -143,8 +143,8 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_2._record_id}"
       select 'Duplicate', from: 'quality'
-      sleep(1)
 
+      page.should have_xpath '//img[@alt="Duplicate"]'
       record_1.reload.quality_status.should eq 'duplicate'
       record_2.reload.quality_status.should eq 'duplicate'
       record_3.reload.quality_status.should eq 'absent'
@@ -152,16 +152,16 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       select 'All filtered records', from: 'selection'
       select 'New', from: 'status'
-      sleep(1)
 
+      page.should have_xpath '//img[@alt="New"]'
       record_1.reload.record_status.should eq 'new'
       record_2.reload.record_status.should eq 'new'
       record_3.reload.record_status.should eq 'new'
 
       click_link 'select_all'
       select 'OK', from: 'quality'
-      sleep(1)
 
+      page.should have_xpath '//img[@alt="OK"]'
       record_1.reload.quality_status.should eq 'ok'
       record_2.reload.quality_status.should eq 'ok'
       record_3.reload.quality_status.should eq 'ok'
@@ -180,7 +180,6 @@ describe 'Datasets' do
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_3._record_id}"
       click_link 'Batch edit'
-      sleep(0.5)
 
       page.should have_content 'Editing 2 selected records'
 
