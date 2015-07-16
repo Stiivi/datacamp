@@ -59,6 +59,8 @@ group :development do
 
   gem 'thin'
   gem 'ruby-prof'
+
+  gem 'foreman'
 end
 
 group :development, :test do

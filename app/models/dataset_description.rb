@@ -15,12 +15,10 @@ class DatasetDescription < ActiveRecord::Base
 
 
   has_many :category_assignments
-  has_many :field_description_categories,
-            include: :translations,
-            through: :category_assignments
+  has_many :field_description_categories, include: :translations, through: :category_assignments
 
   has_many :comments
-  belongs_to :category, :class_name => "DatasetCategory"
+  belongs_to :category, :class_name => 'DatasetCategory'
 
   has_many :relations, :dependent => :destroy
   accepts_nested_attributes_for :relations, :allow_destroy => true
@@ -178,7 +176,18 @@ class DatasetDescription < ActiveRecord::Base
     end
   end
 
-private
+  def build_sphinx_search(search, sphinx_search)
+    search.query.predicates.each do |predicate|
+      field_description = field_descriptions.find_by_identifier(predicate.search_field)
+      operand = field_description.is_derived ? field_description.derived_value : field_description.identifier if field_description
+      sphinx_search = predicate.add_to_sphinx_search(operand, sphinx_search)
+    end
+
+    sphinx_search
+  end
+
+  private
+
   def log_changes
     change_details = []
     changed_attributes.each do |attribute, old_value|

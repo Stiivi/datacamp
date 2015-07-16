@@ -10,6 +10,12 @@
 Datacamp is a Web application for publishing, searching and managing data
 in form of datasets.
 
+## QUICKSTART
+
+````
+bin/setup
+foreman start
+````
 
 ## LICENSE
 (see COPYING file for full license text)

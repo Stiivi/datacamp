@@ -5,7 +5,7 @@
 
 %ul
 - @results.each do |dataset_category, result|
-  %li{:class => (params[:category_id].to_i == dataset_category.id) ? "active": nil, :style => 'list-style:none;'}
+  %li{:style => 'list-style:none;'}
     %h2.bordered= link_to(dataset_category.title, category_id: dataset_category.id)
     - result.each do |dataset_description, result_records|
       %h2.clearfix.in_container
