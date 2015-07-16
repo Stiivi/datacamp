@@ -47,7 +47,7 @@ class SearchesController < ApplicationController
     dds = dds.where(category_id: params[:category_id]) if params[:category_id] # TODO: test filter by category_id
 
     descriptions = dds.active
-    datasets = descriptions.map(&:dataset_record_class)
+    datasets = descriptions.map(&:dataset_model)
     searches = SearchEngine.new.search(datasets, @search)
 
     @results = {}
