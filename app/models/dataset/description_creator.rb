@@ -7,13 +7,15 @@ module Dataset
       )
     end
 
-    def self.create_description_for_column(dataset_description, column)
+    def self.create_description_for_column(dataset_description, column, supported_types = COLUMN_TYPES)
+      raise Dataset::UnsupportedType, "type: #{column.type} is not supported" if supported_types.exclude?(column.type)
+
       # FIXME: not localizable!
-      # FIXME: we should create also type!
       FieldDescription.create!(
           identifier: column.name,
           title: column.name.to_s.humanize.titleize,
           category: "Other",
+          data_type: column.type,
           dataset_description: dataset_description
       )
     end

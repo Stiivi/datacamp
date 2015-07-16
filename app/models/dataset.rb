@@ -1,7 +1,7 @@
 module Dataset
   Column = Struct.new(:name, :type)
 
-  COLUMN_TYPES = [:string, :integer, :date, :text, :decimal, :boolean]
+  COLUMN_TYPES = [:string, :integer, :date, :datetime, :text, :decimal, :boolean]
 
   SYSTEM_COLUMNS = [
       Column.new(:created_at,     :datetime),
@@ -27,4 +27,5 @@ module Dataset
       ['absent', 'loaded', 'new', 'published', 'suspended', 'deleted', 'morphed']
   )
 
+  UnsupportedType = Class.new(StandardError)
 end
