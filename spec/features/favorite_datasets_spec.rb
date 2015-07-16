@@ -14,11 +14,10 @@ describe 'FavoriteDatasets' do
       visit dataset_record_path(dataset_id: students, id: record, locale: :en)
 
       click_link 'Add to favorites'
-      sleep(0.5)
 
       fill_in 'note', with: 'my friend'
       click_button 'Submit'
-      sleep(0.5)
+      page.should have_link 'Remove from favorites'
 
       click_link 'My Account'
       click_link 'Favorites'
@@ -34,7 +33,7 @@ describe 'FavoriteDatasets' do
       visit dataset_record_path(dataset_id: students, id: record, locale: :en)
 
       click_link 'Remove from favorites'
-      sleep(0.5)
+      page.should have_link 'Add to favorites'
 
       click_link 'My Account'
       click_link 'Favorites'
