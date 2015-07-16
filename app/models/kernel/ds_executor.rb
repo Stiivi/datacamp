@@ -7,10 +7,10 @@ class Kernel::DsExecutor < Dataset::DatasetRecord
   end
 
   def self.suspend_all
-    update_all(record_status: 'suspended')
+    update_all(record_status: Dataset::RecordStatus.find(:suspended))
   end
 
   def self.publish_with_ids(ids)
-    where(_record_id: ids).update_all(record_status: 'published')
+    where(_record_id: ids).update_all(record_status: Dataset::RecordStatus.find(:published))
   end
 end

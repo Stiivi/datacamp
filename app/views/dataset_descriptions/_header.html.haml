@@ -1,16 +1,16 @@
 #dataset_admin_submenu
   %ul
     %li= link_to t("global.back"), dataset_descriptions_path, class: 'back'
-    %li= link_to t("dataset.field_descriptions"), url_for(dataset_description_path(@dataset_description)), class: ('active' if params[:action]=="show")
+    %li= link_to t("dataset.field_descriptions"), dataset_description_path(@dataset_description), class: ('active' if params[:controller]== 'dataset_descriptions' && params[:action]=="show")
     %li= link_to t("global.information"), edit_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="edit")
-    %li= link_to t("dataset.visibility_settings"), visibility_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="visibility")
+    %li= link_to t("dataset.visibility_settings"), dataset_description_field_visibilities_path(dataset_description_id: @dataset_description), class: ('active' if params[:controller]=="field_visibilities")
     %li= link_to t("dataset.columns_for_import"), import_settings_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="import_settings")
-    - if @dataset_description.dataset.table_exists?
-      %li= link_to t("dataset.datastore_status"), datastore_status_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="datastore_status")
-    %li= link_to t("dataset.relations"), relations_dataset_description_path(@dataset_description), class: ('active' if params[:action]=="relations"||params[:action]=="update_relations")
+    - if @dataset_description.dataset_schema_manager.table_exists?
+      %li= link_to t("dataset.datastore_status"), dataset_description_datastore_states_path(dataset_description_id: @dataset_description), class: ('active' if params[:controller]=="datastore_states")
+    %li= link_to t("dataset.relations"), dataset_description_relations_path(dataset_description_id: @dataset_description), class: ('active' if params[:controller]=="relations")
 
   .flags_bar
-    .flag= @dataset_description.dataset.table_exists? ? t("dataset.in_database") : t("dataset.not_in_database")
+    .flag= @dataset_description.dataset_schema_manager.table_exists? ? t("dataset.in_database") : t("dataset.not_in_database")
     .flag= @dataset_description.is_active? ? t("global.active") : t("global.inactive")
   .info_container
     %h2= @dataset_description.title

@@ -8,9 +8,8 @@ describe 'DatasetRelations' do
   let!(:students) { FactoryGirl.create(:dataset_description, en_title: 'Students', with_dataset: true) }
   let!(:schools) { FactoryGirl.create(:dataset_description, en_title: 'Schools', with_dataset: true) }
 
-
   it 'is possible to manage relationship between dataset', js: true do
-    visit relations_dataset_description_path(id: students, locale: :en)
+    visit dataset_description_relations_path(dataset_description_id: students, locale: :en)
 
     click_button '+'
     select 'Schools'
@@ -18,7 +17,7 @@ describe 'DatasetRelations' do
 
     students.relations.should have(1).record
 
-    visit relations_dataset_description_path(id: students, locale: :en)
+    visit dataset_description_relations_path(dataset_description_id: students, locale: :en)
     click_button '-'
     click_button 'Save relations'
 
@@ -27,11 +26,11 @@ describe 'DatasetRelations' do
 
   it 'is possible to possible to map records from relation datasets', js: true do
     FactoryGirl.create(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
-    student_record = students.dataset_record_class.create!(name: 'Filip')
+    student_record = students.dataset_model.create!(name: 'Filip')
 
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'street', is_visible_in_relation: false)
-    school_record = schools.dataset_record_class.create!(name: 'Grammar', street: 'Bratislava')
+    school_record = schools.dataset_model.create!(name: 'Grammar', street: 'Bratislava')
 
     set_up_relation(students, schools)
 
@@ -52,8 +51,8 @@ describe 'DatasetRelations' do
     FactoryGirl.create(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
 
-    student_record = students.dataset_record_class.create!(name: 'Filip')
-    school_record = schools.dataset_record_class.create!(name: 'Grammar')
+    student_record = students.dataset_model.create!(name: 'Filip')
+    school_record = schools.dataset_model.create!(name: 'Grammar')
 
     student_record.ds_schools << school_record
     student_record.save!
@@ -72,8 +71,8 @@ describe 'DatasetRelations' do
     FactoryGirl.create(:field_description, dataset_description: students, identifier: 'name', is_visible_in_relation: true)
     FactoryGirl.create(:field_description, dataset_description: schools, identifier: 'name', is_visible_in_relation: true)
 
-    student_record = students.dataset_record_class.create!(name: 'Filip')
-    school_record = schools.dataset_record_class.create!(name: 'Grammar')
+    student_record = students.dataset_model.create!(name: 'Filip')
+    school_record = schools.dataset_model.create!(name: 'Grammar')
 
     student_record.ds_schools << school_record
     student_record.save!

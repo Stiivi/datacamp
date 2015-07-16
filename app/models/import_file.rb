@@ -24,53 +24,18 @@ class ImportFile < ActiveRecord::Base
   end
 
   def import_into_dataset(column_mapping, current_user=nil)
-    if status == 'ready'
-      self.update_attributes(count_of_imported_lines: 0, status: 'in_progress')
+    return unless status == 'ready'
 
-      saved_ids = []
-      count = 0
-      index = 0
-      unparsable_lines = []
-
-      csv_file.parse_all_lines do |row|
-        index += 1
-        if row != nil
-          record = prepare_record
-          column_mapping.each do |index, field_desription_id|
-            next unless field_desription_id
-            field_description = dataset_description_field_descriptions.select{|fd| fd.id == field_desription_id.to_i}.first
-            record[field_description.identifier] = row[index.to_i].to_s if field_description.present?
-          end
-          if record.save
-            count += 1
-            saved_ids << record._record_id
-
-            if count - self.count_of_imported_lines > 100
-              if self.reload.status != 'canceled'
-                self.update_attributes(count_of_imported_lines: count, status: 'in_progress')
-              else
-                break
-              end
-            end
-          end
-        else
-          unparsable_lines << index
-        end
-      end
-      
-      self.update_attributes(count_of_imported_lines: count, status: 'success', unparsable_lines: unparsable_lines) if !self.new_record? && self.reload.status != 'canceled'
-
-      Change.create(change_type: Change::BATCH_INSERT,
-                    user: current_user,
-                    change_details: {update_conditions: {_record_id: saved_ids},
-                                     update_count: count,
-                                     batch_file: self.path_file_name},
-                    dataset_description: dataset_description
-                   )
-    else
-      # This should never happen
-      self.update_attribute(:status, 'failed')
-    end
+    CsvImport::Runner.new(
+        csv_file,
+        CsvImport::Record.new(
+            dataset_description.dataset_model,
+            CsvImport::Mapper.new(column_mapping, dataset_description_field_descriptions),
+            self
+        ),
+        CsvImport::Listener.new(self, Change, current_user: current_user),
+        CsvImport::Interceptor.new(self)
+    ).run
   end
 
   def default_import_format
@@ -118,22 +83,14 @@ class ImportFile < ActiveRecord::Base
   end
 
   def delete_records!
-    dataset_description.dataset_record_class.where(batch_id: id).delete_all
+    dataset_description.dataset_model.where(batch_id: id).delete_all
     update_attribute(:status, 'deleted_records')
   end
-  
-private
-  def prepare_record
-    @model ||= get_model
-    @model.new(record_status: 'new', batch_id: id, is_part_of_import: true)
-  end
-  
-  def get_model
-    dataset_description.dataset.dataset_record_class
-  end
+
+  private
   
   def csv_file
-    @csv_file ||= CsvFile.new(file_path, col_separator, encoding, id, skip_first_line?, has_header?)
+    @csv_file ||= CsvFile.new(file_path, col_separator, encoding, skip_first_line?, has_header?)
   end
   
   def init_values

@@ -19,7 +19,7 @@
     .fr.clearfix
       .fl
         = hidden_field_tag 'filters[record_status]', @filters[:record_status]
-        = select_tag :status, ("<option value=''>%s</option>" % t("dataset.set_status")).html_safe + options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"))
+        = select_tag :status, ("<option value=''>%s</option>" % t("dataset.set_status")).html_safe + options_for_select(add_translations_to_array(Dataset::RecordStatus.all, "record_statuses"))
 
         = hidden_field_tag 'filters[quality_status]', @filters[:quality_status]
         = select_tag :quality, ("<option value=''>%s </option>" % t("dataset.set_quality")).html_safe + options_from_collection_for_select(QualityStatus.all, :name, :title)

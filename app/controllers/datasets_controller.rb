@@ -42,8 +42,7 @@ class DatasetsController < ApplicationController
   def show
     @dataset_description = DatasetDescription.find(params[:id])
     @field_descriptions  = @dataset_description.visible_field_descriptions.includes(:data_format)
-    @dataset             = @dataset_description.dataset
-    @dataset_class       = @dataset.dataset_record_class
+    @dataset_class       = @dataset_description.dataset_model
     @title               = @dataset_description.title
 
     render_404 and return unless @dataset_description.is_active? || has_privilege?(:view_hidden_records)
@@ -52,12 +51,6 @@ class DatasetsController < ApplicationController
 
     unless @dataset_class.table_exists?
       logger.error "Dataset table doesn't exist for #{@dataset_description.title} (#{@dataset_class.table_name})"
-      flash[:error] = I18n.t("dataset.internal_dataset_error", :title => @dataset_description.title)
-      return redirect_to datasets_path
-    end
-
-    unless @dataset.has_pk?
-      logger.error "Dataset is missing PK _record_id: #{@dataset_description.title} (#{@dataset_description.identifier})"
       flash[:error] = I18n.t("dataset.internal_dataset_error", :title => @dataset_description.title)
       return redirect_to datasets_path
     end
@@ -96,7 +89,7 @@ class DatasetsController < ApplicationController
       filters.each do |key, value|
         paginate_options[:conditions].merge!({key.to_sym => value})
       end
-      paginate_options[:conditions].merge!({:record_status => "#{DatastoreManager.record_statuses[2]}|#{DatastoreManager.record_statuses[5]}"}) unless current_user && current_user.has_privilege?(:power_user)
+      paginate_options[:conditions].merge!({:record_status => "#{Dataset::RecordStatus.find(:published)}|#{Dataset::RecordStatus.find(:morphed)}"}) unless current_user && current_user.has_privilege?(:power_user)
       # raise select_options.to_yaml
     end
     if params[:search_id].blank?
@@ -111,7 +104,7 @@ class DatasetsController < ApplicationController
             from(prepare_subselect(@dataset_class.table_name, @sortable_columns, params, paginate_options)).
             joins("JOIN `#{@dataset_class.table_name}` `t` on `q`.`_record_id` = `t`.`_record_id`")
         if !current_user || !current_user.has_privilege?(:power_user)
-          @records = @records.where('t.record_status in (?)', [DatastoreManager.record_statuses[2], DatastoreManager.record_statuses[5]])
+          @records = @records.where('t.record_status in (?)', [Dataset::RecordStatus.find(:published), Dataset::RecordStatus.find(:morphed)])
         elsif @filters
           @dataset_class = @dataset_class.where('t.record_status = ?', @filters['record_status']) if @filters['record_status'].present?
           if @filters['quality_status'].present?
@@ -133,7 +126,7 @@ class DatasetsController < ApplicationController
           @dataset_class.order('created_at DESC, _record_id DESC')
         end
         if !current_user || !current_user.has_privilege?(:power_user)
-          @dataset_class = @dataset_class.where(:record_status => DatastoreManager.record_statuses[2])
+          @dataset_class = @dataset_class.where(:record_status => Dataset::RecordStatus.find(:published))
         elsif @filters
           @dataset_class = @dataset_class.where(:record_status => @filters['record_status']) if @filters['record_status'].present?
           if @filters['quality_status'].present?
@@ -168,14 +161,14 @@ class DatasetsController < ApplicationController
     sphinx_search = {options: paginate_options, query: sphinx_search}
     search = Search.find(params[:search_id])
     sphinx_search = @dataset_description.build_sphinx_search(search, sphinx_search) # TODO: move to SearchEngine
-    sphinx_search[:options].merge!(populate: true, :conditions => { record_status: DatastoreManager.record_statuses[2]})
+    sphinx_search[:options].merge!(populate: true, :conditions => { record_status: Dataset::RecordStatus.find(:published)})
     @records = @dataset_class.search(sphinx_search[:query], sphinx_search[:options])
   end
 
   # Batch update
   def update
     @dataset_description  = DatasetDescription.find_by_id(params[:id])
-    @dataset_class        = @dataset_description.dataset.dataset_record_class
+    @dataset_class        = @dataset_description.dataset_model
 
     if params[:record].blank?
       flash[:error] = I18n.t("dataset.not_enough_records_selected")
@@ -230,7 +223,7 @@ class DatasetsController < ApplicationController
 
   def batch_edit
     @dataset_description = DatasetDescription.find_by_id(params[:id])
-    @dataset_class        = @dataset_description.dataset.dataset_record_class
+    @dataset_class        = @dataset_description.dataset_model
     @field_descriptions  = @dataset_description.visible_field_descriptions
   end
 
@@ -240,16 +233,6 @@ class DatasetsController < ApplicationController
   end
 
   protected
-
-  # Creates SQL query from set of options for query.
-  # If order is specified, it will create 2 queries and connect
-  # them with union, to speed up sorting.
-  def create_query_from_options(options)
-    query = @dataset_class.options_to_sql(options)
-
-    query
-  end
-
   def prepare_filters
     if params[:clear_filters]
       @filters = {}

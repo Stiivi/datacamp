@@ -3,15 +3,15 @@ require 'dataset/utils'
 module DatasetHelpers
 
   def initialize_datasets(dataset_names, relations)
-    datasets = {}
+    dataset_descriptions = {}
     dataset_names.each do |dataset_name|
-      datasets[dataset_name] = Dataset::Utils.initialize_dataset(dataset_name)
+      dataset_descriptions[dataset_name] = Dataset::Utils.initialize_dataset(dataset_name)
     end
     relations.each do |relation|
-      Dataset::Utils.create_relation(datasets[relation[0]], datasets[relation[1]], relation[2])
+      Dataset::Utils.create_relation(dataset_descriptions[relation[0]], dataset_descriptions[relation[1]], relation[2])
     end
-    datasets.values.each do |dataset|
-      Dataset::Utils.reload_dataset(dataset)
+    dataset_descriptions.values.each do |dataset_description|
+      dataset_description.reload_dataset_model
     end
   end
 

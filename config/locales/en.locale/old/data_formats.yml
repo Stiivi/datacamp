@@ -3,6 +3,7 @@ en:
         integer: Integer
         string: String
         date: Date
+        datetime: Datetime
         decimal: Decimal
         text: Text
     data_formats:
@@ -15,6 +16,7 @@ en:
         percentage: Percentage
         bytes: "Size in bytes"
         date: Date
+        datetime: Datetime
         flag: Flag
         zip: Zip
     data_format_arguments:
@@ -23,6 +25,7 @@ en:
         currency_2: Currency
         percentage_1: Decimal places
         date_1: Date format
+        datetime_1: Datetime format
         flag_1: Values
     data_format_values:
         format_flag_false: "no"

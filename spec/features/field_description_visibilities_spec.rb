@@ -13,7 +13,7 @@ describe 'FieldDescriptionVisibilities' do
     home_field = FactoryGirl.create(:field_description, en_title: 'Home', identifier: 'home', dataset_description: dataset)
     work_field = FactoryGirl.create(:field_description, en_title: 'Work', identifier: 'work', dataset_description: dataset)
 
-    visit visibility_dataset_description_path(id: dataset, locale: :en)
+    visit dataset_description_field_visibilities_path(dataset_description_id: dataset, locale: :en)
 
     set_visible_flag_to('first_name', 'listing', false)
     set_visible_flag_to('last_name', 'search', false)
@@ -31,7 +31,7 @@ describe 'FieldDescriptionVisibilities' do
     home_field.reload.is_visible_in_export.should eq false
     work_field.reload.is_visible_in_relation.should eq false
 
-    visit visibility_dataset_description_path(id: dataset, locale: :en)
+    visit dataset_description_field_visibilities_path(dataset_description_id: dataset, locale: :en)
 
     set_visible_flag_to('first_name', 'listing', true)
     set_visible_flag_to('last_name', 'search', true)

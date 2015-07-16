@@ -7,21 +7,24 @@ class Dataset::DatasetRecord < ActiveRecord::Base
 
   establish_connection Rails.env + "_data"
 
-  class_attribute :dataset
+  class_attribute :dataset, :derived_fields
 
   attr_accessor :handling_user, :is_part_of_import
 
   # FIXME: add this to initialize method, use datasetore manager!
   self.primary_key = '_record_id'
 
-  scope :active, where("record_status IS NULL OR record_status NOT IN ('suspended', 'deleted')")
+  def self.default_scope
+    if derived_fields.present?
+      select_columns = "`#{table_name}`.* , #{derived_fields.map{ |identifier, value| "#{value} as '#{identifier}'" }.join(",")}"
+      select(select_columns)
+    end
+  end
 
-  # def self.to_s
-  #   table_name
-  # end
+  scope :active, lambda { where("record_status IS NULL OR record_status NOT IN ('#{Dataset::RecordStatus.find(:suspended)}', '#{Dataset::RecordStatus.find(:deleted)}')") }
 
   def active?
-    record_status.nil? || ['suspended', 'deleted'].exclude?(record_status)
+    record_status.nil? || [Dataset::RecordStatus.find(:suspended), Dataset::RecordStatus.find(:deleted)].exclude?(record_status)
   end
 
   IDENTIFIERS = [:name, :title, :original_name, :title_sk, :procurement_subject, :_record_id]
@@ -39,20 +42,6 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     _record_id.to_s
   end
 
-  # Converts Datacamp-specific options (NOT RAILS) into SQL.
-  # Datacamp-options are same as Rails options, except you can pass
-  # array of conditions (already sanitized and everything) and it will
-  # join it and send as a single condition.
-  def self.options_to_sql(options)
-    if options[:conditions] && (options[:conditions].size > 0)
-      joined_conditions = options[:conditions].collect.join(") AND (")
-      options[:conditions] = "(#{joined_conditions})"
-    else
-      options.delete(:conditions)
-    end
-    construct_finder_sql(options)
-  end
-
   def self.find_by_record_ids(ids)
     return [] if ids.empty?
     records = where(_record_id: ids).all.index_by(&:_record_id)
@@ -68,7 +57,6 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     find_by__record_id *args
   end
 
-
   def quality_status_messages
     # QualityStatus.find :all, :conditions => { :table_name => @@dataset.description.identifier.to_s.sub("ds_", ""), :record_id => id }
     # TODO this is not in QualityStatus model anymore, it should be done somehow else
@@ -76,23 +64,13 @@ class Dataset::DatasetRecord < ActiveRecord::Base
   end
 
   def record_status
-    read_attribute(:record_status).blank? ? "absent" : read_attribute(:record_status)
+    read_attribute(:record_status).blank? ? Dataset::RecordStatus.find(:absent) : read_attribute(:record_status)
   end
 
   def quality_status
-    read_attribute(:quality_status).blank? ? "absent" : read_attribute(:quality_status)
+    read_attribute(:quality_status).blank? ? Dataset::RecordStatus.find(:absent) : read_attribute(:quality_status)
   end
 
-
-  ########################################################################################
-  # Method providing API for only those column we have marked as visible in export
-  def to_hash
-    fields_for_export = description.visible_field_descriptions(:export)
-    # Put data into an array
-    data_for_export = fields_for_export.collect{ |description| [description.identifier, self[description.identifier]] }
-    # Make hash from the array (we can only turn hash into xml)
-    return Hash[*data_for_export.flatten]
-  end
 
   def visible_fields
     fields_for_export = description.visible_field_descriptions(:export)
@@ -190,6 +168,11 @@ class Dataset::DatasetRecord < ActiveRecord::Base
     search_string = "column:%s %s" % [field_description.reference, get_value(field_description)]
   end
 
+  def self.table_exists?
+    # not using cache
+    connection.tables.include?(table_name)
+  end
+
   ########################################################################################
   # Callbacks
 
@@ -202,7 +185,7 @@ class Dataset::DatasetRecord < ActiveRecord::Base
         next if old_value == self[attribute]
         change_details << {changed_field: attribute, old_value: old_value, new_value: self[attribute]}
       end
-      Change.create(record_id: self.id, change_type: changed.include?(self.class.primary_key) ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description_id: (self.dataset.try(:description).try(:id) rescue nil), user: User.current, change_details: change_details)
+      Change.create(record_id: self.id, change_type: changed.include?(self.class.primary_key) ? Change::RECORD_CREATE : Change::RECORD_UPDATE, dataset_description_id: (dataset.try(:id) rescue nil), user: User.current, change_details: change_details)
     end
   end
 

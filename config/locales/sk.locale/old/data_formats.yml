@@ -3,6 +3,7 @@ sk:
         integer: Celé číslo
         string: String
         date: Dátum
+        datetime: Dátum a čas
         text: Text
         float: Reálne číslo
     data_formats:
@@ -15,6 +16,7 @@ sk:
         percentage: Percento
         bytes: Veľkosť v bajtoch
         date: Dátum
+        datetime: Dátum a čas
         flag: Príznak
         zip: 'Smerové číslo'
     data_format_arguments:
@@ -23,6 +25,7 @@ sk:
         currency_2: Mena
         percentage_1: Desatinné miesta
         date_1: Formát dátumu
+        datetime_1: Formát dátumu a času
         flag_1: Hodnoty
     data_format_values:
         format_flag_false: "nie"

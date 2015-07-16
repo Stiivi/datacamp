@@ -14,12 +14,12 @@ describe 'Records' do
     fill_in 'kernel_ds_doctor_first_name', with: 'John'
     click_button 'Create Ds doctor'
 
-    doctors_dataset.dataset_record_class.should have(1).record
+    doctors_dataset.dataset_model.should have(1).record
     page.should have_content 'John'
   end
 
   it 'user is able to edit record' do
-    record_1 = doctors_dataset.dataset_record_class.create!(first_name: 'John')
+    record_1 = doctors_dataset.dataset_model.create!(first_name: 'John')
 
     visit dataset_record_path(dataset_id: doctors_dataset, id: record_1, locale: :en)
     click_link 'Edit'
@@ -31,11 +31,11 @@ describe 'Records' do
   end
 
   it 'user is able to delete record' do
-    record_1 = doctors_dataset.dataset_record_class.create!(first_name: 'John')
+    record_1 = doctors_dataset.dataset_model.create!(first_name: 'John')
 
     visit dataset_record_path(dataset_id: doctors_dataset, id: record_1, locale: :en)
     click_link 'Delete'
 
-    doctors_dataset.dataset_record_class.should have(0).records
+    doctors_dataset.dataset_model.should have(0).records
   end
 end

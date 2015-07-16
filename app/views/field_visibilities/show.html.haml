@@ -1,10 +1,6 @@
-= render :partial => "header"
+= render :partial => "dataset_descriptions/header"
 
-= form_for @dataset_description do |f|
-  
-  = hidden_field_tag :return_to, "visibility"
-  = hidden_field_tag :skip_validations, "1"
-
+= form_for @dataset_description, url: dataset_description_field_visibilities_path(dataset_description_id: @dataset_description), method: :put do |f|
   %p.top_buttons= f.submit t("global.save_changes")
 
   %table

@@ -35,7 +35,7 @@ module Etl
                                            expires_on: row[:expires_on],
                                            note: row[:note],
                                            page_count: row[:pocet_stran],
-                                           record_status: 'published',
+                                           record_status: Dataset::RecordStatus.find(:published),
                                            source_url: "http://otvorenezmluvy.sk/documents/#{row[:id]}"
                                           )
         end

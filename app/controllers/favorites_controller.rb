@@ -33,7 +33,7 @@ class FavoritesController < ApplicationController
   
   def create
     @dataset_description = DatasetDescription.find(params[:dataset_description_id])
-    @record = @dataset_description.dataset_record_class.find(params[:record_id])
+    @record = @dataset_description.dataset_model.find(params[:record_id])
 
     @favorite = create_favorite(@dataset_description, @record)
     

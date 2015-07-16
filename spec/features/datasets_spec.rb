@@ -44,8 +44,8 @@ describe 'Datasets' do
       FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset, is_visible_in_detail: false)
       FactoryGirl.create(:field_description, en_title: 'Description', identifier: 'description', dataset_description: quality_dataset, is_visible_in_listing: false)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', last_name: 'Smith', description: 'Young', record_status: 'published', quality_status: 'unclear')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', last_name: 'Brutal', description: 'From city', record_status: 'loaded')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', last_name: 'Smith', description: 'Young', record_status: Dataset::RecordStatus.find(:published), quality_status: 'unclear')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', last_name: 'Brutal', description: 'From city', record_status: Dataset::RecordStatus.find(:loaded))
 
       visit datasets_path(locale: :en)
 
@@ -68,8 +68,8 @@ describe 'Datasets' do
     it 'is able to sort records by column' do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'published')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', record_status: Dataset::RecordStatus.find(:published))
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', record_status: Dataset::RecordStatus.find(:published))
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
@@ -91,11 +91,11 @@ describe 'Datasets' do
       login_as(admin_user)
     end
 
-    it 'is able to filder records', js: true do
+    it 'is able to filter records', js: true do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
-      quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
-      quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
+      quality_dataset.dataset_model.create!(first_name: 'John', record_status: Dataset::RecordStatus.find(:published), quality_status: 'unclear')
+      quality_dataset.dataset_model.create!(first_name: 'Ann', record_status: Dataset::RecordStatus.find(:loaded), quality_status: 'ok')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
@@ -111,12 +111,12 @@ describe 'Datasets' do
       within('.top_pagination') do
         select '- All -', from: 'filters_record_status'
       end
-      sleep(0.5)
+      page.should have_content '(2)'
 
       within('.top_pagination') do
         select 'Unclear', from: 'filters_quality_status'
       end
-      sleep(0.5)
+      page.should have_content '(1)'
 
       page.should have_content 'John'
       page.should_not have_content 'Ann'
@@ -125,43 +125,47 @@ describe 'Datasets' do
     it 'is able to update record status and quality status for multiple rows at once', js: true do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', record_status: 'published', quality_status: 'unclear')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', record_status: 'loaded', quality_status: 'ok')
-      record_3 = quality_dataset.dataset_record_class.create!(first_name: 'Peter', record_status: 'new', quality_status: 'absent')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', record_status: Dataset::RecordStatus.find(:published), quality_status: 'unclear')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', record_status: Dataset::RecordStatus.find(:loaded), quality_status: 'ok')
+      record_3 = quality_dataset.dataset_model.create!(first_name: 'Peter', record_status: Dataset::RecordStatus.find(:new), quality_status: 'absent')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_3._record_id}"
+      page.should have_select 'status'
       select 'Suspended', from: 'status'
-      sleep(0.5)
 
+      page.should have_xpath '//img[@alt="Suspended"]'
       record_1.reload.record_status.should eq 'suspended'
       record_2.reload.record_status.should eq 'loaded'
       record_3.reload.record_status.should eq 'suspended'
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_2._record_id}"
+      page.should have_select 'quality'
       select 'Duplicate', from: 'quality'
-      sleep(0.5)
 
+      page.should have_xpath '//img[@alt="Duplicate"]'
       record_1.reload.quality_status.should eq 'duplicate'
       record_2.reload.quality_status.should eq 'duplicate'
       record_3.reload.quality_status.should eq 'absent'
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       select 'All filtered records', from: 'selection'
+      page.should have_select 'status'
       select 'New', from: 'status'
-      sleep(0.5)
 
+      page.should have_xpath '//img[@alt="New"]'
       record_1.reload.record_status.should eq 'new'
       record_2.reload.record_status.should eq 'new'
       record_3.reload.record_status.should eq 'new'
 
       click_link 'select_all'
+      page.should have_select 'quality'
       select 'OK', from: 'quality'
-      sleep(0.5)
 
+      page.should have_xpath '//img[@alt="OK"]'
       record_1.reload.quality_status.should eq 'ok'
       record_2.reload.quality_status.should eq 'ok'
       record_3.reload.quality_status.should eq 'ok'
@@ -171,16 +175,15 @@ describe 'Datasets' do
       FactoryGirl.create(:field_description, en_title: 'First name', identifier: 'first_name', dataset_description: quality_dataset)
       FactoryGirl.create(:field_description, en_title: 'Last name', identifier: 'last_name', dataset_description: quality_dataset)
 
-      record_1 = quality_dataset.dataset_record_class.create!(first_name: 'John', last_name: 'Smith')
-      record_2 = quality_dataset.dataset_record_class.create!(first_name: 'Ann', last_name: 'Hamster')
-      record_3 = quality_dataset.dataset_record_class.create!(first_name: 'Peter', last_name: 'House')
+      record_1 = quality_dataset.dataset_model.create!(first_name: 'John', last_name: 'Smith')
+      record_2 = quality_dataset.dataset_model.create!(first_name: 'Ann', last_name: 'Hamster')
+      record_3 = quality_dataset.dataset_model.create!(first_name: 'Peter', last_name: 'House')
 
       visit dataset_path(id: quality_dataset, locale: :en)
 
       check "check_kernel_ds_doctor_#{record_1._record_id}"
       check "check_kernel_ds_doctor_#{record_3._record_id}"
       click_link 'Batch edit'
-      sleep(0.5)
 
       page.should have_content 'Editing 2 selected records'
 

@@ -33,7 +33,7 @@ FactoryGirl.define do
     category
 
     after(:create) do |dataset_description, evaluator|
-      dataset_description.dataset.setup_table if evaluator.with_dataset
+      dataset_description.create_dataset_table if evaluator.with_dataset
     end
   end
 

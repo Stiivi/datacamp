@@ -7,8 +7,8 @@ class DataRepair < ActiveRecord::Base
   end
   
   def run_data_repair
-    regis_model = DatasetDescription.find_by_identifier(regis_table_name).dataset.dataset_record_class
-    target_model = DatasetDescription.find_by_identifier(target_table_name).dataset.dataset_record_class
+    regis_model = DatasetDescription.find_by_identifier(regis_table_name).dataset_model
+    target_model = DatasetDescription.find_by_identifier(target_table_name).dataset_model
     begin
       target_model.connection.execute("
         UPDATE #{target_model.table_name} 

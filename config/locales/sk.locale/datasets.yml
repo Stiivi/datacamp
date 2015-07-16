@@ -66,7 +66,6 @@ sk:
     not_in_database: "Nie je v databáze"
     other_columns: "Ostatné stĺpce"
     record_preview: "Náhľad záznamu"
-    relationship_descriptions: "Popisy vzťahov"
     revert: Obnoviť
     run_tests: "Spustiť testy"
     save_and_create: "Uložiť a vytvoriť"

@@ -22,7 +22,7 @@
     %tr
       %td.label= t("metadata.status")
       %td
-        = f.select :record_status, options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"), @record.record_status)
+        = f.select :record_status, options_for_select(add_translations_to_array(Dataset::RecordStatus.all, "record_statuses"), @record.record_status)
 
     %tr
       %td.label= t("metadata.quality_status")

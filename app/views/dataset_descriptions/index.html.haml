@@ -7,7 +7,7 @@
       =link_to raw("<span>#{t("dataset.create")}</span>"), new_dataset_description_path, :class => 'button'
     =link_to raw("<span>#{t("dataset.create_category")}</span>"), new_category_path, :class => 'button ajax', :id => "new_category"
     - if current_user.has_privilege?(:create_dataset)
-      =link_to raw("<span>#{t("dataset.initialize")}</span>"), import_dataset_descriptions_path, :class => 'button'
+      =link_to raw("<span>#{t("dataset.initialize")}</span>"), dataset_initializations_path, :class => 'button'
     = sorting_links(update_positions_dataset_descriptions_path)
 	  
 

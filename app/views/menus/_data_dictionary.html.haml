@@ -4,7 +4,7 @@
 
   - if current_user && current_user.has_privilege?(:create_dataset) 
     %li= link_to t('dataset.create'), new_dataset_description_path
-    %li= link_to t('dataset.initialize'), import_dataset_descriptions_path
+    %li= link_to t('dataset.initialize'), dataset_initializations_path
 
   - if current_user && current_user.has_privilege?(:import_from_file)
     %li= link_to t('global.import'), new_import_file_path

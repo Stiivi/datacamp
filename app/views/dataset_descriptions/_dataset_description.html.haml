@@ -2,7 +2,7 @@
 
   = render :partial => "header"
 
-  - unless @dataset.table_exists?
+  - unless @dataset_description.dataset_schema_manager.table_exists?
     = render :partial => "create_table_guide"
       
   .content

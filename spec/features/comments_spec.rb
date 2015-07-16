@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Comments' do
   let!(:dataset) { FactoryGirl.create(:dataset_description, identifier: 'doctor', with_dataset: true) }
   let!(:field) { FactoryGirl.create(:field_description, identifier: 'name', dataset_description: dataset) }
-  let!(:record) { dataset.dataset_record_class.create!(name: 'John') }
+  let!(:record) { dataset.dataset_model.create!(name: 'John') }
   let!(:user) { FactoryGirl.create(:user, is_super_user: false) }
   let!(:comment)  { FactoryGirl.create(:comment, record_id: record._record_id, text: 'Good record!', user: user, dataset_description: dataset) }
 

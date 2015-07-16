@@ -3,15 +3,7 @@ class SearchResult < ActiveRecord::Base
 
   belongs_to :query, :class_name => "SearchQuery", :foreign_key => "search_query_id"
   belongs_to :dataset_description, :foreign_key => "table_name", :primary_key => "identifier"
-  belongs_to :record, :polymorphic => true, :foreign_key => "record_id", :primary_key => "_record_id", :foreign_type => "table_name", :extend => ( Module.new do
-    def association_class
-      begin
-        return Dataset::Base.new(@owner.table_name).dataset_record_class
-      rescue Exception => e
-        return nil
-      end
-    end
-  end)
+  belongs_to :record, :polymorphic => true, :foreign_key => "record_id", :primary_key => "_record_id", :foreign_type => "table_name"
   
   def description
     DatasetDescription.find_by_identifier(table_name)

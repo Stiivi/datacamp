@@ -14,10 +14,10 @@ namespace :etl do
   desc 'This is needed to show records that have neglected to have a proper record_status after 6658fa9.'
   task :publish_records => :environment do
     DatasetDescription.all.each do |dataset_description|
-      dataset_model = dataset_description.dataset.dataset_record_class
-      neglected_records_condition = "record_status IS NULL OR record_status = 'loaded' OR record_status = 'new'"
+      dataset_model = dataset_description.dataset_model
+      neglected_records_condition = "record_status IS NULL OR record_status = '#{Dataset::RecordStatus.find(:loaded)}' OR record_status = '#{Dataset::RecordStatus.find(:new)}'"
       neglected_records_count = dataset_model.where(neglected_records_condition).count
-      dataset_model.where(neglected_records_condition).update_all(:record_status => 'published')
+      dataset_model.where(neglected_records_condition).update_all(:record_status => Dataset::RecordStatus.find(:published))
       puts "Updated #{neglected_records_count} records in #{dataset_model.table_name}."
     end
   end
@@ -26,7 +26,7 @@ namespace :etl do
 
   desc 'Download foundations'
   task :foundation_extraction => :environment do
-    Dataset::DsFoundation.update_all(record_status: 'suspended')
+    Kernel::DsFoundation.update_all(record_status: Dataset::RecordStatus.find(:suspended))
     Delayed::Job.enqueue Etl::FoundationPageExtraction.new
     Etl::FoundationExtraction.update_last_run_time
   end
@@ -157,13 +157,13 @@ namespace :etl do
                 is_price_part_of_range,
                 customer_name,
                 note,
-                'published' record_status
+                '#{Dataset::RecordStatus.find(:published)}' record_status
             FROM #{staging_schema}.#{source_table} m
             LEFT JOIN #{staging_schema}.#{regis_table} rcust ON rcust.ico = customer_ico
             LEFT JOIN #{staging_schema}.#{regis_table} rsupp ON rsupp.ico = supplier_ico
             WHERE m.etl_loaded_date IS NULL"
 
-    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset.dataset_record_class
+    dataset_model = DatasetDescription.find_by_identifier('procurements').dataset_model_class
 
     last_updated_at = dataset_model.order(:updated_at).last.updated_at
 
@@ -212,7 +212,7 @@ namespace :etl do
                                  acc.text account_sector, account_sector account_sector_code,
                                  os.text ownership, ownership ownership_code,
                                  s.text size, size size_code,
-                                 source_url, m.date_created, m.updated_at, 'system_loading' created_by, 'published' record_status, name_history
+                                 source_url, m.date_created, m.updated_at, 'system_loading' created_by, '#{Dataset::RecordStatus.find(:published)}' record_status, name_history
                          FROM #{staging_schema}.#{source_table} m
                          LEFT JOIN #{staging_schema}.sta_regis_legal_form lf ON lf.id = m.legal_form
                          LEFT JOIN #{staging_schema}.sta_regis_activity1 a1 ON a1.id = m.activity1
@@ -302,7 +302,7 @@ namespace :etl do
 
     EtlMailer.executor_status.deliver
 
-    published_count = Kernel::DsExecutor.where(record_status: 'published').count
+    published_count = Kernel::DsExecutor.where(record_status: Dataset::RecordStatus.find(:published)).count
     elements_to_parse_count = executor_extraction.elements_to_parse_count
     if published_count != elements_to_parse_count
       EtlMailer.executor_parser_problem(published_count, elements_to_parse_count).deliver
@@ -329,8 +329,8 @@ namespace :etl do
         ['https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/us/proxy/link/display/formular/button/close/event', 'is_constitution'],
         ['https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/list/formular/picker/event/page/', 'https://www.sak.sk/blox/cms/sk/sak/adv/av/proxy/link/display/formular/button/close/event', 'is_asylum']
     ].each do |links|
-      Dataset::DsLawyer.update_all(links[2] => false)
-      Dataset::DsLawyer.where(sak_id: Etl::LawyerExtraction.new(links[0], links[1]).get_ids_from_downloads).update_all(links[2] => true)
+      Kernel::DsLawyer.update_all(links[2] => false)
+      Kernel::DsLawyer.where(sak_id: Etl::LawyerExtraction.new(links[0], links[1]).get_ids_from_downloads).update_all(links[2] => true)
     end
 
     EtlMailer.lawyer_status.deliver
@@ -344,9 +344,9 @@ namespace :etl do
     end.flatten
     active_ids = Etl::LawyerExtraction.map_ids(active_downloads)
 
-    Dataset::DsLawyer.update_all(record_status: 'suspended')
-    active_lawyers = Dataset::DsLawyer.where(sak_id: active_ids)
-    active_lawyers.update_all(record_status: 'published')
+    Kernel::DsLawyer.update_all(record_status: Dataset::RecordStatus.find(:suspended))
+    active_lawyers = Kernel::DsLawyer.where(sak_id: active_ids)
+    active_lawyers.update_all(record_status: Dataset::RecordStatus.find(:published))
     not_downloaded = active_ids.map { |ai| ai.to_s } - active_lawyers.select(:sak_id).map { |l| l.sak_id.to_s }
     not_downloaded_downloads = active_downloads.select { |ad| not_downloaded.include?(ad.parse_id.to_s) }
     if not_downloaded_downloads.present?
@@ -357,9 +357,9 @@ namespace :etl do
     active_downloads = Etl::LawyerPartnershipExtraction.new('https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/list/list/formular/picker/event/page/',
                                                             'https://www.sak.sk/blox/cms/sk/sak/adv/osp/proxy/link/display/spolocnost/button/close/event').get_downloads
     active_ids = Etl::LawyerPartnershipExtraction.map_ids(active_downloads)
-    Dataset::DsLawyerPartnership.update_all(record_status: 'suspended')
-    active_lawyer_partnerships = Dataset::DsLawyerPartnership.where(sak_id: active_ids)
-    active_lawyer_partnerships.update_all(record_status: 'published')
+    Kernel::DsLawyerPartnership.update_all(record_status: Dataset::RecordStatus.find(:suspended))
+    active_lawyer_partnerships = Kernel::DsLawyerPartnership.where(sak_id: active_ids)
+    active_lawyer_partnerships.update_all(record_status: Dataset::RecordStatus.find(:published))
     not_downloaded = active_ids.map { |ai| ai.to_s } - active_lawyer_partnerships.select(:sak_id).map { |l| l.sak_id.to_s }
     not_downloaded_downloads = active_downloads.select { |ad| not_downloaded.include?(ad.parse_id.to_s) }
     if not_downloaded_downloads.present?
@@ -370,9 +370,9 @@ namespace :etl do
     active_downloads = Etl::LawyerAssociateExtraction.new('https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/list/formular/picker/event/page/',
                                                           'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/link/display/formular/button/close/event').get_downloads
     active_ids = Etl::LawyerAssociateExtraction.map_ids(active_downloads)
-    Dataset::DsLawyerAssociate.update_all(record_status: 'suspended')
-    active_lawyer_associates = Dataset::DsLawyerAssociate.where(sak_id: active_ids)
-    active_lawyer_associates.update_all(record_status: 'published')
+    Kernel::DsLawyerAssociate.update_all(record_status: Dataset::RecordStatus.find(:suspended))
+    active_lawyer_associates = Kernel::DsLawyerAssociate.where(sak_id: active_ids)
+    active_lawyer_associates.update_all(record_status: Dataset::RecordStatus.find(:published))
     not_downloaded = active_ids.map { |ai| ai.to_s } - active_lawyer_associates.select(:sak_id).map { |l| l.sak_id.to_s }
     not_downloaded_downloads = active_downloads.select { |ad| not_downloaded.include?(ad.parse_id.to_s) }
     if not_downloaded_downloads.present?
@@ -395,16 +395,16 @@ namespace :etl do
     downloads = Etl::LawyerAssociateExtraction.new('https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/list/formular/picker/event/page/',
                                                    'https://www.sak.sk/blox/cms/sk/sak/adv/konc/proxy/link/display/formular/button/close/event').get_downloads
     sak_ids = downloads.map { |d| d.url.match(/\d+/)[0] }
-    Kernel::DsLawyerAssociate.where("sak_id NOT IN (?) and record_status!='morphed'", sak_ids).update_all(record_status: 'suspended')
+    Kernel::DsLawyerAssociate.where("sak_id NOT IN (?) and record_status!='#{Dataset::RecordStatus.find(:morphed)}'", sak_ids).update_all(record_status: Dataset::RecordStatus.find(:suspended))
     downloads.each { |download| Delayed::Job.enqueue download }
   end
 
   desc 'Run this last to set morphed status on suspended lawyer associates that morphed into lawyers.'
   task lawyer_associate_morph: :environment do
-    Kernel::DsLawyerAssociate.where(record_status: 'suspended').find_each do |associate|
+    Kernel::DsLawyerAssociate.where(record_status: Dataset::RecordStatus.find(:suspended)).find_each do |associate|
       lawyer = Kernel::DsLawyer.where(first_name: associate.first_name, last_name: associate.last_name).first
       if lawyer.present? && associate.ds_lawyers_morphed.blank?
-        associate.update_attribute(:record_status, 'morphed')
+        associate.update_attribute(:record_status, Dataset::RecordStatus.find(:morphed))
         associate.ds_lawyers_morphed << lawyer
         # TODO: notify via email about autoset morphs
       end
@@ -415,7 +415,7 @@ namespace :etl do
 
   desc 'Run this to download/update contracts from MZVSR'
   task mzvsr_contracts_extraction: :environment do
-    Dataset::DsMzvsrContract.update_all(record_status: 'suspended')
+    Kernel::DsMzvsrContract.update_all(record_status: Dataset::RecordStatus.find(:suspended))
     Delayed::Job.enqueue Etl::MzvsrContractsPageExtraction.new
   end
 

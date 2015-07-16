@@ -117,28 +117,27 @@ Datacamp::Application.routes.draw do
       member do
         get :import_settings,
             :setup_dataset,
-            :visibility,
-            :datastore_status,
-            :add_primary_key,
-            :relations,
             :edit_field_description_categories
-        post :setup_dataset,
-             :set_visibility
-        put :update_relations,
-            :update_field_description_categories
+        post :setup_dataset
+        put :update_field_description_categories
       end
       collection do
-        get :import, :do_import
         post :update_positions
       end
       resources :field_descriptions do
         collection do
           post :order
-          get :create_for_column
         end
-        get :create_column, :on => :member
       end
+
+      resources :relations
+      resource :datastore_states, only: [:show] do
+        post :create_column_description
+        post :create_table_column
+      end
+      resource :field_visibilities, only: [:show, :update]
     end
+    resources :dataset_initializations, only: [:index, :create]
     resources :categories, :controller => "dataset_categories"
     resources :dataset_categories
     resources :field_description_categories

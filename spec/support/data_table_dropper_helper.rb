@@ -21,13 +21,16 @@ class TableDropper
   private
 
   def remove_model_class(table_name)
-    @model_name_space.send(:remove_const, :"#{table_name.singularize.camelcase}")
+    dataset_model = :"#{table_name.singularize.camelcase}"
+    return unless @model_name_space.send(:const_defined?, dataset_model)
+
+    @model_name_space.send(:remove_const, dataset_model)
   end
 end
 
 module DataTableDropperHelper
   def self.dropper
-    @dropper ||= TableDropper.new(Dataset::DatasetRecord.connection, Kernel)
+    @dropper ||= TableDropper.new(Dataset::CONNECTION, Kernel)
   end
 end
 

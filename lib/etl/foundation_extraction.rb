@@ -18,7 +18,7 @@ module Etl
     end
 
     def perform
-      save(page.foundation.merge(record_status: 'published'))
+      save(page.foundation.merge(record_status: Dataset::RecordStatus.find(:published)))
     end
 
     def page
@@ -27,7 +27,7 @@ module Etl
 
     def save(foundation_hash)
       return unless foundation_hash.present?
-      current_foundation = Dataset::DsFoundation.find_or_initialize_by_ives_id(foundation_hash[:ives_id])
+      current_foundation = Kernel::DsFoundation.find_or_initialize_by_ives_id(foundation_hash[:ives_id])
 
       unless current_foundation.new_record?
         foundation_hash[:ds_foundation_founders] = create_resources(:founder, current_foundation.ds_foundation_founders, foundation_hash.delete(:ds_foundation_founders_attributes))
@@ -51,7 +51,7 @@ module Etl
             obj = resources.find_or_initialize_by_name_and_address_and_liquidator_from_and_liquidator_to(obj_hash[:name], obj_hash[:address], obj_hash[:liquidator_from], obj_hash[:liquidator_to])
         end
         # publish resource
-        obj.update_attributes(obj_hash.merge(record_status: 'published'))
+        obj.update_attributes(obj_hash.merge(record_status: Dataset::RecordStatus.find(:published)))
         active_objects << obj
       end
       # deleted ids
@@ -59,14 +59,14 @@ module Etl
       old_ids = all_ids - active_ids
       resource_class = case resource_type
                          when :founder
-                           Dataset::DsFoundationFounder
+                           Kernel::DsFoundationFounder
                          when :trustee
-                           Dataset::DsFoundationTrustee
+                           Kernel::DsFoundationTrustee
                          when :liquidator
-                           Dataset::DsFoundationLiquidator
+                           Kernel::DsFoundationLiquidator
                        end
       # Suspend which deleted resources
-      resource_class.where(_record_id: old_ids).update_all(record_status: 'suspended')
+      resource_class.where(_record_id: old_ids).update_all(record_status: Dataset::RecordStatus.find(:suspended))
       active_objects
     end
 

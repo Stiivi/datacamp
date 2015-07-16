@@ -44,9 +44,9 @@ describe Etl::MzvsrContractExtraction do
 
     it 'saves contract' do
       VCR.use_cassette('etl/mzvsr_contract_extraction/contract') do
-        expect { extractor.perform }.to change(Dataset::DsMzvsrContract, :count).by(1)
+        expect { extractor.perform }.to change(Kernel::DsMzvsrContract, :count).by(1)
 
-        record = Dataset::DsMzvsrContract.last
+        record = Kernel::DsMzvsrContract.last
 
         extractor.attributes.each do |attribute, value|
           expect(record.send(attribute)).to eql(value)
@@ -60,7 +60,7 @@ describe Etl::MzvsrContractExtraction do
 
       VCR.use_cassette('etl/mzvsr_contract_extraction/contract') do
         extractor = Etl::MzvsrContractExtraction.new(uri)
-        expect { extractor.perform }.not_to change(Dataset::DsMzvsrContract, :count)
+        expect { extractor.perform }.not_to change(Kernel::DsMzvsrContract, :count)
       end
     end
   end

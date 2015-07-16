@@ -30,7 +30,7 @@ class SearchEngine
   def build_sphinx_query(dataset, search)
     Riddle::Query::Select.new.
       from(index_name(dataset)).values('sphinx_internal_id').
-      matching(search.query_string + '@record_status published').
+      matching(search.query_string + "@record_status #{Dataset::RecordStatus.find(:published)}").
       where(sphinx_deleted: false).
       limit(5).
       with_options(max_matches: 1000)

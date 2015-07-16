@@ -1,9 +1,13 @@
 # -*- encoding : utf-8 -*-
 
 class CsvFile
-  
-  def initialize(path, col_sep, encoding, batch_id, skip_first_line = false, has_header = true)
-    @path, @col_sep, @encoding, @batch_id, @skip_first_line, @has_header = path, col_sep, encoding, batch_id, skip_first_line, has_header
+
+  def initialize(path, col_sep, encoding, skip_first_line = false, has_header = true)
+    @path = path
+    @col_sep = col_sep
+    @encoding = encoding
+    @skip_first_line = skip_first_line
+    @has_header = has_header
   end
   
   def rewind_and_skip_first_line

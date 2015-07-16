@@ -11,7 +11,7 @@ namespace :clean do
   end
 
   task production_regis: :environment do
-    organisation_model = DatasetDescription.find_by_identifier('organisations').dataset_record_class
+    organisation_model = DatasetDescription.find_by_identifier('organisations').dataset_model
     organisation_model.find_by_sql("SELECT doc_id FROM ds_organisations GROUP BY doc_id HAVING ( COUNT(doc_id) > 1 )").each do |item|
       doc_id = item.doc_id
       organisation_model.where(doc_id: doc_id).each do |duplicate_item|

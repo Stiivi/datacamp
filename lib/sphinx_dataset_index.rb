@@ -6,7 +6,7 @@ class SphinxDatasetIndex
   end
 
   def self.define_index_for_dataset(dataset_description)
-    reference = dataset_description.dataset_record_class.name.underscore
+    reference = dataset_description.dataset_model.name.underscore
     ThinkingSphinx::Index.define(reference, with: :active_record) do
       indexes :_record_id
       indexes :record_status

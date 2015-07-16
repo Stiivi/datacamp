@@ -27,8 +27,8 @@ describe Etl::FoundationExtraction do
       end
 
       # Foundation
-      Dataset::DsFoundation.count.should == 1
-      foundation = Dataset::DsFoundation.first
+      Kernel::DsFoundation.count.should == 1
+      foundation = Kernel::DsFoundation.first
       foundation.ives_id.should == 158823
       foundation.name.should include('NADÁCIA EQUUS ARABIUS')
       foundation.identification_number.should == '30864399'
@@ -48,7 +48,7 @@ describe Etl::FoundationExtraction do
       VCR.use_cassette('etl/foundation_extraction/foundation_158823') do
         described_class.new(158823).perform
       end
-      foundation = Dataset::DsFoundation.first
+      foundation = Kernel::DsFoundation.first
 
       # Founders
       foundation.ds_foundation_founders.count.should == 5
@@ -65,7 +65,7 @@ describe Etl::FoundationExtraction do
         described_class.new(158823).perform
       end
 
-      foundation = Dataset::DsFoundation.first
+      foundation = Kernel::DsFoundation.first
 
       # Trustees
       foundation.ds_foundation_trustees.count.should == 1
@@ -81,7 +81,7 @@ describe Etl::FoundationExtraction do
         described_class.new(158823).perform
       end
 
-      foundation = Dataset::DsFoundation.first
+      foundation = Kernel::DsFoundation.first
 
       # Liquidators
       foundation.ds_foundation_liquidators.count.should == 1
@@ -101,8 +101,8 @@ describe Etl::FoundationExtraction do
 
 
       # Foundation
-      Dataset::DsFoundation.count.should == 1
-      foundation = Dataset::DsFoundation.first
+      Kernel::DsFoundation.count.should == 1
+      foundation = Kernel::DsFoundation.first
       foundation.ds_foundation_liquidators.count.should == 1
       foundation.ds_foundation_trustees.count.should == 1
       foundation.ds_foundation_founders.count.should == 5
@@ -115,7 +115,7 @@ describe Etl::FoundationExtraction do
         described_class.new(158823).perform
       end
 
-      Dataset::DsFoundation.count.should == 1
+      Kernel::DsFoundation.count.should == 1
     end
   end
 end
