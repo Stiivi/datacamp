@@ -24,7 +24,7 @@ set :deploy_to, "/home/datanest2/deploy"
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, fetch(:linked_files, []).push('public/sitemap.xml')
+set :linked_files, fetch(:linked_files, []).push('public/sitemap.xml', 'config/production.sphinx.conf')
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'files', 'dumps', 'db/sphinx', 'backup', 'data', 'public/sitemaps')
 
@@ -67,6 +67,17 @@ namespace :deploy do
           execute :rake, 'db:migrate'
           execute :rake, 'db_staging:migrate'
           execute :rake, 'db_data:migrate'
+        end
+      end
+    end
+  end
+
+  desc "Ensure Sphinx is running"
+  task :ensure_sphinx do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "ts:ensure_running"
         end
       end
     end
@@ -127,3 +138,5 @@ namespace :deploy do
     end
   end
 end
+
+after 'deploy:updated', 'deploy:ensure_sphinx'
