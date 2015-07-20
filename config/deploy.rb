@@ -140,3 +140,4 @@ namespace :deploy do
 end
 
 after 'deploy:updated', 'deploy:ensure_sphinx'
+after "deploy:updated", "newrelic:notice_deployment"
