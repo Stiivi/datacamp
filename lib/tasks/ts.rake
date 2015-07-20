@@ -12,4 +12,19 @@ namespace :ts do
     Signal.trap('INT')  { Process.kill('INT', pid) }
     Process.wait(pid)
   end
+
+  desc "Ensure Sphinx is running"
+  task :ensure_running do
+    config = ThinkingSphinx::Configuration.instance
+    controller = config.controller
+
+    if controller.running?
+      puts "Sphinx is already running"
+    else
+      puts "Starting Sphinx"
+      Rake::Task["ts:configure"].invoke
+      Rake::Task["ts:index"].invoke
+      Rake::Task["ts:start"].invoke
+    end
+  end
 end
