@@ -2,16 +2,12 @@
 db/*.sqlite3
 log/*
 tmp/*
+.vagrant
+
+.env.local
 
 files/*
-config/database.yml
-config/newrelic.yml
-config/datacamp_config.yml
-config/sphinx.yml
 config/*sphinx.conf
-config/initializers/secret_token.rb
-config/initializers/site_keys.rb
-config/environments/production.rb
 /update
 /remote
 /backup
@@ -33,3 +29,6 @@ rerun.txt
 .sass-cache
 
 coverage
+
+docker-compose.yml
+volumes

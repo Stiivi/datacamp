@@ -44,7 +44,7 @@ module Datanest
       end
 
       def export_path
-        @export_path ||= Datacamp::Config.get(:dataset_dump_path)
+        @export_path ||= ENV['DATANEST_DUMP_PATH']
       end
 
       def dumper_klass

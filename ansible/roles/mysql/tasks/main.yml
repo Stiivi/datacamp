@@ -1,0 +1,36 @@
+---
+
+- name: Install mysql
+  apt: name={{item}} state=present
+  with_items:
+    - mysql-client
+    - mysql-server
+    - python-mysqldb
+
+- name: Create mysql users
+  mysql_user:
+    name: "{{item}}"
+    password: "{{ lookup('password', '/tmp/' + item + '.mysqlpassword length=15') }}"
+    priv: '*.*:ALL'
+    state: present
+    host: localhost
+  with_items: '{{ users }}'
+  when: users|length > 0
+
+- name: Export mysql user passwords as ENV variables
+  sudo_user: '{{ app_user }}'
+  lineinfile:
+    dest: ~/.profile
+    line: export {{ item | upper }}_MYSQL_PASSWORD="{{ lookup('file', '/tmp/' + item + '.mysqlpassword') }}"
+    state: present
+  with_items: '{{ users }}'
+  when: users|length > 0
+
+- name: Create mysql databases
+  mysql_db:
+    name: "{{ item }}"
+    collation: utf8_general_ci
+    encoding: utf8
+    state: present
+  with_items: databases
+  when: databases|length > 0

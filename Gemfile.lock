@@ -36,14 +36,23 @@ GEM
     addressable (2.3.8)
     arel (3.0.3)
     builder (3.0.4)
-    capistrano (2.15.5)
-      highline
-      net-scp (>= 1.0.0)
-      net-sftp (>= 2.0.0)
-      net-ssh (>= 2.0.14)
-      net-ssh-gateway (>= 1.1.0)
-    capistrano-ext (1.2.1)
-      capistrano (>= 1.0.0)
+    capistrano (3.4.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (~> 1.3)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-passenger (0.1.1)
+      capistrano (~> 3.0)
+    capistrano-rails (1.1.3)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rbenv (2.0.3)
+      capistrano (~> 3.1)
+      sshkit (~> 1.3)
+    capistrano3-delayed-job (1.4.0)
+      capistrano (>= 3.0.0)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -69,6 +78,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colored (1.2)
+    colorize (0.7.7)
     css_parser (1.3.6)
       addressable
     daemons (1.2.2)
@@ -85,6 +95,9 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.0.1)
+    dotenv-rails (2.0.1)
+      dotenv (= 2.0.1)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     ethon (0.7.3)
@@ -111,7 +124,6 @@ GEM
       activesupport (>= 3.1, < 4.1)
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
-    highline (1.6.20)
     hike (1.2.3)
     hirb (0.7.3)
     htmlentities (4.3.3)
@@ -161,13 +173,9 @@ GEM
     mysql2 (0.3.18)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
-    net-scp (1.1.2)
+    net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-sftp (2.1.2)
-      net-ssh (>= 2.6.5)
-    net-ssh (2.8.0)
-    net-ssh-gateway (1.2.0)
-      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
     newrelic_rpm (3.12.0.288)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -195,7 +203,6 @@ GEM
       rack (>= 0.4)
     rack-protection (1.5.3)
       rack
-    rack-rewrite (1.5.1)
     rack-ssl (1.3.4)
       rack
     rack-test (0.6.3)
@@ -285,6 +292,10 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.10)
+    sshkit (1.7.1)
+      colorize (>= 0.7.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     test-unit (3.1.2)
       power_assert
     therubyracer (0.12.2)
@@ -336,8 +347,12 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   actionmailer_inline_css
-  capistrano (~> 2)
-  capistrano-ext
+  capistrano (~> 3.4.0)
+  capistrano-bundler
+  capistrano-passenger
+  capistrano-rails
+  capistrano-rbenv
+  capistrano3-delayed-job
   capybara
   capybara-screenshot
   codeclimate-test-reporter
@@ -347,6 +362,7 @@ DEPENDENCIES
   delayed_job
   delayed_job_active_record
   delayed_job_admin
+  dotenv-rails
   dynamic_form
   factory_girl_rails
   fakeweb
@@ -366,7 +382,6 @@ DEPENDENCIES
   paperclip
   poltergeist
   pry
-  rack-rewrite
   rails (= 3.2.22)
   rails_best_practices
   raindrops (~> 0.13.0)

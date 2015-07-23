@@ -1,10 +1,1 @@
-# update crontab
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
-
-require "delayed/recipes"
-set :rails_env, "production" #added for delayed job
-# Delayed Job
-after "deploy:stop",    "delayed_job:stop"
-after "deploy:start",   "delayed_job:start"
-after "deploy:restart", "delayed_job:restart"
+server '127.0.0.1:2222', user: 'datanest2', roles: %w{app db web}

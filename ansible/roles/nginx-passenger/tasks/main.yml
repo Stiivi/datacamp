@@ -1,0 +1,32 @@
+---
+
+- name: Add key for passenger
+  apt_key: keyserver=keyserver.ubuntu.com id=561F9B9CAC40B2F7 state=present
+
+- name: Apt via https
+  apt: name={{ item }} state=present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+
+- name: Add passenger apt repositories
+  apt_repository: repo='deb https://oss-binaries.phusionpassenger.com/apt/passenger {{ansible_distribution_release}} main' state=present update_cache=yes
+
+- name: Install nginx
+  apt: name={{ item }} state=present force=yes
+  with_items:
+   - nginx-extras
+   - passenger
+
+- name: Copy nginx configuration
+  copy: src=files/nginx.conf dest=/etc/nginx/nginx.conf
+  notify:
+    - restart nginx
+
+- name: Create application configuration
+  template: src=files/nginx-datanest.conf.j2 dest=/etc/nginx/sites-available/datanest
+
+- name: Enable application configuration
+  file: src=/etc/nginx/sites-available/datanest dest=/etc/nginx/sites-enabled/datanest state=link
+  notify:
+    - restart nginx

@@ -3,14 +3,9 @@ cache: bundler
 rvm:
 - 2.2.2
 before_script:
-- cp config/database.travis.yml config/database.yml
 - mysql -e 'create database datanest_app_test'
 - mysql -e 'create database datanest_data_test'
 - mysql -e 'create database datanest_staging_test'
-- cp config/initializers/secret_token.rb.example config/initializers/secret_token.rb
-- cp config/initializers/site_keys.rb.example config/initializers/site_keys.rb
-- cp config/datacamp_config.yml.example config/datacamp_config.yml
-- cp config/thinking_sphinx.yml.example config/thinking_sphinx.yml
 - bundle exec rake db:schema:load
 - bundle exec rake db_staging:schema:load
 - bundle exec rake db_data:schema:load

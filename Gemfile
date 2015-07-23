@@ -37,7 +37,6 @@ gem 'rollbar'
 
 gem 'unicorn'
 gem 'raindrops', '~> 0.13.0' # for unicorn, special version for ruby 2.2.2
-gem 'rack-rewrite'
 
 gem 'roadie', '~> 2.4.0' # version for rails 3
 gem 'mechanize'
@@ -50,12 +49,16 @@ gem 'test-unit', '~> 3.0' # ruby 2.2.2 needs this for rails 3.2
 
 group :development do
   gem 'mailcatcher', '~> 0.5.0' # version for rails 3
+  gem 'letter_opener'
 
   gem 'rails_best_practices'
-  # Deploy with Capistrano multistage
-  gem 'capistrano', '~> 2'
-  gem 'capistrano-ext'
-  gem 'letter_opener'
+
+  gem 'capistrano', '~> 3.4.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-passenger'
+  gem 'capistrano3-delayed-job'
 
   gem 'thin'
   gem 'ruby-prof'
@@ -76,6 +79,7 @@ group :development, :test do
   gem 'fakeweb'
   gem 'pry'
   gem 'simplecov', require: false
+  gem 'dotenv-rails'
 end
 
 group :test do

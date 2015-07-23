@@ -1,0 +1,4 @@
+---
+
+- name: Install sphinx
+  apt: name=sphinxsearch state=present

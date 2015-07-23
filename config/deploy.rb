@@ -1,84 +1,143 @@
-# -*- encoding : utf-8 -*-
+# config valid only for current version of Capistrano
+lock '3.4.0'
 
-# Bundler
-# -------
-require 'bundler/capistrano'
-set :bundle_flags, "--deployment --binstubs"
-set :bundle_without, [:test, :development, :deploy, :macosx]
+set :application, 'datanest'
+set :repo_url, "git://github.com/fairplaysk/datacamp.git"
 
+set :rbenv_ruby, File.read('.ruby-version').strip
 
-# multistage
-set :stages, %w(staging production old_production old_staging)
-require 'capistrano/ext/multistage'
-set :application, "datanest"
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-# Code Repository
-# =========
-set :scm, :git
-set :repository, "git://github.com/fairplaysk/datacamp.git"
-set :scm_verbose, true
-set :deploy_via, :remote_cache
+# Default deploy_to directory is /var/www/my_app_name
+set :deploy_to, "/home/datanest2/deploy"
 
-# Remote Server
-# =============
-set :use_sudo, false
-ssh_options[:forward_agent] = true
-default_run_options[:pty] = true
+# Default value for :scm is :git
+# set :scm, :git
 
-# Rbenv
-# -----
-default_run_options[:shell] = '/bin/bash --login'
+# Default value for :format is :pretty
+# set :format, :pretty
+
+# Default value for :log_level is :debug
+# set :log_level, :debug
+
+# Default value for :pty is false
+# set :pty, true
+
+set :linked_files, fetch(:linked_files, []).push('public/sitemap.xml', 'config/production.sphinx.conf')
+
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'files', 'dumps', 'db/sphinx', 'backup', 'data', 'public/sitemaps')
 
 set :keep_releases, 5
-after "deploy", "deploy:cleanup" # keep only the last 4 releases
 
-set :user, "deploy"
-server "46.231.96.104", :web, :app, :db, :primary => true
-set :deploy_to, "/home/apps/#{application}"
+set :ssh_options, {
+  forward_agent: true
+}
+
+set :passenger_restart_with_touch, true
+
+set :delayed_job_bin_path, 'script'
 
 namespace :deploy do
-  task :start do
-    run "sudo sv up datanest"
-  end
-  task :stop do
-    run "sudo sv down datanest"
-  end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "sudo sv restart datanest"
-  end
-
-  desc "Symlink shared resources on each release"
-  task :symlink_shared, :roles => :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    run "ln -nfs #{shared_path}/config/newrelic.yml #{release_path}/config/newrelic.yml"
-    run "ln -nfs #{shared_path}/config/datacamp_config.yml #{release_path}/config/datacamp_config.yml"
-    run "ln -nfs #{shared_path}/config/thinking_sphinx.yml #{release_path}/config/thinking_sphinx.yml"
-    run "ln -nfs #{shared_path}/config/production.sphinx.conf #{release_path}/config/production.sphinx.conf"
-    run "ln -nfs #{shared_path}/config/initializers/secret_token.rb #{release_path}/config/initializers/secret_token.rb"
-    run "ln -nfs #{shared_path}/config/initializers/site_keys.rb #{release_path}/config/initializers/site_keys.rb"
-    run "ln -nfs #{shared_path}/config/environments/production.rb #{release_path}/config/environments/production.rb"
-    run "ln -nfs #{shared_path}/files #{release_path}/files"
-    run "ln -nfs #{shared_path}/dumps #{release_path}/dumps"
-    run "ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx"
-    run "ln -nfs #{shared_path}/backup #{release_path}/backup"
-    run "ln -nfs #{shared_path}/data #{release_path}/data"
-    # sitemap
-    run "ln -nfs #{shared_path}/public/sitemap.xml #{release_path}/public/sitemap.xml"
-    run "ln -nfs #{shared_path}/public/sitemaps #{release_path}/public/sitemaps"
+  desc 'Deploy app for first time'
+  task :cold do
+    invoke 'deploy:starting'
+    invoke 'deploy:started'
+    invoke 'deploy:updating'
+    invoke 'bundler:install'
+    invoke 'deploy:db_setup' # This replaces deploy:migrations
+    invoke 'deploy:compile_assets'
+    invoke 'deploy:normalize_assets'
+    invoke 'deploy:publishing'
+    invoke 'deploy:published'
+    invoke 'deploy:finishing'
+    invoke 'deploy:finished'
   end
 
-  task :refresh_indexes, :roles => :app do
-    run "cd #{release_path}; rake index:index RAILS_ENV=production"
+  desc 'Setup database'
+  task :db_setup do
+    on roles(:db) do
+      within release_path do
+        with rails_env: (fetch(:rails_env) || fetch(:stage)) do
+          execute :rake, 'db:create:all'
+          execute :rake, 'db:schema:load'
+          execute :rake, 'db_staging:schema:load'
+          execute :rake, 'db_data:schema:load'
+
+          execute :rake, 'db:migrate'
+          execute :rake, 'db_staging:migrate'
+          execute :rake, 'db_data:migrate'
+        end
+      end
+    end
   end
 
-  task :start_search_server, :roles => :app do
-    run "cd #{release_path}; rake index:update_config RAILS_ENV=production"
-    run "cd #{release_path}; rake index:server RAILS_ENV=production"
+  desc "Ensure Sphinx is running"
+  task :ensure_sphinx do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "ts:ensure_running"
+        end
+      end
+    end
   end
 
-  task :dump_db, :roles => :app do
-    run "cd #{release_path}; rake db:dump RAILS_ENV=production"
+  task :refresh_indexes do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "index:index"
+        end
+      end
+    end
+  end
+
+  task :start_search_server do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, "index:update_config"
+          execute :rake, "index:server"
+        end
+      end
+    end
+  end
+
+  task :dump_db do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake,  "db:dump"
+        end
+      end
+    end
+  end
+
+  task :import_dump do
+    dump = ENV['DUMP']
+    match = dump.match(/datanest_(.*?)_.*/)
+    raise "'#{dump}' does not seem like a datanest dump, expected 'datanest_$DB_*.sql' format" unless match
+    database = match[1]
+
+    if File.extname(dump) == ".sql"
+      puts "Compressing #{dump} for upload"
+      `gzip #{dump}`
+      dump = "#{dump}.gz"
+    end
+
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          upload! dump, "/tmp"
+          filename = File.basename(dump)
+          execute :gunzip, "/tmp/#{filename}"
+          execute :mysql, "-h $DATANEST_MYSQL_HOST -P $DATANEST_MYSQL_PORT -u $DATANEST_MYSQL_USER --password=$DATANEST_MYSQL_PASSWORD datanest_#{database}_#{fetch(:rails_env)} < /tmp/#{File.basename(filename, '.gz')}"
+        end
+      end
+    end
   end
 end
 
-after "deploy:finalize_update", "deploy:symlink_shared"
+after 'deploy:updated', 'deploy:ensure_sphinx'
+after "deploy:updated", "newrelic:notice_deployment"

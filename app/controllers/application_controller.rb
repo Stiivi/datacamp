@@ -78,7 +78,7 @@ private
   end
 
   def verify_captcha_for(model)
-    verify_recaptcha(private_key: Datacamp::Config.get(:captcha_private_key), model: model)
+    verify_recaptcha(private_key: ENV['DATANEST_CAPTCHA_PRIVATE_KEY'], model: model)
   end
 
   protected

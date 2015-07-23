@@ -1,7 +1,7 @@
 - if Rails.env.production?
   :javascript
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', "#{Datacamp::Config.get('google_analytics_code')}"]);
+    _gaq.push(['_setAccount', '#{ENV["DATANEST_GA_CODE"]}']);
     _gaq.push(['_trackPageview']);
     GATracker.gather_data();
 
