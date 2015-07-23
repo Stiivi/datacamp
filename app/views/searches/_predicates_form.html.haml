@@ -1,24 +1,27 @@
-= form_tag searches_path do
-  -#%h2= t "search.create_search", :dataset => @dataset_description.try(:title)
-  %h1 Dataset
+#searchbox-adv-wrap
+  = form_tag searches_path do
+    .selector
+      %label Dataset
+      =select_tag 'search[dataset]',
+                    options_from_collection_for_select(DatasetDescription.where(is_active: true),
+                                                      :identifier,
+                                                      :title,
+                                                      @dataset_description.try(:identifier)),
+                    class: 'string js_advanced_search_dataset',
+                    include_blank: t('search.any_field')
 
-  = select_tag 'search[dataset]',
-               options_from_collection_for_select(DatasetDescription.where(is_active: true),
-                                                  :identifier,
-                                                  :title,
-                                                  @dataset_description.try(:identifier)),
-               class: 'string js_advanced_search_dataset',
-               include_blank: t('search.any_field')
 
+    %label Filter
+    #search-table{data: {'refresh-url' => predicate_rows_searches_path}}
+      - predicates ||= []
+      - predicates.each do |predicate|
+        %ul.body.search_row= render :partial => "searches/predicate_row", :locals => {:predicate => predicate}
 
-  %h2 Filter
+      - if predicates.size == 0
+        %ul.body.search_row= render :partial => "searches/predicate_row"
 
-  #predicate_rows{data: {'refresh-url' => predicate_rows_searches_path}}
-    - predicates ||= []
-    - predicates.each do |predicate|
-      %ul.search_row= render :partial => "searches/predicate_row", :locals => {:predicate => predicate}
+    .buttons-wrap
+      =submit_tag t('search.add_filter'), class: 'add_row button-add-filter'
 
-    - if predicates.size == 0
-      %ul.search_row= render :partial => "searches/predicate_row"
-
-  .search_button_container= submit_tag '', id: 'search_now', class: 'search_button'
+    .buttons-wrap
+      .search_button_container= submit_tag t('search.search_action'), id: 'search_now', class: 'search-button'

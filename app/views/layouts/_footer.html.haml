@@ -1,12 +1,8 @@
 %footer
-  = raw t('global.copyright')
-  \/
-  = link_to t('pages.about_service'), page_path('about_service')
-  \/
-  = link_to t('pages.terms_of_service'), page_path('terms_of_service')
-  \/
-  = link_to t('pages.copyright'), page_path('copyright')
-  \/
-  = link_to t('pages.about_organisation'), page_path('about_organisation')
-  \/
-  = link_to  t('pages.contact'), page_path('contact')
+  %ul#navigation-links
+    %li= raw t('global.copyright')
+    %li= link_to t('pages.about_service'), page_path('about_service')
+    %li= link_to t('pages.terms_of_service'), page_path('terms_of_service')
+    %li= link_to t('pages.copyright'), page_path('copyright')
+    %li= link_to t('pages.about_organisation'), page_path('about_organisation')
+    %li= link_to  t('pages.contact'), page_path('contact')

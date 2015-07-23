@@ -1,24 +1,19 @@
-#menutop
-  %ul
-    %li
-      = link_to '', "http://twitter.com/alianciaFP", class: 'twitter'
-      = link_to '', 'http://www.facebook.com/pages/Datanest-Aliancie-Fair-play/151055951576439', class: 'facebook'
-    %li /
+%ul#navigation-account
+  %li.last
+    = link_to '', "http://twitter.com/alianciaFP", class: 'twitter'
+  %li.last
+    = link_to '', 'http://www.facebook.com/pages/Datanest-Aliancie-Fair-play/151055951576439', class: 'facebook'
 
-    - I18N_LOCALES.each do |locale|
-      %li= link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
-      %li /
+  - I18N_LOCALES.each do |locale|
+    %li= link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
 
-    - if logged_in?
-      %li= link_to t("global.logout"), logout_path
-      %li /
+  - if logged_in?
+    %li= link_to t("global.logout"), logout_path
 
-      %li= link_to t("users.my_account"), account_path, class: 'js-my-account'
-      %li /
+    %li= link_to t("users.my_account"), account_path, class: 'js-my-account'
 
-      %li= current_user
-    - else
-      %li= link_to t("global.login"), new_session_path
-      %li /
+    %li= current_user
+  - else
+    %li= link_to t("global.login"), new_session_path
 
-      %li= link_to t("users.register"), new_account_path
+    %li= link_to t("users.register"), new_account_path

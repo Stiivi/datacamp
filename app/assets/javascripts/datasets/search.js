@@ -2,11 +2,22 @@ var optgroups = null;
 
 $(document).ready(function(){
   $('#search_dataset').unbind("change").change(function(e) {
-    $('#predicate_rows').html('');
+    $('#search-table').html('');
 
-    $('#predicate_rows').load($('#predicate_rows').data('refresh-url') + '?identifier=' + $(this).val(), null, function(){
+    $('#search-table').load($('#search-table').data('refresh-url') + '?identifier=' + $(this).val(), null, function(){
       init_search_form();
     });
+  });
+
+  $(".add_row").click(function(){
+    // Duplicate row
+    var row = $('.search_row').last();
+    cloned = row.clone();
+    cloned.find(".remove_row").show();
+    cloned.appendTo(row.parent());
+    init_search(cloned, true);
+    GATracker._advanced_search_field_add();
+    return false;
   });
 
   //$('#search_dataset').trigger('change');
@@ -23,17 +34,7 @@ var init_search_form = function() {
 
 var init_search = function(row, reset){
 
-  row.find("a.add_row").click(function(){
-    // Duplicate row
-    cloned = row.clone();
-    cloned.find("a.remove_row").show();
-    cloned.appendTo(row.parent());
-    init_search(cloned, true);
-    GATracker._advanced_search_field_add();
-    return false;
-  });
-
-  row.find("a.remove_row").click(function(){
+  row.find(".remove_row").click(function(){
     row.remove();
     return false;
   });

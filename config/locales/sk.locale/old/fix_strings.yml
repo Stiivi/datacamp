@@ -211,7 +211,7 @@ sk:
     dataset_name: "Súbor údajov"
     query_field: "Hľadať:"
     results_count: "%{count} výsledkov pre '%{query_string}'"
-    search_action: Hľadať!
+    search_action: Hľadať
     search_term: Výraz
     searching_notice: "Prosíme o chvíľku strpenia, kým sa prehľadáva naša databáza"
   session: 

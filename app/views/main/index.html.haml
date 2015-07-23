@@ -1,0 +1,33 @@
+#main
+  %h1.claim=t('pages.main.claim')
+  %h2.subclaim=t('pages.main.subclaim')
+
+  #searchbox-container
+    %ul.searchbox
+      %li
+        %a{href: '#searchbox1'}=t('global.simple_search')
+      %li
+        %a{href: '#searchbox2'}=t('global.advanced_search')
+      %li
+        %a{href: '#searchbox3'} ?
+
+    #searchbox1.searchbox-wrap
+      #searchbox-simple
+        = form_tag quick_searches_path do
+          = text_field_tag :query_string,
+                          (@search.query_string if @search),
+                          class: 'search-text',
+                          placeholder: t("search.search_placeholder"),
+                          data: {tracking_search_keyword: (@search.query_string if @search)}
+          = submit_tag t("search.search_action"), class: 'search-button'
+
+    #searchbox2.searchbox-wrap
+      = render 'searches/predicates_form'
+
+    #searchbox3.searchbox-wrap
+      = t('search.help')
+
+  %ul#news
+    %li=link_to t('news.title'), news_index_path, class: 'link-to-news'
+    %li= @news.text.html_safe
+

@@ -1,30 +1,31 @@
-#menu{class: ('rounded' if @submenu_partial.blank?)}
-  %ul
-    %li= link_to t("global.home"), root_path, class: (params[:controller] == "pages" && params[:id] == 'index' ? "active" : "")
-    %li= link_to t("global.data_catalogue"), datasets_path, class: (params[:controller] == "datasets" ? "active" : "")
+%ul#navigation-main
+  %li= link_to t("global.data_catalogue"), datasets_path, class: (params[:controller] == "datasets" ? "active" : "")
+  %li= link_to t('pages.terms_of_service'), page_path('terms_of_service')
+  %li= link_to t('pages.about_service'), page_path('about_service')
+  %li= link_to t('news.title'), news_index_path
 
-    - if logged_in?
-      - if current_user.has_privilege? :edit_dataset_description
-        %li
-          = link_to t("global.data_dictionary"), dataset_descriptions_path, class: (@submenu_partial == "data_dictionary" ? "active" : "")
+- if logged_in?
+  %ul#navigation-admin
+    - if current_user.has_privilege? :edit_dataset_description
+      %li
+        = link_to t("global.data_dictionary"), dataset_descriptions_path, class: (@submenu_partial == "data_dictionary" ? "active" : "")
+    - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings, :edit_pages)
+      %li
+        = link_to t("global.settings"), settings_system_variables_path, class: (@submenu_partial == "settings" ? "active" : "")
 
-      - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings, :edit_pages)
-        %li
-          = link_to t("global.settings"), settings_system_variables_path, class: (@submenu_partial == "settings" ? "active" : "")
+    - if current_user.has_privilege?(:manage_users)
+      %li= link_to t("global.users"), settings_users_path
 
-      - if current_user.is_super_user?
-        %li= link_to t('global.activities'), activities_path, class: (params[:controller] == "activities" ? "active" : "")
+    - if current_user.has_privilege?(:moderate_comments)
+      %li= link_to t("global.moderation"), settings_comments_path
 
-  = form_tag quick_searches_path, :class => "search" do
-    = submit_tag '', id: "query_submit", class: 'search_button'
-    = link_to '', nil, id: 'advanced_search', class: 'button_disclosure js_advanced_search_toggle'
-    = text_field_tag :query_string,
-                     (@search.query_string if @search),
-                     class: 'search',
-                     placeholder: t("search.search_action"),
-                     data: {tracking_search_keyword: (@search.query_string if @search)}
-    -#- DatasetDescription.disabled_in_quick_search.each do |dd|
-      = label_tag 'disabled_descriptions[]', truncate(t('global.do_not_search', :name => dd.title), :length => 35), :class => 'search_label'
-      = check_box_tag 'disabled_descriptions[]', dd.id, (!@disabled_descriptions && controller_name != 'searches') || (@disabled_descriptions && @disabled_descriptions.include?(dd.id.to_s))
+    - if current_user.has_privilege?(:edit_pages)
+      %li= link_to t("global.pages"), settings_pages_path
+
+    - if current_user.has_privilege?(:data_editor)
+      %li= link_to t("global.news"), settings_news_index_path
+
+    - if current_user.has_privilege?(:edit_blocks)
+      %li= link_to t("global.blocks"), settings_blocks_path
 
 = render "menus/#{@submenu_partial}" if @submenu_partial.present?

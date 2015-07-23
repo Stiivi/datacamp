@@ -20,12 +20,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class MainController < ApplicationController
-  layout "frontend_main"
-
-  before_filter :login_required, :except => [:index, :locale]
+  layout "frontend_public"
 
   def index
-    redirect_to page_path('index')
+    @news = News.published.first
   end
 
   def locale

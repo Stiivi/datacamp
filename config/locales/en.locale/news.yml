@@ -1,5 +1,6 @@
 en:
   news:
+    title: News
     index:
       header: 'News list'
 

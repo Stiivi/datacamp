@@ -1,24 +1,22 @@
 - predicate ||= nil
 
-%li
-  %select{class: "search_field", name: "search[predicates][][field]"}
-    %option{value: "", class: "string", selected: (predicate == nil || predicate.search_field == nil)}= t("search.any_field")
-    - if @dataset_description.present?
-      - @dataset_description.field_descriptions_for_detail.each do |fd|
-        %option{value: fd.identifier, class: fd.data_type, selected: (predicate && predicate.search_field == fd.identifier ? "selected" : nil)}= fd
+%li.row
 
-%li
-  %select{class: "search_operator", name: "search[predicates][][operator]"}
-    - SearchPredicate.datatype_operators.each do |type, operators|
-      %optgroup{label: t("data_types.#{type}"), class: type}
-        - operators.each do |operator|
-          %option{value: operator, selected: (predicate && predicate.operator == operator.to_s ? "selected" : nil)}= t("operators.#{operator}")
+  %span
+    %select{class: "search_field", name: "search[predicates][][field]"}
+      %option{value: "", class: "string", selected: (predicate == nil || predicate.search_field == nil)}= t("search.any_field")
+      - if @dataset_description.present?
+        - @dataset_description.field_descriptions_for_detail.each do |fd|
+          %option{value: fd.identifier, class: fd.data_type, selected: (predicate && predicate.search_field == fd.identifier ? "selected" : nil)}= fd
 
-%li
-  %input{class: "search_value", name: "search[predicates][][value]", value: (predicate ? predicate.argument : "")}
+  %span
+    %select{class: "search_operator", name: "search[predicates][][operator]"}
+      - SearchPredicate.datatype_operators.each do |type, operators|
+        %optgroup{label: t("data_types.#{type}"), class: type}
+          - operators.each do |operator|
+            %option{value: operator, selected: (predicate && predicate.operator == operator.to_s ? "selected" : nil)}= t("operators.#{operator}")
 
-%li.button
-  %a{:href => "#", :class => "add_row"}
+  %span
+    %input{class: "search_value", name: "search[predicates][][value]", value: (predicate ? predicate.argument : "")}
 
-%li.button
-  %a{:href => "#", :class => "remove_row"}
+  %a{:href => "#", :class => "remove_row less"}

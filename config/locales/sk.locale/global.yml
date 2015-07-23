@@ -5,6 +5,7 @@ sk:
     active: Aktívne
     add_to_favorites: "Pridať k obľúbeným"
     add_to_favorites_hint: "Je táto stránka zaujimavá?"
+    simple_search: "Jednoduché vyhľadávanie"
     advanced_search: "Pokročilé vyhľadávanie"
     all: "- Všetko -"
     back: Naspäť

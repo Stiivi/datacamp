@@ -1,88 +1,90 @@
-/* @group Generic Form */
+.legacy {
+  /* @group Generic Form */
 
-form { margin-bottom: 15px; padding: 10px; position: relative; margin-right: 0; }
+  form { margin-bottom: 15px; padding: 10px; position: relative; margin-right: 0; }
 
-form.inline { margin: 0px; padding: 0px; position: static; }
+  form.inline { margin: 0px; padding: 0px; position: static; }
 
-form ul { list-style-type: none; margin: 0; }
+  form ul { list-style-type: none; margin: 0; }
 
-form ul li .fl { padding-top: 12px; }
+  form ul li .fl { padding-top: 12px; }
 
-form ul li .fl.nopadding { padding-top: 0px; }
+  form ul li .fl.nopadding { padding-top: 0px; }
 
-form li.locale_switcher { margin: 4px 0px; }
+  form li.locale_switcher { margin: 4px 0px; }
 
-form li.locale_switcher ul.tabs { float: left; }
+  form li.locale_switcher ul.tabs { float: left; }
 
-form .errors { padding-left: 7px; }
+  form .errors { padding-left: 7px; }
 
-form .errors p { font-size: 11px; color: #bbb; }
+  form .errors p { font-size: 11px; color: #bbb; }
 
-form .errors ul li { padding: 0px; color: #960000; font-weight: bold; }
+  form .errors ul li { padding: 0px; color: #960000; font-weight: bold; }
 
-form .errorExplanation { padding: 15px; background: #eaeaea; -webkit-border-radius: 3px; }
+  form .errorExplanation { padding: 15px; background: #eaeaea; -webkit-border-radius: 3px; }
 
-form .errorExplanation h2 { font-size: 12px; font-weight: bold; color: #555; margin-bottom: 2px; }
+  form .errorExplanation h2 { font-size: 12px; font-weight: bold; color: #555; margin-bottom: 2px; }
 
-form .errorExplanation p { font-size: 11px; color: #bbbbbb; }
+  form .errorExplanation p { font-size: 11px; color: #bbbbbb; }
 
-form .errorExplanation ul { list-style-type: bullet; }
+  form .errorExplanation ul { list-style-type: bullet; }
 
-form .errorExplanation ul li { margin: 0px; border: none; font-size: 11px; font-weight: bold; margin: 0px; padding: 5px; padding-left: 0px; color: #900000; }
+  form .errorExplanation ul li { margin: 0px; border: none; font-size: 11px; font-weight: bold; margin: 0px; padding: 5px; padding-left: 0px; color: #900000; }
 
-form .fieldWithErrors label { color: #900000; }
+  form .fieldWithErrors label { color: #900000; }
 
-form .fieldWithErrors input { border: 1px solid #900000; }
+  form .fieldWithErrors input { border: 1px solid #900000; }
 
-form.loading { background: image-url('ajax_preloader_hq.gif') center center no-repeat; }
+  form.loading { background: image-url('ajax_preloader_hq.gif') center center no-repeat; }
 
-form.inline { border: none; background-color: inherit; margin: none; padding: none; width: inherit; }
+  form.inline { border: none; background-color: inherit; margin: none; padding: none; width: inherit; }
 
-form.plain { background: inherit; border: inherit; }
+  form.plain { background: inherit; border: inherit; }
 
-form input, form textarea { font-family: Tahoma, "Lucida Grande"; font-size: 12px; padding: 5px; color: #333; display: block; float: left; }
+  form input, form textarea { font-family: Tahoma, "Lucida Grande"; font-size: 12px; padding: 5px; color: #333; display: block; float: left; }
 
-form textarea.large { width: 670px; height: 500px; font-size: 12px; line-height: 14px; }
+  form textarea.large { width: 670px; height: 500px; font-size: 12px; line-height: 14px; }
 
-form input:focus,     form textarea:focus { color: #111; }
+  form input:focus,     form textarea:focus { color: #111; }
 
-form input[type=hidden],     form textarea[type=hidden] { float: none; display: none; }
+  form input[type=hidden],     form textarea[type=hidden] { float: none; display: none; }
 
-form input[type=submit], form input.submit,     form textarea[type=submit], form textarea.submit { float: none; display: inline; }
+  form input[type=submit], form input.submit,     form textarea[type=submit], form textarea.submit { float: none; display: inline; }
 
-form textarea { height: 70px; }
+  form textarea { height: 70px; }
 
-form label { display: block; float: left; width: 200px; padding-top: 10px; }
+  form label { display: block; float: left; width: 200px; padding-top: 10px; }
 
-form label.nopadding { padding-top: 3px; padding-left: 4px; }
+  form label.nopadding { padding-top: 3px; padding-left: 4px; }
 
-form label .required { color: #be211e; }
+  form label .required { color: #be211e; }
 
-form select { font-size: 12px; }
+  form select { font-size: 12px; }
 
-form div.actions { background: #F0F0F0; }
+  form div.actions { background: #F0F0F0; }
 
-li form label { padding-top: 0px; }
+  li form label { padding-top: 0px; }
 
-.content form { background-color: transparent; border: none; margin-right: 0; margin-bottom: 0; padding: 0; }
+  .content form { background-color: transparent; border: none; margin-right: 0; margin-bottom: 0; padding: 0; }
 
-/* @end */
+  /* @end */
 
-/* @group Small Form (Modal) */
+  /* @group Small Form (Modal) */
 
-form.small { padding: 0px; margin: 5px 0px 0px; background: transparent; }
+  form.small { padding: 0px; margin: 5px 0px 0px; background: transparent; }
 
-form.small li { margin: 0px 0px 15px; padding: 0px; border: none; font-size: 11px; }
+  form.small li { margin: 0px 0px 15px; padding: 0px; border: none; font-size: 11px; }
 
-form.small label { margin: 3px 0 0; padding: 0; width: 80px; font-size: 11px; font-weight: bold; color: #a0a0a0; }
+  form.small label { margin: 3px 0 0; padding: 0; width: 80px; font-size: 11px; font-weight: bold; color: #a0a0a0; }
 
-form.small input { margin: 0; }
+  form.small input { margin: 0; }
 
-form.small textarea { width: 240px; height: 40px; resize: none; }
+  form.small textarea { width: 240px; height: 40px; resize: none; }
 
-form.small a { color: #6e6e6e; }
+  form.small a { color: #6e6e6e; }
 
 
 
-/* @end */
+  /* @end */
 
+}

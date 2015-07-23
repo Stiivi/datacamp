@@ -6,6 +6,7 @@ en:
       active: active
       add_to_favorites_hint: Is this page interesting?
       add_to_favorites: Add to favorites
+      simple_search: Simple search
       advanced_search: Advanced search
       all: "- All -"
       back: Back

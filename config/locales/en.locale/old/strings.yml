@@ -201,6 +201,7 @@ en:
         search_action: Search...
         query_field: "Search:"
         search_term: Term
+        search_placeholder: Search companies, government organisations..
         results_count: "%{count} results for '%{query_string}'"
         categories: Categories
         dataset_name: Dataset
@@ -210,6 +211,8 @@ en:
         any_field: Any field
         showing_first_results: Showing first %{showing_count} of %{all_count}. Please click the More results link to show all.
         header: 'Advanced search'
+        help: Help text here
+        add_filter: + Add filter
     validations:
         blank: can't be blank
     messages:

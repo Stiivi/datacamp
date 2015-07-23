@@ -12,15 +12,13 @@
  *= require blueprint/screen.css
  *= require special
  *= require other
- *= require typo
  *= require buttons
  *= require tables
  *= require forms
- *= require layouts/frontend_main
+ *= require layouts/frontend_public
  *= require modules/main
  *= require modules/dataset_descriptions
  *= require modules/datasets
- *= require screen
  *= require sortables
  *= require main
  */
