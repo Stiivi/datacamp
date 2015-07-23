@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper :all
-  layout "frontend_main"
+  layout "frontend_public"
 
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
