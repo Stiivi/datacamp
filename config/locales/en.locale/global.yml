@@ -43,6 +43,7 @@ en:
       inactive: inactive
       information: Information
       is_favorite: Your favorite.
+      jump_to: "Go to page:"
       login: Login
       logout: Logout
       language: Language

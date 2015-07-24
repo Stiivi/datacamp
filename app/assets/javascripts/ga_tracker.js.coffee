@@ -3,7 +3,9 @@
   tracking_container: -> _gaq if _gaq?
 
   push: (data) ->
-    @tracking_container().push(data)
+    container = @tracking_container()
+    if container
+      @tracking_container().push(data)
 
   gather_data: ->
     @_search_keyword()

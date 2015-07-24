@@ -999,28 +999,36 @@ ul#news a:hover {
     display: block;
     float: right;
     overflow: hidden;
+    margin-left: 20px;
 }
 #pagination input.pagination-text {
     border: 1px solid #cccccc;
     display: inline-block;
     height: 24px;
     padding:0 5px;
+    width: 60px;
 }
-#pagination input.pagination-previous {
+#pagination .previous_page {
     background: #e6e6e6 url(image-path('pagination-previous.png')) no-repeat center center;
     cursor: pointer;
     border: none;
     height: 26px;
     padding: 0;
     width: 26px;
+    display: inline-block;
+    position: relative;
+    top: 9px;
 }
-#pagination input.pagination-next {
+#pagination .next_page {
     background: #e6e6e6 url(image-path('pagination-next.png')) no-repeat center center;
     cursor: pointer;
     border: none;
     height: 26px;
     padding: 0;
     width: 26px;
+    display: inline-block;
+    position: relative;
+    top: 9px;
 }
 #pagination select {
     background: #e6e6e6 url(image-path('select-arrows.png')) no-repeat right center;
@@ -1043,6 +1051,11 @@ ul#news a:hover {
 #pagination .pagination-admin {
     background: #F79C60 url(image-path('select-arrows-white.png')) no-repeat right center;
     color: #ffffff;
+}
+
+#pagination .admin-filters {
+  position: relative;
+  top: 9px;
 }
 
 
@@ -1095,6 +1108,10 @@ ul#news a:hover {
 #table-dataset .sum {
     text-align: right;
     width: 160px;
+}
+
+#table-dataset .row-header a {
+  color: #fff;
 }
 #table-dataset a {
     color: #333333;

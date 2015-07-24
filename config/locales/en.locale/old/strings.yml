@@ -96,13 +96,13 @@ en:
         bad_quality: 'Bad quality'
         good_quality_true: 'Good quality dataset'
         good_quality_false: 'Bad quality dataset'
-      info_container:
-        more_information: 'I want to know more...'
-        last_update: 'Last Update:'
-        published_count: 'Published records:'
-        data_provider: 'Provider'
       similar_datasets:
         header: 'Similar datasets'
+      show:
+        more_information: More information
+        last_update: 'Last Update:'
+        published_count: 'Published records:'
+        data_provider: 'Provider:'
     favorites: 
         confirm_deletion: Are you sure you want to remove this favorite?
         remove: (remove)
@@ -241,3 +241,8 @@ en:
       add_failed: 'Adding relation failed.'
       deleted: 'Relation deleted.'
       delete_failed: 'Deleting relation failed.'
+
+    will_paginate:
+      page_gap: "&hellip;"
+      page_entries_info:
+        multi_page_html: "%{from}&nbsp;-&nbsp;%{to} of %{count}"

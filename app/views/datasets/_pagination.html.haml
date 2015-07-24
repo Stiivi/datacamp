@@ -1,11 +1,22 @@
-.fl
-  = will_paginate @records, :previous_label => t("global.previous"), :next_label => t("global.next")
-  = "(#{@records.total_entries rescue @dataset_description.record_count})"
-- if has_privilege?(:power_user)
-  .filters.fr= render :partial => "datasets/admin/filter"
-.fr
+#pagination
+  - if has_privilege?(:power_user)
+    = render :partial => "datasets/admin/filter"
+
   - if current_user
-    = form_for current_user, :url => account_path, :html => {:class => "submit_on_change inline"} do |f|
-      = t ("global.records_per_page")
+    = form_for current_user, :url => account_path, :html => {:class => "submit_on_change"} do |f|
+      %label{for: :recors_per_page}= t ("global.records_per_page")
       = f.select :records_per_page, RECORDS_PER_PAGE_OPTIONS, :value => current_user.records_per_page, :class => 'inline'
       = hidden_field_tag :redirect, request.url
+
+      %label{for: :page}= t("global.jump_to")
+      %input.pagination-text{name: :page, value: params[:page] || 1}
+
+      = page_entries_info @records
+      = will_paginate @records, :previous_label => '', :next_label => '', container: false, page_links: false
+  - else
+    %form
+      %label{for: :page}= t("global.jump_to")
+      %input.pagination-text{name: :page, value: params[:page] || 1}
+
+      = page_entries_info @records
+      = will_paginate @records, :previous_label => '', :next_label => '', container: false, page_links: false

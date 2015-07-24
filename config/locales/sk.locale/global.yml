@@ -44,6 +44,7 @@ sk:
     inactive: Neaktívne
     information: Informácie
     is_favorite: "Vaše obľúbené."
+    jump_to: "Prejsť na stranu:"
     language: Jazyk
     load_error: "Nie je možné načítať %{what}"
     login: Prihlásenie

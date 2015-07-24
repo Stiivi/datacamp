@@ -1,7 +1,7 @@
-= form_tag nil, :method => :get, :class => "inline submit_on_change" do |f|
+= form_tag nil, :method => :get, :class => "admin-filters submit_on_change" do |f|
 
-  = t("dataset.filter")
+  %label= t("dataset.filter")
 
-  = select_tag "filters[record_status]", ("<option value=''>%s</option>:" % t("global.all")).html_safe + options_for_select(add_translations_to_array(Dataset::RecordStatus.all, "record_statuses"), @filters[:record_status])
+  = select_tag "filters[record_status]", ("<option value=''>%s</option>:" % t("global.all")).html_safe + options_for_select(add_translations_to_array(Dataset::RecordStatus.all, "record_statuses"), @filters[:record_status]), class: 'pagination-admin'
 
-  = select_tag "filters[quality_status]", ("<option value=''>%s </option>" % t("global.all")).html_safe + options_from_collection_for_select(QualityStatus.all, :name, :title, @filters[:quality_status])
+  = select_tag "filters[quality_status]", ("<option value=''>%s </option>" % t("global.all")).html_safe + options_from_collection_for_select(QualityStatus.all, :name, :title, @filters[:quality_status]), class: 'pagination-admin'

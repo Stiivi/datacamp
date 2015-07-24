@@ -1,7 +1,7 @@
 #dataset_navigation_admin
   - if logged_in? && current_user.has_privilege?(:edit_dataset_description)
-    = link_to t("dataset.edit_description"), dataset_description_path(@dataset_description)
+    %li= link_to t("dataset.edit_description"), dataset_description_path(@dataset_description), class: 'dataset-admin'
   - if logged_in? && current_user.has_privilege?(:import_from_file)
-    = link_to t("global.import"), new_import_file_path(:dataset_description_id => @dataset_description.id)
+    %li= link_to t("global.import"), new_import_file_path(:dataset_description_id => @dataset_description.id), class: 'dataset-admin'
   - if logged_in? && current_user.has_privilege?(:create_record)
-    = link_to t("dataset.create_record"), new_dataset_record_path(@dataset_description)
+    %li= link_to t("dataset.create_record"), new_dataset_record_path(@dataset_description), class: 'dataset-admin'

@@ -1,28 +1,37 @@
-= render 'node_menu'
-= render 'datasets/admin/navigation'
-= render 'info_container'
+%h1= @dataset_description.title
 
-#data
+#dataset-description-container
+  .dataset-description
+    %h2= textile @dataset_description.perex
+    .dataset-description-text= truncate(@dataset_description.description, length: 200)
+    = link_to t('.more_information'), nil, onclick: %{$('.dataset-description-text').hide();$('#information').show();$(this).hide(); GATracker._more_information_click('#{@dataset_description.identifier}'); return false;}
+    #information{style: 'display: none'}= textile(@dataset_description.description)
 
-  .pagination.ajax.clearfix.top_pagination
-    = render :partial => "pagination"
+  %ul#dataset-about
+    - if @dataset_description.data_updated_at.present?
+      %li
+        = t '.last_update'
+        %strong= l @dataset_description.data_updated_at, format: :full
+    %li
+      = t '.published_count'
+      %strong= @dataset_description.record_count
 
-  #results
-    = render :partial => "search_status"
-    - if has_privilege?(:edit_record_metadata)
-      = render :partial => "datasets/admin/table"
-    - else
-      = render :partial => "datasets/table"
+    %li
+      = t '.data_provider'
+      %strong= @dataset_description.data_provider
 
-  .pagination.ajax.bottom_pagination
-    = render :partial => "pagination"
+  -if logged_in?
+    %ul#dataset-navigation
+      = render 'node_menu'
+      = render 'datasets/admin/navigation'
 
-#information
-  = render :partial => "information"
+= render "pagination"
 
-#comments
-  = render :partial => "comments"
+#results
+  = render :partial => "search_status"
+  - if has_privilege?(:edit_record_metadata)
+    = render :partial => "datasets/admin/table"
+  - else
+    = render :partial => "datasets/table"
 
-.clearfix &nbsp;
-
-= render 'similar_datasets'
+= render "pagination"

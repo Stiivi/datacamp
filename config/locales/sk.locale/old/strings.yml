@@ -57,11 +57,11 @@ sk:
       bad_quality: 'Zlá kvalita'
       good_quality_true: 'Kvalitný dataset'
       good_quality_false: 'Nekvalitný dataset'
-    info_container:
-      more_information: 'Chcem vedieť viac...'
+    show:
+      more_information: Zobraziť viac
       last_update: 'Aktualizácia:'
       published_count: 'Publikovaných záznamov:'
-      data_provider: 'Poskytovateľ'
+      data_provider: 'Poskytovateľ:'
     similar_datasets:
       header: 'Podobné datasety'
   favorites: 
@@ -255,3 +255,8 @@ sk:
       no_related_records_lawyers_lawyer_associates: 'Tento advokát nemá žiadnych koncipientov.'
       no_related_records_lawyers_lawyer_partnerships: 'Tento advokát nie je členom advokátskeho spoločenstva.'
 
+
+  will_paginate:
+    page_gap: "&hellip;"
+    page_entries_info:
+      multi_page_html: "%{from}&nbsp;-&nbsp;%{to} z %{count}"
