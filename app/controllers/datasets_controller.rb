@@ -28,12 +28,17 @@ class DatasetsController < ApplicationController
   helper_method :has_filters?
 
   def index
+    @only_good = params[:only_good]
     respond_to do |wants|
       wants.html do
         @dataset_categories = DatasetCategory.
           order('dataset_categories.position, dataset_descriptions.position').
           includes(:dataset_descriptions => :translations).
           where('dataset_descriptions.is_active = 1')
+
+        if @only_good
+          @dataset_categories.where('dataset_description.bad_quality = false')
+        end
       end
       wants.xml { render :xml => DatasetDescription.active }
     end

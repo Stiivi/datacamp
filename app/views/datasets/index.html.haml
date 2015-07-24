@@ -1,48 +1,39 @@
-%h1.main
+%h1
   =t "global.datasets"
-  - params[:show_bad_quality] = 'true' if params[:show_bad_quality].blank? && current_user.present? && current_user.show_bad_quality_datasets?
-  - if params[:show_bad_quality] == 'true'
-    = link_to t('.show_good_quality'), datasets_path(show_bad_quality: 'false'), class: 'view_wrong_dataset', onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-pekne-datasety', '1']);"
-  - else
-    = link_to t('.show_bad_quality'), datasets_path(show_bad_quality: 'true'), class: 'view_wrong_dataset', onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-vsetky-datasety', '1']);"
+
+#navigation-anchor
+  - @dataset_categories.each_slice(4).each_with_index do |slice, index|
+    - if index*4 > @dataset_categories.size-4
+      %ul{class: 'last'}
+        - slice.each do |dataset_category|
+          %li
+            %a{href: "##{dataset_category.title.parameterize}"}= dataset_category.title
+    - else
+      %ul
+        - slice.each do |dataset_category|
+          %li
+            %a{href: "##{dataset_category.title.parameterize}"}= dataset_category.title
+
+#dataset-quality-buttons
+  %ul
+    %li
+      = link_to t('.show_good_quality'), datasets_path(only_good: 'true'), class: "view_wrong_dataset #{'active' if @only_good}", onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-pekne-datasety', '1']);"
+    %li
+      = link_to t('.show_bad_quality'), datasets_path, class: "view_wrong_dataset #{'active' if !@only_good}", onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-vsetky-datasety', '1']);"
 
 - @dataset_categories.each do |dataset_category|
-  %div{:id => "dataset_category_container", :class => "#{dom_id(dataset_category)}"}
-    #dataset_category_head
-      = link_to dataset_category ? dataset_category.title : t('global.other'),
-                "##{dataset_category ? dataset_category.title : t('global.other')}",
-                name: dataset_category ? dataset_category.title : t("global.other"),
-                class: 'headline'
-
-    - dataset_category.dataset_descriptions.each do |description|
-      - if !description.bad_quality? || (description.bad_quality && params[:show_bad_quality] == 'true')
-        #dataset
-          = link_to dataset_path(description), class: 'dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier} do
-            %span.dataset_name= description.title
-            %span= clear_textile(description.perex).html_safe
+  .catalog-header{id: dataset_category.title.parameterize}= dataset_category.title
+  #table-catalog
+    %ul.body
+      - dataset_category.filtered_descriptions(@only_good).each do |description|
+        %li.row
+          = link_to description.title, dataset_path(description), class: 'cell dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier}
+          = link_to description.perex, dataset_path(description), class: 'cell dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier}
+          %span.cell
+            - if description.bad_quality
+              .dataset-bad
+            - else
+              .dataset-good
           - if description.api_allowed_for?(current_user)
-            = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier }
-          = link_to '', nil, name: t(".good_quality_#{!description.bad_quality?}"), class: "tooltip dataset_status#{description.bad_quality? ? '_wrong' : ''}"
-
-  -#%table.frontend
-    - dataset_category.dataset_descriptions.each do |description|
-      - if !description.bad_quality? || (description.bad_quality? && current_user.present? && current_user.show_bad_quality_datasets?) || (description.bad_quality && params[:show_bad_quality])
-        %tr
-          %td{:width => 200}
-            %strong= link_to description.title, dataset_path(description)
-            = image_tag 'icons/record_status/icon_doubtful.png', title: t('.bad_quality') if description.bad_quality?
-          %td
-            %em= truncate(clear_textile(description.description), length: 80).html_safe
-          %td.actions{:align => 'right'}
-            .clearfix
-              = link_to("<span>#{t("global.browse_dataset")}</span>".html_safe, dataset_path(description), :class => "button", rel: 'show-dataset')
-              - if description.api_allowed_for?(current_user)
-                = link_to "<span>API is enabled</span>".html_safe, page_path("api-access"), :class => "api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
-
-  -#%br
--#- if params[:show_bad_quality].blank? && (current_user.present? && !current_user.show_bad_quality_datasets?)
-  -#.fr
-    -#= link_to datasets_path(show_bad_quality: true), class: 'button' do
-      -#%span= t('.show_bad_quality')
-  -#%br
-
+            %span.cell
+              = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "download-button api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier }

@@ -52,8 +52,8 @@ sk:
     : Ano
   datasets:
     index:
-      show_bad_quality: 'Zobraziť všetky datasety'
-      show_good_quality: 'Zobraziť iba pekné datasety'
+      show_bad_quality: 'Všetky datasety'
+      show_good_quality: 'Kvalitné datasety'
       bad_quality: 'Zlá kvalita'
       good_quality_true: 'Kvalitný dataset'
       good_quality_false: 'Nekvalitný dataset'

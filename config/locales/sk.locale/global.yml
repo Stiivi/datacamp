@@ -27,7 +27,7 @@ sk:
     data_dictionary: "Slovník údajov"
     dataset: "Súbor údajov"
     dataset_descriptions: "Popisy súborov údajov"
-    datasets: "Súbory údajov"
+    datasets: "Katalóg údajov"
     delete: Vymazať
     delete_confirmation: "Naozaj chcete vymazať túto položku?"
     description: Popis

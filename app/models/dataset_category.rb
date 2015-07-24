@@ -8,6 +8,14 @@ class DatasetCategory < ActiveRecord::Base
   locale_accessor I18N_LOCALES
   
   validates_presence_of_i18n :title, :locales => [I18n.locale]
+
+  def filtered_descriptions(only_good_quality)
+    if only_good_quality
+      dataset_descriptions.reject {|d| d.bad_quality }
+    else
+      dataset_descriptions
+    end
+  end
   
   def to_s
     title

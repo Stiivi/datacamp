@@ -135,7 +135,6 @@ sk:
     data: Údaje
     data_catalogue: "Katalóg údajov"
     data_dictionary: "Slovník údajov"
-    datasets: "Súbory údajov"
     delete: Vymazať
     delete_confirmation: "Naozaj chcete vymazať túto položku?"
     description: Popis
