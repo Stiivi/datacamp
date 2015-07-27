@@ -21,4 +21,6 @@
  *= require modules/datasets
  *= require sortables
  *= require main
+ *= require typo
+ *= require screen
  */
