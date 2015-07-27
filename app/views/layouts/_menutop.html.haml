@@ -5,7 +5,7 @@
     = link_to '', 'http://www.facebook.com/pages/Datanest-Aliancie-Fair-play/151055951576439', class: 'facebook'
 
   - I18N_LOCALES.each do |locale|
-    %li= link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], set_locale_path(:locale => locale.to_s), :class => "forward_hash"
+    %li= link_to_unless I18n.locale == locale, I18N_LOCALE_NAMES[locale], url_for(:locale => locale.to_s), :class => "forward_hash"
 
   - if logged_in?
     %li= link_to t("global.logout"), logout_path

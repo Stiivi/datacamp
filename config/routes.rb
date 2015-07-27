@@ -8,8 +8,6 @@ Datacamp::Application.routes.draw do
     end
   end
 
-  match '/locale/:locale' =>  'main#locale', :as => 'set_locale'
-
   match '/logout' => 'sessions#destroy', :as => :logout
   match '/login' => 'sessions#new', :as => :login
   match '/register' => 'sessions#create'

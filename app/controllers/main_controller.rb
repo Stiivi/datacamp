@@ -20,15 +20,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class MainController < ApplicationController
-  layout "frontend_public"
-
   def index
     @news = News.published.first
-  end
-
-  def locale
-    target = (request.referer && !request.referer.empty?) ? request.referer : root_path
-    I18n.locale = params[:locale] if params[:locale].present?
-    redirect_to root_url(locale: I18n.locale == :sk ? nil : I18n.locale)
   end
 end
