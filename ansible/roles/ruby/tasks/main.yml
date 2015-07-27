@@ -56,6 +56,7 @@
 
 - name: Detect installed ruby versions
   command: 'sudo -iu {{ app_user }} rbenv versions'
+  ignore_errors: yes
   register: rbenv_versions_output
 
 - name: Install ruby version
