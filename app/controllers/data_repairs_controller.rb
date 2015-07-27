@@ -1,5 +1,4 @@
 class DataRepairsController < ApplicationController
-  layout "frontend_main"
   privilege_required :data_editor
   respond_to :html, :xml
   def index
