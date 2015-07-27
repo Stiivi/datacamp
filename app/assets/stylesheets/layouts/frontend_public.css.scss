@@ -1516,6 +1516,18 @@ a.button-metadata {
     float: left;
 }
 
+#page_content {
+  ol {
+    padding-left: 36px;
+    line-height: 1.8;
+
+    li {
+      list-style: decimal;
+      padding: 4px 0;
+    }
+  }
+}
+
 
 
 
