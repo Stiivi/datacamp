@@ -162,7 +162,7 @@ sk:
     query_field: "Hľadať:"
     results: "%{results} výsledkov"
     results_count: "%{count} výsledkov pre '%{query_string}'"
-    search_action: 'Vyhľadávanie...'
+    search_action: 'Hľadať'
     search_placeholder: "Vyhľadajte firmy, štátne organizácie..."
     search_term: Výraz
     searching_wait_notice: "Vyhľadávam ..."

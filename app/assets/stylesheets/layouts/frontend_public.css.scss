@@ -155,6 +155,7 @@ ul#navigation-main {
     float: none;
     overflow: hidden;
     list-style: none;
+    margin-bottom: 20px;
 }
 ul#navigation-main li {
     float: left;
@@ -178,6 +179,9 @@ ul#navigation-main a:hover {
 }
 
 
+ul#navigation-main + ul#navigation-admin {
+  margin-top: -20px;
+}
 
 
 /* Navigation Admin */
@@ -1561,3 +1565,11 @@ div._inscription_Loading div.text { display: block; margin: auto; width: 150px; 
   background: #555555;
   color: #dddddd;
 }
+
+.error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;margin-top: 20px;}
+.error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+.notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+.success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+.error a {color:#8a1f11;}
+.notice a {color:#514721;}
+.success a {color:#264409;}
