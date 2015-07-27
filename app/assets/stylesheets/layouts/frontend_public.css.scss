@@ -26,7 +26,7 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-size: 40px;
     font-weight: 400;
-    padding: 25px 25px 25px 0px;
+    margin: 25px 25px 25px 0px;
 }
 a, input, select, textarea {
     outline: none;
@@ -155,7 +155,6 @@ ul#navigation-main {
     float: none;
     overflow: hidden;
     list-style: none;
-    margin-bottom: 20px;
 }
 ul#navigation-main li {
     float: left;
@@ -179,11 +178,6 @@ ul#navigation-main a:hover {
 }
 
 
-ul#navigation-main + ul#navigation-admin {
-  margin-top: -20px;
-}
-
-
 /* Navigation Admin */
 ul#navigation-admin, ul#navigation-sub {
     color: #ffffff;
@@ -194,7 +188,6 @@ ul#navigation-admin, ul#navigation-sub {
     float: none;
     overflow: hidden;
     list-style: none;
-    margin-bottom: 20px;
 
     li {
         float: left;
@@ -275,7 +268,7 @@ ul#navigation-breadcrumb a:hover {
     background: #4d4d4d;
     display: block;
     float: none;
-    margin: 5px 0 0 0;
+    margin: 5px 0 20px 0;
     overflow: hidden;
     padding: 0;
 }
@@ -601,7 +594,7 @@ h1.claim {
     font-weight: 300;
     letter-spacing: 1px;
     line-height: 40px;
-    margin: 60px 0 0px 0;
+    margin: 60px 0 25px 0;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

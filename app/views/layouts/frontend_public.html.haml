@@ -24,6 +24,7 @@
         .logo
           = link_to '', root_url, class: 'logo'
         = render 'layouts/menu'
+        = render 'layouts/quick_search' unless current_page?(root_path)
 
         - unless response.cache_control[:public]
           - if flash[:notice]
