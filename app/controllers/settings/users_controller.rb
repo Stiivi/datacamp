@@ -84,10 +84,6 @@ module Settings
       @user = current_user
     end
 
-    def init_menu
-      @submenu_partial = "settings"
-    end
-
     protected
 
     # FIXME: Make this reusable

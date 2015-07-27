@@ -1,18 +1,18 @@
-%ul#submenu
+%ul#navigation-sub
   - if current_user && current_user.has_privilege?(:edit_dataset_description)
-    %li= link_to t('global.datasets'), dataset_descriptions_path
+    %li= link_to t('global.datasets'), dataset_descriptions_path, class: active_page_class(dataset_descriptions_path)
 
   - if current_user && current_user.has_privilege?(:create_dataset) 
-    %li= link_to t('dataset.create'), new_dataset_description_path
-    %li= link_to t('dataset.initialize'), dataset_initializations_path
+    %li= link_to t('dataset.create'), new_dataset_description_path, class: active_page_class(new_dataset_description_path)
+    %li= link_to t('dataset.initialize'), dataset_initializations_path, class: active_page_class(dataset_initializations_path)
 
   - if current_user && current_user.has_privilege?(:import_from_file)
-    %li= link_to t('global.import'), new_import_file_path
+    %li= link_to t('global.import'), new_import_file_path, class: active_page_class(new_import_file_path)
 
   - if current_user && current_user.has_privilege?(:edit_dataset_description)
-    %li= link_to t('global.categories'), categories_path
-    %li= link_to t('global.field_description_categories'), field_description_categories_path
+    %li= link_to t('global.categories'), categories_path, class: active_page_class(categories_path)
+    %li= link_to t('global.field_description_categories'), field_description_categories_path, class: active_page_class(field_description_categories_path)
 
   - if current_user && current_user.has_privilege?(:data_editor)
-    %li= link_to t('global.data_repairs'), data_repairs_path
-    %li= link_to t('global.parsers'), parsers_path
+    %li= link_to t('global.data_repairs'), data_repairs_path, class: active_page_class(data_repairs_path)
+    %li= link_to t('global.parsers'), parsers_path, class: active_page_class(parsers_path)

@@ -181,8 +181,7 @@ ul#navigation-main a:hover {
 
 
 /* Navigation Admin */
-ul#navigation-admin {
-    background: #F79C60;
+ul#navigation-admin, ul#navigation-sub {
     color: #ffffff;
     display: block;
     font-family: 'Open Sans', sans-serif;
@@ -191,28 +190,37 @@ ul#navigation-admin {
     float: none;
     overflow: hidden;
     list-style: none;
-}
-ul#navigation-admin li {
-    float: left;
-    overflow: hidden;
-}
-ul#navigation-admin a {
-    display: block;
-    color: #ffffff;
-    padding:9px 15px;
-    text-decoration: none;
-    -webkit-transition: background 0.2s ease;
-    -moz-transition: background 0.2s ease;
-    -o-transition: background 0.2s ease;
-    transition: background 0.2s ease;
-}
-ul#navigation-admin a.active {
-    background: #333333;
-}
-ul#navigation-admin a:hover {
-    background: #333333;
+
+    li {
+        float: left;
+        overflow: hidden;
+    }
+    a {
+        display: block;
+        color: #ffffff;
+        padding:9px 15px;
+        text-decoration: none;
+        -webkit-transition: background 0.2s ease;
+        -moz-transition: background 0.2s ease;
+        -o-transition: background 0.2s ease;
+        transition: background 0.2s ease;
+    }
+    a.active {
+        background: #333333;
+    }
+    a:hover {
+        background: #333333;
+    }
 }
 
+ul#navigation-admin {
+  background: #F79C60;
+}
+
+ul#navigation-sub {
+  background: #346FDC;
+  font-size: 13px;
+}
 
 
 
