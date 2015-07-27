@@ -13,7 +13,7 @@
 
     #searchbox1.searchbox-wrap
       #searchbox-simple
-        = form_tag quick_searches_path do
+        = form_tag quick_searches_path, class: :search do
           = text_field_tag :query_string,
                           (@search.query_string if @search),
                           class: 'search-text',

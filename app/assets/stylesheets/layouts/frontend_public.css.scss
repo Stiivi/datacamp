@@ -1515,3 +1515,7 @@ a.button-metadata {
 #batch_edit .information > .fl { padding-top: 4px; }
 
 a.batch_cancel { position: relative; top:  3px; margin-right: 5px; text-decoration: none; }
+
+div._inscription_Loading { position: fixed; top: 0px; left: 0px; width: 100%; background-color: #000; color: #fff; font-size: 20px; padding: 15px; }
+
+div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: image-url('ajax_preloader_dark.gif') no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
