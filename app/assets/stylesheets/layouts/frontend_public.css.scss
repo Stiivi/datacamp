@@ -1519,3 +1519,33 @@ a.batch_cancel { position: relative; top:  3px; margin-right: 5px; text-decorati
 div._inscription_Loading { position: fixed; top: 0px; left: 0px; width: 100%; background-color: #000; color: #fff; font-size: 20px; padding: 15px; }
 
 div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: image-url('ajax_preloader_dark.gif') no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
+
+#cookie_banner {
+  display: block;
+  float: none;
+  overflow: hidden;
+  background: #222222;
+  color: #ffffff;
+  padding: 5px 12px;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+#cookie_banner a {
+  display: inline-block;
+  padding: 0 7px;
+  margin: 0 0 0 10px;
+  background: #666666;
+  color: #ffffff;
+  text-decoration: none;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+#cookie_banner a:hover {
+  background: #555555;
+  color: #dddddd;
+}

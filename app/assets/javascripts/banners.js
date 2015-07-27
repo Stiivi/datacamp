@@ -21,7 +21,7 @@ $(function(){
 });
 
 function disableBanner(banner_type){
-    $.cookie('disabled_' + banner_type + '_banner', '1', { expires: 365 });
+    $.cookie('disabled_' + banner_type + '_banner', '1', { expires: 365, path: '/' });
 }
 
 function enabledBanner(banner_type){
