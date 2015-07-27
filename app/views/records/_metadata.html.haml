@@ -1,18 +1,17 @@
-#information_inside.clearfix
-  .span-11
-    %table
-      %tr
-        %td.label= t("metadata.created_on")
-        %td= @record.created_at
-      %tr
-        %td.label= t("metadata.valid_from")
-        %td= @record.validity_date
-      %tr
-        %td.label= t("metadata.last_update")
-        %td= @record.updated_at
-      %tr
-        %td.label= t("metadata.status")
-        %td= @record.record_status
-      %tr
-        %td.label= t("metadata.quality_status")
-        %td= @record.quality_status
+#table-dataset-detail
+  %ul.body
+    %li.row
+      %span.name-item= t("metadata.created_on")
+      %span= @record.created_at
+    %li.row
+      %span.name-item= t("metadata.valid_from")
+      %span= @record.validity_date
+    %li.row
+      %span.name-item= t("metadata.last_update")
+      %span= @record.updated_at
+    %li.row
+      %span.name-item= t("metadata.status")
+      %span= @record.record_status
+    %li.row
+      %span.name-item= t("metadata.quality_status")
+      %span= @record.quality_status

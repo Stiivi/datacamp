@@ -94,3 +94,6 @@ en:
       field_description_categories: 'Field desc. categories'
       parsers: 'Parsers'
       copyright: "2009&ndash;2015 &copy; Fair Play Alliance Beta version 1.0"
+      report_error: "Report error"
+      favorites: "Favorite"
+      share: "Share"

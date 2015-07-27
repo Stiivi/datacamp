@@ -93,3 +93,6 @@ sk:
     value: Hodnota
     parsers: 'Parsery'
     copyright: "2009&ndash;2015 &copy; Aliancia Fair-Play Beta verzia 1.0"
+    report_error: "Upozorniť admina na chybu"
+    favorite: "Obľúbené"
+    share: "Zdieľať"

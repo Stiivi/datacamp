@@ -1251,7 +1251,7 @@ ul#news a:hover {
     height: 28px;
     width: 31px;
 }
-#dataset-detail-header a.favorite:active {
+#dataset-detail-header a.favorite:active, a.favorite-active {
     background: url(image-path('favorite-star.png')) no-repeat 0px -28px;
     display: block;
     height: 28px;
