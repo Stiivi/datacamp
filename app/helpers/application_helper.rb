@@ -41,4 +41,7 @@ module ApplicationHelper
     end
   end
 
+  def active_page_class(path)
+    "active" if current_page?(path)
+  end
 end

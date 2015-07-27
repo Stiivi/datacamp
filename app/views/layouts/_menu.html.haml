@@ -1,31 +1,31 @@
 %ul#navigation-main
-  %li= link_to t("global.data_catalogue"), datasets_path, class: (params[:controller] == "datasets" ? "active" : "")
-  %li= link_to t('pages.terms_of_service'), page_path('terms_of_service')
-  %li= link_to t('pages.about_service'), page_path('about_service')
-  %li= link_to t('news.title'), news_index_path
+  %li= link_to t("global.data_catalogue"), datasets_path, class: active_page_class(datasets_path)
+  %li= link_to t('pages.terms_of_service'), page_path('terms_of_service'), class: active_page_class(page_path('terms_of_service'))
+  %li= link_to t('pages.about_service'), page_path('about_service'), class: active_page_class(page_path('about_service'))
+  %li= link_to t('news.title'), news_index_path, class: active_page_class(news_index_path)
 
 - if logged_in?
   %ul#navigation-admin
     - if current_user.has_privilege? :edit_dataset_description
       %li
-        = link_to t("global.data_dictionary"), dataset_descriptions_path, class: (@submenu_partial == "data_dictionary" ? "active" : "")
+        = link_to t("global.data_dictionary"), dataset_descriptions_path, class: active_page_class(dataset_descriptions_path)
     - if current_user.has_one_of_rights?(:manage_users, :moderate_comments, :edit_system_settings, :edit_pages)
       %li
-        = link_to t("global.settings"), settings_system_variables_path, class: (@submenu_partial == "settings" ? "active" : "")
+        = link_to t("global.settings"), settings_system_variables_path, class: active_page_class(settings_system_variables_path)
 
     - if current_user.has_privilege?(:manage_users)
-      %li= link_to t("global.users"), settings_users_path
+      %li= link_to t("global.users"), settings_users_path, class: active_page_class(settings_users_path)
 
     - if current_user.has_privilege?(:moderate_comments)
-      %li= link_to t("global.moderation"), settings_comments_path
+      %li= link_to t("global.moderation"), settings_comments_path, class: active_page_class(settings_comments_path)
 
     - if current_user.has_privilege?(:edit_pages)
-      %li= link_to t("global.pages"), settings_pages_path
+      %li= link_to t("global.pages"), settings_pages_path, class: active_page_class(settings_pages_path)
 
     - if current_user.has_privilege?(:data_editor)
-      %li= link_to t("global.news"), settings_news_index_path
+      %li= link_to t("global.news"), settings_news_index_path, class: active_page_class(settings_news_index_path)
 
     - if current_user.has_privilege?(:edit_blocks)
-      %li= link_to t("global.blocks"), settings_blocks_path
+      %li= link_to t("global.blocks"), settings_blocks_path, class: active_page_class(settings_blocks_path)
 
 = render "menus/#{@submenu_partial}" if @submenu_partial.present?
