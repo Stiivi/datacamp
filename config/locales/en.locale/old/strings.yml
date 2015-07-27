@@ -8,6 +8,7 @@ en:
             regular: Regular
             premium: Premium
         allowed_for_dataset: Download
+        disallowed_for_dataset: Dataset cannot be downloaded
     blocks_heading: Applications built on Datanest API
     blocks:
         all_blocks: All blocks

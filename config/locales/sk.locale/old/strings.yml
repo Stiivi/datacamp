@@ -9,6 +9,7 @@ sk:
       regular: Obyčajné
       premium: Premium
     allowed_for_dataset: Download
+    disallowed_for_dataset: Dataset nie je možné stiahnuť
   blocks_heading: Aplikácie postavené na Dataneste
   blocks:
     all_blocks: Všetky bloky
