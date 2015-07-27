@@ -1,3 +1,8 @@
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('global.datasets'), datasets_path
+  %li= link_to @dataset_description.title, url_for
+
 %h1= @dataset_description.title
 
 #dataset-description-container

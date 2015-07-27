@@ -1,3 +1,9 @@
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('global.datasets'), datasets_path
+  %li= link_to @dataset_description.title, dataset_path(@dataset_description)
+  %li= link_to "ID #{@record[:id]}", url_for
+
 #dataset-detail-header
   %ul
     %li.corector= t("global.favorite")
