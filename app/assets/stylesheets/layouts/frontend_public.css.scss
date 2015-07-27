@@ -1101,9 +1101,10 @@ ul#news a:hover {
 #table-dataset .cell {
     border-bottom: 1px solid #cccccc;
     border-left: 1px solid #cccccc;
-  display: table-cell;
-  padding: 5px 7px;
-  text-decoration: none;
+    display: table-cell;
+    padding: 5px 7px;
+    text-decoration: none;
+    line-height: 1.5;
 }
 #table-dataset .sum {
     text-align: right;
@@ -1505,3 +1506,12 @@ a.button-metadata {
 #pop-up-window .left {
     float: left;
 }
+
+
+
+
+#batch_edit { background-image: image-url('dataset_batch_edit.png'); padding: 5px 10px; color: #3c3c3c; font-size: 12px; font-weight: bold; margin-top: 20px; }
+
+#batch_edit .information > .fl { padding-top: 4px; }
+
+a.batch_cancel { position: relative; top:  3px; margin-right: 5px; text-decoration: none; }
