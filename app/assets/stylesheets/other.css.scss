@@ -102,50 +102,6 @@
 
   /* @end */
 
-  /* @group Global Loading */
-
-  div._inscription_Loading { position: fixed; top: 0px; left: 0px; width: 100%; background-color: #000; color: #fff; font-size: 20px; padding: 15px; }
-
-  div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: image-url('ajax_preloader_dark.gif') no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
-
-
-
-  /* @end */
-
-  /* @group Modal */
-
-  /* Shadow Overlay */
-
-  div._inscription_Overlay { position: fixed; _position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: #000; }
-
-  div._inscription_Modal { overflow: hidden; background: image-url('modal_small.png') no-repeat; z-index: 9999; }
-
-  div._inscription_Modal div.inner { padding: 15px; position: relative; }
-
-  /* Modal Window */
-
-  div._inscription_Modal.window { width: 568px; height: 326px; margin-top: -163px; margin-left: -284px; background: image-url('modal_window.png'); }
-
-  div._inscription_Modal.window div.inner { padding: 40px; height: 246px; }
-
-  /* Modal under action element */
-
-  div._inscription_Modal.under { width: 366px; height: 131px; margin-left: -173px; margin-top: 30px; }
-
-  div._inscription_Modal.under div.inner {  }
-
-  /* Model right from action element */
-
-  div._inscription_Modal.right { background: image-url('modal_small_to_right.png'); width: 372px; height: 130px; margin-top: -13px; }
-
-  div._inscription_Modal.right div.inner { padding: 15px 15px 15px 20px; }
-
-  div._inscription_Modal h1 { font-size: 15px; }
-
-  div._inscription_Modal .actions { position: absolute; bottom: 40px; left: 0px; width: 100%; padding-left: 40px; padding-right: 20px; }
-
-
-
   /* @end */
 
   /* @group Buttons */
@@ -352,3 +308,48 @@
 
   /* @end */
 }
+
+/* @group Global Loading */
+
+div._inscription_Loading { position: fixed; top: 0px; left: 0px; width: 100%; background-color: #000; color: #fff; font-size: 20px; padding: 15px; }
+
+div._inscription_Loading div.text { display: block; margin: auto; width: 150px; background: image-url('ajax_preloader_dark.gif') no-repeat; padding-left: 40px; text-shadow: #000 0 -1px 0; }
+
+
+
+/* @end */
+
+/* @group Modal */
+
+/* Shadow Overlay */
+
+div._inscription_Overlay { position: fixed; _position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: #000; }
+
+div._inscription_Modal { overflow: hidden; background: image-url('modal_small.png') no-repeat; z-index: 9999; }
+
+div._inscription_Modal div.inner { padding: 15px; position: relative; }
+
+/* Modal Window */
+
+div._inscription_Modal.window { width: 568px; height: 326px; margin-top: -163px; margin-left: -284px; background: image-url('modal_window.png'); }
+
+div._inscription_Modal.window div.inner { padding: 40px; height: 246px; }
+
+/* Modal under action element */
+
+div._inscription_Modal.under { width: 366px; height: 131px; margin-left: -173px; margin-top: 30px; }
+
+div._inscription_Modal.under div.inner {  }
+
+/* Model right from action element */
+
+div._inscription_Modal.right { background: image-url('modal_small_to_right.png'); width: 372px; height: 130px; margin-top: -13px; }
+
+div._inscription_Modal.right div.inner { padding: 15px 15px 15px 20px; }
+
+div._inscription_Modal h1 { font-size: 15px; }
+
+div._inscription_Modal .actions { position: absolute; bottom: 40px; left: 0px; width: 100%; padding-left: 40px; padding-right: 20px; }
+
+
+

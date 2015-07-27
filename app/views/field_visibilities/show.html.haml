@@ -1,32 +1,33 @@
-= render :partial => "dataset_descriptions/header"
+.legacy
+  = render :partial => "dataset_descriptions/header"
 
-= form_for @dataset_description, url: dataset_description_field_visibilities_path(dataset_description_id: @dataset_description), method: :put do |f|
-  %p.top_buttons= f.submit t("global.save_changes")
+  = form_for @dataset_description, url: dataset_description_field_visibilities_path(dataset_description_id: @dataset_description), method: :put do |f|
+    %p.top_buttons= f.submit t("global.save_changes")
 
-  %table
-    %tr
-      %th{:width => 400}= t "dataset.field_description"
-      %th
-        %a{:href => "#is_visible_in_listing", :class => "switch_visibility"}= t "dataset.is_visible_in_listing"
-      %th
-        %a{:href => "#is_visible_in_search", :class => "switch_visibility"}= t "dataset.is_visible_in_search"
-      %th
-        %a{:href => "#is_visible_in_detail", :class => "switch_visibility"}= t "dataset.is_visible_in_detail"
-      %th
-        %a{:href => "#is_visible_in_export", :class => "switch_visibility"}= t "dataset.is_visible_in_export"
-      %th
-        %a{:href => "#is_visible_in_relation", :class => "switch_visibility"}= t "dataset.is_visible_in_relation"
-  
-    - @dataset_description.field_descriptions.each do |description|
-      = f.fields_for :field_descriptions, description do |fields|
-        %tr
-          %td== #{description.title} (#{description.identifier})
-          %td.is_visible_in_listing= fields.check_box :is_visible_in_listing
-          %td.is_visible_in_search= fields.check_box :is_visible_in_search
-          %td.is_visible_in_detail= fields.check_box :is_visible_in_detail
-          %td.is_visible_in_export= fields.check_box :is_visible_in_export
-          %td.is_visible_in_relation= fields.check_box :is_visible_in_relation
-          
-  %br
-  
-  %p.bottom_buttons= f.submit t("global.save_changes")
+    %table
+      %tr
+        %th{:width => 400}= t "dataset.field_description"
+        %th
+          %a{:href => "#is_visible_in_listing", :class => "switch_visibility"}= t "dataset.is_visible_in_listing"
+        %th
+          %a{:href => "#is_visible_in_search", :class => "switch_visibility"}= t "dataset.is_visible_in_search"
+        %th
+          %a{:href => "#is_visible_in_detail", :class => "switch_visibility"}= t "dataset.is_visible_in_detail"
+        %th
+          %a{:href => "#is_visible_in_export", :class => "switch_visibility"}= t "dataset.is_visible_in_export"
+        %th
+          %a{:href => "#is_visible_in_relation", :class => "switch_visibility"}= t "dataset.is_visible_in_relation"
+    
+      - @dataset_description.field_descriptions.each do |description|
+        = f.fields_for :field_descriptions, description do |fields|
+          %tr
+            %td== #{description.title} (#{description.identifier})
+            %td.is_visible_in_listing= fields.check_box :is_visible_in_listing
+            %td.is_visible_in_search= fields.check_box :is_visible_in_search
+            %td.is_visible_in_detail= fields.check_box :is_visible_in_detail
+            %td.is_visible_in_export= fields.check_box :is_visible_in_export
+            %td.is_visible_in_relation= fields.check_box :is_visible_in_relation
+            
+    %br
+    
+    %p.bottom_buttons= f.submit t("global.save_changes")

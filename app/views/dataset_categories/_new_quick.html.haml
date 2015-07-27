@@ -1,12 +1,13 @@
-= form_for @category, :builder => ListFormBuilder, :url => categories_path, :html => {:class => "small"} do |f|
-  %h1 New category
+.legacy
+  = form_for @category, :builder => ListFormBuilder, :url => categories_path, :html => {:class => "small"} do |f|
+    %h1 New category
 
-  %ul
-    = f.text_field "#{I18n.locale}_title"
-    
-    %li
-      %label
-      = f.submit t("global.submit")
-      &nbsp;
-      or
-      %a{:href => "#", :class => "cancel"}= t("global.nevermind")
+    %ul
+      = f.text_field "#{I18n.locale}_title"
+      
+      %li
+        %label
+        = f.submit t("global.submit")
+        &nbsp;
+        or
+        %a{:href => "#", :class => "cancel"}= t("global.nevermind")

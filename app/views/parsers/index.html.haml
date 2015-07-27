@@ -1,19 +1,20 @@
-.clearfix
-  %h1.fl= t '.header'
+.legacy
+  .clearfix
+    %h1.fl= t '.header'
 
-%table
-  %tr
-    %th= t ".table.name"
-    %th= t ".table.status"
-    %th
-    %th
-
-  - @parsers.each do |parser|
+  %table
     %tr
-      %td= parser.name
-      %td= parser.status
-      %td
-        - if parser.download_path.present?
-          - parser.download_path.each do |dp|
-            %div= link_to dp, download_parser_path(id: parser, download_path: dp) if parser.done?
-      %td= button_link_to t(".show"), parser_path(parser), rel: 'show'
+      %th= t ".table.name"
+      %th= t ".table.status"
+      %th
+      %th
+
+    - @parsers.each do |parser|
+      %tr
+        %td= parser.name
+        %td= parser.status
+        %td
+          - if parser.download_path.present?
+            - parser.download_path.each do |dp|
+              %div= link_to dp, download_parser_path(id: parser, download_path: dp) if parser.done?
+        %td= button_link_to t(".show"), parser_path(parser), rel: 'show'

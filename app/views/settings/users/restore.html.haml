@@ -1,14 +1,15 @@
-%h1= t("session.reset_password")
+.legacy
+  %h1= t("session.reset_password")
 
-- if @account.present?
+  - if @account.present?
 
-  = form_for @account, :builder => ListFormBuilder, :url => restore_settings_user_path(@account.restoration_code) do |f|
-    %ul
-      = f.password_field :password
-      = f.password_field :password_confirmation
-      %li.clearfix
-        %label
-        = f.submit
+    = form_for @account, :builder => ListFormBuilder, :url => restore_settings_user_path(@account.restoration_code) do |f|
+      %ul
+        = f.password_field :password
+        = f.password_field :password_confirmation
+        %li.clearfix
+          %label
+          = f.submit
 
-- else
-  = t('.code_invalid')
+  - else
+    = t('.code_invalid')

@@ -1,28 +1,29 @@
-= render :partial => "dataset_descriptions/header"
+.legacy
+  = render :partial => "dataset_descriptions/header"
 
-.content.clearfix
-  %div.action_box= "Table name: <strong>#{@datastore_state.table_name}</strong>".html_safe
-  %br
-  
-  %h2 Missing descriptions in data dictionary
-  %p= "There are #{@datastore_state.missing_descriptions.count} columns in the dataset table that have no description"
-  %br
-  
-  %ul
-    - @datastore_state.missing_descriptions.each do |column|
-      %li.clearfix{:id => "column_#{column}"}
-        %span.fl= column
-        = link_to create_column_description_dataset_description_datastore_states_path(dataset_description_id: @dataset_description, :column => column), method: :post, class: 'fr button' do
-          %span Add
+  .content.clearfix
+    %div.action_box= "Table name: <strong>#{@datastore_state.table_name}</strong>".html_safe
+    %br
+    
+    %h2 Missing descriptions in data dictionary
+    %p= "There are #{@datastore_state.missing_descriptions.count} columns in the dataset table that have no description"
+    %br
+    
+    %ul
+      - @datastore_state.missing_descriptions.each do |column|
+        %li.clearfix{:id => "column_#{column}"}
+          %span.fl= column
+          = link_to create_column_description_dataset_description_datastore_states_path(dataset_description_id: @dataset_description, :column => column), method: :post, class: 'fr button' do
+            %span Add
 
-  %h2 Missing columns in database
-  
-  %p= "There are #{@datastore_state.missing_columns.count} dataset fields that have no columns in the dataset table"
-  %ul
-    - @datastore_state.missing_columns.each do |column|
-      %li.clearfix{:id => "column_#{column}"}
-        %span.fl.highlight
-          %strong= column
+    %h2 Missing columns in database
+    
+    %p= "There are #{@datastore_state.missing_columns.count} dataset fields that have no columns in the dataset table"
+    %ul
+      - @datastore_state.missing_columns.each do |column|
+        %li.clearfix{:id => "column_#{column}"}
+          %span.fl.highlight
+            %strong= column
 
-        = link_to create_table_column_dataset_description_datastore_states_path(dataset_description_id: @dataset_description, :column => column), method: :post, class: 'fr button' do
-          %span Add
+          = link_to create_table_column_dataset_description_datastore_states_path(dataset_description_id: @dataset_description, :column => column), method: :post, class: 'fr button' do
+            %span Add

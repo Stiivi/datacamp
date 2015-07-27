@@ -1,9 +1,6 @@
-#batch_edit.hidden
+#batch_edit.hidden.legacy
   .information.clearfix
     .fl
-      %a.batch_cancel{:href => "#"}
-        = image_tag "icons/cancel_alt.png"
-
       = t("dataset.selected_records", :count => '<strong class="count">0</strong>').html_safe
       = t("dataset.batch_edit")
 

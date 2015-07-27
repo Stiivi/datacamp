@@ -1,7 +1,8 @@
-.clearfix
-  %h1.fl= t("blocks.edit_block")
-  .fr.clearfix
-    = button_link_to t("global.back"), settings_blocks_path
-//    = button_link_to t("blocks.show_block"), block_path(@block)
+.legacy
+  .clearfix
+    %h1.fl= t("blocks.edit_block")
+    .fr.clearfix
+      = button_link_to t("global.back"), settings_blocks_path
+  //    = button_link_to t("blocks.show_block"), block_path(@block)
 
-= render :partial => "form"
+  = render :partial => "form"

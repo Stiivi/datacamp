@@ -1,16 +1,17 @@
-%h1= @page.title
-#page_content{class: params[:id] == 'index' && @news.present? ? 'with_sidebar': ''}=raw @page.html_body
+.legacy
+  %h1= @page.title
+  #page_content{class: params[:id] == 'index' && @news.present? ? 'with_sidebar': ''}=raw @page.html_body
 
-- if @news.present?
-  #newsfeed
-    %ul
-      %li=link_to t('.news_header'), news_index_path, class: 'headline'
+  - if @news.present?
+    #newsfeed
+      %ul
+        %li=link_to t('.news_header'), news_index_path, class: 'headline'
 
-      = render partial: 'news/news_item', collection: @news
+        = render partial: 'news/news_item', collection: @news
 
-.clearfix &nbsp;
+  .clearfix &nbsp;
 
-#blocks=raw @page.block
+  #blocks=raw @page.block
 -#- if @blocks.present?
   %p
     .blocks.container.prepend-top.append-bottom.prepend-1

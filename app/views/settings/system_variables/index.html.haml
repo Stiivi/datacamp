@@ -1,21 +1,22 @@
-%h1= t "global.settings"
+.legacy
+  %h1= t "global.settings"
 
-= form_for :system_variables,
-            url: update_all_settings_system_variables_path,
-            html: { method: :put } do |f|
-  %table
-    %tr
-      %th= t "settings.name"
-      %th= t "settings.description"
-      %th= t "settings.value"
-    - @system_variables.each do |system_variable|
+  = form_for :system_variables,
+              url: update_all_settings_system_variables_path,
+              html: { method: :put } do |f|
+    %table
       %tr
-        %td
-          = label_tag "system_variables[#{system_variable.id}][value]", system_variable.name
-        %td
-          %b= system_variable.description
-        %td
-          = text_field_tag "system_variables[#{system_variable.id}][value]", system_variable.value
+        %th= t "settings.name"
+        %th= t "settings.description"
+        %th= t "settings.value"
+      - @system_variables.each do |system_variable|
+        %tr
+          %td
+            = label_tag "system_variables[#{system_variable.id}][value]", system_variable.name
+          %td
+            %b= system_variable.description
+          %td
+            = text_field_tag "system_variables[#{system_variable.id}][value]", system_variable.value
 
-  .action_box
-    = f.submit t "global.save"
+    .action_box
+      = f.submit t "global.save"

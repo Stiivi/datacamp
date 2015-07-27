@@ -1,7 +1,8 @@
-.clearfix
-  %h1.fl= t("pages.edit_page")
-  .fr.clearfix
-    = button_link_to t("global.back"), settings_pages_path
-    = button_link_to t("pages.show_page"), page_path(@page)
+.legacy
+  .clearfix
+    %h1.fl= t("pages.edit_page")
+    .fr.clearfix
+      = button_link_to t("global.back"), settings_pages_path
+      = button_link_to t("pages.show_page"), page_path(@page)
 
-= render :partial => "form"
+  = render :partial => "form"

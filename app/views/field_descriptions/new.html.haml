@@ -1,6 +1,7 @@
-%h1
-  == New field description #{@dataset_description.title}
-  
-= render :partial => 'form'
+.legacy
+  %h1
+    == New field description #{@dataset_description.title}
+    
+  = render :partial => 'form'
 
-= link_to 'Back', dataset_description_path(@dataset_description)
+  = link_to 'Back', dataset_description_path(@dataset_description)

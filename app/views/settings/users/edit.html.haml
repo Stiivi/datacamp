@@ -1,7 +1,8 @@
-.clearfix
-  %h1.fl== Edit user #{@user.login}
-  
-  .buttons.fr
-    = link_to "<span>Back</span>".html_safe, settings_users_path, :class => "button dark"
+.legacy
+  .clearfix
+    %h1.fl== Edit user #{@user.login}
     
-= render :partial => "form"
+    .buttons.fr
+      = link_to "<span>Back</span>".html_safe, settings_users_path, :class => "button dark"
+      
+  = render :partial => "form"

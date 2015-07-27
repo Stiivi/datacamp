@@ -1,23 +1,24 @@
-.clearfix
-  %h1.fl= t("categories.all")
-  .fr= button_link_to t("categories.new"), new_field_description_category_path
+.legacy
+  .clearfix
+    %h1.fl= t("categories.all")
+    .fr= button_link_to t("categories.new"), new_field_description_category_path
 
-%table
-  %tr
-    %th= t("categories.name")
-    %th= t("categories.last_update")
-    %th
-    
-  - @categories.each do |category|
-    %tr{:id => dom_id(category)}
-      %td= category.title
-      %td= category.updated_at
-      %td{:align => "right"}
-        .clearfix
-          .fr.clearfix
-            = button_link_to t("blocks.edit_block"), edit_field_description_category_path(category)
-            = link_to(image_tag('icons/trash.gif'),
-                      field_description_category_path(category),
-                      confirm: t("global.delete_confirmation"),
-                      method: :delete,
-                      title: t('global.delete'))
+  %table
+    %tr
+      %th= t("categories.name")
+      %th= t("categories.last_update")
+      %th
+      
+    - @categories.each do |category|
+      %tr{:id => dom_id(category)}
+        %td= category.title
+        %td= category.updated_at
+        %td{:align => "right"}
+          .clearfix
+            .fr.clearfix
+              = button_link_to t("blocks.edit_block"), edit_field_description_category_path(category)
+              = link_to(image_tag('icons/trash.gif'),
+                        field_description_category_path(category),
+                        confirm: t("global.delete_confirmation"),
+                        method: :delete,
+                        title: t('global.delete'))

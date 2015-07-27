@@ -1,25 +1,26 @@
-.clearfix
-  %h1.fl= "Listing data_repairs"
-  .fr= button_link_to 'Sphinx reindex', sphinx_reindex_data_repairs_path, :method => :post
+.legacy
+  .clearfix
+    %h1.fl= "Listing data_repairs"
+    .fr= button_link_to 'Sphinx reindex', sphinx_reindex_data_repairs_path, :method => :post
 
-%table
-  %tr
-    %th Type
-    %th Regis table name
-    %th Target table name
-    %th Repaired records
-    %th Status
-    %th
-
-  - @data_repairs.each do |data_repair|
+  %table
     %tr
-      %td= data_repair.repair_type
-      %td= data_repair.regis_table_name
-      %td= data_repair.target_table_name
-      %td= data_repair.repaired_records
-      %td= data_repair.status
-      %td= link_to 'Show', data_repair
+      %th Type
+      %th Regis table name
+      %th Target table name
+      %th Repaired records
+      %th Status
+      %th
 
-%br
+    - @data_repairs.each do |data_repair|
+      %tr
+        %td= data_repair.repair_type
+        %td= data_repair.regis_table_name
+        %td= data_repair.target_table_name
+        %td= data_repair.repaired_records
+        %td= data_repair.status
+        %td= link_to 'Show', data_repair
 
-= link_to 'New Data repair', new_data_repair_path
+  %br
+
+  = link_to 'New Data repair', new_data_repair_path

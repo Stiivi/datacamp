@@ -1,5 +1,6 @@
-%h1= @news_item.title
+.legacy
+  %h1= @news_item.title
 
-%p= textile @news_item.text
+  %p= textile @news_item.text
 
-= button_link_to t('.index'), news_index_path
+  = button_link_to t('.index'), news_index_path

@@ -1,18 +1,19 @@
-= form_for(@dataset_description,
-            url: update_field_description_categories_dataset_description_path(@dataset_description)) do |f|
-  = f.error_messages
+.legacy
+  = form_for(@dataset_description,
+              url: update_field_description_categories_dataset_description_path(@dataset_description)) do |f|
+    = f.error_messages
 
-  %table
-    - FieldDescriptionCategory.all.each_slice(3) do |fdcs|
-      %tr
-        - fdcs.each do |fdc|
-          %td
-            %label
-              = check_box_tag 'dataset_description[field_description_category_ids][]',
-                            fdc.id,
-                            @dataset_description.field_description_categories.include?(fdc)
-              = fdc.title
-  %p
-    = f.submit t("global.save")
-    or
-    = link_to 'Cancel', dataset_description_path(@dataset_description), :class => 'cancel'
+    %table
+      - FieldDescriptionCategory.all.each_slice(3) do |fdcs|
+        %tr
+          - fdcs.each do |fdc|
+            %td
+              %label
+                = check_box_tag 'dataset_description[field_description_category_ids][]',
+                              fdc.id,
+                              @dataset_description.field_description_categories.include?(fdc)
+                = fdc.title
+    %p
+      = f.submit t("global.save")
+      or
+      = link_to 'Cancel', dataset_description_path(@dataset_description), :class => 'cancel'

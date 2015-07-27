@@ -1,19 +1,20 @@
-.clearfix
-  %h1.fl= t '.header'
-  .fr= button_link_to t('.new'), new_settings_news_path
+.legacy
+  .clearfix
+    %h1.fl= t '.header'
+    .fr= button_link_to t('.new'), new_settings_news_path
 
-%table
-  %tr
-    %th= t ".title"
-    %th= t ".last_update"
-    %th= t '.published_title'
-    %th
-
-  - @news.each do |news_item|
+  %table
     %tr
-      %td= news_item.title
-      %td= l news_item.updated_at, format: :full
-      %td= t ".published.#{news_item.published}"
-      %td{align: 'right'}
-        .clearfix
-          .fr.clearfix= button_link_to t('.edit'), edit_settings_news_path(news_item)
+      %th= t ".title"
+      %th= t ".last_update"
+      %th= t '.published_title'
+      %th
+
+    - @news.each do |news_item|
+      %tr
+        %td= news_item.title
+        %td= l news_item.updated_at, format: :full
+        %td= t ".published.#{news_item.published}"
+        %td{align: 'right'}
+          .clearfix
+            .fr.clearfix= button_link_to t('.edit'), edit_settings_news_path(news_item)

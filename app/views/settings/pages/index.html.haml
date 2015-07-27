@@ -1,21 +1,22 @@
-.clearfix
-  %h1.fl= t("pages.all_pages")
-  .fr= button_link_to t("pages.new_page"), new_settings_page_path
+.legacy
+  .clearfix
+    %h1.fl= t("pages.all_pages")
+    .fr= button_link_to t("pages.new_page"), new_settings_page_path
 
-%table
-  %tr
-    %th= t("pages.name")
-    %th= t("pages.title")
-    %th= t("pages.last_update")
-    %th
-    
-  - @pages.each do |page|
+  %table
     %tr
-      %td= page.page_name
-      %td= page.title
-      %td= page.updated_at
-      %td{:align => "right"}
-        .clearfix
-          .fr.clearfix
-            = button_link_to t("pages.edit_page"), settings_page_path(page)
-            = button_link_to t("pages.show_page"), page_path(page)
+      %th= t("pages.name")
+      %th= t("pages.title")
+      %th= t("pages.last_update")
+      %th
+      
+    - @pages.each do |page|
+      %tr
+        %td= page.page_name
+        %td= page.title
+        %td= page.updated_at
+        %td{:align => "right"}
+          .clearfix
+            .fr.clearfix
+              = button_link_to t("pages.edit_page"), settings_page_path(page)
+              = button_link_to t("pages.show_page"), page_path(page)

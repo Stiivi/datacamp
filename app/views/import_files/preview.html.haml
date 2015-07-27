@@ -1,37 +1,38 @@
-= render :partial => "status"
+.legacy
+  = render :partial => "status"
 
-.node
-  .information
-    .clearfix
-      %h1.fl= t "import.file_ready", :title => @import_file.title
-      .fr
-        = button_link_to t("import.edit_settings"), '#', :class => "toggle_settings"
-    .settings
-      = render 'form'
-    
-%br
-.clearfix
-  .fl
-    %h1= t "import.column_mapping"
-
-- if params[:guess_mapping]
-  %p.notice= t("import.guessing_mapping")
-
-= form_tag import_import_file_path(@import_file), {:class => "inline preloader", :"data-preloader-message" => t("import.importing")} do
-  %table
-    %tr
-      %th{:width => 30}= t "import.column"
-      %th{:width => 200}= t "import.field_description"
-      %th= t "import.header" if @mapping.present?
-      %th= t "import.preview"
+  .node
+    .information
+      .clearfix
+        %h1.fl= t "import.file_ready", :title => @import_file.title
+        .fr
+          = button_link_to t("import.edit_settings"), '#', :class => "toggle_settings"
+      .settings
+        = render 'form'
       
-    - @import_file.header.each_with_index do |header, i|
+  %br
+  .clearfix
+    .fl
+      %h1= t "import.column_mapping"
+
+  - if params[:guess_mapping]
+    %p.notice= t("import.guessing_mapping")
+
+  = form_tag import_import_file_path(@import_file), {:class => "inline preloader", :"data-preloader-message" => t("import.importing")} do
+    %table
       %tr
-        %td
-          %b= i+1
-        %td= field_description_picker(i)
-        %td= @import_file.header[i] if @mapping.present?
-        %td= @sample[i]
-  
-  = submit_tag t("import.start_import")
-  
+        %th{:width => 30}= t "import.column"
+        %th{:width => 200}= t "import.field_description"
+        %th= t "import.header" if @mapping.present?
+        %th= t "import.preview"
+        
+      - @import_file.header.each_with_index do |header, i|
+        %tr
+          %td
+            %b= i+1
+          %td= field_description_picker(i)
+          %td= @import_file.header[i] if @mapping.present?
+          %td= @sample[i]
+    
+    = submit_tag t("import.start_import")
+    

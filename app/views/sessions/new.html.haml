@@ -1,24 +1,25 @@
-%h1= t "global.login"
+.legacy
+  %h1= t "global.login"
 
-- if SystemVariable.get :private_mode
-  %p.notice
-    =t "messages.application_testing_notice"
-    %br
-    =t("messages.testing_feedback_notice", :url => new_watcher_path).html_safe
+  - if SystemVariable.get :private_mode
+    %p.notice
+      =t "messages.application_testing_notice"
+      %br
+      =t("messages.testing_feedback_notice", :url => new_watcher_path).html_safe
 
-= form_tag session_path do
-  = hidden_field_tag 'return', params[:return] || flash[:return]
-  %ul
-    %li.clearfix
-      = label_tag 'login', t("session.user_name")
-      = text_field_tag 'login', @login
+  = form_tag session_path do
+    = hidden_field_tag 'return', params[:return] || flash[:return]
+    %ul
+      %li.clearfix
+        = label_tag 'login', t("session.user_name")
+        = text_field_tag 'login', @login
 
-    %li.clearfix
-      = label_tag 'password', t("session.password")
-      = password_field_tag 'password', nil
-      
-    %li.clearfix
-      %label
-      %div.fl
-        = submit_tag t "global.submit"
-        = link_to t("session.lost_password"), forgot_account_path
+      %li.clearfix
+        = label_tag 'password', t("session.password")
+        = password_field_tag 'password', nil
+        
+      %li.clearfix
+        %label
+        %div.fl
+          = submit_tag t "global.submit"
+          = link_to t("session.lost_password"), forgot_account_path

@@ -1,33 +1,34 @@
-= form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "batch_edit"} do |f|
+.legacy
+  = form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "batch_edit"} do |f|
 
-  = hidden_field_tag :search_id, params[:search_id]
-  = hidden_field_tag :selection, params[:selection]
-  - params[:record].each do |r|
-    = hidden_field_tag "record[]", r
-    
-  %p.notice
-    - if params[:selection] == "selected"
-      = t("batch_editing.editing_selected", :count => params[:record].count)
-    - else params[:selection] == "all"
-      - unless params[:search_id].blank?
-        = t("batch_editing.editing_all_search")
-      - else
-        = t("batch_editing.editing_all_table")
+    = hidden_field_tag :search_id, params[:search_id]
+    = hidden_field_tag :selection, params[:selection]
+    - params[:record].each do |r|
+      = hidden_field_tag "record[]", r
       
-    
-  %table
-    %tr
-      %th{:width => 60} Update
-      %th= t("batch_editing.attribute_name")
-      %th= t("batch_editing.attribute_value")
-    - @field_descriptions.each do |fd|
+    %p.notice
+      - if params[:selection] == "selected"
+        = t("batch_editing.editing_selected", :count => params[:record].count)
+      - else params[:selection] == "all"
+        - unless params[:search_id].blank?
+          = t("batch_editing.editing_all_search")
+        - else
+          = t("batch_editing.editing_all_table")
+        
+      
+    %table
       %tr
-        %td= check_box_tag "update_attribute[]", fd.identifier, false, :id => "check_#{fd.identifier}"
+        %th{:width => 60} Update
+        %th= t("batch_editing.attribute_name")
+        %th= t("batch_editing.attribute_value")
+      - @field_descriptions.each do |fd|
+        %tr
+          %td= check_box_tag "update_attribute[]", fd.identifier, false, :id => "check_#{fd.identifier}"
+          %td
+            %b= fd.title
+          %td= text_field_tag "attribute_value[#{fd.identifier}]", nil, :id => "value_#{fd.identifier}"
+      %tr
         %td
-          %b= fd.title
-        %td= text_field_tag "attribute_value[#{fd.identifier}]", nil, :id => "value_#{fd.identifier}"
-    %tr
-      %td
-      %td
-      %td
-        = submit_tag t("batch_editing.update_all")
+        %td
+        %td
+          = submit_tag t("batch_editing.update_all")

@@ -1,52 +1,53 @@
-- if @data_repair.status == 'starting'
-  %p= "Oprava udajov je pripravena na spustenie. Celkovy pocet upravenych udajov bude #{@data_repair.records_to_repair} a su znazornene v nasledovnej tabulke."
+.legacy
+  - if @data_repair.status == 'starting'
+    %p= "Oprava udajov je pripravena na spustenie. Celkovy pocet upravenych udajov bude #{@data_repair.records_to_repair} a su znazornene v nasledovnej tabulke."
 
-  - if @data.present?
-    = form_tag start_repair_data_repairs_path do
-      = hidden_field_tag :data_repair_id, @data_repair.id
-      = submit_tag 'Spustit to'
+    - if @data.present?
+      = form_tag start_repair_data_repairs_path do
+        = hidden_field_tag :data_repair_id, @data_repair.id
+        = submit_tag 'Spustit to'
 
-    %table
-      %tr
-        %th Target ico
-        %th Target company name
-        %th Target company address
-        %th Matched ico
-        %th Matched company name
-        %th Matched company address
-
-      - @data.each do |data|
+      %table
         %tr
-          %td= data.ico
-          %td= data.company_name
-          %td= data.company_address
-          %td= data.matched_ico
-          %td= data.matched_company_name
-          %td= data.matched_company_address
+          %th Target ico
+          %th Target company name
+          %th Target company address
+          %th Matched ico
+          %th Matched company name
+          %th Matched company address
+
+        - @data.each do |data|
+          %tr
+            %td= data.ico
+            %td= data.company_name
+            %td= data.company_address
+            %td= data.matched_ico
+            %td= data.matched_company_name
+            %td= data.matched_company_address
+            
+
+  - if @data_repair.status == 'in_progress'
+    %p= "Prave prebieha..."
           
-
-- if @data_repair.status == 'in_progress'
-  %p= "Prave prebieha..."
-        
-- if @data_repair.status == 'done'
-  %p= "Oprava udajov je ukoncena. Celkovy pocet upravenych udajov bol #{@data_repair.repaired_records} z #{@data_repair.records_to_repair}."
-  
-  - if @data.present?
-    %table
-      %tr
-        %th Target ico
-        %th Target company name
-        %th Target company address
-
-      - @data.each do |data|
+  - if @data_repair.status == 'done'
+    %p= "Oprava udajov je ukoncena. Celkovy pocet upravenych udajov bol #{@data_repair.repaired_records} z #{@data_repair.records_to_repair}."
+    
+    - if @data.present?
+      %table
         %tr
-          %td= data.ico
-          %td= data.company_name
-          %td= data.company_address
+          %th Target ico
+          %th Target company name
+          %th Target company address
 
-- if @data_repair.status == 'error'
-  %p= "Pri spustani nastala chyba..."
-  
-%br
+        - @data.each do |data|
+          %tr
+            %td= data.ico
+            %td= data.company_name
+            %td= data.company_address
 
-= link_to 'Back', data_repairs_path
+  - if @data_repair.status == 'error'
+    %p= "Pri spustani nastala chyba..."
+    
+  %br
+
+  = link_to 'Back', data_repairs_path

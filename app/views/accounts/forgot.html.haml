@@ -1,8 +1,9 @@
-%h1= t("profile.create_new_password")
+.legacy
+  %h1= t("profile.create_new_password")
 
-= form_for User.new, :builder => ListFormBuilder, :url => forgot_account_path do |f|
-  %ul
-    = f.text_field :email
-    %li.clearfix
-      %label
-      = f.submit t("global.submit")
+  = form_for User.new, :builder => ListFormBuilder, :url => forgot_account_path do |f|
+    %ul
+      = f.text_field :email
+      %li.clearfix
+        %label
+        = f.submit t("global.submit")

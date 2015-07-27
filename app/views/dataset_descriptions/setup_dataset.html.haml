@@ -1,5 +1,6 @@
-%h1= t "dataset.initialize_from_table", :identifier => @dataset_description.identifier
+.legacy
+  %h1= t "dataset.initialize_from_table", :identifier => @dataset_description.identifier
 
-.content.clearfix
-  %h2= t "dataset.initialize_table_info"
-  = link_to("<span>#{t("global.continue")}</span>".html_safe, setup_dataset_dataset_description_path(@dataset_description), :method => 'post', :class => 'button')
+  .content.clearfix
+    %h2= t "dataset.initialize_table_info"
+    = link_to("<span>#{t("global.continue")}</span>".html_safe, setup_dataset_dataset_description_path(@dataset_description), :method => 'post', :class => 'button')

@@ -1,23 +1,24 @@
-.clearfix
-  %h1.fl= t("blocks.all_blocks")
-  .fr= button_link_to t("blocks.new_block"), new_settings_block_path
-  = sorting_links(update_positions_settings_blocks_path)
-%br
-.title
-  .span-4= t("blocks.name")
-  .span-9= t("blocks.title")
-  .span-3= t("blocks.last_update")
-  .clear
-%ul.sortable
-  - @blocks.each do |block|
-    %li[block]
-      %div
-        .fl.hidden.nopadding= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
-        .span-4= block.name
-        .span-9
-          = block.title
-          &nbsp;
-        .span-2= block.updated_at
-        .fr.nopadding= button_link_to(t("blocks.delete_block"), settings_block_path(block.id), :confirm => t("global.delete_confirmation"), :method => :delete)
-        .fr.nopadding= button_link_to t("blocks.edit_block"), settings_block_path(block.name)
-        .clear
+.legacy
+  .clearfix
+    %h1.fl= t("blocks.all_blocks")
+    .fr= button_link_to t("blocks.new_block"), new_settings_block_path
+    = sorting_links(update_positions_settings_blocks_path)
+  %br
+  .title
+    .span-4= t("blocks.name")
+    .span-9= t("blocks.title")
+    .span-3= t("blocks.last_update")
+    .clear
+  %ul.sortable
+    - @blocks.each do |block|
+      %li[block]
+        %div
+          .fl.hidden.nopadding= image_tag 'icons/drag_arrow.png', :class => 'drag_arrow'
+          .span-4= block.name
+          .span-9
+            = block.title
+            &nbsp;
+          .span-2= block.updated_at
+          .fr.nopadding= button_link_to(t("blocks.delete_block"), settings_block_path(block.id), :confirm => t("global.delete_confirmation"), :method => :delete)
+          .fr.nopadding= button_link_to t("blocks.edit_block"), settings_block_path(block.name)
+          .clear

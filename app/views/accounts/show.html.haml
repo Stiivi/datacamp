@@ -1,29 +1,31 @@
 -#%h1 My account
 
-#dataset_admin_submenu
-  %ul.tabs
-    %li= link_to t("global.profile"), "#profile"
-    %li= link_to t("users.password"), "#password"
-    %li= link_to t("global.favorites"), "#favorites"
-    %li= link_to t("global.comments"), "#comments"
-    %li= link_to t("global.ratings"), "#ratings"
-    %li= link_to t("users.api_access"), "#api"
+.legacy
 
-%br
+  #dataset_admin_submenu
+    %ul.tabs
+      %li= link_to t("global.profile"), "#profile"
+      %li= link_to t("users.password"), "#password"
+      %li= link_to t("global.favorites"), "#favorites"
+      %li= link_to t("global.comments"), "#comments"
+      %li= link_to t("global.ratings"), "#ratings"
+      %li= link_to t("users.api_access"), "#api"
 
-#profile
-  = render :partial => "profile"
+  %br
 
-#password
-  = render :partial => "password"
+  #profile
+    = render :partial => "profile"
 
-#favorites
-  = render :partial => "favorites"
+  #password
+    = render :partial => "password"
 
-#comments
-  = render :partial => "comments"
+  #favorites
+    = render :partial => "favorites"
 
-#ratings
+  #comments
+    = render :partial => "comments"
 
-#api
-  = render :partial => "api"
+  #ratings
+
+  #api
+    = render :partial => "api"

@@ -1,21 +1,22 @@
-%h1= t("global.title")
-  
-
-.content.clearfix
-  .span-16
-    - if @errors
-      - @errors.each do |error|
-        %p.error= error
-  
-    %h2= t "dataset.uninitialized_datasets"
-
-    %ul.bordered
-      - @unbound_datasets.each do |dataset|
-        %li.clearfix{:id => dataset}
-          %strong.fl= dataset
-          = link_to dataset_initializations_path(:dataset => dataset), :class => 'fr button', :method => :post do
-            %span= t("dataset.initialize")
+.legacy
+  %h1= t("global.title")
     
-  .span-6.help
-    %h2= t("dataset.dataset_choose")
-    = t("dataset.dataset_import_help").html_safe
+
+  .content.clearfix
+    .span-16
+      - if @errors
+        - @errors.each do |error|
+          %p.error= error
+    
+      %h2= t "dataset.uninitialized_datasets"
+
+      %ul.bordered
+        - @unbound_datasets.each do |dataset|
+          %li.clearfix{:id => dataset}
+            %strong.fl= dataset
+            = link_to dataset_initializations_path(:dataset => dataset), :class => 'fr button', :method => :post do
+              %span= t("dataset.initialize")
+      
+    .span-6.help
+      %h2= t("dataset.dataset_choose")
+      = t("dataset.dataset_import_help").html_safe

@@ -1,20 +1,21 @@
-.clearfix
-  %h1.fl= t(".all")
+.legacy
+  .clearfix
+    %h1.fl= t(".all")
 
-%table
-  %tr
-    %th= t(".identifier")
-    %th= t(".change_type")
-    %th= t(".user_name")
-    %th= t(".date_time")
-    %th
-    
-  - @activities.each do |activity|
-    %tr{:id => dom_id(activity)}
-      %td= activity.dataset_description_identifier
-      %td= activity.change_type
-      %td= activity.user_name
-      %td= l activity.updated_at, format: :full
-      %td= link_to(image_tag("icons/show.png", :alt => t("global.show")), activity_path(activity), title: t("global.show"))
+  %table
+    %tr
+      %th= t(".identifier")
+      %th= t(".change_type")
+      %th= t(".user_name")
+      %th= t(".date_time")
+      %th
+      
+    - @activities.each do |activity|
+      %tr{:id => dom_id(activity)}
+        %td= activity.dataset_description_identifier
+        %td= activity.change_type
+        %td= activity.user_name
+        %td= l activity.updated_at, format: :full
+        %td= link_to(image_tag("icons/show.png", :alt => t("global.show")), activity_path(activity), title: t("global.show"))
 
-.box= will_paginate @activities, :previous_label => t("global.previous"), :next_label => t("global.next")
+  .box= will_paginate @activities, :previous_label => t("global.previous"), :next_label => t("global.next")

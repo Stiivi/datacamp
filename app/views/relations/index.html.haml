@@ -1,16 +1,17 @@
-%div[@dataset_description]
+.legacy
+  %div[@dataset_description]
 
-  = render :partial => "dataset_descriptions/header"
+    = render :partial => "dataset_descriptions/header"
 
-  %h2= t("dataset.relations")
-  
-  = form_for(@dataset_description, url: dataset_description_relations_path(dataset_description_id: @dataset_description), method: :post, :builder => ListFormBuilder) do |f|
-    = f.error_messages
+    %h2= t("dataset.relations")
     
-    - index = 0
-    = f.fields_for :relations do |relation_fields|
-      = render partial: 'relation_fields', locals: {f: relation_fields, index: index}
-      - index += 1
-          
-    = link_to_add_fields '+', f, :relations
-    = f.submit 'Save relations', name: 'save'
+    = form_for(@dataset_description, url: dataset_description_relations_path(dataset_description_id: @dataset_description), method: :post, :builder => ListFormBuilder) do |f|
+      = f.error_messages
+      
+      - index = 0
+      = f.fields_for :relations do |relation_fields|
+        = render partial: 'relation_fields', locals: {f: relation_fields, index: index}
+        - index += 1
+            
+      = link_to_add_fields '+', f, :relations
+      = f.submit 'Save relations', name: 'save'

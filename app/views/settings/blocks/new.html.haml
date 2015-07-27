@@ -1,6 +1,7 @@
-.clearfix
-  %h1.fl= t("blocks.new_block")
-  .fr.clearfix
-    = button_link_to t("global.back"), settings_blocks_path
+.legacy
+  .clearfix
+    %h1.fl= t("blocks.new_block")
+    .fr.clearfix
+      = button_link_to t("global.back"), settings_blocks_path
 
-= render :partial => "form"
+  = render :partial => "form"

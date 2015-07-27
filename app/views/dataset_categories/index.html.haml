@@ -1,19 +1,20 @@
-.clearfix
-  %h1.fl= t("categories.all")
-  .fr= button_link_to t("categories.new"), new_dataset_category_path
+.legacy
+  .clearfix
+    %h1.fl= t("categories.all")
+    .fr= button_link_to t("categories.new"), new_dataset_category_path
 
-%table
-  %tr
-    %th= t("categories.name")
-    %th= t("categories.last_update")
-    %th
-    
-  - @categories.each do |category|
+  %table
     %tr
-      %td= category.title
-      %td= category.updated_at
-      %td{:align => "right"}
-        .clearfix
-          .fr.clearfix
-            = button_link_to t("blocks.edit_block"), edit_category_path(category)
-            = link_to( image_tag('icons/trash.gif'), category_path(category, :return_to_category_index => true), :confirm => t("global.delete_confirmation"), :method => :delete)
+      %th= t("categories.name")
+      %th= t("categories.last_update")
+      %th
+      
+    - @categories.each do |category|
+      %tr
+        %td= category.title
+        %td= category.updated_at
+        %td{:align => "right"}
+          .clearfix
+            .fr.clearfix
+              = button_link_to t("blocks.edit_block"), edit_category_path(category)
+              = link_to( image_tag('icons/trash.gif'), category_path(category, :return_to_category_index => true), :confirm => t("global.delete_confirmation"), :method => :delete)

@@ -1,11 +1,12 @@
-%div[@dataset_description]
+.legacy
+  %div[@dataset_description]
 
-  = render :partial => "header"
+    = render :partial => "header"
 
-  - unless @dataset_description.dataset_schema_manager.table_exists?
-    = render :partial => "create_table_guide"
-      
-  .content
-  
-    .tab#field_descriptions
-      = render :partial => "field_descriptions"
+    - unless @dataset_description.dataset_schema_manager.table_exists?
+      = render :partial => "create_table_guide"
+        
+    .content
+    
+      .tab#field_descriptions
+        = render :partial => "field_descriptions"

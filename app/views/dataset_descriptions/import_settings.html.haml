@@ -1,29 +1,30 @@
-= render :partial => "header"
+.legacy
+  = render :partial => "header"
 
-/*** Form ***/
-= form_for @dataset_description, :html => { :class => 'plain' } do |f|
+  /*** Form ***/
+  = form_for @dataset_description, :html => { :class => 'plain' } do |f|
 
-  = f.hidden_field :import_settings
-  
-  .clearfix
-    = f.submit
+    = f.hidden_field :import_settings
+    
+    .clearfix
+      = f.submit
 
-  .clearfix
+    .clearfix
 
-    #importable_field_descriptions
-      %h2= t("dataset.columns_for_import")
-      %ul
-        - @importable_field_descriptions.each do |a|
-          %li[a]
-            %strong= a.importable_column
-            = a
-            %small= a.data_type
+      #importable_field_descriptions
+        %h2= t("dataset.columns_for_import")
+        %ul
+          - @importable_field_descriptions.each do |a|
+            %li[a]
+              %strong= a.importable_column
+              = a
+              %small= a.data_type
 
-    #all_field_descriptions
-      %h2= t("dataset.other_columns")
-      %ul
-        - @all_field_descriptions.each do |a|
-          %li[a]
-            %strong= a.importable_column
-            = a
-            %small= a.data_type
+      #all_field_descriptions
+        %h2= t("dataset.other_columns")
+        %ul
+          - @all_field_descriptions.each do |a|
+            %li[a]
+              %strong= a.importable_column
+              = a
+              %small= a.data_type
