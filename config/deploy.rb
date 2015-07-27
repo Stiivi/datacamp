@@ -7,7 +7,7 @@ set :repo_url, "git://github.com/fairplaysk/datacamp.git"
 set :rbenv_ruby, File.read('.ruby-version').strip
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/home/datanest2/deploy"
@@ -24,7 +24,7 @@ set :deploy_to, "/home/datanest2/deploy"
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, fetch(:linked_files, []).push('public/sitemap.xml', 'config/production.sphinx.conf')
+# set :linked_files, fetch(:linked_files, []).push('public/sitemap.xml', 'config/production.sphinx.conf') # TODO: these do not exist on cold deploy
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'files', 'dumps', 'db/sphinx', 'backup', 'data', 'public/sitemaps')
 
