@@ -1,11 +1,9 @@
 $(document).ready(function(){
-    if (!enabledBanner('feedback')) {
-        $("#feedback_banner").hide();
-        disableBanner('feedback');
+    if (enabledBanner('feedback')) {
+        $("#feedback_banner").show();
     }
-    if (!enabledBanner('cookie')) {
-        $("#cookie_banner").hide();
-        disableBanner('cookie');
+    if (enabledBanner('cookie')) {
+        $("#cookie_banner").show();
     }
 });
 
