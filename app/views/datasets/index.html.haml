@@ -41,9 +41,9 @@
           = link_to description.perex, dataset_path(description), class: 'cell dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier}
           %span.cell
             - if description.bad_quality
-              .dataset-bad
+              .dataset-bad{title: t('.good_quality_false')}
             - else
-              .dataset-good
+              .dataset-good{title: t('.good_quality_true')}
           - if description.api_allowed?
             - if current_user
               %span.cell
