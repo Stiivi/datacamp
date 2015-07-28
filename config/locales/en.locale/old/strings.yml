@@ -195,6 +195,8 @@ en:
         edit_page: Edit
         show_page: Show
         new_page: New page
+        how_to: How to
+        api: API
     search:
         through: "Search through %{dataset}" 
         create_search: "Create your search for %{dataset}"

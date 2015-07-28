@@ -139,6 +139,8 @@ sk:
     edit_page: Upraviť
     show_page: Zobraziť
     new_page: Vytvoriť stránku
+    how_to: Ako používať
+    api: API
   password_reset: 
     body: "Klikni na nasledovný link na vyresetovanie hesla: %{link}"
     restore_account: "Obnoviť účet"
