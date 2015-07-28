@@ -31,6 +31,8 @@
         =link_to "", new_favorite_path({:dataset_description_id => @dataset_description.id, :record_id => @record ? @record.id : nil}), id: :add_to_favorites, class: 'favorite fav ajax'
 
     %li.corector= t("global.share")
+    %li
+      .addthis_sharing_toolbox
 
 #navigation-dataset-detail-container
   %ul#navigation-dataset-detail
