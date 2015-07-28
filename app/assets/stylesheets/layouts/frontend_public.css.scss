@@ -1115,6 +1115,10 @@ ul#news a:hover {
     text-decoration: none;
     line-height: 1.5;
 }
+#table-dataset .cell.decimal {
+  white-space: nowrap;
+}
+
 #table-dataset .sum {
     text-align: right;
     width: 160px;

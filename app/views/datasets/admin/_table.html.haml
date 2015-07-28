@@ -22,4 +22,4 @@
             = image_tag "icons/record_status/icon_#{record.quality_status}.png", :alt => t("quality_statuses.#{record.quality_status}"), :class => "tooltip"
           - @field_descriptions.each do |field_description|
             - value = record.get_truncated_html_value(field_description)
-            = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), class: :cell, style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""
+            = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), class: [:cell, field_description.data_type], style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""
