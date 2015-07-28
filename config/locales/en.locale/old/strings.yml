@@ -256,3 +256,7 @@ en:
       page_gap: "&hellip;"
       page_entries_info:
         multi_page_html: "%{from}&nbsp;-&nbsp;%{to} of %{count}"
+        single_page_html:
+          zero:  "No results found"
+          one:   "1 result"
+          other: "1&nbsp;-&nbsp;%{count} of %{count}"

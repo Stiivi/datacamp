@@ -269,3 +269,7 @@ sk:
     page_gap: "&hellip;"
     page_entries_info:
       multi_page_html: "%{from}&nbsp;-&nbsp;%{to} z %{count}"
+      single_page_html:
+        zero:  "Bez výsledkov"
+        one:   "1 výsledok"
+        other: "1&nbsp;-&nbsp;%{count} z %{count}"
