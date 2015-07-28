@@ -1292,7 +1292,7 @@ a.button-metadata {
 
 /* Overlay */
 #overlay {
-    position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -1416,10 +1416,11 @@ a.button-metadata {
     font-size: 12px;
     font-weight: 400;
     left: 50%;
+    top: 30px;
     line-height: 18px;
     margin: 50px 0 0 -250px;
     padding: 0;
-    position: absolute;
+    position: fixed;
     width: 500px;
     z-index: 1001;
 }
@@ -1478,6 +1479,7 @@ a.button-metadata {
     -moz-transition: background 0.2s ease;
     -o-transition: background 0.2s ease;
     transition: background 0.2s ease;
+    text-decoration: none;
 }
 #pop-up-window label {
     display: block;

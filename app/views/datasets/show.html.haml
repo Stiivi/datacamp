@@ -1,3 +1,9 @@
+#overlay{style: 'display: none'}
+- if current_user
+  =render 'license/for_registered_user'
+- else
+  =render 'license/for_guest'
+
 %ul#navigation-breadcrumb
   %li.first= link_to t('global.home'), root_path
   %li= link_to t('global.datasets'), datasets_path
@@ -25,10 +31,9 @@
       = t '.data_provider'
       %strong= @dataset_description.data_provider
 
-  -if logged_in?
-    %ul#dataset-navigation
-      = render 'node_menu'
-      = render 'datasets/admin/navigation'
+  %ul#dataset-navigation
+    = render 'node_menu'
+    = render 'datasets/admin/navigation'
 
 = render "pagination"
 

@@ -1,0 +1,31 @@
+%iframe{name: 'google_forms_iframe', style: 'display: none'}
+
+#pop-up-window{style: 'display: none'}
+  %form{action: 'https://docs.google.com/forms/d/1VgIGmCwW0h3QWa0g6WHDCo5NN15fwXqEyopNYhzL3h0/formResponse', target: 'google_forms_iframe'}
+    .wrap
+      %h1
+        Chystáte sa stiahnuť si dataset
+        %strong{'data-license-var-dataset': ''}
+      %p Dataset sa stiahne vo formáte CSV, otvoríte ho v Exceli alebo v inom tabuľkovom editore. <a href="">Čo je to CSV?</a>
+      %p Pri použití dát prosím dbajte o licenčné podmienky, pod ktorými boli tieto dáta zverejnené.
+      %p Dáta je možné:
+      %ul
+        %li bezplatne sťahovať, upravovať a ďalej používať na akýkoľvek komerčný aj nekomerčný účel,
+        %li v prípade použitia je potrebné ako zdroj dát uviesť Datanest Aliancie Fair-play,
+        %li dať nám vedieť, akým spôsobom boli opre vás dáta užitočné, prípadne konkrétne ste ich použili na <a href="mailto:admin@datanest.sk">admin@datanest.sk</a>
+      %span Prečítajte si plné znenie <a href="">licenčných podmienok</a>
+    .wrap-supplement
+      %p Nakoľko v Dataneste nie ste prihlásený, chceme vás poprosiť o základné údaje o vás. Sú nepovinné, ale pomôžu nám zlepšiť web do budúcna.
+      .left
+        %label{for: 'entry.435374113'}
+        %input{type: :text, class: :text, name: 'entry.435374113'}
+      .left
+        %label{for: 'entry.1009556207'}
+        %select{name: 'entry.1009556207'}
+          %option Vyberte z ponuky
+          %option Analytik
+          %option Developer
+          %option Novinár
+          %option Iné
+    .wrap-send
+      %input.button-send{type: :submit, value: 'OK'}

@@ -1,3 +1,9 @@
+#overlay{style: 'display: none'}
+- if current_user
+  =render 'license/for_registered_user'
+- else
+  =render 'license/for_guest'
+
 %ul#navigation-breadcrumb
   %li.first= link_to t('global.home'), root_path
   %li.active= link_to t('global.datasets'), url_for
@@ -38,10 +44,16 @@
               .dataset-bad
             - else
               .dataset-good
-          - if current_user
-            - if description.api_allowed_for?(current_user)
+          - if description.api_allowed?
+            - if current_user
               %span.cell
-                = link_to '', url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id), :class => "download-button api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier }
+                - dataset_path = url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id)
+                = link_to '', dataset_path, :class => "download-button api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier, show_license: true, license_for: description.title, dataset_url: dataset_path}
             - else
               %span.cell
-                %img{src: image_path('download-unable.png'), title: t("api.disallowed_for_dataset")}
+                - dataset_path = url_for(:controller => :api, :action => :dataset_records, :dataset_id => description.id)
+                = link_to '', dataset_path, :class => "download-button api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier, show_license: true, license_for: description.title, dataset_url: dataset_path}
+
+          - else
+            %span.cell
+              %img{src: image_path('download-unable.png'), title: t("api.disallowed_for_dataset")}
