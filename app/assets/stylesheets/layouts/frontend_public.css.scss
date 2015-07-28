@@ -1606,6 +1606,77 @@ a.go-top:hover {
 	transition: background 0.2s ease;
 }
 
+/* Favorite Pop-up */
+#favorite-popup {
+	background: transparent url(image-path('favorite-arrow.png')) no-repeat center top;
+	color: #333333;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	margin: 50px 0 0 593px;
+	overflow: hidden;
+	padding: 10px 0 0 0;
+	position: absolute;
+	width: 250px;
+}
+#favorite-popup .fp-header {
+	background: #5dc550;
+	color: #ffffff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	float: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+#favorite-popup .fp-main {
+	background: #cccccc;
+	overflow: hidden;
+}
+
+#favorite-popup span {
+	display: inline-block;
+	padding: 9px 0 0 15px;
+}
+#favorite-popup a.abort {
+	background: #5bb54e url(image-path('favorite-abort-cross.png')) no-repeat center center;
+	display: block;
+	height: 37px;
+	margin: 0;
+	padding: 0;
+	width: 37px;
+	float: right;
+}
+#favorite-popup textarea {
+	border: 1px solid #cccccc;
+	display: block;
+	float: none;
+	height: 100px;
+	margin: 15px auto 7px auto;
+	padding: 7px 10px;
+	resize: none;
+	width: 196px;
+}
+#favorite-popup .submit {
+	background: #4d4d4d;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	float: none;
+	margin: 0 auto 15px auto;
+	padding: 10px;
+	resize: none;
+	text-align: center;
+	width: 220px;
+}
+#favorite-popup .submit:hover {
+	background: #333333;
+}
 
 
 #page_content {

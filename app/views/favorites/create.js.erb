@@ -1,5 +1,5 @@
 $(".favorite_menu").replaceWith("<%= escape_javascript(render(:partial => "favorite_menu")) %>");
-$.close_modal();
+$('#favorite-popup').remove();
 <% unless Rails.env.test? %>
 GATracker._added_to_favorites();
 <% end %>
