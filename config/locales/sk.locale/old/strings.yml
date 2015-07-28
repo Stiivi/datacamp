@@ -256,6 +256,12 @@ sk:
       no_related_records_lawyers_lawyer_associates: 'Tento advokát nemá žiadnych koncipientov.'
       no_related_records_lawyers_lawyer_partnerships: 'Tento advokát nie je členom advokátskeho spoločenstva.'
 
+  report_error:
+    title: Nahlásiť chybu administrátorovi
+    item_name: Názov riadku / položky
+    description: Popis chyby
+    send: Odoslať
+    notice: Hlásenie o chybe odoslané
 
   will_paginate:
     page_gap: "&hellip;"

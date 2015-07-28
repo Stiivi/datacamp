@@ -16,6 +16,8 @@ Datacamp::Application.routes.draw do
 
   scope "(:locale)", :locale => /sk|en/ do
 
+    resources :errors
+
     # Settings backend
     namespace :settings do
       resources :pages

@@ -243,6 +243,13 @@ en:
       deleted: 'Relation deleted.'
       delete_failed: 'Deleting relation failed.'
 
+    report_error:
+      title: Report error
+      item_name: Line / item title
+      description: Error description
+      send: Report
+      notice: Error report sent
+
     will_paginate:
       page_gap: "&hellip;"
       page_entries_info:

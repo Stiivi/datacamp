@@ -1,0 +1,13 @@
+%dl
+  %dt URL
+  %dd= @url
+
+  %dt Názov riadku / položky
+  %dd= @item
+
+  %dt Popis chyby
+  %dd= @description
+
+  %dt User
+  %dd= @user ? @user.email : 'Neprihlaseny'
+

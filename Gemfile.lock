@@ -141,8 +141,6 @@ GEM
     kgio (2.9.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.4.1)
-      launchy (~> 2.2)
     libv8 (3.16.14.7)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -373,7 +371,6 @@ DEPENDENCIES
   hirb
   jquery-rails
   launchy
-  letter_opener
   mailcatcher (~> 0.5.0)
   mechanize
   mysql2
@@ -404,3 +401,6 @@ DEPENDENCIES
   vcr
   whenever
   will_paginate
+
+BUNDLED WITH
+   1.10.4

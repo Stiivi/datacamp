@@ -1292,6 +1292,7 @@ a.button-metadata {
 
 /* Overlay */
 #overlay {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -1308,7 +1309,7 @@ a.button-metadata {
 /* Report Error */
 #report-error-container {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     margin: -255px 0 0 -250px;

@@ -30,3 +30,4 @@
 //= require banners
 //= require searchbox-tabs
 //= require show_license
+//= require error_reporting

@@ -49,7 +49,6 @@ gem 'test-unit', '~> 3.0' # ruby 2.2.2 needs this for rails 3.2
 
 group :development do
   gem 'mailcatcher', '~> 0.5.0' # version for rails 3
-  gem 'letter_opener'
 
   gem 'rails_best_practices'
 
