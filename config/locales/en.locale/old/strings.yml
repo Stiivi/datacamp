@@ -101,6 +101,7 @@ en:
         header: 'Similar datasets'
       show:
         more_information: More information
+        less_information: Less information
         last_update: 'Last Update:'
         published_count: 'Published records:'
         data_provider: 'Provider:'

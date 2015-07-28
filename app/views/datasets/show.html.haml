@@ -14,9 +14,15 @@
 #dataset-description-container
   .dataset-description
     %h2= textile @dataset_description.perex
-    .dataset-description-text= truncate(@dataset_description.description, length: 200)
-    = link_to t('.more_information'), nil, onclick: %{$('.dataset-description-text').hide();$('#information').show();$(this).hide(); GATracker._more_information_click('#{@dataset_description.identifier}'); return false;}
-    #information{style: 'display: none'}= textile(@dataset_description.description)
+
+    %div{data: {less_shown: true}}
+      .dataset-description-text= truncate(@dataset_description.description, length: 200)
+      = link_to t('.more_information'), nil, onclick: %{$('[data-less-shown]').hide();$('[data-more-shown]').show();GATracker._more_information_click('#{@dataset_description.identifier}'); return false;}
+
+    %div{data: {more_shown: true}, style: 'display: none'}
+      #information
+        = textile(@dataset_description.description)
+        = link_to t('.less_information'), nil, onclick: %{$('[data-more-shown]').hide();$('[data-less-shown]').show();return false;}
 
   %ul#dataset-about
     - if @dataset_description.data_updated_at.present?

@@ -60,6 +60,7 @@ sk:
       good_quality_false: 'Nekvalitný dataset'
     show:
       more_information: Zobraziť viac
+      less_information: Zobraziť menej
       last_update: 'Aktualizácia:'
       published_count: 'Publikovaných záznamov:'
       data_provider: 'Poskytovateľ:'
