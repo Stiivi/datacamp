@@ -1519,6 +1519,95 @@ a.button-metadata {
     float: left;
 }
 
+
+/************************************************************/
+/*********************** Search Results *********************/
+/************************************************************/
+
+#wrap-search-results {
+	float: none;
+	overflow: hidden;
+}
+#wrap-search-results h1  {
+	color: #333333;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30px;
+	margin: 0;
+	overflow: hidden;
+	padding: 25px 15px 20px 15px;
+	text-decoration: none;
+}
+#wrap-search-results h1 .category {
+	color: #999999;
+    a {
+      color: #999999;
+      text-decoration: none;
+    }
+}
+#wrap-search-results h1 .category::after {
+	color: #cccccc;
+	content:" / ";
+}
+#wrap-search-results .wrap-more-about {
+	border-bottom: 1px solid #cccccc;
+	color: #333333;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	float: none;
+	line-height: 12px;
+	overflow: hidden;
+	padding: 0 0 10px 0;
+	text-align: right;
+}
+#wrap-search-results a.more-about {
+	background: #5dc550;
+	color: #ffffff;
+	display: inline-block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 12px;
+	margin: 0 0 0 10px;
+	padding: 15px 20px;
+	text-decoration: none;
+	-webkit-transition: background 0.2s ease;
+	-moz-transition: background 0.2s ease;
+	-o-transition: background 0.2s ease;
+	transition: background 0.2s ease;
+}
+#wrap-search-results a.more-about:hover {
+	background: #5bb54e;
+}
+a.go-top {
+	background: #f9f9f9 url(image-path('go-top-arrow.png')) center 10px no-repeat;
+	border: 1px solid #333333;
+	color: #333333;
+	display: block;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	float: right;
+	line-height: 14px;
+	overflow: hidden;
+	margin: 30px 0 0 0;
+	padding: 25px 10px 7px 10px;
+	text-align: center;
+	text-decoration: none;
+	width: 40px;
+}
+a.go-top:hover {
+	background: #f2f2f2 url(image-path('go-top-arrow.png')) center 10px no-repeat;
+	-webkit-transition: background 0.2s ease;
+	-moz-transition: background 0.2s ease;
+	-o-transition: background 0.2s ease;
+	transition: background 0.2s ease;
+}
+
+
+
 #page_content {
   ol {
     padding-left: 36px;

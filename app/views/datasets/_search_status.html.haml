@@ -5,4 +5,4 @@
       = t('.sphinx_single_negative_search')
     - else
       = t(".active_search", :predicates => @search_predicates.count)
-    %a{:href => '#search', :onclick => '$(".button_disclosure").trigger("click"); return false;'}= t("dataset.edit_search")
+    %a{:href => '#', :onclick => '$("#searchline-container .advanced").trigger("click").focus(); return false;'}= t("dataset.edit_search")

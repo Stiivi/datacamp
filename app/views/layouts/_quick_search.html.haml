@@ -10,7 +10,7 @@
 
 #searchline-adv-container.hidden
   =image_tag 'searchbox_adv_arrow.png', class: 'searchbox-adv-arrow'
-  =render 'searches/predicates_form'
+  =render 'searches/predicates_form', predicates: @search_predicates
 
 #searchline-info-container.hidden
   =image_tag 'searchbox_adv_arrow.png', class: 'searchbox-adv-arrow'

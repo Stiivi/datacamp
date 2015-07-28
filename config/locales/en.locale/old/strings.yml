@@ -210,10 +210,12 @@ en:
         results: "%{results} results"
         more_results: More results
         any_field: Any field
-        showing_first_results: Showing first %{showing_count} of %{all_count}. Please click the More results link to show all.
+        showing_first_results: Showing first %{showing_count} of %{all_count}.
         header: 'Advanced search'
         help: Help text here
         add_filter: + Add filter
+        search_results: Search results
+        top: To top
     validations:
         blank: can't be blank
     messages:

@@ -167,10 +167,12 @@ sk:
     search_term: Výraz
     searching_wait_notice: "Vyhľadávam ..."
     through: "Vyhľadávať v %{dataset}"
-    showing_first_results: Zobrazuje prvých %{showing_count} záznamov z %{all_count}. Pokiaľ chcete vidieť všetky kliknite na Viac a podrobnejšie.
+    showing_first_results: Zobrazuje prvých %{showing_count} záznamov z %{all_count}.
     header: 'Rozšírené vyhľadávanie'
     help: "Tu bude text o vyhladavani"
     add_filter: + Pridať filter
+    search_results: Výsledky vyhľadávania
+    top: ísť hore
   session: 
     login: Prihlásenie
     lost_password: "Zabudli ste heslo?"
