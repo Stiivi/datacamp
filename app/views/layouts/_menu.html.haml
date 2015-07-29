@@ -1,10 +1,10 @@
 %ul#navigation-main
   %li= link_to t("global.data_catalogue"), datasets_path, class: active_page_class(datasets_path)
-  %li= link_to t('pages.how_to'), page_path('how_to'), class: active_page_class(page_path('how_to'))
+  %li= link_to t('pages.how_to'), page_path('terms_of_service'), class: active_page_class(page_path('terms_of_service'))
   %li= link_to t('pages.about_service'), page_path('about_service'), class: active_page_class(page_path('about_service'))
   %li= link_to t('news.title'), news_index_path, class: active_page_class(news_index_path)
   - if logged_in?
-    %li= link_to t('pages.api'), page_path('api'), class: active_page_class(page_path('api'))
+    %li= link_to t('pages.api'), page_path('api'), class: active_page_class(page_path('terms_of_service'))
     %li= link_to t("global.favorites"), account_path(anchor: "favorites"), class: active_page_class(account_path)
 
 - if logged_in?
