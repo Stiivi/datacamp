@@ -9,4 +9,8 @@
       %li.row{:id => dom_id(record), :class => cycle("odd", "even")}
         - @field_descriptions.each do |field_description|
           - value = record.get_truncated_html_value(field_description)
-          = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), class: [:cell, field_description.data_type], style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""
+          - if value =~ /\<a.*?\>/
+            %span.cell{class: field_description.data_type}
+              = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""
+          - else
+            = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : "", class: [:cell, field_description.data_type]

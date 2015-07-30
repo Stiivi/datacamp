@@ -20,7 +20,12 @@
           - result_records.each do |result|
             %li.row{class: cycle('odd', 'even')}
               - fds.each do |field|
-                =link_to result.get_html_value(field) || '', dataset_record_path(result.dataset, result, :page => params[:page]), class: [:cell, field.data_type]
+                - value = result.get_html_value(field)
+                - if value =~ /\<a.*?\>/
+                  %span.cell{class: field.data_type}
+                    =link_to result.get_html_value(field) || '', dataset_record_path(result.dataset, result, :page => params[:page])
+                - else
+                  =link_to result.get_html_value(field) || '', dataset_record_path(result.dataset, result, :page => params[:page]), class: [:cell, field.data_type]
 
       .wrap-more-about
         =t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => (result_records.total_entries > 5 ? 5 : result_records.total_entries))
