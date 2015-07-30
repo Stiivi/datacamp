@@ -4,6 +4,6 @@ class ErrorsMailer < ActionMailer::Base
     @url = url
     @item = item
     @description = description
-    mail(from: SystemVariable.get("site_name", "Datacamp"), to: 'admin@datanest.sk', subject: 'Hlasenie o chybe', content_type: 'text/html')
+    mail(from: SystemVariable.get("site_name", "Datacamp"), to: Datacamp::Application.config.admin_emails, subject: 'Hlasenie o chybe', content_type: 'text/html')
   end
 end
