@@ -150,6 +150,7 @@ sk:
   profile: 
     create_new_password: "Vytvoriť nové heslo"
     edit_my_profile: "Editovať môj profil"
+    change_password: Zmeniť heslo
   rights: 
     data_dictionary: "Slovník údajov"
     data_editing: "Upravovanie údajov"

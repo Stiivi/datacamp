@@ -54,6 +54,10 @@ class FavoritesController < ApplicationController
       wants.js { render :action => "create" }
     end
   end
+
+  def index
+    @favorites = current_user.favorites.includes(:dataset_description, :record)
+  end
   
   protected
   

@@ -5,7 +5,7 @@
   %li= link_to t('news.title'), news_index_path, class: active_page_class(news_index_path)
   - if logged_in?
     %li= link_to t('pages.api'), page_path('api'), class: active_page_class(page_path('terms_of_service'))
-    %li= link_to t("global.favorites"), account_path(anchor: "favorites"), class: active_page_class(account_path)
+    %li= link_to t("global.favorites"), favorites_path, class: active_page_class(favorites_path)
 
 - if logged_in?
   %ul#navigation-admin

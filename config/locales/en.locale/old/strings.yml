@@ -37,6 +37,7 @@ en:
     profile: 
         edit_my_profile: Edit my profile
         create_new_password: Create new password
+        change_password: Change your password
     comments:
         created_notice: 'The comment was created.'
         created_error_notice: 'An error has occured while creating your comment. Please try again. If the problem persists, please contact the administrator.'

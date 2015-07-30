@@ -1,31 +1,8 @@
--#%h1 My account
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('users.my_account'), url_for
+
 
 .legacy
-
-  #dataset_admin_submenu
-    %ul.tabs
-      %li= link_to t("global.profile"), "#profile"
-      %li= link_to t("users.password"), "#password"
-      %li= link_to t("global.favorites"), "#favorites"
-      %li= link_to t("global.comments"), "#comments"
-      %li= link_to t("global.ratings"), "#ratings"
-      %li= link_to t("users.api_access"), "#api"
-
-  %br
-
-  #profile
-    = render :partial => "profile"
-
   #password
     = render :partial => "password"
-
-  #favorites
-    = render :partial => "favorites"
-
-  #comments
-    = render :partial => "comments"
-
-  #ratings
-
-  #api
-    = render :partial => "api"

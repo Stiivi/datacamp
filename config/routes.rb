@@ -93,9 +93,7 @@ Datacamp::Application.routes.draw do
 
     resource :session
 
-    resources :favorites do
-      get :create, :on => :collection
-    end
+    resources :favorites
 
     resources :datasets do
       get :search, :on => :collection
