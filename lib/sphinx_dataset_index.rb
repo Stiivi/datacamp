@@ -13,7 +13,7 @@ class SphinxDatasetIndex
       indexes :quality_status
       field_count = 0
       dataset_description.field_descriptions_for_detail.each do |field|
-        if ![:integer, :date, :decimal].include?(field.data_type)
+        if !['integer', 'date', 'decimal'].include?(field.data_type)
           next if field_count > 28
           field_count += 1
           indexes field.identifier.to_sym, :sortable => true if field.identifier.present?
