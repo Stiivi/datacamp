@@ -54,13 +54,13 @@ def add_to_sphinx_search(operand, sphinx_search)
   when "matches"
     options[:sphinx_search] = "@#{operand} \"^#{argument}$\","
   when "equal"
-    options[:sphinx_select] = ",IF(#{operand} = #{argument},1,0) AS #{operand}_select"                       
+    options[:sphinx_select] = ",IF(#{operand} = #{argument},1,0) AS #{operand}_select"
     options[:with] = {"#{operand}_select" => '1'}
   when "not_equal"
     options[:sphinx_select] = ",IF(#{operand} = #{argument},1,0) AS #{operand}_select"                       
     options[:without] = {"#{operand}_select" => '1'}
   when "greater"
-    options[:sphinx_select] = ",IF(#{operand} > #{argument},1,0) AS #{operand}_select"                       
+    options[:sphinx_select] = ",IF(#{operand} > #{argument},1,0) AS #{operand}_select"
     options[:with] = {"#{operand}_select" => '1'}
   when "greater_or_equal"              
     options[:sphinx_select] = ",IF(#{operand} >= #{argument},1,0) AS #{operand}_select"                       
@@ -85,7 +85,10 @@ def add_to_sphinx_search(operand, sphinx_search)
 		raise "Unknown search predicate operator #{operator}"
 	end
 
-	sphinx_search[:options][:sphinx_select] += options[:sphinx_select] if options[:sphinx_select]
+	if options[:sphinx_select]
+		sphinx_search[:options][:select] ||= '*'
+		sphinx_search[:options][:select] += options[:sphinx_select]
+	end
 	sphinx_search[:query] += options[:sphinx_search] if options[:sphinx_search]
 	sphinx_search[:options][:with].merge!(options[:with])
 	sphinx_search[:options][:without].merge!(options[:without])
