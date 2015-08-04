@@ -2,7 +2,7 @@ module Dataset
   class TableSchema
     attr_reader :table_name, :connection
 
-    def initialize(table_name, connection = CONNECTION)
+    def initialize(table_name, connection = Dataset.connection)
       @table_name = table_name
       @connection = connection
     end

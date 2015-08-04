@@ -2,7 +2,7 @@ module Dataset
   class UnboundDatasets
     attr_reader :system_tables, :connection
 
-    def initialize(system_tables = SYSTEM_TABLES, connection = CONNECTION)
+    def initialize(system_tables = SYSTEM_TABLES, connection = Dataset.connection)
       @connection = connection
       @system_tables = system_tables
     end

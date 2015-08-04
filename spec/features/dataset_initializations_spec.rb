@@ -23,10 +23,10 @@ describe 'DatasetDescriptions' do
   end
 
   def create_table_for_initialization
-    if Dataset::CONNECTION.tables.include?('dc_for_initializations')
-      Dataset::CONNECTION.drop_table :dc_for_initializations
+    if Dataset.connection.tables.include?('dc_for_initializations')
+      Dataset.connection.drop_table :dc_for_initializations
     end
-    Dataset::CONNECTION.create_table :dc_for_initializations, primary_key: :_record_id do |t|
+    Dataset.connection.create_table :dc_for_initializations, primary_key: :_record_id do |t|
       t.string :name
       t.text :info
       t.integer :value

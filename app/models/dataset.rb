@@ -21,11 +21,13 @@ module Dataset
       'dc_relations', 'dc_updates', 'schema_migrations'
   ]
 
-  CONNECTION = Dataset::DatasetRecord.connection
-
   RecordStatus = Status.new(
       ['absent', 'loaded', 'new', 'published', 'suspended', 'deleted', 'morphed']
   )
 
   UnsupportedType = Class.new(StandardError)
+
+  def self.connection
+    Dataset::DatasetRecord.connection
+  end
 end

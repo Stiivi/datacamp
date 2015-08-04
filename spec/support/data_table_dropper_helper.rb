@@ -30,7 +30,7 @@ end
 
 module DataTableDropperHelper
   def self.dropper
-    @dropper ||= TableDropper.new(Dataset::CONNECTION, Kernel)
+    @dropper ||= TableDropper.new(Dataset.connection, Kernel)
   end
 end
 
