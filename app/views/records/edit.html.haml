@@ -1,6 +1,7 @@
-%h1.main.clearfix
-  .fl=@dataset_description.title
-  .fr.actions
-    = link_to t("global.back"), dataset_record_path(@dataset_description, @record)
+.legacy
+  %h1.main.clearfix
+    .fl=@dataset_description.title
+    .fr.actions
+      = link_to t("global.back"), dataset_record_path(@dataset_description, @record)
 
-= render :partial => "form"
+  = render :partial => "form"

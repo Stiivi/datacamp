@@ -1,15 +1,27 @@
-- form_tag searches_path, :class => "new_search search" do
-  %h2= t "search.create_search", :dataset => @dataset_description.title
-  
-  = hidden_field_tag "search[dataset]", @dataset_description.identifier
-  
-  %ul.search
-    - predicates ||= []
-    - predicates.each do |predicate|
-      = render :partial => "searches/predicate_row", :locals => {:predicate => predicate}
-  
-    - if predicates.size == 0
-      = render :partial => "searches/predicate_row"
-        
-  %br
-  = submit_tag t("global.submit")
+#searchbox-adv-wrap
+  = form_tag searches_path do
+    .selector
+      %label Dataset
+      =select_tag 'search[dataset]',
+                    options_from_collection_for_select(DatasetDescription.where(is_active: true),
+                                                      :identifier,
+                                                      :title,
+                                                      @dataset_description.try(:identifier)),
+                    class: 'string js_advanced_search_dataset',
+                    include_blank: t('search.any_field')
+
+
+    %label Filter
+    #search-table{data: {'refresh-url' => predicate_rows_searches_path}}
+      - predicates ||= []
+      - predicates.each do |predicate|
+        %ul.body.search_row= render :partial => "searches/predicate_row", :locals => {:predicate => predicate}
+
+      - if predicates.size == 0
+        %ul.body.search_row= render :partial => "searches/predicate_row"
+
+    .buttons-wrap
+      =submit_tag t('search.add_filter'), class: 'add_row button-add-filter'
+
+    .buttons-wrap
+      .search_button_container= submit_tag t('search.search_action'), id: 'search_now', class: 'search-button'

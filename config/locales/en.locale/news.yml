@@ -1,0 +1,8 @@
+en:
+  news:
+    title: News
+    index:
+      header: 'News list'
+
+    show:
+      index: 'Back to news list'

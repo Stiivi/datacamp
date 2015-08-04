@@ -1,18 +1,13 @@
-.menu.clearfix
-  %ul.tabs.clearfix.fl
-    %li
-      %a{:href => '#comments'}= t("global.comments")
-    %li
-      %a{:href => '#metadata'}= t("global.metadata")
-      
-  %ul.tabs.small.clearfix.fr
-    - if logged_in?
-      = render :partial => "favorites/favorite_menu"
-    - if SharingService.all.count > 0
-      %li.dropdown_trigger
-        %a.share{:href => '#share'}
-          Share
-        %ul.dropdown_content
-          - SharingService.all.each do |serv|
-            %li
-              %a{:href => serv.gen_url(:title => "%s/%d" % [@dataset_description.title, @record.id], :url => dataset_record_url(@dataset_description, @record))}= serv.title
+= link_to t("global.metadata"), '#metadata', class: 'js_dataset_record_metadata_button button-metadata', data:{ tracking_dataset_description_id: @dataset_description.identifier }
+
+%ul.tabs.small.clearfix.fr
+  - if logged_in?
+    = render :partial => "favorites/favorite_menu"
+  - if SharingService.count > 0
+    %li.dropdown_trigger
+      %a.share{:href => '#share'}
+        Share
+      %ul.dropdown_content
+        - SharingService.all.each do |serv|
+          %li
+            %a{:href => serv.gen_url(:title => "%s/%d" % [@dataset_description.title, @record.id], :url => dataset_record_url(@dataset_description, @record))}= serv.title

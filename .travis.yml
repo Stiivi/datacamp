@@ -1,0 +1,18 @@
+language: ruby
+cache: bundler
+rvm:
+- 2.2.2
+before_script:
+- mysql -e 'create database datanest_app_test'
+- mysql -e 'create database datanest_data_test'
+- mysql -e 'create database datanest_staging_test'
+- bundle exec rake db:schema:load
+- bundle exec rake db_staging:schema:load
+- bundle exec rake db_data:schema:load
+script:
+- bundle exec rspec spec/
+addons:
+  code_climate:
+    repo_token:
+      secure: Xk7kjiF7BcShFR0zsIAYTNVmY1l3KDineZhmSge11PBnxGdft48BBeziw+IKRgqX3ZTPw0yj95KJvAYRxpyZhSjKw9gFGCmKARtm7J2p1W2M8fy8FohAT77mi4Xnl/1Q3nPnbkUcYHv5wRgY8UrG2xXagCFoYJzf1W9x0JDwH5I=
+

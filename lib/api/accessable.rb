@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Api
   RESTRICTED = 0
   REGULAR = 1
@@ -6,6 +7,10 @@ module Api
   module Accessable
     def api_level
       api_access_level || 0
+    end
+
+    def api_allowed?
+      return self.api_level > RESTRICTED
     end
     
     def api_allowed_for?(other_accessable)

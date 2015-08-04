@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://www.statistics.sk/pls/wregis/detail?wxidorg=1332604
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 17 Jun 2015 13:46:58 GMT
+      Server:
+      - Oracle-Application-Server-10g/10.1.3.1.0 Oracle-HTTP-Server
+      X-DB-Content-length:
+      - '3850'
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/html; charset=WINDOWS-1250
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PCFET0NUWVBFIGh0bWwgUFVCTElDICItLy9XM0MvL0RURCBIVE1MIDQuMDEg
+        VHJhbnNpdGlvbmFsLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL1RSL2h0bWw0
+        L2xvb3NlLmR0ZCI+CjxIVE1MPgo8SEVBRD4KPFRJVExFPlJFR0lTIC0gRGV0
+        YWlsPC9USVRMRT4KPC9IRUFEPgo8Qk9EWSAgYmdjb2xvcj0iI0ZGRUZERiIg
+        dGV4dD0iIzgwMDAwMCI+CjxUQUJMRSAgIGNlbGxTcGFjaW5nPTEgY2VsbFBh
+        ZGRpbmc9NCBzdHlsZT0iYm9yZGVyLUNvbG9yOiMwMDAwMDA7IHdpZHRoOjEw
+        MCUiIGJvcmRlcj0xPgo8VEJPRFk+CjxUUj4KPFREICBzdHlsZT0idkFsaWdu
+        OmNlbnRlciIgYmdDb2xvcj0iIzczODJBNSI+PFAgQUxJR049ImNlbnRlciI+
+        PEZPTlQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBjb2xvcj0iI2ZmZmZmZiIg
+        c2l6ZT0iNCI+PEk+PEI+inRhdGlzdGlja/0gcmVnaXN0ZXIgb3JnYW5peuFj
+        ae08L0I+PC9JPjwvRk9OVD48L1REPgo8L1RSPgo8L1RCT0RZPgo8L1RBQkxF
+        Pgo8c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlwdCI+IA0KICBmdW5jdGlv
+        biBwcmVzbWVydWooYWRyZXNhKSANCiAgew0KICAgIGxvY2F0aW9uLmhyZWY9
+        IGFkcmVzYQ0KICB9Ow0KPC9TQ1JJUFQ+CjxGT1JNIEFDVElPTj0iL3Bscy93
+        cmVnaXMvZG90YXoiIE1FVEhPRD0iR0VUIj4KPERJViBjbGFzcz0iaGxhdmlj
+        a2EiPgo8L0RJVj4KPERJViBjbGFzcz0idGVsbyI+CjwvRElWPgo8RElWIGNs
+        YXNzPSJwb3puYW1rYSI+CjxJPlRlbnRvIHb9cGlzIG3hIGluZm9ybWF07XZu
+        eSBjaGFyYWt0ZXIuIDwvST4KPC9ESVY+CjxINCBBTElHTj0iY2VudGVyIj5J
+        ZGVudGlmaWth6G7pIPpkYWplPC9IND4KPFRBQkxFICBBTElHTj0iY2VudGVy
+        IiAgY2xhc3M9InRhYmlkIiBjZWxsc3BhY2luZz0iMCIgYm9yZGVyPSIwIj4K
+        PFRSPgo8VEQgQUxJR049InJpZ2h0IiAgd2lkdGg9IjI2MCI+PEI+SchPOjwv
+        Qj48L1REPgo8VEQgIHdpZHRoPSIyMCI+IDwvVEQ+CjxURCBBTElHTj0ibGVm
+        dCIgIHdpZHRoPSI0MDAiPjxCPjQyMzExNzQ4PC9CPjwvVEQ+CjwvVFI+CjxU
+        Uj4KPFREIEFMSUdOPSJyaWdodCIgIHdpZHRoPSIyNjAiPjxCPk9iY2hvZG7p
+        IG1lbm86PC9CPjwvVEQ+CjxURCAgd2lkdGg9IjIwIj4gPC9URD4KPFREIEFM
+        SUdOPSJsZWZ0IiAgd2lkdGg9IjQwMCI+PEI+QmMuIEl2ZXRhIFB1cmdhdG92
+        4TwvQj48L1REPgo8L1RSPgo8VFI+CjxURCBBTElHTj0icmlnaHQiICB3aWR0
+        aD0iMjYwIj48Qj5QcuF2bmEgZm9ybWE6PC9CPjwvVEQ+CjxURCAgd2lkdGg9
+        IjIwIj4gPC9URD4KPFREIEFMSUdOPSJsZWZ0IiAgd2lkdGg9IjQwMCI+PEI+
+        MTA1IC0gU2xvYm9kbukgcG92b2xhbmllLWZ5emlja+Egb3NvYmEgcG9kbmlr
+        YWr6Y2EgbmEgeuFrbGFkZSBpbulobyBha28gnml2bm9zdGVuc2vpaG8geuFr
+        b25hPC9CPjwvVEQ+CjwvVFI+CjwvVEFCTEU+CjxUQUJMRSAgQUxJR049ImNl
+        bnRlciIgIGNsYXNzPSJ0YWJpZCIgY2VsbHNwYWNpbmc9IjAiIGJvcmRlcj0i
+        MCI+CjxUQk9EWT4KPFRSPgo8VEQgQUxJR049InJpZ2h0IiAgd2lkdGg9IjI2
+        MCI+PEI+ROF0dW0gdnpuaWt1OjwvQj48L1REPgo8VEQgIHdpZHRoPSIyMCI+
+        IDwvVEQ+CjxURCBBTElHTj0ibGVmdCIgIHdpZHRoPSI0MDAiPjxCPjE4LjEy
+        LjIwMTM8L0I+PC9URD4KPC9UUj4KPFRSPgo8VEQgQUxJR049InJpZ2h0IiAg
+        d2lkdGg9IjI2MCI+PEI+ROF0dW0geuFuaWt1OjwvQj48L1REPgo8VEQgIHdp
+        ZHRoPSIyMCI+IDwvVEQ+CjxURCBBTElHTj0ibGVmdCIgIHdpZHRoPSI0MDAi
+        Pi08L1REPgo8L1RSPgo8L1RCT0RZPgo8L1RBQkxFPgo8VEFCTEUgIEFMSUdO
+        PSJjZW50ZXIiICBjbGFzcz0idGFiaWQiIGNlbGxzcGFjaW5nPSIwIiBib3Jk
+        ZXI9IjAiPgo8VEJPRFk+CjxUUj4KPFREIEFMSUdOPSJyaWdodCIgIHdpZHRo
+        PSIyNjAiPjxCPkFkcmVzYSBz7WRsYTo8L0I+PC9URD4KPFREICB3aWR0aD0i
+        MjAiPiA8L1REPgo8VEQgQUxJR049ImxlZnQiICB3aWR0aD0iNDAwIj48Qj5T
+        dHJlbG7ta3kgNjcsICZuYnNwOzk3NiA1NSBTdHJlbG7ta3k8L0I+PC9URD4K
+        PC9UUj4KPFRSPgo8VEQgQUxJR049InJpZ2h0IiAgd2lkdGg9IjI2MCI+PEI+
+        T2tyZXM6PC9CPjwvVEQ+CjxURCAgd2lkdGg9IjIwIj4gPC9URD4KPFREIEFM
+        SUdOPSJsZWZ0IiAgd2lkdGg9IjQwMCI+PEI+IEJhbnNr4SBCeXN0cmljYTwv
+        Qj48L1REPgo8L1RSPgo8L1RCT0RZPgo8L1RBQkxFPgo8SDQgQUxJR049ImNl
+        bnRlciI+inRhdGlzdGlja+kgY2hhcmFrdGVyaXN0aWt5PC9IND4KPFRBQkxF
+        ICBBTElHTj0iY2VudGVyIiAgY2xhc3M9InRhYmxpc3QiIGJvcmRlcj0iMCI+
+        CjxUQk9EWSBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjojREVCODg3IiA+CjxU
+        Uj4KPFRIPk7hem92IOjtc2Vsbu1rYTwvVEg+CjxUSD5L82Q8L1RIPgo8VEg+
+        VGV4dDwvVEg+CjwvVFI+CjxUUiAgY2xhc3M9ImxpY2hhIj4KPFREIEFMSUdO
+        PSJsZWZ0IiAgd2lkdGg9IjI2MCI+PEEgSFJFRj0iL3Bscy93cmVnaXMvY2lz
+        ZWxuaWt5P2tjPTAwNTYiPlBy4XZuYSBmb3JtYTwvQT48L1REPgo8VEQgIGNs
+        YXNzPSJjaXNsbyI+MTA1PC9URD4KPFREPlNsb2JvZG7pIHBvdm9sYW5pZS1m
+        eXppY2vhIG9zb2JhIHBvZG5pa2Fq+mNhIG5hIHrha2xhZGUgaW7paG8gYWtv
+        IJ5pdm5vc3RlbnNr6WhvIHrha29uYTwvVEQ+CjwvVFI+CjxUUiAgY2xhc3M9
+        InN1ZGEiPgo8VEQ+PEEgSFJFRj0iL3Bscy93cmVnaXMvY2lzZWxuaWt5P2tj
+        PTUyMDUiPlByZWRtZXQgcHJldmGedWr6Y2VqIOhpbm5vc3RpIChTSyBOQUNF
+        KTwvQT48L1REPgo8VEQgIGNsYXNzPSJjaXNsbyI+NjYyMjA8L1REPgo8VEQ+
+        yGlubm9zdGkgcG9pc51vdmFj7WNoIGFnZW50b3YgYaBtYWts6XJvdjwvVEQ+
+        CjwvVFI+CjxUUiAgY2xhc3M9ImxpY2hhIj4KPFREPjxBIEhSRUY9Ii9wbHMv
+        d3JlZ2lzL2Npc2VsbmlreT9rYz01NTAyIj5QcmVkbWV0IHByZXZhnnVq+mNl
+        aiDoaW5ub3N0aSAoT0tFyCk8L0E+PC9URD4KPFREICBjbGFzcz0iY2lzbG8i
+        PjY3MjAwPC9URD4KPFREPlBvbW9jbukg6Glubm9zdGkgc/p2aXNpYWNlIHMg
+        cG9pc3Rlbu1tIGEgZPRjaG9ka292/W0gemFiZXpwZehlbu1tPC9URD4KPC9U
+        Uj4KPFRSICBjbGFzcz0ibGljaGEiPgo8VEQ+PEEgSFJFRj0iL3Bscy93cmVn
+        aXMvY2lzZWxuaWt5P2tjPTAwMzYiPkRydWggdmxhc3Ru7WN0dmE8L0E+PC9U
+        RD4KPFREICBjbGFzcz0iY2lzbG8iPjI8L1REPgo8VEQ+U/prcm9tbukgdHV6
+        ZW1za+k8L1REPgo8L1RSPgo8VFIgIGNsYXNzPSJzdWRhIj4KPFREPjxBIEhS
+        RUY9Ii9wbHMvd3JlZ2lzL2Npc2VsbmlreT9rYz0wMDczIj5LYXRlZ/NyaWEg
+        dmVsa29zdGkgb3JnYW5peuFjaWU8L0E+PC9URD4KPFREICBjbGFzcz0iY2lz
+        bG8iPiAgPC9URD4KPFREPjAtMiB6YW1lc3RuYW5jaTwvVEQ+CjwvVFI+Cjwv
+        VEJPRFk+CjwvVEFCTEU+CjxCUj4KPElOUFVUIGNsYXNzPSJidXR0b24iIHR5
+        cGU9ImJ1dHRvbiIgbmFtZT0iYmFjayIgdmFsdWU9Ik7hdnJhdCIgb25jbGlj
+        az0iaGlzdG9yeS5iYWNrKCkiPgo8SU5QVVQgVFlQRT0ic3VibWl0IiBWQUxV
+        RT0iTm926SB6YWRhbmllIiAgY2xhc3M9ImJ1dHRvbiI+CjxJTlBVVCBUWVBF
+        PUJVVFRPTiBWQUxVRT0iVv1waXMiIG9uQ2xpY2s9InByZXNtZXJ1aiggJy9w
+        bHMvd3JlZ2lzL3Z5cGlzcmVnaXM/dnlwaXNfeGlkb3JnPTEzMzI2MDQnKTsi
+        Pgo8L0ZPUk0+CjxESVYgY2xhc3M9InBhdGlja2EiPgo8QlI+ClZ5dHZvcmVu
+        aWUgc3Ry4W5reTogMTcuMDYuMjAxNSAgMTU6NDcsIHBsYXRub3OdIPpkYWpv
+        diBrIDE2LjA2LjIwMTUKPEJSPgomIzE2OTsgQYpJUy1SRUdJUyAyLjAgIIp0
+        YXRpc3RpY2v9IPpyYWQgU2xvdmVuc2tlaiByZXB1Ymxpa3ksIDIwMDUgICAg
+        IAo8L0RJVj4KPC9CT0RZPgo8L0hUTUw+Cg==
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://www.statistics.sk/pls/wregis/detail?wxidorg=1332604
+  recorded_at: Wed, 17 Jun 2015 13:47:00 GMT
+recorded_with: VCR 2.9.3

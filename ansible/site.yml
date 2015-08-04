@@ -1,0 +1,11 @@
+- hosts: web
+  sudo: true
+  vars:
+    app_user: datanest2
+  roles:
+    - { role: user, github_ssh_keys: [kremso, jsuchal] }
+    - { role: ruby, rubies: [2.2.2] }
+    - { role: mysql, users: [datanest], databases: [datanest_app_production, datanest_staging_production, datanest_data_production] }
+    - role: sphinx
+    - { role: nginx-passenger, passenger_env: production }
+    - role: datanest

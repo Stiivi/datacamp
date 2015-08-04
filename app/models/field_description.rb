@@ -1,84 +1,82 @@
+# -*- encoding : utf-8 -*-
 class FieldDescription < ActiveRecord::Base
+
   belongs_to :dataset_description
   belongs_to :data_format
-  
+  belongs_to :field_description_category
+
   translates :title, :description, :category
   locale_accessor I18N_LOCALES
-  
+
   ###########################################################################
   # Validations
   validates_presence_of :identifier
   validates_uniqueness_of :identifier, :scope => :dataset_description_id
-  validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
-  
-  after_save :update_data_type
-  after_create :setup_in_database
-  
-  # Accessors
-  
-  attr_accessor :data_type
-  
+  #validates_presence_of_i18n :category, :title, :locales => [I18n.locale]
+  validates_numericality_of :min_width, if: lambda { min_width.present? }
+
+  after_create :add_dataset_column
+  after_update :update_dataset_column
+  after_destroy :remove_dataset_column
+
   ###########################################################################
-  # Finders
-  def self.find(*args)
-    self.with_scope(:find => {:order => 'weight asc'}) { super }
-  end
-  
+  # Default scope
+  default_scope order('weight asc')
+
   ###########################################################################
   # Methods
   def to_s
     category.blank? ? title : "#{title} (#{category})"
   end
-  
+
   def title
-    title = globalize.fetch self.class.locale || I18n.locale, :title
-    title = translations.find(:first).title if title.blank?
+    title = globalize.fetch I18n.locale, :title
+    title = translations.first.title if title.blank? && translations.first.present?
     title.blank? ? "n/a" : title
   end
-  
+
+  def data_type_with_default
+    data_type || :string
+  end
+
   ###########################################################################
   # Dataset
   def exists_in_database?
-    dataset_description.dataset.has_column?(identifier)
+    dataset_column_exists?(identifier)
   end
-  
-  # Callbacks
-  def after_find
-    find_data_type
+
+  def add_dataset_column
+    return unless dataset_table_exists?
+    return if dataset_column_exists?(identifier)
+
+    dataset_description.dataset_schema_manager.add_column(identifier, data_type_with_default)
   end
-  
-  ###########################################################################
-  # Private
+
   private
-  
-  def setup_in_database
-    # return false unless dataset_description
-    dataset = dataset_description.dataset
-    
-    return false unless identifier
-    return false unless dataset_description.dataset.table_exists?
-    return false if dataset.has_column?(identifier.to_s)
-    
-    dataset.create_column_for_description(self)
-  end
-  
-  def find_data_type
-    # If this field is not assigned to a dataset yet,
-    # we can't find actual data type in dataset -- thus we
-    # can only play with ours.
-    return unless dataset_description
-    manager = DatastoreManager.manager_with_default_connection
-    @data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
-  end
-  
-  def update_data_type
-    # Again -- no dataset assigned, no data types.
-    return unless dataset_description
-    return unless @data_type
-    manager = DatastoreManager.manager_with_default_connection
-    current_data_type = manager.dataset_field_type(dataset_description.identifier, self.identifier)
-    unless @data_type.to_s == current_data_type
-      manager.set_dataset_field_type(dataset_description.identifier, self.identifier, @data_type)
+
+  def update_dataset_column
+    return unless dataset_table_exists?
+
+    if identifier_changed? && identifier_was && identifier && dataset_column_exists?(identifier_was)
+      dataset_description.dataset_schema_manager.rename_column(identifier_was, identifier)
     end
+    if data_type_changed? && identifier_was && identifier && dataset_column_exists?(identifier)
+      dataset_description.dataset_schema_manager.change_column_type(identifier, data_type)
+    end
+  end
+
+  def remove_dataset_column
+    return unless dataset_table_exists?
+    return unless dataset_column_exists?(identifier)
+
+    dataset_description.dataset_schema_manager.remove_column(identifier)
+  end
+
+  def dataset_table_exists?
+    dataset_description && dataset_description.dataset_schema_manager.table_exists?
+  end
+
+  def dataset_column_exists?(column)
+    dataset_description && dataset_description.dataset_schema_manager.has_column?(column)
   end
 end

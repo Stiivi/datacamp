@@ -1,37 +1,29 @@
-- form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "inline submit_on_change"} do |f|
-  
-  %table{:class => "small #{@dataset_description.identifier}"}
-    %tr.header
-      %th.checkbox{:width => 15}
-        %a.tooltip{:name => t("dataset.click_to_select_all"), :href=>"#", :class => "select_all"} &nbsp;&times;
-      %th.status{:width => 40}
-      - @field_descriptions.each do |field_description|
-        %th{:class => field_description.identifier}
-          = sort_link(field_description)
-      %th.actions{:width => 160} &nbsp;
-      
-    %tr.batch
-      %td.nopadding{:colspan => 3+@field_descriptions.count}
-        = render :partial => "datasets/admin/batch", :locals => {:f => f}
-  
-    - @records.each do |record|
-      %tr{:class => cycle("odd", "even")}
-        %td.checkbox
-          = check_box_tag "record[]", record._record_id, false, :class => "record"
-        %td.status
-          = image_tag "icons/record_status/#{record.record_status}.png", :alt => t("record_statuses.#{record.record_status}"), :class => "tooltip"
-          / - if record.quality_status && record.quality_status != "ok"
-          /             = image_tag "icons/#{record.quality_status}.png", :class => "quality_status"
-          /           - if record.record_status && record.record_status == "flagged"
-          /             = image_tag "icons/flag.png", :alt => "Flagged (has errros)", :class => "tooltip"
-          /           - else
-          /             = image_tag "icons/ok.png", :alt => "OK (published)", :class => "tooltip"
+= form_for @dataset_description, :url => dataset_path(@dataset_description), :html => {:class => "inline submit_on_change"} do |f|
+
+  = render "datasets/admin/batch", f: f
+
+  #table-dataset{class: @dataset_description.identifier}
+    %ul.header
+      %li.row-header
+        %span#select_all.cell.select_all
+          %input.select_all{type: :checkbox}
+        %span.cell
         - @field_descriptions.each do |field_description|
-          %td
+          %span.cell{class: field_description.identifier}
+            %div{title: field_description.description, class: field_description.description.present? ? 'has-tip' : ''}= sort_link(field_description)
+
+    %ul.body
+      - @records.each do |record|
+        %li.row{:id => dom_id(record), :class => cycle("odd", "even")}
+          %span.cell
+            = check_box_tag "record[]", record._record_id, false, :class => "record", :id => dom_id(record, "check")
+          %span.cell
+            = image_tag "icons/record_status/icon_#{record.record_status}.png", :alt => t("record_statuses.#{record.record_status}"), :class => "tooltip"
+            = image_tag "icons/record_status/icon_#{record.quality_status}.png", :alt => t("quality_statuses.#{record.quality_status}"), :class => "tooltip"
+          - @field_descriptions.each do |field_description|
             - value = record.get_truncated_html_value(field_description)
-            - unless field_description.reference.blank?
-              = link_to(value, new_search_path(:query_string => record.search_string_for_field_description(field_description)))
+            - if value =~ /\<a.*?\>/
+              %span.cell{class: field_description.data_type}
+                = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""
             - else
-              = value
-        %td.actions
-          = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(@dataset, record, :page => params[:page]))
+              = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : "", class: [:cell, field_description.data_type]

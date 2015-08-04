@@ -1,0 +1,677 @@
+.legacy {
+  a.view_wrong_dataset {
+      -moz-border-radius:5px;
+      border-radius:5px;
+      padding:10px 13px 10px 13px;
+      background:666666;
+      background:-webkit-linear-gradient(top, #888888, #666666);
+      background: -moz-linear-gradient(top, #888888, #666666);
+      float:right;
+      font-size:10px;
+      text-align:right;
+      color:#ffffff;
+      font-weight:normal;
+      text-decoration:none;
+  }
+  a.view_wrong_dataset:hover {
+      background:333333;
+      background:-webkit-linear-gradient(top, #555555, #333333);
+      background: -moz-linear-gradient(top, #555555, #333333);
+      text-decoration:none;
+  }
+  a.view_wrong_dataset:active {
+      background:333333;
+      background:-webkit-linear-gradient(top, #555555, #333333);
+      background: -moz-linear-gradient(top, #555555, #333333);
+      text-decoration:none;
+  }
+
+  #main {
+      display:block;
+      width:960px;
+      margin:0px auto 50px auto;
+      padding:0;
+      float:none;
+      overflow:hidden;
+      font-family: 'Lucida Grande', Tahoma, Helvetica, Arial, Verdana;
+  }
+
+  #container {
+      display:block;
+      float:none;
+      overflow:hidden;
+      margin:20px 0px 0px 0px;
+      padding:0px;
+  }
+
+  /* Dataset Category Headline */
+  #dataset_category_container {
+    display:block;
+    float:none;
+    overflow:hidden;
+    margin:0px 0px 20px 0px;
+    padding:0px;
+  }
+  #dataset_category_head {
+      display:block;
+      float:none;
+      overflow:hidden;
+      background: #666666;
+      background: -webkit-linear-gradient(top, #888888, #666666);
+      background: -moz-linear-gradient(top, #888888, #666666);
+      border-top-left-radius:5px;
+      -moz-border-radius-topleft:5px;
+      border-top-right-radius:5px;
+      -moz-border-radius-topright:5px;
+  }
+  #dataset_category_head a {
+      background:transparent;
+      color:#ffffff;
+      display:inline-block;
+      text-decoration:none;
+  }
+  #dataset_category_head a.headline {
+      padding:10px 15px;
+      float:left;
+      font-size:14px;
+  }
+
+  /* Dataset */
+  #dataset {
+      display:block;
+      float:none;
+      overflow:hidden;
+      background:#f9f9f9;
+      border-bottom:1px solid #eaeaea;
+      font-size:10px;
+  }
+
+  #dataset a {
+      color:#333333;
+      display:inline-block;
+      text-decoration:none;
+  }
+  #dataset a.dataset_line {
+      float:left;
+      padding:15px 15px;
+      width:796px;
+  }
+  #dataset a.dataset_line:hover {
+      background:#dddddd;
+  }
+  #dataset .dataset_name {
+      font-size:12px;
+      display:inline-block;
+      width:200px;
+  }
+  #dataset a.dataset_status {
+      margin:12px 15px 0px 0px;
+      float:right;
+      width:21px;
+      height:21px;
+      background:image-url('ok_icon.png');
+  }
+  #dataset a.dataset_status_wrong {
+      margin:12px 15px 0px 0px;
+      float:right;
+      width:21px;
+      height:21px;
+      background:image-url('wrong_icon.png');
+  }
+  #dataset a.api {
+      margin:12px 15px 0px 0px;
+      float:right;
+      width:21px;
+      height:21px;
+      background:image-url('api_icon.png');
+  }
+  #dataset a.api:hover {
+      background:image-url('api_icon.png');
+      background-position: 0 -21px;
+  }
+
+  /* Dataset Similar */
+  #datanest_similar_container {
+      display:block;
+      float:none;
+      overflow:hidden;
+      margin:20px 0px 0px 0px;
+      padding:0px;
+  }
+
+  #dataset_similar {
+      display:block;
+      float:none;
+      overflow:hidden;
+      background:#f9f9f9;
+      border-bottom:1px solid #eaeaea;
+      font-size:10px;
+  }
+  #dataset_similar a {
+      color:#333333;
+      display:inline-block;
+      text-decoration:none;
+  }
+  #dataset_similar a.dataset_line {
+      display:block;
+      float:none;
+      padding:15px 15px;
+  }
+  #dataset_similar a.dataset_line:hover {
+      background:#dddddd;
+  }
+  #dataset_similar .dataset_name {
+      font-size:12px;
+      display:inline-block;
+      width:200px;
+  }
+          
+  /* Dataset Menu */
+  #dataset_menu {
+      display:block;
+      float:none;
+      overflow:hidden;
+      background: #666666;
+      background: -webkit-linear-gradient(top, #888888, #666666);
+      background: -moz-linear-gradient(top, #888888, #666666);
+      border-top-left-radius:5px;
+      -moz-border-radius-topleft:5px;
+      border-top-right-radius:5px;
+      -moz-border-radius-topright:5px;
+      margin:0px 0px 0px 0px;
+      font-size:12px;
+  }
+  #dataset_menu ul {
+      list-style:none;
+      margin:0px;
+      padding:0px;
+      float:none;
+      display:block;
+      overflow:hidden;
+  }
+  #dataset_menu li {
+      overflow:hidden;
+      float:left;
+
+    /* FIXME: override other.css:20 */
+    padding: 0;
+    border: 0;
+    margin: 0;
+    /* FIXME: remove when removing screen.css:16 */
+    line-height: 15px;
+  }
+  #dataset_menu li.navigation {
+      border:none;
+      display:block;
+      float:right;
+      overflow:hidden;
+  }
+  #dataset_menu a.navigation {
+      float:left;
+      color:#eeeeee;
+      display:block;
+      padding:12px 15px 0px 0px;
+      border:none;
+      text-decoration:none;
+      font-size:10px;
+      
+  }
+  #dataset_menu a.navigation:hover {
+      background:transparent;
+      text-decoration:underline;
+  }
+  #dataset_menu a.navigation:active {
+      background:transparent;
+      text-decoration:underline;
+  }
+
+  #dataset_menu a {
+      color:#ffffff;
+      display:block;
+      padding:11px 15px 11px 15px;
+      border:none;
+      text-decoration:none;
+  }
+  #dataset_menu a:hover {
+      background:#444444;
+      background:-webkit-linear-gradient(top, #666666, #444444);
+      background: -moz-linear-gradient(top, #666666, #444444);
+  }
+  #dataset_menu a:active {
+      background:#444444;
+      background:-webkit-linear-gradient(top, #666666, #444444);
+      background: -moz-linear-gradient(top, #666666, #444444);
+  }
+  #dataset_menu form {
+      padding:3px 0px 0px 0px;
+      float:right;
+      overflow:hidden;
+      display:block;
+      border:0px solid red;
+  }
+  #dataset_menu input.search {
+      font-size:12px;
+      display:block;
+      border:none;
+      float:right;
+      background:#ffffff;
+      width:350px;
+      /* height:31px; */
+      color:#666666;
+      padding:8px 10px 8px 10px;
+      border:none;
+      margin:0px;
+  }
+  #dataset_menu input.search_button {
+      cursor:pointer;
+      background:url(button_search.png) no-repeat center;
+      width:30px;
+      height:30px;
+      border:none;
+      padding:0;
+      margin:0px 4px 0px 4px;
+      display:block;
+      float:right;
+  }
+
+  #dataset_navigation_admin {
+      display:block;
+      float:none;
+      overflow:hidden;
+      background:#444444;
+      padding:10px 10px;
+    /* FIXME: remove when removing screen.css:16 */
+    line-height: 13px;
+  }
+  #dataset_navigation_admin a {
+      color:#ffffff;
+      font-size:10px;
+      overflow:hidden;
+      float:right;
+      margin:0px 0px 0px 10px;
+      text-decoration:none;
+  }
+  #dataset_navigation_admin a:hover {
+      text-decoration:underline;
+  }
+  #dataset_navigation_admin a:active {
+      text-decoration:underline;
+  }
+
+  #dataset_info_container {
+      line-height:18px;
+      font-size:12px;
+      float:none;
+      overflow:hidden;
+      display:block;
+      padding:20px 25px;
+      background:#f0f0f0;
+      border-bottom-left-radius:5px;
+      -moz-border-radius-bottomleft:5px;
+      border-bottom-right-radius:5px;
+      -moz-border-radius-bottompright:5px;
+  }
+  #dataset_info_container .headline {
+      font-weight:bold;
+      font-size:18px;
+      margin:0px 0px 20px 0px;
+      display:block;
+      float:none;
+      overflow:hidden;
+  }
+  #dataset_info_container .perex {
+      width:560px;
+      display:block;
+      float:left;
+      overflow:hidden;
+  }
+  #dataset_info_container .info {
+      font-size:13px;
+      width:260px;
+      display:block;
+      float:right;
+      overflow:hidden;
+  }
+  #dataset_info_container a {
+      color:#333333;
+      font-weight:bold;
+      text-decoration:none;
+  }
+  #dataset_info_container a:hover {
+      text-decoration:underline;
+  }
+
+  /* Rozšírené vyhľadávanie */
+  #search_advanced {
+      width:900px;
+      padding:25px 30px;
+      background:#000000;
+      border-bottom-left-radius:5px;
+      -moz-border-radius-bottomleft:5px;
+      border-bottom-right-radius:5px;
+      -moz-border-radius-bottomright:5px;
+      opacity: 0.9;
+      -moz-opacity: 0.9;
+      filter:alpha(opacity=90);
+      position:absolute;
+      top:161px;
+  }
+  #search_advanced form {
+    padding: 0;
+  }
+
+  #search_advanced ul {
+      list-style:none;
+      margin:0;
+      padding:0px 0px 20px 0px;
+      float:none;
+      display:block;
+      overflow:hidden;
+  }
+  #search_advanced li {
+      float:left;
+      margin:0px 5px 0px 0px;
+
+    /* FIXME: override other.css:20 */
+    padding: 0;
+    border: 0;
+  }
+  #search_advanced select {
+    /* FIXME: overrides forms.css:61 */
+    font-size: 11px;
+    /* FIXME: overrides other:82 */
+    margin: 0;
+  }
+  #search_advanced li.button {
+      float:right;
+      margin:0px 5px 0px 0px;
+      padding:3px 0px 0px 0px;
+  }
+  #search_advanced a.add_row {
+      display:block;
+      width:16px;
+      height:17px;
+      background:image-url('icons/plus.png');
+  }
+  #search_advanced a.remove_row {
+      display:block;
+      width:16px;
+      height:17px;
+      background:image-url('icons/minus.png');
+      margin:0px 2px 0px 0px;
+  }
+  #search_advanced .search_button_container {
+      display:inline-block;
+      -moz-border-radius:5px;
+      border-radius:5px;
+      background:#009200;
+      background:-webkit-linear-gradient(top, #46b84b, #267d31);
+      background:-moz-linear-gradient(top, #00c109, #009200);
+  }
+  #search_advanced input.search_button {
+      cursor:pointer;
+      background:image-url('button_search.png') no-repeat center;
+      width:40px;
+      height:30px;
+      border:none;
+      padding:0;
+      margin:0px 4px 0px 4px;
+      display:block;
+      float:none;
+  }
+  #search_advanced input.search_value {
+      width:450px;
+
+    /* FIXME: overrides forms:43 */
+    font-size: 11px;
+    /* FIXME: overrides forms:43 */
+    padding: 0;
+  }
+  #search_advanced h1 {
+      display:block;
+      float:none;
+      overflow:hidden;
+      margin:0px 0px 20px 0px;
+      padding:0px;
+      font-size:16px;
+      color:#ffffff;
+      font-weight:normal;
+  }
+  #search_advanced a.button_close {
+      width:21px;
+      height:21px;
+      background:image-url('button_close.png');
+      float:right;
+      overflow:hidden;
+  }
+  #search_advanced h2 {
+      margin:10px 0px 5px 0px;
+      padding:0px;
+      font-size:12px;
+      color:#ffffff;
+      font-weight:normal;
+  }
+
+  /* ------------------------------------------------------------ */
+  /* -------------- Start - Dataset Admin Submenu --------------- */
+  /* ------------------------------------------------------------ */
+  #dataset_admin_submenu {
+      display:block;
+      float:none;
+      overflow:hidden;
+    /* FIXME: remove when removing screen.css:16 */
+    line-height: 15px;
+
+  }
+  #dataset_admin_submenu ul {
+      list-style:none;
+      margin:0px;
+      padding:0px;
+      float:none;
+      display:block;
+      overflow:hidden;
+      background: #666666;
+      background: -webkit-linear-gradient(top, #888888, #666666);
+      background: -moz-linear-gradient(top, #888888, #666666);
+      font-size:12px;
+  }
+  #dataset_admin_submenu li {
+      overflow:hidden;
+      float:left;
+    /* FIXME: overrides other:82 */
+    margin: 0;
+    /* FIXME: override other.css:20 */
+    padding: 0;
+    border: 0;
+  }
+  #dataset_admin_submenu a {
+      color:#ffffff;
+      display:block;
+      padding:11px 15px 11px 15px;
+      border:none;
+      text-decoration:none;
+  }
+  #dataset_admin_submenu a:hover {
+      background:#444444;
+      background:-webkit-linear-gradient(top, #666666, #444444);
+      background: -moz-linear-gradient(top, #666666, #444444);
+  }
+  #dataset_admin_submenu a:active, #dataset_admin_submenu a.active {
+      background:#444444;
+      background:-webkit-linear-gradient(top, #666666, #444444);
+      background: -moz-linear-gradient(top, #666666, #444444);
+  }
+  #dataset_admin_submenu a.back {
+      padding:11px 15px 11px 30px;
+      background:image-url('arrow_left.png') no-repeat left center;
+  }
+  #dataset_admin_submenu a.back:active {
+      padding:11px 15px 11px 30px;
+      background:image-url('arrow_left.png') no-repeat left center #444444;
+  }
+  #dataset_admin_submenu a.back:hover {
+      padding:11px 15px 11px 30px;
+      background:image-url('arrow_left.png') no-repeat left center #444444;
+  }
+  #dataset_admin_submenu .flags_bar {
+      display:block;
+      float:none;
+      overflow:hidden;
+      background-color:#444444;
+      padding:0px;
+    /* FIXME: remove when removing screen.css:16 */
+    line-height: 12px;
+  }
+  #dataset_admin_submenu .flag {
+      display:inline-block;
+      background:#eee200;
+      color:#333333;
+      font-size:10px;
+      font-weight:bold;
+      overflow:hidden;
+      float:right;
+      border-left:1px solid #444444;
+      margin:0px;
+      padding:8px 13px;
+      text-decoration:none;
+  }
+  #dataset_admin_submenu .info_container {
+      line-height:18px;
+      font-size:12px;
+      float:none;
+      overflow:hidden;
+      display:block;
+      padding:20px 25px;
+      background:#f0f0f0;
+      border-bottom-left-radius:5px;
+      -moz-border-radius-bottomleft:5px;
+      border-bottom-right-radius:5px;
+      -moz-border-radius-bottomright:5px;
+  }
+  #dataset_admin_submenu h2 {
+      font-weight:bold;
+      font-size:18px;
+      margin:0px 0px 20px 0px;
+      display:block;
+      float:none;
+      overflow:hidden;
+    color:#333333;
+  }
+  #dataset_admin_submenu .perex {
+      display:block;
+      float:none;
+      overflow:hidden;
+  }
+  #dataset_admin_submenu .info {
+      font-size:13px;
+      width:260px;
+      display:block;
+      float:right;
+      overflow:hidden;
+  }
+  /* ------------------------------------------------------------ */
+  /* ---------------- End - Dataset Admin Submenu --------------- */
+  /* ------------------------------------------------------------ */
+
+
+
+
+  /* Footer */
+  footer {
+      font-size:12px;
+      background:transparent;
+      display:block;
+      float:none;
+      overflow:hidden;
+      border-top:1px solid #cccccc;
+      margin:50px 0px 0px 0px;
+      padding:10px 15px 10px 15px;
+      color:#999999;
+  }
+  footer a {
+      color:#999999;
+      text-decoration:none;
+  }
+  footer a:hover {
+      color:#666666;
+      text-decoration:underline;
+  }
+
+  #page_content {
+      display:block;
+      float:left;
+      overflow:hidden;
+    padding:30px 0;
+  }
+  #page_content.with_sidebar {
+    width:700px;
+  }
+
+  /* Newsfeed - Novinky */
+  #newsfeed {
+      display:block;
+      float:right;
+      overflow:hidden;
+      width:260px;
+  }
+  #newsfeed ul {
+      width:260px;
+      list-style:none;
+      margin:0;
+      padding:0;
+      float:right;
+      overflow:hidden;
+      font-size:14px;
+  }
+  #newsfeed li {
+      margin:0px 0px 20px 0px;
+
+    /* FIXME: remove this when styles get fixed. Overrides other.css:20:12 */
+    padding: 0;
+    border: none;
+  }
+
+  #newsfeed a.headline {
+      display:block;
+      font-size:20px;
+      font-weight:bold;
+      color:#2bb673;
+      margin:0px;
+      padding:20px 0px 0px 0px;
+      text-decoration:none;
+  }
+  #newsfeed a.headline_newsfeed {
+      display:block;
+      color:#333333;
+      font-size:15px;
+      font-weight:bold;
+      margin:0px;
+      padding:0px;
+      text-decoration:none;
+      }
+  #newsfeed a:hover {
+      text-decoration:underline;
+  }
+
+  #accessdenied {
+    display:block;
+    background:image-url('datanest_access_denied.png') no-repeat top;
+    margin:0;
+    padding:0;
+    float:none;
+    overflow:hidden;
+  }
+  #accessdenied .text{
+    display:block;
+    margin:520px 80px 70px 80px;
+    padding:0px;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    line-height:26px;
+    color:#231F20;
+  }
+  #accessdenied a{
+    color:#FF5D37;
+  }
+}

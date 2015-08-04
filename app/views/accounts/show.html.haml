@@ -1,32 +1,8 @@
-%h1 My account
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('users.my_account'), url_for
 
-%ul.tabs.frontend.clearfix
-  %li.active
-    %a{:href => "#profile"}= t("global.profile")
-  %li
-    %a{:href => "#password"}= t("users.password")
-  %li
-    %a{:href => "#favorites"}= t("global.favorites")
-  %li
-    %a{:href => "#comments"}= t("global.comments")
-  %li
-    %a{:href => "#ratings"}= t("global.ratings")
-  %li
-    %a{:href => "#api"}= t("users.api_access")
-    
-#profile
-  = render :partial => "profile"
-  
-#password
-  = render :partial => "password"
 
-#favorites
-  = render :partial => "favorites"
-
-#comments
-  = render :partial => "comments"
-
-#ratings
-
-#api
-  = render :partial => "api"
+.legacy
+  #password
+    = render :partial => "password"

@@ -1,0 +1,71 @@
+---
+
+- name: Install rbenv dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - git-core
+    - build-essential
+    - libreadline-dev
+    - libssl-dev
+    - libyaml-dev
+    - libxml2-dev
+    - libxslt1-dev
+    - zlib1g-dev
+    - libffi-dev
+
+- name: Check if rbenv is already installed
+  stat: path=/usr/local/rbenv
+  register: st
+
+- name: Install rbenv
+  git:
+    repo: https://github.com/sstephenson/rbenv.git
+    dest: /usr/local/rbenv
+    depth: 1
+  when: not st.stat.exists
+
+- name: Check if rbenv-build is already installed
+  stat: path=/usr/local/rbenv/plugins/ruby-build
+  register: st
+
+- name: Install ruby-build plugin
+  git:
+    repo: https://github.com/sstephenson/ruby-build.git
+    dest: /usr/local/rbenv/plugins/ruby-build
+  when: not st.stat.exists
+
+- name: Grant application user access to rbenv
+  file: path=/usr/local/rbenv group=apps mode='g=rwx' recurse=yes
+
+- name: Symlink global rbenv installation to user $HOME
+  file: src=/usr/local/rbenv dest=/home/{{ app_user }}/.rbenv state=link
+
+- name: Add rbenv to application user $PATH
+  sudo_user: '{{ app_user }}'
+  lineinfile:
+    dest: ~/.profile
+    line: 'export PATH="~/.rbenv/bin:$PATH"'
+    state: present
+
+- name: Initialize rbenv on login
+  sudo_user: '{{ app_user }}'
+  lineinfile:
+    dest: ~/.profile
+    line: 'eval "$(rbenv init -)"'
+    state: present
+
+- name: Detect installed ruby versions
+  command: 'sudo -iu {{ app_user }} rbenv versions'
+  ignore_errors: yes
+  register: rbenv_versions_output
+
+- name: Install ruby version
+  command: 'sudo -iu {{ app_user }} rbenv install {{ item }}'
+  when: '"{{ item }}" not in rbenv_versions_output.stdout'
+  with_items: '{{ rubies }}'
+
+- name: Set initial ruby
+  command: 'sudo -iu {{ app_user }} rbenv global {{ rubies.0 }}'
+
+- name: Install bundler
+  command: 'sudo -iu {{ app_user }} gem install bundler --no-ri --no-rdoc'

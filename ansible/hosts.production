@@ -1,0 +1,2 @@
+[web]
+new.datanest.sk ansible_ssh_user=root

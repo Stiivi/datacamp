@@ -1,0 +1,16 @@
+#table-dataset
+  %ul.header
+    %li.row-header
+      - fields.each do |field|
+        %span.cell= field.title
+      - if current_user.present? && current_user.has_privilege?(:edit_record)
+        %span.cell
+
+  %ul.body
+    - records.each do |record|
+      %li.row
+        - fields.each do |field|
+          =link_to record[field.identifier], dataset_record_path(related_dataset_description, record), id: dom_id(record, 'related'), class: 'cell'
+
+        - if current_user.present? && current_user.has_privilege?(:edit_record)
+          %td=link_to(image_tag('icons/trash.gif'), delete_relationship_dataset_record_path(@dataset_description, @record, related_id: record._record_id, reflection: reflection_name, related_dataset: related_dataset_description.id, macro: macro), :method => 'delete', :title => t('global.delete'), :confirm => t("global.delete_confirmation"), class: :cell)

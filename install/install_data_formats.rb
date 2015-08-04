@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 puts "=> Installing data formats ..."
 data_formats = [
   {:name => "default",

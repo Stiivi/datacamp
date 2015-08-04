@@ -1,0 +1,8 @@
+sk:
+  news:
+    title: Novinky
+    index:
+      header: 'Zoznam noviniek'
+
+    show:
+      index: 'Naspať na zoznam'

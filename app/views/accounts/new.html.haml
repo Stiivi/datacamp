@@ -1,15 +1,21 @@
-%h1= t("users.register")
+.legacy
+  %h1= t("users.register")
 
-- form_for @account, :url => account_path, :builder => ListFormBuilder do |f|
-  %ul
-    = f.text_field :login
-    = f.text_field :email
-    = f.password_field :password
-    = f.password_field :password_confirmation
-    
-    %li.clearfix
-      %label= t("global.captcha")
-      .fl
-        = recaptcha_tags :public_key => Datacamp::Config.get(:captcha_public_key)
-    
-    = f.submit t("users.register")
+  = form_for @account, :url => account_path, :builder => ListFormBuilder do |f|
+    = f.error_messages
+    %ul
+      = f.text_field :login
+      = f.text_field :email
+      = f.password_field :password
+      = f.password_field :password_confirmation
+      
+      %li.clearfix
+        = f.label :accepts_terms, t('users.agree_with', :s => link_to(t('users.with_terms_of_use'), page_path('terms_of_service'))).html_safe
+        = f.check_box :accepts_terms, :inline => true
+      
+      %li.clearfix
+        %label= t("global.captcha")
+        .fl
+          = (recaptcha_tags :public_key => ENV['DATANEST_CAPTCHA_PUBLIC_KEY']).html_safe
+      
+      = f.submit t("users.register")

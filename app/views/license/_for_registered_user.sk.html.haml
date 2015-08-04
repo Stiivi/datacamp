@@ -1,0 +1,18 @@
+#pop-up-window{style: 'display: none'}
+  .wrap
+    %h1
+      Chystáte sa stiahnuť si dataset
+      %strong{'data-license-var-dataset': ''}
+    %p Dataset sa stiahne vo formáte CSV, otvoríte ho v Exceli alebo v inom tabuľkovom editore. <a href="">Čo je to CSV?</a>
+    %p Pri použití dát prosím dbajte o licenčné podmienky, pod ktorými boli tieto dáta zverejnené.
+    %p Dáta je možné:
+    %ul
+      %li bezplatne sťahovať, upravovať a ďalej používať na akýkoľvek komerčný aj nekomerčný účel,
+      %li v prípade použitia je potrebné ako zdroj dát uviesť Datanest Aliancie Fair-play,
+      %li dať nám vedieť, akým spôsobom boli opre vás dáta užitočné, prípadne konkrétne ste ich použili na <a href="mailto:admin@datanest.sk">admin@datanest.sk</a>
+    %span Prečítajte si plné znenie <a href="">licenčných podmienok</a>
+  .wrap-send
+    %a.button-send{href: '#', 'data-license-var-url': ''}
+      OK
+  .wrap-nodisplay
+    %input{type: :checkbox, 'data-license-dont-show-again': ''} V budúcnosti už nezobrazovať toto okno

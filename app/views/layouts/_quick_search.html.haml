@@ -1,4 +1,17 @@
-- if params[:controller] != "main" && params[:controller] != "search"
-  #quick_search
-    - form_tag quick_searches_path, :class => "search" do
-      = text_field_tag :query_string
+#searchline-container
+  #searchline-simple
+    = form_tag quick_searches_path, :class => "search" do
+      = text_field_tag :query_string, '', class: 'search-text', placeholder: t("search.search_placeholder")
+      = submit_tag t('search.search_action'), class: 'search-button'
+
+  %a.info{href: '#', onclick: '$("#searchline-adv-container").hide(); $("#searchline-info-container").toggle(); return false;'}
+
+  %a.advanced{href: '#', onclick: '$("#searchline-info-container").hide(); $("#searchline-adv-container").toggle(); return false;' }= t('global.advanced_search')
+
+#searchline-adv-container.hidden
+  =image_tag 'searchbox_adv_arrow.png', class: 'searchbox-adv-arrow'
+  =render 'searches/predicates_form', predicates: @search_predicates
+
+#searchline-info-container.hidden
+  =image_tag 'searchbox_adv_arrow.png', class: 'searchbox-adv-arrow'
+  Tu bude text napovedy

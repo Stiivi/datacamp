@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class FixStatusColumnInImportFiles < ActiveRecord::Migration
   def self.up
     change_column :import_files, :status, :string, :default => "ready"

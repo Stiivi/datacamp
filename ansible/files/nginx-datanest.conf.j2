@@ -1,0 +1,40 @@
+server {
+  server_name datanest.sk www.datanest.sk;
+  listen 80;
+  return 301 $scheme://datanest.fair-play.sk$request_uri;
+}
+
+server {
+  server_name localhost datanest.fair-play.sk;
+  listen 80;
+
+  root /home/{{ app_user }}/deploy/current/public;
+
+  access_log /var/log/nginx/datanest-access.log combined;
+  error_log  /var/log/nginx/datanest-error.log;
+
+  rewrite_log on;
+
+  # use the application's 500.html page
+  error_page 500 502 503 504 /500.html;
+
+  # allow clients to upload large files (if necessary)
+  client_max_body_size 4G;
+
+  location / {
+    try_files /system/maintenance.html
+              $uri $uri/index.html $uri.html
+              @app;
+  }
+
+  location ~ ^/(assets)/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  location @app {
+    passenger_enabled on;
+    rails_env {{ passenger_env }};
+  }
+}

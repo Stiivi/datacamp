@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %meta{ charset: 'utf-8' }
+    = render 'layouts/facebook_meta' if @dataset_description.present?
+    = raw SystemVariable.get("meta_information")
+    %title= page_title(@title)
+    %link{href: 'http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,300,400&amp;subset=latin,latin-ext', rel: 'stylesheet', type: 'text/css'}
+    = csrf_meta_tag unless response.cache_control[:public]
+
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = javascript_include_tag @javascripts if @javascripts.present? # FIXME: remove this when moving to asset pipeline
+
+    = tag :meta, name: "user-registered", :content => '' if flash[:user_registered]
+    = tag :meta, name: "user-signed-in", :content => '' if flash[:user_signed_in]
+  %body
+    = render 'layouts/cookie_banner'
+    = render "layouts/search_processing"
+
+    #container
+      %header
+        = render 'layouts/menutop'
+        .logo
+          = link_to '', root_url, class: 'logo'
+        = render 'layouts/menu'
+        = render 'layouts/quick_search' unless current_page?(root_path)
+
+        - unless response.cache_control[:public]
+          - if flash[:notice]
+            %p.notice= flash[:notice]
+          - if flash[:error]
+            %p.error= flash[:error]
+        = yield
+
+      = render 'layouts/footer'
+
+    = render 'layouts/scripts'

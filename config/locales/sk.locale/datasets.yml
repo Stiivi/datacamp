@@ -1,0 +1,82 @@
+sk:
+  datasets:
+    search_status:
+      sphinx_single_negative_search: "Požiadavku nie je možné spracovať, keďže obsahuje iba špecfikácie 'neobsahuje'. Pridajte jednu z pozitívnych špecifikácií aby sme mohli zobraziť výsledky."
+      active_search: "Záznamy sú filtrované %{predicates} podmienkami"
+
+
+  dataset:
+    relations: 'Relácie' 
+    relationship_type: 'Typ relácie'
+    relationship_dataset_description: 'Tabuľka relácie'
+    foreign_key_field_description_id: 'Kľúč relácie'
+    refresh_foreign_keys: 'Obnoviť kľúče'
+    add_field_description: "Pridať popis položky"
+    selected_records: "%{count} záznam(y) je/sú vybraný/vybrané."
+    batch_edit: "Hromadná úprava"
+    edit_selected: Vybrané záznamy
+    edit_all: 'Všetky vyfiltrované záznamy'
+    batch_updated: "%{count} záznamov bolo upravených."
+    cant_setup_dataset: "Nie je možné nastaviť súbor %{dataset} na tabuľku %{identifier}. Skontrolujte prosím databázu."
+    click_to_select_all: "Kliknite pre označenie/odznačenie všetkých."
+    columns_for_import: "Stĺpce pre import"
+    confirm_add_pk: "Pridať primary key?"
+    create: "Nový súbor údajov"
+    create_category: "Nová kategória"
+    create_record: "Vytvoriť záznam"
+    create_table: "Vytvoriť tabuľku %{table}"
+    created_message: "Súbor údajov bol vytvorený"
+    data_types: "Dátove typy"
+    dataset_choose: "Výber súboru údajov"
+    dataset_import_help: "<p>Tieto súbory existujú v databáze, avšak nie sú použité v aplikácii.</p><p>Kliknutím na názov tabuľky sa spustí inicializácia: Tabuľka bude upravená pre použitie aplikáciou a opis súboru bude vytvorený na základe popisu tabuľky. Názov tabuľky dostane prefix <strong>ds</strong></p>"
+    datastore_status: "Stav v databáze"
+    description_updated: "popis súbora údajov bol aktualizovaný"
+    descriptions: "Popisy súborov údajov"
+    edit_description: "Upraviť popis"
+    edit_search: "Upraviť filter"
+    field_description: Položieka
+    field_descriptions: "Popisy položiek"
+    fields: Položky
+    filter: "Zobraziť iba:"
+    import_button: "Inicializovať existujúcu tabuľku"
+    import_settings: "Nastavenia importu"
+    in_database: "Tabuľka existuje"
+    in_favorites: "Vaše obľúbené"
+    information: "Informácie o súbore údajov"
+    initialize: Inicializovať
+    initialize_from_table: "Inicializovať z tabuľky"
+    initialize_table: "Inicializovať tabuľku %{identifier}"
+    initialize_table_info: "Podľa tohto popisu sa vytvorí súbor údajov"
+    initialized_datasets: "Inicializovať súbor údajov"
+    initialized_datasets_info: "Tieto súbory údajov sú už inicializované."
+    internal_dataset_error: "Nie je možné načítať súbor údajov %{title}. Sme si vedomí tohto problému a pracujeme na jeho odstránení."
+    is_to_many: "Je jeden-ku-viac"
+    is_visible_in_detail: "Zobraziť v detajloch"
+    is_visible_in_export: "Exportovať (API)"
+    is_visible_in_listing: "Zobraziť v zozname záznamov"
+    is_visible_in_search: "Zobraziť vo výsledoch vyhľadávania"
+    looking_for_table: "Hľadá sa tabuľka"
+    move: "Presunúť súbor údajov"
+    new_description: "Vytvoriť popis súboru údajov"
+    no_category: "Bez skupiny"
+    no_pk: "Chýba primary key"
+    no_table_for_new_dataset: "Tento súbor ešte nemá tabuľku (%{identifier}). Upravte štruktúru, ked skončíte tak <a href='%{target}'>kliknite sem</a> pre vytvorenie tabuľky."
+    no_table_in_databaes: "V databáze nie je taká tabuľka, môžte ju vytvoriť."
+    not_enough_records_selected: "Oznažte aspon jeden záznam pre hromadnú úpravu"
+    not_in_database: "Nie je v databáze"
+    other_columns: "Ostatné stĺpce"
+    record_preview: "Náhľad záznamu"
+    revert: Obnoviť
+    run_tests: "Spustiť testy"
+    save_and_create: "Uložiť a vytvoriť"
+    set_quality: "Nastaviť kvalitu"
+    set_status: "Nastaviť status"
+    table_name: "Názov tabuľky"
+    title: Nadpis
+    type: Typ
+    uninitialized_datasets: "Neinicialozované súbory údajov"
+    visibility_settings: "Nastavenia zobrazenia"
+    csv_export: 'Obsah CSV'
+    description_xml: 'Popis XML'
+    changes_xml: 'Zmeny XML'
+    relations_xml: 'Relácie XML'

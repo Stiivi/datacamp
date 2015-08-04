@@ -1,0 +1,32 @@
+- content_for :email_preview do
+  = "Pri stahovani nastala chyba vo workeri."
+
+%h4= 'Problem s workerom'
+%div
+  - if @failed_jobs.any?
+    %strong= "Pri poslednom stiahnuti nastali nasledovne chyby workera."
+    - @failed_jobs.each do |failed_job|
+      %p
+        %strong Uloha:
+        = failed_job.handler
+        %br
+        %strong Chyba:
+        = failed_job.last_error.truncate(200)
+        %hr
+
+  - if @running_jobs.any?
+    %strong= "Vo workeri stale bezia ulohy."
+    - @running_jobs.each do |running_job|
+      %p
+        %strong Uloha:
+        = running_job.handler
+        %br
+        %strong Vytvoreny / cas behu / locknuty:
+        = l running_job.created_at, format:  :default
+        = '/'
+        - if running_job.run_at
+          = l running_job.run_at, format: :default
+        = '/'
+        - if running_job.locked_at
+          = l running_job.locked_at, format: :default
+        %hr

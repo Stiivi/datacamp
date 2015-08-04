@@ -1,12 +1,13 @@
-%h1=t "comments.report"
+.legacy
+  %h1=t "comments.report"
 
-- form_for @report, :url => report_comment_path(@comment), :builder => ListFormBuilder do |f|;
+  = form_for @report, :url => report_comment_path(@comment), :builder => ListFormBuilder do |f|;
 
-  %li.clearfix
-    %label= t("global.comment")
-    .fl= truncate(@comment.text, :length => 50)
-  = f.select :type, CommentReport.types
-  = f.text_area :reason
-  %li.clearfix
-    %label
-    = f.submit t("comments.report")
+    %li.clearfix
+      %label= t("global.comment")
+      .fl= truncate(@comment.text, :length => 50)
+    = f.select :type, CommentReport.types
+    = f.text_area :reason
+    %li.clearfix
+      %label
+      = f.submit t("comments.report")

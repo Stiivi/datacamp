@@ -1,9 +1,0 @@
-sk:
-  number:
-    currency:
-      format:
-        format: "%n %u"
-        unit: "Û"
-        precision: 2
-        delimiter: " "
-        separator: ","

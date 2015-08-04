@@ -1,0 +1,9 @@
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('news.title'), news_path
+  %li= link_to @news_item.title, url_for
+
+.legacy
+  %h1= @news_item.title
+
+  %p= textile @news_item.text

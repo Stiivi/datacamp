@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module AuthenticatedSystem
   ################################################################################
   ## Class method for shortcut to before_filter with privilege_required

@@ -1,41 +1,34 @@
-%h1.main.clearfix
-  .fl=h(t("search.results_count", :query_string => @search.query_string, :count => @results.count))
-  .fr.actions
-    =link_to t("global.back"), datasets_path
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('search.search_results'), url_for
 
-- if @search.search_type == "text"
-  = render :partial => "form"
-- elsif @search.search_type == "predicates"
-  = render :partial => "predicates_form", :locals => {:predicates => @search.query.predicates}
-- else
-  = render :partial => "form"
+#wrap-search-results
+  - @results.each do |dataset_category, result|
+    - result.each do |dataset_description, result_records|
+      %h1
+        %span.category= link_to(dataset_category.title, category_id: dataset_category.id)
+        = dataset_description.title
 
-.clearfix
-  .span-4.sidebar
-    %h4= t("global.categories")
-    %ul.categories_list
-      - @categories_with_results.each do |category|
-        %li{:class => category&&params[:category_id].to_i==category.id ? "active": nil}
-          - if category
-            = link_to(category.title, "?category_id=#{category.id}")
-    
-    
-  .span-19
+      - fds = dataset_description.field_descriptions_for_search.first(5)
 
-    - @datasets.each do |dataset, results|
-      
-      %h2.clearfix.in_container
-        .fl== #{dataset.title}
-        .fr= button_link_to(t("search.more_results"), broaden_search_path(@search, :dataset_description_id => dataset.id), :class => "search_preloader")
-      %table.frontend.small
-        / Header
-        - fds = dataset.visible_field_descriptions(:search, 5)
-        %tr
-          - fds.each do |field|
-            %th= field.title
-        - results.each do |result|
-          %tr
+      #table-dataset
+        %ul.header
+          %li.row-header
             - fds.each do |field|
-              %td= result.record.get_html_value(field) if result.record
-              
-      %br
+              %span.cell= field.title
+        %ul.body
+          - result_records.each do |result|
+            %li.row{class: cycle('odd', 'even')}
+              - fds.each do |field|
+                - value = result.get_html_value(field)
+                - if value =~ /\<a.*?\>/
+                  %span.cell{class: field.data_type}
+                    =link_to result.get_html_value(field) || '', dataset_record_path(result.dataset, result, :page => params[:page])
+                - else
+                  =link_to result.get_html_value(field) || '', dataset_record_path(result.dataset, result, :page => params[:page]), class: [:cell, field.data_type]
+
+      .wrap-more-about
+        =t('search.showing_first_results', :all_count => result_records.total_entries, :showing_count => (result_records.total_entries > 5 ? 5 : result_records.total_entries))
+        =link_to(t("search.more_results"), dataset_path(dataset_description, :search_id => @search.id), :class => "more-about")
+
+  %a.go-top{href: '#wrap-search-results'}= t('search.top')

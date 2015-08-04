@@ -1,6 +1,7 @@
+# -*- encoding : utf-8 -*-
 class ListFormBuilder < ActionView::Helpers::FormBuilder
   
-  %w{text_field select text_field_tag password_field text_area collection_select file_field check_box grouped_collection_select}.each do |type|
+  %w{text_field select text_field_tag password_field text_area collection_select file_field check_box grouped_collection_select number_field}.each do |type|
     define_method type do |field, *args|
       options = args.extract_options!
       args = args + [options] unless options.empty?
@@ -13,7 +14,7 @@ class ListFormBuilder < ActionView::Helpers::FormBuilder
         if field_required? field
           label_text += ' <span class="required">*</span>'
         end
-        @template.content_tag(:li, label(field, options[:label] || label_text) + super(field, *args) + options[:extra].to_s, :class => 'clearfix')
+        @template.content_tag(:li, label(field, options[:label] || label_text.html_safe) + super(field, *args) + options[:extra].to_s, :class => 'clearfix')
       end
     end
   end
@@ -27,6 +28,6 @@ class ListFormBuilder < ActionView::Helpers::FormBuilder
   end
   
   def field_required?(field_name)
-    object.class.reflect_on_validations_for(field_name).map(&:macro).include?(:validates_presence_of)
+    object.class.validators_on(field_name).map(&:class).include?(ActiveModel::Validations::PresenceValidator)
   end
 end

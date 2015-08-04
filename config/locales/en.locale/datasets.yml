@@ -1,0 +1,82 @@
+en:
+  datasets:
+    search_status:
+      sphinx_single_negative_search: "The search cannot be performed since it contains only 'does not contain' specifications. Please add at least one non-'does not contain' specification."
+      active_search: "Results are currently filtered by an active search with %{predicates} conditions."
+
+  dataset:
+    relations: 'Relations' 
+    relationship_type: 'Relationship type'
+    relationship_dataset_description: 'Relationship table'
+    create_relation_field_table: 'Create relationship field/table'
+    foreign_key_field_description_id: 'Foreign key'
+    refresh_foreign_keys: 'Refresh foreign keys'
+    create: New dataset
+    create_category: New category
+    add_field_description: Add field description
+    selected_records: "%{count} records are selected."
+    batch_edit: "Batch edit"
+    edit_selected: Selected records
+    edit_all: "All filtered records"
+    batch_updated: "%{count} records were successfuly updated."
+    cant_setup_dataset: "Can't setup dataset %{dataset} to %{identifier}. Please check your database."
+    click_to_select_all: Click to select/deselect all.
+    columns_for_import: Columns for import
+    confirm_add_pk: Add primary key?
+    create_record: Create record
+    create_table: Create table %{table}
+    created_message: Dataset created 
+    data_types: Data types
+    dataset_choose: Choose dataset
+    description_updated: DatasetDescription was successfully updated
+    dataset_import_help: "<p>These datasets exists in database, but are not used by application.</p><p>After clicking a table name the setup sequence will be triggered: Table will be transformed to work with application and a schema in data dictionary will be generated based on table structure. Also, table name will be prefixed with <strong>ds</strong> shortcut.</p>"
+    datastore_status: Datastore Status
+    descriptions: Dataset descriptions
+    internal_dataset_error: "Couldn't load dataset %{title}. We are aware of this error and working to fix it."
+    edit_description: Edit description
+    field_descriptions: Field descriptions
+    field_description: Field
+    fields: Fields
+    filter: "Show only:"
+    import_button: Initialize existing table
+    import_settings: Import settings
+    in_database: Table exists
+    information: Dataset information
+    initialize_from_table: Initialize from table
+    initialize_table_info: You're about to turn this description into actual dataset
+    initialize_table: Initilize table %{identifier}
+    initialize: Initialize
+    initialized_datasets_info: These datasets were already initialized and contain system columns.
+    initialized_datasets: Initialized datasets
+    is_to_many: Is to many
+    is_visible_in_detail: Visible in detail
+    is_visible_in_export: Visible in export (API)
+    is_visible_in_listing: Visible in dataset view
+    is_visible_in_search: Visible in search
+    looking_for_table: Looking for table
+    new_description: Create dataset description
+    no_category: No group
+    in_favorites: Your favorite
+    move: Move dataset
+    no_pk: Missing primary key
+    no_table_for_new_dataset: "This dataset has no table yet (we're looking for %{identifier}). Customize the strucutre, and when you're done, <a href='%{target}'>click here</a> to create the table."
+    no_table_in_databaes: As there no such table in your databases, you might want to create it.
+    not_enough_records_selected: Select at least 1 record for batch edit.
+    not_in_database: Not in database
+    other_columns: Other columns
+    revert: Revert
+    run_tests: Run tests
+    save_and_create: Save and create
+    set_quality: Set quality
+    set_status: Set status
+    table_name: Table Name
+    title: Title
+    type: Type
+    uninitialized_datasets: Uninitialized datasets
+    visibility_settings: Visibility settings
+    record_preview: Record preview
+    edit_search: Edit search
+    data: Data
+    meta_information: Meta information
+    csv_export: CSV
+    description_xml: XML

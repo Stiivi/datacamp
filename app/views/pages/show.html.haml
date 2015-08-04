@@ -1,2 +1,6 @@
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to @page.title, url_for
+
 %h1= @page.title
-%p= @page.html_body
+#page_content{class: params[:id] == 'index' && @news.present? ? 'with_sidebar': ''}=raw @page.html_body

@@ -1,62 +1,208 @@
-ActionController::Routing::Routes.draw do |map|
-  map.namespace :settings do |ns|
-    ns.resources :pages
+# -*- encoding : utf-8 -*-
+Datacamp::Application.routes.draw do
+
+  resources :parsers, only: [:index, :show] do
+    member do
+      post :run
+      get :download
+    end
   end
-  
-  map.resources :settings, :collection => {:update_all => :put}
-  
-  map.resources :watchers
 
-  map.set_locale '/locale/:locale', :controller => "main", :action => "locale"
-  
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.register '/register', :controller => 'users', :action => 'create'
-  map.signup '/signup', :controller => 'users', :action => 'new'
-  
-  map.resources :searches, :member => {:broaden => :get}, :collection => {:quick => :post}
-  
-  map.resources :user_roles
-  
-  map.resources :users, :member => {:restore => [:get, :put]}
-  map.resource :account, :collection => {:forgot => [:get, :post], :password => :get}
-  map.resources :api_keys
+  match '/logout' => 'sessions#destroy', :as => :logout
+  match '/login' => 'sessions#new', :as => :login
+  match '/register' => 'sessions#create'
+  match '/signup' => 'sessions#new'
 
-  map.resource :session
 
-  map.resources :comments, :member => {:rate => :get, :destroy => :get, :report => [:get, :post]}
-  map.resources :favorites, :collection => {:create => :get}, :member => {:destroy => :get}
-  
-  map.resources :datasets, :member => {:sitemap => :get, :batch_edit => :put}, :collection => {:search => :get} do |m|
-    m.resources :records, :member => {:fix => :get, :update_status => :get}
+  scope "(:locale)", :locale => /sk|en/ do
+
+    resources :errors
+
+    # Settings backend
+    namespace :settings do
+      resources :pages
+      resources :blocks do
+        post :update_positions, on: :collection
+      end
+      resources :users do
+        member do
+          get :restore
+          put :restore
+        end
+      end
+      resources :comments, only: [:index, :edit, :update, :destroy]
+      resources :system_variables, only: :index do
+        put :update_all, on: :collection
+      end
+      resources :news, only: [:index, :new, :create, :edit, :update]
+    end
+    ##################
+
+
+    # Settings frontend
+    resources :pages, except: [:index] do
+      resources :blocks
+    end
+
+    resources :comments, only: [:new, :create] do
+      member do
+        get :rate, :report
+        post :report
+      end
+    end
+
+    resources :news, only: [:index, :show]
+    ##################
+
+
+    resources :searches, only: [:new, :create, :show] do
+      collection do
+        post :quick
+        get :predicate_rows
+      end
+    end
+
+
+
+
+    resources :watchers
+    resources :activities, only: [:index, :show]
+
+    resources :data_repairs do
+      collection do
+        get :update_columns, :update_columns_names
+        post :start_repair, :sphinx_reindex
+      end
+    end
+
+    resources :import_files do
+      member do
+        get :preview, :state, :cancel
+        post :import, :delete_records
+      end
+    end
+
+    resource :account do
+      collection do
+        get :forgot, :password
+        post :forgot
+      end
+    end
+
+    resources :api_keys
+
+    resource :session
+
+    resources :favorites
+
+    resources :datasets do
+      get :search, :on => :collection
+      resources :records do
+        get :fix, :update_status, :on => :member
+        member do
+          post :add_relationship
+          delete :delete_relationship
+        end
+      end
+      member do
+        get :sitemap
+        put :batch_edit
+        match ':everyone' => 'datasets#show'
+      end
+    end
+
+    resources :dataset_descriptions do
+      member do
+        get :import_settings,
+            :setup_dataset,
+            :edit_field_description_categories
+        post :setup_dataset
+        put :update_field_description_categories
+      end
+      collection do
+        post :update_positions
+      end
+      resources :field_descriptions do
+        collection do
+          post :order
+        end
+      end
+
+      resources :relations
+      resource :datastore_states, only: [:show] do
+        post :create_column_description
+        post :create_table_column
+      end
+      resource :field_visibilities, only: [:show, :update]
+    end
+    resources :dataset_initializations, only: [:index, :create]
+    resources :categories, :controller => "dataset_categories"
+    resources :dataset_categories
+    resources :field_description_categories
   end
+
+
+  match '/api/:action.:format', :controller => 'api'
   
-  map.resources :data_types
-
-  map.resources :import_files, :member => {:preview => :get, :import => :post, :status => :get}
-
-  map.resources :dataset_tests, :member => { :run => :get }
-
-  dataset_description_tabs = 
-            { :import_settings => :get, 
-              :setup_dataset => [:get, :post], 
-              :visibility => :get, 
-              :set_visibility => :post,
-              :datastore_status => :get,
-              :add_primary_key => :get,
-              :destroy => :get }
-  map.resources :dataset_descriptions, :member => dataset_description_tabs, :collection => { :import => :get, :do_import => :get } do |m|
-    m.resources :field_descriptions, :collection => { :order => :post, :create_for_column => :get }, :member => {:create_column => :get }
-  end
-  map.resources :categories, :controller => "dataset_categories"
+  root :to => 'main#index'
   
-  map.resources :pages
-
-  map.connect ':controller/:action'
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-
-  map.connect 'api/:action.:format', :controller => 'api'
+  match ':controller(/:action(/:id(.:format)))'
+  match '*path' => redirect('/')
   
-  map.root :controller => 'main'
+  # The priority is based upon order of creation:
+  # first created -> highest priority.
+
+  # Sample of regular route:
+  #   match 'products/:id' => 'catalog#view'
+  # Keep in mind you can assign values other than :controller and :action
+
+  # Sample of named route:
+  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  # This route can be invoked with purchase_url(:id => product.id)
+
+  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  #   resources :products
+
+  # Sample resource route with options:
+  #   resources :products do
+  #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
+  #
+  #     collection do
+  #       get 'sold'
+  #     end
+  #   end
+
+  # Sample resource route with sub-resources:
+  #   resources :products do
+  #     resources :comments, :sales
+  #     resource :seller
+  #   end
+
+  # Sample resource route with more complex sub-resources
+  #   resources :products do
+  #     resources :comments
+  #     resources :sales do
+  #       get 'recent', :on => :collection
+  #     end
+  #   end
+
+  # Sample resource route within a namespace:
+  #   namespace :admin do
+  #     # Directs /admin/products/* to Admin::ProductsController
+  #     # (app/controllers/admin/products_controller.rb)
+  #     resources :products
+  #   end
+
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  # root :to => "welcome#index"
+
+  # See how all your routes lay out with "rake routes"
+
+  # This is a legacy wild controller route that's not recommended for RESTful applications.
+  # Note: This route will make all actions in every controller accessible via GET requests.
+  # match ':controller(/:action(/:id(.:format)))'
 end

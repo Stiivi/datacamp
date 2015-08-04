@@ -1,26 +1,30 @@
+# -*- encoding : utf-8 -*-
 class Favorite < ActiveRecord::Base
+
   belongs_to :user
   belongs_to :dataset_description
   
-  belongs_to :record, :polymorphic => true, :foreign_key => "record_id", :foreign_type => "table_name", :extend => ( Module.new do
-    def association_class
-      begin
-        return Dataset::Base.new(@owner.dataset_description).dataset_record_class
-      rescue Exception => e
-        return nil
-      end
-    end
-  end)
-  
+  belongs_to :record, polymorphic: true
+
+  validates :dataset_description, :user, presence: true
+
+  def self.by_record(record)
+    where(record_type: record.class.to_s, record_id: record.id)
+  end
+
+  def self.by_dataset_description(dataset_description)
+    where(dataset_description_id: dataset_description.id)
+  end
+
   def excerpt
     matches = []
 
     dataset_description.visible_field_descriptions(:search).each do |description|
-      if self.record[description.identifier.to_sym]
+      if record && record[description.identifier.to_sym]
         matches << [description.title, record.get_html_value(description)]
       end
     end
 
-    matches.collect { |attribute, value| "<em>#{attribute}:</em> #{value}" }.join("<br />")
+    matches.collect { |attribute, value| "<em>#{html_escape(attribute)}:</em> #{html_escape(value)}" }.join("<br />").html_safe
   end
 end

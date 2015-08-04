@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Records Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -23,21 +24,29 @@ class RecordsController < ApplicationController
   
   before_filter :load_record
   
-  privilege_required :edit_record, :only => [:edit, :update, :update_status]
+  privilege_required :edit_record, :only => [:edit, :update, :update_status,:delete_relationship,:add_relationship]
   privilege_required :create_record, :only => [:new, :create]
-  
+
+  def index
+    redirect_to dataset_path(@dataset_description)
+  end
+
   def show
+    expires_in 5.minutes if current_user.blank?
+
     # Field descriptions
-    if logged_in? && current_user.has_privilege?(:data_management)
-      @field_descriptions = @dataset_description.field_descriptions
+    if logged_in? && current_user.has_privilege?(:power_user)
+      @field_descriptions = @dataset_description.field_descriptions.includes(:data_format)
     else
       @field_descriptions = @dataset_description.visible_field_descriptions(:detail)
     end
     
+    @related_records_and_fields = related_records_and_fields(@dataset_description, @record)
+
     load_comments
     
     @favorite = current_user.favorite_for!(@dataset_description, @record) if current_user
-    
+
     respond_to do |wants|
       wants.html
       wants.xml { render :xml => @record }
@@ -49,7 +58,7 @@ class RecordsController < ApplicationController
   end
   
   def create
-    record_params = params[@dataset_description.identifier.to_sym]
+    record_params = params["kernel_ds_#{@dataset_description.identifier.singularize}".to_sym]
     @record.update_attributes(record_params)
     if @record.save
       redirect_to dataset_record_path(@dataset_description, @record)
@@ -60,15 +69,16 @@ class RecordsController < ApplicationController
   
   def edit
     @form_url = dataset_record_path(@dataset_description, @record)
+    @related_records_and_fields = related_records_and_fields(@dataset_description, @record)
   end
   
   def update
-    record_params = params[@dataset_description.identifier.to_sym]
-    
+    record_params = params["kernel_ds_#{@dataset_description.identifier.singularize}".to_sym]
+
     @record.handling_user = current_user
-    @record.update_attributes(record_params)
+    saved = @record.update_attributes(record_params)
     
-    if @record.save
+    if saved
       redirect_to dataset_record_path(@dataset_description, @record)
     else
       render :action => "edit"
@@ -87,19 +97,46 @@ class RecordsController < ApplicationController
     @record.destroy
     redirect_to dataset_path(@dataset_description)
   end
-  
+
   def fix
     @record.quality_status = nil
     @record.save
     @quality_status.find { |qs| qs.column_name == params[:field] }.destroy
   end
   
-  private
+  def delete_relationship
+    dataset_description = DatasetDescription.find(params[:dataset_id])
+    record = dataset_description.dataset_model.find_by_record_id(params[:id])
+    if params[:macro] == 'has_many'
+      related_dataset_description = DatasetDescription.find(params[:related_dataset])
+      related_record = related_dataset_description.dataset_model.find_by_record_id(params[:related_id])
+      
+      record.send(params[:reflection]).delete(related_record) rescue related_record.send("ds_#{dataset_description.identifier.singularize}=", nil)
+      deleted = related_record.save
+    else
+      record.send("#{params[:reflection]}=", nil)
+      deleted = record.save
+    end
+    
+    notice = deleted ? t('relation.deleted') : t('relation.delete_failed')
+    redirect_to dataset_record_path(dataset_description, record), notice: notice
+  end
   
+  def add_relationship
+    dataset_description = DatasetDescription.find(params[:dataset_id])
+    record = dataset_description.dataset_model.find(params[:id])
+    related_dataset_class = DatasetDescription.find(params[:related_dataset]).dataset_model
+    related_record = related_dataset_class.find_by_record_id(params[:related_id])
+
+    added = record.send(params[:reflection]) << related_record if related_record.present?
+    notice = added ? t('relation.added') : t('relation.add_failed')
+    redirect_to dataset_record_path(dataset_description, record), notice: notice
+  end
+  
+  protected
   def load_record
-    @dataset_description = DatasetDescription.find_by_id!(params[:dataset_id])
-    @dataset             = @dataset_description.dataset
-    @dataset_class       = @dataset.dataset_record_class
+    @dataset_description = DatasetDescription.find(params[:dataset_id])
+    @dataset_class       = @dataset_description.dataset_model
 
     if params[:id]
       @record = @dataset_class.find_by_record_id! params[:id]
@@ -107,5 +144,36 @@ class RecordsController < ApplicationController
       @record = @dataset_class.new
     end
     @quality_status = @record.quality_status_messages
+
+    if !@dataset_description.is_active? && !has_privilege?(:view_hidden_records)
+      flash[:notice] = 'Dataset is hidden'
+      redirect_to datasets_path and return
+    end
+
+    unless @record.active? || (logged_in? && current_user.has_privilege?(:view_hidden_records))
+      flash[:notice] = 'Record is hidden'
+      redirect_to dataset_path(@dataset_description)
+    end
+
+    @title = "#{@record.identifier} - #{@dataset_description.title}"
+  end
+  
+  def related_records_and_fields(dataset_description, record)
+    @dataset_class.reflect_on_all_associations.delete_if{ |a| a.name =~ /^dc_/ }.map do |reflection|
+      dd = DatasetDescription.find_by_identifier(
+          Dataset::Naming.association_name_to_identifier(reflection.name)
+      )
+      if logged_in? && current_user.has_privilege?(:view_hidden_records)
+        records = record.send(reflection.name)
+      else
+        records = record.send(reflection.name).active
+      end
+      [ [records].flatten.compact,
+        dd.visible_fields_in_relation,
+        reflection.name,
+        dd,
+        reflection.macro
+      ] if dd.present?
+    end
   end
 end

@@ -1,0 +1,100 @@
+en:
+  global:
+      activities: 'Activity'
+      do_not_search: "Do not search: %{name}"
+      new_category: New Category
+      active: active
+      add_to_favorites_hint: Is this page interesting?
+      add_to_favorites: Add to favorites
+      simple_search: Simple search
+      advanced_search: Advanced search
+      all: "- All -"
+      back: Back
+      blocks: Blocks
+      browse_dataset: Browse Dataset
+      cancel: Cancel
+      captcha: Captcha
+      collapse: Collapse
+      collection_mode: Colletion mode
+      comment: Comment
+      comments: Comments
+      continue: Continue
+      create: Create new
+      created_at: Created at
+      data_catalogue: Data Catalogue
+      data_dictionary: Data Dictionary
+      data: Data
+      dataset_descriptions: Dataset descriptions
+      datasets: Datasets
+      dataset: Dataset
+      delete_confirmation: Are you sure you want to delete this item?
+      delete: Delete
+      description: Description
+      details: Details
+      discussion: Discussion
+      edit_description: Edit information
+      edit: Edit
+      email_sent: Email was sent.
+      empty: empty
+      favorites: Favorites
+      field: Field
+      home: Home
+      import: Import
+      inactive: inactive
+      information: Information
+      is_favorite: Your favorite.
+      jump_to: "Go to page:"
+      login: Login
+      logout: Logout
+      language: Language
+      metadata: Metadata
+      moderation: Moderation
+      move: move
+      name: Name
+      nevermind: nevermind
+      next: Next
+      note: Note
+      other: Other
+      pages: Pages
+      previous: Previous
+      profile: Profile
+      ratings: Ratings
+      record_count: "Record count:"
+      record_id: ID of record
+      record: Record
+      records_per_page: "Records per page:"
+      record_preview: Record preview
+      remove_from_favorites: Remove from favorites
+      remove_question: Remove?
+      revert: Revert
+      save_and_create: Save and create another
+      save_changes: Save changes
+      save: Save
+      search_current_button: Search through this dataset
+      search_current: Search
+      search: Search Databases
+      settings: Settings
+      show_all: Show All
+      show: View
+      hide: Hide
+      source: Source
+      status: Status
+      submit: Submit
+      system_datastore_management: System Datastore Management
+      testing_get_informed: "If you'd like to be informed when it goes public, <a href='%{url}'>register here</a>."
+      testing_notice: The application is currently in private beta testing.
+      title: Title
+      total_entries: Total entries
+      user_not_found: User not found
+      users: Users
+      user: User
+      value: Value
+      load_error: "Couldn't load %{what}"
+      categories: Categories
+      field_description_categories: 'Field desc. categories'
+      parsers: 'Parsers'
+      copyright: "2009&ndash;2015 &copy; Fair Play Alliance Beta version 1.0"
+      report_error: "Report error"
+      favorites: "Favorite"
+      share: "Share"
+      home: Home

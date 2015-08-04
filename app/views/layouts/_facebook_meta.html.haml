@@ -1,0 +1,5 @@
+%meta{property: 'og:title',
+      content: "#{@dataset_description.title} - #{SystemVariable.get 'site_name', 'Datacamp'}"}
+%meta{property: 'og:description',
+      content: truncate(clear_textile(@dataset_description.description || ''), length: 200).html_safe}
+

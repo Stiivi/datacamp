@@ -1,20 +1,59 @@
-%h1.main=t "global.datasets"
+#overlay{style: 'display: none'}
+- if current_user
+  =render 'license/for_registered_user'
+- else
+  =render 'license/for_guest'
 
-- @dataset_descriptions.each do |group, descriptions|
-  %h2.bordered
-    %a{:name => group ? group.title : t("global.other")}= group ? group.title : t("global.other")
-  
-  %table.frontend
-    - descriptions.each do |description|
-      %tr
-        %td{:width => 200}
-          %strong= link_to(description.title, dataset_path(description))
-        %td
-          %em= truncate(description.description.to_s, 80)
-        %td.actions{:align => 'right'}
-          .clearfix
-            = link_to("<span>#{t("global.browse_dataset")}</span>", dataset_path(description), :class => "button")
-            - if description.api_allowed_for?(current_user)
-              = link_to "<span>API is enabled</span>", page_path("api"), :class => "api_link tooltip", :name => I18n.t("api.allowed_for_dataset")
-          
-  %br
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li.active= link_to t('global.datasets'), url_for
+
+%h1
+  =t "global.datasets"
+
+#navigation-anchor
+  - @dataset_categories.each_slice(4).each_with_index do |slice, index|
+    - if index*4 > @dataset_categories.size-4
+      %ul{class: 'last'}
+        - slice.each do |dataset_category|
+          %li
+            %a{href: "##{dataset_category.title.parameterize}"}= dataset_category.title
+    - else
+      %ul
+        - slice.each do |dataset_category|
+          %li
+            %a{href: "##{dataset_category.title.parameterize}"}= dataset_category.title
+
+#dataset-quality-buttons
+  %ul
+    %li
+      = link_to t('.show_good_quality'), datasets_path(only_good: 'true'), class: "view_wrong_dataset #{'active' if @only_good}", onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-pekne-datasety', '1']);"
+    %li
+      = link_to t('.show_bad_quality'), datasets_path, class: "view_wrong_dataset #{'active' if !@only_good}", onclick: "_gaq.push(['_trackEvent', 'katalog-udajov-tlacidlo-vsetky-datasety', '1']);"
+
+- @dataset_categories.each do |dataset_category|
+  .catalog-header{id: dataset_category.title.parameterize}= dataset_category.title
+  #table-catalog
+    %ul.body
+      - dataset_category.filtered_descriptions(@only_good).each do |description|
+        %li.row
+          = link_to description.title, dataset_path(description), class: 'cell dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier}
+          = link_to description.perex, dataset_path(description), class: 'cell dataset_line js_catalog_dataset_link', data: {tracking_dataset_category_id: Globalize.with_locale(:sk){dataset_category.title.parameterize}, tracking_dataset_id: description.identifier}
+          %span.cell
+            - if description.bad_quality
+              .dataset-bad.has-tip{title: t('.good_quality_false')}
+            - else
+              .dataset-good.has-tip{title: t('.good_quality_true')}
+          - if description.api_allowed?
+            - if current_user
+              %span.cell
+                - dataset_path = url_for(:controller => :api, :action => :dataset_records, :api_key => current_user.api_key.key, :dataset_id => description.id)
+                = link_to '', dataset_path, :class => "download-button api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier, show_license: true, license_for: description.title, dataset_url: dataset_path}
+            - else
+              %span.cell
+                - dataset_path = url_for(:controller => :api, :action => :dataset_records, :dataset_id => description.id)
+                = link_to '', dataset_path, :class => "download-button api api_link tooltip js_api_link", name: I18n.t("api.allowed_for_dataset"), data: { tracking_dataset_id: description.identifier, show_license: true, license_for: description.title, dataset_url: dataset_path}
+
+          - else
+            %span.cell
+              %img{src: image_path('download-unable.png'), title: t("api.disallowed_for_dataset")}

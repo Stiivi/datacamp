@@ -1,18 +1,16 @@
-%table{:class => "small #{@dataset_description.identifier}"}
-  %tr.header
-    - @field_descriptions.each do |field_description|
-      %th{:class => field_description.identifier}
-        = sort_link(field_description)
-    %th{:class => "actions"} &nbsp;
-  
-  - @records.each do |record|
-    %tr{:class => cycle("odd", "even")}
+#table-dataset
+  %ul.header
+    %li.row-header
       - @field_descriptions.each do |field_description|
-        %td
+        %span.cell{:class => field_description.identifier}
+          %div{title: field_description.description, class: field_description.description.present? ? 'has-tip' : ''}= sort_link(field_description)
+  %ul.body
+    - @records.each do |record|
+      %li.row{:id => dom_id(record), :class => cycle("odd", "even")}
+        - @field_descriptions.each do |field_description|
           - value = record.get_truncated_html_value(field_description)
-          - unless field_description.reference.blank?
-            = link_to(value, new_search_path(:query_string => record.search_string_for_field_description(field_description)))
+          - if value =~ /\<a.*?\>/
+            %span.cell{class: field_description.data_type}
+              = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : ""
           - else
-            = value
-      %td.actions
-        = link_to(image_tag("icons/show.png", :alt => t("global.show")), dataset_record_path(@dataset, record, :page => params[:page]))
+            = link_to value, dataset_record_path(@dataset_description, record, page: params[:page]), title: t("global.show"), style: field_description.min_width? ? "min-width: #{field_description.min_width}px;" : "", class: [:cell, field_description.data_type]

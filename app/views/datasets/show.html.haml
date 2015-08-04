@@ -1,41 +1,53 @@
-.node
-  .information
-    .clearfix
-      .fl
-        %h1.main= @dataset_description.title
-      .fr.actions
-        - if logged_in? && current_user.has_privilege?(:create_record)
-          = link_to t("dataset.create_record"), new_dataset_record_path(@dataset_description)
-        - if logged_in? && current_user.has_privilege?(:edit_dataset_description)
-          = link_to t("dataset.edit_description"), dataset_description_path(@dataset_description)
-        - if logged_in? && current_user.has_privilege?(:import_from_file)
-          = link_to t("global.import"), new_import_file_path(:dataset_description_id => @dataset_description.id)
+#overlay{style: 'display: none'}
+- if current_user
+  =render 'license/for_registered_user'
+- else
+  =render 'license/for_guest'
 
-    / %p= t("dataset.short_summary", :count => @dataset_description.record_count, :provider => @dataset_description.data_provider)
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('global.datasets'), datasets_path
+  %li= link_to @dataset_description.title, url_for
 
-  = render :partial => 'node_menu'
+%h1= @dataset_description.title
 
+#dataset-description-container
+  .dataset-description
+    %h2= textile @dataset_description.perex
 
-#data
-  
-  .pagination.ajax.clearfix
-    = render :partial => "pagination"
-    
-  #results
-    = render :partial => "search_status"
-    - if has_privilege?(:edit_record_metadata)
-      = render :partial => "datasets/admin/table"
-    - else
-      = render :partial => "datasets/table"
-          
-  .pagination.ajax
-    = render :partial => "pagination"
-    
-#information
-  = render :partial => "information"
-          
-#comments
-  = render :partial => "comments"
-  
-#search
-  = render :partial => "search"
+    %div{data: {less_shown: true}}
+      .dataset-description-text= truncate(@dataset_description.description, length: 200)
+      = link_to t('.more_information'), nil, onclick: %{$('[data-less-shown]').hide();$('[data-more-shown]').show();GATracker._more_information_click('#{@dataset_description.identifier}'); return false;}
+
+    %div{data: {more_shown: true}, style: 'display: none'}
+      #information
+        = textile(@dataset_description.description)
+        = link_to t('.less_information'), nil, onclick: %{$('[data-more-shown]').hide();$('[data-less-shown]').show();return false;}
+
+  %ul#dataset-about
+    - if @dataset_description.data_updated_at.present?
+      %li
+        = t '.last_update'
+        %strong= l @dataset_description.data_updated_at, format: :full
+    %li
+      = t '.published_count'
+      %strong= @dataset_description.record_count
+
+    %li
+      = t '.data_provider'
+      %strong= @dataset_description.data_provider
+
+  %ul#dataset-navigation
+    = render 'node_menu'
+    = render 'datasets/admin/navigation'
+
+= render "pagination"
+
+#results
+  = render :partial => "search_status"
+  - if has_privilege?(:edit_record_metadata)
+    = render :partial => "datasets/admin/table"
+  - else
+    = render :partial => "datasets/table"
+
+= render "pagination"

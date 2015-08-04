@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Pages Controller
 #
 # Copyright:: (C) 2009 Knowerce, s.r.o.
@@ -20,10 +21,10 @@
 
 class PagesController < ApplicationController
   def show
-    begin
-      @page = Page.find_by_page_name!(params[:id])
-    rescue Exception => e
-      @page = Page.find_by_id!(params[:id])
-    end
+    @page = Page.find_by_page_name(params[:id]) || Page.find(params[:id])
+    # @blocks = @page.blocks.where(is_enabled: true).order(:name).paginate(
+    #   page: params[:page],
+    #   per_page: 9
+    # )
   end
 end

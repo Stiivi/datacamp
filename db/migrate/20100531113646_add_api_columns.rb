@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddApiColumns < ActiveRecord::Migration
   def self.up
     add_column :dataset_descriptions, :api_access_level, :integer, :default => 0

@@ -1,0 +1,6 @@
+#feedback_banner{style: 'display: none'}
+  %p.notice
+    = t('pages.feedback_banner.intro')
+    = link_to t('pages.feedback_banner.link'), 'https://docs.google.com/a/fair-play.sk/forms/d/1E7W4bix7tjzNqt55niYYfxfilO2tepTkK7-aQqecbKw/edit', target: '_blank'
+    = t('pages.feedback_banner.thanks')
+    = link_to t('pages.feedback_banner.hide'), '#', class: 'btn_hide'

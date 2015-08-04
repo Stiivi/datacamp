@@ -1,0 +1,8 @@
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('news.title'), url_for
+
+.legacy
+  %h1= t '.header'
+
+  %ul= render partial: 'news_item', collection: @news

@@ -1,4 +1,4 @@
-- form_for @record, :url => (@form_url) do |f|
+= form_for @record, :as => "kernel_ds_#{@dataset_description.identifier.singularize}".to_sym, :url => @form_url do |f|
 
   %h2= t("dataset.data")
 
@@ -15,20 +15,20 @@
                 .fr
                   = image_tag "icons/cancel.png", :class => "cancel"
               %a{:href => fix_dataset_record_path(@dataset_description, @record, :field => field_description.identifier), :class => "quality_status"}= image_tag "icons/exclamation.png", :class => "quality_status"
-      
+
   %h2= t("dataset.meta_information")
-  
+
   %table.plain
     %tr
       %td.label= t("metadata.status")
       %td
-        = f.select :record_status, options_for_select(add_translations_to_array(DatastoreManager.record_statuses, "record_statuses"), @record.record_status)
-      
+        = f.select :record_status, options_for_select(add_translations_to_array(Dataset::RecordStatus.all, "record_statuses"), @record.record_status)
+
     %tr
       %td.label= t("metadata.quality_status")
       %td
         = f.select :quality_status, options_from_collection_for_select(QualityStatus.all, :name, :title, @record.quality_status)
-  
+
   %table.plain
     %tr
       %td

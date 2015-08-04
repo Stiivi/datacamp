@@ -1,38 +1,91 @@
-.node
-  .information
-    .clearfix.buttons
-      .fl
-        = button_link_to(image_tag("back.png") + t("global.back"), dataset_path(@dataset_description, :page => params[:page]))
-      .fl
-        %h1.main= @dataset_description.title
-      .fr.actions.metadata
-        - if has_privilege?(:edit_record)
-          = t("metadata.status") + ":"
-          = I18n.t("record_statuses.#{@record.record_status}")
-          |
-        = t("metadata.quality_status") + ":"
-        = I18n.t("quality_statuses.#{@record.quality_status}")
-        |
-        - if has_privilege?(:edit_record)
-          = link_to t("global.edit"), edit_dataset_record_path(@dataset_description, @record)
-          |
-          = link_to t("global.delete"), dataset_record_path(@dataset_description, @record), :method => "delete", :confirm => "Are you sure you want to delete this item?"
+#overlay
+#report-error-container{style: 'display: none', data: {error_popup: true}}
+  =form_tag errors_path do
+    #report-error
+      %a.abort{href: '', data: {close_dialog: true}}
 
-    %table
-      - @field_descriptions.each do |field_description|
-        - if not @record[field_description.identifier].nil?
-          %tr
-            %td.label
-              - if @quality_status.find { |qs| qs.column_name == field_description.identifier }
-                = image_tag "icons/exclamation.png", :class => "quality_status"
-              = field_description.title
-            %td= @record.get_html_value(field_description)
+      %h1= t('report_error.title')
 
-  = render :partial => 'node_menu'
-    
-#comments
-  = render :partial => "datasets/comments"
-  
-#metadata
-  = render :partial => "metadata"
-  
+      =label_tag :title, t('report_error.item_name')
+      =text_field_tag :title
+
+      =label_tag :description, t('report_error.description')
+      =text_area_tag :description
+
+    #send-error
+      =submit_tag t('report_error.send'), class: :submit
+
+%ul#navigation-breadcrumb
+  %li.first= link_to t('global.home'), root_path
+  %li= link_to t('global.datasets'), datasets_path
+  %li= link_to @dataset_description.title, dataset_path(@dataset_description)
+  %li= link_to "ID #{@record[:id]}", url_for
+
+#dataset-detail-header
+  %ul
+    %li.corector= t("global.favorite")
+    %li.favorite_menu
+      - if current_user && current_user.has_favorite?(@dataset_description, @record)
+        =link_to "", favorite_path(@favorite), class: "favorite-active js_remove_from_favorites", method: :delete, remote: true
+      - else
+        =link_to "", new_favorite_path({:dataset_description_id => @dataset_description.id, :record_id => @record ? @record.id : nil}), id: :add_to_favorites, class: 'favorite fav ajax'
+
+    %li.corector= t("global.share")
+    %li
+      .addthis_sharing_toolbox
+
+#navigation-dataset-detail-container
+  %ul#navigation-dataset-detail
+    %li
+      %span.name-item= t("metadata.status") + ":"
+      = I18n.t("record_statuses.#{@record.record_status}")
+    %li
+      %span.name-item= t("metadata.quality_status") + ":"
+      = I18n.t("quality_statuses.#{@record.quality_status}")
+    %li.warning
+      %a.warning{href: '#', data: {report_error: true}}= t("global.report_error")
+    - if has_privilege?(:edit_record)
+      %li.admin= link_to t("global.delete"), dataset_record_path(@dataset_description, @record), :method => "delete", :confirm => "Are you sure you want to delete this item?"
+      %li.admin= link_to t("global.edit"), edit_dataset_record_path(@dataset_description, @record)
+
+#table-dataset-detail
+  %ul.body
+    - @field_descriptions.each do |field_description|
+      - if not @record[field_description.identifier].nil?
+        %li.row
+          %span.name-item{title: field_description.description, class: field_description.description.present? ? 'has-tip' : ''}= field_description.title
+          - if @quality_status.find { |qs| qs.column_name == field_description.identifier }
+            = image_tag "icons/exclamation.png", :class => "quality_status"
+          %span= @record.get_html_value(field_description)
+
+- @related_records_and_fields.each do |records, fields, reflection_name, related_dataset_description, macro|
+  - if related_dataset_description.present?
+    - if reflection_name.to_s.include?('morph')
+      - if records.present? || (current_user.present? && current_user.has_privilege?(:edit_record))
+        %h1{:style => 'margin-bottom: 0;'}= t(".morphed_#{@dataset_description.identifier}_#{related_dataset_description.identifier}", default: t('.record_history'))
+        = render partial: 'related_table', locals: {fields: fields, records: records, related_dataset_description: related_dataset_description, reflection_name: reflection_name, macro: macro}
+    - else
+      %h1{:style => 'margin-bottom: 0;'}= related_dataset_description.title
+      - if records.present?
+        = render partial: 'related_table', locals: {fields: fields, records: records, related_dataset_description: related_dataset_description, reflection_name: reflection_name, macro: macro}
+      - else
+        %p= t(".no_related_records_#{@dataset_description.identifier}_#{related_dataset_description.identifier}", default: t('.no_related_records'))
+    - if current_user.present? && current_user.has_privilege?(:edit_record)
+      .hidden
+        = form_tag add_relationship_dataset_record_path(@dataset_description, @record) do
+          = hidden_field_tag :related_dataset, related_dataset_description.id
+          = hidden_field_tag :reflection, reflection_name
+          %ul
+            %li.clearfix{style:'margin-bottom: 0; padding-bottom:0;'}
+              = label_tag :related_id, 'related_id', style: 'width:80px;'
+              = text_field_tag :related_id
+            %li{style: 'padding: 0;'}= submit_tag
+      = link_to 'Add', nil, class: 'prev_div_toggler'
+    %br
+
+= link_to t("global.metadata"), '#metadata', class: 'js_dataset_record_metadata_button button-metadata', data:{ tracking_dataset_description_id: @dataset_description.identifier }, onclick: '$("#metadata").toggle();'
+
+#metadata{style: 'display: none;'}
+  = render "metadata"
+
+%script{type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-559a7fa991cbe70d", async:"async"}

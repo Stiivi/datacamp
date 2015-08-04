@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # Sessions Controller
 #
 # This controller handles the login/logout function of the site.  
@@ -40,14 +41,16 @@ class SessionsController < ApplicationController
       # reset_session
       self.current_user = user
       # Set locale
-      if user.loc
-        session[:locale] = user.loc
-        I18n.locale = user.loc
-      end
-      new_cookie_flag = (params[:remember_me] == "1")
+      I18n.locale = user.loc if user.loc?
+      new_cookie_flag = true
       handle_remember_cookie! new_cookie_flag
       flash[:notice] = t("users.logged_in")
-      return redirect_to params[:return] || flash[:return] || '/'
+      flash[:user_signed_in] = true
+      if params[:return] && params[:return].starts_with?('/')
+        redirect_to params[:return]
+      else
+        redirect_to  root_path
+      end
     else
       note_failed_signin
       @login       = params[:login]
@@ -59,13 +62,13 @@ class SessionsController < ApplicationController
   def destroy
     logout_killing_session!
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
+    redirect_to :back
   end
 
 protected
   # Track failed login attempts
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
+    flash[:error] = I18n.t('session.note_failed_signin')
     logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end
